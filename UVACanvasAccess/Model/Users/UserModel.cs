@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 
-namespace UVACanvasAccess.Model {
+namespace UVACanvasAccess.Model.Users {
     // ReSharper disable InconsistentNaming
     // ReSharper disable MemberCanBePrivate.Global
-    public class User {
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public class UserModel {
         public ulong id { get; set; }
         public string name { get; set; }
         public string sortable_name { get; set; }

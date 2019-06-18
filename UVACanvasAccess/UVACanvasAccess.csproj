@@ -112,7 +112,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\Users\AnonymousUserDisplayModel.cs" />
+    <Compile Include="Model\Users\AvatarModel.cs" />
+    <Compile Include="Model\Users\CourseNicknameModel.cs" />
+    <Compile Include="Model\Users\PageViewModel.cs" />
+    <Compile Include="Model\Users\PageViewLinksModel.cs" />
+    <Compile Include="Model\Users\ProfileModel.cs" />
+    <Compile Include="Model\Users\UserModel.cs" />
+    <Compile Include="Model\Users\UserDisplayModel.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -121,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Structures" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

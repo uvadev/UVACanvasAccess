@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model;
+using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess {
     public class Api : IDisposable {
@@ -63,7 +64,7 @@ namespace UVACanvasAccess {
         /// <param name="order">The order to sort the given column by. Allowed values are <c>asc, desc</c>.</param>
         /// <returns>The list of users found in the search.</returns>
         /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
-        public async Task<List<User>> GetListUsers(string searchTerm,
+        public async Task<List<UserModel>> GetListUsers(string searchTerm,
                                                    string sort = null,
                                                    string order = null,
                                                    string accountId = "self") {
@@ -73,7 +74,9 @@ namespace UVACanvasAccess {
             }
 
             var responseStr = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<User>>(responseStr);
+            return JsonConvert.DeserializeObject<List<UserModel>>(responseStr);
         }
+        
+        
     }
 }
