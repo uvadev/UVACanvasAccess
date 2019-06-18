@@ -14,7 +14,7 @@ namespace UVACanvasAccess.Model.Users {
         public string integration_id { get; set; }
         public string login_id { get; set; }
         public string avatar_url { get; set; }
-        public List<object> enrollments { get; set; }
+        public List<object> enrollments { get; set; } // todo Enrollment model
         public string email { get; set; }
         public string locale { get; set; }
         public string last_login { get; set; }

@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Newtonsoft.Json;
-using UVACanvasAccess.Model;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Users;
 
 namespace UVACanvasAccess {
     public class Api : IDisposable {
@@ -32,15 +33,26 @@ namespace UVACanvasAccess {
         /// <param name="args">The key-value pairs to use in the query string. Null values are ignored.</param>
         /// <returns>The query string.</returns>
         private static string BuildQueryString(params ValueTuple<string, string>[] args) {
-           
-            var sb = new StringBuilder("?");
+            var query = HttpUtility.ParseQueryString(string.Empty);
+
             foreach (var (key, val) in args) {
                 if (val != null) {
-                    sb.Append($"{key}={val}&");
+                    query[key] = val;
                 }
             }
 
-            return sb.Remove(sb.Length - 1, 1).ToString();
+            var s = query.ToString();
+
+            return s == string.Empty ? s
+                                     : "?" + s;
+        }
+
+        private static HttpContent BuildHttpArguments(params ValueTuple<string, string>[] args) {
+            var content = new FormUrlEncodedContent(args.Select(
+                                                                    a => new KeyValuePair<string, string>(a.Item1, a.Item2)
+                                                                ));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            return content;
         }
 
         private Task<HttpResponseMessage> RawGetListUsers(string searchTerm, 
@@ -64,7 +76,7 @@ namespace UVACanvasAccess {
         /// <param name="order">The order to sort the given column by. Allowed values are <c>asc, desc</c>.</param>
         /// <returns>The list of users found in the search.</returns>
         /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
-        public async Task<List<UserModel>> GetListUsers(string searchTerm,
+        public async Task<IEnumerable<User>> GetListUsers(string searchTerm,
                                                    string sort = null,
                                                    string order = null,
                                                    string accountId = "self") {
@@ -74,7 +86,10 @@ namespace UVACanvasAccess {
             }
 
             var responseStr = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<UserModel>>(responseStr);
+            var userModels = JsonConvert.DeserializeObject<List<UserModel>>(responseStr);
+            
+            return from userModel in userModels
+                   select new User(this, userModel);
         }
         
         
