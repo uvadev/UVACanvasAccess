@@ -10,17 +10,27 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-            
-            var natalies = (await api.GetListUsers("Natalie", "username", "desc")).ToList();
-            
-            Console.WriteLine("List of Natalie Ids ({0} natalies):", natalies.Count);
-            foreach (var natalie in natalies) {
-                Console.WriteLine(natalie.Id);
-            }
+
+            var currentProfile = await api.GetUserProfile();
+
+            currentProfile.Bio = "This is a test bio.";                   // These setters call the API and update
+            currentProfile.Title = "Professional UVACanvasAccess Tester"; // the user.
 
             Console.WriteLine();
-            Console.WriteLine("Current User Details:");
-            Console.WriteLine(await api.GetUserDetails());
+            Console.WriteLine("Current Name:");
+            Console.WriteLine(currentProfile.Name + "\n");
+            
+            currentProfile.Name += " | test!";
+            currentProfile = await api.GetUserProfile();
+            Console.WriteLine("Updated Name:");
+            Console.WriteLine(currentProfile.Name + "\n");
+            
+            currentProfile.Name = currentProfile.Name.Replace(" | test!", "");
+            currentProfile = await api.GetUserProfile();
+            Console.WriteLine("Reverted Name:");
+            Console.WriteLine(currentProfile.Name + "\n");
+            
+            Console.WriteLine(currentProfile);
         }
     }
 }

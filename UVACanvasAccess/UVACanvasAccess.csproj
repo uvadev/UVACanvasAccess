@@ -121,6 +121,7 @@
     <Compile Include="Model\Users\ProfileModel.cs" />
     <Compile Include="Model\Users\UserModel.cs" />
     <Compile Include="Model\Users\UserDisplayModel.cs" />
+    <Compile Include="Structures\Users\Profile.cs" />
     <Compile Include="Structures\Users\User.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

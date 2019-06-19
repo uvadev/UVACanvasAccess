@@ -14,7 +14,17 @@ namespace UVACanvasAccess.Structures.Users {
         private readonly Api _api;
         
         public ulong Id { get; private set; }
-        public string Name { get; private set; }
+
+        private string _name;
+
+        public string Name {
+            get => _name;
+            set {
+                var _ = _api.EditUser(new[] {("name", value)}, Id).Result;
+                _name = value;
+            }
+        }
+
         public string SortableName { get; private set; }
         public string ShortName { get; private set; }
         public string SisUserId { get; private set; }
@@ -28,13 +38,22 @@ namespace UVACanvasAccess.Structures.Users {
         public string EffectiveLocale { get; private set; }
         public string LastLogin { get; private set; }
         public string TimeZone { get; private set; }
-        public string Bio { get; private set; }
+
+        private string _bio;
+        public string Bio {
+            get => _bio;
+            set {
+                var _ = _api.EditUser(new[] {("bio", value)}, Id).Result;
+                _bio = value;
+            }
+        }
+        
         public Dictionary<string, bool> Permissions { get; private set; }
 
         public User(Api api, UserModel model) {
             _api = api;
             Id = model.id;
-            Name = model.name;
+            _name = model.name;
             SortableName = model.sortable_name;
             ShortName = model.short_name;
             SisUserId = model.sis_user_id;
@@ -48,7 +67,7 @@ namespace UVACanvasAccess.Structures.Users {
             EffectiveLocale = model.effective_locale;
             LastLogin = model.last_login;
             TimeZone = model.time_zone;
-            Bio = model.bio;
+            _bio = model.bio;
             Permissions = model.permissions;
         }
 

@@ -47,12 +47,46 @@ namespace UVACanvasAccess {
                                      : "?" + s;
         }
 
-        private static HttpContent BuildHttpArguments(params ValueTuple<string, string>[] args) {
-            var content = new FormUrlEncodedContent(args.Select(
-                                                                    a => new KeyValuePair<string, string>(a.Item1, a.Item2)
-                                                                ));
+        private static HttpContent BuildHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
+            var content = 
+                new FormUrlEncodedContent(args.Select(a => new KeyValuePair<string, string>(a.Item1, a.Item2)));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             return content;
+        }
+
+        private Task<HttpResponseMessage> RawEditUser(string userId, HttpContent content) {
+            return _client.PutAsync("users/" + userId, content);
+        }
+
+        public async Task<User> EditUser(IEnumerable<ValueTuple<string, string>> fields, ulong? id = null) {
+            var content = BuildHttpArguments(from kv in fields select ($"user[{kv.Item1}]", kv.Item2));
+            var response = await RawEditUser(id?.ToString() ?? "self", content);
+            
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+            }
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+            var userModel = JsonConvert.DeserializeObject<UserModel>(responseStr);
+
+            return new User(this, userModel);
+        }
+        
+        private Task<HttpResponseMessage> RawGetUserProfile(string userId) {
+            return _client.GetAsync("users/" + userId + "/profile");
+        }
+
+        public async Task<Profile> GetUserProfile(ulong? id = null) {
+            var response = await RawGetUserProfile(id?.ToString() ?? "self");
+            
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+            }
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+            var profileModel = JsonConvert.DeserializeObject<ProfileModel>(responseStr);
+
+            return new Profile(this, profileModel);
         }
 
         private Task<HttpResponseMessage> RawGetUserDetails(string userId) {
@@ -100,9 +134,9 @@ namespace UVACanvasAccess {
         /// <returns>The list of users found in the search.</returns>
         /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
         public async Task<IEnumerable<User>> GetListUsers(string searchTerm,
-                                                   string sort = null,
-                                                   string order = null,
-                                                   string accountId = "self") {
+                                                          string sort = null,
+                                                          string order = null,
+                                                          string accountId = "self") {
             var response = await RawGetListUsers(searchTerm, accountId, sort, order);
             if (!response.IsSuccessStatusCode) {
                 throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
