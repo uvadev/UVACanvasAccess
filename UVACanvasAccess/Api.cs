@@ -55,6 +55,29 @@ namespace UVACanvasAccess {
             return content;
         }
 
+        private Task<HttpResponseMessage> RawGetUserDetails(string userId) {
+            return _client.GetAsync("users/" + userId);
+        }
+        
+        /// <summary>
+        /// Get details for a user, including a non-comprehensive list of permissions.
+        /// </summary>
+        /// <param name="id">The id of the user. A null id is interpreted as <c>self</c>.</param>
+        /// <returns>The User object.</returns>
+        /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
+        public async Task<User> GetUserDetails(ulong? id = null) {
+            var response = await RawGetUserDetails(id?.ToString() ?? "self");
+            
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+            }
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+            var userModel = JsonConvert.DeserializeObject<UserModel>(responseStr);
+
+            return new User(this, userModel);
+        }
+
         private Task<HttpResponseMessage> RawGetListUsers(string searchTerm, 
                                                           string accountId,
                                                           string sort,

@@ -13,10 +13,14 @@ namespace UVACanvasAccess {
             
             var natalies = (await api.GetListUsers("Natalie", "username", "desc")).ToList();
             
-            Console.WriteLine("List of Natalies ({0} natalies):", natalies.Count);
+            Console.WriteLine("List of Natalie Ids ({0} natalies):", natalies.Count);
             foreach (var natalie in natalies) {
-                Console.WriteLine(natalie + "\n========\n");
+                Console.WriteLine(natalie.Id);
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Current User Details:");
+            Console.WriteLine(await api.GetUserDetails());
         }
     }
 }

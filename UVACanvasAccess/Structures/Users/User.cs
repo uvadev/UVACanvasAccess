@@ -25,9 +25,11 @@ namespace UVACanvasAccess.Structures.Users {
         public List<object> Enrollments { get; private set; }
         public string Email { get; private set; }
         public string Locale { get; private set; }
+        public string EffectiveLocale { get; private set; }
         public string LastLogin { get; private set; }
         public string TimeZone { get; private set; }
         public string Bio { get; private set; }
+        public Dictionary<string, bool> Permissions { get; private set; }
 
         public User(Api api, UserModel model) {
             _api = api;
@@ -43,9 +45,11 @@ namespace UVACanvasAccess.Structures.Users {
             Enrollments = model.enrollments;
             Email = model.email;
             Locale = model.locale;
+            EffectiveLocale = model.effective_locale;
             LastLogin = model.last_login;
             TimeZone = model.time_zone;
             Bio = model.bio;
+            Permissions = model.permissions;
         }
 
         public override string ToString() {
@@ -61,9 +65,11 @@ namespace UVACanvasAccess.Structures.Users {
                    $"\n{nameof(Enrollments)}: {Enrollments}," +
                    $"\n{nameof(Email)}: {Email}," +
                    $"\n{nameof(Locale)}: {Locale}," +
+                   $"\n{nameof(EffectiveLocale)}: {EffectiveLocale}," +
                    $"\n{nameof(LastLogin)}: {LastLogin}," +
                    $"\n{nameof(TimeZone)}: {TimeZone}," +
-                   $"\n{nameof(Bio)}: {Bio}";
+                   $"\n{nameof(Bio)}: {Bio}," + 
+                   $"\n{nameof(Permissions)}: {string.Join(";", Permissions)}";
         }
     }
 }

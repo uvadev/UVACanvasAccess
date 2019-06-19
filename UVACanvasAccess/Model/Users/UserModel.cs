@@ -17,9 +17,11 @@ namespace UVACanvasAccess.Model.Users {
         public List<object> enrollments { get; set; } // todo Enrollment model
         public string email { get; set; }
         public string locale { get; set; }
+        public string effective_locale { get; set; }
         public string last_login { get; set; }
         public string time_zone { get; set; }
         public string bio { get; set; }
+        public Dictionary<string, bool> permissions { get; set; }
 
         public override string ToString() {
             return $"{nameof(id)}: {id}, " +
@@ -34,9 +36,11 @@ namespace UVACanvasAccess.Model.Users {
                    $"\n{nameof(enrollments)}: {enrollments}," +
                    $"\n{nameof(email)}: {email}," +
                    $"\n{nameof(locale)}: {locale}," +
+                   $"\n{nameof(effective_locale)}: {effective_locale}," +
                    $"\n{nameof(last_login)}: {last_login}," +
                    $"\n{nameof(time_zone)}: {time_zone}," +
-                   $"\n{nameof(bio)}: {bio}";
+                   $"\n{nameof(bio)}: {bio}," + 
+                   $"\n{nameof(permissions)}: {string.Join("; ", permissions)}";
         }
     }
 }
