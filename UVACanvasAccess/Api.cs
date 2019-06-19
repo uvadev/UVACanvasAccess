@@ -14,6 +14,13 @@ namespace UVACanvasAccess {
 
         private readonly HttpClient _client;
         
+        /// <summary>
+        /// Construct a new API instance.
+        /// </summary>
+        /// <param name="token">The token used to authenticate this API instance.</param>
+        /// <param name="baseUrl">The base url of the API server, ending with the version number.
+        /// Ex: <c>https://uview.instructure.com/api/v1/</c>
+        /// </param>
         public Api(string token, string baseUrl) {
             _client = new HttpClient();
             
@@ -47,6 +54,11 @@ namespace UVACanvasAccess {
                                      : "?" + s;
         }
 
+        /// <summary>
+        /// Constructs a <c>x-www-form-url-encoded</c> <c>HttpContent</c> with the given key-value pairs.
+        /// </summary>
+        /// <param name="args">The set of key-value tuples.</param>
+        /// <returns></returns>
         private static HttpContent BuildHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
             var content = 
                 new FormUrlEncodedContent(args.Select(a => new KeyValuePair<string, string>(a.Item1, a.Item2)));
@@ -58,6 +70,15 @@ namespace UVACanvasAccess {
             return _client.PutAsync("users/" + userId, content);
         }
 
+        /// <summary>
+        /// Modify an existing user.
+        /// The fields that can be modified are: <c>{name, short_name, sortable_name, time_zone, email, locale, title, bio}</c>.
+        /// Corresponds to the API endpoint <c>PUT /api/v1/users/:id</c>
+        /// </summary>
+        /// <param name="fields">The set of field-value tuples to modify.</param>
+        /// <param name="id">The id of the user. A null id is interpreted as <c>self</c>.</param>
+        /// <returns>The edited user.</returns>
+        /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
         public async Task<User> EditUser(IEnumerable<ValueTuple<string, string>> fields, ulong? id = null) {
             var content = BuildHttpArguments(from kv in fields select ($"user[{kv.Item1}]", kv.Item2));
             var response = await RawEditUser(id?.ToString() ?? "self", content);
@@ -76,6 +97,12 @@ namespace UVACanvasAccess {
             return _client.GetAsync("users/" + userId + "/profile");
         }
 
+        /// <summary>
+        /// Get the profile of a user.
+        /// </summary>
+        /// <param name="id">The id of the user. A null id is interpreted as <c>self</c>.</param>
+        /// <returns>The user profile.</returns>
+        /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
         public async Task<Profile> GetUserProfile(ulong? id = null) {
             var response = await RawGetUserProfile(id?.ToString() ?? "self");
             
