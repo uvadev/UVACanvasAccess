@@ -8,7 +8,7 @@ namespace UVACanvasAccess.Structures.Users {
     public class Profile {
         private readonly Api _api;
         
-        public ulong Id { get; private set; }
+        public ulong Id { get; }
         
         private string _name;
         public string Name {
@@ -19,8 +19,23 @@ namespace UVACanvasAccess.Structures.Users {
             }
         }
         
-        public string ShortName { get; private set; }
-        public string SortableName { get; private set; }
+        private string _sortableName;
+        public string SortableName {
+            get => _sortableName;
+            set {
+                var _ = _api.EditUser(new[] {("sortable_name", value)}, Id).Result;
+                _sortableName = value; 
+            }
+        }
+
+        private string _shortName;
+        public string ShortName {
+            get => _shortName;
+            set {
+                var _ = _api.EditUser(new[] {("short_name", value)}, Id).Result;
+                _shortName = value;
+            }
+        }
 
         private string _title;
         public string Title {
@@ -54,8 +69,8 @@ namespace UVACanvasAccess.Structures.Users {
             
             Id = model.id;
             _name = model.name;
-            ShortName = model.short_name;
-            SortableName = model.sortable_name;
+            _shortName = model.short_name;
+            _sortableName = model.sortable_name;
             _title = model.title;
             _bio = model.bio;
             PrimaryEmail = model.primary_email;

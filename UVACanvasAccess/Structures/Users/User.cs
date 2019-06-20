@@ -13,10 +13,9 @@ namespace UVACanvasAccess.Structures.Users {
         // API should remain private.
         private readonly Api _api;
         
-        public ulong Id { get; private set; }
+        public ulong Id { get; }
 
         private string _name;
-
         public string Name {
             get => _name;
             set {
@@ -25,8 +24,24 @@ namespace UVACanvasAccess.Structures.Users {
             }
         }
 
-        public string SortableName { get; private set; }
-        public string ShortName { get; private set; }
+        private string _sortableName;
+        public string SortableName {
+            get => _sortableName;
+            set {
+                var _ = _api.EditUser(new[] {("sortable_name", value)}, Id).Result;
+                _sortableName = value; 
+            }
+        }
+
+        private string _shortName;
+        public string ShortName {
+            get => _shortName;
+            set {
+                var _ = _api.EditUser(new[] {("short_name", value)}, Id).Result;
+                _shortName = value;
+            }
+        }
+        
         public string SisUserId { get; private set; }
         public ulong? SisImportId { get; private set; }
         public string IntegrationId { get; private set; }
@@ -54,8 +69,8 @@ namespace UVACanvasAccess.Structures.Users {
             _api = api;
             Id = model.id;
             _name = model.name;
-            SortableName = model.sortable_name;
-            ShortName = model.short_name;
+            _sortableName = model.sortable_name;
+            _shortName = model.short_name;
             SisUserId = model.sis_user_id;
             SisImportId = model.sis_import_id;
             IntegrationId = model.integration_id;
