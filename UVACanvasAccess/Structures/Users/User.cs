@@ -91,7 +91,7 @@ namespace UVACanvasAccess.Structures.Users {
             LastLogin = model.last_login;
             _timeZone = model.time_zone;
             _bio = model.bio;
-            Permissions = model.permissions;
+            Permissions = model.permissions ?? new Dictionary<string, bool>();
         }
 
         public override string ToString() {

@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api.cs" />
+    <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Model\Users\AnonymousUserDisplayModel.cs" />
     <Compile Include="Model\Users\AvatarModel.cs" />
     <Compile Include="Model\Users\CourseNicknameModel.cs" />

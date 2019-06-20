@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
+using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Users;
 
@@ -64,6 +65,28 @@ namespace UVACanvasAccess {
                 new FormUrlEncodedContent(args.Select(a => new KeyValuePair<string, string>(a.Item1, a.Item2)));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             return content;
+        }
+
+        private Task<HttpResponseMessage> RawCreateUser(string accountId, HttpContent content) {
+            return _client.PostAsync($"accounts/{accountId}/users", content);
+        }
+
+        public async Task<User> CreateUser(CreateUserBuilder builder) {
+            var content = BuildHttpArguments(from kv in builder.Fields select (kv.Key, kv.Value));
+            var response = await RawCreateUser(builder.AccountId, content);
+            
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+            }
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+            var userModel = JsonConvert.DeserializeObject<UserModel>(responseStr);
+
+            return new User(this, userModel);
+        }
+
+        public CreateUserBuilder BuildNewUser(string accountId = "self") {
+            return new CreateUserBuilder(this, accountId);
         }
 
         private Task<HttpResponseMessage> RawEditUser(string userId, HttpContent content) {
