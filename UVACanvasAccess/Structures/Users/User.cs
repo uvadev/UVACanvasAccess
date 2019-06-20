@@ -51,8 +51,16 @@ namespace UVACanvasAccess.Structures.Users {
         public string Email { get; private set; }
         public string Locale { get; private set; }
         public string EffectiveLocale { get; private set; }
-        public string LastLogin { get; private set; }
-        public string TimeZone { get; private set; }
+        public string LastLogin { get; }
+
+        private string _timeZone;
+        public string TimeZone {
+            get => _timeZone;
+            set {
+                var _ = _api.EditUser(new[] {("time_zone", value)}).Result;
+                _timeZone = value;
+            } 
+        }
 
         private string _bio;
         public string Bio {
@@ -81,7 +89,7 @@ namespace UVACanvasAccess.Structures.Users {
             Locale = model.locale;
             EffectiveLocale = model.effective_locale;
             LastLogin = model.last_login;
-            TimeZone = model.time_zone;
+            _timeZone = model.time_zone;
             _bio = model.bio;
             Permissions = model.permissions;
         }

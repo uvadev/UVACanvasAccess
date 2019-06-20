@@ -61,7 +61,16 @@ namespace UVACanvasAccess.Structures.Users {
         public string LtiUserId { get; private set; }
         public string AvatarUrl { get; private set; }
         public object Calendar { get; private set; }
-        public string TimeZone { get; private set; }
+        
+        private string _timeZone;
+        public string TimeZone {
+            get => _timeZone;
+            set {
+                var _ = _api.EditUser(new[] {("time_zone", value)}).Result;
+                _timeZone = value;
+            } 
+        }
+        
         public string Locale { get; private set; }
 
         public Profile(Api api, ProfileModel model) {
@@ -79,7 +88,7 @@ namespace UVACanvasAccess.Structures.Users {
             LtiUserId = model.lti_user_id;
             AvatarUrl = model.avatar_url;
             Calendar = model.calendar;
-            TimeZone = model.time_zone;
+            _timeZone = model.time_zone;
             Locale = model.locale;
         }
 
