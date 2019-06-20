@@ -71,6 +71,15 @@ namespace UVACanvasAccess {
             return _client.PostAsync($"accounts/{accountId}/users", content);
         }
 
+        /// <summary>
+        /// Creates a new user with the <c>/api/v1/accounts/:account_id/users</c> endpoint.
+        /// It is preferred to instead call <see cref="BuildNewUser"/> and <see cref="CreateUserBuilder.Post"/>.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <returns>The new user.</returns>
+        /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
+        /// <seealso cref="BuildNewUser"/>
+        /// <seealso cref="CreateUserBuilder"/>
         public async Task<User> CreateUser(CreateUserBuilder builder) {
             var content = BuildHttpArguments(from kv in builder.Fields select (kv.Key, kv.Value));
             var response = await RawCreateUser(builder.AccountId, content);
@@ -85,6 +94,11 @@ namespace UVACanvasAccess {
             return new User(this, userModel);
         }
 
+        /// <summary>
+        /// Returns a <c>CreateUserBuilder</c> for creating a new user.
+        /// </summary>
+        /// <param name="accountId">The account to create the user under. <c>self</c> by default.</param>
+        /// <returns>The builder.</returns>
         public CreateUserBuilder BuildNewUser(string accountId = "self") {
             return new CreateUserBuilder(this, accountId);
         }
