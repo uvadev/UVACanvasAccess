@@ -76,20 +76,20 @@ namespace UVACanvasAccess.Structures.Users {
         public Profile(Api api, ProfileModel model) {
             _api = api;
             
-            Id = model.id;
-            _name = model.name;
-            _shortName = model.short_name;
-            _sortableName = model.sortable_name;
-            _title = model.title;
-            _bio = model.bio;
-            PrimaryEmail = model.primary_email;
-            LoginId = model.login_id;
-            SisUserId = model.sis_user_id;
-            LtiUserId = model.lti_user_id;
-            AvatarUrl = model.avatar_url;
-            Calendar = model.calendar;
-            _timeZone = model.time_zone;
-            Locale = model.locale;
+            Id = model.Id;
+            _name = model.Name;
+            _shortName = model.ShortName;
+            _sortableName = model.SortableName;
+            _title = model.Title;
+            _bio = model.Bio;
+            PrimaryEmail = model.PrimaryEmail;
+            LoginId = model.LoginId;
+            SisUserId = model.SisUserId;
+            LtiUserId = model.LtiUserId;
+            AvatarUrl = model.AvatarUrl;
+            Calendar = model.Calendar;
+            _timeZone = model.TimeZone;
+            Locale = model.Locale;
         }
 
         public override string ToString() {

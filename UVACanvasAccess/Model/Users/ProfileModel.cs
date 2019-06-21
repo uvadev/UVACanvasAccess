@@ -1,38 +1,67 @@
+using Newtonsoft.Json;
+
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable InconsistentNaming
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable once ClassNeverInstantiated.Global
     public class ProfileModel {
-        public ulong id { get; set; }
-        public string name { get; set; }
-        public string short_name { get; set; }
-        public string sortable_name { get; set; }
-        public string title { get; set; }
-        public string bio { get; set; }
-        public string primary_email { get; set; }
-        public string login_id { get; set; }
-        public string sis_user_id { get; set; }
-        public string lti_user_id { get; set; }
-        public string avatar_url { get; set; }
-        public object calendar { get; set; }
-        public string time_zone { get; set; }
-        public string locale { get; set; }
+        
+        [JsonProperty("id")]
+        public ulong Id { get; set; }
+        
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        
+        [JsonProperty("short_name")]
+        public string ShortName { get; set; }
+        
+        [JsonProperty("sortable_name")]
+        public string SortableName { get; set; }
+        
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        
+        [JsonProperty("bio")]
+        public string Bio { get; set; }
+        
+        [JsonProperty("primary_email")]
+        public string PrimaryEmail { get; set; }
+        
+        [JsonProperty("login_id")]
+        public string LoginId { get; set; }
+        
+        [JsonProperty("sis_user_id")]
+        public string SisUserId { get; set; }
+        
+        [JsonProperty("lti_user_id")]
+        public string LtiUserId { get; set; }
+        
+        [JsonProperty("avatar_url")]
+        public string AvatarUrl { get; set; }
+        
+        [JsonProperty("calendar")]
+        public object Calendar { get; set; }
+        
+        [JsonProperty("time_zone")]
+        public string TimeZone { get; set; }
+        
+        [JsonProperty("locale")]
+        public string Locale { get; set; }
 
         public override string ToString() {
-            return $"{nameof(id)}: {id}," +
-                   $"\n{nameof(name)}: {name}," +
-                   $"\n{nameof(short_name)}: {short_name}," +
-                   $"\n{nameof(sortable_name)}: {sortable_name}," +
-                   $"\n{nameof(title)}: {title}," +
-                   $"\n{nameof(bio)}: {bio}," +
-                   $"\n{nameof(primary_email)}: {primary_email}," +
-                   $"\n{nameof(login_id)}: {login_id}," +
-                   $"\n{nameof(sis_user_id)}: {sis_user_id}," +
-                   $"\n{nameof(lti_user_id)}: {lti_user_id}," +
-                   $"\n{nameof(avatar_url)}: {avatar_url}," +
-                   $"\n{nameof(calendar)}: {calendar}," +
-                   $"\n{nameof(time_zone)}: {time_zone}," +
-                   $"\n{nameof(locale)}: {locale}";
+            return $"{nameof(Id)}: {Id}," +
+                   $"\n{nameof(Name)}: {Name}," +
+                   $"\n{nameof(ShortName)}: {ShortName}," +
+                   $"\n{nameof(SortableName)}: {SortableName}," +
+                   $"\n{nameof(Title)}: {Title}," +
+                   $"\n{nameof(Bio)}: {Bio}," +
+                   $"\n{nameof(PrimaryEmail)}: {PrimaryEmail}," +
+                   $"\n{nameof(LoginId)}: {LoginId}," +
+                   $"\n{nameof(SisUserId)}: {SisUserId}," +
+                   $"\n{nameof(LtiUserId)}: {LtiUserId}," +
+                   $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +
+                   $"\n{nameof(Calendar)}: {Calendar}," +
+                   $"\n{nameof(TimeZone)}: {TimeZone}," +
+                   $"\n{nameof(Locale)}: {Locale}";
         }
     }
 }

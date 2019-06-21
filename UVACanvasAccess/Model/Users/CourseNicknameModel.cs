@@ -1,16 +1,23 @@
+using Newtonsoft.Json;
+
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable InconsistentNaming
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable once ClassNeverInstantiated.Global
     public class CourseNicknameModel {
-        public ulong course_id { get; set; }
-        public string name { get; set; }
-        public string nickname { get; set; }
+        
+        [JsonProperty("course_id")]
+        public ulong CourseId { get; set; }
+        
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        
+        [JsonProperty("nickname")]
+        public string Nickname { get; set; }
 
         public override string ToString() {
-            return $"{nameof(course_id)}: {course_id}," +
-                   $"\n{nameof(name)}: {name}," +
-                   $"\n{nameof(nickname)}: {nickname}";
+            return $"{nameof(CourseId)}: {CourseId}," +
+                   $"\n{nameof(Name)}: {Name}," +
+                   $"\n{nameof(Nickname)}: {Nickname}";
         }
     }
 }

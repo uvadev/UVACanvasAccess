@@ -1,26 +1,43 @@
+using Newtonsoft.Json;
+
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable InconsistentNaming
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable once ClassNeverInstantiated.Global
     public class AvatarModel {
-        public string type { get; set; }
-        public string url { get; set; }
-        public string token { get; set; }
-        public string display_name { get; set; }
-        public ulong id { get; set; }
-        public string content_type { get; set; }
-        public string filename { get; set; }
-        public ulong size { get; set; }
+        
+        [JsonProperty("type")]
+        public string Type { get; set; }
+        
+        [JsonProperty("url")]
+        public string Url { get; set; }
+        
+        [JsonProperty("token")]
+        public string Token { get; set; }
+        
+        [JsonProperty("display_name")]
+        public string DisplayName { get; set; }
+        
+        [JsonProperty("id")]
+        public ulong Id { get; set; }
+        
+        [JsonProperty("content_type")]
+        public string ContentType { get; set; }
+        
+        [JsonProperty("filename")]
+        public string Filename { get; set; }
+        
+        [JsonProperty("size")]
+        public ulong Size { get; set; }
 
         public override string ToString() {
-            return $"{nameof(type)}: {type}," +
-                   $"\n{nameof(url)}: {url}," +
-                   $"\n{nameof(token)}: {token}," +
-                   $"\n{nameof(display_name)}: {display_name}," +
-                   $"\n{nameof(id)}: {id}," +
-                   $"\n{nameof(content_type)}: {content_type}," +
-                   $"\n{nameof(filename)}: {filename}," +
-                   $"\n{nameof(size)}: {size}";
+            return $"{nameof(Type)}: {Type}," +
+                   $"\n{nameof(Url)}: {Url}," +
+                   $"\n{nameof(Token)}: {Token}," +
+                   $"\n{nameof(DisplayName)}: {DisplayName}," +
+                   $"\n{nameof(Id)}: {Id}," +
+                   $"\n{nameof(ContentType)}: {ContentType}," +
+                   $"\n{nameof(Filename)}: {Filename}," +
+                   $"\n{nameof(Size)}: {Size}";
         }
     }
 }

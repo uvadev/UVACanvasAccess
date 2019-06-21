@@ -13,6 +13,8 @@ using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Users;
 
 namespace UVACanvasAccess {
+    
+    // ReSharper disable UnusedMethodReturnValue.Global
     public class Api : IDisposable {
 
         private readonly HttpClient _client;

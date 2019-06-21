@@ -1,44 +1,79 @@
+using Newtonsoft.Json;
+
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable InconsistentNaming
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable once ClassNeverInstantiated.Global
     public class PageViewModel {
-        public string id { get; set; }
-        public string app_name { get; set; }
-        public string url { get; set; }
-        public string context_type { get; set; }
-        public string asset_type { get; set; }
-        public string controller { get; set; }
-        public string action { get; set; }
-        public bool contributed { get; set; }
-        public double interaction_seconds { get; set; }
-        public string created_at { get; set; }
-        public bool user_request { get; set; }
-        public double render_time { get; set; }
-        public string user_agent { get; set; }
-        public bool participated { get; set; }
-        public string http_method { get; set; }
-        public string remote_ip { get; set; }
-        public PageViewLinksModel links { get; set; }
+        
+        [JsonProperty("id")]
+        public string Id { get; set; }
+        
+        [JsonProperty("app_name")]
+        public string AppName { get; set; }
+        
+        [JsonProperty("url")]
+        public string Url { get; set; }
+        
+        [JsonProperty("context_type")]
+        public string ContextType { get; set; }
+        
+        [JsonProperty("asset_type")]
+        public string AssetType { get; set; }
+        
+        [JsonProperty("controller")]
+        public string Controller { get; set; }
+        
+        [JsonProperty("action")]
+        public string Action { get; set; }
+        
+        [JsonProperty("contributed")]
+        public bool Contributed { get; set; }
+        
+        [JsonProperty("interaction_seconds")]
+        public double InteractionSeconds { get; set; }
+        
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+        
+        [JsonProperty("user_request")]
+        public bool UserRequest { get; set; }
+        
+        [JsonProperty("render_time")]
+        public double RenderTime { get; set; }
+        
+        [JsonProperty("user_agent")]
+        public string UserAgent { get; set; }
+        
+        [JsonProperty("participated")]
+        public bool Participated { get; set; }
+        
+        [JsonProperty("http_method")]
+        public string HttpMethod { get; set; }
+        
+        [JsonProperty("remote_ip")]
+        public string RemoteIp { get; set; }
+        
+        [JsonProperty("links")]
+        public PageViewLinksModel Links { get; set; }
 
         public override string ToString() {
-            return $"{nameof(id)}: {id}," +
-                   $"\n{nameof(app_name)}: {app_name}," +
-                   $"\n{nameof(url)}: {url}," +
-                   $"\n{nameof(context_type)}: {context_type}," +
-                   $"\n{nameof(asset_type)}: {asset_type}," +
-                   $"\n{nameof(controller)}: {controller}," +
-                   $"\n{nameof(action)}: {action}," +
-                   $"\n{nameof(contributed)}: {contributed}," +
-                   $"\n{nameof(interaction_seconds)}: {interaction_seconds}," +
-                   $"\n{nameof(created_at)}: {created_at}," +
-                   $"\n{nameof(user_request)}: {user_request}," +
-                   $"\n{nameof(render_time)}: {render_time}," +
-                   $"\n{nameof(user_agent)}: {user_agent}," +
-                   $"\n{nameof(participated)}: {participated}," +
-                   $"\n{nameof(http_method)}: {http_method}," +
-                   $"\n{nameof(remote_ip)}: {remote_ip}," +
-                   $"\n{nameof(links)}: {links}";
+            return $"{nameof(Id)}: {Id}," +
+                   $"\n{nameof(AppName)}: {AppName}," +
+                   $"\n{nameof(Url)}: {Url}," +
+                   $"\n{nameof(ContextType)}: {ContextType}," +
+                   $"\n{nameof(AssetType)}: {AssetType}," +
+                   $"\n{nameof(Controller)}: {Controller}," +
+                   $"\n{nameof(Action)}: {Action}," +
+                   $"\n{nameof(Contributed)}: {Contributed}," +
+                   $"\n{nameof(InteractionSeconds)}: {InteractionSeconds}," +
+                   $"\n{nameof(CreatedAt)}: {CreatedAt}," +
+                   $"\n{nameof(UserRequest)}: {UserRequest}," +
+                   $"\n{nameof(RenderTime)}: {RenderTime}," +
+                   $"\n{nameof(UserAgent)}: {UserAgent}," +
+                   $"\n{nameof(Participated)}: {Participated}," +
+                   $"\n{nameof(HttpMethod)}: {HttpMethod}," +
+                   $"\n{nameof(RemoteIp)}: {RemoteIp}," +
+                   $"\n{nameof(Links)}: {Links}";
         }
     }
 }

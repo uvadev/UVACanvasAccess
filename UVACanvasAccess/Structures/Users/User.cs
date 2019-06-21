@@ -75,23 +75,23 @@ namespace UVACanvasAccess.Structures.Users {
 
         public User(Api api, UserModel model) {
             _api = api;
-            Id = model.id;
-            _name = model.name;
-            _sortableName = model.sortable_name;
-            _shortName = model.short_name;
-            SisUserId = model.sis_user_id;
-            SisImportId = model.sis_import_id;
-            IntegrationId = model.integration_id;
-            LoginId = model.login_id;
-            AvatarUrl = model.avatar_url;
-            Enrollments = model.enrollments;
-            Email = model.email;
-            Locale = model.locale;
-            EffectiveLocale = model.effective_locale;
-            LastLogin = model.last_login;
-            _timeZone = model.time_zone;
-            _bio = model.bio;
-            Permissions = model.permissions ?? new Dictionary<string, bool>();
+            Id = model.Id;
+            _name = model.Name;
+            _sortableName = model.SortableName;
+            _shortName = model.ShortName;
+            SisUserId = model.SisUserId;
+            SisImportId = model.SisImportId;
+            IntegrationId = model.IntegrationId;
+            LoginId = model.LoginId;
+            AvatarUrl = model.AvatarUrl;
+            Enrollments = model.Enrollments;
+            Email = model.Email;
+            Locale = model.Locale;
+            EffectiveLocale = model.EffectiveLocale;
+            LastLogin = model.LastLogin;
+            _timeZone = model.TimeZone;
+            _bio = model.Bio;
+            Permissions = model.Permissions ?? new Dictionary<string, bool>();
         }
 
         public override string ToString() {
