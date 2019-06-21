@@ -14,10 +14,14 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var _ = await api.StoreCustomJson("academy.uview", 
-                                              "test",
-                                              new JObject {["field1"] = 17, ["field2"] = "foo bar baz"},
-                                              Test2Id);
+            await api.StoreCustomJson("academy.uview", 
+                                      "test",
+                                      new JObject {["field1"] = 17, ["field2"] = "foo bar baz", ["field3"] = "snafu"},
+                                      Test2Id);
+
+            await api.DeleteCustomJson("academy.uview",
+                                       "test/field3",
+                                       Test2Id);
 
             var storedJson = await api.LoadCustomJson("academy.uview",
                                                       "test",

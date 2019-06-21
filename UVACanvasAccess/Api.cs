@@ -74,6 +74,31 @@ namespace UVACanvasAccess {
             return content;
         }
 
+        private Task<HttpResponseMessage> RawDeleteCustomJson(string userId, string scopes, string ns) {
+            return _client.DeleteAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
+        }
+
+        /// <summary>
+        /// Delete arbitrary user data stored with <see cref="StoreCustomJson"/>.
+        /// Corresponds to the API endpoint <c>DELETE /api/v1/users/:user_id/custom_data(/*scope)</c>.
+        /// </summary>
+        /// <param name="ns">The namespace under which the data is stored.</param>
+        /// <param name="scopes">The scope, and optionally subscopes, under which the data is stored. Omit scope to delete all custom data.</param>
+        /// <param name="userId">The id of the user.</param>
+        /// <returns>The JSON data that was deleted.</returns>
+        /// <exception cref="Exception"></exception>
+        /// <seealso cref="StoreCustomJson"/>
+        public async Task<JObject> DeleteCustomJson(string ns, string scopes = "", ulong? userId = null) {
+            var response = await RawDeleteCustomJson(userId?.ToString() ?? "self", scopes, ns);
+            
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+            }
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+            return JObject.Parse(responseStr);
+        }
+
         private Task<HttpResponseMessage> RawLoadCustomJson(string userId, string scopes, string ns) {
             return _client.GetAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
         }
