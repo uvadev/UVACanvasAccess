@@ -11,8 +11,10 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Builders;
+using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Users;
+using UVACanvasAccess.Structures.Files;
 
 namespace UVACanvasAccess {
     
@@ -76,11 +78,15 @@ namespace UVACanvasAccess {
             return content;
         }
         
-        private async Task<JObject> UploadFile(string endpoint, byte[] file, string fileName, string filePath, string parentFolderId = null,
+        private async Task<CanvasFile> UploadFile(string endpoint, byte[] file, string fileName, string filePath, string parentFolderId = null,
                                       string parentFolderPath = null, string onDuplicate = null, string contentType = null) {
             
             // https://canvas.instructure.com/doc/api/file.file_uploads.html
-            
+
+            if (contentType == null) {
+                contentType = MimeMapping.GetMimeMapping(filePath);
+            }
+
             var firstPostArgs = BuildHttpArguments(new[] {
                                                               ("name", fileName),
                                                               ("size", file.Length.ToString()),
@@ -104,10 +110,13 @@ namespace UVACanvasAccess {
                                    select (kv.Name, kv.Value.ToString());
 
             var secondPostArgs = BuildHttpArguments(uploadParamsList.Append(("file", fileName)));
-
+            
+            var bytesContent = new ByteArrayContent(file);
+            bytesContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+            
             var secondPostData = new MultipartFormDataContent {
                                                                   secondPostArgs,
-                                                                  { new ByteArrayContent(file), fileName, filePath }
+                                                                  { bytesContent, fileName, filePath }
                                                               };
             
             var secondPostResponse = await _client.PostAsync(uploadUrl, secondPostData);
@@ -116,15 +125,20 @@ namespace UVACanvasAccess {
                 throw new Exception($"http failure response: {secondPostResponse.StatusCode} {secondPostResponse.ReasonPhrase}");
             }
 
-            if (secondPostResponse.StatusCode != HttpStatusCode.MovedPermanently)
-                return JObject.Parse(await secondPostResponse.Content.ReadAsStringAsync());
+
+            CanvasFileModel model;
+            if (secondPostResponse.StatusCode != HttpStatusCode.MovedPermanently) {
+                model = JsonConvert.DeserializeObject<CanvasFileModel>(await secondPostResponse.Content.ReadAsStringAsync());
+            } else {
+                var thirdResponse = await _client.GetAsync(secondPostResponse.Headers.Location);
+                model = JsonConvert.DeserializeObject<CanvasFileModel>(await thirdResponse.Content.ReadAsStringAsync());
+            }
             
-            var thirdResponse = await _client.GetAsync(secondPostResponse.Headers.Location);
-            return JObject.Parse(await thirdResponse.Content.ReadAsStringAsync());
+            return new CanvasFile(this, model);
 
         }
 
-        public Task<JObject> UploadPersonalFile(byte[] file, string filePath, ulong? userId = null) {
+        public Task<CanvasFile> UploadPersonalFile(byte[] file, string filePath, ulong? userId = null) {
             return UploadFile($"users/{userId?.ToString() ?? "self"}/files", 
                               file, 
                               Path.GetFileNameWithoutExtension(filePath), 

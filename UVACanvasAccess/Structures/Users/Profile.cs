@@ -1,3 +1,4 @@
+using StatePrinting;
 using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Structures.Users {
@@ -92,21 +93,9 @@ namespace UVACanvasAccess.Structures.Users {
             Locale = model.Locale;
         }
 
+        private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
-            return $"{nameof(Id)}: {Id}," +
-                   $"\n{nameof(Name)}: {Name}," +
-                   $"\n{nameof(ShortName)}: {ShortName}," +
-                   $"\n{nameof(SortableName)}: {SortableName}," +
-                   $"\n{nameof(Title)}: {Title}," +
-                   $"\n{nameof(Bio)}: {Bio}," +
-                   $"\n{nameof(PrimaryEmail)}: {PrimaryEmail}," +
-                   $"\n{nameof(LoginId)}: {LoginId}," +
-                   $"\n{nameof(SisUserId)}: {SisUserId}," +
-                   $"\n{nameof(LtiUserId)}: {LtiUserId}," +
-                   $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +
-                   $"\n{nameof(Calendar)}: {Calendar}," +
-                   $"\n{nameof(TimeZone)}: {TimeZone}," +
-                   $"\n{nameof(Locale)}: {Locale}";
+            return Printer.PrintObject(this);
         }
     }
 }

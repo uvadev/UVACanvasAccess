@@ -54,6 +54,10 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StatePrinter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=693eec472ad792e3">
+      <HintPath>..\packages\StatePrinter.3.0.1\lib\net35\StatePrinter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -114,6 +118,7 @@
   <ItemGroup>
     <Compile Include="Api.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
+    <Compile Include="Model\Files\CanvasFileModel.cs" />
     <Compile Include="Model\Users\AnonymousUserDisplayModel.cs" />
     <Compile Include="Model\Users\AvatarModel.cs" />
     <Compile Include="Model\Users\CourseNicknameModel.cs" />
@@ -122,6 +127,7 @@
     <Compile Include="Model\Users\ProfileModel.cs" />
     <Compile Include="Model\Users\UserModel.cs" />
     <Compile Include="Model\Users\UserDisplayModel.cs" />
+    <Compile Include="Structures\Files\CanvasFile.cs" />
     <Compile Include="Structures\Users\Profile.cs" />
     <Compile Include="Structures\Users\User.cs" />
     <Compile Include="Test.cs" />

@@ -19,7 +19,9 @@ namespace UVACanvasAccess {
             var testFile = File.ReadAllBytes(testFilePath ?? throw new Exception());
 
             var uploaded = await api.UploadPersonalFile(testFile, testFilePath);
-            Console.WriteLine(uploaded);
+
+            Console.WriteLine($"Successfully uploaded {uploaded.Filename} (id {uploaded.Id}), " +
+                              $"which is a {uploaded.MimeClass}, to URL: {uploaded.Url}");
         }
     }
 }
