@@ -78,10 +78,29 @@ namespace UVACanvasAccess {
             return content;
         }
         
-        private async Task<CanvasFile> UploadFile(string endpoint, byte[] file, string fileName, string filePath, string parentFolderId = null,
-                                      string parentFolderPath = null, string onDuplicate = null, string contentType = null) {
-            
-            // https://canvas.instructure.com/doc/api/file.file_uploads.html
+        /// <summary>
+        /// Performs a file upload to any Canvas endpoint that accepts file uploads.
+        /// This method should be called by a specific endpoint method and not directly.
+        /// </summary>
+        /// <param name="endpoint">The endpoint to upload to.</param>
+        /// <param name="file">The data.</param>
+        /// <param name="fileName">The file's name without its extension.</param>
+        /// <param name="filePath">The file's path on the local machine.</param>
+        /// <param name="parentFolderId">The id of the folder to place the file in.</param>
+        /// <param name="parentFolderPath">The path of the folder to place the file in.</param>
+        /// <param name="onDuplicate">How to handle a duplicate filename. Can be <c>overwrite</c> or <c>rename</c>.
+        /// The default is <c>overwrite</c>. Not applicable in a context where files are not placed in folders.
+        /// </param>
+        /// <param name="contentType">The MIME type of the file. If absent, it will be determined by calling
+        /// <see cref="MimeMapping.GetMimeMapping"/> on the filePath.
+        /// </param>
+        /// <returns>The uploaded file.</returns>
+        /// <exception cref="Exception"></exception>
+        /// <remarks>The request will fail if both <c>parentFolderId</c> and <c>parentFolderPath</c> are supplied.</remarks>
+        /// <see href="https://canvas.instructure.com/doc/api/file.file_uploads.html"/>
+        private async Task<CanvasFile> UploadFile(string endpoint, byte[] file, string fileName, string filePath, 
+                                                  string parentFolderId = null, string parentFolderPath = null, 
+                                                  string onDuplicate = null, string contentType = null) {
 
             if (contentType == null) {
                 contentType = MimeMapping.GetMimeMapping(filePath);
@@ -138,6 +157,15 @@ namespace UVACanvasAccess {
 
         }
 
+        /// <summary>
+        /// Uploads a file to the user's personal files section.
+        /// </summary>
+        /// <param name="file">The data.</param>
+        /// <param name="filePath">The URI of the file on the local system.
+        /// Must include, at a minimum, the name and the extension.
+        /// </param>
+        /// <param name="userId">The id of the user. <c>self</c> if null or omitted.</param>
+        /// <returns>The uploaded file.</returns>
         public Task<CanvasFile> UploadPersonalFile(byte[] file, string filePath, ulong? userId = null) {
             return UploadFile($"users/{userId?.ToString() ?? "self"}/files", 
                               file, 
