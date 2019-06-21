@@ -1,7 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using dotenv.net;
-using Newtonsoft.Json.Linq;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -14,20 +14,12 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            await api.StoreCustomJson("academy.uview", 
-                                      "test",
-                                      new JObject {["field1"] = 17, ["field2"] = "foo bar baz", ["field3"] = "snafu"},
-                                      Test2Id);
+            var testFilePath = Environment.GetEnvironmentVariable("TEST_FILE");
 
-            await api.DeleteCustomJson("academy.uview",
-                                       "test/field3",
-                                       Test2Id);
+            var testFile = File.ReadAllBytes(testFilePath ?? throw new Exception());
 
-            var storedJson = await api.LoadCustomJson("academy.uview",
-                                                      "test",
-                                                      Test2Id);
-
-            Console.WriteLine(storedJson);
+            var uploaded = await api.UploadPersonalFile(testFile, testFilePath);
+            Console.WriteLine(uploaded);
         }
     }
 }

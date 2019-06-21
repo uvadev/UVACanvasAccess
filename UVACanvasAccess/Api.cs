@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -66,9 +68,68 @@ namespace UVACanvasAccess {
         /// <returns></returns>
         private static HttpContent BuildHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
             var content =
-                new FormUrlEncodedContent(args.Select(a => new KeyValuePair<string, string>(a.Item1, a.Item2)));
+                new FormUrlEncodedContent(from a in args
+                                          where a.Item2 != null
+                                          select new KeyValuePair<string, string>(a.Item1, a.Item2));
+            
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             return content;
+        }
+        
+        private async Task<JObject> UploadFile(string endpoint, byte[] file, string fileName, string filePath, string parentFolderId = null,
+                                      string parentFolderPath = null, string onDuplicate = null, string contentType = null) {
+            
+            // https://canvas.instructure.com/doc/api/file.file_uploads.html
+            
+            var firstPostArgs = BuildHttpArguments(new[] {
+                                                              ("name", fileName),
+                                                              ("size", file.Length.ToString()),
+                                                              ("content_type", contentType),
+                                                              ("parent_folder_path", parentFolderPath),
+                                                              ("parent_folder_id", parentFolderId),
+                                                              ("on_duplicate", onDuplicate)
+                                                          });
+
+            var firstPostResponse = await _client.PostAsync(endpoint, firstPostArgs);
+            
+            if (!firstPostResponse.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {firstPostResponse.StatusCode} {firstPostResponse.ReasonPhrase}");
+            }
+
+            var firstResponseJson = JObject.Parse(await firstPostResponse.Content.ReadAsStringAsync());
+            var uploadUrl = firstResponseJson["upload_url"].ToString();
+            var uploadParams = (JObject) firstResponseJson["upload_params"];
+
+            var uploadParamsList = from kv in uploadParams.Properties()
+                                   select (kv.Name, kv.Value.ToString());
+
+            var secondPostArgs = BuildHttpArguments(uploadParamsList.Append(("file", fileName)));
+
+            var secondPostData = new MultipartFormDataContent {
+                                                                  secondPostArgs,
+                                                                  { new ByteArrayContent(file), fileName, filePath }
+                                                              };
+            
+            var secondPostResponse = await _client.PostAsync(uploadUrl, secondPostData);
+
+            if (!secondPostResponse.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {secondPostResponse.StatusCode} {secondPostResponse.ReasonPhrase}");
+            }
+
+            if (secondPostResponse.StatusCode != HttpStatusCode.MovedPermanently)
+                return JObject.Parse(await secondPostResponse.Content.ReadAsStringAsync());
+            
+            var thirdResponse = await _client.GetAsync(secondPostResponse.Headers.Location);
+            return JObject.Parse(await thirdResponse.Content.ReadAsStringAsync());
+
+        }
+
+        public Task<JObject> UploadPersonalFile(byte[] file, string filePath, ulong? userId = null) {
+            return UploadFile($"users/{userId?.ToString() ?? "self"}/files", 
+                              file, 
+                              Path.GetFileNameWithoutExtension(filePath), 
+                              Path.GetFileName(filePath)
+                             );
         }
 
         private static HttpContent BuildHttpJsonBody(JObject json) {
