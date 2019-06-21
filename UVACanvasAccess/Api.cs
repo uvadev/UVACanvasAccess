@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Users;
@@ -61,10 +63,74 @@ namespace UVACanvasAccess {
         /// <param name="args">The set of key-value tuples.</param>
         /// <returns></returns>
         private static HttpContent BuildHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
-            var content = 
+            var content =
                 new FormUrlEncodedContent(args.Select(a => new KeyValuePair<string, string>(a.Item1, a.Item2)));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             return content;
+        }
+
+        private static HttpContent BuildHttpJsonBody(JObject json) {
+            var content = new StringContent(json.ToString(), Encoding.Default, "application/json");
+            return content;
+        }
+
+        private Task<HttpResponseMessage> RawLoadCustomJson(string userId, string scopes, string ns) {
+            return _client.GetAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
+        }
+
+        /// <summary>
+        /// Retrieve arbitrary user data as JSON.
+        /// Corresponds to the API endpoint <c>GET /api/v1/users/:user_id/custom_data(/*scope)</c>.
+        /// </summary>
+        /// <param name="ns">The namespace under which the data is stored.</param>
+        /// <param name="scopes">The scope, and optionally subscopes, under which the data is stored.</param>
+        /// <param name="userId">The id of the user.</param>
+        /// <returns>The JSON data.</returns>
+        /// <exception cref="Exception"></exception>
+        /// <seealso cref="StoreCustomJson"/>
+        public async Task<JObject> LoadCustomJson(string ns, string scopes, ulong? userId = null) {
+            var response = await RawLoadCustomJson(userId?.ToString() ?? "self", scopes, ns);
+            
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+            }
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+            return JObject.Parse(responseStr);
+        }
+
+        private Task<HttpResponseMessage> RawStoreCustomJson(string userId, string scopes, HttpContent content) {
+            return _client.PutAsync($"users/{userId}/custom_data/{scopes}", content);
+        }
+
+        /// <summary>
+        /// Store arbitrary user data as JSON. 
+        /// Corresponds to the API endpoint <c>PUT /api/v1/users/:user_id/custom_data(/*scope)</c>.
+        /// </summary>
+        /// <param name="ns">The namespace under which to store the data.</param>
+        /// <param name="scopes">The scope, and optionally subscopes, under which to store the data.</param>
+        /// <param name="data">The JSON data.</param>
+        /// <param name="userId">The id of the user.</param>
+        /// <returns>A copy of the stored json.</returns>
+        /// <exception cref="Exception"></exception>
+        /// <seealso cref="LoadCustomJson"/>
+        public async Task<JObject> StoreCustomJson(string ns, string scopes, JObject data, ulong? userId = null) {
+
+            var json = new JObject {
+                                       ["ns"] = ns,
+                                       ["data"] = data
+                                   };
+
+
+            var content = BuildHttpJsonBody(json);
+            var response = await RawStoreCustomJson(userId?.ToString() ?? "self", scopes, content);
+            
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+            }
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+            return JObject.Parse(responseStr);
         }
 
         private Task<HttpResponseMessage> RawCreateUser(string accountId, HttpContent content) {
