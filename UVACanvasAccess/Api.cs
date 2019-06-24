@@ -117,10 +117,8 @@ namespace UVACanvasAccess {
                                                           });
 
             var firstPostResponse = await _client.PostAsync(endpoint, firstPostArgs);
-            
-            if (!firstPostResponse.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {firstPostResponse.StatusCode} {firstPostResponse.ReasonPhrase}");
-            }
+
+            firstPostResponse.AssertSuccess();
 
             var firstResponseJson = JObject.Parse(await firstPostResponse.Content.ReadAsStringAsync());
             var uploadUrl = firstResponseJson["upload_url"].ToString();
@@ -141,9 +139,7 @@ namespace UVACanvasAccess {
             
             var secondPostResponse = await _client.PostAsync(uploadUrl, secondPostData);
 
-            if (!secondPostResponse.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {secondPostResponse.StatusCode} {secondPostResponse.ReasonPhrase}");
-            }
+            secondPostResponse.AssertSuccess();
 
 
             CanvasFileModel model;
@@ -151,6 +147,7 @@ namespace UVACanvasAccess {
                 model = JsonConvert.DeserializeObject<CanvasFileModel>(await secondPostResponse.Content.ReadAsStringAsync());
             } else {
                 var thirdResponse = await _client.GetAsync(secondPostResponse.Headers.Location);
+                thirdResponse.AssertSuccess();
                 model = JsonConvert.DeserializeObject<CanvasFileModel>(await thirdResponse.Content.ReadAsStringAsync());
             }
             
@@ -180,6 +177,23 @@ namespace UVACanvasAccess {
             return content;
         }
 
+        private Task<HttpResponseMessage> RawGetUserPageViews(string userId, string startTime, string endTime) {
+            return _client.GetAsync($"/api/v1/users/{userId}/page_views" +
+                                    BuildQueryString(("start_time", startTime), ("end_time", endTime)));
+        }
+
+        public async Task<IEnumerable<PageView>> GetUserPageViews(ulong? userId = null, 
+                                                                  string startTime = null,
+                                                                  string endTime = null) {
+            var response = await RawGetUserPageViews(userId?.ToString() ?? "self", startTime, endTime);
+            response.AssertSuccess();
+
+            var models = await AccumulateDeserializePages<PageViewModel>(response);
+
+            return from model in models
+                   select new PageView(this, model);
+        }
+
         private Task<HttpResponseMessage> RawDeleteCustomJson(string userId, string scopes, string ns) {
             return _client.DeleteAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
         }
@@ -197,9 +211,7 @@ namespace UVACanvasAccess {
         public async Task<JObject> DeleteCustomJson(string ns, string scopes = "", ulong? userId = null) {
             var response = await RawDeleteCustomJson(userId?.ToString() ?? "self", scopes, ns);
             
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+            response.AssertSuccess();
 
             var responseStr = await response.Content.ReadAsStringAsync();
             return JObject.Parse(responseStr);
@@ -222,9 +234,7 @@ namespace UVACanvasAccess {
         public async Task<JObject> LoadCustomJson(string ns, string scopes, ulong? userId = null) {
             var response = await RawLoadCustomJson(userId?.ToString() ?? "self", scopes, ns);
             
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+            response.AssertSuccess();
 
             var responseStr = await response.Content.ReadAsStringAsync();
             return JObject.Parse(responseStr);
@@ -255,10 +265,8 @@ namespace UVACanvasAccess {
 
             var content = BuildHttpJsonBody(json);
             var response = await RawStoreCustomJson(userId?.ToString() ?? "self", scopes, content);
-            
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+
+            response.AssertSuccess();
 
             var responseStr = await response.Content.ReadAsStringAsync();
             return JObject.Parse(responseStr);
@@ -281,9 +289,7 @@ namespace UVACanvasAccess {
             var content = BuildHttpArguments(from kv in builder.Fields select (kv.Key, kv.Value));
             var response = await RawCreateUser(builder.AccountId, content);
             
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+            response.AssertSuccess();
 
             var responseStr = await response.Content.ReadAsStringAsync();
             var userModel = JsonConvert.DeserializeObject<UserModel>(responseStr);
@@ -317,9 +323,7 @@ namespace UVACanvasAccess {
             var content = BuildHttpArguments(from kv in fields select ($"user[{kv.Item1}]", kv.Item2));
             var response = await RawEditUser(id?.ToString() ?? "self", content);
             
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+            response.AssertSuccess();
 
             var responseStr = await response.Content.ReadAsStringAsync();
             var userModel = JsonConvert.DeserializeObject<UserModel>(responseStr);
@@ -340,9 +344,7 @@ namespace UVACanvasAccess {
         public async Task<Profile> GetUserProfile(ulong? id = null) {
             var response = await RawGetUserProfile(id?.ToString() ?? "self");
             
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+            response.AssertSuccess();
 
             var responseStr = await response.Content.ReadAsStringAsync();
             var profileModel = JsonConvert.DeserializeObject<ProfileModel>(responseStr);
@@ -363,9 +365,7 @@ namespace UVACanvasAccess {
         public async Task<User> GetUserDetails(ulong? id = null) {
             var response = await RawGetUserDetails(id?.ToString() ?? "self");
             
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+            response.AssertSuccess();
 
             var responseStr = await response.Content.ReadAsStringAsync();
             var userModel = JsonConvert.DeserializeObject<UserModel>(responseStr);

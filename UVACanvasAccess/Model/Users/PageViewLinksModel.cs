@@ -9,7 +9,7 @@ namespace UVACanvasAccess.Model.Users {
         public ulong User { get; set; }
         
         [JsonProperty("context")]
-        public ulong Context { get; set; }
+        public ulong? Context { get; set; }
         
         [JsonProperty("asset")]
         public ulong? Asset { get; set; }

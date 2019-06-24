@@ -27,25 +27,25 @@ namespace UVACanvasAccess.Model.Users {
         public string Action { get; set; }
         
         [JsonProperty("contributed")]
-        public bool Contributed { get; set; }
+        public bool? Contributed { get; set; }
         
         [JsonProperty("interaction_seconds")]
-        public double InteractionSeconds { get; set; }
+        public double? InteractionSeconds { get; set; }
         
         [JsonProperty("created_at")]
         public string CreatedAt { get; set; }
         
         [JsonProperty("user_request")]
-        public bool UserRequest { get; set; }
+        public bool? UserRequest { get; set; }
         
         [JsonProperty("render_time")]
-        public double RenderTime { get; set; }
+        public double? RenderTime { get; set; }
         
         [JsonProperty("user_agent")]
         public string UserAgent { get; set; }
         
         [JsonProperty("participated")]
-        public bool Participated { get; set; }
+        public bool? Participated { get; set; }
         
         [JsonProperty("http_method")]
         public string HttpMethod { get; set; }
