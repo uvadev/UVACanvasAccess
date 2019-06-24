@@ -132,6 +132,8 @@
     <Compile Include="Structures\Users\User.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Extensions.cs" />
+    <Compile Include="Util\LinkHeader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

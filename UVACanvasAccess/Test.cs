@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 
@@ -14,14 +14,12 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var testFilePath = Environment.GetEnvironmentVariable("TEST_FILE");
+            var natalies = (await api.GetListUsers("Natalie")).ToList();
+            Console.WriteLine("# of Natalies: " + natalies.ToList().Count);
 
-            var testFile = File.ReadAllBytes(testFilePath ?? throw new Exception());
-
-            var uploaded = await api.UploadPersonalFile(testFile, testFilePath);
-
-            Console.WriteLine($"Successfully uploaded {uploaded.Filename} (id {uploaded.Id}), " +
-                              $"which is a {uploaded.MimeClass}, to URL: {uploaded.Url}");
+            foreach (var natalie in natalies) {
+                Console.WriteLine(natalie.Id);
+            }
         }
     }
 }

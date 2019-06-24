@@ -15,6 +15,7 @@ using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Structures.Files;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     
@@ -398,17 +399,62 @@ namespace UVACanvasAccess {
                                                           string order = null,
                                                           string accountId = "self") {
             var response = await RawGetListUsers(searchTerm, accountId, sort, order);
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
-            }
+            response.AssertSuccess();
 
-            var responseStr = await response.Content.ReadAsStringAsync();
-            var userModels = JsonConvert.DeserializeObject<List<UserModel>>(responseStr);
-            
+            var userModels = await AccumulateDeserializePages<UserModel>(response);
+
             return from userModel in userModels
                    select new User(this, userModel);
         }
+
+        private async Task<List<JToken>> AccumulatePages(HttpResponseMessage response) {
+            response.AssertSuccess();
+
+            var pages = new List<HttpContent> { response.Content };
+            
+            while (response.Headers.TryGetValues("Link", out var linkValues)) {
+                var links = LinkHeader.LinksFromHeader(linkValues.First());
+                if (links?.NextLink == null)
+                    break;
+                
+                response = await _client.GetAsync(links.NextLink);
+                response.AssertSuccess();
+                pages.Add(response.Content);
+            }
+
+            var accumulated = new List<JToken>();
+
+            foreach (var content in pages) {
+                var responseStr = await content.ReadAsStringAsync();
+                accumulated.AddRange(JToken.Parse(responseStr));
+            }
+
+            return accumulated;
+        }
         
-        
+        private async Task<List<E>> AccumulateDeserializePages<E>(HttpResponseMessage response) {
+            response.AssertSuccess();
+
+            var pages = new List<HttpContent> { response.Content };
+            
+            while (response.Headers.TryGetValues("Link", out var linkValues)) {
+                var links = LinkHeader.LinksFromHeader(linkValues.First());
+                if (links?.NextLink == null)
+                    break;
+                
+                response = await _client.GetAsync(links.NextLink);
+                response.AssertSuccess();
+                pages.Add(response.Content);
+            }
+
+            var accumulated = new List<E>();
+
+            foreach (var content in pages) {
+                var responseStr = await content.ReadAsStringAsync();
+                accumulated.AddRange(JsonConvert.DeserializeObject<List<E>>(responseStr));
+            }
+
+            return accumulated;
+        }
     }
 }
