@@ -407,6 +407,11 @@ namespace UVACanvasAccess {
                    select new User(this, userModel);
         }
 
+        /// <summary>
+        /// Accumulates all the elements in a paginated response.
+        /// </summary>
+        /// <param name="response">The first response received after initiating the request.</param>
+        /// <returns>The list of JSON elements.</returns>
         private async Task<List<JToken>> AccumulatePages(HttpResponseMessage response) {
             response.AssertSuccess();
 
@@ -432,7 +437,13 @@ namespace UVACanvasAccess {
             return accumulated;
         }
         
-        private async Task<List<E>> AccumulateDeserializePages<E>(HttpResponseMessage response) {
+        /// <summary>
+        /// Accumulates all the elements in a paginated response, then deserializes each element as <c>TElement</c>.
+        /// </summary>
+        /// <param name="response">The first response received after initiating the request.</param>
+        /// <typeparam name="TElement">The model type of the elements returned in the response.</typeparam>
+        /// <returns>The list of deserialized elements.</returns>
+        private async Task<List<TElement>> AccumulateDeserializePages<TElement>(HttpResponseMessage response) {
             response.AssertSuccess();
 
             var pages = new List<HttpContent> { response.Content };
@@ -447,11 +458,11 @@ namespace UVACanvasAccess {
                 pages.Add(response.Content);
             }
 
-            var accumulated = new List<E>();
+            var accumulated = new List<TElement>();
 
             foreach (var content in pages) {
                 var responseStr = await content.ReadAsStringAsync();
-                accumulated.AddRange(JsonConvert.DeserializeObject<List<E>>(responseStr));
+                accumulated.AddRange(JsonConvert.DeserializeObject<List<TElement>>(responseStr));
             }
 
             return accumulated;
