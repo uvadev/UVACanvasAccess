@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Users {
@@ -33,7 +34,7 @@ namespace UVACanvasAccess.Model.Users {
         public double? InteractionSeconds { get; set; }
         
         [JsonProperty("created_at")]
-        public string CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         
         [JsonProperty("user_request")]
         public bool? UserRequest { get; set; }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -46,7 +47,7 @@ namespace UVACanvasAccess.Model.Users {
         public string EffectiveLocale { get; set; }
         
         [JsonProperty("last_login")]
-        public string LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
         
         [JsonProperty("time_zone")]
         public string TimeZone { get; set; }

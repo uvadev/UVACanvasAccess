@@ -182,10 +182,19 @@ namespace UVACanvasAccess {
                                     BuildQueryString(("start_time", startTime), ("end_time", endTime)));
         }
 
+        /// <summary>
+        /// Returns the user's page view history. Page views are returned in descending order; newest to oldest.
+        /// </summary>
+        /// <param name="userId">The id of the user. Defaults to <c>self</c>.</param>
+        /// <param name="startTime">The beginning of the date-time range to retrieve page views from. Defaults to unbounded.</param>
+        /// <param name="endTime">The end of the date-time range to retrieve page views from. Defaults to unbounded.</param>
+        /// <returns>The collection of page views.</returns>
         public async Task<IEnumerable<PageView>> GetUserPageViews(ulong? userId = null, 
-                                                                  string startTime = null,
-                                                                  string endTime = null) {
-            var response = await RawGetUserPageViews(userId?.ToString() ?? "self", startTime, endTime);
+                                                                  DateTime? startTime = null,
+                                                                  DateTime? endTime = null) {
+            var response = await RawGetUserPageViews(userId?.ToString() ?? "self", 
+                                                     startTime == null ? null : JsonConvert.SerializeObject(startTime), 
+                                                     endTime == null ? null : JsonConvert.SerializeObject(endTime));
             response.AssertSuccess();
 
             var models = await AccumulateDeserializePages<PageViewModel>(response);

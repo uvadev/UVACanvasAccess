@@ -1,3 +1,4 @@
+using System;
 using StatePrinting;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Util;
@@ -28,7 +29,7 @@ namespace UVACanvasAccess.Structures.Users {
         
         public double? InteractionSeconds { get; private set; }
         
-        public string CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; private set; }
         
         public bool? UserRequest { get; private set; }
         

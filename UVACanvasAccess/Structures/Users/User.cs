@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using StatePrinting;
 using UVACanvasAccess.Model.Users;
@@ -52,7 +53,7 @@ namespace UVACanvasAccess.Structures.Users {
         public string Email { get; private set; }
         public string Locale { get; private set; }
         public string EffectiveLocale { get; private set; }
-        public string LastLogin { get; }
+        public DateTime? LastLogin { get; }
 
         private string _timeZone;
         public string TimeZone {
