@@ -13,10 +13,9 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var activityStreamObjectModels = await api.GetActivityStream();
-            foreach (var a in activityStreamObjectModels) {
-                Console.WriteLine(a);
-            }
+            var summary = await api.GetActivityStreamSummary();
+
+            Console.WriteLine(summary["DiscussionTopic"]);
         }
     }
 }

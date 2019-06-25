@@ -192,6 +192,24 @@ namespace UVACanvasAccess {
                    select ActivityStreamObject.FromModel(this, model);
         }
 
+        private Task<HttpResponseMessage> RawGetActivityStreamSummary() {
+            return _client.GetAsync("/api/v1/users/self/activity_stream/summary");
+        }
+
+        public async Task<Dictionary<string, ActivityStreamSummaryEntry>> GetActivityStreamSummary() {
+            var response = await RawGetActivityStreamSummary();
+            response.AssertSuccess();
+
+            var models = await AccumulateDeserializePages<ActivityStreamSummaryEntryModel>(response);
+            
+            var dic = new Dictionary<string, ActivityStreamSummaryEntry>();
+            foreach (var model in models) {
+                dic[model.Type] = new ActivityStreamSummaryEntry(model);
+            }
+
+            return dic;
+        }
+
         private Task<HttpResponseMessage> RawGetUserPageViews(string userId, string startTime, string endTime) {
             return _client.GetAsync($"/api/v1/users/{userId}/page_views" +
                                     BuildQueryString(("start_time", startTime), ("end_time", endTime)));
