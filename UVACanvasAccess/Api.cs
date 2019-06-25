@@ -182,6 +182,11 @@ namespace UVACanvasAccess {
                                     BuildQueryString(("only_active_courses", onlyActiveCourses?.ToString())));
         }
         
+        /// <summary>
+        /// Gets the activity stream for the current user.
+        /// </summary>
+        /// <param name="onlyActiveCourses">If true, only entries for active courses will be returned.</param>
+        /// <returns>The list of activity stream entries.</returns>
         public async Task<IEnumerable<ActivityStreamObject>> GetActivityStream(bool? onlyActiveCourses = null) {
             var response = await RawGetActivityStream(onlyActiveCourses);
             response.AssertSuccess();
@@ -196,6 +201,10 @@ namespace UVACanvasAccess {
             return _client.GetAsync("/api/v1/users/self/activity_stream/summary");
         }
 
+        /// <summary>
+        /// Returns the summary of activity stream entries for the current user.
+        /// </summary>
+        /// <returns>The map of activity stream types to their counts.</returns>
         public async Task<Dictionary<string, ActivityStreamSummaryEntry>> GetActivityStreamSummary() {
             var response = await RawGetActivityStreamSummary();
             response.AssertSuccess();
