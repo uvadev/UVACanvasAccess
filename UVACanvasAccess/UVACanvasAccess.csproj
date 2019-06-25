@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="Api.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
+    <Compile Include="Model\Discussions\DiscussionTopicModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
     <Compile Include="Model\Users\ActivityStreamObjectModel.cs" />
     <Compile Include="Model\Users\ActivityStreamSummaryEntryModel.cs" />
