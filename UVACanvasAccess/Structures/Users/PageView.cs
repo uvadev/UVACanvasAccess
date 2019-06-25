@@ -8,7 +8,7 @@ namespace UVACanvasAccess.Structures.Users {
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     // ReSharper disable MemberCanBePrivate.Global
-    public class PageView {
+    public class PageView : IPrettyPrint {
         private readonly Api _api;
 
         public string Id { get; private set; }

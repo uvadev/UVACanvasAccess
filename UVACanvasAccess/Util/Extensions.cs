@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 
@@ -36,6 +37,12 @@ namespace UVACanvasAccess.Util {
             }
 
             return sb.Append("\n}").ToString();
+        }
+
+        internal static string ToPrettyString<T>(this IEnumerable<T> enumerable)
+        where T : IPrettyPrint {
+            var strings = enumerable.Select(e => e.ToPrettyString());
+            return "[" + string.Join(", ", strings) + "]";
         }
     }
 }

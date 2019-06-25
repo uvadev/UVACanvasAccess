@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using StatePrinting;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Util;
@@ -9,7 +10,7 @@ namespace UVACanvasAccess.Structures.Users {
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     // ReSharper disable MemberCanBePrivate.Global
-    public class User {
+    public class User : IPrettyPrint {
         // We keep a reference to the API that yielded this User so that getters can query for needed info and setters
         // can update the API. Many API endpoints that return User omit some fields, so some getters will need to check
         // for null and query the API if required. Setters that do not have an implementation that directly updates the
@@ -95,6 +96,14 @@ namespace UVACanvasAccess.Structures.Users {
             _timeZone = model.TimeZone;
             _bio = model.Bio;
             Permissions = model.Permissions ?? new Dictionary<string, bool>();
+        }
+
+        public Task<Profile> GetProfile() {
+            return _api.GetUserProfile(Id);
+        }
+
+        public Task<IEnumerable<PageView>> GetPageViews(DateTime? startDate = null, DateTime? endDate = null) {
+            return _api.GetUserPageViews(Id, startDate, endDate);
         }
 
         private static readonly Stateprinter Printer = new Stateprinter();

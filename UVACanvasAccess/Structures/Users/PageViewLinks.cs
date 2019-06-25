@@ -7,7 +7,7 @@ namespace UVACanvasAccess.Structures.Users {
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     // ReSharper disable MemberCanBePrivate.Global
-    public class PageViewLinks {
+    public class PageViewLinks : IPrettyPrint {
         private readonly Api _api;
         
         public ulong User { get; private set; }

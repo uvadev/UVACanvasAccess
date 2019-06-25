@@ -6,7 +6,7 @@ namespace UVACanvasAccess.Structures.Files {
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     // ReSharper disable MemberCanBePrivate.Global
-    public class CanvasFile {
+    public class CanvasFile : IPrettyPrint {
         private readonly Api _api;
         
         public ulong Id { get; }

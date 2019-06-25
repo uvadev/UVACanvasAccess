@@ -1,12 +1,13 @@
 using StatePrinting;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
 
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     // ReSharper disable MemberCanBePrivate.Global
-    public class Profile {
+    public class Profile : IPrettyPrint {
         private readonly Api _api;
         
         public ulong Id { get; }
@@ -96,6 +97,25 @@ namespace UVACanvasAccess.Structures.Users {
         private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
             return Printer.PrintObject(this);
+        }
+
+        public string ToPrettyString() {
+            return "Profile {" + 
+                   ($"\n{nameof(Id)}: {Id}," +
+                   $"\n{nameof(Name)}: {Name}," +
+                   $"\n{nameof(SortableName)}: {SortableName}," +
+                   $"\n{nameof(ShortName)}: {ShortName}," +
+                   $"\n{nameof(Title)}: {Title}," +
+                   $"\n{nameof(Bio)}: {Bio}," +
+                   $"\n{nameof(PrimaryEmail)}: {PrimaryEmail}," +
+                   $"\n{nameof(LoginId)}: {LoginId}," +
+                   $"\n{nameof(SisUserId)}: {SisUserId}," +
+                   $"\n{nameof(LtiUserId)}: {LtiUserId}," +
+                   $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +
+                   $"\n{nameof(Calendar)}: {Calendar}," +
+                   $"\n{nameof(TimeZone)}: {TimeZone}," +
+                   $"\n{nameof(Locale)}: {Locale}").Indent(4) +
+                   "\n}";
         }
     }
 }
