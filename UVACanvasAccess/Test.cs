@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading.Tasks;
 using dotenv.net;
 
@@ -14,13 +13,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var test2PageViews = await api.GetUserPageViews(Test2Id, 
-                                                            new DateTime(2019, 6, 21, new GregorianCalendar()),
-                                                            new DateTime(2019, 6, 22, new GregorianCalendar()));
+            var user = api.GetUserDetails(Test2Id);
             
-            foreach (var view in test2PageViews) {
-                Console.WriteLine(view.ToPrettyString());
-            }
         }
     }
 }

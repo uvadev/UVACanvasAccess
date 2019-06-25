@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
@@ -25,6 +26,16 @@ namespace UVACanvasAccess.Util {
             }
 
             return sb.ToString();
+        }
+
+        internal static string ToPrettyString<K, V>(this Dictionary<K, V> dictionary) {
+            var sb = new StringBuilder("{");
+
+            foreach (var entry in dictionary) {
+                sb.Append($"\n{entry.Key} -> {entry.Value}".Indent(4));
+            }
+
+            return sb.Append("\n}").ToString();
         }
     }
 }

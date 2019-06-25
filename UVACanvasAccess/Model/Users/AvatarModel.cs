@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
     // ReSharper disable MemberCanBePrivate.Global
@@ -29,15 +30,9 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("size")]
         public ulong Size { get; set; }
 
+        private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
-            return $"{nameof(Type)}: {Type}," +
-                   $"\n{nameof(Url)}: {Url}," +
-                   $"\n{nameof(Token)}: {Token}," +
-                   $"\n{nameof(DisplayName)}: {DisplayName}," +
-                   $"\n{nameof(Id)}: {Id}," +
-                   $"\n{nameof(ContentType)}: {ContentType}," +
-                   $"\n{nameof(Filename)}: {Filename}," +
-                   $"\n{nameof(Size)}: {Size}";
+            return Printer.PrintObject(this);
         }
     }
 }

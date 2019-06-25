@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
     // ReSharper disable MemberCanBePrivate.Global
@@ -57,24 +58,9 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("links")]
         public PageViewLinksModel Links { get; set; }
 
+        private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
-            return $"{nameof(Id)}: {Id}," +
-                   $"\n{nameof(AppName)}: {AppName}," +
-                   $"\n{nameof(Url)}: {Url}," +
-                   $"\n{nameof(ContextType)}: {ContextType}," +
-                   $"\n{nameof(AssetType)}: {AssetType}," +
-                   $"\n{nameof(Controller)}: {Controller}," +
-                   $"\n{nameof(Action)}: {Action}," +
-                   $"\n{nameof(Contributed)}: {Contributed}," +
-                   $"\n{nameof(InteractionSeconds)}: {InteractionSeconds}," +
-                   $"\n{nameof(CreatedAt)}: {CreatedAt}," +
-                   $"\n{nameof(UserRequest)}: {UserRequest}," +
-                   $"\n{nameof(RenderTime)}: {RenderTime}," +
-                   $"\n{nameof(UserAgent)}: {UserAgent}," +
-                   $"\n{nameof(Participated)}: {Participated}," +
-                   $"\n{nameof(HttpMethod)}: {HttpMethod}," +
-                   $"\n{nameof(RemoteIp)}: {RemoteIp}," +
-                   $"\n{nameof(Links)}: {Links}";
+            return Printer.PrintObject(this);
         }
     }
 }

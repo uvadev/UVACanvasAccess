@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
     // ReSharper disable MemberCanBePrivate.Global
@@ -47,21 +48,9 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("locale")]
         public string Locale { get; set; }
 
+        private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
-            return $"{nameof(Id)}: {Id}," +
-                   $"\n{nameof(Name)}: {Name}," +
-                   $"\n{nameof(ShortName)}: {ShortName}," +
-                   $"\n{nameof(SortableName)}: {SortableName}," +
-                   $"\n{nameof(Title)}: {Title}," +
-                   $"\n{nameof(Bio)}: {Bio}," +
-                   $"\n{nameof(PrimaryEmail)}: {PrimaryEmail}," +
-                   $"\n{nameof(LoginId)}: {LoginId}," +
-                   $"\n{nameof(SisUserId)}: {SisUserId}," +
-                   $"\n{nameof(LtiUserId)}: {LtiUserId}," +
-                   $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +
-                   $"\n{nameof(Calendar)}: {Calendar}," +
-                   $"\n{nameof(TimeZone)}: {TimeZone}," +
-                   $"\n{nameof(Locale)}: {Locale}";
+            return Printer.PrintObject(this);
         }
     }
 }

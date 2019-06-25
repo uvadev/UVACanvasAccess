@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
     // ReSharper disable MemberCanBePrivate.Global
@@ -11,9 +12,9 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("avatar_image_url")]
         public string AvatarImageUrl { get; set; }
 
+        private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
-            return $"{nameof(AnonymousId)}: {AnonymousId}," +
-                   $"\n{nameof(AvatarImageUrl)}: {AvatarImageUrl}";
+            return Printer.PrintObject(this);
         }
     }
 }

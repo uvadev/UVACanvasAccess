@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using StatePrinting;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
     
@@ -99,6 +100,28 @@ namespace UVACanvasAccess.Structures.Users {
         private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
             return Printer.PrintObject(this);
+        }
+
+        public string ToPrettyString() {
+            return "User {" + 
+                   ($"\n{nameof(Id)}: {Id}," +
+                   $"\n{nameof(Name)}: {Name}," +
+                   $"\n{nameof(SortableName)}: {SortableName}," +
+                   $"\n{nameof(ShortName)}: {ShortName}," +
+                   $"\n{nameof(SisUserId)}: {SisUserId}," +
+                   $"\n{nameof(SisImportId)}: {SisImportId}," +
+                   $"\n{nameof(IntegrationId)}: {IntegrationId}," +
+                   $"\n{nameof(LoginId)}: {LoginId}," +
+                   $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +
+                   $"\n{nameof(Enrollments)}: {Enrollments}," +
+                   $"\n{nameof(Email)}: {Email}," +
+                   $"\n{nameof(Locale)}: {Locale}," +
+                   $"\n{nameof(EffectiveLocale)}: {EffectiveLocale}," +
+                   $"\n{nameof(LastLogin)}: {LastLogin}," +
+                   $"\n{nameof(TimeZone)}: {TimeZone}," +
+                   $"\n{nameof(Bio)}: {Bio}," +
+                   $"\n{nameof(Permissions)}: {Permissions.ToPrettyString()}").Indent(4) +
+                   "\n}";
         }
     }
 }

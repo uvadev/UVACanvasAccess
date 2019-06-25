@@ -1,5 +1,6 @@
 using StatePrinting;
 using UVACanvasAccess.Model.Files;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Files {
     // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -84,6 +85,34 @@ namespace UVACanvasAccess.Structures.Files {
         private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
             return Printer.PrintObject(this);
+        }
+
+        public string ToPrettyString() {
+            return "CanvasFile { " +
+                   ($"\n{nameof(Id)}: {Id}," +
+                   $"\n{nameof(Uuid)}: {Uuid}," +
+                   $"\n{nameof(FolderId)}: {FolderId}," +
+                   $"\n{nameof(DisplayName)}: {DisplayName}," +
+                   $"\n{nameof(Filename)}: {Filename}," +
+                   $"\n{nameof(ContentType)}: {ContentType}," +
+                   $"\n{nameof(Url)}: {Url}," +
+                   $"\n{nameof(Size)}: {Size}," +
+                   $"\n{nameof(CreatedAt)}: {CreatedAt}," +
+                   $"\n{nameof(UpdatedAt)}: {UpdatedAt}," +
+                   $"\n{nameof(UnlockAt)}: {UnlockAt}," +
+                   $"\n{nameof(Locked)}: {Locked}," +
+                   $"\n{nameof(Hidden)}: {Hidden}," +
+                   $"\n{nameof(LockAt)}: {LockAt}," +
+                   $"\n{nameof(HiddenForUser)}: {HiddenForUser}," +
+                   $"\n{nameof(ThumbnailUrl)}: {ThumbnailUrl}," +
+                   $"\n{nameof(ModifiedAt)}: {ModifiedAt}," +
+                   $"\n{nameof(MimeClass)}: {MimeClass}," +
+                   $"\n{nameof(MediaEntryId)}: {MediaEntryId}," +
+                   $"\n{nameof(LockedForUser)}: {LockedForUser}," +
+                   $"\n{nameof(LockInfo)}: {LockInfo}," +
+                   $"\n{nameof(LockExplanation)}: {LockExplanation}," +
+                   $"\n{nameof(PreviewUrl)}: {PreviewUrl}").Indent(4) + 
+                   "\n}";
         }
     }
 }
