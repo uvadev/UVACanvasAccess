@@ -119,6 +119,7 @@
     <Compile Include="Api.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
+    <Compile Include="Model\Users\ActivityStreamObjectModel.cs" />
     <Compile Include="Model\Users\AnonymousUserDisplayModel.cs" />
     <Compile Include="Model\Users\AvatarModel.cs" />
     <Compile Include="Model\Users\CourseNicknameModel.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Model\Users\UserModel.cs" />
     <Compile Include="Model\Users\UserDisplayModel.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
+    <Compile Include="Structures\Users\ActivityStreamObject.cs" />
     <Compile Include="Structures\Users\PageView.cs" />
     <Compile Include="Structures\Users\PageViewLinks.cs" />
     <Compile Include="Structures\Users\Profile.cs" />

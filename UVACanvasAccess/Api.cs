@@ -177,6 +177,21 @@ namespace UVACanvasAccess {
             return content;
         }
 
+        private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {
+            return _client.GetAsync("/api/v1/users/activity_stream" +
+                                    BuildQueryString(("only_active_courses", onlyActiveCourses?.ToString())));
+        }
+        
+        public async Task<IEnumerable<ActivityStreamObject>> GetActivityStream(bool? onlyActiveCourses = null) {
+            var response = await RawGetActivityStream(onlyActiveCourses);
+            response.AssertSuccess();
+
+            var models = await AccumulateDeserializePages<ActivityStreamObjectModel>(response);
+
+            return from model in models
+                   select ActivityStreamObject.FromModel(this, model);
+        }
+
         private Task<HttpResponseMessage> RawGetUserPageViews(string userId, string startTime, string endTime) {
             return _client.GetAsync($"/api/v1/users/{userId}/page_views" +
                                     BuildQueryString(("start_time", startTime), ("end_time", endTime)));
