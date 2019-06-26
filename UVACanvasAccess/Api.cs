@@ -247,6 +247,21 @@ namespace UVACanvasAccess {
             return _client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Returns the list of discussion topics for this course.
+        /// </summary>
+        /// <param name="id">The course id.</param>
+        /// <param name="orderBy">The order of the list. <see cref="DiscussionTopicOrdering.Position"/> is the default.</param>
+        /// <param name="scopes">Filter the results by those that match all of these states. No filtering by default.</param>
+        /// <param name="onlyAnnouncements">Only return announcements.</param>
+        /// <param name="filterByUnread">Only return unread by the current user.</param>
+        /// <param name="searchTerm">An optional search term.</param>
+        /// <param name="excludeContextModuleLockedTopics">For students, exclude topics that are locked by module progression.</param>
+        /// <param name="includes">Extra data to include in the result. See <see cref="DiscussionTopicInclusions"/>.</param>
+        /// <returns>The list of discussion topics.</returns>
+        /// <seealso cref="DiscussionTopicInclusions"/>
+        /// <seealso cref="DiscussionTopicOrdering"/>
+        /// <seealso cref="DiscussionTopicScopes"/>
         public async Task<IEnumerable<DiscussionTopic>> ListCourseDiscussionTopics(ulong id,
                                                                                    DiscussionTopicOrdering? orderBy = null,
                                                                                    DiscussionTopicScopes? scopes = null,
