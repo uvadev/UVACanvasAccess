@@ -119,6 +119,7 @@
     <Compile Include="Api.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Model\Discussions\DiscussionTopicModel.cs" />
+    <Compile Include="Model\Discussions\FileAttachmentModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
     <Compile Include="Model\Users\ActivityStreamObjectModel.cs" />
     <Compile Include="Model\Users\ActivityStreamSummaryEntryModel.cs" />
@@ -130,6 +131,8 @@
     <Compile Include="Model\Users\ProfileModel.cs" />
     <Compile Include="Model\Users\UserModel.cs" />
     <Compile Include="Model\Users\UserDisplayModel.cs" />
+    <Compile Include="Structures\Discussions\DiscussionTopic.cs" />
+    <Compile Include="Structures\Discussions\FileAttachment.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
     <Compile Include="Structures\Users\ActivityStreamObject.cs" />
     <Compile Include="Structures\Users\ActivityStreamSummaryEntry.cs" />

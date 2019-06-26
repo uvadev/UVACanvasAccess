@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using StatePrinting;
 
 namespace UVACanvasAccess.Model.Discussions {
     
@@ -96,7 +97,7 @@ namespace UVACanvasAccess.Model.Discussions {
         public ulong? GroupCategoryId { get; set; }
         
         [JsonProperty("attachments")]
-        public IEnumerable<object> Attachments { get; set; } // todo FileAttachment
+        public IEnumerable<FileAttachmentModel> Attachments { get; set; }
         
         [JsonProperty("permissions")]
         public Dictionary<string, bool> Permissions { get; set; }
@@ -109,5 +110,10 @@ namespace UVACanvasAccess.Model.Discussions {
         
         [JsonProperty("sort_by_rating")]
         public bool? SortByRating { get; set; }
+        
+        private static readonly Stateprinter Printer = new Stateprinter();
+        public override string ToString() {
+            return Printer.PrintObject(this);
+        }
     }
 }
