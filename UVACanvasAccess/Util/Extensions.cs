@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using static UVACanvasAccess.Api.DiscussionTopicScopes;
+using static UVACanvasAccess.Api.DiscussionTopicInclusions;
 
 namespace UVACanvasAccess.Util {
     public static class Extensions {
@@ -79,6 +80,28 @@ namespace UVACanvasAccess.Util {
             }
 
             return string.Join(",", scopeList);
+        }
+
+        internal static IEnumerable<(string, string)> GetTuples(this Api.DiscussionTopicInclusions includes) {
+            var list = new List<(string, string)>();
+            
+            if ((includes & AllDates) == AllDates) {
+                list.Add(("include[]", "all_dates"));
+            }
+            
+            if ((includes & Sections) == Sections) {
+                list.Add(("include[]", "sections"));
+            }
+            
+            if ((includes & SectionsUserCount) == SectionsUserCount) {
+                list.Add(("include[]", "sections_user_count"));
+            }
+            
+            if ((includes & Overrides) == Overrides) {
+                list.Add(("include[]", "overrides"));
+            }
+
+            return list;
         }
     }
 }

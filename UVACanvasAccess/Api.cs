@@ -204,6 +204,34 @@ namespace UVACanvasAccess {
             Unpinned = 1 << 3
         }
 
+        private Task<HttpResponseMessage> RawGetDiscussionTopic(string type, 
+                                                                string baseId, 
+                                                                string topicId, 
+                                                                DiscussionTopicInclusions inclusions) {
+            var url = $"{type}/{baseId}/discussion_topics/{topicId}" + BuildQueryString(inclusions.GetTuples().ToArray());
+            return _client.GetAsync(url);
+        }
+
+        /// <summary>
+        /// Gets a single course discussion topic by its id.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="discussionId">The discussion id.</param>
+        /// <param name="inclusions">Extra data to include in the result. See <see cref="DiscussionTopicInclusions"/>.</param>
+        /// <returns>The discussion topic.</returns>
+        public async Task<DiscussionTopic> GetCourseDiscussionTopic(ulong courseId, 
+                                                                    ulong discussionId, 
+                                                                    DiscussionTopicInclusions inclusions = Default) {
+            var response = await RawGetDiscussionTopic("courses",
+                                                       courseId.ToString(),
+                                                       discussionId.ToString(),
+                                                       inclusions);
+            response.AssertSuccess();
+
+            var model = JsonConvert.DeserializeObject<DiscussionTopicModel>(await response.Content.ReadAsStringAsync());
+            return new DiscussionTopic(this, model);
+        }
+
         private Task<HttpResponseMessage> RawListDiscussionTopics(string type, 
                                                                   string id,
                                                                   string orderBy,
@@ -213,7 +241,7 @@ namespace UVACanvasAccess {
                                                                   string searchTerm,
                                                                   bool? excludeContextModuleLockedTopics,
                                                                   DiscussionTopicInclusions includes) {
-            var url = $"/api/v1/{type}/{id}/discussion_topics";
+            var url = $"{type}/{id}/discussion_topics";
             
             
             var args = new List<(string, string)> {
@@ -226,21 +254,7 @@ namespace UVACanvasAccess {
                                                        excludeContextModuleLockedTopics?.ToString().ToLower())
                                                   };
 
-            if ((includes & AllDates) == AllDates) {
-                args.Add(("include[]", "all_dates"));
-            }
-            
-            if ((includes & Sections) == Sections) {
-                args.Add(("include[]", "sections"));
-            }
-            
-            if ((includes & SectionsUserCount) == SectionsUserCount) {
-                args.Add(("include[]", "sections_user_count"));
-            }
-            
-            if ((includes & Overrides) == Overrides) {
-                args.Add(("include[]", "overrides"));
-            }
+            args.AddRange(includes.GetTuples());
             
             url += BuildQueryString(args.ToArray());
 
