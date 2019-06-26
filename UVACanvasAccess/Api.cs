@@ -11,11 +11,14 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Builders;
+using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Discussions;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Structures.Files;
 using UVACanvasAccess.Util;
+using static UVACanvasAccess.Api.DiscussionTopicInclusions;
 
 namespace UVACanvasAccess {
     
@@ -175,6 +178,98 @@ namespace UVACanvasAccess {
         private static HttpContent BuildHttpJsonBody(JObject json) {
             var content = new StringContent(json.ToString(), Encoding.Default, "application/json");
             return content;
+        }
+
+        [Flags]
+        public enum DiscussionTopicInclusions {
+            Default = 0,
+            AllDates = 1 << 0,
+            Sections = 1 << 1,
+            SectionsUserCount = 1 << 2,
+            Overrides = 1 << 3,
+            Everything = AllDates | Sections | SectionsUserCount | Overrides
+        }
+
+        public enum DiscussionTopicOrdering {
+            Position,
+            RecentActivity,
+            Title
+        }
+
+        [Flags]
+        public enum DiscussionTopicScopes {
+            Locked = 1 << 0,
+            Unlocked = 1 << 1,
+            Pinned = 1 << 2, 
+            Unpinned = 1 << 3
+        }
+
+        private Task<HttpResponseMessage> RawListDiscussionTopics(string type, 
+                                                                  string id,
+                                                                  string orderBy,
+                                                                  DiscussionTopicScopes? scopes,
+                                                                  bool? onlyAnnouncements, 
+                                                                  string filterBy,
+                                                                  string searchTerm,
+                                                                  bool? excludeContextModuleLockedTopics,
+                                                                  DiscussionTopicInclusions includes) {
+            var url = $"/api/v1/{type}/{id}/discussion_topics";
+            
+            
+            var args = new List<(string, string)> {
+                                                      ("order_by", orderBy), 
+                                                      ("scope", scopes?.GetString()), 
+                                                      ("only_announcements", onlyAnnouncements?.ToString().ToLower()), 
+                                                      ("filter_by", filterBy), 
+                                                      ("search_term", searchTerm), 
+                                                      ("exclude_context_module_locked_topics", 
+                                                       excludeContextModuleLockedTopics?.ToString().ToLower())
+                                                  };
+
+            if ((includes & AllDates) == AllDates) {
+                args.Add(("include[]", "all_dates"));
+            }
+            
+            if ((includes & Sections) == Sections) {
+                args.Add(("include[]", "sections"));
+            }
+            
+            if ((includes & SectionsUserCount) == SectionsUserCount) {
+                args.Add(("include[]", "sections_user_count"));
+            }
+            
+            if ((includes & Overrides) == Overrides) {
+                args.Add(("include[]", "overrides"));
+            }
+            
+            url += BuildQueryString(args.ToArray());
+
+            return _client.GetAsync(url);
+        }
+
+        public async Task<IEnumerable<DiscussionTopic>> ListCourseDiscussionTopics(ulong id,
+                                                                                   DiscussionTopicOrdering? orderBy = null,
+                                                                                   DiscussionTopicScopes? scopes = null,
+                                                                                   bool? onlyAnnouncements = null, 
+                                                                                   bool filterByUnread = false,
+                                                                                   string searchTerm = null,
+                                                                                   bool? excludeContextModuleLockedTopics = null,
+                                                                                   DiscussionTopicInclusions includes = Default) {
+            var response = await RawListDiscussionTopics("courses",
+                                                         id.ToString(),
+                                                         orderBy?.GetString(),
+                                                         scopes,
+                                                         onlyAnnouncements,
+                                                         filterByUnread ? "unread" : null,
+                                                         searchTerm,
+                                                         excludeContextModuleLockedTopics,
+                                                         includes);
+            response.AssertSuccess();
+
+            var models = await AccumulateDeserializePages<DiscussionTopicModel>(response);
+
+            return from model in models
+                   select new DiscussionTopic(this, model);
         }
 
         private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {

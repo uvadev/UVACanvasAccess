@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using static UVACanvasAccess.Api.DiscussionTopicScopes;
 
 namespace UVACanvasAccess.Util {
     public static class Extensions {
@@ -43,6 +44,41 @@ namespace UVACanvasAccess.Util {
         where T : IPrettyPrint {
             var strings = enumerable.Select(e => e.ToPrettyString());
             return "[" + string.Join(", ", strings) + "]";
+        }
+        
+        internal static string GetString(this Api.DiscussionTopicOrdering ordering) {
+            switch (ordering) {
+                case Api.DiscussionTopicOrdering.Position:
+                    return "position";
+                case Api.DiscussionTopicOrdering.RecentActivity:
+                    return "recent_activity";
+                case Api.DiscussionTopicOrdering.Title:
+                    return "title";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(ordering), ordering, null);
+            }
+        }
+
+        internal static string GetString(this Api.DiscussionTopicScopes scopes) {
+            var scopeList = new List<string>();
+
+            if ((scopes & Locked) == Locked) {
+                scopeList.Add("locked");
+            }
+            
+            if ((scopes & Unlocked) == Unlocked) {
+                scopeList.Add("unlocked");
+            }
+            
+            if ((scopes & Pinned) == Pinned) {
+                scopeList.Add("pinned");
+            }
+            
+            if ((scopes & Unpinned) == Unpinned) {
+                scopeList.Add("unpinned");
+            }
+
+            return string.Join(",", scopeList);
         }
     }
 }
