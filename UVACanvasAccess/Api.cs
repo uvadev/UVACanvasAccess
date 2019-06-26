@@ -335,6 +335,15 @@ namespace UVACanvasAccess {
             return _client.PostAsync(url, content);
         }
 
+        /// <summary>
+        /// Creates a new entry in the discussion topic.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="discussionId">The discussion id.</param>
+        /// <param name="messageBody">The message body to post.</param>
+        /// <param name="attachment">(Optional) The attachment to post.</param>
+        /// <param name="filePath">The filename with its extension, required if uploading an attachment.</param>
+        /// <returns>The entry.</returns>
         public async Task<object> PostCourseDiscussionEntry(ulong courseId, 
                                                             ulong discussionId,
                                                             string messageBody,
