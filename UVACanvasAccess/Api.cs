@@ -301,6 +301,56 @@ namespace UVACanvasAccess {
                    select new DiscussionTopic(this, model);
         }
 
+        private Task<HttpResponseMessage> RawPostDiscussionEntry(string type, 
+                                                                 string baseId, 
+                                                                 string topicId, 
+                                                                 string body,
+                                                                 byte[] attachment,
+                                                                 string filePath) {
+            var url = $"{type}/{baseId}/discussion_topics/{topicId}/entries";
+
+            // Only if there is an attachment, the request must be a multipart, otherwise it must not.
+            // This is not documented by the API.
+            if (attachment != null) {
+                var bytesContent = new ByteArrayContent(attachment);
+                bytesContent.Headers.ContentType = new MediaTypeHeaderValue(MimeMapping.GetMimeMapping(filePath));
+
+                var dataContent = new MultipartFormDataContent {
+                                                                   {
+                                                                       new StringContent(body), 
+                                                                       "message"
+                                                                   }, 
+                                                                   {
+                                                                       bytesContent, 
+                                                                       "attachment", 
+                                                                       Path.GetFileName(filePath)
+                                                                   }
+                                                           };
+                return _client.PostAsync(url, dataContent);
+            }
+
+            var content = BuildHttpArguments(new[] {
+                                                       ("message", body)
+                                                   });
+            return _client.PostAsync(url, content);
+        }
+
+        public async Task<object> PostCourseDiscussionEntry(ulong courseId, 
+                                                            ulong discussionId,
+                                                            string messageBody,
+                                                            byte[] attachment = null,
+                                                            string filePath = null) { // todo Entry model
+            
+            var response = await RawPostDiscussionEntry("courses", courseId.ToString(),
+                                                        discussionId.ToString(),
+                                                        messageBody,
+                                                        attachment,
+                                                        filePath);
+            response.AssertSuccess();
+
+            return JObject.Parse(await response.Content.ReadAsStringAsync());
+        } 
+
         private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {
             return _client.GetAsync("/api/v1/users/activity_stream" +
                                     BuildQueryString(("only_active_courses", onlyActiveCourses?.ToString())));
