@@ -27,6 +27,7 @@ namespace UVACanvasAccess {
     public class Api : IDisposable {
 
         private readonly HttpClient _client;
+        private ulong? _masquerade;
         
         /// <summary>
         /// Construct a new API instance.
@@ -49,11 +50,29 @@ namespace UVACanvasAccess {
         }
 
         /// <summary>
+        /// If the current user is an administrator, he can "act as" another user.
+        /// When this is set, every API call will be made as if it came from this user's token.
+        /// </summary>
+        /// <param name="id">The user to masquerade as.</param>
+        /// <remarks>Certain endpoints, like those relating to the activity stream, can only be called on
+        /// <c>self</c>. Masquerading makes it possible to bypass this restriction.</remarks>
+        public void MasqueradeAs(ulong id) {
+            _masquerade = id;
+        }
+
+        /// <summary>
+        /// Stop "acting as" any user.
+        /// </summary>
+        public void StopMasquerading() {
+            _masquerade = null;
+        }
+
+        /// <summary>
         /// Constructs a query string with the given key-value pairs.
         /// </summary>
         /// <param name="args">The key-value pairs to use in the query string. Null values are ignored.</param>
         /// <returns>The query string.</returns>
-        private static string BuildQueryString(params ValueTuple<string, string>[] args) {
+        private string BuildQueryString(params ValueTuple<string, string>[] args) {
             var query = HttpUtility.ParseQueryString(string.Empty);
 
             foreach (var (key, val) in args) {
@@ -62,6 +81,10 @@ namespace UVACanvasAccess {
                 }
             }
 
+            if (_masquerade != null) {
+                query["as_user_id"] = _masquerade.ToString();
+            }
+            
             var s = query.ToString();
 
             return s == string.Empty ? s
@@ -73,20 +96,31 @@ namespace UVACanvasAccess {
         /// </summary>
         /// <param name="args">The set of key-value tuples.</param>
         /// <returns></returns>
-        private static HttpContent BuildHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
+        private HttpContent BuildHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
+
+            var pairs = from a in args
+                        where a.Item2 != null
+                        select new KeyValuePair<string, string>(a.Item1, a.Item2);
+
+            if (_masquerade != null) {
+                pairs = pairs.Append(new KeyValuePair<string, string>("as_user_id", _masquerade.ToString()));
+            }
+            
             var content =
-                new FormUrlEncodedContent(from a in args
-                                          where a.Item2 != null
-                                          select new KeyValuePair<string, string>(a.Item1, a.Item2));
+                new FormUrlEncodedContent(pairs);
             
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             return content;
         }
 
-        private static MultipartFormDataContent BuildMultipartHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
+        private MultipartFormDataContent BuildMultipartHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
             var content = new MultipartFormDataContent();
             foreach (var (k, v) in args) {
                 content.Add(new StringContent(v), k);
+            }
+
+            if (_masquerade != null) {
+                content.Add(new StringContent(_masquerade.ToString()), "as_user_id");
             }
 
             return content;
@@ -653,7 +687,7 @@ namespace UVACanvasAccess {
         }
 
         private Task<HttpResponseMessage> RawGetUserDetails(string userId) {
-            return _client.GetAsync("users/" + userId);
+            return _client.GetAsync("users/" + userId + BuildQueryString());
         }
         
         /// <summary>
