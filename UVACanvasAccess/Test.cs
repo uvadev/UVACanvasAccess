@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 using dotenv.net;
 
@@ -20,10 +20,12 @@ namespace UVACanvasAccess {
 
             api.MasqueradeAs(TestUser2Id);
 
-            var activityStream = await api.GetActivityStream();
+            var path = Environment.GetEnvironmentVariable("TEST_FILE") ?? throw new Exception();
+            var bytes = File.ReadAllBytes(path);
 
-            Console.WriteLine(string.Join(",\n", from activity in activityStream 
-                                                select $"{{ {activity.Type}: {activity.Title} }}"));
+            var up = await api.UploadPersonalFile(bytes, path, parentFolderName: "scary");
+
+            Console.WriteLine(up);
         }
     }
 }

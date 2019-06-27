@@ -210,12 +210,17 @@ namespace UVACanvasAccess {
         /// Must include, at a minimum, the name and the extension.
         /// </param>
         /// <param name="userId">The id of the user. <c>self</c> if null or omitted.</param>
+        /// <param name="parentFolderName"></param>
         /// <returns>The uploaded file.</returns>
-        public Task<CanvasFile> UploadPersonalFile(byte[] file, string filePath, ulong? userId = null) {
+        public Task<CanvasFile> UploadPersonalFile(byte[] file, 
+                                                   string filePath, 
+                                                   ulong? userId = null, 
+                                                   string parentFolderName = null) {
             return UploadFile($"users/{userId?.ToString() ?? "self"}/files", 
                               file, 
                               Path.GetFileNameWithoutExtension(filePath), 
-                              Path.GetFileName(filePath)
+                              Path.GetFileName(filePath),
+                              parentFolderPath: parentFolderName
                              );
         }
 
