@@ -105,6 +105,9 @@ namespace UVACanvasAccess.Structures.Discussions {
             Group
         }
 
+        public DiscussionTopic(Api api, DiscussionTopicModel model, string home, ulong homeId)
+            : this(api, model, home == "courses" ? DiscussionHome.Course : DiscussionHome.Group, homeId) { }
+
         public DiscussionTopic(Api api, DiscussionTopicModel model, DiscussionHome home, ulong homeId) {
             _api = api;
             Home = home;

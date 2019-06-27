@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api.cs" />
+    <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Model\Discussions\DiscussionTopicModel.cs" />
     <Compile Include="Model\Discussions\FileAttachmentModel.cs" />

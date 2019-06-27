@@ -82,6 +82,15 @@ namespace UVACanvasAccess {
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             return content;
         }
+
+        private static MultipartFormDataContent BuildMultipartHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
+            var content = new MultipartFormDataContent();
+            foreach (var (k, v) in args) {
+                content.Add(new StringContent(v), k);
+            }
+
+            return content;
+        }
         
         /// <summary>
         /// Performs a file upload to any Canvas endpoint that accepts file uploads.
@@ -301,6 +310,27 @@ namespace UVACanvasAccess {
 
             return from model in models
                    select new DiscussionTopic(this, model, Course, id);
+        }
+
+        private Task<HttpResponseMessage> RawPostNewDiscussionTopic(string type,
+                                                                    string baseId,
+                                                                    HttpContent content) {
+            var url = $"{type}/{baseId}/discussion_topics";
+
+            return _client.PostAsync(url, content);
+        }
+
+        public async Task<DiscussionTopic> PostNewDiscussionTopic(CreateDiscussionTopicBuilder builder) {
+            var content = BuildMultipartHttpArguments(from kv in builder.Fields select (kv.Key, kv.Value));
+            var response = await RawPostNewDiscussionTopic(builder.Type, builder.HomeId.ToString(), content);
+            response.AssertSuccess();
+
+            var model = JsonConvert.DeserializeObject<DiscussionTopicModel>(await response.Content.ReadAsStringAsync());
+            return new DiscussionTopic(this, model, builder.Type, builder.HomeId);
+        }
+
+        public CreateDiscussionTopicBuilder BuildNewCourseDiscussionTopic(ulong courseId) {
+            return new CreateDiscussionTopicBuilder(this, "courses", courseId);
         }
 
         private Task<HttpResponseMessage> RawPostDiscussionEntry(string type, 
