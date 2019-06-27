@@ -19,6 +19,7 @@ using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Structures.Files;
 using UVACanvasAccess.Util;
 using static UVACanvasAccess.Api.DiscussionTopicInclusions;
+using static UVACanvasAccess.Structures.Discussions.DiscussionTopic.DiscussionHome;
 
 namespace UVACanvasAccess {
     
@@ -229,9 +230,10 @@ namespace UVACanvasAccess {
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<DiscussionTopicModel>(await response.Content.ReadAsStringAsync());
-            return new DiscussionTopic(this, model);
+            return new DiscussionTopic(this, model, Course, courseId);
         }
 
+        [PaginatedResponse]
         private Task<HttpResponseMessage> RawListDiscussionTopics(string type, 
                                                                   string id,
                                                                   string orderBy,
@@ -298,7 +300,7 @@ namespace UVACanvasAccess {
             var models = await AccumulateDeserializePages<DiscussionTopicModel>(response);
 
             return from model in models
-                   select new DiscussionTopic(this, model);
+                   select new DiscussionTopic(this, model, Course, id);
         }
 
         private Task<HttpResponseMessage> RawPostDiscussionEntry(string type, 
@@ -348,7 +350,7 @@ namespace UVACanvasAccess {
                                                             ulong discussionId,
                                                             string messageBody,
                                                             byte[] attachment = null,
-                                                            string filePath = null) { // todo Entry model
+                                                            string filePath = null) {
             
             var response = await RawPostDiscussionEntry("courses", courseId.ToString(),
                                                         discussionId.ToString(),
@@ -359,8 +361,30 @@ namespace UVACanvasAccess {
 
             var model = JsonConvert.DeserializeObject<TopicEntryModel>(await response.Content.ReadAsStringAsync());
             return new TopicEntry(this, model);
-        } 
+        }
 
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawListTopicEntries(string type,
+                                                              string baseId,
+                                                              string topicId) {
+            
+            var url = $"{type}/{baseId}/discussion_topics/{topicId}/entries";
+
+            return _client.GetAsync(url);
+        }
+
+        public async Task<IEnumerable<TopicEntry>> ListCourseDiscussionTopicEntries(ulong courseId,
+                                                                                    ulong topicId) {
+            var response = await RawListTopicEntries("courses", courseId.ToString(), topicId.ToString());
+            response.AssertSuccess();
+
+            var models = await AccumulateDeserializePages<TopicEntryModel>(response);
+            
+            return from model in models
+                   select new TopicEntry(this, model);
+        }
+
+        [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {
             return _client.GetAsync("/api/v1/users/activity_stream" +
                                     BuildQueryString(("only_active_courses", onlyActiveCourses?.ToString())));
@@ -608,6 +632,7 @@ namespace UVACanvasAccess {
             return new User(this, userModel);
         }
 
+        [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetListUsers(string searchTerm, 
                                                           string accountId,
                                                           string sort,

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Util;
 
@@ -11,6 +12,10 @@ namespace UVACanvasAccess.Structures.Discussions {
     // ReSharper disable MemberCanBePrivate.Global
     public class DiscussionTopic : IPrettyPrint {
         private readonly Api _api;
+        
+        public DiscussionHome Home { get; }
+        
+        public ulong HomeId { get; }
         
         public ulong Id { get; }
         
@@ -80,8 +85,26 @@ namespace UVACanvasAccess.Structures.Discussions {
         
         public bool? SortByRating { get; }
 
-        public DiscussionTopic(Api api, DiscussionTopicModel model) {
+        public Task<IEnumerable<TopicEntry>> GetEntries() {
+            switch (Home) {
+                case DiscussionHome.Course:
+                    return _api.ListCourseDiscussionTopicEntries(HomeId, Id);
+                case DiscussionHome.Group:
+                    throw new NotImplementedException("group discussions not yet supported");
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public enum DiscussionHome {
+            Course,
+            Group
+        }
+
+        public DiscussionTopic(Api api, DiscussionTopicModel model, DiscussionHome home, ulong homeId) {
             _api = api;
+            Home = home;
+            HomeId = homeId;
             Id = model.Id;
             Title = model.Title;
             Message = model.Message;

@@ -153,6 +153,7 @@
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\IPrettyPrint.cs" />
     <Compile Include="Util\LinkHeader.cs" />
+    <Compile Include="Util\PaginatedResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
