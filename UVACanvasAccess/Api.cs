@@ -373,6 +373,12 @@ namespace UVACanvasAccess {
             return _client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Returns the list of discussion topic entries for the course topic.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="topicId">The course topic.</param>
+        /// <returns>The list of discussion topic entries.</returns>
         public async Task<IEnumerable<TopicEntry>> ListCourseDiscussionTopicEntries(ulong courseId,
                                                                                     ulong topicId) {
             var response = await RawListTopicEntries("courses", courseId.ToString(), topicId.ToString());

@@ -85,6 +85,10 @@ namespace UVACanvasAccess.Structures.Discussions {
         
         public bool? SortByRating { get; }
 
+        /// <summary>
+        /// Gets the list of entries for this topic.
+        /// </summary>
+        /// <returns>The list of entries.</returns>
         public Task<IEnumerable<TopicEntry>> GetEntries() {
             switch (Home) {
                 case DiscussionHome.Course:
