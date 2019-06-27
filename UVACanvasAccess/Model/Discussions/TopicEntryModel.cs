@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using StatePrinting;
 
@@ -36,10 +37,15 @@ namespace UVACanvasAccess.Model.Discussions {
         [JsonProperty("updated_at")]
         public DateTime? UpdatedAt { get; set; }
         
+        [JsonProperty("attachment")]
+        [CanBeNull]
         public FileAttachmentModel Attachment { get; set; }
         
+        [JsonProperty("recent_replies")]
+        [CanBeNull] 
         public IEnumerable<TopicReplyModel> RecentReplies { get; set; }
         
+        [JsonProperty("has_more_replies")]
         public bool? HasMoreReplies { get; set; }
         
         private static readonly Stateprinter Printer = new Stateprinter();

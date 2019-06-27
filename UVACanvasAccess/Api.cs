@@ -344,7 +344,7 @@ namespace UVACanvasAccess {
         /// <param name="attachment">(Optional) The attachment to post.</param>
         /// <param name="filePath">The filename with its extension, required if uploading an attachment.</param>
         /// <returns>The entry.</returns>
-        public async Task<object> PostCourseDiscussionEntry(ulong courseId, 
+        public async Task<TopicEntry> PostCourseDiscussionEntry(ulong courseId, 
                                                             ulong discussionId,
                                                             string messageBody,
                                                             byte[] attachment = null,
@@ -357,7 +357,8 @@ namespace UVACanvasAccess {
                                                         filePath);
             response.AssertSuccess();
 
-            return JObject.Parse(await response.Content.ReadAsStringAsync());
+            var model = JsonConvert.DeserializeObject<TopicEntryModel>(await response.Content.ReadAsStringAsync());
+            return new TopicEntry(this, model);
         } 
 
         private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {

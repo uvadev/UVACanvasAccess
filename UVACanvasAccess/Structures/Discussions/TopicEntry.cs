@@ -49,9 +49,14 @@ namespace UVACanvasAccess.Structures.Discussions {
             CreatedAt = model.CreatedAt;
             UpdatedAt = model.UpdatedAt;
             Attachment = model.Attachment;
-            RecentReplies = from reply in model.RecentReplies
-                            select new TopicReply(api, reply);
             HasMoreReplies = model.HasMoreReplies;
+            
+            if (model.RecentReplies != null) {
+                RecentReplies = from reply in model.RecentReplies
+                                select new TopicReply(api, reply);
+            } else {
+                RecentReplies = Enumerable.Empty<TopicReply>();
+            }
         }
 
         private static readonly Stateprinter Printer = new Stateprinter();
@@ -71,7 +76,7 @@ namespace UVACanvasAccess.Structures.Discussions {
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(UpdatedAt)}: {UpdatedAt}," +
                    $"\n{nameof(Attachment)}: {Attachment}," +
-                   $"\n{nameof(RecentReplies)}: {RecentReplies}," +
+                   $"\n{nameof(RecentReplies)}: {RecentReplies.ToPrettyString()}," +
                    $"\n{nameof(HasMoreReplies)}: {HasMoreReplies}").Indent(4) +
                    "\n}";
         }
