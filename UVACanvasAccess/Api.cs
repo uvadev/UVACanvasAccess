@@ -329,6 +329,11 @@ namespace UVACanvasAccess {
             return new DiscussionTopic(this, model, builder.Type, builder.HomeId);
         }
 
+        /// <summary>
+        /// Returns a <see cref="CreateDiscussionTopicBuilder"/> for building a new discussion topic for the course.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The builder.</returns>
         public CreateDiscussionTopicBuilder BuildNewCourseDiscussionTopic(ulong courseId) {
             return new CreateDiscussionTopicBuilder(this, "courses", courseId);
         }
