@@ -133,11 +133,10 @@ namespace UVACanvasAccess.Model.Assignments {
         
         [JsonProperty("grading_type")]
         public string GradingType { get; set; }
-        
-        [CanBeNull]
+
         [JsonProperty("grading_standard_id")]
-        public object GradingStandardId { get; set; } // the docs don't say the type of this, just 'null'. Great.
-        
+        public ulong? GradingStandardId { get; set; }
+
         [JsonProperty("published")]
         public bool Published { get; set; }
         
