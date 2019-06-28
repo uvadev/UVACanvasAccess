@@ -137,6 +137,9 @@
     <Compile Include="Model\Discussions\TopicEntryModel.cs" />
     <Compile Include="Model\Discussions\TopicReplyModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
+    <Compile Include="Model\Submissions\MediaCommentModel.cs" />
+    <Compile Include="Model\Submissions\SubmissionCommentModel.cs" />
+    <Compile Include="Model\Submissions\SubmissionModel.cs" />
     <Compile Include="Model\Users\ActivityStreamObjectModel.cs" />
     <Compile Include="Model\Users\ActivityStreamSummaryEntryModel.cs" />
     <Compile Include="Model\Users\AnonymousUserDisplayModel.cs" />
