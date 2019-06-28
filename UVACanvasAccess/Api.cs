@@ -377,6 +377,31 @@ namespace UVACanvasAccess {
             return new CreateDiscussionTopicBuilder(this, "courses", courseId);
         }
 
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawListDiscussionEntryReplies(string type,
+                                                                        string baseId,
+                                                                        string topicId,
+                                                                        string entryId) {
+            var url = $"{type}/{baseId}/discussion_topics/{topicId}/entries/{entryId}/replies";
+            return _client.GetAsync(url);
+        }
+
+        public async Task<IEnumerable<TopicReply>> ListDiscussionEntryReplies(ulong courseId,
+                                                                              ulong topicId,
+                                                                              ulong entryId,
+                                                                              string type = "courses") {
+            var response = await RawListDiscussionEntryReplies(type,
+                                                               courseId.ToString(),
+                                                               topicId.ToString(),
+                                                               entryId.ToString());
+            response.AssertSuccess();
+
+            var models = await AccumulateDeserializePages<TopicReplyModel>(response);
+
+            return from model in models
+                   select new TopicReply(this, model);
+        }
+
         private Task<HttpResponseMessage> RawPostDiscussionEntry(string type, 
                                                                  string baseId, 
                                                                  string topicId, 
@@ -434,7 +459,7 @@ namespace UVACanvasAccess {
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<TopicEntryModel>(await response.Content.ReadAsStringAsync());
-            return new TopicEntry(this, model);
+            return new TopicEntry(this, model, Course, courseId, discussionId);
         }
 
         [PaginatedResponse]
@@ -461,7 +486,7 @@ namespace UVACanvasAccess {
             var models = await AccumulateDeserializePages<TopicEntryModel>(response);
             
             return from model in models
-                   select new TopicEntry(this, model);
+                   select new TopicEntry(this, model, Course, courseId, topicId);
         }
 
         [PaginatedResponse]

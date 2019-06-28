@@ -1,7 +1,9 @@
 ﻿using System;
-using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
+using UVACanvasAccess.Util;
+using static UVACanvasAccess.Api.DiscussionTopicInclusions;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -18,14 +20,13 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            api.MasqueradeAs(TestUser2Id);
+            var topic = await api.GetCourseDiscussionTopic(TestCourse, TestDiscussion1, Everything);
 
-            var path = Environment.GetEnvironmentVariable("TEST_FILE") ?? throw new Exception();
-            var bytes = File.ReadAllBytes(path);
+            var oldestEntry = (await topic.GetEntries()).Last();
 
-            var up = await api.UploadPersonalFile(bytes, path, parentFolderName: "scary");
+            var replies = await oldestEntry.GetReplies();
 
-            Console.WriteLine(up);
+            Console.WriteLine(replies.ToPrettyString());
         }
     }
 }

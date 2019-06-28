@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Util;
+using static UVACanvasAccess.Structures.Discussions.DiscussionTopic.DiscussionHome;
 
 namespace UVACanvasAccess.Structures.Discussions {
     
@@ -12,6 +15,12 @@ namespace UVACanvasAccess.Structures.Discussions {
     // ReSharper disable MemberCanBePrivate.Global
     public class TopicEntry : IPrettyPrint {
         private readonly Api _api;
+        
+        public DiscussionTopic.DiscussionHome Home { get; }
+        
+        public ulong HomeId { get; }
+        
+        public ulong ParentId { get; }
         
         public ulong Id { get; }
         
@@ -31,14 +40,27 @@ namespace UVACanvasAccess.Structures.Discussions {
 
         public DateTime? UpdatedAt { get; }
         
-        public FileAttachmentModel Attachment { get; }
+        [CanBeNull]
+        public FileAttachment Attachment { get; }
         
+        [NotNull]
         public IEnumerable<TopicReply> RecentReplies { get; }
         
-        public bool? HasMoreReplies { get; }
+        public bool HasMoreReplies { get; }
 
-        public TopicEntry(Api api, TopicEntryModel model) {
+        public Task<IEnumerable<TopicReply>> GetReplies() {
+            return _api.ListDiscussionEntryReplies(HomeId,
+                                                   ParentId,
+                                                   Id,
+                                                   Home == Course ? "courses"
+                                                                  : "groups");
+        }
+
+        public TopicEntry(Api api, TopicEntryModel model, DiscussionTopic.DiscussionHome home, ulong homeId, ulong parentId) {
             _api = api;
+            Home = home;
+            HomeId = homeId;
+            ParentId = parentId;
             Id = model.Id;
             UserId = model.UserId;
             EditorId = model.EditorId;
@@ -48,8 +70,9 @@ namespace UVACanvasAccess.Structures.Discussions {
             ForcedReadState = model.ForcedReadState;
             CreatedAt = model.CreatedAt;
             UpdatedAt = model.UpdatedAt;
-            Attachment = model.Attachment;
-            HasMoreReplies = model.HasMoreReplies;
+            Attachment = model.Attachment == null ? null
+                                                  : new FileAttachment(api, model.Attachment);
+            HasMoreReplies = model.HasMoreReplies ?? false;
             
             if (model.RecentReplies != null) {
                 RecentReplies = from reply in model.RecentReplies
@@ -75,7 +98,7 @@ namespace UVACanvasAccess.Structures.Discussions {
                    $"\n{nameof(ForcedReadState)}: {ForcedReadState}," +
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(UpdatedAt)}: {UpdatedAt}," +
-                   $"\n{nameof(Attachment)}: {Attachment}," +
+                   $"\n{nameof(Attachment)}: {Attachment?.ToPrettyString()}," +
                    $"\n{nameof(RecentReplies)}: {RecentReplies.ToPrettyString()}," +
                    $"\n{nameof(HasMoreReplies)}: {HasMoreReplies}").Indent(4) +
                    "\n}";
