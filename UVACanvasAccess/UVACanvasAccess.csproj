@@ -123,6 +123,15 @@
     <Compile Include="Api.cs" />
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
+    <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
+    <Compile Include="Model\Assignments\AssignmentModel.cs" />
+    <Compile Include="Model\Assignments\AssignmentOverrideModel.cs" />
+    <Compile Include="Model\Assignments\ExternalToolTagAttributesModel.cs" />
+    <Compile Include="Model\Assignments\LockInfoModel.cs" />
+    <Compile Include="Model\Assignments\NeedsGradingCountModel.cs" />
+    <Compile Include="Model\Assignments\RubricCriteriaModel.cs" />
+    <Compile Include="Model\Assignments\RubricRatingModel.cs" />
+    <Compile Include="Model\Assignments\TurnitinSettingsModel.cs" />
     <Compile Include="Model\Discussions\DiscussionTopicModel.cs" />
     <Compile Include="Model\Discussions\FileAttachmentModel.cs" />
     <Compile Include="Model\Discussions\TopicEntryModel.cs" />
