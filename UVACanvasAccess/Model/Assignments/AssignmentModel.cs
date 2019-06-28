@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Discussions;
+using UVACanvasAccess.Model.Submissions;
 
 namespace UVACanvasAccess.Model.Assignments {
     
@@ -179,7 +180,7 @@ namespace UVACanvasAccess.Model.Assignments {
         
         [CanBeNull]
         [JsonProperty("submission")]
-        public object Submission { get; set; } // todo Submission model
+        public SubmissionModel Submission { get; set; }
         
         [JsonProperty("use_rubric_for_grading")]
         public bool? UseRubricForGrading { get; set; }
