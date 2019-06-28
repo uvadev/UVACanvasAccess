@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
@@ -32,7 +33,7 @@ namespace UVACanvasAccess.Model.Assignments {
         
         [CanBeNull]
         [JsonProperty("ratings")]
-        public RubricRatingModel Ratings { get; set; }
+        public IEnumerable<RubricRatingModel> Ratings { get; set; }
         
         [JsonProperty("ignore_for_scoring")]
         public bool IgnoreForScoring { get; set; }

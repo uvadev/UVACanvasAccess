@@ -191,7 +191,7 @@ namespace UVACanvasAccess.Model.Assignments {
         
         [CanBeNull]
         [JsonProperty("rubric")]
-        public object Rubric { get; set; } // docs say 'list of criteria and rating` but both models exist seperately. No idea how this looks.
+        public IEnumerable<RubricCriteriaModel> Rubric { get; set; } 
         
         [CanBeNull]
         [JsonProperty("assignment_visibility")]
