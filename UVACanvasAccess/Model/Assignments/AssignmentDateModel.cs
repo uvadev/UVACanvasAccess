@@ -20,9 +20,9 @@ namespace UVACanvasAccess.Model.Assignments {
         public DateTime DueAt { get; set; }
         
         [JsonProperty("unlock_at")]
-        public DateTime UnlockAt { get; set; }
+        public DateTime? UnlockAt { get; set; }
         
         [JsonProperty("lock_at")]
-        public DateTime LockAt { get; set; }
+        public DateTime? LockAt { get; set; }
     }
 }

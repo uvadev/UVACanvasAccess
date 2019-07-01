@@ -6,7 +6,7 @@ namespace UVACanvasAccess.Structures.Discussions {
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     // ReSharper disable MemberCanBePrivate.Global
-    public class FileAttachment : IPrettyPrint{
+    public class FileAttachment : IPrettyPrint {
         private readonly Api _api;
         
         public string ContentType { get; }

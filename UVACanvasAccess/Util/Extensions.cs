@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using JetBrains.Annotations;
 using static UVACanvasAccess.Api.DiscussionTopicScopes;
 using static UVACanvasAccess.Api.DiscussionTopicInclusions;
 
@@ -31,7 +32,7 @@ namespace UVACanvasAccess.Util {
             return sb.ToString();
         }
 
-        internal static string ToPrettyString<K, V>(this Dictionary<K, V> dictionary) {
+        internal static string ToPrettyString<TK, TV>(this Dictionary<TK, TV> dictionary) {
             var sb = new StringBuilder("{");
 
             foreach (var entry in dictionary) {
@@ -41,12 +42,18 @@ namespace UVACanvasAccess.Util {
             return sb.Append("\n}").ToString();
         }
 
-        internal static string ToPrettyString<T>(this IEnumerable<T> enumerable)
-        where T : IPrettyPrint {
-            var strings = enumerable.Select(e => e.ToPrettyString());
+        internal static string ToPrettyString<T>([NotNull] [ItemNotNull] this IEnumerable<T> enumerable) {
+            var strings = IsA<IPrettyPrint, T>() ? enumerable.Cast<IPrettyPrint>().Select(e => e.ToPrettyString()) 
+                                                 : enumerable.Select(e => e.ToString());
+            
             return "[" + string.Join(", ", strings) + "]";
         }
-        
+
+        // C# lacks proper generic specialization which makes me sad. This is the best we have.
+        internal static bool IsA<TInterface, TType>() {
+            return typeof(TInterface).IsAssignableFrom(typeof(TType));
+        }
+
         internal static string GetString(this Api.DiscussionTopicOrdering ordering) {
             switch (ordering) {
                 case Api.DiscussionTopicOrdering.Position:

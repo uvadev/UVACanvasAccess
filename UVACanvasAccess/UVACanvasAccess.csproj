@@ -150,6 +150,15 @@
     <Compile Include="Model\Users\ProfileModel.cs" />
     <Compile Include="Model\Users\UserModel.cs" />
     <Compile Include="Model\Users\UserDisplayModel.cs" />
+    <Compile Include="Structures\Assignments\Assignment.cs" />
+    <Compile Include="Structures\Assignments\AssignmentDate.cs" />
+    <Compile Include="Structures\Assignments\AssignmentOverride.cs" />
+    <Compile Include="Structures\Assignments\ExternalToolTagAttributes.cs" />
+    <Compile Include="Structures\Assignments\LockInfo.cs" />
+    <Compile Include="Structures\Assignments\NeedsGradingCount.cs" />
+    <Compile Include="Structures\Assignments\RubricCriteria.cs" />
+    <Compile Include="Structures\Assignments\RubricRating.cs" />
+    <Compile Include="Structures\Assignments\TurnitinSettings.cs" />
     <Compile Include="Structures\Discussions\DiscussionTopic.cs" />
     <Compile Include="Structures\Discussions\FileAttachment.cs" />
     <Compile Include="Structures\Discussions\TopicEntry.cs" />
