@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
+using static UVACanvasAccess.Api;
+using static UVACanvasAccess.Api.AssignmentInclusions;
 using static UVACanvasAccess.Api.DiscussionTopicScopes;
 using static UVACanvasAccess.Api.DiscussionTopicInclusions;
 
@@ -54,20 +56,20 @@ namespace UVACanvasAccess.Util {
             return typeof(TInterface).IsAssignableFrom(typeof(TType));
         }
 
-        internal static string GetString(this Api.DiscussionTopicOrdering ordering) {
+        internal static string GetString(this DiscussionTopicOrdering ordering) {
             switch (ordering) {
-                case Api.DiscussionTopicOrdering.Position:
+                case DiscussionTopicOrdering.Position:
                     return "position";
-                case Api.DiscussionTopicOrdering.RecentActivity:
+                case DiscussionTopicOrdering.RecentActivity:
                     return "recent_activity";
-                case Api.DiscussionTopicOrdering.Title:
+                case DiscussionTopicOrdering.Title:
                     return "title";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(ordering), ordering, null);
             }
         }
 
-        internal static string GetString(this Api.DiscussionTopicScopes scopes) {
+        internal static string GetString(this DiscussionTopicScopes scopes) {
             var scopeList = new List<string>();
 
             if ((scopes & Locked) == Locked) {
@@ -89,7 +91,7 @@ namespace UVACanvasAccess.Util {
             return string.Join(",", scopeList);
         }
 
-        internal static IEnumerable<(string, string)> GetTuples(this Api.DiscussionTopicInclusions includes) {
+        internal static IEnumerable<(string, string)> GetTuples(this DiscussionTopicInclusions includes) {
             var list = new List<(string, string)>();
             
             if ((includes & AllDates) == AllDates) {
@@ -104,8 +106,30 @@ namespace UVACanvasAccess.Util {
                 list.Add(("include[]", "sections_user_count"));
             }
             
-            if ((includes & Overrides) == Overrides) {
+            if ((includes & DiscussionTopicInclusions.Overrides) == DiscussionTopicInclusions.Overrides) {
                 list.Add(("include[]", "overrides"));
+            }
+
+            return list;
+        }
+        
+        internal static IEnumerable<(string, string)> GetTuples(this AssignmentInclusions includes) {
+            var list = new List<(string, string)>();
+            
+            if ((includes & Submission) == Submission) {
+                list.Add(("include[]", "submission"));
+            }
+            
+            if ((includes & AssignmentVisibility) == AssignmentVisibility) {
+                list.Add(("include[]", "assignment_visibility"));
+            }
+            
+            if ((includes & AssignmentInclusions.Overrides) == AssignmentInclusions.Overrides) {
+                list.Add(("include[]", "overrides"));
+            }
+            
+            if ((includes & ObservedUsers) == ObservedUsers) {
+                list.Add(("include[]", "observed_users"));
             }
 
             return list;

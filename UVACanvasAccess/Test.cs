@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
-using UVACanvasAccess.Util;
-using static UVACanvasAccess.Api.DiscussionTopicInclusions;
+using static UVACanvasAccess.Api.AssignmentInclusions;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -12,7 +10,8 @@ namespace UVACanvasAccess {
                             TestUser3Id = 3394,
                             TestCourse = 1028,
                             TestDiscussion1 = 375,
-                            TestDiscussion2 = 384;
+                            TestDiscussion2 = 384,
+                            TestAssignment1 = 9844;
 
         public static async Task Main(string[] args) {
             DotEnv.Config();
@@ -20,13 +19,9 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var topic = await api.GetCourseDiscussionTopic(TestCourse, TestDiscussion1, Everything);
+            var assignment = await api.GetAssignment(TestCourse, TestAssignment1, Everything);
 
-            var oldestEntry = (await topic.GetEntries()).Last();
-
-            var replies = await oldestEntry.GetReplies();
-
-            Console.WriteLine(replies.ToPrettyString());
+            Console.WriteLine(assignment.ToPrettyString());
         }
     }
 }

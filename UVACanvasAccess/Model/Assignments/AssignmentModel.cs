@@ -118,7 +118,7 @@ namespace UVACanvasAccess.Model.Assignments {
         
         [CanBeNull]
         [JsonProperty("integration_data")]
-        public string IntegrationData { get; set; }
+        public object IntegrationData { get; set; }
         
         [JsonProperty("muted")]
         public bool? Muted { get; set; }

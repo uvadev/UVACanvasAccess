@@ -87,7 +87,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public string IntegrationId { get; }
         
         [CanBeNull]
-        public string IntegrationData { get; }
+        public object IntegrationData { get; }
         
         public bool? Muted { get; }
         
@@ -246,13 +246,13 @@ namespace UVACanvasAccess.Structures.Assignments {
                    $"\n{nameof(LockAt)}: {LockAt}," +
                    $"\n{nameof(UnlockAt)}: {UnlockAt}," +
                    $"\n{nameof(HasOverrides)}: {HasOverrides}," +
-                   $"\n{nameof(AllDates)}: {AllDates.ToPrettyString()}," +
+                   $"\n{nameof(AllDates)}: {AllDates?.ToPrettyString()}," +
                    $"\n{nameof(CourseId)}: {CourseId}," +
                    $"\n{nameof(HtmlUrl)}: {HtmlUrl}," +
                    $"\n{nameof(SubmissionsDownloadUrl)}: {SubmissionsDownloadUrl}," +
                    $"\n{nameof(AssignmentGroupId)}: {AssignmentGroupId}," +
                    $"\n{nameof(DueDateRequired)}: {DueDateRequired}," +
-                   $"\n{nameof(AllowedExtensions)}: {AllowedExtensions.ToPrettyString()}," +
+                   $"\n{nameof(AllowedExtensions)}: {AllowedExtensions?.ToPrettyString()}," +
                    $"\n{nameof(MaxNameLength)}: {MaxNameLength}," +
                    $"\n{nameof(TurnitinEnabled)}: {TurnitinEnabled}," +
                    $"\n{nameof(VeriCiteEnabled)}: {VeriCiteEnabled}," +
@@ -266,7 +266,7 @@ namespace UVACanvasAccess.Structures.Assignments {
                    $"\n{nameof(IntraGroupPeerReviews)}: {IntraGroupPeerReviews}," +
                    $"\n{nameof(GroupCategoryId)}: {GroupCategoryId}," +
                    $"\n{nameof(NeedsGradingCount)}: {NeedsGradingCount}," +
-                   $"\n{nameof(NeedsGradingCountBySection)}: {NeedsGradingCountBySection.ToPrettyString()}," +
+                   $"\n{nameof(NeedsGradingCountBySection)}: {NeedsGradingCountBySection?.ToPrettyString()}," +
                    $"\n{nameof(Position)}: {Position}," +
                    $"\n{nameof(PostToSis)}: {PostToSis}," +
                    $"\n{nameof(IntegrationId)}: {IntegrationId}," +
@@ -288,13 +288,13 @@ namespace UVACanvasAccess.Structures.Assignments {
                    $"\n{nameof(DiscussionTopic)}: {DiscussionTopic}," +
                    $"\n{nameof(FreezeOnCopy)}: {FreezeOnCopy}," +
                    $"\n{nameof(Frozen)}: {Frozen}," +
-                   $"\n{nameof(FrozenAttributes)}: {FrozenAttributes.ToPrettyString()}," +
+                   $"\n{nameof(FrozenAttributes)}: {FrozenAttributes?.ToPrettyString()}," +
                    $"\n{nameof(Submission)}: {Submission}," +
                    $"\n{nameof(UseRubricForGrading)}: {UseRubricForGrading}," +
                    $"\n{nameof(RubricSettings)}: {RubricSettings}," +
-                   $"\n{nameof(Rubric)}: {Rubric.ToPrettyString()}," +
-                   $"\n{nameof(AssignmentVisibility)}: {AssignmentVisibility.ToPrettyString()}," +
-                   $"\n{nameof(Overrides)}: {Overrides.ToPrettyString()}," +
+                   $"\n{nameof(Rubric)}: {Rubric?.ToPrettyString()}," +
+                   $"\n{nameof(AssignmentVisibility)}: {AssignmentVisibility?.ToPrettyString()}," +
+                   $"\n{nameof(Overrides)}: {Overrides?.ToPrettyString()}," +
                    $"\n{nameof(OmitFromFinalGrade)}: {OmitFromFinalGrade}," +
                    $"\n{nameof(ModeratedGrading)}: {ModeratedGrading}," +
                    $"\n{nameof(GraderCount)}: {GraderCount}," +

@@ -11,9 +11,11 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Builders;
+using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Structures.Discussions;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Structures.Files;
@@ -227,6 +229,51 @@ namespace UVACanvasAccess {
         private static HttpContent BuildHttpJsonBody(JObject json) {
             var content = new StringContent(json.ToString(), Encoding.Default, "application/json");
             return content;
+        }
+
+        [Flags]
+        public enum AssignmentInclusions {
+            Default = 0,
+            Submission = 1 << 0,
+            AssignmentVisibility = 1 << 1,
+            Overrides = 1 << 2,
+            ObservedUsers = 1 << 3,
+            Everything = Submission | AssignmentVisibility | Overrides | ObservedUsers
+        }
+
+        private Task<HttpResponseMessage> RawGetSingleAssignment(string courseId,
+                                                                 string assignmentId,
+                                                                 AssignmentInclusions inclusions,
+                                                                 bool? overrideAssignmentDates,
+                                                                 bool? needsGradingCountBySection,
+                                                                 bool? allDates) {
+            var args = inclusions.GetTuples();
+            args = args.Append(("override_assignment_dates", overrideAssignmentDates?.ToString().ToLower()))
+                       .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToString().ToLower()))
+                       .Append(("all_dates", allDates?.ToString().ToLower()));
+            
+            var url = $"courses/{courseId}/assignments/{assignmentId}" + BuildQueryString(args.ToArray());
+
+            return _client.GetAsync(url);
+        }
+
+        public async Task<Assignment> GetAssignment(ulong courseId, 
+                                                    ulong assignmentId, 
+                                                    AssignmentInclusions inclusions = AssignmentInclusions.Default,
+                                                    bool? overrideAssignmentDates = null,
+                                                    bool? needsGradingCountBySection = null,
+                                                    bool? allDates = null) {
+            
+            var response = await RawGetSingleAssignment(courseId.ToString(),
+                                                        assignmentId.ToString(),
+                                                        inclusions,
+                                                        overrideAssignmentDates,
+                                                        needsGradingCountBySection,
+                                                        allDates);
+            response.AssertSuccess();
+            
+            var model = JsonConvert.DeserializeObject<AssignmentModel>(await response.Content.ReadAsStringAsync());
+            return new Assignment(this, model);
         }
 
         [Flags]
