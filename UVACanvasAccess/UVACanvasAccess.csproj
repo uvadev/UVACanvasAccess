@@ -164,6 +164,9 @@
     <Compile Include="Structures\Discussions\TopicEntry.cs" />
     <Compile Include="Structures\Discussions\TopicReply.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
+    <Compile Include="Structures\Submissions\MediaComment.cs" />
+    <Compile Include="Structures\Submissions\Submission.cs" />
+    <Compile Include="Structures\Submissions\SubmissionComment.cs" />
     <Compile Include="Structures\Users\ActivityStreamObject.cs" />
     <Compile Include="Structures\Users\ActivityStreamSummaryEntry.cs" />
     <Compile Include="Structures\Users\PageView.cs" />

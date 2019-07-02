@@ -44,6 +44,7 @@ namespace UVACanvasAccess.Model.Submissions {
         [JsonProperty("score")]
         public double Score { get; set; }
         
+        [CanBeNull]
         [JsonProperty("submission_comments")]
         public IEnumerable<SubmissionCommentModel> SubmissionComments { get; set; }
         

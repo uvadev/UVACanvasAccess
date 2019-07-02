@@ -97,5 +97,11 @@ namespace UVACanvasAccess.Util {
                 }
             }
         }
+
+        [ContractAnnotation("o:null => null; o:notnull => notnull")]
+        internal static TO ConvertIfNotNull<TI, TO>([CanBeNull] this TI o, [NotNull] Func<TI, TO> f) where TO: class {
+            return o == null ? null
+                             : f(o);
+        }
     }
 }
