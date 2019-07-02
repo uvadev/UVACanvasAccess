@@ -207,20 +207,18 @@ namespace UVACanvasAccess {
         }
 
         /// <summary>
-        /// Uploads a file to the user's personal files section.
+        /// Uploads a file to the current user's personal files section.
         /// </summary>
         /// <param name="file">The data.</param>
         /// <param name="filePath">The URI of the file on the local system.
         /// Must include, at a minimum, the name and the extension.
         /// </param>
-        /// <param name="userId">The id of the user. <c>self</c> if null or omitted.</param>
         /// <param name="parentFolderName"></param>
         /// <returns>The uploaded file.</returns>
         public Task<CanvasFile> UploadPersonalFile(byte[] file, 
-                                                   string filePath, 
-                                                   ulong? userId = null, 
+                                                   string filePath,
                                                    string parentFolderName = null) {
-            return UploadFile($"users/{userId?.ToString() ?? "self"}/files", 
+            return UploadFile("users/self/files", 
                               file, 
                               Path.GetFileNameWithoutExtension(filePath), 
                               Path.GetFileName(filePath),
