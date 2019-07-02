@@ -103,5 +103,9 @@ namespace UVACanvasAccess.Util {
             return o == null ? null
                              : f(o);
         }
+
+        internal static IEnumerable<T> Yield<T>(this T t) {
+            yield return t;
+        }
     }
 }

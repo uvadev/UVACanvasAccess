@@ -1,8 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using dotenv.net;
-using UVACanvasAccess.Util;
-using static UVACanvasAccess.Api.AssignmentInclusions;
+using UVACanvasAccess.Structures.Submissions.NewSubmission;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -21,8 +21,18 @@ namespace UVACanvasAccess {
                               "https://uview.instructure.com/api/v1/");
 
             api.MasqueradeAs(TestUser2Id);
-            
-            
+
+            var path = Environment.GetEnvironmentVariable("TEST_FILE") ?? throw new Exception();
+            var bytes = File.ReadAllBytes(path);
+
+            var uploadedFile = await api.UploadPersonalFile(bytes, path, "Assignment Files");
+
+            var submission = await api.SubmitCourseAssignment(TestCourse,
+                                                              TestAssignment1,
+                                                              new OnlineUploadSubmission(uploadedFile.Id),
+                                                              "Submitted through UVACanvasAccess.");
+
+            Console.WriteLine(submission.ToPrettyString());
         }
     }
 }

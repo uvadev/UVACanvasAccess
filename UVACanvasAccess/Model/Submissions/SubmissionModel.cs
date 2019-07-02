@@ -23,7 +23,7 @@ namespace UVACanvasAccess.Model.Submissions {
         public object Course { get; set; }
         
         [JsonProperty("attempt")]
-        public uint Attempt { get; set; }
+        public uint? Attempt { get; set; }
         
         [CanBeNull]
         [JsonProperty("body")]
@@ -33,7 +33,7 @@ namespace UVACanvasAccess.Model.Submissions {
         public string Grade { get; set; }
         
         [JsonProperty("grade_matches_current_submission")]
-        public bool GradeMatchesCurrentSubmission { get; set; }
+        public bool? GradeMatchesCurrentSubmission { get; set; }
         
         [JsonProperty("html_url")]
         public string HtmlUrl { get; set; }
@@ -42,7 +42,7 @@ namespace UVACanvasAccess.Model.Submissions {
         public string PreviewUrl { get; set; }
         
         [JsonProperty("score")]
-        public double Score { get; set; }
+        public double? Score { get; set; }
         
         [CanBeNull]
         [JsonProperty("submission_comments")]
@@ -71,31 +71,31 @@ namespace UVACanvasAccess.Model.Submissions {
         public UserModel User { get; set; }
         
         [JsonProperty("late")]
-        public bool Late { get; set; }
+        public bool? Late { get; set; }
         
         [JsonProperty("assignment_visible")]
-        public bool AssignmentVisible { get; set; }
+        public bool? AssignmentVisible { get; set; }
         
         [JsonProperty("excused")]
-        public bool Excused { get; set; }
+        public bool? Excused { get; set; }
         
         [JsonProperty("missing")]
-        public bool Missing { get; set; }
+        public bool? Missing { get; set; }
         
         [JsonProperty("late_policy_status")]
         public string LatePolicyStatus { get; set; }
         
         [JsonProperty("points_deducted")]
-        public double PointsDeducted { get; set; }
+        public double? PointsDeducted { get; set; }
         
         [JsonProperty("seconds_late")]
-        public double SecondsLate { get; set; }
+        public double? SecondsLate { get; set; }
         
         [JsonProperty("workflow_state")]
         public string WorkflowState { get; set; }
 
         [JsonProperty("extra_attempts")]
-        public uint ExtraAttempts { get; set; }
+        public uint? ExtraAttempts { get; set; }
         
         [CanBeNull]
         [JsonProperty("anonymous_id")]

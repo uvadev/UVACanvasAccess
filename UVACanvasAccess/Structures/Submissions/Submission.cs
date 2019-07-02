@@ -23,20 +23,20 @@ namespace UVACanvasAccess.Structures.Submissions {
         [CanBeNull]
         public object Course { get; }
 
-        public uint Attempt { get; }
+        public uint? Attempt { get; }
         
         [CanBeNull]
         public string Body { get; }
 
         public string Grade { get; }
 
-        public bool GradeMatchesCurrentSubmission { get; }
+        public bool? GradeMatchesCurrentSubmission { get; }
 
         public string HtmlUrl { get; }
 
         public string PreviewUrl { get; }
 
-        public double Score { get; }
+        public double? Score { get; }
         
         [CanBeNull]
         public IEnumerable<SubmissionComment> SubmissionComments { get; }
@@ -56,23 +56,23 @@ namespace UVACanvasAccess.Structures.Submissions {
 
         public User User { get; }
 
-        public bool Late { get; }
+        public bool? Late { get; }
 
-        public bool AssignmentVisible { get; }
+        public bool? AssignmentVisible { get; }
 
-        public bool Excused { get; }
+        public bool? Excused { get; }
         
-        public bool Missing { get; }
+        public bool? Missing { get; }
 
         public string LatePolicyStatus { get; }
 
-        public double PointsDeducted { get; }
+        public double? PointsDeducted { get; }
         
-        public double SecondsLate { get; }
+        public double? SecondsLate { get; }
 
         public string WorkflowState { get; }
         
-        public uint ExtraAttempts { get; }
+        public uint? ExtraAttempts { get; }
         
         [CanBeNull]
         public string AnonymousId { get; }
@@ -121,7 +121,7 @@ namespace UVACanvasAccess.Structures.Submissions {
                    $"\n{nameof(HtmlUrl)}: {HtmlUrl}," +
                    $"\n{nameof(PreviewUrl)}: {PreviewUrl}," +
                    $"\n{nameof(Score)}: {Score}," +
-                   $"\n{nameof(SubmissionComments)}: {SubmissionComments}," +
+                   $"\n{nameof(SubmissionComments)}: {SubmissionComments?.ToPrettyString()}," +
                    $"\n{nameof(SubmissionType)}: {SubmissionType}," +
                    $"\n{nameof(SubmittedAt)}: {SubmittedAt}," +
                    $"\n{nameof(Url)}: {Url}," +

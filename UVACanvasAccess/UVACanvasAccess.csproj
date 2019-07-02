@@ -165,6 +165,10 @@
     <Compile Include="Structures\Discussions\TopicReply.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
+    <Compile Include="Structures\Submissions\NewSubmission\INewSubmissionContent.cs" />
+    <Compile Include="Structures\Submissions\NewSubmission\OnlineTextEntrySubmission.cs" />
+    <Compile Include="Structures\Submissions\NewSubmission\OnlineUploadSubmission.cs" />
+    <Compile Include="Structures\Submissions\NewSubmission\OnlineUrlSubmission.cs" />
     <Compile Include="Structures\Submissions\Submission.cs" />
     <Compile Include="Structures\Submissions\SubmissionComment.cs" />
     <Compile Include="Structures\Users\ActivityStreamObject.cs" />

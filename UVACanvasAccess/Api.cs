@@ -16,11 +16,14 @@ using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Model.Files;
+using UVACanvasAccess.Model.Submissions;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Structures.Discussions;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Structures.Files;
+using UVACanvasAccess.Structures.Submissions;
+using UVACanvasAccess.Structures.Submissions.NewSubmission;
 using UVACanvasAccess.Util;
 using static UVACanvasAccess.Api.DiscussionTopicInclusions;
 using static UVACanvasAccess.Structures.Discussions.DiscussionTopic.DiscussionHome;
@@ -230,8 +233,35 @@ namespace UVACanvasAccess {
             var content = new StringContent(json.ToString(), Encoding.Default, "application/json");
             return content;
         }
-        
-        
+
+        private Task<HttpResponseMessage> RawSubmitAssignment([NotNull] string type,
+                                                              [NotNull] string baseId,
+                                                              [NotNull] string assignmentId,
+                                                              [CanBeNull] string comment,
+                                                              [NotNull] INewSubmissionContent submissionContent) {
+            var url = $"{type}/{baseId}/assignments/{assignmentId}/submissions";
+
+            var args = submissionContent.GetTuples()
+                                        .Append(("submission[submission_type]", submissionContent.Type.GetApiRepresentation()))
+                                        .Append(("comment[text_comment]", comment));
+            
+            return _client.PostAsync(url, BuildHttpArguments(args));
+        }
+
+        public async Task<Submission> SubmitCourseAssignment(ulong courseId,
+                                                             ulong assignmentId,
+                                                             [NotNull] INewSubmissionContent submissionContent,
+                                                             string comment = null) {
+            var response = await RawSubmitAssignment("courses",
+                                                     courseId.ToString(),
+                                                     assignmentId.ToString(),
+                                                     comment,
+                                                     submissionContent);
+            response.AssertSuccess();
+
+            var model = JsonConvert.DeserializeObject<SubmissionModel>(await response.Content.ReadAsStringAsync());
+            return new Submission(this, model);
+        }
         
         [Flags]
         public enum AssignmentInclusions {
