@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Builders;
@@ -230,15 +232,121 @@ namespace UVACanvasAccess {
             var content = new StringContent(json.ToString(), Encoding.Default, "application/json");
             return content;
         }
-
+        
         [Flags]
         public enum AssignmentInclusions {
             Default = 0,
+            [ApiRepresentation("submission")]
             Submission = 1 << 0,
+            [ApiRepresentation("assignment_visibility")]
             AssignmentVisibility = 1 << 1,
+            [ApiRepresentation("overrides")]
             Overrides = 1 << 2,
+            [ApiRepresentation("observed_users")]
             ObservedUsers = 1 << 3,
-            Everything = Submission | AssignmentVisibility | Overrides | ObservedUsers
+            [ApiRepresentation("all_dates")]
+            AllDates = 1 << 4
+        }
+
+        public enum AssignmentBucket {
+            [ApiRepresentation("past")]
+            Past,
+            [ApiRepresentation("overdue")]
+            Overdue,
+            [ApiRepresentation("undated")]
+            Undated,
+            [ApiRepresentation("ungraded")]
+            Ungraded,
+            [ApiRepresentation("ubsubmitted")]
+            Unsubmitted,
+            [ApiRepresentation("upcoming")]
+            Upcoming,
+            [ApiRepresentation("future")]
+            Future
+        }
+
+        private Task<HttpResponseMessage> RawListAssignmentsGeneric(string url,
+                                                                    AssignmentInclusions inclusions,
+                                                                    [CanBeNull] string searchTerm,
+                                                                    bool? overrideAssignmentDates,
+                                                                    bool? needsGradingCountBySection, 
+                                                                    AssignmentBucket? bucket,
+                                                                    [CanBeNull] IEnumerable<ulong> assignmentIds,
+                                                                    [CanBeNull] string orderBy) {
+            var args = inclusions.GetTuples()
+                                 .Append(("search_term", searchTerm))
+                                 .Append(("override_assignment_dates", overrideAssignmentDates?.ToString().ToLower()))
+                                 .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToString().ToLower()))
+                                 .Append(("bucket", bucket?.GetApiRepresentation()))
+                                 .Append(("order_by", orderBy));
+            
+            if (assignmentIds != null) {
+                args = args.Concat(assignmentIds.Select(id => id.ToString())
+                                                .Select(s => ("assignment_ids[]", s)));
+            }
+
+            return _client.GetAsync(url + BuildQueryString(args.ToArray()));
+        }
+
+        private Task<HttpResponseMessage> RawListCourseAssignments(string courseId,
+                                                                   AssignmentInclusions inclusions,
+                                                                   [CanBeNull] string searchTerm,
+                                                                   bool? overrideAssignmentDates,
+                                                                   bool? needsGradingCountBySection, 
+                                                                   AssignmentBucket? bucket,
+                                                                   [CanBeNull] IEnumerable<ulong> assignmentIds,
+                                                                   [CanBeNull] string orderBy) {
+            return RawListAssignmentsGeneric($"courses/{courseId}/assignments",
+                                             inclusions,
+                                             searchTerm,
+                                             overrideAssignmentDates,
+                                             needsGradingCountBySection,
+                                             bucket,
+                                             assignmentIds,
+                                             orderBy);
+        }
+        
+        private Task<HttpResponseMessage> RawListCourseGroupAssignments(string courseId,
+                                                                        string assignmentGroupId,
+                                                                        AssignmentInclusions inclusions,
+                                                                        [CanBeNull] string searchTerm,
+                                                                        bool? overrideAssignmentDates,
+                                                                        bool? needsGradingCountBySection, 
+                                                                        AssignmentBucket? bucket,
+                                                                        [CanBeNull] IEnumerable<ulong> assignmentIds,
+                                                                        [CanBeNull] string orderBy) {
+            return RawListAssignmentsGeneric($"courses/{courseId}/assignment_groups/{assignmentGroupId}/assignments",
+                                             inclusions,
+                                             searchTerm,
+                                             overrideAssignmentDates,
+                                             needsGradingCountBySection,
+                                             bucket,
+                                             assignmentIds,
+                                             orderBy);
+        }
+
+        public async Task<IEnumerable<Assignment>> ListCourseAssignments(ulong courseId,
+                                                                         AssignmentInclusions inclusions = AssignmentInclusions.Default,
+                                                                         string searchTerm = null,
+                                                                         bool? overrideAssignmentDates = null,
+                                                                         bool? needsGradingCountBySection = null,
+                                                                         AssignmentBucket? bucket = null,
+                                                                         IEnumerable<ulong> assignmentIds = null,
+                                                                         string orderBy = null) {
+
+            var response = await RawListCourseAssignments(courseId.ToString(),
+                                                          inclusions,
+                                                          searchTerm,
+                                                          overrideAssignmentDates,
+                                                          needsGradingCountBySection,
+                                                          bucket,
+                                                          assignmentIds,
+                                                          orderBy);
+
+            var models = await AccumulateDeserializePages<AssignmentModel>(response);
+
+            return from model in models
+                   select new Assignment(this, model);
         }
 
         private Task<HttpResponseMessage> RawGetSingleAssignment(string courseId,
@@ -247,10 +355,10 @@ namespace UVACanvasAccess {
                                                                  bool? overrideAssignmentDates,
                                                                  bool? needsGradingCountBySection,
                                                                  bool? allDates) {
-            var args = inclusions.GetTuples();
-            args = args.Append(("override_assignment_dates", overrideAssignmentDates?.ToString().ToLower()))
-                       .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToString().ToLower()))
-                       .Append(("all_dates", allDates?.ToString().ToLower()));
+            var args = inclusions.GetTuples()
+                                 .Append(("override_assignment_dates", overrideAssignmentDates?.ToString().ToLower()))
+                                 .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToString().ToLower()))
+                                 .Append(("all_dates", allDates?.ToString().ToLower()));
             
             var url = $"courses/{courseId}/assignments/{assignmentId}" + BuildQueryString(args.ToArray());
 
@@ -279,24 +387,34 @@ namespace UVACanvasAccess {
         [Flags]
         public enum DiscussionTopicInclusions {
             Default = 0,
+            [ApiRepresentation("all_dates")]
             AllDates = 1 << 0,
+            [ApiRepresentation("sections")]
             Sections = 1 << 1,
+            [ApiRepresentation("sections_user_count")]
             SectionsUserCount = 1 << 2,
-            Overrides = 1 << 3,
-            Everything = AllDates | Sections | SectionsUserCount | Overrides
+            [ApiRepresentation("overrides")]
+            Overrides = 1 << 3
         }
 
         public enum DiscussionTopicOrdering {
+            [ApiRepresentation("position")]
             Position,
+            [ApiRepresentation("recent_activity")]
             RecentActivity,
+            [ApiRepresentation("title")]
             Title
         }
 
         [Flags]
         public enum DiscussionTopicScopes {
+            [ApiRepresentation("locked")]
             Locked = 1 << 0,
+            [ApiRepresentation("unlocked")]
             Unlocked = 1 << 1,
+            [ApiRepresentation("pinned")]
             Pinned = 1 << 2, 
+            [ApiRepresentation("unpinned")]
             Unpinned = 1 << 3
         }
 

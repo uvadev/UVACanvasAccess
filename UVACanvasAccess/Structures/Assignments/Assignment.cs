@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Model.Discussions;
@@ -33,7 +34,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public bool HasOverrides { get; }
         
         [CanBeNull]
-        public IEnumerable<AssignmentDateModel> AllDates { get; }
+        public IEnumerable<AssignmentDate> AllDates { get; }
 
         public ulong CourseId { get; }
 
@@ -175,7 +176,9 @@ namespace UVACanvasAccess.Structures.Assignments {
             LockAt = model.LockAt;
             UnlockAt = model.UnlockAt;
             HasOverrides = model.HasOverrides;
-            AllDates = model.AllDates;
+            AllDates = model.AllDates == null ? null
+                                              : from dateModel in model.AllDates
+                                                select new AssignmentDate(api, dateModel);
             CourseId = model.CourseId;
             HtmlUrl = model.HtmlUrl;
             SubmissionsDownloadUrl = model.SubmissionsDownloadUrl;

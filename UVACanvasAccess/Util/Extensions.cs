@@ -5,9 +5,6 @@ using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
 using static UVACanvasAccess.Api;
-using static UVACanvasAccess.Api.AssignmentInclusions;
-using static UVACanvasAccess.Api.DiscussionTopicScopes;
-using static UVACanvasAccess.Api.DiscussionTopicInclusions;
 
 namespace UVACanvasAccess.Util {
     public static class Extensions {
@@ -57,82 +54,48 @@ namespace UVACanvasAccess.Util {
         }
 
         internal static string GetString(this DiscussionTopicOrdering ordering) {
-            switch (ordering) {
-                case DiscussionTopicOrdering.Position:
-                    return "position";
-                case DiscussionTopicOrdering.RecentActivity:
-                    return "recent_activity";
-                case DiscussionTopicOrdering.Title:
-                    return "title";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(ordering), ordering, null);
-            }
+            return ordering.GetApiRepresentation();
         }
 
-        internal static string GetString(this DiscussionTopicScopes scopes) {
-            var scopeList = new List<string>();
-
-            if ((scopes & Locked) == Locked) {
-                scopeList.Add("locked");
-            }
-            
-            if ((scopes & Unlocked) == Unlocked) {
-                scopeList.Add("unlocked");
-            }
-            
-            if ((scopes & Pinned) == Pinned) {
-                scopeList.Add("pinned");
-            }
-            
-            if ((scopes & Unpinned) == Unpinned) {
-                scopeList.Add("unpinned");
-            }
-
-            return string.Join(",", scopeList);
+        internal static string GetString(this DiscussionTopicScopes scopes) { 
+            return string.Join(",", scopes.GetFlags().Select(f => f.GetFlags()));
         }
 
         internal static IEnumerable<(string, string)> GetTuples(this DiscussionTopicInclusions includes) {
-            var list = new List<(string, string)>();
-            
-            if ((includes & AllDates) == AllDates) {
-                list.Add(("include[]", "all_dates"));
-            }
-            
-            if ((includes & Sections) == Sections) {
-                list.Add(("include[]", "sections"));
-            }
-            
-            if ((includes & SectionsUserCount) == SectionsUserCount) {
-                list.Add(("include[]", "sections_user_count"));
-            }
-            
-            if ((includes & DiscussionTopicInclusions.Overrides) == DiscussionTopicInclusions.Overrides) {
-                list.Add(("include[]", "overrides"));
-            }
-
-            return list;
+            return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
         }
         
         internal static IEnumerable<(string, string)> GetTuples(this AssignmentInclusions includes) {
-            var list = new List<(string, string)>();
-            
-            if ((includes & Submission) == Submission) {
-                list.Add(("include[]", "submission"));
-            }
-            
-            if ((includes & AssignmentVisibility) == AssignmentVisibility) {
-                list.Add(("include[]", "assignment_visibility"));
-            }
-            
-            if ((includes & AssignmentInclusions.Overrides) == AssignmentInclusions.Overrides) {
-                list.Add(("include[]", "overrides"));
-            }
-            
-            if ((includes & ObservedUsers) == ObservedUsers) {
-                list.Add(("include[]", "observed_users"));
-            }
+            return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
+        }
 
-            return list;
+        [CanBeNull]
+        internal static string GetApiRepresentation(this Enum en) {
+            var member = en.GetType().GetMember(en.ToString());
+
+            if (member.Length <= 0) 
+                return null;
+            
+            var attribute = member[0].GetCustomAttributes(typeof(ApiRepresentationAttribute), false);
+            
+            return attribute.Length > 0 ? ((ApiRepresentationAttribute) attribute[0]).Representation 
+                                        : null;
+        }
+
+        internal static IEnumerable<TE> GetFlags<TE>(this TE en) where TE : Enum {
+            ulong flag = 1;
+            
+            foreach (var value in Enum.GetValues(en.GetType()).Cast<TE>()) {
+                var bits = Convert.ToUInt64(value);
+                
+                while (flag < bits) {
+                    flag <<= 1;
+                }
+
+                if (flag == bits && en.HasFlag(value)) {
+                    yield return value;
+                }
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using dotenv.net;
+using UVACanvasAccess.Util;
 using static UVACanvasAccess.Api.AssignmentInclusions;
 
 namespace UVACanvasAccess {
@@ -19,9 +20,9 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var assignment = await api.GetAssignment(TestCourse, TestAssignment1, Everything);
+            var assignments = await api.ListCourseAssignments(TestCourse, AllDates);
 
-            Console.WriteLine(assignment.ToPrettyString());
+            Console.WriteLine(assignments.ToPrettyString());
         }
     }
 }
