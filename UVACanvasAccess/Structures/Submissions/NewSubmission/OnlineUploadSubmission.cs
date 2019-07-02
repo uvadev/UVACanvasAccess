@@ -4,6 +4,9 @@ using System.Linq;
 // ReSharper disable MemberCanBePrivate.Global
 namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     
+    /// <summary>
+    /// Represents the submission of one or more previously uploaded files.
+    /// </summary>
     public class OnlineUploadSubmission : INewSubmissionContent {
         public SubmissionType Type { get; }
         

@@ -4,6 +4,9 @@ using UVACanvasAccess.Util;
 // ReSharper disable MemberCanBePrivate.Global
 namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     
+    /// <summary>
+    /// Represents the submission of text, as if it was entered into the online interface.
+    /// </summary>
     public class OnlineTextEntrySubmission : INewSubmissionContent {
         public SubmissionType Type { get; }
         public string Body { get; }

@@ -248,6 +248,17 @@ namespace UVACanvasAccess {
             return _client.PostAsync(url, BuildHttpArguments(args));
         }
 
+        /// <summary>
+        /// Make a submission under the current user for this assignment.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <param name="submissionContent">The content to submit.</param>
+        /// <param name="comment">An optional comment to include with the submission.</param>
+        /// <returns>The completed submission.</returns>
+        /// <seealso cref="OnlineTextEntrySubmission"/>
+        /// <seealso cref="OnlineUrlSubmission"/>
+        /// <seealso cref="OnlineUploadSubmission"/>
         public async Task<Submission> SubmitCourseAssignment(ulong courseId,
                                                              ulong assignmentId,
                                                              [NotNull] INewSubmissionContent submissionContent,
@@ -263,6 +274,9 @@ namespace UVACanvasAccess {
             return new Submission(this, model);
         }
         
+        /// <summary>
+        /// Flags representing optional data that can be included as part of an <see cref="Assignment"/>.
+        /// </summary>
         [Flags]
         public enum AssignmentInclusions {
             Default = 0,
@@ -278,6 +292,9 @@ namespace UVACanvasAccess {
             AllDates = 1 << 4
         }
 
+        /// <summary>
+        /// Buckets that assignments can be sorted into.
+        /// </summary>
         public enum AssignmentBucket {
             [ApiRepresentation("past")]
             Past,
@@ -295,6 +312,7 @@ namespace UVACanvasAccess {
             Future
         }
 
+        [PaginatedResponse]
         private Task<HttpResponseMessage> RawListAssignmentsGeneric(string url,
                                                                     AssignmentInclusions inclusions,
                                                                     [CanBeNull] string searchTerm,
@@ -317,7 +335,8 @@ namespace UVACanvasAccess {
 
             return _client.GetAsync(url + BuildQueryString(args.ToArray()));
         }
-
+        
+        [PaginatedResponse]
         private Task<HttpResponseMessage> RawListCourseAssignments(string courseId,
                                                                    AssignmentInclusions inclusions,
                                                                    [CanBeNull] string searchTerm,
@@ -336,6 +355,7 @@ namespace UVACanvasAccess {
                                              orderBy);
         }
         
+        [PaginatedResponse]
         private Task<HttpResponseMessage> RawListCourseGroupAssignments(string courseId,
                                                                         string assignmentGroupId,
                                                                         AssignmentInclusions inclusions,
@@ -355,6 +375,20 @@ namespace UVACanvasAccess {
                                              orderBy);
         }
 
+        /// <summary>
+        /// Returns a list of all assignments in this course that are visible to the current user.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="inclusions">Optional extra data to include in the assignment response.</param>
+        /// <param name="searchTerm">An optional search term.</param>
+        /// <param name="overrideAssignmentDates">Apply assignment overrides to dates. Defaults to true.</param>
+        /// <param name="needsGradingCountBySection">Split the NeedsGradingCount key into sections. Defaults to false.</param>
+        /// <param name="bucket">An optional bucket to filter the returned assignments by.</param>
+        /// <param name="assignmentIds">An optional list of ids to filter the returned assignments by.</param>
+        /// <param name="orderBy">An optional string determining the order of assignments.</param>
+        /// <returns>The list of assignments.</returns>
+        /// <seealso cref="AssignmentInclusions"/>
+        /// <seealso cref="AssignmentBucket"/>
         public async Task<IEnumerable<Assignment>> ListCourseAssignments(ulong courseId,
                                                                          AssignmentInclusions inclusions = AssignmentInclusions.Default,
                                                                          string searchTerm = null,
@@ -395,6 +429,17 @@ namespace UVACanvasAccess {
             return _client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Gets a single assignment from this course.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <param name="inclusions">Optional extra data to include in the assignment response.</param>
+        /// <param name="overrideAssignmentDates">Apply assignment overrides to dates. Defaults to true.</param>
+        /// <param name="needsGradingCountBySection">Split the NeedsGradingCount key into sections. Defaults to false.</param>
+        /// <param name="allDates">Return all dates associated with the assignment, if applicable.</param>
+        /// <returns>The assignment.</returns>
+        /// <seealso cref="AssignmentInclusions"/>
         public async Task<Assignment> GetAssignment(ulong courseId, 
                                                     ulong assignmentId, 
                                                     AssignmentInclusions inclusions = AssignmentInclusions.Default,
@@ -414,6 +459,9 @@ namespace UVACanvasAccess {
             return new Assignment(this, model);
         }
 
+        /// <summary>
+        /// Flags representing optional data that can be included as part of a <see cref="DiscussionTopic"/>.
+        /// </summary>
         [Flags]
         public enum DiscussionTopicInclusions {
             Default = 0,
@@ -427,6 +475,9 @@ namespace UVACanvasAccess {
             Overrides = 1 << 3
         }
 
+        /// <summary>
+        /// An ordering that can be applied to sets of <see cref="DiscussionTopic"/>.
+        /// </summary>
         public enum DiscussionTopicOrdering {
             [ApiRepresentation("position")]
             Position,
@@ -436,6 +487,9 @@ namespace UVACanvasAccess {
             Title
         }
 
+        /// <summary>
+        /// Scopes that <see cref="DiscussionTopic"/>s can be filtered by.
+        /// </summary>
         [Flags]
         public enum DiscussionTopicScopes {
             [ApiRepresentation("locked")]

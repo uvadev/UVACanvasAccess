@@ -16,6 +16,9 @@ namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
         BasicLtiLaunch
     }
     
+    /// <summary>
+    /// Represents some content to be submitted as part of an assignment submission.
+    /// </summary>
     public interface INewSubmissionContent {
         SubmissionType Type { get; }
         
