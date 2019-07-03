@@ -10,10 +10,10 @@ namespace UVACanvasAccess.Builders {
     /// </summary>
     public class CreateUserBuilder {
         private readonly Api _api;
-        public string AccountId { get; }
-        public Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
+        internal string AccountId { get; }
+        internal Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
 
-        public CreateUserBuilder(Api api, string accountId) {
+        internal CreateUserBuilder(Api api, string accountId) {
             _api = api;
             AccountId = accountId;
         }
@@ -255,7 +255,7 @@ namespace UVACanvasAccess.Builders {
         /// </summary>
         /// <returns>The new user.</returns>
         public Task<User> Post() {
-            return _api.CreateUser(this);
+            return _api.PostCreateUser(this);
         }
     }
 }

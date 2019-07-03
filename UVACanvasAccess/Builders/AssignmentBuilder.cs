@@ -10,21 +10,26 @@ using UVACanvasAccess.Structures.Submissions;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {
+    
+    /// <summary>
+    /// A class used to create or edit Assignments using the builder pattern.
+    /// When all desired fields are set, call <see cref="Post"/> to execute the operation.
+    /// </summary>
     public class AssignmentBuilder {
         private readonly Api _api;
         private readonly bool _isEditing;
         private readonly ulong? _id;
-        public ulong CourseId { get; }
+        internal ulong CourseId { get; }
 
-        public Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
+        internal Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
         
-        private List<KeyValuePair<string, string>> _arrayFields = new List<KeyValuePair<string, string>>();
+        private readonly List<KeyValuePair<string, string>> _arrayFields = new List<KeyValuePair<string, string>>();
         
-        public ILookup<string, string> ArrayFields => _arrayFields.Distinct()
-                                                                  .ToLookup(kv => kv.Key,
-                                                                            kv => kv.Value);
+        internal ILookup<string, string> ArrayFields => _arrayFields.Distinct()
+                                                                    .ToLookup(kv => kv.Key,
+                                                                              kv => kv.Value);
 
-        public AssignmentBuilder(Api api, bool isEditing, ulong courseId, ulong? id = null) {
+        internal AssignmentBuilder(Api api, bool isEditing, ulong courseId, ulong? id = null) {
             _api = api;
             _isEditing = isEditing;
             _id = id;

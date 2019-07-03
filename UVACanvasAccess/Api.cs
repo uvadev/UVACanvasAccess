@@ -278,7 +278,7 @@ namespace UVACanvasAccess {
             return _client.PostAsync($"courses/{courseId}/assignments", content);
         }
 
-        public async Task<Assignment> PostCreateAssignment(AssignmentBuilder builder) {
+        internal async Task<Assignment> PostCreateAssignment(AssignmentBuilder builder) {
             var args = builder.Fields
                               .Select(kv => (kv.Key, kv.Value))
                               .Concat(builder.ArrayFields
@@ -295,7 +295,7 @@ namespace UVACanvasAccess {
             return new AssignmentBuilder(this, false, courseId);
         }
 
-        public async Task<Assignment> PutEditAssignment(ulong id, AssignmentBuilder builder) {
+        internal async Task<Assignment> PutEditAssignment(ulong id, AssignmentBuilder builder) {
             var args = builder.Fields
                               .Select(kv => (kv.Key, kv.Value))
                               .Concat(builder.ArrayFields
@@ -652,7 +652,7 @@ namespace UVACanvasAccess {
             return _client.PostAsync(url, content);
         }
 
-        public async Task<DiscussionTopic> PostNewDiscussionTopic(CreateDiscussionTopicBuilder builder) {
+        internal async Task<DiscussionTopic> PostNewDiscussionTopic(CreateDiscussionTopicBuilder builder) {
             var content = BuildMultipartHttpArguments(from kv in builder.Fields select (kv.Key, kv.Value));
             var response = await RawPostNewDiscussionTopic(builder.Type, builder.HomeId.ToString(), content);
             response.AssertSuccess();
@@ -666,7 +666,7 @@ namespace UVACanvasAccess {
         /// </summary>
         /// <param name="courseId">The course id.</param>
         /// <returns>The builder.</returns>
-        public CreateDiscussionTopicBuilder BuildNewCourseDiscussionTopic(ulong courseId) {
+        public CreateDiscussionTopicBuilder CreateCourseDiscussionTopic(ulong courseId) {
             return new CreateDiscussionTopicBuilder(this, "courses", courseId);
         }
 
@@ -932,17 +932,8 @@ namespace UVACanvasAccess {
         private Task<HttpResponseMessage> RawCreateUser(string accountId, HttpContent content) {
             return _client.PostAsync($"accounts/{accountId}/users", content);
         }
-
-        /// <summary>
-        /// Creates a new user with the <c>/api/v1/accounts/:account_id/users</c> endpoint.
-        /// It is preferred to instead call <see cref="BuildNewUser"/> and <see cref="CreateUserBuilder.Post"/>.
-        /// </summary>
-        /// <param name="builder">The builder.</param>
-        /// <returns>The new user.</returns>
-        /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
-        /// <seealso cref="BuildNewUser"/>
-        /// <seealso cref="CreateUserBuilder"/>
-        public async Task<User> CreateUser(CreateUserBuilder builder) {
+        
+        internal async Task<User> PostCreateUser(CreateUserBuilder builder) {
             var content = BuildHttpArguments(from kv in builder.Fields select (kv.Key, kv.Value));
             var response = await RawCreateUser(builder.AccountId, content);
             
@@ -959,7 +950,7 @@ namespace UVACanvasAccess {
         /// </summary>
         /// <param name="accountId">The account to create the user under. <c>self</c> by default.</param>
         /// <returns>The builder.</returns>
-        public CreateUserBuilder BuildNewUser(string accountId = "self") {
+        public CreateUserBuilder CreateUser(string accountId = "self") {
             return new CreateUserBuilder(this, accountId);
         }
 

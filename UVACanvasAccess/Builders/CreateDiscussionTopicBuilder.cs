@@ -13,11 +13,11 @@ namespace UVACanvasAccess.Builders {
     /// </summary>
     public class CreateDiscussionTopicBuilder {
         private readonly Api _api;
-        public string Type { get; }
-        public ulong HomeId { get; }
-        public Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
+        internal string Type { get; }
+        internal ulong HomeId { get; }
+        internal Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
 
-        public CreateDiscussionTopicBuilder(Api api, string type, ulong homeId) {
+        internal CreateDiscussionTopicBuilder(Api api, string type, ulong homeId) {
             _api = api;
             Type = type;
             HomeId = homeId;
