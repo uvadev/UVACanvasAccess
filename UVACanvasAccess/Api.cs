@@ -294,6 +294,29 @@ namespace UVACanvasAccess {
         public AssignmentBuilder CreateAssignment(ulong courseId) {
             return new AssignmentBuilder(this, false, courseId);
         }
+
+        public async Task<Assignment> PutEditAssignment(ulong id, AssignmentBuilder builder) {
+            var args = builder.Fields
+                              .Select(kv => (kv.Key, kv.Value))
+                              .Concat(builder.ArrayFields
+                                             .SelectMany(k => k, (k, v) => (k.Key, v)));
+            
+            var response = await RawEditAssignment(builder.CourseId.ToString(), 
+                                                   id.ToString(), 
+                                                   BuildMultipartHttpArguments(args));
+            response.AssertSuccess();
+
+            var model = JsonConvert.DeserializeObject<AssignmentModel>(await response.Content.ReadAsStringAsync());
+            return new Assignment(this, model);
+        }
+
+        public AssignmentBuilder EditAssignment(ulong courseId, ulong assignmentId) {
+            return new AssignmentBuilder(this, true, courseId, assignmentId);
+        }
+        
+        private Task<HttpResponseMessage> RawEditAssignment(string courseId, string assignmentId, HttpContent content) {
+            return _client.PutAsync($"courses/{courseId}/assignments/{assignmentId}", content);
+        }
         
         /// <summary>
         /// Flags representing optional data that can be included as part of an <see cref="Assignment"/>.

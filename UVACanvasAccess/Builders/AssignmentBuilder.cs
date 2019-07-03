@@ -13,6 +13,7 @@ namespace UVACanvasAccess.Builders {
     public class AssignmentBuilder {
         private readonly Api _api;
         private readonly bool _isEditing;
+        private readonly ulong? _id;
         public ulong CourseId { get; }
 
         public Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
@@ -23,9 +24,10 @@ namespace UVACanvasAccess.Builders {
                                                                   .ToLookup(kv => kv.Key,
                                                                             kv => kv.Value);
 
-        public AssignmentBuilder(Api api, bool isEditing, ulong courseId) {
+        public AssignmentBuilder(Api api, bool isEditing, ulong courseId, ulong? id = null) {
             _api = api;
             _isEditing = isEditing;
+            _id = id;
             CourseId = courseId;
         }
 
@@ -194,11 +196,8 @@ namespace UVACanvasAccess.Builders {
         }
 
         public Task<Assignment> Post() {
-            if (_isEditing) {
-                throw new NotImplementedException();
-            } else {
-                return _api.PostCreateAssignment(this);
-            }
+            return _isEditing ? _api.PutEditAssignment((ulong) _id, this) 
+                              : _api.PostCreateAssignment(this);
         }
 
         private AssignmentBuilder Put(string key, string s) {

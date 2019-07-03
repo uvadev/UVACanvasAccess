@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using dotenv.net;
-using static UVACanvasAccess.Structures.Submissions.SubmissionTypes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -20,17 +19,11 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var newAssignment = await api.CreateAssignment(TestCourse)
-                                         .WithName("UVACanvasAccess Test Assignment 2")
-                                         .WithDescription("Programmatically generated!")
-                                         .WithDueDate(new DateTime(2020, 12, 25))
-                                         .WithLockDate(new DateTime(2021, 5, 3))
-                                         .Published()
-                                         .WithSubmissionTypes(OnlineUpload | OnlineTextEntry)
-                                         .WithPointsPossible(50)
-                                         .Post();
+            var editedAssignment = await api.EditAssignment(TestCourse, TestAssignment2)
+                                            .WithPointsPossible(5000)
+                                            .Post();
 
-            Console.WriteLine(newAssignment.ToPrettyString());
+            Console.WriteLine(editedAssignment.ToPrettyString());
         }
     }
 }
