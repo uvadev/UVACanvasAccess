@@ -234,6 +234,40 @@ namespace UVACanvasAccess {
             return content;
         }
 
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawListAssignmentOverrides(string courseId, string assignmentId) {
+            var url = $"courses/{courseId}/assignments/{assignmentId}/overrides";
+            return _client.GetAsync(url);
+        }
+
+        public async Task<IEnumerable<AssignmentOverride>> ListAssignmentOverrides(ulong courseId, ulong assignmentId) {
+            var response = await RawListAssignmentOverrides(courseId.ToString(), assignmentId.ToString());
+
+            var models = await AccumulateDeserializePages<AssignmentOverrideModel>(response);
+
+            return from model in models
+                   select new AssignmentOverride(this, model);
+        }
+
+        private Task<HttpResponseMessage> RawGetAssignmentOverride(string courseId, 
+                                                                   string assignmentId,
+                                                                   string overrideId) {
+            var url = $"courses/{courseId}/assignments/{assignmentId}/overrides/{overrideId}";
+            return _client.GetAsync(url);
+        }
+
+        public async Task<AssignmentOverride> GetAssignmentOverride(ulong courseId, 
+                                                                    ulong assignmentId,
+                                                                    ulong overrideId) {
+            var response =
+                await RawGetAssignmentOverride(courseId.ToString(), assignmentId.ToString(), overrideId.ToString());
+            response.AssertSuccess();
+
+            var model =
+                JsonConvert.DeserializeObject<AssignmentOverrideModel>(await response.Content.ReadAsStringAsync());
+            return new AssignmentOverride(this, model);
+        }
+
         private Task<HttpResponseMessage> RawSubmitAssignment([NotNull] string type,
                                                               [NotNull] string baseId,
                                                               [NotNull] string assignmentId,
