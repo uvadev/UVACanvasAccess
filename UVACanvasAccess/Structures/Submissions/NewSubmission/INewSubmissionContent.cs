@@ -3,7 +3,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     
-    public enum SubmissionType {
+    public enum ApiSubmissionType {
         [ApiRepresentation("online_text_entry")]
         OnlineTextEntry,
         [ApiRepresentation("online_url")]
@@ -20,7 +20,7 @@ namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     /// Represents some content to be submitted as part of an assignment submission.
     /// </summary>
     public interface INewSubmissionContent {
-        SubmissionType Type { get; }
+        ApiSubmissionType Type { get; }
         
         IEnumerable<(string, string)> GetTuples();
     }

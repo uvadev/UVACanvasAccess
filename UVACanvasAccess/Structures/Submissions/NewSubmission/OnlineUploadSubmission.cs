@@ -8,12 +8,12 @@ namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     /// Represents the submission of one or more previously uploaded files.
     /// </summary>
     public class OnlineUploadSubmission : INewSubmissionContent {
-        public SubmissionType Type { get; }
+        public ApiSubmissionType Type { get; }
         
         public IEnumerable<ulong> FileIds { get; }
         
         public OnlineUploadSubmission(IEnumerable<ulong> fileIds) {
-            Type = SubmissionType.OnlineUpload;
+            Type = ApiSubmissionType.OnlineUpload;
             FileIds = fileIds;
         }
 

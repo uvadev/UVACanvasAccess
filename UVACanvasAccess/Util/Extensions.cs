@@ -4,13 +4,15 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using static UVACanvasAccess.Api;
 
 namespace UVACanvasAccess.Util {
     public static class Extensions {
         internal static HttpResponseMessage AssertSuccess(this HttpResponseMessage response) {
             if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}");
+                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}\n" +
+                                    $"{JsonConvert.DeserializeObject(response.Content.ReadAsStringAsync().Result)}");
             }
 
             return response;
@@ -106,6 +108,11 @@ namespace UVACanvasAccess.Util {
 
         internal static IEnumerable<T> Yield<T>(this T t) {
             yield return t;
+        }
+
+        internal static string ToIso8601Date(this DateTime dateTime) {
+            var s = JsonConvert.SerializeObject(dateTime);
+            return s.Substring(1, s.Length - 2);
         }
     }
 }

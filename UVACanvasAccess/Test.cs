@@ -1,8 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using dotenv.net;
-using UVACanvasAccess.Structures.Submissions.NewSubmission;
+using static UVACanvasAccess.Structures.Submissions.SubmissionTypes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -12,7 +11,8 @@ namespace UVACanvasAccess {
                             TestCourse = 1028,
                             TestDiscussion1 = 375,
                             TestDiscussion2 = 384,
-                            TestAssignment1 = 9844;
+                            TestAssignment1 = 9844,
+                            TestAssignment2 = 10486;
 
         public static async Task Main(string[] args) {
             DotEnv.Config();
@@ -20,19 +20,17 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            api.MasqueradeAs(TestUser2Id);
+            var newAssignment = await api.CreateAssignment(TestCourse)
+                                         .WithName("UVACanvasAccess Test Assignment 2")
+                                         .WithDescription("Programmatically generated!")
+                                         .WithDueDate(new DateTime(2020, 12, 25))
+                                         .WithLockDate(new DateTime(2021, 5, 3))
+                                         .Published()
+                                         .WithSubmissionTypes(OnlineUpload | OnlineTextEntry)
+                                         .WithPointsPossible(50)
+                                         .Post();
 
-            var path = Environment.GetEnvironmentVariable("TEST_FILE") ?? throw new Exception();
-            var bytes = File.ReadAllBytes(path);
-
-            var uploadedFile = await api.UploadPersonalFile(bytes, path, "Assignment Files");
-
-            var submission = await api.SubmitCourseAssignment(TestCourse,
-                                                              TestAssignment1,
-                                                              new OnlineUploadSubmission(uploadedFile.Id),
-                                                              "Submitted through UVACanvasAccess.");
-
-            Console.WriteLine(submission.ToPrettyString());
+            Console.WriteLine(newAssignment.ToPrettyString());
         }
     }
 }

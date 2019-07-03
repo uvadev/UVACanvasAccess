@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api.cs" />
+    <Compile Include="Builders\AssignmentBuilder.cs" />
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Structures\Assignments\AssignmentDate.cs" />
     <Compile Include="Structures\Assignments\AssignmentOverride.cs" />
     <Compile Include="Structures\Assignments\ExternalToolTagAttributes.cs" />
+    <Compile Include="Structures\Assignments\GradingType.cs" />
     <Compile Include="Structures\Assignments\LockInfo.cs" />
     <Compile Include="Structures\Assignments\NeedsGradingCount.cs" />
     <Compile Include="Structures\Assignments\RubricCriteria.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="Structures\Submissions\NewSubmission\OnlineUrlSubmission.cs" />
     <Compile Include="Structures\Submissions\Submission.cs" />
     <Compile Include="Structures\Submissions\SubmissionComment.cs" />
+    <Compile Include="Structures\Submissions\SubmissionTypes.cs" />
     <Compile Include="Structures\Users\ActivityStreamObject.cs" />
     <Compile Include="Structures\Users\ActivityStreamSummaryEntry.cs" />
     <Compile Include="Structures\Users\PageView.cs" />

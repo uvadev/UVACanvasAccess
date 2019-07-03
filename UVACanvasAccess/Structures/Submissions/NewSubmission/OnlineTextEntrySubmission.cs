@@ -8,11 +8,11 @@ namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     /// Represents the submission of text, as if it was entered into the online interface.
     /// </summary>
     public class OnlineTextEntrySubmission : INewSubmissionContent {
-        public SubmissionType Type { get; }
+        public ApiSubmissionType Type { get; }
         public string Body { get; }
 
         public OnlineTextEntrySubmission(string body) {
-            Type = SubmissionType.OnlineTextEntry;
+            Type = ApiSubmissionType.OnlineTextEntry;
             Body = body;
         }
         

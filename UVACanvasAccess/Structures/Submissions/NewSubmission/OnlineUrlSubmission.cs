@@ -8,11 +8,11 @@ namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     /// Represents the submission of a URL.
     /// </summary>
     public class OnlineUrlSubmission : INewSubmissionContent {
-        public SubmissionType Type { get; }
+        public ApiSubmissionType Type { get; }
         public string Url { get; }
         
         public OnlineUrlSubmission(string url) {
-            Type = SubmissionType.OnlineUrl;
+            Type = ApiSubmissionType.OnlineUrl;
             Url = url;
         }
         
