@@ -291,6 +291,11 @@ namespace UVACanvasAccess {
             return new Assignment(this, model);
         }
 
+        /// <summary>
+        /// Returns a <see cref="AssignmentBuilder"/> for creating a new assignment.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The builder.</returns>
         public AssignmentBuilder CreateAssignment(ulong courseId) {
             return new AssignmentBuilder(this, false, courseId);
         }
@@ -310,6 +315,12 @@ namespace UVACanvasAccess {
             return new Assignment(this, model);
         }
 
+        /// <summary>
+        /// Returns a <see cref="AssignmentBuilder"/> for editing an existing assignment.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <returns>The builder.</returns>
         public AssignmentBuilder EditAssignment(ulong courseId, ulong assignmentId) {
             return new AssignmentBuilder(this, true, courseId, assignmentId);
         }
