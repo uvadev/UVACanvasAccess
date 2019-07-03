@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="Api.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
+    <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
