@@ -130,6 +130,7 @@
     <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
+    <Compile Include="Debugging\DontIgnoreAssertsTraceListener.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
     <Compile Include="Model\Assignments\AssignmentModel.cs" />
     <Compile Include="Model\Assignments\AssignmentOverrideModel.cs" />

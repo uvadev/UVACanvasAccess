@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Debugging;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
@@ -19,20 +21,12 @@ namespace UVACanvasAccess {
                             TestAssignment1Override1 = 72;
 
         public static async Task Main(string[] args) {
+            Debug.Listeners.Add(new DontIgnoreAssertsTraceListener());
             DotEnv.Config();
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-
-            var overrides = await api.BatchGetAssignmentOverrides(TestCourse, 
-                                                                  new[] {
-                                                                            (TestAssignment1, TestAssignment1Override1), 
-                                                                            // null on purpose:
-                                                                            (TestAssignment1, TestAssignment2Override1), 
-                                                                            (TestAssignment2, TestAssignment2Override2)
-                                                                        }.Lookup());
-
-            Console.WriteLine(overrides.ToPrettyString());
+            
         }
     }
 }

@@ -70,7 +70,8 @@ namespace UVACanvasAccess.ApiParts {
             
             // endpoint expects duplicate keys in a GET because of course it does,
             // c#'s standard query string builder (underlying NameValueCollection) does not support this nonstandard
-            // so we have to hack in our own
+            // so we have to hack in our own. luckily we don't have to encode anything because our values
+            // are all just integers.
 
             var q = "?" + string.Join("&", args.Select(kv => $"{kv.Item1}={kv.Item2}"));
 
