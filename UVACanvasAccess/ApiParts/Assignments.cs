@@ -78,8 +78,8 @@ namespace UVACanvasAccess.ApiParts {
 
             var models = await AccumulateDeserializePages<AssignmentOverrideModel>(response);
             
-            return from model in models
-                   select new AssignmentOverride(this, model);
+            return models.DiscardNull()
+                         .Select(model => new AssignmentOverride(this, model));
         }
 
         private Task<HttpResponseMessage> RawCreateAssignmentOverride(string courseId,

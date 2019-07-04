@@ -27,7 +27,8 @@ namespace UVACanvasAccess {
             var overrides = await api.BatchGetAssignmentOverrides(TestCourse, 
                                                                   new[] {
                                                                             (TestAssignment1, TestAssignment1Override1), 
-                                                                            (TestAssignment2, TestAssignment2Override1), 
+                                                                            // null on purpose:
+                                                                            (TestAssignment1, TestAssignment2Override1), 
                                                                             (TestAssignment2, TestAssignment2Override2)
                                                                         }.Lookup());
 

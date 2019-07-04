@@ -141,5 +141,10 @@ namespace UVACanvasAccess.Util {
         internal static IEnumerable<T> Interleave<T>(this IEnumerable<(T, T)> ie) {
             return ie.SelectMany(t => new[] {t.Item1, t.Item2}, (_, e) => e);
         }
+        
+        [ItemNotNull]
+        internal static IEnumerable<T> DiscardNull<T>([ItemCanBeNull] this IEnumerable<T> ie) {
+            return ie.Where(e => e != null);
+        }
     }
 }
