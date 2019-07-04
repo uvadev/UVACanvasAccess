@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures.Discussions;
 
 namespace UVACanvasAccess.Builders {

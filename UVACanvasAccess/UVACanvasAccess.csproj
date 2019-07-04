@@ -120,7 +120,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api.cs" />
+    <Compile Include="ApiParts\Api.cs" />
+    <Compile Include="ApiParts\Assignments.cs" />
+    <Compile Include="ApiParts\Discussions.cs" />
+    <Compile Include="ApiParts\Files.cs" />
+    <Compile Include="ApiParts\Misc.cs" />
+    <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
     <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures.Users;
 
 namespace UVACanvasAccess.Builders {

@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Submissions;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Util;

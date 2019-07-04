@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using StatePrinting;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Structures.Users {

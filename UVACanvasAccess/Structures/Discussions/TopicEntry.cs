@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using StatePrinting;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Util;
 using static UVACanvasAccess.Structures.Discussions.DiscussionTopic.DiscussionHome;

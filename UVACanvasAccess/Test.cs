@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using dotenv.net;
+using UVACanvasAccess.ApiParts;
 
 namespace UVACanvasAccess {
     internal static class Test {

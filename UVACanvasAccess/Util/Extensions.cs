@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using static UVACanvasAccess.Api;
+using static UVACanvasAccess.ApiParts.Api;
 
 namespace UVACanvasAccess.Util {
     public static class Extensions {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {

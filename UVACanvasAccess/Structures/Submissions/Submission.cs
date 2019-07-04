@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Submissions;
 using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Structures.Users;

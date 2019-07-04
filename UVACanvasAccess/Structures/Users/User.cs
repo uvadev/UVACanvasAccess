@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StatePrinting;
+using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Util;
 
