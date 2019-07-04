@@ -114,5 +114,32 @@ namespace UVACanvasAccess.Util {
             var s = JsonConvert.SerializeObject(dateTime);
             return s.Substring(1, s.Length - 2);
         }
+
+        public static ILookup<TK, TV> Lookup<TK, TV>(this IEnumerable<KeyValuePair<TK, TV>> ie) {
+            return ie.ToLookup(kv => kv.Key, kv => kv.Value);
+        }
+        
+        public static ILookup<TK, TV> Lookup<TK, TV>(this IEnumerable<(TK, TV)> ie) {
+            return ie.ToLookup(kv => kv.Item1, kv => kv.Item2);
+        }
+
+        internal static (IEnumerable<T1>, IEnumerable<T2>) Unzip<T1, T2>(this IEnumerable<(T1, T2)> ie) {
+            var tuples = ie as (T1, T2)[] ?? ie.ToArray();
+            return ValueTuple.Create(tuples.Select(e => e.Item1), 
+                                     tuples.Select(e => e.Item2));
+        }
+
+        internal static IEnumerable<(TK, TV)> Flatten<TK, TV>(this ILookup<TK, TV> lookup) {
+            return lookup.SelectMany(k => k, (k, v) => (k.Key, v));
+        }
+
+        internal static IEnumerable<T> Chain<T>(this IEnumerable<(T, T)> ie) {
+            var tuples = ie as (T, T)[] ?? ie.ToArray();
+            return tuples.Select(e => e.Item1).Concat(tuples.Select(e => e.Item2));
+        }
+        
+        internal static IEnumerable<T> Interleave<T>(this IEnumerable<(T, T)> ie) {
+            return ie.SelectMany(t => new[] {t.Item1, t.Item2}, (_, e) => e);
+        }
     }
 }

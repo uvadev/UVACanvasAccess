@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -13,7 +14,9 @@ namespace UVACanvasAccess {
                             TestDiscussion2 = 384,
                             TestAssignment1 = 9844,
                             TestAssignment2 = 10486,
-                            TestAssignment2Override1 = 70;
+                            TestAssignment2Override1 = 70,
+                            TestAssignment2Override2 = 71,
+                            TestAssignment1Override1 = 72;
 
         public static async Task Main(string[] args) {
             DotEnv.Config();
@@ -21,13 +24,14 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var o = await api.CreateAssignmentOverride(TestCourse, TestAssignment2)
-                             .WithStudents(TestUser3Id)
-                             .WithTitle("Cool TestUser3 Override")
-                             .WithDueDate(DateTime.Now)
-                             .Post();
+            var overrides = await api.BatchGetAssignmentOverrides(TestCourse, 
+                                                                  new[] {
+                                                                            (TestAssignment1, TestAssignment1Override1), 
+                                                                            (TestAssignment2, TestAssignment2Override1), 
+                                                                            (TestAssignment2, TestAssignment2Override2)
+                                                                        }.Lookup());
 
-            Console.WriteLine(o.ToPrettyString());
+            Console.WriteLine(overrides.ToPrettyString());
         }
     }
 }

@@ -51,6 +51,37 @@ namespace UVACanvasAccess.ApiParts {
             return new AssignmentOverride(this, model);
         }
 
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawBatchGetAssignmentOverrides(string courseId, string args) {
+            return _client.GetAsync($"/api/v1/courses/{courseId}/assignments/overrides" + args);
+        }
+
+        public async Task<IEnumerable<AssignmentOverride>> BatchGetAssignmentOverrides(ulong courseId,
+                                                                                       ILookup<ulong, ulong> assignmentsToOverrides) {
+            var args = assignmentsToOverrides.Flatten()
+                                             .Select(t => (("assignment_overrides[][id]", t.Item2.ToString()),
+                                                           ("assignment_overrides[][assignment_id]", t.Item1.ToString())
+                                                          ))
+                                             .Interleave();
+            
+            // mind the .Interleave() and the order of id and assignment_id; this endpoint is very specific about 
+            // the order of parameters
+
+            
+            // endpoint expects duplicate keys in a GET because of course it does,
+            // c#'s standard query string builder (underlying NameValueCollection) does not support this nonstandard
+            // so we have to hack in our own
+
+            var q = "?" + string.Join("&", args.Select(kv => $"{kv.Item1}={kv.Item2}"));
+
+            var response = await RawBatchGetAssignmentOverrides(courseId.ToString(), q);
+
+            var models = await AccumulateDeserializePages<AssignmentOverrideModel>(response);
+            
+            return from model in models
+                   select new AssignmentOverride(this, model);
+        }
+
         private Task<HttpResponseMessage> RawCreateAssignmentOverride(string courseId,
                                                                       string assignmentId,
                                                                       HttpContent content) {
