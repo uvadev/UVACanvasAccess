@@ -12,7 +12,8 @@ namespace UVACanvasAccess {
                             TestDiscussion1 = 375,
                             TestDiscussion2 = 384,
                             TestAssignment1 = 9844,
-                            TestAssignment2 = 10486;
+                            TestAssignment2 = 10486,
+                            TestAssignment2Override1 = 70;
 
         public static async Task Main(string[] args) {
             DotEnv.Config();
@@ -20,11 +21,13 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var editedAssignment = await api.EditAssignment(TestCourse, TestAssignment2)
-                                            .WithPointsPossible(5000)
-                                            .Post();
+            var o = await api.CreateAssignmentOverride(TestCourse, TestAssignment2)
+                             .WithStudents(TestUser3Id)
+                             .WithTitle("Cool TestUser3 Override")
+                             .WithDueDate(DateTime.Now)
+                             .Post();
 
-            Console.WriteLine(editedAssignment.ToPrettyString());
+            Console.WriteLine(o.ToPrettyString());
         }
     }
 }

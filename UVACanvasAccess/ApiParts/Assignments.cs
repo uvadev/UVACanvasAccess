@@ -51,6 +51,33 @@ namespace UVACanvasAccess.ApiParts {
             return new AssignmentOverride(this, model);
         }
 
+        private Task<HttpResponseMessage> RawCreateAssignmentOverride(string courseId,
+                                                                      string assignmentId,
+                                                                      HttpContent content) {
+            var url = $"courses/{courseId}/assignments/{assignmentId}/overrides";
+            return _client.PostAsync(url, content);
+        }
+
+        internal async Task<AssignmentOverride> PostAssignmentOverride(AssignmentOverrideBuilder builder) {
+            var args = builder.Fields
+                              .Select(kv => (kv.Key, kv.Value))
+                              .Concat(builder.ArrayFields
+                                             .SelectMany(k => k, (k, v) => (k.Key, v)));
+            
+            var response = await RawCreateAssignmentOverride(builder.CourseId.ToString(), 
+                                                             builder.AssignmentId.ToString(),
+                                                             BuildMultipartHttpArguments(args));
+            response.AssertSuccess();
+
+            var model =
+                JsonConvert.DeserializeObject<AssignmentOverrideModel>(await response.Content.ReadAsStringAsync());
+            return new AssignmentOverride(this, model);
+        }
+
+        public AssignmentOverrideBuilder CreateAssignmentOverride(ulong courseId, ulong assignmentId) {
+            return new AssignmentOverrideBuilder(this, courseId, assignmentId);
+        }
+
         private Task<HttpResponseMessage> RawSubmitAssignment([NotNull] string type,
                                                               [NotNull] string baseId,
                                                               [NotNull] string assignmentId,

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {
@@ -31,6 +33,18 @@ namespace UVACanvasAccess.Builders {
         /// <param name="studentIds"></param>
         /// <returns>This builder.</returns>
         public AssignmentOverrideBuilder WithStudents(IEnumerable<ulong> studentIds) {
+            foreach (var id in studentIds) {
+                PutArr("student_ids", id.ToString());
+            }
+            return this;
+        }
+        
+        /// <summary>
+        /// The individual students that this override targets.
+        /// </summary>
+        /// <param name="studentIds"></param>
+        /// <returns>This builder.</returns>
+        public AssignmentOverrideBuilder WithStudents(params ulong[] studentIds) {
             foreach (var id in studentIds) {
                 PutArr("student_ids", id.ToString());
             }
@@ -99,6 +113,10 @@ namespace UVACanvasAccess.Builders {
         private AssignmentOverrideBuilder PutArr(string key, string s) {
             _arrayFields.Add(new KeyValuePair<string, string>($"assignment_override[{key}][]", s));
             return this;
+        }
+
+        public Task<AssignmentOverride> Post() {
+            return _api.PostAssignmentOverride(this);
         }
     }
 }
