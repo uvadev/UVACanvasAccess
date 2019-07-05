@@ -26,7 +26,10 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-            
+
+            var availableReports = await api.ListAvailableReports();
+
+            Console.WriteLine(availableReports.ToPrettyString());
         }
     }
 }

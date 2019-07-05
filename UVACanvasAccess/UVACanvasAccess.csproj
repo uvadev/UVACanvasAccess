@@ -125,6 +125,7 @@
     <Compile Include="ApiParts\Discussions.cs" />
     <Compile Include="ApiParts\Files.cs" />
     <Compile Include="ApiParts\Misc.cs" />
+    <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
     <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="Model\Discussions\TopicEntryModel.cs" />
     <Compile Include="Model\Discussions\TopicReplyModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
+    <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
+    <Compile Include="Model\Reports\ReportModel.cs" />
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionModel.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="Structures\Discussions\TopicEntry.cs" />
     <Compile Include="Structures\Discussions\TopicReply.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
+    <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\INewSubmissionContent.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\OnlineTextEntrySubmission.cs" />
@@ -192,6 +196,7 @@
     <Compile Include="Util\ApiRepresentationAttribute.cs" />
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\IPrettyPrint.cs" />
+    <Compile Include="Util\KeyValuePair.cs" />
     <Compile Include="Util\LinkHeader.cs" />
     <Compile Include="Util\PaginatedResponse.cs" />
   </ItemGroup>

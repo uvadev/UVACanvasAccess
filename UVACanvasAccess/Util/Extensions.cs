@@ -30,6 +30,7 @@ namespace UVACanvasAccess.Util {
         /// <param name="value">This string.</param>
         /// <param name="spaces">The number of spaces to indent by.</param>
         /// <returns>The indented string.</returns>
+        [Pure]
         internal static string Indent(this string value, int spaces) {
             var split = value.Split('\n');
             for (var i = 0; i < split.Length - 1; i++) {
@@ -49,11 +50,23 @@ namespace UVACanvasAccess.Util {
         /// Pretty-prints this <see cref="Dictionary{TKey,TValue}"/>.
         /// </summary>
         /// <returns>The pretty string.</returns>
+        [Pure]
         internal static string ToPrettyString<TK, TV>(this Dictionary<TK, TV> dictionary) {
             var sb = new StringBuilder("{");
 
+            var kIsPretty = IsA<IPrettyPrint, TK>();
+            var vIsPretty = IsA<IPrettyPrint, TV>();
+            
             foreach (var entry in dictionary) {
-                sb.Append($"\n{entry.Key} -> {entry.Value}".Indent(4));
+                // why doesn't c# have generic specialization
+                // why doesn't c# have generic specialization
+                // why doesn't c# have generic specialization
+                // why doesn't c# have generic specialization
+                var k = kIsPretty ? ((IPrettyPrint) entry.Key).ToPrettyString() 
+                                  : entry.Key.ToString();
+                var v = vIsPretty ? ((IPrettyPrint) entry.Value).ToPrettyString() 
+                                  : entry.Value.ToString();
+                sb.Append($"\n{k} -> {v}".Indent(4));
             }
 
             return sb.Append("\n}").ToString();
@@ -68,6 +81,7 @@ namespace UVACanvasAccess.Util {
         /// <see cref="IPrettyPrint.ToPrettyString"/> will be used for the values of the collection.
         /// Otherwise, <see cref="object.ToString"/> will be used.
         /// </remarks>
+        [Pure]
         internal static string ToPrettyString<T>([NotNull] [ItemNotNull] this IEnumerable<T> enumerable) {
             var strings = IsA<IPrettyPrint, T>() ? enumerable.Cast<IPrettyPrint>().Select(e => e.ToPrettyString()) 
                                                  : enumerable.Select(e => e.ToString());
@@ -80,18 +94,22 @@ namespace UVACanvasAccess.Util {
             return typeof(TInterface).IsAssignableFrom(typeof(TType));
         }
 
+        [Pure]
         internal static string GetString(this DiscussionTopicOrdering ordering) {
             return ordering.GetApiRepresentation();
         }
 
+        [Pure]
         internal static string GetString(this DiscussionTopicScopes scopes) { 
             return string.Join(",", scopes.GetFlags().Select(f => f.GetFlags()));
         }
 
+        [Pure]
         internal static IEnumerable<(string, string)> GetTuples(this DiscussionTopicInclusions includes) {
             return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
         }
         
+        [Pure]
         internal static IEnumerable<(string, string)> GetTuples(this AssignmentInclusions includes) {
             return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
         }
@@ -107,6 +125,7 @@ namespace UVACanvasAccess.Util {
         /// </remarks>
         /// <seealso cref="ApiRepresentationAttribute"/>
         [CanBeNull]
+        [Pure]
         internal static string GetApiRepresentation(this Enum en) {
             var member = en.GetType().GetMember(en.ToString());
 
@@ -127,6 +146,7 @@ namespace UVACanvasAccess.Util {
         /// If this enum is empty (<c>0x0</c>), any "default" <c>0x0</c> flag will not be returned, and the collection
         /// will be empty.
         /// </remarks>
+        [Pure]
         internal static IEnumerable<TE> GetFlags<TE>(this TE en) where TE : Enum {
             ulong flag = 1;
             
@@ -151,15 +171,49 @@ namespace UVACanvasAccess.Util {
         /// <param name="f">The mapping function.</param>
         /// <returns>The converted object, or <c>null</c>.</returns>
         [ContractAnnotation("o:null => null; o:notnull => notnull")]
+        [Pure]
         internal static TO ConvertIfNotNull<TI, TO>([CanBeNull] this TI o, [NotNull] Func<TI, TO> f) where TO: class {
             return o == null ? null
                              : f(o);
+        }
+
+        [NotNull]
+        [Pure]
+        internal static IEnumerable<TO> SelectNotNull<TI, TO>([CanBeNull] [ItemCanBeNull] this IEnumerable<TI> ie, 
+                                                              [NotNull] Func<TI, TO> f) {
+            return ie?.DiscardNull().Select(f) ?? Enumerable.Empty<TO>();
+        }
+
+        [Pure]
+        internal static KeyValuePair<TO, TV> SelectKey<TK, TV, TO>(this KeyValuePair<TK, TV> kvp, Func<TK, TO> f) {
+            return KeyValuePair.New(f(kvp.Key), kvp.Value);
+        }
+        
+        [Pure]
+        internal static KeyValuePair<TK, TO> SelectValue<TK, TV, TO>(this KeyValuePair<TK, TV> kvp, Func<TV, TO> f) {
+            return KeyValuePair.New(kvp.Key, f(kvp.Value));
+        }
+
+        [Pure]
+        internal static Dictionary<TO, TV> SelectKey<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TK, TO> f) {
+            return d.Select(kv => kv.SelectKey(f)).IdentityDictionary();
+        }
+        
+        [Pure]
+        internal static Dictionary<TK, TO> SelectValue<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TV, TO> f) {
+            return d.Select(kv => kv.SelectValue(f)).IdentityDictionary();
+        }
+
+        [Pure]
+        internal static Dictionary<TK, TV> IdentityDictionary<TK, TV>(this IEnumerable<KeyValuePair<TK, TV>> ie) {
+            return ie.ToDictionary(kv => kv.Key, kv => kv.Value);
         }
 
         /// <summary>
         /// Creates a <see cref="IEnumerable{T}"/> with a single element: this object.
         /// </summary>
         /// <returns>The IEnumerable.</returns>
+        [Pure]
         internal static IEnumerable<T> Yield<T>(this T t) {
             yield return t;
         }
@@ -168,6 +222,7 @@ namespace UVACanvasAccess.Util {
         /// Formats this DateTime according to ISO 8601, as expected by Canvas.
         /// </summary>
         /// <returns>The formatted datetime.</returns>
+        [Pure]
         internal static string ToIso8601Date(this DateTime dateTime) {
             var s = JsonConvert.SerializeObject(dateTime);
             return s.Substring(1, s.Length - 2);
@@ -177,6 +232,7 @@ namespace UVACanvasAccess.Util {
         /// Converts this collection of key-value pairs into a <see cref="ILookup{TKey,TElement}"/>.
         /// </summary>
         /// <returns>The lookup.</returns>
+        [Pure]
         public static ILookup<TK, TV> Lookup<TK, TV>(this IEnumerable<KeyValuePair<TK, TV>> ie) {
             return ie.ToLookup(kv => kv.Key, kv => kv.Value);
         }
@@ -185,6 +241,7 @@ namespace UVACanvasAccess.Util {
         /// Converts this collection of key-value tuples into a <see cref="ILookup{TKey,TElement}"/>.
         /// </summary>
         /// <returns>The lookup.</returns>
+        [Pure]
         public static ILookup<TK, TV> Lookup<TK, TV>(this IEnumerable<(TK, TV)> ie) {
             return ie.ToLookup(kv => kv.Item1, kv => kv.Item2);
         }
@@ -193,6 +250,7 @@ namespace UVACanvasAccess.Util {
         /// Unzips this collection of tuples.
         /// </summary>
         /// <returns>The unzipped collection.</returns>
+        [Pure]
         internal static (IEnumerable<T1>, IEnumerable<T2>) Unzip<T1, T2>(this IEnumerable<(T1, T2)> ie) {
             var tuples = ie as (T1, T2)[] ?? ie.ToArray();
             return ValueTuple.Create(tuples.Select(e => e.Item1), 
@@ -203,6 +261,7 @@ namespace UVACanvasAccess.Util {
         /// Flattens this <see cref="ILookup{TKey,TElement}"/> to a collection of key-value tuples.
         /// </summary>
         /// <returns>The collection.</returns>
+        [Pure]
         internal static IEnumerable<(TK, TV)> Flatten<TK, TV>(this ILookup<TK, TV> lookup) {
             return lookup.SelectMany(k => k, (k, v) => (k.Key, v));
         }
@@ -215,6 +274,7 @@ namespace UVACanvasAccess.Util {
         /// var x = new[] { (1, 2), (3, 4), (5, 6) };
         /// var y = x.Chain(); // [ 1, 3, 5, 2, 4, 6 ]
         /// </code></example>
+        [Pure]
         internal static IEnumerable<T> Chain<T>(this IEnumerable<(T, T)> ie) {
             var tuples = ie as (T, T)[] ?? ie.ToArray();
             return tuples.Select(e => e.Item1).Concat(tuples.Select(e => e.Item2));
@@ -228,6 +288,7 @@ namespace UVACanvasAccess.Util {
         /// var x = new[] { (1, 2), (3, 4), (5, 6) };
         /// var y = x.Interleave(); // [ 1, 2, 3, 4, 5, 6 ]
         /// </code></example>
+        [Pure]
         internal static IEnumerable<T> Interleave<T>(this IEnumerable<(T, T)> ie) {
             return ie.SelectMany(t => new[] {t.Item1, t.Item2}, (_, e) => e);
         }
@@ -237,6 +298,7 @@ namespace UVACanvasAccess.Util {
         /// </summary>
         /// <returns>The filtered collection; guaranteed to have no <c>null</c> elements.</returns>
         [ItemNotNull]
+        [Pure]
         internal static IEnumerable<T> DiscardNull<T>([ItemCanBeNull] this IEnumerable<T> ie) {
             return ie.Where(e => e != null);
         }
