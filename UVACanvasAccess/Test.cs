@@ -30,6 +30,8 @@ namespace UVACanvasAccess {
             var availableReports = await api.ListAvailableReports();
 
             Console.WriteLine(availableReports.ToPrettyString());
+
+            
         }
     }
 }

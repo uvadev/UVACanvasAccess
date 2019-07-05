@@ -185,23 +185,44 @@ namespace UVACanvasAccess.Util {
         }
 
         [Pure]
-        internal static KeyValuePair<TO, TV> SelectKey<TK, TV, TO>(this KeyValuePair<TK, TV> kvp, Func<TK, TO> f) {
+        internal static KeyValuePair<TO, TV> KeySelect<TK, TV, TO>(this KeyValuePair<TK, TV> kvp, Func<TK, TO> f) {
             return KeyValuePair.New(f(kvp.Key), kvp.Value);
         }
         
         [Pure]
-        internal static KeyValuePair<TK, TO> SelectValue<TK, TV, TO>(this KeyValuePair<TK, TV> kvp, Func<TV, TO> f) {
+        internal static KeyValuePair<TK, TO> ValSelect<TK, TV, TO>(this KeyValuePair<TK, TV> kvp, Func<TV, TO> f) {
             return KeyValuePair.New(kvp.Key, f(kvp.Value));
-        }
-
-        [Pure]
-        internal static Dictionary<TO, TV> SelectKey<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TK, TO> f) {
-            return d.Select(kv => kv.SelectKey(f)).IdentityDictionary();
         }
         
         [Pure]
-        internal static Dictionary<TK, TO> SelectValue<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TV, TO> f) {
-            return d.Select(kv => kv.SelectValue(f)).IdentityDictionary();
+        internal static (TO, TV) KeySelect<TK, TV, TO>(this (TK, TV) kvp, Func<TK, TO> f) {
+            return (f(kvp.Item1), kvp.Item2);
+        }
+        
+        [Pure]
+        internal static (TK, TO) ValSelect<TK, TV, TO>(this (TK, TV) kvp, Func<TV, TO> f) {
+            return (kvp.Item1, f(kvp.Item2));
+        }
+        
+        [Pure]
+        internal static IEnumerable<(TO, TV)> KeySelect<TK, TV, TO>(this IEnumerable<(TK, TV)> kvp, Func<TK, TO> f) {
+            return kvp.Select(kv => kv.KeySelect(f));
+        }
+        
+        [Pure]
+        internal static IEnumerable<(TK, TO)> ValSelect<TK, TV, TO>(this IEnumerable<(TK, TV)> kvp, Func<TV, TO> f) {
+            return kvp.Select(kv => kv.ValSelect(f));
+        }
+
+
+        [Pure]
+        internal static Dictionary<TO, TV> KeySelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TK, TO> f) {
+            return d.Select(kv => kv.KeySelect(f)).IdentityDictionary();
+        }
+        
+        [Pure]
+        internal static Dictionary<TK, TO> ValSelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TV, TO> f) {
+            return d.Select(kv => kv.ValSelect(f)).IdentityDictionary();
         }
 
         [Pure]

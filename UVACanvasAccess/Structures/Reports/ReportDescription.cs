@@ -23,7 +23,7 @@ namespace UVACanvasAccess.Structures.Reports {
             _api = api;
             Report = model.Report;
             Title = model.Title;
-            Parameters = model.Parameters?.SelectValue(m => new ReportParameterDescription(m))
+            Parameters = model.Parameters?.ValSelect(m => new ReportParameterDescription(m))
                                          ?? new Dictionary<string, ReportParameterDescription>();
         }
 
