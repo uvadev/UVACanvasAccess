@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Model.Reports;
+using UVACanvasAccess.Structures.Discussions;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Reports {
@@ -21,7 +21,7 @@ namespace UVACanvasAccess.Structures.Reports {
         public string FileUrl { get; }
 
         [CanBeNull]
-        public FileAttachmentModel Attachment { get; }
+        public FileAttachment Attachment { get; }
         
         public string Status { get; }
 
@@ -41,7 +41,7 @@ namespace UVACanvasAccess.Structures.Reports {
             _api = api;
             ReportType = model.Report;
             FileUrl = model.FileUrl;
-            Attachment = model.Attachment;
+            Attachment = model.Attachment.ConvertIfNotNull(m => new FileAttachment(api, m));
             Status = model.Status;
             CreatedAt = model.CreatedAt;
             StartedAt = model.StartedAt;
@@ -55,12 +55,12 @@ namespace UVACanvasAccess.Structures.Reports {
             return "Report {" +
                    ($"\n{nameof(ReportType)}: {ReportType}," +
                    $"\n{nameof(FileUrl)}: {FileUrl}," +
-                   $"\n{nameof(Attachment)}: {Attachment}," +
+                   $"\n{nameof(Attachment)}: {Attachment?.ToPrettyString()}," +
                    $"\n{nameof(Status)}: {Status}," +
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(StartedAt)}: {StartedAt}," +
                    $"\n{nameof(EndedAt)}: {EndedAt}," +
-                   $"\n{nameof(Parameters)}: {Parameters}," +
+                   $"\n{nameof(Parameters)}: {Parameters.ToPrettyString()}," +
                    $"\n{nameof(Progress)}: {Progress}," +
                    $"\n{nameof(CurrentLine)}: {CurrentLine}").Indent(4) + 
                    "\n}";

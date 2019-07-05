@@ -42,5 +42,19 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<ReportModel>(await response.Content.ReadAsStringAsync());
             return new Report(this, model);
         }
+
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawGetReportIndex(string accountId, string reportType) {
+            var url = $"accounts/{accountId}/reports/{reportType}";
+            return _client.GetAsync(url);
+        }
+
+        public async Task<IEnumerable<Report>> GetReportIndex(string reportType, ulong? accountId = null) {
+            var response = await RawGetReportIndex(accountId?.ToString() ?? "self", reportType);
+
+            var models = await AccumulateDeserializePages<ReportModel>(response);
+            return from model in models
+                   select new Report(this, model);
+        }
     }
 }
