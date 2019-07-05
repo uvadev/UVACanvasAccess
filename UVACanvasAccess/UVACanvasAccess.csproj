@@ -176,6 +176,7 @@
     <Compile Include="Structures\Discussions\TopicEntry.cs" />
     <Compile Include="Structures\Discussions\TopicReply.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
+    <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\INewSubmissionContent.cs" />
