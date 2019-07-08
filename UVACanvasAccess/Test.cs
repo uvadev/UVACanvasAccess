@@ -27,8 +27,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var days = await api.GetGradebookDays(TestCourse);
-            Console.WriteLine(days.ToPrettyString());
+            var graders = await api.GetDailyGraders(TestCourse, DateTime.Today);
+            Console.WriteLine(graders.ToPrettyString());
         }
     }
 }

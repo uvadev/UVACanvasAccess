@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -21,6 +22,20 @@ namespace UVACanvasAccess.ApiParts {
             var models = await AccumulateDeserializePages<DayModel>(response);
             return from m in models
                    select new Day(this, m);
+        }
+
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawGetDailyGraders(string courseId, DateTime date) {
+            var url = $"courses/{courseId}/gradebook_history/{date.ToIso8601Date()}";
+            return _client.GetAsync(url);
+        }
+
+        public async Task<IEnumerable<Grader>> GetDailyGraders(ulong courseId, DateTime date) {
+            var response = await RawGetDailyGraders(courseId.ToString(), date);
+
+            var models = await AccumulateDeserializePages<GraderModel>(response);
+            return from m in models
+                   select new Grader(this, m);
         }
     }
 }
