@@ -57,5 +57,31 @@ namespace UVACanvasAccess.ApiParts {
             return from m in models
                    select new SubmissionHistory(this, m);
         }
+
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawGetSubmissionVersions(string courseId,
+                                                                   string assignmentId,
+                                                                   string userId,
+                                                                   string ascending) {
+            var url = $"courses/{courseId}/gradebook_history/feed";
+            return _client.GetAsync(url + BuildQueryString(("assignment_id", assignmentId), 
+                                                                    ("user_id", userId), 
+                                                                    ("ascending", ascending)
+                                                                    ));
+        }
+
+        public async Task<IEnumerable<SubmissionVersion>> GetSubmissionVersions(ulong courseId,
+                                                                                ulong? assignmentId = null,
+                                                                                ulong? userId = null,
+                                                                                bool? ascending = null) {
+            var response = await RawGetSubmissionVersions(courseId.ToString(),
+                                                          assignmentId?.ToString(),
+                                                          userId?.ToString(),
+                                                          ascending?.ToString().ToLower());
+
+            var models = await AccumulateDeserializePages<SubmissionVersionModel>(response);
+            return from m in models
+                   select new SubmissionVersion(this, m);
+        }
     }
 }

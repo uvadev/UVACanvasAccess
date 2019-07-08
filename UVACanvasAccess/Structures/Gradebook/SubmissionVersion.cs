@@ -1,6 +1,7 @@
 using System;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Gradebook;
+using UVACanvasAccess.Structures.Submissions;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Gradebook {
@@ -8,8 +9,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     // ReSharper disable MemberCanBePrivate.Global
-    public class SubmissionVersion : IPrettyPrint {
-        private readonly Api _api;
+    public class SubmissionVersion : Submission, IPrettyPrint {
         
         public string AssignmentName { get; }
 
@@ -31,8 +31,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
 
         public string PreviousGrader { get; }
 
-        public SubmissionVersion(Api api, SubmissionVersionModel model) {
-            _api = api;
+        public SubmissionVersion(Api api, SubmissionVersionModel model) : base(api, model) {
             AssignmentName = model.AssignmentName;
             CurrentGrade = model.CurrentGrade;
             CurrentGradedAt = model.CurrentGradedAt;
@@ -45,9 +44,37 @@ namespace UVACanvasAccess.Structures.Gradebook {
             PreviousGrader = model.PreviousGrader;
         }
 
-        public string ToPrettyString() {
+        public new string ToPrettyString() {
             return "SubmissionVersion {" + 
-                   ($"\n{nameof(AssignmentName)}: {AssignmentName}," +
+                   ($"\n{nameof(AssignmentId)}: {AssignmentId}," +
+                   $"\n{nameof(Assignment)}: {Assignment}," +
+                   $"\n{nameof(Course)}: {Course}," +
+                   $"\n{nameof(Attempt)}: {Attempt}," +
+                   $"\n{nameof(Body)}: {Body}," +
+                   $"\n{nameof(Grade)}: {Grade}," +
+                   $"\n{nameof(GradeMatchesCurrentSubmission)}: {GradeMatchesCurrentSubmission}," +
+                   $"\n{nameof(HtmlUrl)}: {HtmlUrl}," +
+                   $"\n{nameof(PreviewUrl)}: {PreviewUrl}," +
+                   $"\n{nameof(Score)}: {Score}," +
+                   $"\n{nameof(SubmissionComments)}: {SubmissionComments?.ToPrettyString()}," +
+                   $"\n{nameof(SubmissionType)}: {SubmissionType}," +
+                   $"\n{nameof(SubmittedAt)}: {SubmittedAt}," +
+                   $"\n{nameof(Url)}: {Url}," +
+                   $"\n{nameof(UserId)}: {UserId}," +
+                   $"\n{nameof(GraderId)}: {GraderId}," +
+                   $"\n{nameof(GradedAt)}: {GradedAt}," +
+                   $"\n{nameof(User)}: {User}," +
+                   $"\n{nameof(Late)}: {Late}," +
+                   $"\n{nameof(AssignmentVisible)}: {AssignmentVisible}," +
+                   $"\n{nameof(Excused)}: {Excused}," +
+                   $"\n{nameof(Missing)}: {Missing}," +
+                   $"\n{nameof(LatePolicyStatus)}: {LatePolicyStatus}," +
+                   $"\n{nameof(PointsDeducted)}: {PointsDeducted}," +
+                   $"\n{nameof(SecondsLate)}: {SecondsLate}," +
+                   $"\n{nameof(WorkflowState)}: {WorkflowState}," +
+                   $"\n{nameof(ExtraAttempts)}: {ExtraAttempts}," +
+                   $"\n{nameof(AnonymousId)}: {AnonymousId}," + 
+                   $"\n{nameof(AssignmentName)}: {AssignmentName}," +
                    $"\n{nameof(CurrentGrade)}: {CurrentGrade}," +
                    $"\n{nameof(CurrentGradedAt)}: {CurrentGradedAt}," +
                    $"\n{nameof(CurrentGrader)}: {CurrentGrader}," +

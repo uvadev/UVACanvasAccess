@@ -27,12 +27,9 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-            
-            var histories = await api.GetDailySubmissionHistories(TestCourse,
-                                                                  new DateTime(2019, 7, 2, new GregorianCalendar()),
-                                                                  3388,
-                                                                  TestAssignment1);
-            Console.WriteLine(histories.ToPrettyString());
+
+            var submissions = await api.GetSubmissionVersions(TestCourse, ascending: true);
+            Console.WriteLine(submissions.ToPrettyString());
         }
     }
 }
