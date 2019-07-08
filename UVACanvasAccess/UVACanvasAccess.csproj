@@ -146,6 +146,10 @@
     <Compile Include="Model\Discussions\TopicEntryModel.cs" />
     <Compile Include="Model\Discussions\TopicReplyModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
+    <Compile Include="Model\Gradebook\DayModel.cs" />
+    <Compile Include="Model\Gradebook\GraderModel.cs" />
+    <Compile Include="Model\Gradebook\SubmissionHistoryModel.cs" />
+    <Compile Include="Model\Gradebook\SubmissionVersionModel.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
     <Compile Include="Model\Reports\ReportModel.cs" />
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
