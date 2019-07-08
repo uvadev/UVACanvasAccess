@@ -26,7 +26,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
         public string ToPrettyString() {
             return "SubmissionHistory {" +
                    ($"\n{nameof(SubmissionId)}: {SubmissionId}," +
-                   $"\n{nameof(Versions)}: {Versions}").Indent(4) + 
+                   $"\n{nameof(Versions)}: {Versions.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
     }

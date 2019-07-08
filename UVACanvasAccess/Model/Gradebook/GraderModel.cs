@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UVACanvasAccess.Model.Assignments;
 
 namespace UVACanvasAccess.Model.Gradebook {
     
@@ -13,7 +14,8 @@ namespace UVACanvasAccess.Model.Gradebook {
         [JsonProperty("name")]
         public string Name { get; set; }
         
+        // the docs say this is a list of integers, but it isn't.
         [JsonProperty("assignments")]
-        public IEnumerable<ulong> Assignments { get; set; }
+        public IEnumerable<AssignmentModel> Assignments { get; set; }
     }
 }

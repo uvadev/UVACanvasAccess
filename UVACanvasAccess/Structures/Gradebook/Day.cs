@@ -26,7 +26,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
         public string ToPrettyString() {
             return "Day {" + 
                    ($"\n{nameof(Date)}: {Date}," +
-                   $"\n{nameof(Graders)}: {Graders}").Indent(4) + 
+                   $"\n{nameof(Graders)}: {Graders.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
     }
