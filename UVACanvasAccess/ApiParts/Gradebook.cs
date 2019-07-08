@@ -16,6 +16,11 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Returns a list of days in the gradebook history for this course.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The list of days.</returns>
         public async Task<IEnumerable<Day>> GetGradebookDays(ulong courseId) {
             var response = await RawGetGradebookDays(courseId.ToString());
 
@@ -30,6 +35,12 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Returns a list of graders who worked this day, along with the assignments they worked on.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="date">The day.</param>
+        /// <returns>The list of graders.</returns>
         public async Task<IEnumerable<Grader>> GetDailyGraders(ulong courseId, DateTime date) {
             var response = await RawGetDailyGraders(courseId.ToString(), date);
 
@@ -44,6 +55,14 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Returns a list of submission histories for this day.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="date">The date.</param>
+        /// <param name="graderId">The grader id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <returns>The list of submission histories.</returns>
         public async Task<IEnumerable<SubmissionHistory>> GetDailySubmissionHistories(ulong courseId,
                                                                                       DateTime date,
                                                                                       ulong graderId,
@@ -65,11 +84,20 @@ namespace UVACanvasAccess.ApiParts {
                                                                    string ascending) {
             var url = $"courses/{courseId}/gradebook_history/feed";
             return _client.GetAsync(url + BuildQueryString(("assignment_id", assignmentId), 
-                                                                    ("user_id", userId), 
-                                                                    ("ascending", ascending)
-                                                                    ));
+                                                           ("user_id", userId), 
+                                                           ("ascending", ascending)
+                                                           ));
         }
 
+        /// <summary>
+        /// Returns an uncollated list of submission versions for all matching submissions in the context.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">An optional assignment id to filter by.</param>
+        /// <param name="userId">An optional user id to filter by.</param>
+        /// <param name="ascending">Sorts the list in ascending order by date.</param>
+        /// <returns>The list of submission versions.</returns>
+        /// <remarks>The returned objects will be missing the properties <c>NewGrade</c> and <c>PreviousGrade</c>.</remarks>
         public async Task<IEnumerable<SubmissionVersion>> GetSubmissionVersions(ulong courseId,
                                                                                 ulong? assignmentId = null,
                                                                                 ulong? userId = null,
