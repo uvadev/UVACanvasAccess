@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
@@ -26,9 +27,12 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-
-            var graders = await api.GetDailyGraders(TestCourse, DateTime.Today);
-            Console.WriteLine(graders.ToPrettyString());
+            
+            var histories = await api.GetDailySubmissionHistories(TestCourse,
+                                                                  new DateTime(2019, 7, 2, new GregorianCalendar()),
+                                                                  3388,
+                                                                  TestAssignment1);
+            Console.WriteLine(histories.ToPrettyString());
         }
     }
 }

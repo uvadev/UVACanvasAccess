@@ -37,5 +37,25 @@ namespace UVACanvasAccess.ApiParts {
             return from m in models
                    select new Grader(this, m);
         }
+
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawGetDailySubmissionHistories(string courseId, DateTime date, string graderId, string assignmentId) {
+            var url = $"courses/{courseId}/gradebook_history/{date.ToIso8601Date()}/graders/{graderId}/assignments/{assignmentId}/submissions";
+            return _client.GetAsync(url);
+        }
+
+        public async Task<IEnumerable<SubmissionHistory>> GetDailySubmissionHistories(ulong courseId,
+                                                                                      DateTime date,
+                                                                                      ulong graderId,
+                                                                                      ulong assignmentId) {
+            var response = await RawGetDailySubmissionHistories(courseId.ToString(),
+                                                                date,
+                                                                graderId.ToString(),
+                                                                assignmentId.ToString());
+            
+            var models = await AccumulateDeserializePages<SubmissionHistoryModel>(response);
+            return from m in models
+                   select new SubmissionHistory(this, m);
+        }
     }
 }
