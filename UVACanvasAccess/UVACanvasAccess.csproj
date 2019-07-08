@@ -180,6 +180,10 @@
     <Compile Include="Structures\Discussions\TopicEntry.cs" />
     <Compile Include="Structures\Discussions\TopicReply.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
+    <Compile Include="Structures\Gradebook\Day.cs" />
+    <Compile Include="Structures\Gradebook\Grader.cs" />
+    <Compile Include="Structures\Gradebook\SubmissionHistory.cs" />
+    <Compile Include="Structures\Gradebook\SubmissionVersion.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
