@@ -28,8 +28,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            api.TestGet($"audit/grade_change/courses/{TestCourse}", out _, out var response);
-            Console.WriteLine(response.ToString(Formatting.Indented));
+            var g = await api.GetCourseGradeChangelog(TestCourse);
+            Console.WriteLine(g.ToPrettyString());
         }
     }
 }
