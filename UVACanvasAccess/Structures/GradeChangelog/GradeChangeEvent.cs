@@ -62,7 +62,7 @@ namespace UVACanvasAccess.Structures.GradeChangelog {
                    $"\n{nameof(GradedAnonymously)}: {GradedAnonymously}," +
                    $"\n{nameof(VersionNumber)}: {VersionNumber}," +
                    $"\n{nameof(RequestId)}: {RequestId}," +
-                   $"\n{nameof(Links)}: {Links}").Indent(4) + 
+                   $"\n{nameof(Links)}: {Links?.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
     }

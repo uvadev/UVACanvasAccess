@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using static UVACanvasAccess.ApiParts.Api;
@@ -322,6 +323,10 @@ namespace UVACanvasAccess.Util {
         [Pure]
         internal static IEnumerable<T> DiscardNull<T>([ItemCanBeNull] this IEnumerable<T> ie) {
             return ie.Where(e => e != null);
+        }
+
+        internal static Task<TO> ThenAccept<TI, TO>(this Task<TI> task, Func<TI, TO> f) {
+            return task.ContinueWith(t => f(t.Result));
         }
     }
 }

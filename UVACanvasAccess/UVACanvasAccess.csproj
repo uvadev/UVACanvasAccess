@@ -16,7 +16,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -125,6 +125,7 @@
     <Compile Include="ApiParts\Discussions.cs" />
     <Compile Include="ApiParts\Files.cs" />
     <Compile Include="ApiParts\Gradebook.cs" />
+    <Compile Include="ApiParts\GradeChangelog.cs" />
     <Compile Include="ApiParts\Misc.cs" />
     <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Users.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Model\Gradebook\SubmissionVersionModel.cs" />
     <Compile Include="Model\GradeChangelog\GradeChangeEventLinksModel.cs" />
     <Compile Include="Model\GradeChangelog\GradeChangeEventModel.cs" />
+    <Compile Include="Model\GradeChangelog\RedundantGradeChangeEventResponse.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
     <Compile Include="Model\Reports\ReportModel.cs" />
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
