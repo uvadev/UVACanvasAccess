@@ -147,6 +147,8 @@
     <Compile Include="Model\Discussions\FileAttachmentModel.cs" />
     <Compile Include="Model\Discussions\TopicEntryModel.cs" />
     <Compile Include="Model\Discussions\TopicReplyModel.cs" />
+    <Compile Include="Model\Enrollments\EnrollmentModel.cs" />
+    <Compile Include="Model\Enrollments\GradeModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
     <Compile Include="Model\Gradebook\DayModel.cs" />
     <Compile Include="Model\Gradebook\GraderModel.cs" />
@@ -184,6 +186,8 @@
     <Compile Include="Structures\Discussions\FileAttachment.cs" />
     <Compile Include="Structures\Discussions\TopicEntry.cs" />
     <Compile Include="Structures\Discussions\TopicReply.cs" />
+    <Compile Include="Structures\Enrollments\Enrollment.cs" />
+    <Compile Include="Structures\Enrollments\Grade.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
     <Compile Include="Structures\Gradebook\Day.cs" />
     <Compile Include="Structures\Gradebook\Grader.cs" />
