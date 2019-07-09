@@ -38,6 +38,14 @@ namespace UVACanvasAccess.ApiParts {
             _client?.Dispose();
         }
 
+        #if DEBUG
+        internal void TestGet(string url, out bool success, out JToken response, params ValueTuple<string, string>[] args) {
+            var r = _client.GetAsync(url + BuildQueryString(args)).Result;
+            response = JToken.Parse(r.Content.ReadAsStringAsync().Result);
+            success = r.IsSuccessStatusCode;
+        }
+        #endif
+
         /// <summary>
         /// If the current user is an administrator, he can "act as" another user.
         /// When this is set, every API call will be made as if it came from this user's token.

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using dotenv.net;
+using Newtonsoft.Json;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
 using UVACanvasAccess.Util;
@@ -27,8 +28,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var log = await api.GetAssignmentGradeChangelog(TestAssignment1);
-            Console.WriteLine(log.ToPrettyString());
+            api.TestGet($"audit/grade_change/courses/{TestCourse}", out _, out var response);
+            Console.WriteLine(response.ToString(Formatting.Indented));
         }
     }
 }
