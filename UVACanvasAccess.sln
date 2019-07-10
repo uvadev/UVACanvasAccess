@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVACanvasAccess", "UVACanvasAccess\UVACanvasAccess.csproj", "{1FB84D6A-DA03-443F-B358-0B9FA56EC20A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVACanvasAccessTests", "UVACanvasAccessTests\UVACanvasAccessTests.csproj", "{4A1E3DCE-3AAA-4BCE-9C16-E7897E9C367F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1FB84D6A-DA03-443F-B358-0B9FA56EC20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB84D6A-DA03-443F-B358-0B9FA56EC20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FB84D6A-DA03-443F-B358-0B9FA56EC20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1E3DCE-3AAA-4BCE-9C16-E7897E9C367F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1E3DCE-3AAA-4BCE-9C16-E7897E9C367F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1E3DCE-3AAA-4BCE-9C16-E7897E9C367F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1E3DCE-3AAA-4BCE-9C16-E7897E9C367F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
