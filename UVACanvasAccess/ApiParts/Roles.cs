@@ -10,6 +10,18 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.ApiParts {
     public partial class Api {
 
+        [PaginatedResponse]
+        private Task<HttpResponseMessage> RawListRoles(string accountId,
+                                                       IEnumerable<string> states, 
+                                                       bool showInherited) {
+            var url = $"accounts/{accountId}/roles";
+
+            var args = states.Select(s => ("state[]", s))
+                             .Append(("show_inherited", showInherited.ToString().ToLower()));
+            
+            return _client.GetAsync(url + BuildQueryString(args.ToArray()));
+        }
+
         private Task<HttpResponseMessage> RawCreateRole(string accountId, HttpContent content) {
             return _client.PostAsync($"accounts/{accountId}/roles", content);
         }

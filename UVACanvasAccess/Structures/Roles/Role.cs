@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Roles;
@@ -39,5 +40,13 @@ namespace UVACanvasAccess.Structures.Roles {
                    $"\n{nameof(Permissions)}: {Permissions.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
+    }
+
+    [Flags]
+    public enum RoleState : byte {
+        [ApiRepresentation("active")]
+        Active = 1 << 0,
+        [ApiRepresentation("inactive")]
+        Inactive = 1 << 1
     }
 }
