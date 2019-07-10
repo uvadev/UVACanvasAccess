@@ -160,6 +160,8 @@
     <Compile Include="Model\GradeChangelog\RedundantGradeChangeEventResponse.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
     <Compile Include="Model\Reports\ReportModel.cs" />
+    <Compile Include="Model\Roles\RoleModel.cs" />
+    <Compile Include="Model\Roles\RolePermissionsModel.cs" />
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionModel.cs" />
@@ -198,6 +200,7 @@
     <Compile Include="Structures\GradeChangelog\GradeChangeEventLinks.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
+    <Compile Include="Structures\Roles\Role.cs" />
     <Compile Include="Structures\Roles\RolePermissions.cs" />
     <Compile Include="Structures\Roles\RolePermissionsSet.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
