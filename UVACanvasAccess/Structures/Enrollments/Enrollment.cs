@@ -77,7 +77,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         
         public string OverrideGrade { get; }
         
-        public double? OverrideScore { get; }
+        public decimal? OverrideScore { get; }
         
         [CanBeNull]
         public string UnpostedCurrentGrade { get; }
@@ -107,10 +107,10 @@ namespace UVACanvasAccess.Structures.Enrollments {
         public string CurrentPeriodOverrideGrade { get; }
         
         [CanBeNull]
-        public double? CurrentPeriodOverrideScore { get; }
+        public decimal? CurrentPeriodOverrideScore { get; }
         
         [CanBeNull]
-        public double? CurrentPeriodUnpostedFinalScore { get; }
+        public decimal? CurrentPeriodUnpostedFinalScore { get; }
         
         [CanBeNull]
         public string CurrentPeriodUnpostedCurrentGrade { get; }

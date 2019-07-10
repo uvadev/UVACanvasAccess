@@ -42,7 +42,7 @@ namespace UVACanvasAccess.Model.Submissions {
         public string PreviewUrl { get; set; }
         
         [JsonProperty("score")]
-        public double? Score { get; set; }
+        public decimal? Score { get; set; }
         
         [CanBeNull]
         [JsonProperty("submission_comments")]

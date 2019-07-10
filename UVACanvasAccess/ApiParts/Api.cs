@@ -31,7 +31,12 @@ namespace UVACanvasAccess.ApiParts {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             _client.BaseAddress = new Uri(baseUrl);
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            
+        }
+
+        static Api() {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings {
+                FloatParseHandling = FloatParseHandling.Decimal
+            };
         }
 
         public void Dispose() {

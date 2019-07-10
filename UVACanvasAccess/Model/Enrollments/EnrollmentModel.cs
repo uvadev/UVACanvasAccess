@@ -102,8 +102,8 @@ namespace UVACanvasAccess.Model.Enrollments {
         [JsonProperty("override_grade")]
         public string OverrideGrade { get; set; }
         
-        [JsonProperty("override_source")]
-        public double? OverrideScore { get; set; }
+        [JsonProperty("override_score")]
+        public decimal? OverrideScore { get; set; }
         
         [JsonProperty("unposted_current_grade")]
         [CanBeNull]
@@ -143,11 +143,11 @@ namespace UVACanvasAccess.Model.Enrollments {
         
         [JsonProperty("current_period_override_score")]
         [CanBeNull]
-        public double? CurrentPeriodOverrideScore { get; set; }
+        public decimal? CurrentPeriodOverrideScore { get; set; }
         
         [JsonProperty("current_period_unposted_final_score")]
         [CanBeNull]
-        public double? CurrentPeriodUnpostedFinalScore { get; set; }
+        public decimal? CurrentPeriodUnpostedFinalScore { get; set; }
         
         [JsonProperty("current_period_unposted_current_grade")]
         [CanBeNull]

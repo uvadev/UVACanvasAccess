@@ -37,7 +37,7 @@ namespace UVACanvasAccess.Structures.Submissions {
 
         public string PreviewUrl { get; }
 
-        public double? Score { get; }
+        public decimal? Score { get; }
         
         [CanBeNull]
         public IEnumerable<SubmissionComment> SubmissionComments { get; }
