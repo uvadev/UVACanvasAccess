@@ -21,7 +21,7 @@ namespace UVACanvasAccess.Structures.Roles {
     }
 
     [Flags]
-    public enum AccountRolePermissions {
+    public enum AccountRolePermissions : uint {
         [ApiRepresentation("become_user")]
         BecomeUser = 1 << 0,
         [ApiRepresentation("import_sis")]
@@ -85,7 +85,7 @@ namespace UVACanvasAccess.Structures.Roles {
     }
 
     [Flags]
-    public enum GeneralRolePermissions : long {
+    public enum GeneralRolePermissions : ulong {
         [ApiRepresentation("change_course_state")]
         ChangeCourseState = 1 << 0,
         [ApiRepresentation("create_collaborations")]
@@ -149,7 +149,7 @@ namespace UVACanvasAccess.Structures.Roles {
         [ApiRepresentation("select_final_grade")]
         SelectFinalGrade = 1 << 30,
         [ApiRepresentation("send_messages")]
-        SendMessages = 1 << 31,
+        SendMessages = 1L << 31,
         [ApiRepresentation("send_messages_all")]
         SendMessagesAll = 1L << 32,
         [ApiRepresentation("view_all_grades")]
