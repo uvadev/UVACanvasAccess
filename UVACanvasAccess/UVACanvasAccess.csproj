@@ -128,6 +128,7 @@
     <Compile Include="ApiParts\GradeChangelog.cs" />
     <Compile Include="ApiParts\Misc.cs" />
     <Compile Include="ApiParts\Reports.cs" />
+    <Compile Include="ApiParts\Roles.cs" />
     <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
     <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
@@ -197,6 +198,8 @@
     <Compile Include="Structures\GradeChangelog\GradeChangeEventLinks.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
+    <Compile Include="Structures\Roles\RolePermissions.cs" />
+    <Compile Include="Structures\Roles\RolePermissionsSet.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\INewSubmissionContent.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\OnlineTextEntrySubmission.cs" />
