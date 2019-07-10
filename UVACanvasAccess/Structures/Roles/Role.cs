@@ -32,11 +32,11 @@ namespace UVACanvasAccess.Structures.Roles {
 
         public string ToPrettyString() {
             return "Role {" +
-                   $"\n{nameof(Label)}: {Label}," +
+                   ($"\n{nameof(Label)}: {Label}," +
                    $"\n{nameof(BaseRoleType)}: {BaseRoleType}," +
                    $"\n{nameof(Account)}: {Account}," +
                    $"\n{nameof(WorkflowState)}: {WorkflowState}," +
-                   $"\n{nameof(Permissions)}: {Permissions}" + 
+                   $"\n{nameof(Permissions)}: {Permissions.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
     }

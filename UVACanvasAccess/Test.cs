@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
+using UVACanvasAccess.Structures.Roles;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -25,6 +26,12 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
+
+            var role = await api.CreateRole("CanvasAccess Test Role 2",
+                                            new RolePermissionsSet(accountAllowed: AccountRolePermissions.ManageAlerts |
+                                                                                   AccountRolePermissions.ManageJobs));
+
+            Console.WriteLine(role.ToPrettyString());
         }
     }
 }

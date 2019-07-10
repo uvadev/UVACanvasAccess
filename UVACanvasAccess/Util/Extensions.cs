@@ -25,6 +25,13 @@ namespace UVACanvasAccess.Util {
             return response;
         }
         
+        internal static Task<HttpResponseMessage> AssertSuccess(this Task<HttpResponseMessage> response) {
+            return response.ThenAccept(r => {
+                                           r.AssertSuccess();
+                                           return r;
+                                       });
+        }
+        
         /// <summary>
         /// Indents this string by <paramref name="spaces"/> spaces.
         /// </summary>
