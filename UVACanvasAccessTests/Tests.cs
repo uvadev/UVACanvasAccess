@@ -1,5 +1,5 @@
 ﻿namespace UVACanvasAccessTests {
-    public class Tests {
+    public static class Tests {
         
     }
 }

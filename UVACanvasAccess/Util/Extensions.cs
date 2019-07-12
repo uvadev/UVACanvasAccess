@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using UVACanvasAccess.Exceptions;
 using static UVACanvasAccess.ApiParts.Api;
 
 namespace UVACanvasAccess.Util {
@@ -17,12 +20,19 @@ namespace UVACanvasAccess.Util {
         /// <returns>This.</returns>
         /// <exception cref="Exception">If the response has a failing code.</exception>
         internal static HttpResponseMessage AssertSuccess(this HttpResponseMessage response) {
-            if (!response.IsSuccessStatusCode) {
-                throw new Exception($"http failure response: {response.StatusCode} {response.ReasonPhrase}\n" +
-                                    $"{JsonConvert.DeserializeObject(response.Content.ReadAsStringAsync().Result)}");
+            if (response.IsSuccessStatusCode) 
+                return response;
+            try {
+                var body = JObject.Parse(response.Content.ReadAsStringAsync().Result)["errors"].ToString();
+                switch (response.StatusCode) {
+                    case HttpStatusCode.NotFound: 
+                        throw new DoesNotExistException(body);
+                    default: 
+                        throw new CommunicationException($"Http Failure: {response.StatusCode}\n{body}");
+                }
+            } catch (JsonException) {
+                throw new CommunicationException($"Http Failure: {response.StatusCode}\n");
             }
-
-            return response;
         }
         
         internal static Task<HttpResponseMessage> AssertSuccess(this Task<HttpResponseMessage> response) {
@@ -59,7 +69,7 @@ namespace UVACanvasAccess.Util {
         /// </summary>
         /// <returns>The pretty string.</returns>
         [Pure]
-        internal static string ToPrettyString<TK, TV>(this Dictionary<TK, TV> dictionary) {
+        public static string ToPrettyString<TK, TV>(this Dictionary<TK, TV> dictionary) {
             var sb = new StringBuilder("{");
 
             var kIsPretty = IsA<IPrettyPrint, TK>();
@@ -90,7 +100,7 @@ namespace UVACanvasAccess.Util {
         /// Otherwise, <see cref="object.ToString"/> will be used.
         /// </remarks>
         [Pure]
-        internal static string ToPrettyString<T>([NotNull] [ItemNotNull] this IEnumerable<T> enumerable) {
+        public static string ToPrettyString<T>([NotNull] [ItemNotNull] this IEnumerable<T> enumerable) {
             var strings = IsA<IPrettyPrint, T>() ? enumerable.Cast<IPrettyPrint>().Select(e => e.ToPrettyString()) 
                                                  : enumerable.Select(e => e.ToString());
             
