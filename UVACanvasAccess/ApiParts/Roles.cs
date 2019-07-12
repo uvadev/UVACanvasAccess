@@ -13,13 +13,24 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawListRoles(string accountId,
                                                        IEnumerable<string> states, 
-                                                       bool showInherited) {
+                                                       bool? showInherited) {
             var url = $"accounts/{accountId}/roles";
 
             var args = states.Select(s => ("state[]", s))
                              .Append(("show_inherited", showInherited.ToString().ToLower()));
             
             return _client.GetAsync(url + BuildQueryString(args.ToArray()));
+        }
+
+        public async Task<IEnumerable<Role>> ListRoles(RoleState states = 0, bool? showInherited = null, ulong? accountId = null) {
+            var response = await RawListRoles(accountId?.ToString() ?? "self", 
+                                              states.GetFlags().Select(f => f.GetApiRepresentation()),
+                                              showInherited);
+
+            var models = await AccumulateDeserializePages<RoleModel>(response);
+
+            return from model in models
+                   select new Role(this, model);
         }
 
         private Task<HttpResponseMessage> RawCreateRole(string accountId, HttpContent content) {
