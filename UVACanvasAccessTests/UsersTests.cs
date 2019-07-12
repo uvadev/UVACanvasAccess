@@ -16,7 +16,10 @@ namespace UVACanvasAccessTests {
             _testOutputHelper = testOutputHelper;
             _api = fixture.Api;
         }
-
+        
+        /// <summary>
+        /// Tests GetUserDetails and GetProfile.
+        /// </summary>
         [Theory]
         [InlineData(3390)]
         [InlineData(3392)]
@@ -43,6 +46,9 @@ namespace UVACanvasAccessTests {
             Assert.Equal(user.AvatarUrl, profile.AvatarUrl);
         }
 
+        /// <summary>
+        /// Tests that GetUserDetails throws the correct exception on failure.
+        /// </summary>
         [Theory]
         [InlineData(2323232323232)]
         [InlineData(0)]
@@ -50,6 +56,9 @@ namespace UVACanvasAccessTests {
             await Assert.ThrowsAsync<DoesNotExistException>(() => _api.GetUserDetails(nonexistentId));
         }
 
+        /// <summary>
+        /// Tests GetListUsers.
+        /// </summary>
         [Theory]
         [InlineData("username", "asc")]
         [InlineData("username", "desc")]

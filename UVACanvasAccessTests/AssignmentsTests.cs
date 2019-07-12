@@ -19,12 +19,18 @@ namespace UVACanvasAccessTests {
             _api = fixture.Api;
         }
 
+        /// <summary>
+        /// Tests ListCourseAssignments.
+        /// </summary>
         [Fact]
         public async Task Test1() {
             IEnumerable<Assignment> assignments = await _api.ListCourseAssignments(TestCourse);
             Assert.NotEmpty(assignments);
         }
 
+        /// <summary>
+        /// Tests GetAssignment.
+        /// </summary>
         [Theory]
         [InlineData(9844)]
         [InlineData(10486)]
@@ -35,6 +41,9 @@ namespace UVACanvasAccessTests {
             Assert.Equal(TestCourse, assignment.CourseId);
         }
 
+        /// <summary>
+        /// Test ListAssignmentOverrides.
+        /// </summary>
         [Theory]
         [InlineData(9844)]
         [InlineData(10486)]
@@ -52,6 +61,9 @@ namespace UVACanvasAccessTests {
             }
         }
 
+        /// <summary>
+        /// Tests BatchGetAssignmentOverrides.
+        /// </summary>
         [Fact]
         public async Task Test4() {
             var overrides = await _api.BatchGetAssignmentOverrides(TestCourse, new[] {
