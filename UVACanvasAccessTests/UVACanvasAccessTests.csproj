@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiFixture.cs" />
+    <Compile Include="AssignmentsTests.cs" />
     <Compile Include="PageViewsExample.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

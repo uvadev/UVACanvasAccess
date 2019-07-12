@@ -155,10 +155,10 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         internal async Task<Assignment> PostCreateAssignment(AssignmentBuilder builder) {
-            var args = builder.Fields
-                              .Select(kv => (kv.Key, kv.Value))
-                              .Concat(builder.ArrayFields
-                                             .SelectMany(k => k, (k, v) => (k.Key, v)));
+            IEnumerable<(string Key, string)> args = builder.Fields
+                                                            .Select(kv => (kv.Key, kv.Value))
+                                                            .Concat(builder.ArrayFields
+                                                                           .SelectMany(k => k, (k, v) => (k.Key, v)));
             
             var response = await RawCreateAssignment(builder.CourseId.ToString(), BuildMultipartHttpArguments(args));
             response.AssertSuccess();

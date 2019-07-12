@@ -342,7 +342,7 @@ namespace UVACanvasAccess.Util {
             return ie.Where(e => e != null);
         }
 
-        internal static Task<TO> ThenAccept<TI, TO>(this Task<TI> task, Func<TI, TO> f) {
+        public static Task<TO> ThenAccept<TI, TO>(this Task<TI> task, Func<TI, TO> f) {
             return task.ContinueWith(t => f(t.Result));
         }
     }
