@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using StatePrinting;
+using UVACanvasAccess.Model.Enrollments;
 
 namespace UVACanvasAccess.Model.Users {
     // ReSharper disable MemberCanBePrivate.Global
@@ -36,7 +37,7 @@ namespace UVACanvasAccess.Model.Users {
         public string AvatarUrl { get; set; }
         
         [JsonProperty("enrollments")]
-        public List<object> Enrollments { get; set; } // todo Enrollment model
+        public List<EnrollmentModel> Enrollments { get; set; }
         
         [JsonProperty("email")]
         public string Email { get; set; }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Enrollments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
@@ -52,7 +53,7 @@ namespace UVACanvasAccess.Structures.Users {
         public string IntegrationId { get; private set; }
         public string LoginId { get; private set; }
         public string AvatarUrl { get; private set; }
-        public List<object> Enrollments { get; private set; }
+        public IEnumerable<Enrollment> Enrollments { get; private set; }
         public string Email { get; private set; }
         public string Locale { get; private set; }
         public string EffectiveLocale { get; private set; }
@@ -89,7 +90,7 @@ namespace UVACanvasAccess.Structures.Users {
             IntegrationId = model.IntegrationId;
             LoginId = model.LoginId;
             AvatarUrl = model.AvatarUrl;
-            Enrollments = model.Enrollments;
+            Enrollments = model.Enrollments.SelectNotNull(m => new Enrollment(api, m));
             Email = model.Email;
             Locale = model.Locale;
             EffectiveLocale = model.EffectiveLocale;
@@ -123,7 +124,7 @@ namespace UVACanvasAccess.Structures.Users {
                    $"\n{nameof(IntegrationId)}: {IntegrationId}," +
                    $"\n{nameof(LoginId)}: {LoginId}," +
                    $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +
-                   $"\n{nameof(Enrollments)}: {Enrollments}," +
+                   $"\n{nameof(Enrollments)}: {Enrollments.ToPrettyString()}," +
                    $"\n{nameof(Email)}: {Email}," +
                    $"\n{nameof(Locale)}: {Locale}," +
                    $"\n{nameof(EffectiveLocale)}: {EffectiveLocale}," +
