@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Roles;
+using UVACanvasAccess.Structures.Accounts;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Roles {
@@ -16,7 +17,7 @@ namespace UVACanvasAccess.Structures.Roles {
 
         public string BaseRoleType { get; }
 
-        public object Account { get; } // todo Account
+        public Account Account { get; }
 
         public string WorkflowState { get; }
 
@@ -26,7 +27,7 @@ namespace UVACanvasAccess.Structures.Roles {
             _api = api;
             Label = model.Label;
             BaseRoleType = model.BaseRoleType;
-            Account = model.Account;
+            Account = model.Account.ConvertIfNotNull(m => new Account(api, m));
             WorkflowState = model.WorkflowState;
             Permissions = model.Permissions.ValSelect(m => new RolePermissions(api, m));
         }

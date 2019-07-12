@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UVACanvasAccess.Model.Accounts;
 
 namespace UVACanvasAccess.Model.Roles {
     
@@ -14,7 +15,7 @@ namespace UVACanvasAccess.Model.Roles {
         public string BaseRoleType { get; set; }
         
         [JsonProperty("account")]
-        public object Account { get; set; } // todo Account model
+        public AccountModel Account { get; set; }
         
         [JsonProperty("workflow_state")]
         public string WorkflowState  { get; set; }
