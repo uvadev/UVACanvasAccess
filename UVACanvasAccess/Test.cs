@@ -27,8 +27,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var tos = await api.GetTermsOfService();
-            Console.WriteLine(tos.ToPrettyString());
+            var links = await api.GetHelpLinks();
+            Console.WriteLine(links.ToPrettyString());
         }
     }
 }

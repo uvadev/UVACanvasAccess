@@ -92,5 +92,17 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<TermsOfServiceModel>(await response.Content.ReadAsStringAsync());
             return new TermsOfService(this, model);
         }
+
+        private Task<HttpResponseMessage> RawGetHelpLinks(string id) {
+            return _client.GetAsync($"accounts/{id}/help_links");
+        }
+
+        public async Task<HelpLinks> GetHelpLinks(ulong? accountId = null) {
+            var response = await RawGetHelpLinks(accountId?.ToString() ?? "self");
+
+            var model = JsonConvert.DeserializeObject<HelpLinksModel>(await response.Content.ReadAsStringAsync());
+            return new HelpLinks(this, model);
+        }
+        
     }
 }
