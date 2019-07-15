@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using UVACanvasAccess.Model.Accounts;
 using UVACanvasAccess.Structures.Accounts;
 using UVACanvasAccess.Util;
@@ -34,6 +35,17 @@ namespace UVACanvasAccess.ApiParts {
 
             return from model in models
                    select new Account(this, model);
+        }
+
+        private Task<HttpResponseMessage> RawGetAccount(string id) {
+            return _client.GetAsync($"accounts/{id}");
+        }
+
+        public async Task<Account> GetAccount(ulong accountId) {
+            var response = await RawGetAccount(accountId.ToString());
+
+            var model = JsonConvert.DeserializeObject<AccountModel>(await response.Content.ReadAsStringAsync());
+            return new Account(this, model);
         }
     }
 }
