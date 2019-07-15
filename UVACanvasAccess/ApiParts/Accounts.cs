@@ -81,5 +81,16 @@ namespace UVACanvasAccess.ApiParts {
             
             return new BasicAccountPermissionsSet(allowed, denied);
         }
+
+        private Task<HttpResponseMessage> RawGetTermsOfService(string id) {
+            return _client.GetAsync($"accounts/{id}/terms_of_service");
+        }
+
+        public async Task<TermsOfService> GetTermsOfService(ulong? accountId = null) {
+            var response = await RawGetTermsOfService(accountId?.ToString() ?? "self");
+
+            var model = JsonConvert.DeserializeObject<TermsOfServiceModel>(await response.Content.ReadAsStringAsync());
+            return new TermsOfService(this, model);
+        }
     }
 }

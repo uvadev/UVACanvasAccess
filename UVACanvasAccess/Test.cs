@@ -5,7 +5,6 @@ using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
 using UVACanvasAccess.Structures.Roles;
-using static UVACanvasAccess.Structures.Roles.AccountRolePermissions;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -28,9 +27,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var permissions = await api.GetAccountPermissions((AccountRolePermissions)uint.MaxValue);
-
-            Console.WriteLine(permissions.ToPrettyString());
+            var tos = await api.GetTermsOfService();
+            Console.WriteLine(tos.ToPrettyString());
         }
     }
 }
