@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
-using UVACanvasAccess.Structures.Roles;
 using UVACanvasAccess.Util;
+using static UVACanvasAccess.ApiParts.Api.AccountIncludes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -29,9 +29,9 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var roles = await api.ListRoles(RoleState.Active).ThenAccept(ie => ie.ToList());
-            Console.WriteLine(roles.ToPrettyString());
-            Console.WriteLine(roles.Select(r => r.Label).ToPrettyString());
+            var accounts = await api.ListAccounts(RegistrationSettings | Services);
+
+            Console.WriteLine(accounts.ToPrettyString());
         }
     }
 }

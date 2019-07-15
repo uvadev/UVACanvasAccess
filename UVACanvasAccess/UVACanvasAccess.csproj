@@ -136,6 +136,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiParts\Accounts.cs" />
     <Compile Include="ApiParts\Api.cs" />
     <Compile Include="ApiParts\Assignments.cs" />
     <Compile Include="ApiParts\Discussions.cs" />

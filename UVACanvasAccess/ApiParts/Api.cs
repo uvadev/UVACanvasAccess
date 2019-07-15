@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Util;
@@ -74,7 +75,7 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <param name="args">The key-value pairs to use in the query string. Null values are ignored.</param>
         /// <returns>The query string.</returns>
-        private string BuildQueryString(params ValueTuple<string, string>[] args) {
+        private string BuildQueryString([NotNull] params ValueTuple<string, string>[] args) {
             var query = HttpUtility.ParseQueryString(string.Empty);
 
             foreach (var (key, val) in args) {
@@ -98,7 +99,7 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <param name="args">The set of key-value tuples.</param>
         /// <returns></returns>
-        private HttpContent BuildHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
+        private HttpContent BuildHttpArguments([NotNull] IEnumerable<ValueTuple<string, string>> args) {
 
             var pairs = from a in args
                         where a.Item2 != null
@@ -115,7 +116,7 @@ namespace UVACanvasAccess.ApiParts {
             return content;
         }
 
-        private MultipartFormDataContent BuildMultipartHttpArguments(IEnumerable<ValueTuple<string, string>> args) {
+        private MultipartFormDataContent BuildMultipartHttpArguments([NotNull] IEnumerable<ValueTuple<string, string>> args) {
             var content = new MultipartFormDataContent();
             foreach (var (k, v) in args) {
                 content.Add(new StringContent(v), k);
