@@ -154,6 +154,9 @@
     <Compile Include="Exceptions\CommunicationException.cs" />
     <Compile Include="Exceptions\DoesNotExistException.cs" />
     <Compile Include="Model\Accounts\AccountModel.cs" />
+    <Compile Include="Model\Accounts\HelpLinkModel.cs" />
+    <Compile Include="Model\Accounts\HelpLinksModel.cs" />
+    <Compile Include="Model\Accounts\TermsOfServiceModel.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
     <Compile Include="Model\Assignments\AssignmentModel.cs" />
     <Compile Include="Model\Assignments\AssignmentOverrideModel.cs" />
@@ -195,6 +198,9 @@
     <Compile Include="Model\Users\UserModel.cs" />
     <Compile Include="Model\Users\UserDisplayModel.cs" />
     <Compile Include="Structures\Accounts\Account.cs" />
+    <Compile Include="Structures\Accounts\HelpLink.cs" />
+    <Compile Include="Structures\Accounts\HelpLinks.cs" />
+    <Compile Include="Structures\Accounts\TermsOfService.cs" />
     <Compile Include="Structures\Assignments\Assignment.cs" />
     <Compile Include="Structures\Assignments\AssignmentDate.cs" />
     <Compile Include="Structures\Assignments\AssignmentOverride.cs" />

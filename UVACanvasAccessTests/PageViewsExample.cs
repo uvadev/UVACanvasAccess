@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Debugging;
 using UVACanvasAccess.Structures.Users;
 using Xunit;
 
