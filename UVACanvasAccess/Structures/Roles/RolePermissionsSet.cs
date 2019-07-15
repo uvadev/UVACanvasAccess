@@ -161,7 +161,7 @@ namespace UVACanvasAccess.Structures.Roles {
         [ApiRepresentation("view_user_logins")]
         ViewUserLogins = 1L << 36
     }
-    
+
     // ReSharper disable MemberCanBePrivate.Global
     public readonly struct RolePermissionsSet {
         
@@ -210,6 +210,24 @@ namespace UVACanvasAccess.Structures.Roles {
                                                                 .Select(a => ($"permissions[{a}][locked]", "1"));
             
             return allowed.Concat(denied).Concat(locked);
+        }
+    }
+    
+    // ReSharper disable MemberCanBePrivate.Global
+    public readonly struct BasicAccountPermissionsSet : IPrettyPrint {
+        public AccountRolePermissions AccountAllowed { [UsedImplicitly] get; }
+        public AccountRolePermissions AccountDenied { [UsedImplicitly] get; }
+
+        public BasicAccountPermissionsSet(AccountRolePermissions accountAllowed, AccountRolePermissions accountDenied) {
+            AccountAllowed = accountAllowed;
+            AccountDenied = accountDenied;
+        }
+
+        public string ToPrettyString() {
+            return "BasicAccountPermissionsSet {" +
+                   $"\n{nameof(AccountAllowed)}: {AccountAllowed.GetFlags().Select(f => f.GetApiRepresentation()).ToPrettyString()}, " +
+                   $"\n{nameof(AccountDenied)}: {AccountDenied.GetFlags().Select(f => f.GetApiRepresentation()).ToPrettyString()}" + 
+                   "\n}";
         }
     }
 }

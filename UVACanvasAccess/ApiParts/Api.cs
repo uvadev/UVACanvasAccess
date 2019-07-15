@@ -13,7 +13,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.ApiParts {
     
-    // ReSharper disable UnusedMethodReturnValue.Global
+    [PublicAPI]
     public partial class Api : IDisposable {
 
         private readonly HttpClient _client;
@@ -92,6 +92,26 @@ namespace UVACanvasAccess.ApiParts {
 
             return s == string.Empty ? s
                                      : "?" + s;
+        }
+
+        private string BuildDuplicateKeyQueryString([NotNull] params ValueTuple<string, string>[] args) {
+            var entries = new List<string>();
+            
+            foreach (var (key, val) in args) {
+                if (val != null) {
+                    entries.Add($"{HttpUtility.UrlEncode(key)}={HttpUtility.UrlEncode(val)}");
+                }
+            }
+
+            if (_masquerade != null) {
+                entries.Add($"as_user_id={_masquerade.ToString()}");
+            }
+
+            if (entries.Count == 0) {
+                return string.Empty;
+            }
+
+            return "?" + string.Join("&", entries);
         }
 
         /// <summary>

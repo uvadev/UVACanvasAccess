@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -145,15 +146,32 @@ namespace UVACanvasAccess.Util {
         [CanBeNull]
         [Pure]
         internal static string GetApiRepresentation(this Enum en) {
-            var member = en.GetType().GetMember(en.ToString());
+            MemberInfo[] member = en.GetType().GetMember(en.ToString());
 
             if (member.Length <= 0) 
                 return null;
             
-            var attribute = member[0].GetCustomAttributes(typeof(ApiRepresentationAttribute), false);
+            object[] attribute = member[0].GetCustomAttributes(typeof(ApiRepresentationAttribute), false);
             
             return attribute.Length > 0 ? ((ApiRepresentationAttribute) attribute[0]).Representation 
                                         : null;
+        }
+        
+        [CanBeNull]
+        [Pure]
+        internal static T? ToApiRepresentedEnum<T>(this string str) where T: struct, Enum {
+            foreach (T field in Enum.GetValues(typeof(T))) {
+                var representation = field.GetApiRepresentation();
+                if (str == representation) {
+                    return field;
+                }
+            }
+            return null;
+        }
+
+        internal static void Deconstruct<TK, TV>(this KeyValuePair<TK, TV> kvp, out TK key, out TV val) {
+            key = kvp.Key;
+            val = kvp.Value;
         }
 
         /// <summary>

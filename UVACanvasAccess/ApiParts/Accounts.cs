@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Accounts;
 using UVACanvasAccess.Structures.Accounts;
+using UVACanvasAccess.Structures.Roles;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.ApiParts {
@@ -46,6 +47,39 @@ namespace UVACanvasAccess.ApiParts {
 
             var model = JsonConvert.DeserializeObject<AccountModel>(await response.Content.ReadAsStringAsync());
             return new Account(this, model);
+        }
+
+        private Task<HttpResponseMessage> RawGetAccountPermissions(string id, [NotNull] IEnumerable<string> permissions) {
+            var url = $"accounts/{id}/permissions";
+            return _client.GetAsync(url + BuildDuplicateKeyQueryString(permissions.Select(p => ("permissions[]", p)).ToArray()));
+        }
+
+        public async Task<BasicAccountPermissionsSet> GetAccountPermissions(AccountRolePermissions checkedPermissions, 
+                                                                            ulong? accountId = null) {
+            var response = await RawGetAccountPermissions(accountId?.ToString() ?? "self",
+                                                          checkedPermissions.GetFlags()
+                                                                            .Select(p => p.GetApiRepresentation()));
+            
+            var dictionary = JsonConvert.DeserializeObject<Dictionary<string, bool>>(await response.Content.ReadAsStringAsync());
+
+            AccountRolePermissions allowed = default, 
+                                   denied = default;
+
+            foreach (var (k, v) in dictionary) {
+                AccountRolePermissions? permission = k.ToApiRepresentedEnum<AccountRolePermissions>();
+                if (permission == null) {
+                    Console.Error.WriteLine("WARNING: encountered unknown permission type: " + k);
+                    continue;
+                }
+                
+                if (v) {
+                    allowed |= permission.Value;
+                } else {
+                    denied |= permission.Value;
+                }
+            }
+            
+            return new BasicAccountPermissionsSet(allowed, denied);
         }
     }
 }
