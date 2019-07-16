@@ -105,7 +105,7 @@ namespace UVACanvasAccess.ApiParts {
             var response = await RawGetSubmissionVersions(courseId.ToString(),
                                                           assignmentId?.ToString(),
                                                           userId?.ToString(),
-                                                          ascending?.ToString().ToLower());
+                                                          ascending?.ToShortString());
 
             var models = await AccumulateDeserializePages<SubmissionVersionModel>(response);
             return from m in models

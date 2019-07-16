@@ -173,6 +173,12 @@ namespace UVACanvasAccess.Util {
             key = kvp.Key;
             val = kvp.Value;
         }
+        
+        [Pure]
+        internal static string ToShortString(this bool b) {
+            return b ? "1" 
+                     : "0";
+        }
 
         /// <summary>
         /// Gets a collection of every flag represented by this flag enum.

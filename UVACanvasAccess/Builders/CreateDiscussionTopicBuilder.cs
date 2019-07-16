@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures.Discussions;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {
     
@@ -66,7 +67,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="published"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder WithPublishedStatus(bool published = true) {
-            Fields["published"] = published.ToString().ToLower();
+            Fields["published"] = published.ToShortString();
             return this;
         }
         
@@ -86,7 +87,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="allowed"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder WithRatingsAllowed(bool allowed = true) {
-            Fields["allow_rating"] = allowed.ToString().ToLower();
+            Fields["allow_rating"] = allowed.ToShortString();
             return this;
         }
         
@@ -106,7 +107,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder WithPodcastEnabled(bool enabled = true) {
-            Fields["podcast_enabled"] = enabled.ToString().ToLower();
+            Fields["podcast_enabled"] = enabled.ToShortString();
             return this;
         }
         
@@ -116,7 +117,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder WithPodcastIncludingStudents(bool enabled = true) {
-            Fields["podcast_has_student_posts"] = enabled.ToString().ToLower();
+            Fields["podcast_has_student_posts"] = enabled.ToShortString();
             return this;
         }
         
@@ -126,7 +127,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="require"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder WithRequiredInitialPost(bool require = true) {
-            Fields["require_initial_post"] = require.ToString().ToLower();
+            Fields["require_initial_post"] = require.ToShortString();
             return this;
         }
         
@@ -146,7 +147,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="isAnnouncement"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder AsAnnouncement(bool isAnnouncement = true) {
-            Fields["is_announcement"] = isAnnouncement.ToString().ToLower();
+            Fields["is_announcement"] = isAnnouncement.ToShortString();
             return this;
         }
         
@@ -156,7 +157,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="pinned"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder AsPinned(bool pinned = true) {
-            Fields["pinned"] = pinned.ToString().ToLower();
+            Fields["pinned"] = pinned.ToShortString();
             return this;
         }
         
@@ -187,7 +188,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="graderRatingsOnly"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder WithGraderRatingsOnly(bool graderRatingsOnly = true) {
-            Fields["only_graders_can_rate"] = graderRatingsOnly.ToString().ToLower();
+            Fields["only_graders_can_rate"] = graderRatingsOnly.ToShortString();
             return this;
         }
         
@@ -197,7 +198,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="sortByRating"></param>
         /// <returns></returns>
         public CreateDiscussionTopicBuilder WithSortingByRating(bool sortByRating = true) {
-            Fields["sort_by_rating"] = sortByRating.ToString().ToLower();
+            Fields["sort_by_rating"] = sortByRating.ToShortString();
             return this;
         }
         

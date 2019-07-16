@@ -17,7 +17,7 @@ namespace UVACanvasAccess.ApiParts {
             var url = $"accounts/{accountId}/roles";
 
             var args = states.Select(s => ("state[]", s))
-                             .Append(("show_inherited", showInherited.ToString().ToLower()));
+                             .Append(("show_inherited", showInherited?.ToShortString()));
             
             return _client.GetAsync(url + BuildQueryString(args.ToArray()));
         }

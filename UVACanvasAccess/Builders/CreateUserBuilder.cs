@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures.Users;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {
     
@@ -87,7 +88,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="hasAcceptedTerms"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithTermsOfUseAccepted(bool hasAcceptedTerms = true) {
-            Fields["user[terms_of_use]"] = hasAcceptedTerms.ToString().ToLower();
+            Fields["user[terms_of_use]"] = hasAcceptedTerms.ToShortString();
             return this;
         }
         
@@ -98,7 +99,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="skipRegistration"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithSkipRegistration(bool skipRegistration = true) {
-            Fields["user[skip_registration]"] = skipRegistration.ToString().ToLower();
+            Fields["user[skip_registration]"] = skipRegistration.ToShortString();
             return this;
         }
 
@@ -153,7 +154,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="shouldSendConfirmation"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithSendConfirmation(bool shouldSendConfirmation = true) {
-            Fields["pseudonym[send_confirmation]"] = shouldSendConfirmation.ToString().ToLower();
+            Fields["pseudonym[send_confirmation]"] = shouldSendConfirmation.ToShortString();
             return this;
         }
 
@@ -163,7 +164,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="shouldForceSelfRegistration"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithForceSelfRegistration(bool shouldForceSelfRegistration = true) {
-            Fields["pseudonym[force_self_registration]"] = shouldForceSelfRegistration.ToString().ToLower();
+            Fields["pseudonym[force_self_registration]"] = shouldForceSelfRegistration.ToShortString();
             return this;
         }
 
@@ -203,7 +204,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="returnUrl"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithCommunicationChannelConfirmationUrl(bool returnUrl = true) {
-            Fields["communication_channel[confirmation_url]"] = returnUrl.ToString().ToLower();
+            Fields["communication_channel[confirmation_url]"] = returnUrl.ToShortString();
             return this;
         }
 
@@ -215,7 +216,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="skip"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithSkipCommunicationChannelConfirmation(bool skip = true) {
-            Fields["communication_channel[skip_confirmation]"] = skip.ToString().ToLower();
+            Fields["communication_channel[skip_confirmation]"] = skip.ToShortString();
             return this;
         }
 
@@ -226,7 +227,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="force"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithForceValidations(bool force = true) {
-            Fields["force_validations"] = force.ToString().ToLower();
+            Fields["force_validations"] = force.ToShortString();
             return this;
         }
 
@@ -236,7 +237,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enable"></param>
         /// <returns>This builder.</returns>
         public CreateUserBuilder WithSisReactivation(bool enable = true) {
-            Fields["enable_sis_reactivation"] = enable.ToString().ToLower();
+            Fields["enable_sis_reactivation"] = enable.ToShortString();
             return this;
         }
 

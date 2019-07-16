@@ -254,8 +254,8 @@ namespace UVACanvasAccess.ApiParts {
                                                                     [CanBeNull] string orderBy) {
             var args = inclusions.GetTuples()
                                  .Append(("search_term", searchTerm))
-                                 .Append(("override_assignment_dates", overrideAssignmentDates?.ToString().ToLower()))
-                                 .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToString().ToLower()))
+                                 .Append(("override_assignment_dates", overrideAssignmentDates?.ToShortString()))
+                                 .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToShortString()))
                                  .Append(("bucket", bucket?.GetApiRepresentation()))
                                  .Append(("order_by", orderBy));
             
@@ -351,9 +351,9 @@ namespace UVACanvasAccess.ApiParts {
                                                                  bool? needsGradingCountBySection,
                                                                  bool? allDates) {
             var args = inclusions.GetTuples()
-                                 .Append(("override_assignment_dates", overrideAssignmentDates?.ToString().ToLower()))
-                                 .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToString().ToLower()))
-                                 .Append(("all_dates", allDates?.ToString().ToLower()));
+                                 .Append(("override_assignment_dates", overrideAssignmentDates?.ToShortString()))
+                                 .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToShortString()))
+                                 .Append(("all_dates", allDates?.ToShortString()));
             
             var url = $"courses/{courseId}/assignments/{assignmentId}" + BuildQueryString(args.ToArray());
 

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
-using UVACanvasAccess.Structures.Roles;
 
 namespace UVACanvasAccess {
     internal static class Test {

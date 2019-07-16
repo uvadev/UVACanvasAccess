@@ -103,11 +103,11 @@ namespace UVACanvasAccess.ApiParts {
             var args = new List<(string, string)> {
                                                       ("order_by", orderBy), 
                                                       ("scope", scopes?.GetString()), 
-                                                      ("only_announcements", onlyAnnouncements?.ToString().ToLower()), 
+                                                      ("only_announcements", onlyAnnouncements?.ToShortString()), 
                                                       ("filter_by", filterBy), 
                                                       ("search_term", searchTerm), 
                                                       ("exclude_context_module_locked_topics", 
-                                                       excludeContextModuleLockedTopics?.ToString().ToLower())
+                                                       excludeContextModuleLockedTopics?.ToShortString())
                                                   };
 
             args.AddRange(includes.GetTuples());

@@ -108,7 +108,7 @@ namespace UVACanvasAccess.Builders {
         /// submission type, and that Turnitin is available for this course.
         /// </remarks>
         public AssignmentBuilder WithTurnitinEnabled(bool enabled = true) {
-            return Put("turnitin_enabled", enabled.ToString().ToLower());
+            return Put("turnitin_enabled", enabled.ToShortString());
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace UVACanvasAccess.Builders {
         /// submission type, and that Vericite is available for this course.
         /// </remarks>
         public AssignmentBuilder WithVericiteEnabled(bool enabled = true) {
-            return Put("vericite_enabled", enabled.ToString().ToLower());
+            return Put("vericite_enabled", enabled.ToShortString());
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace UVACanvasAccess.Builders {
         /// <see cref="SubmissionTypes.OnPaper"/>.
         /// </remarks>
         public AssignmentBuilder WithPeerReviews(bool enabled = true) {
-            return Put("peer_reviews", enabled.ToString().ToLower());
+            return Put("peer_reviews", enabled.ToShortString());
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace UVACanvasAccess.Builders {
         /// <remarks>Implies <see cref="WithPeerReviews"/> = true.</remarks>
         public AssignmentBuilder WithAutomaticPeerReviews(bool enabled = true) {
             Put("peer_reviews", "true");
-            return Put("automatic_peer_reviews", enabled.ToString().ToLower());
+            return Put("automatic_peer_reviews", enabled.ToShortString());
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithUpdateNotification(bool enabled = true) {
-            return Put("notify_of_update", enabled.ToString().ToLower());
+            return Put("notify_of_update", enabled.ToShortString());
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithIndividualGroupGrading(bool enabled = true) {
-            return Put("grade_group_students_individually", enabled.ToString().ToLower());
+            return Put("grade_group_students_individually", enabled.ToShortString());
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder Muted(bool enabled = true) {
-            return Put("muted", enabled.ToString().ToLower());
+            return Put("muted", enabled.ToShortString());
         }
 
         /// <summary>
@@ -310,7 +310,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder OnlyVisibleToOverrides(bool enabled = true) {
-            return Put("only_visible_to_overrides", enabled.ToString().ToLower());
+            return Put("only_visible_to_overrides", enabled.ToShortString());
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder Published(bool enabled = true) {
-            return Put("published", enabled.ToString().ToLower());
+            return Put("published", enabled.ToShortString());
         }
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder OmitFromFinalGrade(bool enabled = true) {
-            return Put("omit_from_final_grade", enabled.ToString().ToLower());
+            return Put("omit_from_final_grade", enabled.ToShortString());
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithQuizLti(bool enabled = true) {
-            return Put("quiz_lti", enabled.ToString().ToLower());
+            return Put("quiz_lti", enabled.ToShortString());
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithModeratedGrading(bool enabled = true) {
-            return Put("moderated_grading", enabled.ToString().ToLower());
+            return Put("moderated_grading", enabled.ToShortString());
         }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithGraderCommentsVisibleToGraders(bool enabled = true) {
-            return Put("grader_comments_visible_to_graders", enabled.ToString().ToLower());
+            return Put("grader_comments_visible_to_graders", enabled.ToShortString());
         }
 
         /// <summary>
@@ -391,7 +391,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithGradersAnonymousToGraders(bool enabled = true) {
-            return Put("graders_anonymous_to_graders", enabled.ToString().ToLower());
+            return Put("graders_anonymous_to_graders", enabled.ToShortString());
         }
 
         /// <summary>
@@ -400,7 +400,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithGraderNamesVisibleToFinalGrader(bool enabled = true) {
-            return Put("graders_names_visible_to_final_grader", enabled.ToString().ToLower());
+            return Put("graders_names_visible_to_final_grader", enabled.ToShortString());
         }
 
         
@@ -410,7 +410,7 @@ namespace UVACanvasAccess.Builders {
         /// <param name="enabled"></param>
         /// <returns>This builder.</returns>
         public AssignmentBuilder WithAnonymousGrading(bool enabled = true) {
-            return Put("anonymous_grading", enabled.ToString().ToLower());
+            return Put("anonymous_grading", enabled.ToShortString());
         }
 
         
