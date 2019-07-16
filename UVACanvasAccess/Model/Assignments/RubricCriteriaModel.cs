@@ -4,9 +4,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class RubricCriteriaModel {
+    internal class RubricCriteriaModel {
         
         [JsonProperty("points")]
         public uint Points { get; set; }

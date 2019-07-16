@@ -11,9 +11,7 @@ using static UVACanvasAccess.Structures.Discussions.DiscussionTopic.DiscussionHo
 
 namespace UVACanvasAccess.Structures.Discussions {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class TopicEntry : IPrettyPrint {
         private readonly Api _api;
         
@@ -57,7 +55,7 @@ namespace UVACanvasAccess.Structures.Discussions {
                                                                   : "groups");
         }
 
-        public TopicEntry(Api api, TopicEntryModel model, DiscussionTopic.DiscussionHome home, ulong homeId, ulong parentId) {
+        internal TopicEntry(Api api, TopicEntryModel model, DiscussionTopic.DiscussionHome home, ulong homeId, ulong parentId) {
             _api = api;
             Home = home;
             HomeId = homeId;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Roles;
 using UVACanvasAccess.Structures.Accounts;
@@ -7,9 +8,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Roles {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Role : IPrettyPrint {
         private readonly Api _api;
 
@@ -23,7 +22,7 @@ namespace UVACanvasAccess.Structures.Roles {
 
         public Dictionary<string, RolePermissions> Permissions { get; }
 
-        public Role(Api api, RoleModel model) {
+        internal Role(Api api, RoleModel model) {
             _api = api;
             Label = model.Label;
             BaseRoleType = model.BaseRoleType;

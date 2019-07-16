@@ -6,7 +6,7 @@ namespace UVACanvasAccess.Model.Reports {
     
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable ClassNeverInstantiated.Global
-    public class ReportDescriptionModel {
+    internal class ReportDescriptionModel {
         
         [JsonProperty("report")]
         public string Report { get; set; }
@@ -19,7 +19,7 @@ namespace UVACanvasAccess.Model.Reports {
         public Dictionary<string, ReportParameterDescriptionModel> Parameters { get; set; }
     }
 
-    public class ReportParameterDescriptionModel {
+    internal class ReportParameterDescriptionModel {
         
         [JsonProperty("description")]
         public string Description { get; set; }

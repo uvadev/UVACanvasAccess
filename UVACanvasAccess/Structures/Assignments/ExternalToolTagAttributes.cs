@@ -1,12 +1,11 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class ExternalToolTagAttributes : IPrettyPrint {
         private readonly Api _api;
         
@@ -16,7 +15,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         
         public string ResourceLinkId { get; }
 
-        public ExternalToolTagAttributes(Api api, ExternalToolTagAttributesModel model) {
+        internal ExternalToolTagAttributes(Api api, ExternalToolTagAttributesModel model) {
             _api = api;
             Url = model.Url;
             NewTab = model.NewTab;

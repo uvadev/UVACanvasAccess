@@ -4,9 +4,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class LockInfoModel {
+    internal class LockInfoModel {
         
         [JsonProperty("asset_string")]
         public string AssetString { get; set; }

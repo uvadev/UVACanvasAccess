@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class AnonymousUserDisplayModel {
+    internal class AnonymousUserDisplayModel {
         
         [JsonProperty("anonymous_id")]
         public string AnonymousId { get; set; }

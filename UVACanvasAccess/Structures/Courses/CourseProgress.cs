@@ -6,9 +6,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Courses {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class CourseProgress : IPrettyPrint {
         private readonly Api _api;
         
@@ -21,7 +19,7 @@ namespace UVACanvasAccess.Structures.Courses {
         
         public DateTime? CompletedAt { get; }
 
-        public CourseProgress(Api api, CourseProgressModel model) {
+        internal CourseProgress(Api api, CourseProgressModel model) {
             _api = api;
             RequirementCount = model.RequirementCount;
             RequirementCompletedCount = model.RequirementCompletedCount;

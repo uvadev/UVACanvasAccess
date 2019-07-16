@@ -4,9 +4,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Courses {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class CourseProgressModel {
+    internal class CourseProgressModel {
         
         [JsonProperty("requirement_count")]
         public uint? RequirementCount { get; set; }

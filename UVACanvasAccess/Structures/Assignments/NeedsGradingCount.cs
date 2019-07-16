@@ -1,12 +1,11 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class NeedsGradingCount : IPrettyPrint {
         private readonly Api _api;
         
@@ -14,7 +13,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         
         public uint Count { get; }
 
-        public NeedsGradingCount(Api api, NeedsGradingCountModel model) {
+        internal NeedsGradingCount(Api api, NeedsGradingCountModel model) {
             _api = api;
             SectionId = model.SectionId;
             Count = model.NeedsGradingCount;

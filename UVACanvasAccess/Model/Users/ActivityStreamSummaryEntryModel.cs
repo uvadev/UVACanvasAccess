@@ -3,9 +3,7 @@ using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class ActivityStreamSummaryEntryModel {
+    internal class ActivityStreamSummaryEntryModel {
         
         [JsonProperty("type")]
         public string Type { get; set; }

@@ -1,12 +1,11 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class TurnitinSettings : IPrettyPrint {
         private readonly Api _api;
         
@@ -26,7 +25,7 @@ namespace UVACanvasAccess.Structures.Assignments {
 
         public uint ExcludeSmallMatchesValue { get; }
 
-        public TurnitinSettings(Api api, TurnitinSettingsModel model) {
+        internal TurnitinSettings(Api api, TurnitinSettingsModel model) {
             _api = api;
             OriginalityReportVisibility = model.OriginalityReportVisibility;
             SPaperCheck = model.SPaperCheck;

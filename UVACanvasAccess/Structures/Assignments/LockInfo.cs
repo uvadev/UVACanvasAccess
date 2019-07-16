@@ -6,9 +6,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class LockInfo : IPrettyPrint {
         private readonly Api _api;
         
@@ -23,7 +21,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         
         public bool? ManuallyLocked { get; }
 
-        public LockInfo(Api api, LockInfoModel model) {
+        internal LockInfo(Api api, LockInfoModel model) {
             _api = api;
             AssetString = model.AssetString;
             UnlockAt = model.UnlockAt;

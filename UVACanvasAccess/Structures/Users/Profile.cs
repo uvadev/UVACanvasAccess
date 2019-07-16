@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
@@ -5,9 +6,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
 
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Profile : IPrettyPrint {
         private readonly Api _api;
         
@@ -76,7 +75,7 @@ namespace UVACanvasAccess.Structures.Users {
         
         public string Locale { get; private set; }
 
-        public Profile(Api api, ProfileModel model) {
+        internal Profile(Api api, ProfileModel model) {
             _api = api;
             
             Id = model.Id;

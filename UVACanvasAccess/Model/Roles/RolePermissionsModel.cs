@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Roles {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class RolePermissionsModel {
+    internal class RolePermissionsModel {
         
         [JsonProperty("enabled")]
         public bool Enabled { get; set; }

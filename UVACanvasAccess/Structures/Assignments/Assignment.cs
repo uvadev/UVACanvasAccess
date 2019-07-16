@@ -1,18 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Model.Submissions;
+using UVACanvasAccess.Structures.Discussions;
+using UVACanvasAccess.Structures.Submissions;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Assignment : IPrettyPrint {
         private readonly Api _api;
         
@@ -57,12 +58,12 @@ namespace UVACanvasAccess.Structures.Assignments {
         public bool? VeriCiteEnabled { get; } 
         
         [CanBeNull]
-        public TurnitinSettingsModel TurnitinSettings { get; }
+        public TurnitinSettings TurnitinSettings { get; }
 
         public bool GradeGroupStudentsIndividually { get; }
         
         [CanBeNull]
-        public ExternalToolTagAttributesModel ExternalToolTagAttributes { get; }
+        public ExternalToolTagAttributes ExternalToolTagAttributes { get; }
 
         public bool PeerReviews { get; }
 
@@ -79,7 +80,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public uint? NeedsGradingCount { get; }
         
         [CanBeNull]
-        public IEnumerable<NeedsGradingCountModel> NeedsGradingCountBySection { get; }
+        public IEnumerable<NeedsGradingCount> NeedsGradingCountBySection { get; }
         
         public ulong Position { get; }
         
@@ -112,7 +113,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public bool LockedForUser { get; }
         
         [CanBeNull]
-        public LockInfoModel LockInfo { get; }
+        public LockInfo LockInfo { get; }
         
         [CanBeNull]
         public string LockExplanation { get; }
@@ -122,7 +123,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public bool? AnonymousSubmissions { get; }
         
         [CanBeNull]
-        public DiscussionTopicModel DiscussionTopic { get; }
+        public DiscussionTopic DiscussionTopic { get; }
 
         public bool? FreezeOnCopy { get; }
 
@@ -132,7 +133,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public IEnumerable<string> FrozenAttributes { get; }
         
         [CanBeNull]
-        public SubmissionModel Submission { get; }
+        public Submission Submission { get; }
         
         public bool? UseRubricForGrading { get; }
         
@@ -140,13 +141,13 @@ namespace UVACanvasAccess.Structures.Assignments {
         public object RubricSettings { get; } // again, docs give no concrete type.
         
         [CanBeNull]
-        public IEnumerable<RubricCriteriaModel> Rubric { get; } 
+        public IEnumerable<RubricCriteria> Rubric { get; } 
         
         [CanBeNull]
         public IEnumerable<ulong> AssignmentVisibility { get; }
         
         [CanBeNull]
-        public IEnumerable<AssignmentOverrideModel> Overrides { get; }
+        public IEnumerable<AssignmentOverride> Overrides { get; }
         
         public bool? OmitFromFinalGrade { get; }
         
@@ -166,7 +167,8 @@ namespace UVACanvasAccess.Structures.Assignments {
 
         public int AllowedAttempts { get; }
 
-        public Assignment(Api api, AssignmentModel model) {
+        [SuppressMessage("ReSharper", "ImplicitlyCapturedClosure")]
+        internal Assignment(Api api, AssignmentModel model) {
             _api = api;
             Id = model.Id;
             Name = model.Name;
@@ -189,9 +191,9 @@ namespace UVACanvasAccess.Structures.Assignments {
             MaxNameLength = model.MaxNameLength;
             TurnitinEnabled = model.TurnitinEnabled;
             VeriCiteEnabled = model.VeriCiteEnabled;
-            TurnitinSettings = model.TurnitinSettings;
+            TurnitinSettings = model.TurnitinSettings.ConvertIfNotNull(m => new TurnitinSettings(api, m));
             GradeGroupStudentsIndividually = model.GradeGroupStudentsIndividually;
-            ExternalToolTagAttributes = model.ExternalToolTagAttributes;
+            ExternalToolTagAttributes = model.ExternalToolTagAttributes.ConvertIfNotNull(m => new ExternalToolTagAttributes(api, m));
             PeerReviews = model.PeerReviews;
             AutomaticPeerReviews = model.AutomaticPeerReviews;
             PeerReviewCount = model.PeerReviewCount;
@@ -199,7 +201,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             IntraGroupPeerReviews = model.IntraGroupPeerReviews;
             GroupCategoryId = model.GroupCategoryId;
             NeedsGradingCount = model.NeedsGradingCount;
-            NeedsGradingCountBySection = model.NeedsGradingCountBySection;
+            NeedsGradingCountBySection = model.NeedsGradingCountBySection.SelectNotNull(m => new NeedsGradingCount(api, m));
             Position = model.Position;
             PostToSis = model.PostToSis;
             IntegrationId = model.IntegrationId;
@@ -214,20 +216,20 @@ namespace UVACanvasAccess.Structures.Assignments {
             Unpublishable = model.Unpublishable;
             OnlyVisibleToOverrides = model.OnlyVisibleToOverrides;
             LockedForUser = model.LockedForUser;
-            LockInfo = model.LockInfo;
+            LockInfo = model.LockInfo.ConvertIfNotNull(m => new LockInfo(api, m));
             LockExplanation = model.LockExplanation;
             QuizId = model.QuizId;
             AnonymousSubmissions = model.AnonymousSubmissions;
-            DiscussionTopic = model.DiscussionTopic;
+            DiscussionTopic = model.DiscussionTopic.ConvertIfNotNull(m => new DiscussionTopic(api, m, DiscussionTopic.DiscussionHome.Course, model.CourseId));
             FreezeOnCopy = model.FreezeOnCopy;
             Frozen = model.Frozen;
             FrozenAttributes = model.FrozenAttributes;
-            Submission = model.Submission;
+            Submission = model.Submission.ConvertIfNotNull(m => new Submission(api, m));
             UseRubricForGrading = model.UseRubricForGrading;
             RubricSettings = model.RubricSettings;
-            Rubric = model.Rubric;
+            Rubric = model.Rubric.SelectNotNull(m => new RubricCriteria(api, m));
             AssignmentVisibility = model.AssignmentVisibility;
-            Overrides = model.Overrides;
+            Overrides = model.Overrides.SelectNotNull(m => new AssignmentOverride(api, m));
             OmitFromFinalGrade = model.OmitFromFinalGrade;
             ModeratedGrading = model.ModeratedGrading;
             GraderCount = model.GraderCount;

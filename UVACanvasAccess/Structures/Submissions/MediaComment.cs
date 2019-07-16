@@ -1,12 +1,11 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Submissions;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Submissions {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class MediaComment : IPrettyPrint {
         private readonly Api _api;
         
@@ -20,7 +19,7 @@ namespace UVACanvasAccess.Structures.Submissions {
         
         public string Url { get; }
 
-        public MediaComment(Api api, MediaCommentModel model) {
+        internal MediaComment(Api api, MediaCommentModel model) {
             _api = api;
             ContentType = model.ContentType;
             DisplayName = model.DisplayName;

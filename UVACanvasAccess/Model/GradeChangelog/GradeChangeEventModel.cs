@@ -4,9 +4,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.GradeChangelog {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class GradeChangeEventModel {
+    internal class GradeChangeEventModel {
         
         [JsonProperty("id")]
         public string Id { get; set; }

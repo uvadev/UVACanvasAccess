@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Gradebook;
 using UVACanvasAccess.Structures.Assignments;
@@ -6,9 +7,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Gradebook {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Grader : IPrettyPrint {
         private readonly Api _api;
         
@@ -18,7 +17,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
         
         public IEnumerable<Assignment> Assignments { get; }
 
-        public Grader(Api api, GraderModel model) {
+        internal Grader(Api api, GraderModel model) {
             _api = api;
             Id = model.Id;
             Name = model.Name;

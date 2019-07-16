@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Gradebook;
 using UVACanvasAccess.Structures.Submissions;
@@ -6,9 +7,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Gradebook {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class SubmissionVersion : Submission, IPrettyPrint {
         
         public string AssignmentName { get; }
@@ -31,7 +30,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
 
         public string PreviousGrader { get; }
 
-        public SubmissionVersion(Api api, SubmissionVersionModel model) : base(api, model) {
+        internal SubmissionVersion(Api api, SubmissionVersionModel model) : base(api, model) {
             AssignmentName = model.AssignmentName;
             CurrentGrade = model.CurrentGrade;
             CurrentGradedAt = model.CurrentGradedAt;

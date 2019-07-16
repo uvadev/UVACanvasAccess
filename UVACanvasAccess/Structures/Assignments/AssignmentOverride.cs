@@ -7,9 +7,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class AssignmentOverride : IPrettyPrint {
         private readonly Api _api;
 
@@ -35,7 +33,7 @@ namespace UVACanvasAccess.Structures.Assignments {
 
         public DateTime? LockAt { get; }
 
-        public AssignmentOverride(Api api, AssignmentOverrideModel model) {
+        internal AssignmentOverride(Api api, AssignmentOverrideModel model) {
             _api = api;
             Id = model.Id;
             AssignmentId = model.AssignmentId;

@@ -2,8 +2,6 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
     public class TurnitinSettingsModel {
         
         [JsonProperty("originality_report_visibility")]

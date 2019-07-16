@@ -9,9 +9,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Reports {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Report : IPrettyPrint {
         private readonly Api _api;
         
@@ -37,7 +35,7 @@ namespace UVACanvasAccess.Structures.Reports {
 
         public ulong? CurrentLine { get; }
 
-        public Report(Api api, ReportModel model) {
+        internal Report(Api api, ReportModel model) {
             _api = api;
             ReportType = model.Report;
             FileUrl = model.FileUrl;

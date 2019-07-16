@@ -6,9 +6,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Reports {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class ReportDescription : IPrettyPrint {
         private readonly Api _api;
         
@@ -19,7 +17,7 @@ namespace UVACanvasAccess.Structures.Reports {
         [NotNull]
         public Dictionary<string, ReportParameterDescription> Parameters { get; }
 
-        public ReportDescription(Api api, ReportDescriptionModel model) {
+        internal ReportDescription(Api api, ReportDescriptionModel model) {
             _api = api;
             Report = model.Report;
             Title = model.Title;
@@ -41,7 +39,7 @@ namespace UVACanvasAccess.Structures.Reports {
         
         public bool Required { get; }
 
-        public ReportParameterDescription(ReportParameterDescriptionModel model) {
+        internal ReportParameterDescription(ReportParameterDescriptionModel model) {
             Description = model.Description;
             Required = model.Required;
         }

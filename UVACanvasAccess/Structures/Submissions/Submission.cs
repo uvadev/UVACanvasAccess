@@ -10,9 +10,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Submissions {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Submission : IPrettyPrint {
         protected readonly Api Api;
         
@@ -78,7 +76,7 @@ namespace UVACanvasAccess.Structures.Submissions {
         [CanBeNull]
         public string AnonymousId { get; }
 
-        public Submission(Api api, SubmissionModel model) {
+        internal Submission(Api api, SubmissionModel model) {
             Api = api;
             AssignmentId = model.AssignmentId;
             Assignment = model.Assignment.ConvertIfNotNull(m => new Assignment(api, m));

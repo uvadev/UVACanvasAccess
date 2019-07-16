@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
@@ -6,9 +7,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Discussions {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class TopicReply : IPrettyPrint {
         private readonly Api _api;
         
@@ -28,7 +27,7 @@ namespace UVACanvasAccess.Structures.Discussions {
         
         public DateTime CreatedAt { get; }
 
-        public TopicReply(Api api, TopicReplyModel model) {
+        internal TopicReply(Api api, TopicReplyModel model) {
             _api = api;
             Id = model.Id;
             UserId = model.UserId;

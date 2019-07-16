@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Discussions {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class DiscussionTopic : IPrettyPrint {
         private readonly Api _api;
         
@@ -106,10 +105,10 @@ namespace UVACanvasAccess.Structures.Discussions {
             Group
         }
 
-        public DiscussionTopic(Api api, DiscussionTopicModel model, string home, ulong homeId)
+        internal DiscussionTopic(Api api, DiscussionTopicModel model, string home, ulong homeId)
             : this(api, model, home == "courses" ? DiscussionHome.Course : DiscussionHome.Group, homeId) { }
 
-        public DiscussionTopic(Api api, DiscussionTopicModel model, DiscussionHome home, ulong homeId) {
+        internal DiscussionTopic(Api api, DiscussionTopicModel model, DiscussionHome home, ulong homeId) {
             _api = api;
             Home = home;
             HomeId = homeId;

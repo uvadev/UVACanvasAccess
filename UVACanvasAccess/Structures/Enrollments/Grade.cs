@@ -5,9 +5,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Enrollments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Grade : IPrettyPrint {
         private readonly Api _api;
         
@@ -38,7 +36,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         [CanBeNull]
         public string UnpostedFinalScore { get; }
 
-        public Grade(Api api, GradeModel model) {
+        internal Grade(Api api, GradeModel model) {
             _api = api;
             HtmlUrl = model.HtmlUrl;
             CurrentGrade = model.CurrentGrade;

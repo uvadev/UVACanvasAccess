@@ -6,9 +6,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.GradeChangelog {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class GradeChangeEvent : IPrettyPrint {
         private readonly Api _api;
         
@@ -35,7 +33,7 @@ namespace UVACanvasAccess.Structures.GradeChangelog {
         [CanBeNull]
         public GradeChangeEventLinks Links { get; }
 
-        public GradeChangeEvent(Api api, GradeChangeEventModel model) {
+        internal GradeChangeEvent(Api api, GradeChangeEventModel model) {
             _api = api;
             Id = model.Id;
             CreatedAt = model.CreatedAt;

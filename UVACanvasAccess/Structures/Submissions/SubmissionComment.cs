@@ -7,9 +7,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Submissions {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class SubmissionComment : IPrettyPrint {
         private readonly Api _api;
         
@@ -30,7 +28,7 @@ namespace UVACanvasAccess.Structures.Submissions {
         [CanBeNull]
         public MediaComment MediaComment { get; }
 
-        public SubmissionComment(Api api, SubmissionCommentModel model) {
+        internal SubmissionComment(Api api, SubmissionCommentModel model) {
             _api = api;
             Id = model.Id;
             AuthorId = model.AuthorId;

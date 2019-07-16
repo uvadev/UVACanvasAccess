@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class ExternalToolTagAttributesModel {
+    internal class ExternalToolTagAttributesModel {
         
         [JsonProperty("url")]
         public string Url { get; set; }

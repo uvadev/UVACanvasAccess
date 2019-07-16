@@ -4,9 +4,7 @@ using UVACanvasAccess.Model.Submissions;
 
 namespace UVACanvasAccess.Model.Gradebook {
 
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class SubmissionVersionModel : SubmissionModel {
+    internal class SubmissionVersionModel : SubmissionModel {
         
         [JsonProperty("assignment_name")]
         public string AssignmentName { get; set; }

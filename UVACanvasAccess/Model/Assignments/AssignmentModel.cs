@@ -7,9 +7,7 @@ using UVACanvasAccess.Model.Submissions;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class AssignmentModel {
+    internal class AssignmentModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

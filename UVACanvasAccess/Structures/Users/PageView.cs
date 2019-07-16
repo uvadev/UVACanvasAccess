@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
@@ -6,9 +7,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class PageView : IPrettyPrint {
         private readonly Api _api;
 
@@ -46,7 +45,7 @@ namespace UVACanvasAccess.Structures.Users {
         
         public PageViewLinks Links { get; private set; }
 
-        public PageView(Api api, PageViewModel model) {
+        internal PageView(Api api, PageViewModel model) {
             _api = api;
             Id = model.Id;
             AppName = model.AppName;

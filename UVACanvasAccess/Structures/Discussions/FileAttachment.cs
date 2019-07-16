@@ -1,12 +1,11 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Discussions {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class FileAttachment : IPrettyPrint {
         private readonly Api _api;
         
@@ -18,7 +17,7 @@ namespace UVACanvasAccess.Structures.Discussions {
         
         public string DisplayName { get; }
 
-        public FileAttachment(Api api, FileAttachmentModel model) {
+        internal FileAttachment(Api api, FileAttachmentModel model) {
             _api = api;
             ContentType = model.ContentType;
             Url = model.Url;

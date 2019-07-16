@@ -6,9 +6,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class RubricCriteria : IPrettyPrint {
         private readonly Api _api;
         
@@ -29,11 +27,11 @@ namespace UVACanvasAccess.Structures.Assignments {
         public bool CriterionUseRange { get; }
         
         [CanBeNull]
-        public IEnumerable<RubricRatingModel> Ratings { get; }
+        public IEnumerable<RubricRating> Ratings { get; }
 
         public bool IgnoreForScoring { get; }
 
-        public RubricCriteria(Api api, RubricCriteriaModel model) {
+        internal RubricCriteria(Api api, RubricCriteriaModel model) {
             _api = api;
             Points = model.Points;
             Id = model.Id;
@@ -42,7 +40,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             Description = model.Description;
             LongDescription = model.LongDescription;
             CriterionUseRange = model.CriterionUseRange;
-            Ratings = model.Ratings;
+            Ratings = model.Ratings.SelectNotNull(m => new RubricRating(api, m));
             IgnoreForScoring = model.IgnoreForScoring;
         }
 

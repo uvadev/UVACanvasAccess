@@ -5,9 +5,7 @@ using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Model.Enrollments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class EnrollmentModel {
+    internal class EnrollmentModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

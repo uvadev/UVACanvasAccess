@@ -4,9 +4,7 @@ using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class ActivityStreamObjectModel {
+    internal class ActivityStreamObjectModel {
         
         // General
         

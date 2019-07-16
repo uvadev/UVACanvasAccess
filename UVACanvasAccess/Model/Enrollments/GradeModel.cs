@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Enrollments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class GradeModel {
+    internal class GradeModel {
         
         [JsonProperty("html_url")]
         [CanBeNull]

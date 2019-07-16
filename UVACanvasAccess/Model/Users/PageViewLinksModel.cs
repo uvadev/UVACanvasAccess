@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class PageViewLinksModel {
+    internal class PageViewLinksModel {
         
         [JsonProperty("user")]
         public ulong User { get; set; }

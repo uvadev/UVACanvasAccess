@@ -1,13 +1,12 @@
 using System;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
 
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class AssignmentDate : IPrettyPrint {
         private readonly Api _api;
         
@@ -23,7 +22,7 @@ namespace UVACanvasAccess.Structures.Assignments {
 
         public DateTime? LockAt { get; }
 
-        public AssignmentDate(Api api, AssignmentDateModel model) {
+        internal AssignmentDate(Api api, AssignmentDateModel model) {
             _api = api;
             Id = model.Id;
             Base = model.Base;

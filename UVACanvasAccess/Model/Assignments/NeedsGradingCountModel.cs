@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class NeedsGradingCountModel {
+    internal class NeedsGradingCountModel {
         
         [JsonProperty("section_id")]
         public string SectionId { get; set; }

@@ -1,13 +1,12 @@
 using System;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Courses;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Courses {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Term : IPrettyPrint {
         private readonly Api _api;
         
@@ -19,7 +18,7 @@ namespace UVACanvasAccess.Structures.Courses {
         
         public DateTime? EndAt { get; }
 
-        public Term(Api api, TermModel model) {
+        internal Term(Api api, TermModel model) {
             _api = api;
             Id = model.Id;
             Name = model.Name;

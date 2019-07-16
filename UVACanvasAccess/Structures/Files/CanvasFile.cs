@@ -1,12 +1,12 @@
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Files {
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    
+    [PublicAPI]
     public class CanvasFile : IPrettyPrint {
         private readonly Api _api;
         
@@ -56,7 +56,7 @@ namespace UVACanvasAccess.Structures.Files {
         
         public string PreviewUrl { get; }
 
-        public CanvasFile(Api api, CanvasFileModel model) {
+        internal CanvasFile(Api api, CanvasFileModel model) {
             _api = api;
             Id = model.Id;
             Uuid = model.Uuid;

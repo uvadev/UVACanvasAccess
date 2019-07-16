@@ -4,9 +4,7 @@ using UVACanvasAccess.Model.Accounts;
 
 namespace UVACanvasAccess.Model.Roles {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class RoleModel {
+    internal class RoleModel {
         
         [JsonProperty("label")]
         public string Label { get; set; }

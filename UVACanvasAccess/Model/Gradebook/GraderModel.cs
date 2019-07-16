@@ -4,9 +4,7 @@ using UVACanvasAccess.Model.Assignments;
 
 namespace UVACanvasAccess.Model.Gradebook {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class GraderModel {
+    internal class GraderModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

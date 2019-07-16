@@ -5,9 +5,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Accounts {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Account : IPrettyPrint {
         private readonly Api _api;
         
@@ -40,7 +38,7 @@ namespace UVACanvasAccess.Structures.Accounts {
         
         public string WorkflowState { get; }
 
-        public Account(Api api, AccountModel model) {
+        internal Account(Api api, AccountModel model) {
             _api = api;
             Id = model.Id;
             Name = model.Name;

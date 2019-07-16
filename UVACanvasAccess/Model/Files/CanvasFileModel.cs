@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 using StatePrinting;
 
 namespace UVACanvasAccess.Model.Files {
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class CanvasFileModel {
+    internal class CanvasFileModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

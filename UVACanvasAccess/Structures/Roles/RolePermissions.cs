@@ -1,12 +1,11 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Roles;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Roles {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class RolePermissions : IPrettyPrint {
         private readonly Api _api;
         
@@ -24,7 +23,7 @@ namespace UVACanvasAccess.Structures.Roles {
         
         public bool PriorDefault { get; }
 
-        public RolePermissions(Api api, RolePermissionsModel model) {
+        internal RolePermissions(Api api, RolePermissionsModel model) {
             _api = api;
             Enabled = model.Enabled;
             Locked = model.Locked;

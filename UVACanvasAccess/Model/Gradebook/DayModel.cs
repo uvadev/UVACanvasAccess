@@ -4,9 +4,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Gradebook {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class DayModel {
+    internal class DayModel {
         
         [JsonProperty("date")]
         public DateTime Date { get; set; }

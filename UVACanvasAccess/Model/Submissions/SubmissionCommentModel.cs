@@ -5,9 +5,7 @@ using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Model.Submissions {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class SubmissionCommentModel {
+    internal class SubmissionCommentModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

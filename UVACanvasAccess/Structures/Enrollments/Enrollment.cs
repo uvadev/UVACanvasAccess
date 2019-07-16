@@ -7,9 +7,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Enrollments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Enrollment : IPrettyPrint {
         private readonly Api _api;
         
@@ -71,7 +69,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         
         public string HtmlUrl { get; }
         
-        public GradeModel Grades { get; }
+        public Grade Grades { get; }
         
         public UserDisplayModel User { get; }
         
@@ -118,7 +116,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         [CanBeNull]
         public string CurrentPeriodUnpostedFinalGrade { get; }
 
-        public Enrollment(Api api, EnrollmentModel model) {
+        internal Enrollment(Api api, EnrollmentModel model) {
             _api = api;
             Id = model.Id;
             CourseId = model.CourseId;
@@ -146,7 +144,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
             LastAttendedAt = model.LastAttendedAt;
             TotalActivityTime = model.TotalActivityTime;
             HtmlUrl = model.HtmlUrl;
-            Grades = model.Grades;
+            Grades = model.Grades.ConvertIfNotNull(m => new Grade(api, m));
             User = model.User;
             OverrideGrade = model.OverrideGrade;
             OverrideScore = model.OverrideScore;

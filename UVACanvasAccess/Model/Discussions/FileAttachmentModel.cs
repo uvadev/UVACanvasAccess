@@ -3,9 +3,7 @@ using StatePrinting;
 
 namespace UVACanvasAccess.Model.Discussions {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class FileAttachmentModel {
+    internal class FileAttachmentModel {
         
         [JsonProperty("content_type")]
         public string ContentType { get; set; }

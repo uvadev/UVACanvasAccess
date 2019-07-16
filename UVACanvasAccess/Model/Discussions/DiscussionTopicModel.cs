@@ -5,9 +5,7 @@ using StatePrinting;
 
 namespace UVACanvasAccess.Model.Discussions {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class DiscussionTopicModel {
+    internal class DiscussionTopicModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

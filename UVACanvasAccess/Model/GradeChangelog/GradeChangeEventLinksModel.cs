@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.GradeChangelog {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class GradeChangeEventLinksModel {
+    internal class GradeChangeEventLinksModel {
         
         [JsonProperty("assignment")]
         public ulong Assignment { get; set; }

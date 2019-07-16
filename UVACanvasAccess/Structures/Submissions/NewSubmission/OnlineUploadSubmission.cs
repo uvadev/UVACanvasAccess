@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
-// ReSharper disable MemberCanBePrivate.Global
 namespace UVACanvasAccess.Structures.Submissions.NewSubmission {
     
     /// <summary>
     /// Represents the submission of one or more previously uploaded files.
     /// </summary>
+    [PublicAPI]
     public class OnlineUploadSubmission : INewSubmissionContent {
         public ApiSubmissionType Type { get; }
         

@@ -4,9 +4,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Gradebook {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class SubmissionHistoryModel {
+    internal class SubmissionHistoryModel {
         
         [JsonProperty("submission_id")]
         public ulong SubmissionId { get; set; }

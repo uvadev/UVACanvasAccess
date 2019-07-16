@@ -1,17 +1,16 @@
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Structures.Users {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public struct ActivityStreamSummaryEntry {
         public string Type;
         public uint UnreadCount;
         public uint Count;
 
-        public ActivityStreamSummaryEntry(ActivityStreamSummaryEntryModel model) {
+        internal ActivityStreamSummaryEntry(ActivityStreamSummaryEntryModel model) {
             Type = model.Type;
             UnreadCount = model.UnreadCount;
             Count = model.Count;

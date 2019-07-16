@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Accounts {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class HelpLinksModel {
+    internal class HelpLinksModel {
         
         [JsonProperty("help_link_name")]
         public string HelpLinkName { get; set; }

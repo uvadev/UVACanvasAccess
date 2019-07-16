@@ -5,9 +5,7 @@ using StatePrinting;
 using UVACanvasAccess.Model.Enrollments;
 
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class UserModel {
+    internal class UserModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

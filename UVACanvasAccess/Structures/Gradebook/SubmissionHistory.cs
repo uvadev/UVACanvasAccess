@@ -6,9 +6,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Gradebook {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class SubmissionHistory : IPrettyPrint {
         private readonly Api _api;
         
@@ -17,7 +15,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
         [NotNull]
         public IEnumerable<SubmissionVersion> Versions { get; }
 
-        public SubmissionHistory(Api api, SubmissionHistoryModel model) {
+        internal SubmissionHistory(Api api, SubmissionHistoryModel model) {
             _api = api;
             SubmissionId = model.SubmissionId;
             Versions = model.Versions.SelectNotNull(m => new SubmissionVersion(api, m));

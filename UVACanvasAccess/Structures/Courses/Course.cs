@@ -8,9 +8,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Courses {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class Course : IPrettyPrint {
         private readonly Api _api;
         
@@ -113,7 +111,7 @@ namespace UVACanvasAccess.Structures.Courses {
         [CanBeNull]
         public Dictionary<string, Dictionary<string, bool>> BlueprintRestrictionsByObjectType { get; }
 
-        public Course(Api api, CourseModel model) {
+        internal Course(Api api, CourseModel model) {
             _api = api;
             Id = model.Id;
             SisCourseId = model.SisCourseId;

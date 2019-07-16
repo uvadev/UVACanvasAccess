@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Accounts {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class AccountModel {
+    internal class AccountModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

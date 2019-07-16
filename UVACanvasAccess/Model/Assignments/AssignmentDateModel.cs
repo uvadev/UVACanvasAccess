@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class AssignmentDateModel {
+    internal class AssignmentDateModel {
         
         [JsonProperty("id")]
         public ulong? Id { get; set; }

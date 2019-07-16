@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class AvatarModel {
+    internal class AvatarModel {
         
         [JsonProperty("type")]
         public string Type { get; set; }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
@@ -9,9 +10,7 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class User : IPrettyPrint {
         // We keep a reference to the API that yielded this User so that getters can query for needed info and setters
         // can update the API. Many API endpoints that return User omit some fields, so some getters will need to check
@@ -79,7 +78,7 @@ namespace UVACanvasAccess.Structures.Users {
         
         public Dictionary<string, bool> Permissions { get; private set; }
 
-        public User(Api api, UserModel model) {
+        internal User(Api api, UserModel model) {
             _api = api;
             Id = model.Id;
             _name = model.Name;

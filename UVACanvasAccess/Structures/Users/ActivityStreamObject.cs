@@ -1,14 +1,13 @@
 using System;
 using System.Diagnostics;
+using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Structures.Users {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public abstract class ActivityStreamObject {
         protected readonly Api Api;
         
@@ -34,7 +33,7 @@ namespace UVACanvasAccess.Structures.Users {
         
         public string HtmlUrl { get; }
 
-        protected ActivityStreamObject(Api api, ActivityStreamObjectModel model) {
+        internal ActivityStreamObject(Api api, ActivityStreamObjectModel model) {
             Api = api;
             CreatedAt = model.CreatedAt;
             UpdatedAt = model.UpdatedAt;
@@ -49,7 +48,7 @@ namespace UVACanvasAccess.Structures.Users {
             HtmlUrl = model.HtmlUrl;
         }
 
-        public static ActivityStreamObject FromModel(Api api, ActivityStreamObjectModel model) {
+        internal static ActivityStreamObject FromModel(Api api, ActivityStreamObjectModel model) {
             switch (model.Type) {
                 case "DiscussionTopic":
                     return new DiscussionTopic(api, model);
@@ -87,7 +86,7 @@ namespace UVACanvasAccess.Structures.Users {
             
             public ulong DiscussionTopicId { get; }
             
-            public DiscussionTopic(Api api, ActivityStreamObjectModel model) : base(api, model) {
+            internal DiscussionTopic(Api api, ActivityStreamObjectModel model) : base(api, model) {
                 Debug.Assert(model.DiscussionTopicId != null, "model.DiscussionTopicId != null");
                 
                 TotalRootDiscussionEntries = model.TotalRootDiscussionEntries;
@@ -110,7 +109,7 @@ namespace UVACanvasAccess.Structures.Users {
             
             public ulong AnnouncementId { get; }
             
-            public Announcement(Api api, ActivityStreamObjectModel model) : base(api, model) {
+            internal Announcement(Api api, ActivityStreamObjectModel model) : base(api, model) {
                 Debug.Assert(model.AnnouncementId != null, "model.AnnouncementId != null");
                 
                 TotalRootDiscussionEntries = model.TotalRootDiscussionEntries;
@@ -129,7 +128,7 @@ namespace UVACanvasAccess.Structures.Users {
         
             public uint? ParticipantCount { get; }
 
-            public Conversation(Api api, ActivityStreamObjectModel model) : base(api, model) {
+            internal Conversation(Api api, ActivityStreamObjectModel model) : base(api, model) {
                 Debug.Assert(model.ConversationId != null, "model.ConversationId != null");
                 
                 ConversationId = (ulong) model.ConversationId;
@@ -144,7 +143,7 @@ namespace UVACanvasAccess.Structures.Users {
         
             public string NotificationCategory { get; }
 
-            public Message(Api api, ActivityStreamObjectModel model) : base(api, model) {
+            internal Message(Api api, ActivityStreamObjectModel model) : base(api, model) {
                 Debug.Assert(model.MessageId != null, "model.MessageId != null");
                 
                 MessageId = (ulong) model.MessageId;
@@ -156,7 +155,7 @@ namespace UVACanvasAccess.Structures.Users {
             
             public ulong WebConferenceId { get; }
 
-            public Conference(Api api, ActivityStreamObjectModel model) : base(api, model) {
+            internal Conference(Api api, ActivityStreamObjectModel model) : base(api, model) {
                 Debug.Assert(model.WebConferenceId != null, "model.WebConferenceId != null");
                 
                 WebConferenceId = (ulong) model.WebConferenceId;
@@ -167,7 +166,7 @@ namespace UVACanvasAccess.Structures.Users {
             
             public ulong CollaborationId { get; }
 
-            public Collaboration(Api api, ActivityStreamObjectModel model) : base(api, model) {
+            internal Collaboration(Api api, ActivityStreamObjectModel model) : base(api, model) {
                 Debug.Assert(model.CollaborationId != null, "model.CollaborationId != null");
                 
                 CollaborationId = (ulong) model.CollaborationId;
@@ -178,7 +177,7 @@ namespace UVACanvasAccess.Structures.Users {
 
             public ulong AssignmentRequestId { get; }
             
-            public AssignmentRequest(Api api, ActivityStreamObjectModel model) : base(api, model) {
+            internal AssignmentRequest(Api api, ActivityStreamObjectModel model) : base(api, model) {
                 Debug.Assert(model.AssignmentRequestId != null, "model.AssignmentRequestId != null");
                 
                 AssignmentRequestId = (ulong) model.AssignmentRequestId;

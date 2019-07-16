@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Submissions {
     
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public class MediaCommentModel {
+    internal class MediaCommentModel {
         
         [JsonProperty("content-type")]
         public string ContentType { get; set; }

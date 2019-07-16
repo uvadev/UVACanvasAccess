@@ -1,13 +1,12 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Accounts;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Accounts {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class HelpLink : IPrettyPrint {
         private readonly Api _api;
         
@@ -21,7 +20,7 @@ namespace UVACanvasAccess.Structures.Accounts {
         
         public IEnumerable<string> AvailableTo { get; }
 
-        public HelpLink(Api api, HelpLinkModel model) {
+        internal HelpLink(Api api, HelpLinkModel model) {
             _api = api;
             Id = model.Id;
             Text = model.Text;

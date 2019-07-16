@@ -1,12 +1,11 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
-    // ReSharper disable UnusedAutoPropertyAccessor.Global
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-    // ReSharper disable MemberCanBePrivate.Global
+    [PublicAPI]
     public class RubricRating : IPrettyPrint {
         private readonly Api _api;
         
@@ -18,7 +17,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         
         public string LongDescription { get; }
 
-        public RubricRating(Api api, RubricRatingModel model) {
+        internal RubricRating(Api api, RubricRatingModel model) {
             _api = api;
             Points = model.Points;
             Id = model.Id;
