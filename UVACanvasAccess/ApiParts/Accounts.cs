@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Accounts;
+using UVACanvasAccess.Model.Courses;
 using UVACanvasAccess.Structures.Accounts;
+using UVACanvasAccess.Structures.Courses;
 using UVACanvasAccess.Structures.Roles;
 using UVACanvasAccess.Util;
 
@@ -230,7 +232,33 @@ namespace UVACanvasAccess.ApiParts {
 
             return _client.GetAsync(url + query);
         }
-        
-        // todo Course model and structure
+
+        public async Task<IEnumerable<Course>> ListCourses(ulong? accountId = null,
+                                                           string searchTerm = null,
+                                                           bool? withEnrollmentsOnly = null,
+                                                           bool? published = null,
+                                                           bool? completed = null,
+                                                           bool? blueprint = null,
+                                                           bool? blueprintAssociated = null,
+                                                           ulong? enrollmentTermId = null,
+                                                           IEnumerable<ulong> byTeachers = null,
+                                                           IEnumerable<ulong> bySubaccounts = null,
+                                                           CourseEnrollmentTypes? enrollmentTypes = null,
+                                                           CourseStates? states = null,
+                                                           AccountLevelCourseIncludes? includes = null,
+                                                           CourseSort? sort = null,
+                                                           CourseSearchBy? searchBy = null,
+                                                           Order? order = null) {
+            
+            var response = await RawListCourses(accountId?.ToString() ?? "self", searchTerm, withEnrollmentsOnly, 
+                                                published, completed, blueprint, blueprintAssociated, enrollmentTermId,
+                                                byTeachers, bySubaccounts, enrollmentTypes, states, includes, sort,
+                                                searchBy, order);
+
+            List<CourseModel> models = await AccumulateDeserializePages<CourseModel>(response);
+
+            return from model in models
+                   select new Course(this, model);
+        }
     }
 }

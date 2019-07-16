@@ -22,7 +22,7 @@ namespace UVACanvasAccess.Structures.Courses {
         
         public string IntegrationId { get; }
         
-        public ulong SisImportId { get; }
+        public ulong? SisImportId { get; }
         
         public string Name { get; }
         
@@ -36,7 +36,7 @@ namespace UVACanvasAccess.Structures.Courses {
         
         public ulong EnrollmentTermId { get; }
         
-        public ulong GradingStandardId { get; }
+        public ulong? GradingStandardId { get; }
         
         public DateTime CreatedAt { get; }
         
@@ -68,13 +68,13 @@ namespace UVACanvasAccess.Structures.Courses {
         
         public Dictionary<string, bool> Permissions { get; }
         
-        public bool IsPublic { get; }
+        public bool? IsPublic { get; }
         
-        public bool IsPublicToAuthUsers { get; }
+        public bool? IsPublicToAuthUsers { get; }
         
-        public bool PublicSyllabus { get; }
+        public bool? PublicSyllabus { get; }
         
-        public bool PublicSyllabusToAuth { get; }
+        public bool? PublicSyllabusToAuth { get; }
         
         [CanBeNull]
         public string PublicDescription { get; }
@@ -83,21 +83,21 @@ namespace UVACanvasAccess.Structures.Courses {
         
         public ulong StorageQuotaUsedMb { get; }
         
-        public bool HideFinalGrades { get; }
+        public bool? HideFinalGrades { get; }
         
         public string License { get; }
         
-        public bool AllowStudentAssignmentEdits { get; }
+        public bool? AllowStudentAssignmentEdits { get; }
         
-        public bool AllowWikiComments { get; }
+        public bool? AllowWikiComments { get; }
         
-        public bool AllowStudentForumAttachments { get; }
+        public bool? AllowStudentForumAttachments { get; }
         
-        public bool OpenEnrollment { get; }
+        public bool? OpenEnrollment { get; }
         
-        public bool SelfEnrollment { get; }
+        public bool? SelfEnrollment { get; }
         
-        public bool RestrictEnrollmentsToCourseDates { get; }
+        public bool? RestrictEnrollmentsToCourseDates { get; }
         
         public string CourseFormat { get; }
         
@@ -182,16 +182,16 @@ namespace UVACanvasAccess.Structures.Courses {
                    $"\n{nameof(StartAt)}: {StartAt}," +
                    $"\n{nameof(EndAt)}: {EndAt}," +
                    $"\n{nameof(Locale)}: {Locale}," +
-                   $"\n{nameof(Enrollments)}: {Enrollments}," +
+                   $"\n{nameof(Enrollments)}: {Enrollments.ToPrettyString()}," +
                    $"\n{nameof(TotalStudents)}: {TotalStudents}," +
                    $"\n{nameof(Calendar)}: {Calendar}," +
                    $"\n{nameof(DefaultView)}: {DefaultView}," +
                    $"\n{nameof(SyllabusBody)}: {SyllabusBody}," +
                    $"\n{nameof(NeedsGradingCount)}: {NeedsGradingCount}," +
-                   $"\n{nameof(Term)}: {Term}," +
-                   $"\n{nameof(CourseProgress)}: {CourseProgress}," +
+                   $"\n{nameof(Term)}: {Term?.ToPrettyString()}," +
+                   $"\n{nameof(CourseProgress)}: {CourseProgress?.ToPrettyString()}," +
                    $"\n{nameof(ApplyAssignmentGroupWeights)}: {ApplyAssignmentGroupWeights}," +
-                   $"\n{nameof(Permissions)}: {Permissions}," +
+                   $"\n{nameof(Permissions)}: {Permissions?.ToPrettyString()}," +
                    $"\n{nameof(IsPublic)}: {IsPublic}," +
                    $"\n{nameof(IsPublicToAuthUsers)}: {IsPublicToAuthUsers}," +
                    $"\n{nameof(PublicSyllabus)}: {PublicSyllabus}," +
@@ -211,8 +211,8 @@ namespace UVACanvasAccess.Structures.Courses {
                    $"\n{nameof(AccessRestrictedByDate)}: {AccessRestrictedByDate}," +
                    $"\n{nameof(TimeZone)}: {TimeZone}," +
                    $"\n{nameof(Blueprint)}: {Blueprint}," +
-                   $"\n{nameof(BlueprintRestrictions)}: {BlueprintRestrictions}," +
-                   $"\n{nameof(BlueprintRestrictionsByObjectType)}: {BlueprintRestrictionsByObjectType}").Indent(4) + 
+                   $"\n{nameof(BlueprintRestrictions)}: {BlueprintRestrictions?.ToPrettyString()}," +
+                   $"\n{nameof(BlueprintRestrictionsByObjectType)}: {BlueprintRestrictionsByObjectType?.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
     }

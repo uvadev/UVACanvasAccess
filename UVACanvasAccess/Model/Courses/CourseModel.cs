@@ -23,7 +23,7 @@ namespace UVACanvasAccess.Model.Courses {
         public string IntegrationId { get; set; }
         
         [JsonProperty("sis_import_id")]
-        public ulong SisImportId { get; set; }
+        public ulong? SisImportId { get; set; }
         
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -44,7 +44,7 @@ namespace UVACanvasAccess.Model.Courses {
         public ulong EnrollmentTermId { get; set; }
         
         [JsonProperty("grading_standard_id")]
-        public ulong GradingStandardId { get; set; }
+        public ulong? GradingStandardId { get; set; }
         
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
@@ -92,16 +92,16 @@ namespace UVACanvasAccess.Model.Courses {
         public Dictionary<string, bool> Permissions { get; set; }
         
         [JsonProperty("is_public")]
-        public bool IsPublic { get; set; }
+        public bool? IsPublic { get; set; }
         
         [JsonProperty("is_public_to_auth_users")]
-        public bool IsPublicToAuthUsers { get; set; }
+        public bool? IsPublicToAuthUsers { get; set; }
         
         [JsonProperty("public_syllabus")]
-        public bool PublicSyllabus { get; set; }
+        public bool? PublicSyllabus { get; set; }
         
         [JsonProperty("public_syllabus_to_auth")]
-        public bool PublicSyllabusToAuth { get; set; }
+        public bool? PublicSyllabusToAuth { get; set; }
         
         [JsonProperty("public_description")]
         [CanBeNull]
@@ -114,28 +114,28 @@ namespace UVACanvasAccess.Model.Courses {
         public ulong StorageQuotaUsedMb { get; set; }
         
         [JsonProperty("hide_final_grades")]
-        public bool HideFinalGrades { get; set; }
+        public bool? HideFinalGrades { get; set; }
         
         [JsonProperty("license")]
         public string License { get; set; }
         
         [JsonProperty("allow_student_assignment_edits")]
-        public bool AllowStudentAssignmentEdits { get; set; }
+        public bool? AllowStudentAssignmentEdits { get; set; }
         
         [JsonProperty("allow_wiki_comments")]
-        public bool AllowWikiComments { get; set; }
+        public bool? AllowWikiComments { get; set; }
         
         [JsonProperty("allow_student_forum_attachments")]
-        public bool AllowStudentForumAttachments { get; set; }
+        public bool? AllowStudentForumAttachments { get; set; }
         
         [JsonProperty("open_enrollment")]
-        public bool OpenEnrollment { get; set; }
+        public bool? OpenEnrollment { get; set; }
         
         [JsonProperty("self_enrollment")]
-        public bool SelfEnrollment { get; set; }
+        public bool? SelfEnrollment { get; set; }
         
         [JsonProperty("restrict_enrollments_to_courses")]
-        public bool RestrictEnrollmentsToCourseDates { get; set; }
+        public bool? RestrictEnrollmentsToCourseDates { get; set; }
         
         [JsonProperty("course_format")]
         public string CourseFormat { get; set; }
