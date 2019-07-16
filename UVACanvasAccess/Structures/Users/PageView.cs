@@ -28,7 +28,7 @@ namespace UVACanvasAccess.Structures.Users {
         
         public bool? Contributed { get; private set; }
         
-        public double? InteractionSeconds { get; private set; }
+        public ulong? InteractionSeconds { get; private set; }
         
         public DateTime CreatedAt { get; private set; }
         

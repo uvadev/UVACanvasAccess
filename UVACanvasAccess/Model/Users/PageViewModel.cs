@@ -32,7 +32,7 @@ namespace UVACanvasAccess.Model.Users {
         public bool? Contributed { get; set; }
         
         [JsonProperty("interaction_seconds")]
-        public double? InteractionSeconds { get; set; }
+        public ulong? InteractionSeconds { get; set; }
         
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
