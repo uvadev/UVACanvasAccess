@@ -5,6 +5,7 @@ using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
 using UVACanvasAccess.Util;
+using static UVACanvasAccess.ApiParts.Api.AccountLevelCourseIncludes;
 using static UVACanvasAccess.ApiParts.Api.CourseSearchBy;
 
 namespace UVACanvasAccess {
@@ -29,7 +30,8 @@ namespace UVACanvasAccess {
                               "https://uview.instructure.com/api/v1/");
 
             var courses = await api.ListCourses(searchTerm: "test", 
-                                                searchBy: Course);
+                                                searchBy: Course,
+                                                includes: Everything);
 
             Console.WriteLine(courses.ToPrettyString());
         }
