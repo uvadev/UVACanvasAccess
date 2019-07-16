@@ -145,7 +145,7 @@ namespace UVACanvasAccess.Util {
         /// <seealso cref="ApiRepresentationAttribute"/>
         [CanBeNull]
         [Pure]
-        internal static string GetApiRepresentation(this Enum en) {
+        internal static string GetApiRepresentation([NotNull] this Enum en) {
             MemberInfo[] member = en.GetType().GetMember(en.ToString());
 
             if (member.Length <= 0) 
@@ -156,7 +156,27 @@ namespace UVACanvasAccess.Util {
             return attribute.Length > 0 ? ((ApiRepresentationAttribute) attribute[0]).Representation 
                                         : null;
         }
-        
+
+        [PublicAPI]
+        public static IEnumerable<T> Peek<T>([NotNull] this IEnumerable<T> ie, Action<T> a) {
+            List<T> list = ie.ToList();
+            foreach (var e in list) {
+                a(e);
+            }
+
+            return list;
+        }
+
+        [Pure]
+        internal static IEnumerable<string> GetApiRepresentations([NotNull] this IEnumerable<Enum> ie) {
+            return ie.Select(e => e.GetApiRepresentation());
+        }
+
+        [Pure]
+        internal static IEnumerable<string> GetFlagsApiRepresentations([NotNull] this Enum en) {
+            return en.GetFlags().GetApiRepresentations();
+        }
+
         [CanBeNull]
         [Pure]
         internal static T? ToApiRepresentedEnum<T>(this string str) where T: struct, Enum {

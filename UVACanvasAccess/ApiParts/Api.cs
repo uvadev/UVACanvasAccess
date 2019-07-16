@@ -214,5 +214,13 @@ namespace UVACanvasAccess.ApiParts {
 
             return accumulated;
         }
+        
+        [PublicAPI]
+        public enum Order {
+            [ApiRepresentation("asc")]
+            Ascending,
+            [ApiRepresentation("desc")]
+            Descending
+        }
     }
 }
