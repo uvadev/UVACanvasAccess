@@ -7,7 +7,7 @@ namespace UVACanvasAccess.Model.Courses {
     // ReSharper disable once ClassNeverInstantiated.Global
     public class TermModel {
         
-        [JsonProperty("")]
+        [JsonProperty("id")]
         public ulong Id { get; set; }
         
         [JsonProperty("name")]
