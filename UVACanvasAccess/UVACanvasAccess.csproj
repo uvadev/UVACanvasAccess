@@ -277,6 +277,7 @@
     <Compile Include="Util\IPrettyPrint.cs" />
     <Compile Include="Util\KeyValuePair.cs" />
     <Compile Include="Util\LinkHeader.cs" />
+    <Compile Include="Util\OptIn.cs" />
     <Compile Include="Util\PaginatedResponse.cs" />
   </ItemGroup>
   <ItemGroup>

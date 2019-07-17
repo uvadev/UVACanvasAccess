@@ -5,6 +5,9 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
+    /// <summary>
+    /// Represents one rating as part of a rubric.
+    /// </summary>
     [PublicAPI]
     public class RubricRating : IPrettyPrint {
         private readonly Api _api;

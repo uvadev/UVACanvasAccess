@@ -1,18 +1,21 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 
 namespace UVACanvasAccess.Util {
-    public class LinkHeader {
-        public string FirstLink { get; private set; }
-        public string PrevLink { get; private set; }
-        public string NextLink { get; private set; }
-        public string LastLink { get; private set; }
+    
+    [PublicAPI]
+    internal class LinkHeader {
+        internal string FirstLink { get; private set; }
+        internal string PrevLink { get; private set; }
+        internal string NextLink { get; private set; }
+        internal string LastLink { get; private set; }
 
-        public static LinkHeader LinksFromHeader(string linkHeaderStr) {
+        internal static LinkHeader LinksFromHeader(string linkHeaderStr) {
             if (string.IsNullOrWhiteSpace(linkHeaderStr)) 
                 return null;
             
-            var linkStrings = linkHeaderStr.Split(',');
+            string[] linkStrings = linkHeaderStr.Split(',');
 
             if (!linkStrings.Any())
                 return null;

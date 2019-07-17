@@ -6,6 +6,9 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
+    /// <summary>
+    /// Represents some rubric criteria.
+    /// </summary>
     [PublicAPI]
     public class RubricCriteria : IPrettyPrint {
         private readonly Api _api;

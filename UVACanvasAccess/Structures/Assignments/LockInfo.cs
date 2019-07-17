@@ -6,6 +6,9 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
+    /// <summary>
+    /// Details about an assignment lock.
+    /// </summary>
     [PublicAPI]
     public class LockInfo : IPrettyPrint {
         private readonly Api _api;

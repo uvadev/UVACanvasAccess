@@ -73,7 +73,7 @@ namespace UVACanvasAccess.Model.Assignments {
         public TurnitinSettingsModel TurnitinSettings { get; set; }
         
         [JsonProperty("grade_group_students_individually")]
-        public bool GradeGroupStudentsIndividually { get; set; }
+        public bool? GradeGroupStudentsIndividually { get; set; }
         
         [CanBeNull]
         [JsonProperty("external_tool_tag_attributes")]

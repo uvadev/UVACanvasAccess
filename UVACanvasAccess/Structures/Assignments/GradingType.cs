@@ -1,6 +1,10 @@
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
+    
+    /// <summary>
+    /// Represents the type of grading system used by an assignment.
+    /// </summary>
     public enum GradingType {
         [ApiRepresentation("points")]
         Points,

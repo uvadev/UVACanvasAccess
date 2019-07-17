@@ -7,20 +7,42 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
+    /// <summary>
+    /// Represents a change in dates for an <see cref="Assignment">assignment</see> for a subset of students.
+    /// </summary>
     [PublicAPI]
     public class AssignmentOverride : IPrettyPrint {
         private readonly Api _api;
 
+        /// <summary>
+        /// The override id.
+        /// </summary>
         public ulong Id { get; }
 
+        /// <summary>
+        /// The assignment this override applies to.
+        /// </summary>
         public ulong AssignmentId { get; }
 
-        [CanBeNull] public IEnumerable<ulong> StudentIds { get; }
+        /// <summary>
+        /// The students this override applies to.
+        /// </summary>
+        [CanBeNull] 
+        public IEnumerable<ulong> StudentIds { get; }
 
+        /// <summary>
+        /// The group this override applies to.
+        /// </summary>
         public ulong? GroupId { get; }
 
+        /// <summary>
+        /// The section this override applies to.
+        /// </summary>
         public ulong CourseSectionId { get; }
 
+        /// <summary>
+        /// The title of the override.
+        /// </summary>
         public string Title { get; }
 
         public DateTime? DueAt { get; }

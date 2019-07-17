@@ -6,18 +6,36 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Accounts {
     
+    /// <summary>
+    /// Represents an account help link.
+    /// </summary>
     [PublicAPI]
     public class HelpLink : IPrettyPrint {
         private readonly Api _api;
         
+        /// <summary>
+        /// The help link's id.
+        /// </summary>
         public string Id { get; }
         
+        /// <summary>
+        /// The help link's name.
+        /// </summary>
         public string Text { get; }
         
+        /// <summary>
+        /// The help link's description.
+        /// </summary>
         public string Subtext { get; }
         
+        /// <summary>
+        /// The help link's URL.
+        /// </summary>
         public string Url { get; }
         
+        /// <summary>
+        /// The roles that can see this help link.
+        /// </summary>
         public IEnumerable<string> AvailableTo { get; }
 
         internal HelpLink(Api api, HelpLinkModel model) {

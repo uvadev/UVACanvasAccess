@@ -76,15 +76,11 @@ namespace UVACanvasAccess.Util {
             var kIsPretty = IsA<IPrettyPrint, TK>();
             var vIsPretty = IsA<IPrettyPrint, TV>();
             
-            foreach (var entry in dictionary) {
-                // why doesn't c# have generic specialization
-                // why doesn't c# have generic specialization
-                // why doesn't c# have generic specialization
-                // why doesn't c# have generic specialization
-                var k = kIsPretty ? ((IPrettyPrint) entry.Key).ToPrettyString() 
-                                  : entry.Key.ToString();
-                var v = vIsPretty ? ((IPrettyPrint) entry.Value).ToPrettyString() 
-                                  : entry.Value.ToString();
+            foreach (var (key, val) in dictionary) {
+                var k = kIsPretty ? ((IPrettyPrint) key).ToPrettyString() 
+                                  : key.ToString();
+                var v = vIsPretty ? ((IPrettyPrint) val).ToPrettyString() 
+                                  : val.ToString();
                 sb.Append($"\n{k} -> {v}".Indent(4));
             }
 
@@ -109,6 +105,7 @@ namespace UVACanvasAccess.Util {
         }
 
         // C# lacks proper generic specialization which makes me sad. This is the best we have.
+        [Pure]
         internal static bool IsA<TInterface, TType>() {
             return typeof(TInterface).IsAssignableFrom(typeof(TType));
         }
