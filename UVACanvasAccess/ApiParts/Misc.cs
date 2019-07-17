@@ -56,7 +56,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawGetUserPageViews(string userId, string startTime, string endTime) {
-            return _client.GetAsync($"/api/v1/users/{userId}/page_views" +
+            return _client.GetAsync($"users/{userId}/page_views" +
                                     BuildQueryString(("start_time", startTime), ("end_time", endTime)));
         }
 
