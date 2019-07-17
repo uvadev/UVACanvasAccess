@@ -117,7 +117,7 @@ namespace UVACanvasAccess.ApiParts {
         }
         
         /// <summary>
-        /// Get the list of users associated with the account, according to a search term.
+        /// Get the list of users associated with the account.
         /// Corresponds to the API endpoint <c>GET /api/v1/accounts/:account_id/users</c>. 
         /// </summary>
         /// <param name="searchTerm">The partial name or full ID of the users to match.</param>
@@ -126,17 +126,40 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="order">The order to sort the given column by. Allowed values are <c>asc, desc</c>.</param>
         /// <returns>The list of users found in the search.</returns>
         /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
-        public async Task<IEnumerable<User>> ListUsers(string searchTerm,
-                                                          string sort = null,
-                                                          string order = null,
-                                                          string accountId = "self") {
+        public async Task<IEnumerable<User>> ListUsers(string searchTerm = null,
+                                                       string sort = null,
+                                                       string order = null,
+                                                       string accountId = "self") {
             var response = await RawGetListUsers(searchTerm, accountId, sort, order);
-            response.AssertSuccess();
 
             var userModels = await AccumulateDeserializePages<UserModel>(response);
 
             return from userModel in userModels
                    select new User(this, userModel);
+        }
+
+        /// <summary>
+        /// Stream the list of users associated with the account.
+        /// Corresponds to the API endpoint <c>GET /api/v1/accounts/:account_id/users</c>. 
+        /// </summary>
+        /// <param name="searchTerm">The partial name or full ID of the users to match.</param>
+        /// <param name="accountId">The account to search. <c>self</c> by default.</param>
+        /// <param name="sort">The column to sort results by. Allowed values are <c>username, email, sis_id, last_login</c>.</param>
+        /// <param name="order">The order to sort the given column by. Allowed values are <c>asc, desc</c>.</param>
+        /// <returns>The stream of users found in the search.</returns>
+        /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
+        public async IAsyncEnumerable<User> StreamUsers(string searchTerm = null,
+                                                        string sort = null,
+                                                        string order = null,
+                                                        string accountId = "self") {
+            var response = await RawGetListUsers(searchTerm, accountId, sort, order);
+
+            var users = StreamDeserializePages<UserModel>(response)
+                       .Select(m => new User(this, m));
+
+            await foreach (var user in users) {
+                yield return user;
+            }
         }
     }
 }

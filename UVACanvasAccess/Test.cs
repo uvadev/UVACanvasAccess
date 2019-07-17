@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
-using UVACanvasAccess.Structures.Courses;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
@@ -30,11 +28,18 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var streamedCourseNames = api.StreamCourses()
-                                         .Select(c => c.Name);
+            var names = await api.ListUsers()
+                                 .ThenAccept(l => l.Select(u => u.Name));
 
-            await foreach (var course in streamedCourseNames) {
-                Console.WriteLine(course);
+            foreach (var name in names) {
+                Console.WriteLine(name);
+            }
+            
+            var streamedNames = api.StreamUsers()
+                                   .Select(c => c.Name);
+
+            await foreach (var name in streamedNames) {
+                Console.WriteLine(name);
             }
         }
     }
