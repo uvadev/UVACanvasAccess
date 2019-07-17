@@ -307,14 +307,52 @@ namespace UVACanvasAccess.ApiParts {
             return from model in models
                    select new Course(this, model);
         }
-
-        /// <inheritdoc cref="ListCourses"/>
+        
         /// <summary>
         /// Asynchronously streams the courses associated with this account.
         ///
         /// <paramref name="accountId"/>, when omitted, defaults to <c>self</c>.
         /// All other parameters are optional and serve to narrow the search or change the included data.
         /// </summary>
+        /// <param name="accountId">The account id.</param>
+        /// <param name="searchTerm">
+        /// A search term, searching either by course or teacher name as according to <paramref name="searchBy"/>.
+        /// </param>
+        /// <param name="withEnrollmentsOnly">
+        /// If true, only include courses with at least 1 enrollment. If false, only include courses with no enrollments.
+        /// If omitted, no-op.
+        /// </param>
+        /// <param name="published">
+        /// If true, only include courses that are published. If false, only include courses that are not published.
+        /// If omitted, no-op.
+        /// </param>
+        /// <param name="completed">
+        /// If true, only include courses that are completed. If false, only include courses that are not completed.
+        /// If omitted, no-op.
+        /// </param>
+        /// <param name="blueprint">
+        /// If true, only include courses that are blueprints. If false, only include courses that are not blueprints.
+        /// If omitted, no-op.
+        /// </param>
+        /// <param name="blueprintAssociated">
+        /// If true, only include courses that inherit from a blueprint.
+        /// If false, only include courses that do not inherit from a blueprint..
+        /// If omitted, no-op.
+        /// </param>
+        /// <param name="enrollmentTermId">If present, only include courses from this term.</param>
+        /// <param name="byTeachers">If present, only include courses taught by these teachers.</param>
+        /// <param name="bySubaccounts">If present, only include course associated with these subaccounts.</param>
+        /// <param name="enrollmentTypes">
+        /// If present, only include courses that have at least user enrolled with one of these enrollment types.
+        /// </param>
+        /// <param name="states">
+        /// If present, only include courses that are in one of these states.
+        /// If omitted, all states except <see cref="CourseStates.Deleted"/> are included.
+        /// </param>
+        /// <param name="includes">Additional data to include in the returned objects.</param>
+        /// <param name="sort">The column to sort by.</param>
+        /// <param name="searchBy">The column that <paramref name="searchTerm"/> searches by.</param>
+        /// <param name="order">The order of results when sorted by <paramref name="sort"/>.</param>
         /// <returns>The stream of courses.</returns>
         public async IAsyncEnumerable<Course> StreamCourses(ulong? accountId = null,
                                                             string searchTerm = null,
