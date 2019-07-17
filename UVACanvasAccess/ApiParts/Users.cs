@@ -126,7 +126,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="order">The order to sort the given column by. Allowed values are <c>asc, desc</c>.</param>
         /// <returns>The list of users found in the search.</returns>
         /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
-        public async Task<IEnumerable<User>> GetListUsers(string searchTerm,
+        public async Task<IEnumerable<User>> ListUsers(string searchTerm,
                                                           string sort = null,
                                                           string order = null,
                                                           string accountId = "self") {

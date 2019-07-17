@@ -73,7 +73,7 @@ namespace UVACanvasAccessTests {
         [InlineData(null, "asc")]
         [InlineData(null, "desc")]
         public async Task Test3(string sort, string order) {
-            IEnumerable<User> users = await _api.GetListUsers("test", sort, order);
+            IEnumerable<User> users = await _api.ListUsers("test", sort, order);
             Assert.NotEmpty(users);
         }
         
