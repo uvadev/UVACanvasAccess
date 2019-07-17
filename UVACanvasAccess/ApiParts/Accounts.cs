@@ -307,5 +307,43 @@ namespace UVACanvasAccess.ApiParts {
             return from model in models
                    select new Course(this, model);
         }
+
+        /// <inheritdoc cref="ListCourses"/>
+        /// <summary>
+        /// Asynchronously streams the courses associated with this account.
+        ///
+        /// <paramref name="accountId"/>, when omitted, defaults to <c>self</c>.
+        /// All other parameters are optional and serve to narrow the search or change the included data.
+        /// </summary>
+        /// <returns>The stream of courses.</returns>
+        public async IAsyncEnumerable<Course> StreamCourses(ulong? accountId = null,
+                                                            string searchTerm = null,
+                                                            bool? withEnrollmentsOnly = null,
+                                                            bool? published = null,
+                                                            bool? completed = null,
+                                                            bool? blueprint = null,
+                                                            bool? blueprintAssociated = null,
+                                                            ulong? enrollmentTermId = null,
+                                                            IEnumerable<ulong> byTeachers = null,
+                                                            IEnumerable<ulong> bySubaccounts = null,
+                                                            CourseEnrollmentTypes? enrollmentTypes = null,
+                                                            CourseStates? states = null,
+                                                            AccountLevelCourseIncludes? includes = null,
+                                                            CourseSort? sort = null,
+                                                            CourseSearchBy? searchBy = null,
+                                                            Order? order = null) {
+            
+            var response = await RawListCourses(accountId?.ToString() ?? "self", searchTerm, withEnrollmentsOnly, 
+                                                published, completed, blueprint, blueprintAssociated, enrollmentTermId,
+                                                byTeachers, bySubaccounts, enrollmentTypes, states, includes, sort,
+                                                searchBy, order);
+
+            var courses = StreamDeserializePages<CourseModel>(response)
+                         .Select(m => new Course(this, m));
+
+            await foreach (var course in courses) {
+                yield return course;
+            }
+        }
     }
 }

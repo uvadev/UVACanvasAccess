@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
+using UVACanvasAccess.Structures.Courses;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -25,7 +29,13 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-            
+
+            var streamedCourseNames = api.StreamCourses()
+                                         .Select(c => c.Name);
+
+            await foreach (var course in streamedCourseNames) {
+                Console.WriteLine(course);
+            }
         }
     }
 }
