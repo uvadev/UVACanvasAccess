@@ -195,7 +195,7 @@ namespace UVACanvasAccess.ApiParts {
 
             var pages = new List<HttpContent> { response.Content };
             
-            while (response.Headers.TryGetValues("Link", out var linkValues)) {
+            while (response.Headers.TryGetValues("Link", out IEnumerable<string> linkValues)) {
                 var links = LinkHeader.LinksFromHeader(linkValues.First());
                 if (links?.NextLink == null)
                     break;
@@ -214,7 +214,42 @@ namespace UVACanvasAccess.ApiParts {
 
             return accumulated;
         }
-        
+
+        private async IAsyncEnumerable<JToken> StreamPages(HttpResponseMessage response) {
+            response.AssertSuccess();
+
+            while (response.Headers.TryGetValues("Link", out IEnumerable<string> linkValues)) {
+                var links = LinkHeader.LinksFromHeader(linkValues.First());
+                if (links?.NextLink == null)
+                    break;
+
+                response = await _client.GetAsync(links.NextLink);
+                
+                var content = response.AssertSuccess().Content;
+
+                yield return JToken.Parse(await content.ReadAsStringAsync());
+            }
+        }
+
+        private async IAsyncEnumerable<TElement> StreamDeserializePages<TElement>(HttpResponseMessage response) {
+            response.AssertSuccess();
+
+            while (response.Headers.TryGetValues("Link", out IEnumerable<string> linkValues)) {
+                var links = LinkHeader.LinksFromHeader(linkValues.First());
+                if (links?.NextLink == null)
+                    break;
+
+                response = await _client.GetAsync(links.NextLink);
+                
+                var content = response.AssertSuccess().Content;
+
+                var list = JsonConvert.DeserializeObject<List<TElement>>(await content.ReadAsStringAsync());
+                foreach (var e in list) {
+                    yield return e;
+                }
+            }
+        }
+
         [PublicAPI]
         public enum Order {
             [ApiRepresentation("asc")]
