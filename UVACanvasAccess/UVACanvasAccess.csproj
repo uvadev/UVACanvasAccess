@@ -187,6 +187,7 @@
     <Compile Include="Model\Assignments\RubricCriteriaModel.cs" />
     <Compile Include="Model\Assignments\RubricRatingModel.cs" />
     <Compile Include="Model\Assignments\TurnitinSettingsModel.cs" />
+    <Compile Include="Model\Authentications\AuthenticationEventModel.cs" />
     <Compile Include="Model\Courses\CourseModel.cs" />
     <Compile Include="Model\Courses\CourseProgressModel.cs" />
     <Compile Include="Model\Courses\TermModel.cs" />
@@ -235,6 +236,8 @@
     <Compile Include="Structures\Assignments\RubricCriteria.cs" />
     <Compile Include="Structures\Assignments\RubricRating.cs" />
     <Compile Include="Structures\Assignments\TurnitinSettings.cs" />
+    <Compile Include="Structures\Authentications\AuthenticationEvent.cs" />
+    <Compile Include="Structures\Authentications\EventType.cs" />
     <Compile Include="Structures\Courses\Course.cs" />
     <Compile Include="Structures\Courses\CourseProgress.cs" />
     <Compile Include="Structures\Courses\Term.cs" />
