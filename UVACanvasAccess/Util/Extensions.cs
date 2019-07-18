@@ -37,7 +37,7 @@ namespace UVACanvasAccess.Util {
         }
         
         internal static Task<HttpResponseMessage> AssertSuccess(this Task<HttpResponseMessage> response) {
-            return response.ThenAccept(r => {
+            return response.ThenApply(r => {
                                            r.AssertSuccess();
                                            return r;
                                        });
@@ -383,8 +383,19 @@ namespace UVACanvasAccess.Util {
             return ie.Where(e => e != null);
         }
 
-        public static Task<TO> ThenAccept<TI, TO>(this Task<TI> task, Func<TI, TO> f) {
+        public static Task<TO> ThenApply<TI, TO>(this Task<TI> task, Func<TI, TO> f) {
             return task.ContinueWith(t => f(t.Result));
+        }
+        
+        public static Task ThenAccept<TI>(this Task<TI> task, Action<TI> f) {
+            return task.ContinueWith(t => f(t.Result));
+        }
+        
+        public static Task<TI> ThenPeek<TI>(this Task<TI> task, Action<TI> f) {
+            return task.ContinueWith(t => { 
+                                         f(t.Result);
+                                         return t.Result;
+                                     });
         }
     }
 }

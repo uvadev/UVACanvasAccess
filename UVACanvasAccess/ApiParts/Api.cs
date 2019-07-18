@@ -216,7 +216,12 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private async IAsyncEnumerable<JToken> StreamPages(HttpResponseMessage response) {
-            response.AssertSuccess();
+
+            var firstPage = JToken.Parse(await response.AssertSuccess()
+                                                       .Content
+                                                       .ReadAsStringAsync());
+
+            yield return firstPage;
 
             while (response.Headers.TryGetValues("Link", out IEnumerable<string> linkValues)) {
                 var links = LinkHeader.LinksFromHeader(linkValues.First());
@@ -232,7 +237,14 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private async IAsyncEnumerable<TElement> StreamDeserializePages<TElement>(HttpResponseMessage response) {
-            response.AssertSuccess();
+
+            var firstPage = JsonConvert.DeserializeObject<List<TElement>>(await response.AssertSuccess()
+                                                                                        .Content
+                                                                                        .ReadAsStringAsync());
+
+            foreach (var e in firstPage) {
+                yield return e;
+            }
 
             while (response.Headers.TryGetValues("Link", out IEnumerable<string> linkValues)) {
                 var links = LinkHeader.LinksFromHeader(linkValues.First());

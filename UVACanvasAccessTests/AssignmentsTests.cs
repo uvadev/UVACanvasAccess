@@ -52,7 +52,7 @@ namespace UVACanvasAccessTests {
             Assert.True(assignment.HasOverrides);
 
             List<AssignmentOverride> overrides = await _api.ListAssignmentOverrides(TestCourse, assignmentId)
-                                                           .ThenAccept(ie => ie.ToList());
+                                                           .ThenApply(ie => ie.ToList());
             Assert.NotEmpty(overrides);
 
             foreach (var @override in overrides) {
