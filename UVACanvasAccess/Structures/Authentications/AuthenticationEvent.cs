@@ -38,13 +38,13 @@ namespace UVACanvasAccess.Structures.Authentications {
 
         public string ToPrettyString() {
             return "AuthenticationEvent {" +
-                   $"\n{nameof(Id)}: {Id}," +
+                   ($"\n{nameof(Id)}: {Id}," +
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(Event)}: {Event}," +
                    $"\n{nameof(LoginId)}: {LoginId}," +
                    $"\n{nameof(AccountId)}: {AccountId}," +
                    $"\n{nameof(UserId)}: {UserId}," +
-                   $"\n{nameof(PageViewId)}: {PageViewId}" + 
+                   $"\n{nameof(PageViewId)}: {PageViewId}").Indent(4) + 
                    "\n}";
         }
     }

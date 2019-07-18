@@ -159,6 +159,7 @@
     <Compile Include="ApiParts\Accounts.cs" />
     <Compile Include="ApiParts\Api.cs" />
     <Compile Include="ApiParts\Assignments.cs" />
+    <Compile Include="ApiParts\Authentications.cs" />
     <Compile Include="ApiParts\Discussions.cs" />
     <Compile Include="ApiParts\Files.cs" />
     <Compile Include="ApiParts\Gradebook.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Model\Assignments\RubricRatingModel.cs" />
     <Compile Include="Model\Assignments\TurnitinSettingsModel.cs" />
     <Compile Include="Model\Authentications\AuthenticationEventModel.cs" />
+    <Compile Include="Model\Authentications\AuthenticationEventsResponseModel.cs" />
     <Compile Include="Model\Courses\CourseModel.cs" />
     <Compile Include="Model\Courses\CourseProgressModel.cs" />
     <Compile Include="Model\Courses\TermModel.cs" />

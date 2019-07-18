@@ -261,6 +261,28 @@ namespace UVACanvasAccess.ApiParts {
                 }
             }
         }
+        
+        private async IAsyncEnumerable<TObject> StreamDeserializeObjectPages<TObject>(HttpResponseMessage response) {
+
+            var firstPage = JsonConvert.DeserializeObject<TObject>(await response.AssertSuccess()
+                                                                                 .Content
+                                                                                 .ReadAsStringAsync());
+
+            yield return firstPage;
+
+            while (response.Headers.TryGetValues("Link", out IEnumerable<string> linkValues)) {
+                var links = LinkHeader.LinksFromHeader(linkValues.First());
+                if (links?.NextLink == null)
+                    break;
+
+                response = await _client.GetAsync(links.NextLink);
+                
+                var content = response.AssertSuccess().Content;
+
+                var page = JsonConvert.DeserializeObject<TObject>(await content.ReadAsStringAsync());
+                yield return page;
+            }
+        }
 
         [PublicAPI]
         public enum Order {
