@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
-using Newtonsoft.Json;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
-using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -29,12 +26,7 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-
-            var events = api.StreamAccountAuthenticationEvents();
-
-            await foreach (var e in events) {
-                Console.WriteLine(e.ToPrettyString());
-            }
+            
         }
     }
 }
