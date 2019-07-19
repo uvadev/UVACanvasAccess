@@ -25,12 +25,9 @@ namespace UVACanvasAccess.Model.Users {
         
         [JsonProperty("action")]
         public string Action { get; set; }
-        
-        [JsonProperty("contributed")]
-        public bool? Contributed { get; set; }
-        
+
         [JsonProperty("interaction_seconds")]
-        public ulong? InteractionSeconds { get; set; }
+        public decimal? InteractionSeconds { get; set; }
         
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }

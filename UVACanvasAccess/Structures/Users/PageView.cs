@@ -7,43 +7,94 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
     
+    /// <summary>
+    /// Represents a record of a user page view request.
+    /// </summary>
     [PublicAPI]
     public class PageView : IPrettyPrint {
         private readonly Api _api;
 
-        public string Id { get; private set; }
+        /// <summary>
+        /// The view's UUID.
+        /// </summary>
+        public string Id { get; }
         
-        public string AppName { get; private set; }
+        /// <summary>
+        /// If this was an API request, the name of the app that generated the access token.
+        /// </summary>
+        [CanBeNull]
+        public string AppName { get; }
         
-        public string Url { get; private set; }
+        /// <summary>
+        /// The requested URL.
+        /// </summary>
+        public string Url { get; }
         
-        public string ContextType { get; private set; }
+        /// <summary>
+        /// The context for this request. I.e., what part of the API this request is being made on.
+        /// </summary>
+        public string ContextType { get; }
         
-        public string AssetType { get; private set; }
+        /// <summary>
+        /// The asset within the <see cref="ContextType"/> this request is being made on, if relevant.
+        /// </summary>
+        [CanBeNull]
+        public string AssetType { get; }
         
-        public string Controller { get; private set; }
+        /// <summary>
+        /// The Rails controller that handled this request.
+        /// </summary>
+        public string Controller { get; }
         
-        public string Action { get; private set; }
+        /// <summary>
+        /// The Rails action that handled this request.
+        /// </summary>
+        public string Action { get; }
+
+        /// <summary>
+        /// An approximation of how long the user spent on the page, in seconds.
+        /// </summary>
+        public decimal? InteractionSeconds { get; }
         
-        public bool? Contributed { get; private set; }
+        /// <summary>
+        /// When this request was made.
+        /// </summary>
+        public DateTime CreatedAt { get; }
         
-        public ulong? InteractionSeconds { get; private set; }
+        /// <summary>
+        /// Whether or not this request was initiated by a real user.
+        /// </summary>
+        public bool? UserRequest { get; }
         
-        public DateTime CreatedAt { get; private set; }
+        /// <summary>
+        /// An approximation of how long the page took to render, in seconds.
+        /// </summary>
+        public double? RenderTime { get; }
         
-        public bool? UserRequest { get; private set; }
+        /// <summary>
+        /// The user agent of the browser or program that made this request.
+        /// </summary>
+        public string UserAgent { get; }
         
-        public double? RenderTime { get; private set; }
+        /// <summary>
+        /// Whether or not this interaction counted as participation. 
+        /// </summary>
+        public bool? Participated { get; }
         
-        public string UserAgent { get; private set; }
+        /// <summary>
+        /// The HTTP method of this request.
+        /// </summary>
+        public string HttpMethod { get; }
         
-        public bool? Participated { get; private set; }
+        /// <summary>
+        /// The origin IP address of this request.
+        /// </summary>
+        public string RemoteIp { get; }
         
-        public string HttpMethod { get; private set; }
-        
-        public string RemoteIp { get; private set; }
-        
-        public PageViewLinks Links { get; private set; }
+        /// <summary>
+        /// Relationships to this view.
+        /// </summary>
+        public PageViewLinks Links { get; }
 
         internal PageView(Api api, PageViewModel model) {
             _api = api;
@@ -54,7 +105,6 @@ namespace UVACanvasAccess.Structures.Users {
             AssetType = model.AssetType;
             Controller = model.Controller;
             Action = model.Action;
-            Contributed = model.Contributed;
             InteractionSeconds = model.InteractionSeconds;
             CreatedAt = model.CreatedAt;
             UserRequest = model.UserRequest;
@@ -80,7 +130,6 @@ namespace UVACanvasAccess.Structures.Users {
                    $"\n{nameof(AssetType)}: {AssetType}," +
                    $"\n{nameof(Controller)}: {Controller}," +
                    $"\n{nameof(Action)}: {Action}," +
-                   $"\n{nameof(Contributed)}: {Contributed}," +
                    $"\n{nameof(InteractionSeconds)}: {InteractionSeconds}," +
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(UserRequest)}: {UserRequest}," +

@@ -6,19 +6,37 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
     
+    /// <summary>
+    /// Represents relationships in a <see cref="PageView"/>.
+    /// </summary>
     [PublicAPI]
     public class PageViewLinks : IPrettyPrint {
         private readonly Api _api;
         
-        public ulong User { get; private set; }
+        /// <summary>
+        /// The id of the user responsible for the view.
+        /// </summary>
+        public ulong User { get; }
         
-        public ulong? Context { get; private set; }
+        /// <summary>
+        /// The id of the context for the view. E.g. the course id, if <see cref="PageView.ContextType"/> is <c>Course</c>.
+        /// </summary>
+        public ulong? Context { get; }
         
-        public ulong? Asset { get; private set; }
+        /// <summary>
+        /// The id of the asset for the view, if relevant.
+        /// </summary>
+        public ulong? Asset { get; }
         
-        public ulong? RealUser { get; private set; }
+        /// <summary>
+        /// If this request was made while masquerading, i.e. "act as", the id of the responsible user.
+        /// </summary>
+        public ulong? RealUser { get; }
         
-        public ulong Account { get; private set; }
+        /// <summary>
+        /// The account id for the context.
+        /// </summary>
+        public ulong Account { get; }
 
         internal PageViewLinks(Api api, PageViewLinksModel model) {
             _api = api;
