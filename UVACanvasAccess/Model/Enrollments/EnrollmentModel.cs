@@ -111,7 +111,7 @@ namespace UVACanvasAccess.Model.Enrollments {
         [CanBeNull]
         public string UnpostedFinalGrade { get; set; }
         
-        [JsonProperty("unposted_final_score")]
+        [JsonProperty("unposted_current_score")]
         [CanBeNull]
         public string UnpostedCurrentScore { get; set; }
         

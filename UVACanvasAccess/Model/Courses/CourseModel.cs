@@ -64,7 +64,7 @@ namespace UVACanvasAccess.Model.Courses {
         public ulong? TotalStudents { get; set; }
         
         [JsonProperty("calendar")]
-        public object Calendar { get; set; } // todo Calendar model
+        public CalendarLinkModel Calendar { get; set; }
         
         [JsonProperty("default_view")]
         public string DefaultView { get; set; }

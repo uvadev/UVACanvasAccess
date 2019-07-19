@@ -165,7 +165,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
 
         public string ToPrettyString() {
             return "Enrollment {" + 
-                   $"\n{nameof(Id)}: {Id}," +
+                   ($"\n{nameof(Id)}: {Id}," +
                    $"\n{nameof(CourseId)}: {CourseId}," +
                    $"\n{nameof(SisCourseId)}: {SisCourseId}," +
                    $"\n{nameof(CourseIntegrationId)}: {CourseIntegrationId}," +
@@ -207,7 +207,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
                    $"\n{nameof(CurrentPeriodOverrideScore)}: {CurrentPeriodOverrideScore}," +
                    $"\n{nameof(CurrentPeriodUnpostedFinalScore)}: {CurrentPeriodUnpostedFinalScore}," +
                    $"\n{nameof(CurrentPeriodUnpostedCurrentGrade)}: {CurrentPeriodUnpostedCurrentGrade}," +
-                   $"\n{nameof(CurrentPeriodUnpostedFinalGrade)}: {CurrentPeriodUnpostedFinalGrade}" +
+                   $"\n{nameof(CurrentPeriodUnpostedFinalGrade)}: {CurrentPeriodUnpostedFinalGrade}").Indent(4) +
                    "\n}";
         }
     }

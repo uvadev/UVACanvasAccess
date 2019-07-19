@@ -48,7 +48,7 @@ namespace UVACanvasAccess.Structures.Courses {
         
         public ulong? TotalStudents { get; }
         
-        public object Calendar { get; } // todo Calendar structure
+        public string CalendarLink { get; }
         
         public string DefaultView { get; }
         
@@ -131,7 +131,7 @@ namespace UVACanvasAccess.Structures.Courses {
             Locale = model.Locale;
             Enrollments = model.Enrollments.SelectNotNull(m => new Enrollment(api, m));
             TotalStudents = model.TotalStudents;
-            Calendar = model.Calendar;
+            CalendarLink = model.Calendar.Ics;
             DefaultView = model.DefaultView;
             SyllabusBody = model.SyllabusBody;
             NeedsGradingCount = model.NeedsGradingCount;
@@ -182,7 +182,7 @@ namespace UVACanvasAccess.Structures.Courses {
                    $"\n{nameof(Locale)}: {Locale}," +
                    $"\n{nameof(Enrollments)}: {Enrollments.ToPrettyString()}," +
                    $"\n{nameof(TotalStudents)}: {TotalStudents}," +
-                   $"\n{nameof(Calendar)}: {Calendar}," +
+                   $"\n{nameof(CalendarLink)}: {CalendarLink}," +
                    $"\n{nameof(DefaultView)}: {DefaultView}," +
                    $"\n{nameof(SyllabusBody)}: {SyllabusBody}," +
                    $"\n{nameof(NeedsGradingCount)}: {NeedsGradingCount}," +
