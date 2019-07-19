@@ -13,6 +13,12 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.ApiParts {
     
+    /// <summary>
+    /// This class is the primary interface for interacting with the Canvas API. <br/>
+    /// </summary>
+    /// <remarks>
+    /// API instances are intended to be be reused between calls, and should only be constructed once per token.
+    /// </remarks>
     [PublicAPI]
     public partial class Api : IDisposable {
 
@@ -54,11 +60,12 @@ namespace UVACanvasAccess.ApiParts {
 
         /// <summary>
         /// If the current user is an administrator, he can "act as" another user.
-        /// When this is set, every API call will be made as if it came from this user's token.
+        /// When this is set, every API call will be made as if it came from this user's token, even if the user does
+        /// not have any tokens generated.
         /// </summary>
         /// <param name="id">The user to masquerade as.</param>
-        /// <remarks>Certain endpoints, like those relating to the activity stream, can only be called on
-        /// <c>self</c>. Masquerading makes it possible to bypass this restriction.</remarks>
+        /// <remarks>Certain endpoints, like those relating to the activity stream and personal file upload, can only
+        /// be called on <c>self</c>. Masquerading makes it possible to bypass this restriction.</remarks>
         public void MasqueradeAs(ulong id) {
             _masquerade = id;
         }

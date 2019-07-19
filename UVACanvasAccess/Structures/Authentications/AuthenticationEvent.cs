@@ -7,6 +7,9 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Authentications {
     
+    /// <summary>
+    /// An authentication (login/logout) event.
+    /// </summary>
     [PublicAPI]
     public class AuthenticationEvent : IPrettyPrint {
         private readonly Api _api;

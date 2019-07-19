@@ -20,6 +20,16 @@ namespace UVACanvasAccess.ApiParts {
                                                                    ("end_time", end?.ToIso8601Date())));
         }
 
+        /// <summary>
+        /// Streams the list of authentication events recorded for the given user.
+        /// </summary>
+        /// <param name="userId">The user id.</param>
+        /// <param name="start">The beginning of the date range to search in.</param>
+        /// <param name="end">The end of the date range to search in.</param>
+        /// <returns>The stream of events.</returns>
+        /// <remarks>
+        /// The authentication log keeps any given event for 1 year.
+        /// </remarks>
         public async IAsyncEnumerable<AuthenticationEvent> StreamUserAuthenticationEvents(ulong userId,
                                                                                           DateTime? start = null,
                                                                                           DateTime? end = null) {
@@ -34,6 +44,16 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
         
+        /// <summary>
+        /// Streams the list of authentication events recorded for the given account.
+        /// </summary>
+        /// <param name="accountId">The account id. Defaults to <c>self</c>.</param>
+        /// <param name="start">The beginning of the date range to search in.</param>
+        /// <param name="end">The end of the date range to search in.</param>
+        /// <returns>The stream of events.</returns>
+        /// <remarks>
+        /// The authentication log keeps any given event for 1 year.
+        /// </remarks>
         public async IAsyncEnumerable<AuthenticationEvent> StreamAccountAuthenticationEvents(ulong? accountId = null,
                                                                                              DateTime? start = null,
                                                                                              DateTime? end = null) {

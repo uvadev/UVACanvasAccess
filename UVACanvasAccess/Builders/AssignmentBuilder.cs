@@ -14,7 +14,7 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.Builders {
     
     /// <summary>
-    /// A class used to create or edit Assignments using the builder pattern.
+    /// A class used to create or edit assignments using the builder pattern.
     /// When all desired fields are set, call <see cref="Post"/> to execute the operation.
     /// </summary>
     public class AssignmentBuilder {

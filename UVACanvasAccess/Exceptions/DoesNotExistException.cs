@@ -1,6 +1,10 @@
 using System;
 
 namespace UVACanvasAccess.Exceptions {
+    
+    /// <summary>
+    /// Indicates that some operation failed because the target thereof does not exist.
+    /// </summary>
     public class DoesNotExistException : Exception {
         public DoesNotExistException() { }
 

@@ -7,9 +7,14 @@ using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {
-    public class AssignmentOverrideBuilder {
 
+    /// <summary>
+    /// A class used to create or edit assignment overrides using the builder pattern.
+    /// When all desired fields are set, call <see cref="Post"/> to execute the operation.
+    /// </summary>
+    public class AssignmentOverrideBuilder {
         private readonly Api _api;
+        
         internal ulong CourseId { get; }
         internal ulong AssignmentId { get; }
 
