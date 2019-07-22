@@ -49,5 +49,18 @@ namespace UVACanvasAccess.Structures.Assignments {
                    $"\n{nameof(ExcludeSmallMatchesValue)}: {ExcludeSmallMatchesValue}").Indent(4) + 
                    "\n}";
         }
+
+        internal TurnitinSettingsModel ToModel() {
+            return new TurnitinSettingsModel {
+                                                 OriginalityReportVisibility = OriginalityReportVisibility,
+                                                 SPaperCheck = SPaperCheck,
+                                                 InternetCheck = InternetCheck,
+                                                 JournalCheck = JournalCheck,
+                                                 ExcludeBiblio = ExcludeBiblio,
+                                                 ExcludeQuoted = ExcludeQuoted,
+                                                 ExcludeSmallMatchesType = ExcludeSmallMatchesType,
+                                                 ExcludeSmallMatchesValue = ExcludeSmallMatchesValue 
+                                             };
+        }
     }
 }

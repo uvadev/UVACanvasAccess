@@ -277,6 +277,7 @@
     <Compile Include="Structures\Users\PageViewLinks.cs" />
     <Compile Include="Structures\Users\Profile.cs" />
     <Compile Include="Structures\Users\User.cs" />
+    <Compile Include="Structures\Users\UserDisplay.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ApiRepresentationAttribute.cs" />

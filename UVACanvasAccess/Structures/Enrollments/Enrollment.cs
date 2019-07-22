@@ -2,7 +2,7 @@ using System;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Enrollments;
-using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Enrollments {
@@ -71,7 +71,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         
         public Grade Grades { get; }
         
-        public UserDisplayModel User { get; }
+        public UserDisplay User { get; }
         
         public string OverrideGrade { get; }
         
@@ -145,7 +145,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
             TotalActivityTime = model.TotalActivityTime;
             HtmlUrl = model.HtmlUrl;
             Grades = model.Grades.ConvertIfNotNull(m => new Grade(api, m));
-            User = model.User;
+            User = model.User.ConvertIfNotNull(m => new UserDisplay(api, m));
             OverrideGrade = model.OverrideGrade;
             OverrideScore = model.OverrideScore;
             UnpostedCurrentGrade = model.UnpostedCurrentGrade;

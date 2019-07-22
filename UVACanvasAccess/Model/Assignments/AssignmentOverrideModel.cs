@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    public class AssignmentOverrideModel {
+    internal class AssignmentOverrideModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

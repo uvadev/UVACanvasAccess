@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Assignments {
     
-    public class TurnitinSettingsModel {
+    internal class TurnitinSettingsModel {
         
         [JsonProperty("originality_report_visibility")]
         public string OriginalityReportVisibility { get; set; }

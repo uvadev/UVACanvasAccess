@@ -74,7 +74,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             return "AssignmentOverride {" + 
                    ($"\n{nameof(Id)}: {Id}," +
                    $"\n{nameof(AssignmentId)}: {AssignmentId}," +
-                   $"\n{nameof(StudentIds)}: {StudentIds.ToPrettyString()}," +
+                   $"\n{nameof(StudentIds)}: {StudentIds?.ToPrettyString()}," +
                    $"\n{nameof(GroupId)}: {GroupId}," +
                    $"\n{nameof(CourseSectionId)}: {CourseSectionId}," +
                    $"\n{nameof(Title)}: {Title}," +
@@ -84,6 +84,22 @@ namespace UVACanvasAccess.Structures.Assignments {
                    $"\n{nameof(UnlockAt)}: {UnlockAt}," +
                    $"\n{nameof(LockAt)}: {LockAt}").Indent(4) +
                    "\n}";
+        }
+
+        internal AssignmentOverrideModel ToModel() {
+            return new AssignmentOverrideModel {
+                                                   Id = Id,
+                                                   AssignmentId = AssignmentId,
+                                                   StudentIds = StudentIds,
+                                                   GroupId = GroupId,
+                                                   CourseSectionId = CourseSectionId,
+                                                   Title = Title,
+                                                   DueAt = DueAt,
+                                                   AllDay = AllDay,
+                                                   AllDayDate = AllDayDate,
+                                                   UnlockAt = UnlockAt,
+                                                   LockAt = LockAt
+                                               } ;
         }
     }
 }

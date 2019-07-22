@@ -3,7 +3,7 @@ using StatePrinting;
 
 namespace UVACanvasAccess.Model.Users {
     
-    public class UserDisplayModel {
+    internal class UserDisplayModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

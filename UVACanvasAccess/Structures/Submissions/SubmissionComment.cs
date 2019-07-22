@@ -2,7 +2,7 @@ using System;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Submissions;
-using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Submissions {
@@ -17,7 +17,7 @@ namespace UVACanvasAccess.Structures.Submissions {
         
         public string AuthorName { get; }
         
-        public UserDisplayModel Author { get; }
+        public UserDisplay Author { get; }
         
         public string Comment { get; }
         
@@ -33,7 +33,7 @@ namespace UVACanvasAccess.Structures.Submissions {
             Id = model.Id;
             AuthorId = model.AuthorId;
             AuthorName = model.AuthorName;
-            Author = model.Author;
+            Author = model.Author.ConvertIfNotNull(m => new UserDisplay(api, m));
             Comment = model.Comment;
             CreatedAt = model.CreatedAt;
             EditedAt = model.EditedAt;

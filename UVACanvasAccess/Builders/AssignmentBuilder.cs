@@ -129,8 +129,8 @@ namespace UVACanvasAccess.Builders {
         /// </summary>
         /// <param name="settings"></param>
         /// <returns>This builder.</returns>
-        public AssignmentBuilder WithTurnitinSettings(TurnitinSettingsModel settings) {
-            return Put("turnitin_settings", JsonConvert.SerializeObject(settings));
+        public AssignmentBuilder WithTurnitinSettings(TurnitinSettings settings) {
+            return Put("turnitin_settings", JsonConvert.SerializeObject(settings.ToModel()));
         }
 
         /// <summary>
@@ -297,9 +297,9 @@ namespace UVACanvasAccess.Builders {
         /// </summary>
         /// <param name="overrides"></param>
         /// <returns>This builder.</returns>
-        public AssignmentBuilder WithAssignmentOverrides(IEnumerable<AssignmentOverrideModel> overrides) {
+        public AssignmentBuilder WithAssignmentOverrides(IEnumerable<AssignmentOverride> overrides) {
             foreach (var o in overrides) {
-                PutArr("assignment_overrides", JsonConvert.SerializeObject(o));
+                PutArr("assignment_overrides", JsonConvert.SerializeObject(o.ToModel()));
             }
             return this;
         }
