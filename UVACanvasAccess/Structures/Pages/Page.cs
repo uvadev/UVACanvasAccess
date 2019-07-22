@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
@@ -26,12 +27,16 @@ namespace UVACanvasAccess.Structures.Pages {
         
         public ulong? LastEditedBy { get; }
 
-        private string? _body;
+        [CanBeNull]
+        private string _body;
+        
+        [NotNull]
         public string Body {
             get {
                 if (_body == null) {
                     // todo
                 }
+                Debug.Assert(_body != null, nameof(_body) + " != null");
                 return _body;
             }
         }
@@ -42,9 +47,11 @@ namespace UVACanvasAccess.Structures.Pages {
         
         public bool LockedForUser { get; }
         
-        public LockInfo? LockInfo { get; }
+        [CanBeNull]
+        public LockInfo LockInfo { get; }
         
-        public string? LockExplanation { get; }
+        [CanBeNull]
+        public string LockExplanation { get; }
 
         internal Page(Api api, PageModel model) {
             _api = api;
