@@ -1,10 +1,12 @@
-﻿using System;
+using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
-using static UVACanvasAccess.ApiParts.Api.IndividualLevelCourseIncludes;
+using static UVACanvasAccess.ApiParts.Api.AccountLevelCourseIncludes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -28,9 +30,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-            var course = await api.GetCourse(TestCourse, includes: Everything);
-
-            Console.WriteLine(course.ToPrettyString());
+            var s = await api.StreamCourses(includes: TotalStudents)
+                             .AggregateAsync((m, c) => (c.TotalStudents ?? 0) > m.TotalStudents ? c : m);
         }
     }
 }
