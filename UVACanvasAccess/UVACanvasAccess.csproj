@@ -214,6 +214,7 @@
     <Compile Include="Model\GradeChangelog\GradeChangeEventModel.cs" />
     <Compile Include="Model\GradeChangelog\RedundantGradeChangeEventResponse.cs" />
     <Compile Include="Model\Pages\PageModel.cs" />
+    <Compile Include="Model\Pages\PageRevisionModel.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
     <Compile Include="Model\Reports\ReportModel.cs" />
     <Compile Include="Model\Roles\RoleModel.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="Structures\GradeChangelog\GradeChangeEvent.cs" />
     <Compile Include="Structures\GradeChangelog\GradeChangeEventLinks.cs" />
     <Compile Include="Structures\Pages\Page.cs" />
+    <Compile Include="Structures\Pages\PageRevision.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Roles\Role.cs" />
