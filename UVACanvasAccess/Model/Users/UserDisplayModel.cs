@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using StatePrinting;
 
@@ -9,7 +10,12 @@ namespace UVACanvasAccess.Model.Users {
         public ulong Id { get; set; }
         
         [JsonProperty("short_name")]
+        [CanBeNull]
         public string ShortName { get; set; }
+        
+        [JsonProperty("display_name")]
+        [CanBeNull]
+        public string DisplayName { get; set; }
         
         [JsonProperty("avatar_image_url")]
         public string AvatarImageUrl { get; set; }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -169,6 +169,7 @@
     <Compile Include="ApiParts\Gradebook.cs" />
     <Compile Include="ApiParts\GradeChangelog.cs" />
     <Compile Include="ApiParts\Misc.cs" />
+    <Compile Include="ApiParts\Pages.cs" />
     <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Roles.cs" />
     <Compile Include="ApiParts\Users.cs" />
@@ -176,7 +177,7 @@
     <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
-    <Compile Include="Debugging\DontIgnoreAssertsTraceListener.cs" />
+    <Compile Include="Debugging\TraceToStdErr.cs" />
     <Compile Include="Exceptions\CommunicationException.cs" />
     <Compile Include="Exceptions\DoesNotExistException.cs" />
     <Compile Include="Model\Accounts\AccountModel.cs" />

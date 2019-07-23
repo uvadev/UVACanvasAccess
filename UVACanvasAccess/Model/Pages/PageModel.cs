@@ -2,6 +2,7 @@ using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Assignments;
+using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Model.Pages {
     
@@ -23,7 +24,7 @@ namespace UVACanvasAccess.Model.Pages {
         public string EditingRoles { get; set; }
         
         [JsonProperty("last_edited_by")]
-        public ulong? LastEditedBy { get; set; }
+        public UserDisplayModel LastEditedBy { get; set; }
         
         [JsonProperty("body")]
         [CanBeNull]
@@ -45,5 +46,8 @@ namespace UVACanvasAccess.Model.Pages {
         [JsonProperty("lock_explanation")]
         [CanBeNull]
         public string LockExplanation { get; set; }
+        
+        [JsonProperty("page_id")]
+        public string PageId { get; set; }
     }
 }

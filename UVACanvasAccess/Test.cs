@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
+using static UVACanvasAccess.ApiParts.Api.Order;
+using static UVACanvasAccess.ApiParts.Api.PageSort;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -21,12 +23,21 @@ namespace UVACanvasAccess {
                             TestAssignment1Override1 = 72;
 
         public static async Task Main(string[] args) {
-            Debug.Listeners.Add(new DontIgnoreAssertsTraceListener());
+            Debug.Listeners.Add(new TraceToStdErr());
             DotEnv.Config();
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
             
+            //api.TestGet("courses/1028/pages", out var success, out var response);
+
+            //Console.WriteLine(response.ToString(Formatting.Indented));
+
+            var pages = api.StreamCoursePages(TestCourse, CreatedAt, Ascending);
+
+            await foreach (var page in pages) {
+                Console.WriteLine(page.ToPrettyString());
+            }
         }
     }
 }

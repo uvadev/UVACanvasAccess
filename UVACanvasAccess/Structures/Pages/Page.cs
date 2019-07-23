@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Pages;
 using UVACanvasAccess.Structures.Assignments;
-using UVACanvasAccess.Structures.Roles;
+using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Pages {
@@ -14,6 +13,8 @@ namespace UVACanvasAccess.Structures.Pages {
     [PublicAPI]
     public class Page : IPrettyPrint {
         private readonly Api _api;
+        private readonly string _type;
+        private readonly ulong _courseId;
 
         public string Url { get; }
         
@@ -23,9 +24,10 @@ namespace UVACanvasAccess.Structures.Pages {
         
         public DateTime UpdatedAt { get; }
         
-        public IEnumerable<Role> EditingRoles { get; }
+        public IEnumerable<string> EditingRoles { get; }
         
-        public ulong? LastEditedBy { get; }
+        [CanBeNull]
+        public UserDisplay LastEditedBy { get; }
 
         [CanBeNull]
         private string _body;
@@ -34,7 +36,10 @@ namespace UVACanvasAccess.Structures.Pages {
         public string Body {
             get {
                 if (_body == null) {
-                    // todo
+                    Debug.Assert(_type == "courses", nameof(_type) + " == " + _type + " != " + "courses");
+                    Debug.Print($"DEBUG: The body of {Url} #{GetHashCode()} needs to be fetched.");
+                    var specific = _api.GetCoursePage(_courseId, Url).Result;
+                    _body = specific._body;
                 }
                 Debug.Assert(_body != null, nameof(_body) + " != null");
                 return _body;
@@ -53,23 +58,22 @@ namespace UVACanvasAccess.Structures.Pages {
         [CanBeNull]
         public string LockExplanation { get; }
 
-        internal Page(Api api, PageModel model) {
+        internal Page(Api api, PageModel model, [NotNull] string type, ulong courseId) {
             _api = api;
+            _type = type;
             _body = model.Body;
+            _courseId = courseId;
             Url = model.Url;
             Title = model.Title;
             CreatedAt = model.CreatedAt;
             UpdatedAt = model.UpdatedAt;
-            LastEditedBy = model.LastEditedBy;
+            LastEditedBy = model.LastEditedBy.ConvertIfNotNull(m => new UserDisplay(api, m));
             Published = model.Published;
             FrontPage = model.FrontPage;
             LockedForUser = model.LockedForUser;
             LockInfo = model.LockInfo.ConvertIfNotNull(m => new LockInfo(api, m));
             LockExplanation = model.LockExplanation;
-            
-            var roles = api.ListRoles().Result;
-            EditingRoles = model.EditingRoles.Split(',')
-                                             .Select(n => roles.First(r => r.Label == n));
+            EditingRoles = model.EditingRoles.Split(',');
         }
 
         public string ToPrettyString() {
@@ -78,8 +82,8 @@ namespace UVACanvasAccess.Structures.Pages {
                    $"\n{nameof(Title)}: {Title}," +
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(UpdatedAt)}: {UpdatedAt}," +
-                   $"\n{nameof(EditingRoles)}: {EditingRoles}," +
-                   $"\n{nameof(LastEditedBy)}: {LastEditedBy}," +
+                   $"\n{nameof(EditingRoles)}: {EditingRoles.ToPrettyString()}," +
+                   $"\n{nameof(LastEditedBy)}: {LastEditedBy?.ToPrettyString()}," +
                    $"\n{nameof(Body)}: {Body}," +
                    $"\n{nameof(Published)}: {Published}," +
                    $"\n{nameof(FrontPage)}: {FrontPage}," +
