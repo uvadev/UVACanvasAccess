@@ -22,7 +22,7 @@ namespace UVACanvasAccess.Model.Enrollments {
         public string CourseIntegrationId { get; set; }
         
         [JsonProperty("course_section_id")]
-        public ulong CourseSectionId { get; set; }
+        public ulong? CourseSectionId { get; set; }
         
         [JsonProperty("section_integration_id")]
         [CanBeNull]
@@ -44,7 +44,7 @@ namespace UVACanvasAccess.Model.Enrollments {
         public string EnrollmentState { get; set; }
         
         [JsonProperty("limit_privileges_to_course_section")]
-        public bool LimitPrivilegesToCourseSection { get; set; }
+        public bool? LimitPrivilegesToCourseSection { get; set; }
         
         [JsonProperty("sis_import_id")]
         public ulong? SisImportId { get; set; }
@@ -68,16 +68,16 @@ namespace UVACanvasAccess.Model.Enrollments {
         public ulong RoleId { get; set; }
         
         [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         
         [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         
         [JsonProperty("start_at")]
-        public DateTime StartAt { get; set; }
+        public DateTime? StartAt { get; set; }
         
         [JsonProperty("end_at")]
-        public DateTime EndAt { get; set; }
+        public DateTime? EndAt { get; set; }
         
         [JsonProperty("last_activity_at")]
         public DateTime? LastActivityAt { get; set; }

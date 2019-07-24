@@ -21,7 +21,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         [CanBeNull]
         public string CourseIntegrationId { get; }
         
-        public ulong CourseSectionId { get; }
+        public ulong? CourseSectionId { get; }
         
         [CanBeNull]
         public string SectionIntegrationId { get; }
@@ -37,7 +37,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         
         public string EnrollmentState { get; }
         
-        public bool LimitPrivilegesToCourseSection { get; }
+        public bool? LimitPrivilegesToCourseSection { get; }
         
         public ulong? SisImportId { get; }
         
@@ -53,13 +53,13 @@ namespace UVACanvasAccess.Structures.Enrollments {
         
         public ulong RoleId { get; }
         
-        public DateTime CreatedAt { get; }
+        public DateTime? CreatedAt { get; }
         
-        public DateTime UpdatedAt { get; }
+        public DateTime? UpdatedAt { get; }
         
-        public DateTime StartAt { get; }
+        public DateTime? StartAt { get; }
         
-        public DateTime EndAt { get; }
+        public DateTime? EndAt { get; }
         
         public DateTime? LastActivityAt { get; }
         
