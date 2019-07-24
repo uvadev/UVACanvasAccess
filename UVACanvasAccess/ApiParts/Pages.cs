@@ -53,5 +53,15 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<PageModel>(await response.Content.ReadAsStringAsync());
             return new Page(this, model, "courses", courseId);
         }
+
+        private Task<HttpResponseMessage> RawGetFrontPage(string type, string id) {
+            return _client.GetAsync($"{type}/{id}/front_page");
+        }
+
+        public async Task<Page> GetCourseFrontPage(ulong courseId) {
+            var response = await RawGetFrontPage("courses", courseId.ToString()).AssertSuccess();
+            var model = JsonConvert.DeserializeObject<PageModel>(await response.Content.ReadAsStringAsync());
+            return new Page(this, model, "courses", courseId);
+        }
     }
 }
