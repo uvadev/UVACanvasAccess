@@ -48,6 +48,7 @@
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0-preview6.19303.8\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
       <Private>True</Private>
@@ -266,6 +267,7 @@
     <Compile Include="Structures\GradeChangelog\GradeChangeEventLinks.cs" />
     <Compile Include="Structures\Pages\Page.cs" />
     <Compile Include="Structures\Pages\PageRevision.cs" />
+    <Compile Include="Structures\Pages\PageRoles.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Roles\Role.cs" />

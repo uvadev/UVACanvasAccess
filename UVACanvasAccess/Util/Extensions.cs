@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -185,6 +186,15 @@ namespace UVACanvasAccess.Util {
             }
             return null;
         }
+        
+        [Pure]
+        internal static T ToApiRepresentedFlagsEnum<T>([NotNull] this IEnumerable<string> ie) where T: struct, Enum {
+            Debug.Assert(Attribute.GetCustomAttribute(typeof(T), typeof(FlagsAttribute)) != null);
+            
+            return (T) ie.SelectNotNullValue(s => s.ToApiRepresentedEnum<T>())
+                         .Cast<dynamic>()
+                         .Aggregate((a, b) => a | b);
+        }
 
         internal static void Deconstruct<TK, TV>(this KeyValuePair<TK, TV> kvp, out TK key, out TV val) {
             key = kvp.Key;
@@ -241,6 +251,20 @@ namespace UVACanvasAccess.Util {
         internal static IEnumerable<TO> SelectNotNull<TI, TO>([CanBeNull] [ItemCanBeNull] this IEnumerable<TI> ie, 
                                                               [NotNull] Func<TI, TO> f) {
             return ie?.DiscardNull().Select(f) ?? Enumerable.Empty<TO>();
+        }
+        
+        [NotNull]
+        [Pure]
+        internal static IEnumerable<TO> SelectNotNullKey<TI, TO>([CanBeNull] [ItemCanBeNull] this IEnumerable<TI?> ie, 
+                                                                 [NotNull] Func<TI, TO> f) where TI: struct {
+            return ie?.DiscardNullValue().Select(f) ?? Enumerable.Empty<TO>();
+        }
+        
+        [NotNull]
+        [Pure]
+        internal static IEnumerable<TO> SelectNotNullValue<TI, TO>([CanBeNull] [ItemCanBeNull] this IEnumerable<TI> ie, 
+                                                                   [NotNull] Func<TI, TO?> f) where TO: struct {
+            return ie?.DiscardNull().Select(f).DiscardNullValue() ?? Enumerable.Empty<TO>();
         }
 
         [Pure]
@@ -381,6 +405,12 @@ namespace UVACanvasAccess.Util {
         [Pure]
         internal static IEnumerable<T> DiscardNull<T>([ItemCanBeNull] this IEnumerable<T> ie) {
             return ie.Where(e => e != null);
+        }
+        
+        [Pure]
+        internal static IEnumerable<T> DiscardNullValue<T>(this IEnumerable<T?> ie) where T: struct {
+            return ie.Where(e => e != null)
+                     .Select(e => e.Value);
         }
 
         public static Task<TO> ThenApply<TI, TO>(this Task<TI> task, Func<TI, TO> f) {

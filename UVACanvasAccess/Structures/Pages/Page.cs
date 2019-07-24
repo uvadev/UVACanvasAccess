@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
@@ -24,7 +23,7 @@ namespace UVACanvasAccess.Structures.Pages {
         
         public DateTime UpdatedAt { get; }
         
-        public IEnumerable<string> EditingRoles { get; }
+        public PageRoles EditingRoles { get; }
         
         [CanBeNull]
         public UserDisplay LastEditedBy { get; }
@@ -73,7 +72,9 @@ namespace UVACanvasAccess.Structures.Pages {
             LockedForUser = model.LockedForUser;
             LockInfo = model.LockInfo.ConvertIfNotNull(m => new LockInfo(api, m));
             LockExplanation = model.LockExplanation;
-            EditingRoles = model.EditingRoles.Split(',');
+            EditingRoles = model.EditingRoles?.Split(',')
+                                              .ToApiRepresentedFlagsEnum<PageRoles>() 
+                                             ?? default;
         }
 
         public string ToPrettyString() {
@@ -82,7 +83,7 @@ namespace UVACanvasAccess.Structures.Pages {
                    $"\n{nameof(Title)}: {Title}," +
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(UpdatedAt)}: {UpdatedAt}," +
-                   $"\n{nameof(EditingRoles)}: {EditingRoles.ToPrettyString()}," +
+                   $"\n{nameof(EditingRoles)}: {EditingRoles.GetFlagsApiRepresentations().ToPrettyString()}," +
                    $"\n{nameof(LastEditedBy)}: {LastEditedBy?.ToPrettyString()}," +
                    $"\n{nameof(Body)}: {Body}," +
                    $"\n{nameof(Published)}: {Published}," +
