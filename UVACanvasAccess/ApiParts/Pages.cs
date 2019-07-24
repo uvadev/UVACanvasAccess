@@ -72,9 +72,28 @@ namespace UVACanvasAccess.ApiParts {
             var response = await RawListRevisions("courses", courseId.ToString(), url);
             var models = StreamDeserializePages<PageRevisionModel>(response);
 
-            await foreach (var pr in models.Select(pr => new PageRevision(this, pr))) {
+            await foreach (var pr in models.Select(pr => new PageRevision(this, pr, "courses", courseId, url))) {
                 yield return pr;
             }
+        }
+
+        private Task<HttpResponseMessage> RawGetRevision(string type, 
+                                                         string id,
+                                                         string url, 
+                                                         string revisionId,
+                                                         bool? omitDetails) {
+            return _client.GetAsync($"{type}/{id}/pages/{url}/revisions/{revisionId}" + 
+                                    BuildQueryString(("summary", omitDetails?.ToShortString())));
+        }
+
+        public async Task<PageRevision> GetCoursePageRevision(ulong courseId, 
+                                                              string url,
+                                                              ulong revisionId,
+                                                              bool? omitDetails = null) {
+            var response = await RawGetRevision("courses", courseId.ToString(), url, revisionId.ToString(), omitDetails);
+
+            var model = JsonConvert.DeserializeObject<PageRevisionModel>(await response.Content.ReadAsStringAsync());
+            return new PageRevision(this, model, "courses", courseId, url);
         }
     }
 }

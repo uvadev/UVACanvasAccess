@@ -59,7 +59,7 @@ namespace UVACanvasAccess.Structures.Pages {
         public string LockExplanation { get; }
 
         public IAsyncEnumerable<PageRevision> StreamRevisionHistory() {
-            Debug.Assert(_type == "courses");
+            Debug.Assert(_type == "courses", nameof(_type) + " == " + _type + " != " + "courses");
             return _api.StreamCoursePageRevisionHistory(_courseId, Url);
         }
 
