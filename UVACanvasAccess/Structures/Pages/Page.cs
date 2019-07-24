@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
@@ -56,6 +57,11 @@ namespace UVACanvasAccess.Structures.Pages {
         
         [CanBeNull]
         public string LockExplanation { get; }
+
+        public IAsyncEnumerable<PageRevision> StreamRevisionHistory() {
+            Debug.Assert(_type == "courses");
+            return _api.StreamCoursePageRevisionHistory(_courseId, Url);
+        }
 
         internal Page(Api api, PageModel model, [NotNull] string type, ulong courseId) {
             _api = api;

@@ -33,8 +33,8 @@ namespace UVACanvasAccess {
             var page = await api.StreamCoursePages(TestCourse, UpdatedAt, Descending)
                                 .FirstAsync();
 
-            var revisions = api.StreamCoursePageRevisionHistory(TestCourse, page.Url)
-                               .OrderBy(r => r.RevisionId);
+            var revisions = page.StreamRevisionHistory()
+                                .OrderBy(r => r.RevisionId);
 
             await foreach (var r in revisions) {
                 Console.WriteLine(r.ToPrettyString());
