@@ -188,6 +188,8 @@ namespace UVACanvasAccess.Util {
         }
         
         [Pure]
+        // note: since c# does not allow us to express that T: Flags, this method casts to dynamic internally.
+        // so be careful when calling this that T: Flags.
         internal static T ToApiRepresentedFlagsEnum<T>([NotNull] this IEnumerable<string> ie) where T: struct, Enum {
             Debug.Assert(Attribute.GetCustomAttribute(typeof(T), typeof(FlagsAttribute)) != null);
             

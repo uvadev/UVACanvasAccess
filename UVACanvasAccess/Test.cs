@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
@@ -28,15 +29,15 @@ namespace UVACanvasAccess {
             
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
-            
-            //api.TestGet("courses/1028/pages", out var success, out var response);
 
-            //Console.WriteLine(response.ToString(Formatting.Indented));
+            var page = await api.StreamCoursePages(TestCourse, UpdatedAt, Descending)
+                                .FirstAsync();
 
-            var pages = api.StreamCoursePages(TestCourse, CreatedAt, Ascending);
+            var revisions = api.StreamCoursePageRevisionHistory(TestCourse, page.Url)
+                               .OrderBy(r => r.RevisionId);
 
-            await foreach (var page in pages) {
-                Console.WriteLine(page.ToPrettyString());
+            await foreach (var r in revisions) {
+                Console.WriteLine(r.ToPrettyString());
             }
         }
     }
