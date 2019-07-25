@@ -86,5 +86,25 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<EnrollmentModel>(await response.Content.ReadAsStringAsync());
             return new Enrollment(this, model);
         }
+
+        private async Task<Enrollment> RawDeleteEnrollment(ulong courseId, ulong enrollmentId, string task) {
+            var response = await _client.DeleteAsync($"courses/{courseId}/enrollments/{enrollmentId}" + 
+                                                     BuildQueryString(("task", task))).AssertSuccess();
+
+            var model = JsonConvert.DeserializeObject<EnrollmentModel>(await response.Content.ReadAsStringAsync());
+            return new Enrollment(this, model);
+        }
+
+        public Task<Enrollment> ConcludeEnrollment(ulong courseId, ulong enrollmentId) {
+            return RawDeleteEnrollment(courseId, enrollmentId, "conclude");
+        }
+        
+        public Task<Enrollment> DeleteEnrollment(ulong courseId, ulong enrollmentId) {
+            return RawDeleteEnrollment(courseId, enrollmentId, "delete");
+        }
+        
+        public Task<Enrollment> DeactivateEnrollment(ulong courseId, ulong enrollmentId) {
+            return RawDeleteEnrollment(courseId, enrollmentId, "deactivate");
+        }
     }
 }
