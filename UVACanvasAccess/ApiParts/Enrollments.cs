@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Model.Enrollments;
 using UVACanvasAccess.Structures.Enrollments;
 using UVACanvasAccess.Util;
@@ -106,5 +107,19 @@ namespace UVACanvasAccess.ApiParts {
         public Task<Enrollment> DeactivateEnrollment(ulong courseId, ulong enrollmentId) {
             return RawDeleteEnrollment(courseId, enrollmentId, "deactivate");
         }
+
+        public async Task<bool> AcceptEnrollmentInvitation(ulong courseId, ulong enrollmentId) {
+            var response = await _client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/accept", null);
+
+            return JObject.Parse(await response.Content.ReadAsStringAsync()).Value<bool>("success");
+        }
+        
+        public async Task<bool> DeclineEnrollmentInvitation(ulong courseId, ulong enrollmentId) {
+            var response = await _client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/reject", null);
+
+            return JObject.Parse(await response.Content.ReadAsStringAsync()).Value<bool>("success");
+        }
+        
+        
     }
 }
