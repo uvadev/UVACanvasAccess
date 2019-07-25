@@ -37,6 +37,9 @@ namespace UVACanvasAccess.ApiParts {
             return _client.PostAsync($"courses/{courseId}/enrollments", BuildHttpArguments(args));
         }
 
+        /// <summary>
+        /// The types of enrollment a user can have in a course.
+        /// </summary>
         [PublicAPI]
         public enum CourseEnrollmentType {
             [ApiRepresentation("StudentEnrollment")]
@@ -51,16 +54,46 @@ namespace UVACanvasAccess.ApiParts {
             DesignerEnrollment
         }
 
+        /// <summary>
+        /// The states of enrollment a user can have in a course.
+        /// </summary>
         [PublicAPI]
         public enum CourseEnrollmentState {
+            /// <summary>
+            /// The user can participate in the course.
+            /// </summary>
             [ApiRepresentation("active")]
             Active,
+            /// <summary>
+            /// The user has been sent a course invitation, and will become <see cref="Active"/> once they accept.
+            /// </summary>
             [ApiRepresentation("invited")]
             Invited,
+            /// <summary>
+            /// The student appears in the course roster, but is unable to participate in the course.
+            /// </summary>
             [ApiRepresentation("inactive")]
             Inactive
         }
 
+        /// <summary>
+        /// Enrolls a user in a course.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="userId">The user id.</param>
+        /// <param name="enrollmentType">The enrollment type.</param>
+        /// <param name="roleId">An optional course-level role to assign to the user.</param>
+        /// <param name="enrollmentState">
+        /// The enrollment state. <see cref="CourseEnrollmentState.Invited"/> by default. <br/>
+        /// If <see cref="CourseEnrollmentState.Invited"/>, the user will be sent a course invite.
+        /// </param>
+        /// <param name="courseSectionId">Optionally, the course section to enroll in.</param>
+        /// <param name="limitPrivilegesToSection">Optionally, only allow this user to interact with users in the same section.</param>
+        /// <param name="notify">Whether or not this user should be notified to changes in the course. Disabled by default.</param>
+        /// <param name="selfEnrollmentCode">If self-enrolling, the self-enrollment code.</param>
+        /// <param name="selfEnrolled">Whether or not this is a self-enrollment.</param>
+        /// <param name="associatedUserId">If this is an observer enrollment, the id of the target student.</param>
+        /// <returns>The new enrollment.</returns>
         public async Task<Enrollment> CreateEnrollment(ulong courseId,
                                                        ulong userId,
                                                        CourseEnrollmentType enrollmentType,
@@ -96,30 +129,69 @@ namespace UVACanvasAccess.ApiParts {
             return new Enrollment(this, model);
         }
 
+        /// <summary>
+        /// Concludes an enrollment without deleting it. <br/>
+        /// This is the same action that occurs automatically when the user reaches the end of their time in the course,
+        /// such as at the end of the school year.
+        /// </summary>
+        /// <param name="courseId">The course.</param>
+        /// <param name="enrollmentId">The enrollment.</param>
+        /// <returns>The concluded enrollment.</returns>
         public Task<Enrollment> ConcludeEnrollment(ulong courseId, ulong enrollmentId) {
             return RawDeleteEnrollment(courseId, enrollmentId, "conclude");
         }
         
+        /// <summary>
+        /// Irrecoverably deletes an enrollment.
+        /// </summary>
+        /// <param name="courseId">The course.</param>
+        /// <param name="enrollmentId">The enrollment.</param>
+        /// <returns>The deleted enrollment.</returns>
         public Task<Enrollment> DeleteEnrollment(ulong courseId, ulong enrollmentId) {
             return RawDeleteEnrollment(courseId, enrollmentId, "delete");
         }
         
+        /// <summary>
+        /// Sets an enrollment to <see cref="CourseEnrollmentState.Inactive"/>.
+        /// </summary>
+        /// <param name="courseId">The course.</param>
+        /// <param name="enrollmentId">The enrollment.</param>
+        /// <returns>The inactivated enrollment.</returns>
         public Task<Enrollment> DeactivateEnrollment(ulong courseId, ulong enrollmentId) {
             return RawDeleteEnrollment(courseId, enrollmentId, "deactivate");
         }
 
+        /// <summary>
+        /// If the current user has a pending enrollment invitation, accepts it.
+        /// </summary>
+        /// <param name="courseId">The course.</param>
+        /// <param name="enrollmentId">The enrollment to accept.</param>
+        /// <returns>Whether or not the operation was successful.</returns>
         public async Task<bool> AcceptEnrollmentInvitation(ulong courseId, ulong enrollmentId) {
             var response = await _client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/accept", null);
 
             return JObject.Parse(await response.Content.ReadAsStringAsync()).Value<bool>("success");
         }
         
+        /// <summary>
+        /// If the current user has a pending enrollment invitation, decline it.
+        /// </summary>
+        /// <param name="courseId">The course.</param>
+        /// <param name="enrollmentId">The enrollment to accept.</param>
+        /// <returns>Whether or not the operation was successful.</returns>
         public async Task<bool> DeclineEnrollmentInvitation(ulong courseId, ulong enrollmentId) {
             var response = await _client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/reject", null);
 
             return JObject.Parse(await response.Content.ReadAsStringAsync()).Value<bool>("success");
         }
 
+        /// <summary>
+        /// <see cref="CourseEnrollmentState.Active">Reactivate</see> an enrollment that is
+        /// <see cref="CourseEnrollmentState.Inactive">inactive</see>.
+        /// </summary>
+        /// <param name="courseId">The course.</param>
+        /// <param name="enrollmentId">The enrollment.</param>
+        /// <returns>The reactivated enrollment.</returns>
         public async Task<Enrollment> ReactivateEnrollment(ulong courseId, ulong enrollmentId) {
             var response = await _client.PutAsync($"courses/{courseId}/enrollments/{enrollmentId}/reactivate", null);
             
