@@ -119,7 +119,12 @@ namespace UVACanvasAccess.ApiParts {
 
             return JObject.Parse(await response.Content.ReadAsStringAsync()).Value<bool>("success");
         }
-        
-        
+
+        public async Task<Enrollment> ReactivateEnrollment(ulong courseId, ulong enrollmentId) {
+            var response = await _client.PutAsync($"courses/{courseId}/enrollments/{enrollmentId}/reactivate", null);
+            
+            var model = JsonConvert.DeserializeObject<EnrollmentModel>(await response.Content.ReadAsStringAsync());
+            return new Enrollment(this, model);
+        }
     }
 }
