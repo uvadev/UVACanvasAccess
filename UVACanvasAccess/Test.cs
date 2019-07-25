@@ -6,9 +6,6 @@ using dotenv.net;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Debugging;
 using UVACanvasAccess.Util;
-using static UVACanvasAccess.ApiParts.Api.IndividualLevelCourseIncludes;
-using static UVACanvasAccess.ApiParts.Api.Order;
-using static UVACanvasAccess.ApiParts.Api.PageSort;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -34,24 +31,7 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN"), 
                               "https://uview.instructure.com/api/v1/");
 
-
-            for (int i = 0; i < 300; i++) {
-                await api.CreateUser(TestingSubAccount.ToString())
-                         .WithUniqueId($"TestDomainUser_{i}")
-                         .WithName($"Test Domain User #{i}")
-                         .WithSkipRegistration()
-                         .WithSisUserId($"9888000{i}")
-                         .Post()
-                         .ThenPeek(async newUser => { 
-                                       await api.CreateEnrollment(TestDomainCourse,
-                                                                  newUser.Id,
-                                                                  "StudentEnrollment",
-                                                                  enrollmentState: "active");
-                                   })
-                         .ThenAccept(newUser => {
-                                         Console.WriteLine($"Added and enrolled {newUser.Id}");
-                                     });
-            }
+            
         }
     }
 }

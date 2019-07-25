@@ -1,6 +1,6 @@
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Enrollments;
 using UVACanvasAccess.Structures.Enrollments;
@@ -35,14 +35,36 @@ namespace UVACanvasAccess.ApiParts {
 
             return _client.PostAsync($"courses/{courseId}/enrollments", BuildHttpArguments(args));
         }
-        
-        // todo replace some of these string params with enums
+
+        [PublicAPI]
+        public enum CourseEnrollmentType {
+            [ApiRepresentation("StudentEnrollment")]
+            StudentEnrollment,
+            [ApiRepresentation("TeacherEnrollment")]
+            TeacherEnrollment,
+            [ApiRepresentation("TaEnrollment")]
+            TaEnrollment,
+            [ApiRepresentation("ObserverEnrollment")]
+            ObserverEnrollment,
+            [ApiRepresentation("DesignerEnrollment")]
+            DesignerEnrollment
+        }
+
+        [PublicAPI]
+        public enum CourseEnrollmentState {
+            [ApiRepresentation("active")]
+            Active,
+            [ApiRepresentation("invited")]
+            Invited,
+            [ApiRepresentation("inactive")]
+            Inactive
+        }
 
         public async Task<Enrollment> CreateEnrollment(ulong courseId,
                                                        ulong userId,
-                                                       string enrollmentType,
+                                                       CourseEnrollmentType enrollmentType,
                                                        ulong? roleId = null,
-                                                       string enrollmentState = null,
+                                                       CourseEnrollmentState? enrollmentState = null,
                                                        ulong? courseSectionId = null,
                                                        bool? limitPrivilegesToSection = null,
                                                        bool? notify = null,
@@ -52,9 +74,9 @@ namespace UVACanvasAccess.ApiParts {
             
             var response = await RawCreateEnrollment(courseId,
                                                      userId,
-                                                     enrollmentType,
+                                                     enrollmentType.GetApiRepresentation(),
                                                      roleId,
-                                                     enrollmentState,
+                                                     enrollmentState?.GetApiRepresentation(),
                                                      courseSectionId,
                                                      limitPrivilegesToSection,
                                                      notify,
