@@ -130,6 +130,13 @@ namespace UVACanvasAccess.Util {
         internal static IEnumerable<(string, string)> GetTuples(this AssignmentInclusions includes) {
             return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
         }
+        
+        [Pure]
+        internal static IEnumerable<List<T>> Chunk<T>(this List<T> list, int nSize) {        
+            for (int i = 0; i < list.Count; i += nSize) { 
+                yield return list.GetRange(i, Math.Min(nSize, list.Count - i)); 
+            }  
+        } 
 
         /// <summary>
         /// Gets the string used by Canvas used to refer to this enum member.
@@ -350,6 +357,17 @@ namespace UVACanvasAccess.Util {
         [Pure]
         public static ILookup<TK, TV> Lookup<TK, TV>(this IEnumerable<(TK, TV)> ie) {
             return ie.ToLookup(kv => kv.Item1, kv => kv.Item2);
+        }
+
+        [Pure]
+        internal static IEnumerable<(T1, T2)> ZipT<T1, T2>(this IEnumerable<T1> l, IEnumerable<T2> r) {
+            return l.Zip(r, (a, b) => (a, b));
+        }
+        
+        [Pure]
+        internal static IEnumerable<(T1, int)> ZipCount<T1>(this IEnumerable<T1> ie) {
+            List<T1> e = ie.ToList();
+            return e.ZipT(Enumerable.Range(0, e.Count));
         }
 
         /// <summary>
