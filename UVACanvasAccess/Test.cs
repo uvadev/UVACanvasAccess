@@ -40,21 +40,25 @@ namespace UVACanvasAccess {
 
             var list = File.ReadAllLines(fileMapDir + "map.csv").ToList();
             
+            // split the tasks into chunks so we have about as many chunks as logical processors.
             List<string>[] taskLists = list.Chunk(list.Count / Environment.ProcessorCount)
                                            .ToArray();
 
             var nThreads = taskLists.Length;
             
+            // every thread needs ownership of a single Api instance because masquerading is not thread safe.
             var apis = new Api[nThreads];
 
+            var token = Environment.GetEnvironmentVariable("TEST_TOKEN") 
+                        ?? throw new ArgumentException(".env should contain TEST_TOKEN");
+            
             for (int i = 0; i < nThreads; i++) {
-                apis[i] = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
-                                  ?? throw new ArgumentException(".env should contain TEST_TOKEN"), 
-                                  "https://uview.instructure.com/api/v1/");
+                apis[i] = new Api(token, "https://uview.instructure.com/api/v1/");
             }
 
             Console.WriteLine($"Using {nThreads} threads.");
             
+            // keep track of the file ids successfully uploaded so we can verify at the end that all tasks ran.
             var completed = new ConcurrentBag<ulong>();
 
             using (var countdown = new CountdownEvent(nThreads)) {
@@ -84,7 +88,7 @@ namespace UVACanvasAccess {
 
                                     var file = api.UploadPersonalFile(bytes,
                                                                       userFile,
-                                                                      "test_csv_file_upload_p2")
+                                                                      "test_csv_file_upload_p3")
                                                   .Result;
 
                                     Console.WriteLine($"Uploaded as {file.Id}!");
