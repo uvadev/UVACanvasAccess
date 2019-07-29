@@ -177,6 +177,7 @@
     <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
     <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
+    <Compile Include="Builders\CourseBuilder.cs" />
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Debugging\TraceToStdErr.cs" />
@@ -251,7 +252,10 @@
     <Compile Include="Structures\Authentications\AuthenticationEvent.cs" />
     <Compile Include="Structures\Authentications\EventType.cs" />
     <Compile Include="Structures\Courses\Course.cs" />
+    <Compile Include="Structures\Courses\CourseFormat.cs" />
     <Compile Include="Structures\Courses\CourseProgress.cs" />
+    <Compile Include="Structures\Courses\CourseView.cs" />
+    <Compile Include="Structures\Courses\License.cs" />
     <Compile Include="Structures\Courses\Term.cs" />
     <Compile Include="Structures\Discussions\DiscussionTopic.cs" />
     <Compile Include="Structures\Discussions\FileAttachment.cs" />

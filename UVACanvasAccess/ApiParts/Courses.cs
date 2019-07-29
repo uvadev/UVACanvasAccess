@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Courses;
 using UVACanvasAccess.Structures.Courses;
 using UVACanvasAccess.Util;
@@ -84,6 +85,20 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<CourseModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
             
             return new Course(this, model);
+        }
+
+        internal async Task<Course> PostCreateCourse(CourseBuilder builder) {
+            var url = $"accounts/{builder.AccountId?.ToString() ?? "self"}/courses";
+            var args = BuildHttpArguments(builder.Fields.Select(kv => (kv.Key, kv.Value)));
+
+            var response = await _client.PostAsync(url, args);
+
+            var model = JsonConvert.DeserializeObject<CourseModel>(await response.Content.ReadAsStringAsync());
+            return new Course(this, model);
+        }
+        
+        public CourseBuilder CreateCourse(ulong? accountId = null) {
+            return new CourseBuilder(this, accountId);
         }
         
     }
