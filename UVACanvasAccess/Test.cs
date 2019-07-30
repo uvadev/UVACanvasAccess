@@ -36,9 +36,7 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            api.TestGet("accounts/self/analytics/current/grades", out _, out var response);
-
-            var data = await api.GetDefaultTermDepartmentGradeData();
+            var data = await api.GetDefaultTermDepartmentStatistics();
 
             Console.WriteLine(data.ToPrettyString());
         }

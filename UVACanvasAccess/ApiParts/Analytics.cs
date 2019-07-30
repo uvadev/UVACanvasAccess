@@ -43,5 +43,23 @@ namespace UVACanvasAccess.ApiParts {
                                                                   : "completed", 
                                               accountId?.ToString() ?? "self");
         }
+
+        private async Task<DepartmentStatistics> BaseGetDepartmentStatistics(string infix, string accountId) {
+            var response = await _client.GetAsync($"accounts/{accountId}/analytics/{infix}/statistics");
+            var model =
+                JsonConvert.DeserializeObject<DepartmentStatisticsModel>(await response.Content.ReadAsStringAsync());
+            return new DepartmentStatistics(model);
+        }
+
+        public Task<DepartmentStatistics> GetDepartmentStatistics(ulong termId, ulong? accountId = null) {
+            return BaseGetDepartmentStatistics($"terms/{termId}", accountId?.ToString() ?? "self");
+        }
+
+        public Task<DepartmentStatistics> GetDefaultTermDepartmentStatistics(bool currentCourses = true,
+                                                                             ulong? accountId = null) {
+            return BaseGetDepartmentStatistics(currentCourses ? "current"
+                                                                   : "completed",
+                                               accountId?.ToString() ?? "self");
+        }
     }
 }

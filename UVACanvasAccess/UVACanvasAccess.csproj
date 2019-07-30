@@ -189,6 +189,7 @@
     <Compile Include="Model\Accounts\HelpLinksModel.cs" />
     <Compile Include="Model\Accounts\TermsOfServiceModel.cs" />
     <Compile Include="Model\Analytics\DepartmentParticipationModel.cs" />
+    <Compile Include="Model\Analytics\DepartmentStatisticsModel.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
     <Compile Include="Model\Assignments\AssignmentModel.cs" />
     <Compile Include="Model\Assignments\AssignmentOverrideModel.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Structures\Accounts\HelpLinks.cs" />
     <Compile Include="Structures\Accounts\TermsOfService.cs" />
     <Compile Include="Structures\Analytics\DepartmentParticipation.cs" />
+    <Compile Include="Structures\Analytics\DepartmentStatistics.cs" />
     <Compile Include="Structures\Assignments\Assignment.cs" />
     <Compile Include="Structures\Assignments\AssignmentDate.cs" />
     <Compile Include="Structures\Assignments\AssignmentOverride.cs" />
