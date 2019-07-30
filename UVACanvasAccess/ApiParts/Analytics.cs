@@ -15,14 +15,28 @@ namespace UVACanvasAccess.ApiParts {
             return new DepartmentParticipation(model);
         }
 
+        /// <summary>
+        /// Gets the page view and participation counts across all courses in the department during the given term.
+        /// </summary>
+        /// <param name="termId">The term to get data for.</param>
+        /// <param name="accountId">The account. <c>self</c> by default.</param>
+        /// <returns>The participation data.</returns>
         public Task<DepartmentParticipation> GetDepartmentParticipationData(ulong termId, ulong? accountId = null) {
             return BaseGetDepartmentParticipationData($"terms/{termId}", accountId?.ToString() ?? "self");
         }
 
+        /// <summary>
+        /// Gets the page view and participation counts across all current or completed courses in the department during the default term.
+        /// </summary>
+        /// <param name="currentCourses">
+        /// If true, the data returned will be across current courses. Otherwise, it will be across completed courses.
+        /// True by default.
+        /// </param>
+        /// <param name="accountId">The account. <c>self</c> by default.</param>
+        /// <returns>The participation data.</returns>
         public Task<DepartmentParticipation> GetDefaultTermDepartmentParticipationData(bool currentCourses = true, 
                                                                                        ulong? accountId = null) {
-            return BaseGetDepartmentParticipationData(currentCourses ? "current"
-                                                                          : "completed",
+            return BaseGetDepartmentParticipationData(currentCourses ? "current" : "completed",
                                                       accountId?.ToString() ?? "self");
         }
 
@@ -33,14 +47,28 @@ namespace UVACanvasAccess.ApiParts {
             return dict.KeySelect(byte.Parse);
         }
 
+        /// <summary>
+        /// Gets the distribution of grades for students across all courses in the department during the given term.
+        /// </summary>
+        /// <param name="termId">The term to get data for.</param>
+        /// <param name="accountId">The account. <c>self</c> by default.</param>
+        /// <returns>The grade data.</returns>
         public Task<Dictionary<byte, ulong>> GetDepartmentGradeData(ulong termId, ulong? accountId = null) {
             return BaseGetDepartmentGradeData($"terms/{termId}", accountId?.ToString() ?? "self");
         }
         
+        /// <summary>
+        /// Gets the distribution of grades for students across all current or completed courses in the department during the default term.
+        /// </summary>
+        /// <param name="currentCourses">
+        /// If true, the data returned will be across current courses. Otherwise, it will be across completed courses.
+        /// True by default.
+        /// </param>
+        /// <param name="accountId">The account. <c>self</c> by default.</param>
+        /// <returns>The grade data.</returns>
         public Task<Dictionary<byte, ulong>> GetDefaultTermDepartmentGradeData(bool currentCourses = true,
                                                                                ulong? accountId = null) {
-            return BaseGetDepartmentGradeData(currentCourses ? "current"
-                                                                  : "completed", 
+            return BaseGetDepartmentGradeData(currentCourses ? "current" : "completed", 
                                               accountId?.ToString() ?? "self");
         }
 
@@ -51,14 +79,28 @@ namespace UVACanvasAccess.ApiParts {
             return new DepartmentStatistics(model);
         }
 
+        /// <summary>
+        /// Gets some numeric statistics about the department relative to the given term.
+        /// </summary>
+        /// <param name="termId">The term to get data for.</param>
+        /// <param name="accountId">The account. <c>self</c> by default.</param>
+        /// <returns>The statistics.</returns>
         public Task<DepartmentStatistics> GetDepartmentStatistics(ulong termId, ulong? accountId = null) {
             return BaseGetDepartmentStatistics($"terms/{termId}", accountId?.ToString() ?? "self");
         }
 
+        /// <summary>
+        /// Gets some numeric statistics about the department relative to current ot completed courses in the default term.
+        /// </summary>
+        /// <param name="currentCourses">
+        /// If true, the data returned will be across current courses. Otherwise, it will be across completed courses.
+        /// True by default.
+        /// </param>
+        /// <param name="accountId">The account. <c>self</c> by default.</param>
+        /// <returns>The statistics.</returns>
         public Task<DepartmentStatistics> GetDefaultTermDepartmentStatistics(bool currentCourses = true,
                                                                              ulong? accountId = null) {
-            return BaseGetDepartmentStatistics(currentCourses ? "current"
-                                                                   : "completed",
+            return BaseGetDepartmentStatistics(currentCourses ? "current" : "completed",
                                                accountId?.ToString() ?? "self");
         }
     }
