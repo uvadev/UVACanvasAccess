@@ -118,6 +118,9 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<CourseSettingsModel>(await response.Content.ReadAsStringAsync());
             return new CourseSettings(model);
         }
-        
+
+        public async Task UpdateCourseSettings(ulong courseId, CourseSettings cs) {
+            await _client.PutAsync($"courses/{courseId}/settings", BuildHttpArguments(cs.GetTuples()));
+        }
     }
 }

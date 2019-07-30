@@ -35,8 +35,11 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
+
+            await api.UpdateCourseSettings(TestCourse, new CourseSettings(allowStudentForumAttachments: true, 
+                                                                          showAnnouncementsOnHomePage: false));
             
-            Console.WriteLine(await api.GetCourseSettings(TestDomainCourse).ThenApply(cs => cs.ToPrettyString()));
+            Console.WriteLine(await api.GetCourseSettings(TestCourse).ThenApply(cs => cs.ToPrettyString()));
         }
     }
 }

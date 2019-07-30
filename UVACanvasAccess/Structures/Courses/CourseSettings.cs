@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.Model.Courses;
 using UVACanvasAccess.Util;
@@ -49,6 +51,25 @@ namespace UVACanvasAccess.Structures.Courses {
             RestrictStudentFutureView = model.RestrictStudentFutureView;
             ShowAnnouncementsOnHomePage = model.ShowAnnouncementsOnHomePage;
             HomePageAnnouncementLimit = model.HomePageAnnouncementLimit;
+        }
+
+        internal IEnumerable<(string, string)> GetTuples() {
+            return new[] {
+                ("allow_final_grade_override", AllowFinalGradeOverride?.ToShortString()),
+                ("allow_student_discussion_topics", AllowStudentDiscussionTopics?.ToShortString()),
+                ("allow_student_forum_attachments", AllowStudentForumAttachments?.ToShortString()),
+                ("allow_student_discussion_editing", AllowStudentDiscussionEditing?.ToShortString()),
+                ("grading_standard_enabled", GradingStandardEnabled?.ToShortString()),
+                ("grading_standard_id", GradingStandardId?.ToString()),
+                ("allow_student_organized_groups", AllowStudentOrganizedGroups?.ToShortString()),
+                ("hide_final_grades", HideFinalGrades?.ToShortString()),
+                ("hide_distribution_graphs", HideDistributionGraphs?.ToShortString()),
+                ("lock_all_announcements", LockAllAnnouncements?.ToShortString()),
+                ("restrict_student_past_view", RestrictStudentPastView?.ToShortString()),
+                ("restrict_student_future_view", RestrictStudentFutureView?.ToShortString()),
+                ("show_announcements_on_home_page", ShowAnnouncementsOnHomePage?.ToShortString()),
+                ("home_page_announcement_limit", HomePageAnnouncementLimit?.ToString())
+            }.Where(t => t.Item2 != null);
         }
         
         public CourseSettings(bool? allowFinalGradeOverride = null,
