@@ -93,6 +93,7 @@
     <Compile Include="AssignmentsTests.cs" />
     <Compile Include="ExportLoggedInUsers.cs" />
     <Compile Include="PageViewsExample.cs" />
+    <Compile Include="ParallelFileMapUpload.cs" />
     <Compile Include="SingleThreadedFileMapUpload.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

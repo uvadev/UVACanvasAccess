@@ -132,7 +132,7 @@ namespace UVACanvasAccess.Util {
         }
         
         [Pure]
-        internal static IEnumerable<List<T>> Chunk<T>(this List<T> list, int nSize) {        
+        public static IEnumerable<List<T>> Chunk<T>(this List<T> list, int nSize) {        
             for (int i = 0; i < list.Count; i += nSize) { 
                 yield return list.GetRange(i, Math.Min(nSize, list.Count - i)); 
             }  
