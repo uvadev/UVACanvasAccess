@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Courses;
@@ -160,6 +161,14 @@ namespace UVACanvasAccess.Structures.Courses {
             Blueprint = model.Blueprint;
             BlueprintRestrictions = model.BlueprintRestrictions;
             BlueprintRestrictionsByObjectType = model.BlueprintRestrictionsByObjectType;
+        }
+
+        public Task<CourseSettings> GetSettings() {
+            return _api.GetCourseSettings(Id);
+        }
+
+        public Task UpdateSettings(CourseSettings cs) {
+            return _api.UpdateCourseSettings(Id, cs);
         }
 
         public string ToPrettyString() {

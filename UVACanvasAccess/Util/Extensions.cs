@@ -82,10 +82,10 @@ namespace UVACanvasAccess.Util {
                                   : key.ToString();
                 var v = vIsPretty ? ((IPrettyPrint) val).ToPrettyString() 
                                   : val.ToString();
-                sb.Append($"\n{k} -> {v}".Indent(4));
+                sb.Append($"\n{k} -> {v},".Indent(4));
             }
 
-            return sb.Append("\n}").ToString();
+            return sb.ToString().TrimEnd(',') + "\n}";
         }
 
         /// <summary>

@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiParts\Accounts.cs" />
+    <Compile Include="ApiParts\Analytics.cs" />
     <Compile Include="ApiParts\Api.cs" />
     <Compile Include="ApiParts\Assignments.cs" />
     <Compile Include="ApiParts\Authentications.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Model\Accounts\HelpLinkModel.cs" />
     <Compile Include="Model\Accounts\HelpLinksModel.cs" />
     <Compile Include="Model\Accounts\TermsOfServiceModel.cs" />
+    <Compile Include="Model\Analytics\DepartmentParticipationModel.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
     <Compile Include="Model\Assignments\AssignmentModel.cs" />
     <Compile Include="Model\Assignments\AssignmentOverrideModel.cs" />
@@ -240,6 +242,7 @@
     <Compile Include="Structures\Accounts\HelpLink.cs" />
     <Compile Include="Structures\Accounts\HelpLinks.cs" />
     <Compile Include="Structures\Accounts\TermsOfService.cs" />
+    <Compile Include="Structures\Analytics\DepartmentParticipation.cs" />
     <Compile Include="Structures\Assignments\Assignment.cs" />
     <Compile Include="Structures\Assignments\AssignmentDate.cs" />
     <Compile Include="Structures\Assignments\AssignmentOverride.cs" />

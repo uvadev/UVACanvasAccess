@@ -36,10 +36,9 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            await api.UpdateCourseSettings(TestCourse, new CourseSettings(allowStudentForumAttachments: true, 
-                                                                          showAnnouncementsOnHomePage: false));
-            
-            Console.WriteLine(await api.GetCourseSettings(TestCourse).ThenApply(cs => cs.ToPrettyString()));
+            var data = await api.GetDefaultTermDepartmentParticipationData();
+
+            Console.WriteLine(data.ToPrettyString());
         }
     }
 }
