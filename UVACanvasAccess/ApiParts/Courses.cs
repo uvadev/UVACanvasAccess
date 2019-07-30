@@ -112,6 +112,12 @@ namespace UVACanvasAccess.ApiParts {
         public async Task ConcludeCourse(ulong courseId) {
             await RawDeleteCourse(courseId.ToString(), "conclude").AssertSuccess();
         }
+
+        public async Task<CourseSettings> GetCourseSettings(ulong courseId) {
+            var response = await _client.GetAsync($"courses/{courseId}/settings");
+            var model = JsonConvert.DeserializeObject<CourseSettingsModel>(await response.Content.ReadAsStringAsync());
+            return new CourseSettings(model);
+        }
         
     }
 }

@@ -201,6 +201,7 @@
     <Compile Include="Model\Courses\CalendarLinkModel.cs" />
     <Compile Include="Model\Courses\CourseModel.cs" />
     <Compile Include="Model\Courses\CourseProgressModel.cs" />
+    <Compile Include="Model\Courses\CourseSettingsModel.cs" />
     <Compile Include="Model\Courses\TermModel.cs" />
     <Compile Include="Model\Discussions\DiscussionTopicModel.cs" />
     <Compile Include="Model\Discussions\FileAttachmentModel.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Structures\Courses\Course.cs" />
     <Compile Include="Structures\Courses\CourseFormat.cs" />
     <Compile Include="Structures\Courses\CourseProgress.cs" />
+    <Compile Include="Structures\Courses\CourseSettings.cs" />
     <Compile Include="Structures\Courses\CourseView.cs" />
     <Compile Include="Structures\Courses\License.cs" />
     <Compile Include="Structures\Courses\Term.cs" />
