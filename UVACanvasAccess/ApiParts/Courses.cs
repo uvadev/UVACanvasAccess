@@ -100,6 +100,18 @@ namespace UVACanvasAccess.ApiParts {
         public CourseBuilder CreateCourse(ulong? accountId = null) {
             return new CourseBuilder(this, accountId);
         }
+
+        private Task<HttpResponseMessage> RawDeleteCourse(string id, [NotNull] string action) {
+            return _client.DeleteAsync($"courses/{id}" + BuildQueryString(("event", action)));
+        }
+
+        public async Task DeleteCourse(ulong courseId) {
+            await RawDeleteCourse(courseId.ToString(), "delete").AssertSuccess();
+        }
+        
+        public async Task ConcludeCourse(ulong courseId) {
+            await RawDeleteCourse(courseId.ToString(), "conclude").AssertSuccess();
+        }
         
     }
 }
