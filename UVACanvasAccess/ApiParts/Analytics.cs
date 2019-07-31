@@ -109,5 +109,15 @@ namespace UVACanvasAccess.ApiParts {
 
             return new UserParticipation(JsonConvert.DeserializeObject<UserParticipationModel>(await response.Content.ReadAsStringAsync()));
         }
+
+        public async IAsyncEnumerable<UserAssignmentData> GetUserCourseAssignmentData(ulong courseId, ulong userId) {
+            var response = await _client.GetAsync($"courses/{courseId}/analytics/users/{userId}/assignments");
+
+            var models = StreamDeserializePages<UserAssignmentDataModel>(response);
+
+            await foreach (var m in models) {
+                yield return new UserAssignmentData(m);
+            }
+        }
     }
 }

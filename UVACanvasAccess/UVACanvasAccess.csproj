@@ -190,6 +190,7 @@
     <Compile Include="Model\Accounts\TermsOfServiceModel.cs" />
     <Compile Include="Model\Analytics\DepartmentParticipationModel.cs" />
     <Compile Include="Model\Analytics\DepartmentStatisticsModel.cs" />
+    <Compile Include="Model\Analytics\UserAssignmentDataModel.cs" />
     <Compile Include="Model\Analytics\UserParticipationModel.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
     <Compile Include="Model\Assignments\AssignmentModel.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Structures\Accounts\TermsOfService.cs" />
     <Compile Include="Structures\Analytics\DepartmentParticipation.cs" />
     <Compile Include="Structures\Analytics\DepartmentStatistics.cs" />
+    <Compile Include="Structures\Analytics\UserAssignmentData.cs" />
     <Compile Include="Structures\Analytics\UserParticipation.cs" />
     <Compile Include="Structures\Assignments\Assignment.cs" />
     <Compile Include="Structures\Assignments\AssignmentDate.cs" />

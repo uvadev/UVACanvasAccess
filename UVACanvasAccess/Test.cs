@@ -1,12 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Util;
-using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
-using static UVACanvasAccess.ApiParts.Api.IndividualLevelCourseIncludes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -31,7 +27,10 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            Console.WriteLine(await api.GetUserCourseParticipationData(TestUser2Id, TestCourse).ThenApply(p => p.ToPrettyString()));
+            var data = await api.GetUserCourseAssignmentData(TestCourse, TestUser2Id)
+                                .FirstAsync();
+
+            Console.WriteLine(data.ToPrettyString());
         }
     }
 }
