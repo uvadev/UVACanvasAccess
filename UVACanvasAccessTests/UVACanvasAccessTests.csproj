@@ -55,6 +55,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -92,6 +96,7 @@
     <Compile Include="ApiFixture.cs" />
     <Compile Include="AssignmentsTests.cs" />
     <Compile Include="ExportLoggedInUsers.cs" />
+    <Compile Include="GradeReporting.cs" />
     <Compile Include="PageViewsExample.cs" />
     <Compile Include="ParallelFileMapUpload.cs" />
     <Compile Include="SingleThreadedFileMapUpload.cs" />

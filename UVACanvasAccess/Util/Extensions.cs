@@ -336,7 +336,7 @@ namespace UVACanvasAccess.Util {
         /// </summary>
         /// <returns>The formatted datetime.</returns>
         [Pure]
-        internal static string ToIso8601Date(this DateTime dateTime) {
+        public static string ToIso8601Date(this DateTime dateTime) {
             var s = JsonConvert.SerializeObject(dateTime);
             return s.Substring(1, s.Length - 2);
         }

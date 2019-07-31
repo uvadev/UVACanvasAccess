@@ -103,5 +103,11 @@ namespace UVACanvasAccess.ApiParts {
             return BaseGetDepartmentStatistics(currentCourses ? "current" : "completed",
                                                accountId?.ToString() ?? "self");
         }
+
+        public async Task<UserParticipation> GetUserCourseParticipationData(ulong userId, ulong courseId) {
+            var response = await _client.GetAsync($"courses/{courseId}/analytics/users/{userId}/activity");
+
+            return new UserParticipation(JsonConvert.DeserializeObject<UserParticipationModel>(await response.Content.ReadAsStringAsync()));
+        }
     }
 }

@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using dotenv.net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Debugging;
-using UVACanvasAccess.Structures.Courses;
 using UVACanvasAccess.Util;
 using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
 using static UVACanvasAccess.ApiParts.Api.IndividualLevelCourseIncludes;
@@ -39,37 +31,7 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var advisory = await api.GetCourse(TestCourse, includes: Everything);
-
-            var enrollments = api.StreamCourseEnrollments(advisory.Id, new[] {StudentEnrollment});
-
-            var students = new JArray();
-
-            await foreach (var enrollment in enrollments) {
-                var student = await api.GetUserDetails(enrollment.UserId);
-                students.Add(JObject.FromObject(new {
-                    student = new {
-                        id = student.Id,
-                        sis = student.SisUserId,
-                        name = student.Name
-                    },
-                    score = new {
-                        current = enrollment.Grades.CurrentScore,
-                        final = enrollment.Grades.FinalScore
-                    },
-                    grade = new {
-                        current = enrollment.Grades.CurrentGrade,
-                        final = enrollment.Grades.FinalGrade
-                    }
-                }));
-            }
-
-            var document = new JObject {
-                ["generatedOn"] = DateTime.Now.ToUniversalTime().ToIso8601Date(), 
-                ["students"] = students
-            };
-
-            Console.WriteLine(document.ToString(Formatting.Indented));
+            Console.WriteLine(await api.GetUserCourseParticipationData(TestUser2Id, TestCourse).ThenApply(p => p.ToPrettyString()));
         }
     }
 }
