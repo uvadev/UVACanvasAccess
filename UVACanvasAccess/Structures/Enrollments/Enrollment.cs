@@ -191,8 +191,8 @@ namespace UVACanvasAccess.Structures.Enrollments {
                    $"\n{nameof(LastAttendedAt)}: {LastAttendedAt}," +
                    $"\n{nameof(TotalActivityTime)}: {TotalActivityTime}," +
                    $"\n{nameof(HtmlUrl)}: {HtmlUrl}," +
-                   $"\n{nameof(Grades)}: {Grades}," +
-                   $"\n{nameof(User)}: {User}," +
+                   $"\n{nameof(Grades)}: {Grades.ToPrettyString()}," +
+                   $"\n{nameof(User)}: {User.ToPrettyString()}," +
                    $"\n{nameof(OverrideGrade)}: {OverrideGrade}," +
                    $"\n{nameof(OverrideScore)}: {OverrideScore}," +
                    $"\n{nameof(UnpostedCurrentGrade)}: {UnpostedCurrentGrade}," +

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -197,6 +200,43 @@ namespace UVACanvasAccess.ApiParts {
             
             var model = JsonConvert.DeserializeObject<EnrollmentModel>(await response.Content.ReadAsStringAsync());
             return new Enrollment(this, model);
+        }
+
+        [PublicAPI]
+        [Flags]
+        public enum CourseEnrollmentIncludes : byte {
+            AvatarUrl = 1 << 0,
+            GroupIds = 1 << 1,
+            Locked = 1 << 2,
+            ObservedUsers = 1 << 3,
+            CanBeRemoved = 1 << 4,
+            Uuid = 1 << 5
+        }
+        
+        // todo params
+        public async IAsyncEnumerable<Enrollment> StreamCourseEnrollments(ulong courseId,
+                                                                          IEnumerable<CourseEnrollmentType> types = null,
+                                                                          IEnumerable<CourseEnrollmentState> states = null,
+                                                                          CourseEnrollmentIncludes? includes = null) {
+            var args = new List<(string, string)>();
+            if (types != null) {
+                args.AddRange(types.Select(t => t.GetApiRepresentation())
+                                   .Select(a => ("type[]", a)));
+            }
+            if (states != null) {
+                args.AddRange(states.Select(s => s.GetApiRepresentation())
+                                    .Select(a => ("state[]", a)));
+            }
+            if (includes != null) {
+                args.AddRange(includes.GetFlagsApiRepresentations()
+                                      .Select(a => ("include[]", a)));
+            }
+            
+            var response = await _client.GetAsync($"courses/{courseId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
+
+            await foreach (var model in StreamDeserializePages<EnrollmentModel>(response)) {
+                yield return new Enrollment(this, model);
+            }
         }
     }
 }
