@@ -26,24 +26,6 @@ namespace UVACanvasAccess.Model.Analytics {
         public uint? ParticipationsLevel { get; set; }
         
         [JsonProperty("tardiness_breakdown")]
-        public CourseStudentTardinessModel TardinessBreakdown { get; set; }
-    }
-
-    internal class CourseStudentTardinessModel {
-        
-        [JsonProperty("missing")]
-        public uint Missing { get; set; }
-        
-        [JsonProperty("late")]
-        public uint Late { get; set; }
-        
-        [JsonProperty("on_time")]
-        public uint OnTime { get; set; }
-        
-        [JsonProperty("floating")]
-        public uint Floating { get; set; }
-        
-        [JsonProperty("total")]
-        public uint Total { get; set; }
+        public TardinessModel TardinessBreakdown { get; set; }
     }
 }

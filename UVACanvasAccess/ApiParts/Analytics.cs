@@ -152,5 +152,14 @@ namespace UVACanvasAccess.ApiParts {
                 yield return new CourseStudentSummary(model);
             }
         }
+
+        public async IAsyncEnumerable<CourseAssignmentSummary> StreamCourseAssignmentSummary(ulong courseId) {
+            var response = await _client.GetAsync($"courses/{courseId}/analytics/assignments");
+            var models = StreamDeserializePages<CourseAssignmentSummaryModel>(response);
+
+            await foreach (var model in models) {
+                yield return new CourseAssignmentSummary(model);
+            }
+        }
     }
 }

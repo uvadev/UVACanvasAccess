@@ -27,7 +27,8 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var data = api.StreamCourseStudentSummary(TestCourse);
+            var data = api.StreamCourseAssignmentSummary(TestCourse);
+
             Console.WriteLine(await data.ToPrettyStringAsync());
         }
     }

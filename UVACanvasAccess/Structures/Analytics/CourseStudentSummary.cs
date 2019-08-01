@@ -20,7 +20,7 @@ namespace UVACanvasAccess.Structures.Analytics {
         
         public uint? ParticipationsLevel { get; }
         
-        public CourseStudentTardiness TardinessBreakdown { get; }
+        public Tardiness TardinessBreakdown { get; }
 
         internal CourseStudentSummary(CourseStudentSummaryModel model) {
             Id = model.Id;
@@ -30,7 +30,7 @@ namespace UVACanvasAccess.Structures.Analytics {
             Participations = model.Participations;
             MaxParticipations = model.MaxParticipations;
             ParticipationsLevel = model.ParticipationsLevel;
-            TardinessBreakdown = model.TardinessBreakdown.ConvertIfNotNull(m => new CourseStudentTardiness(m));
+            TardinessBreakdown = model.TardinessBreakdown.ConvertIfNotNull(m => new Tardiness(m));
         }
 
         public string ToPrettyString() {
@@ -43,37 +43,6 @@ namespace UVACanvasAccess.Structures.Analytics {
                    $"\n{nameof(MaxParticipations)}: {MaxParticipations}," +
                    $"\n{nameof(ParticipationsLevel)}: {ParticipationsLevel}," +
                    $"\n{nameof(TardinessBreakdown)}: {TardinessBreakdown?.ToPrettyString()}").Indent(4) + 
-                   "\n}";
-        }
-    }
-
-    [PublicAPI]
-    public class CourseStudentTardiness : IPrettyPrint {
-        public uint Missing { get; }
-        
-        public uint Late { get; }
-        
-        public uint OnTime { get; }
-        
-        public uint Floating { get; }
-        
-        public uint Total { get; }
-
-        internal CourseStudentTardiness(CourseStudentTardinessModel model) {
-            Missing = model.Missing;
-            Late = model.Late;
-            OnTime = model.OnTime;
-            Floating = model.Floating;
-            Total = model.Total;
-        }
-
-        public string ToPrettyString() {
-            return "CourseStudentTardiness {" + 
-                   ($"\n{nameof(Missing)}: {Missing}," +
-                   $"\n{nameof(Late)}: {Late}," +
-                   $"\n{nameof(OnTime)}: {OnTime}," +
-                   $"\n{nameof(Floating)}: {Floating}," +
-                   $"\n{nameof(Total)}: {Total}").Indent(4) + 
                    "\n}";
         }
     }

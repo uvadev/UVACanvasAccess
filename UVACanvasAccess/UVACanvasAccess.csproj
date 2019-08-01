@@ -188,9 +188,11 @@
     <Compile Include="Model\Accounts\HelpLinkModel.cs" />
     <Compile Include="Model\Accounts\HelpLinksModel.cs" />
     <Compile Include="Model\Accounts\TermsOfServiceModel.cs" />
+    <Compile Include="Model\Analytics\CourseAssignmentSummaryModel.cs" />
     <Compile Include="Model\Analytics\CourseStudentSummaryModel.cs" />
     <Compile Include="Model\Analytics\DepartmentParticipationModel.cs" />
     <Compile Include="Model\Analytics\DepartmentStatisticsModel.cs" />
+    <Compile Include="Model\Analytics\TardinessModel.cs" />
     <Compile Include="Model\Analytics\UserAssignmentDataModel.cs" />
     <Compile Include="Model\Analytics\UserParticipationModel.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
@@ -246,9 +248,11 @@
     <Compile Include="Structures\Accounts\HelpLink.cs" />
     <Compile Include="Structures\Accounts\HelpLinks.cs" />
     <Compile Include="Structures\Accounts\TermsOfService.cs" />
+    <Compile Include="Structures\Analytics\CourseAssignmentSummary.cs" />
     <Compile Include="Structures\Analytics\CourseStudentSummary.cs" />
     <Compile Include="Structures\Analytics\DepartmentParticipation.cs" />
     <Compile Include="Structures\Analytics\DepartmentStatistics.cs" />
+    <Compile Include="Structures\Analytics\Tardiness.cs" />
     <Compile Include="Structures\Analytics\UserAssignmentData.cs" />
     <Compile Include="Structures\Analytics\UserParticipation.cs" />
     <Compile Include="Structures\Assignments\Assignment.cs" />
