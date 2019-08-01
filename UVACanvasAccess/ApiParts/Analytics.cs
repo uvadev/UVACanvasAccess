@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Analytics;
 using UVACanvasAccess.Structures.Analytics;
@@ -113,10 +114,42 @@ namespace UVACanvasAccess.ApiParts {
         public async IAsyncEnumerable<UserAssignmentData> GetUserCourseAssignmentData(ulong courseId, ulong userId) {
             var response = await _client.GetAsync($"courses/{courseId}/analytics/users/{userId}/assignments");
 
-            var models = StreamDeserializePages<UserAssignmentDataModel>(response);
-
-            await foreach (var m in models) {
+            await foreach (var m in StreamDeserializePages<UserAssignmentDataModel>(response)) {
                 yield return new UserAssignmentData(m);
+            }
+        }
+
+        [PublicAPI]
+        public enum StudentCourseSummarySortColumn : byte {
+            [ApiRepresentation("name")]
+            Name,
+            [ApiRepresentation("name_descending")]
+            NameDescending,
+            [ApiRepresentation("score")]
+            Score,
+            [ApiRepresentation("score_descending")]
+            ScoreDescending,
+            [ApiRepresentation("participations")]
+            Participations,
+            [ApiRepresentation("participations_descending")]
+            ParticipationsDescending,
+            [ApiRepresentation("page_views")]
+            PageViews,
+            [ApiRepresentation("page_views_descending")]
+            PageViewsDescending
+        }
+
+        public async IAsyncEnumerable<CourseStudentSummary> StreamCourseStudentSummary(ulong courseId, 
+                                                                                       ulong? studentId = null, 
+                                                                                       StudentCourseSummarySortColumn? sortBy = null) {
+            var response = await _client.GetAsync($"courses/{courseId}/analytics/student_summaries" + 
+                                                  BuildQueryString(("student_id", studentId.ToString()),
+                                                                   ("sort_column", sortBy?.GetApiRepresentation())));
+
+            var models = StreamDeserializePages<CourseStudentSummaryModel>(response);
+
+            await foreach (var model in models) {
+                yield return new CourseStudentSummary(model);
             }
         }
     }

@@ -105,9 +105,24 @@ namespace UVACanvasAccess.Util {
             return "[" + string.Join(", ", strings) + "]";
         }
 
+        [Pure]
+        [PublicAPI]
+        public static Task<string> ToPrettyStringAsync<T>([NotNull] this IAsyncEnumerable<T> iae) {
+            return iae.CollectAsync().ThenApply(l => l.ToPrettyString());
+        }
+
+        [Pure]
+        [PublicAPI]
+        public static async Task<IEnumerable<T>> CollectAsync<T>([NotNull] this IAsyncEnumerable<T> iae) {
+            return await iae.AggregateAsync(new List<T>(), (l, e) => {
+                l.Add(e);
+                return l;
+            });
+        }
+
         // C# lacks proper generic specialization which makes me sad. This is the best we have.
         [Pure]
-        internal static bool IsA<TInterface, TType>() {
+        private static bool IsA<TInterface, TType>() {
             return typeof(TInterface).IsAssignableFrom(typeof(TType));
         }
 

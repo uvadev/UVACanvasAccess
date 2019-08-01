@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -27,10 +27,8 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var data = await api.GetUserCourseAssignmentData(TestCourse, TestUser2Id)
-                                .FirstAsync();
-
-            Console.WriteLine(data.ToPrettyString());
+            var data = api.StreamCourseStudentSummary(TestCourse);
+            Console.WriteLine(await data.ToPrettyStringAsync());
         }
     }
 }
