@@ -29,10 +29,9 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            api.TestGet($"courses/{TestCourse}/outcome_results", out _, out var response, out var links);
+            var events = api.StreamCalendarEvents(allEvents: true);
 
-            Console.WriteLine(response.ToString(Formatting.Indented));
-            Console.WriteLine(links?.NextLink);
+            Console.WriteLine(await events.ToPrettyStringAsync());
         }
     }
 }

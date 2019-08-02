@@ -165,6 +165,7 @@
     <Compile Include="ApiParts\Api.cs" />
     <Compile Include="ApiParts\Assignments.cs" />
     <Compile Include="ApiParts\Authentications.cs" />
+    <Compile Include="ApiParts\Calendar.cs" />
     <Compile Include="ApiParts\Courses.cs" />
     <Compile Include="ApiParts\Discussions.cs" />
     <Compile Include="ApiParts\Enrollments.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Model\Assignments\TurnitinSettingsModel.cs" />
     <Compile Include="Model\Authentications\AuthenticationEventModel.cs" />
     <Compile Include="Model\Authentications\AuthenticationEventsResponseModel.cs" />
+    <Compile Include="Model\Calendar\CalendarEventModel.cs" />
     <Compile Include="Model\Courses\CalendarLinkModel.cs" />
     <Compile Include="Model\Courses\CourseModel.cs" />
     <Compile Include="Model\Courses\CourseProgressModel.cs" />
@@ -275,6 +277,8 @@
     <Compile Include="Structures\Assignments\TurnitinSettings.cs" />
     <Compile Include="Structures\Authentications\AuthenticationEvent.cs" />
     <Compile Include="Structures\Authentications\EventType.cs" />
+    <Compile Include="Structures\Calendar\BasicCalendarEvent.cs" />
+    <Compile Include="Structures\Calendar\CalendarEvent.cs" />
     <Compile Include="Structures\Courses\Course.cs" />
     <Compile Include="Structures\Courses\CourseFormat.cs" />
     <Compile Include="Structures\Courses\CourseProgress.cs" />
