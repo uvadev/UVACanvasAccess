@@ -17,7 +17,10 @@ namespace UVACanvasAccess.ApiParts {
     /// This class is the primary interface for interacting with the Canvas API. <br/>
     /// </summary>
     /// <remarks>
-    /// API instances are intended to be be reused between calls, and should only be constructed once per token.
+    /// API instances are intended to be be reused between calls, and should only be constructed once per token, per thread. <br/>
+    /// The only internal state maintained by this class is <see cref="HttpClient">HttpClient</see>, which is thread safe;
+    /// and the masquerade state, which is <b>not</b> thread safe. Do not share the same instance of this class between
+    /// threads if any thread will call <see cref="MasqueradeAs"/> or <see cref="StopMasquerading"/>.
     /// </remarks>
     [PublicAPI]
     public partial class Api : IDisposable {

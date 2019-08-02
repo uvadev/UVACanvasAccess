@@ -105,12 +105,22 @@ namespace UVACanvasAccess.Util {
             return "[" + string.Join(", ", strings) + "]";
         }
 
+        /// <summary>
+        /// Pretty-prints this <see cref="IAsyncEnumerable{T}"/> using <see cref="CollectAsync{T}"/> and <see cref="ToPrettyString{T}"/>.
+        /// </summary>
+        /// <returns>The pretty string.</returns>
         [Pure]
         [PublicAPI]
         public static Task<string> ToPrettyStringAsync<T>([NotNull] this IAsyncEnumerable<T> iae) {
             return iae.CollectAsync().ThenApply(l => l.ToPrettyString());
         }
 
+        /// <summary>
+        /// Asynchronously enumerates an entire <see cref="IAsyncEnumerable{T}">asynchronous stream</see> into a
+        /// normal <see cref="IEnumerable{T}">IEnumerable</see>.
+        /// </summary>
+        /// <param name="iae">The stream.</param>
+        /// <returns>The collection.</returns>
         [Pure]
         [PublicAPI]
         public static async Task<IEnumerable<T>> CollectAsync<T>([NotNull] this IAsyncEnumerable<T> iae) {
@@ -146,6 +156,12 @@ namespace UVACanvasAccess.Util {
             return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
         }
         
+        /// <summary>
+        /// Chunk this list into chunks of about <paramref name="nSize"/>.
+        /// </summary>
+        /// <param name="list">The list.</param>
+        /// <param name="nSize">The maximum size of each chunk</param>
+        /// <returns>The collection of chunks.</returns>
         [Pure]
         public static IEnumerable<List<T>> Chunk<T>(this List<T> list, int nSize) {        
             for (int i = 0; i < list.Count; i += nSize) { 
@@ -332,6 +348,11 @@ namespace UVACanvasAccess.Util {
             return d.Select(kv => kv.ValSelect(f)).IdentityDictionary();
         }
 
+        /// <summary>
+        /// Converts this enumerable of <see cref="KeyValuePair{TK,TV}"/> to a <see cref="Dictionary{TK,TV}"/>.
+        /// </summary>
+        /// <param name="ie">The enumerable of key-value pairs.</param>
+        /// <returns></returns>
         [Pure]
         internal static Dictionary<TK, TV> IdentityDictionary<TK, TV>(this IEnumerable<KeyValuePair<TK, TV>> ie) {
             return ie.ToDictionary(kv => kv.Key, kv => kv.Value);
@@ -406,7 +427,8 @@ namespace UVACanvasAccess.Util {
         }
 
         /// <summary>
-        /// Unzips and flattens this collection of tuples by unzipping it and concatenating the results.
+        /// Unzips and flattens this collection of tuples by concatenating the list of first elements to the list
+        /// of second elements.
         /// </summary>
         /// <returns>The chained collection.</returns>
         /// <example><code>
@@ -420,7 +442,7 @@ namespace UVACanvasAccess.Util {
         }
         
         /// <summary>
-        /// Unzips and flattens this collection of tuples by chaining each element together.
+        /// Unzips and flattens this collection of tuples by joining the first and second elements of each tuple.
         /// </summary>
         /// <returns>The interleaved collection.</returns>
         /// <example><code>
@@ -448,14 +470,37 @@ namespace UVACanvasAccess.Util {
                      .Select(e => e.Value);
         }
 
+        /// <summary>
+        /// Asynchronously applies the mapping function <paramref name="f"/> to the result of this task and returns the
+        /// result.
+        /// </summary>
+        /// <param name="task">The task.</param>
+        /// <param name="f">The mapping function.</param>
+        /// <returns>A task containing the result of the mapping function.</returns>
         public static Task<TO> ThenApply<TI, TO>(this Task<TI> task, Func<TI, TO> f) {
             return task.ContinueWith(t => f(t.Result));
         }
         
+        /// <summary>
+        /// Asynchronously applies the consumer <paramref name="f"/> to the result of this task.
+        /// </summary>
+        /// <param name="task">The task.</param>
+        /// <param name="f">The consumer.</param>
+        /// <returns>A void task whose completion reflects the completion of the consumer.</returns>
         public static Task ThenAccept<TI>(this Task<TI> task, Action<TI> f) {
             return task.ContinueWith(t => f(t.Result));
         }
         
+        /// <summary>
+        /// Asynchronously applies the consumer <paramref name="f"/> to the result of this task and returns the
+        /// original value.
+        /// </summary>
+        /// <param name="task">The task.</param>
+        /// <param name="f">The consumer.</param>
+        /// <returns>
+        /// A task, containing the same value as this task, whose completion reflects the completion of
+        /// the consumer.
+        /// </returns>
         public static Task<TI> ThenPeek<TI>(this Task<TI> task, Action<TI> f) {
             return task.ContinueWith(t => { 
                                          f(t.Result);

@@ -213,7 +213,16 @@ namespace UVACanvasAccess.ApiParts {
             Uuid = 1 << 5
         }
         
+        /// <summary>
+        /// Streams all enrollments for the course.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="types">Optionally, the set of enrollment types to filter by.</param>
+        /// <param name="states">Optionally, the set of enrollment states to filter by.</param>
+        /// <param name="includes">Optional data to include in the result.</param>
+        /// <returns>The stream of enrollments.</returns>
         // todo params
+        // todo {types, states} should probably be flags
         public async IAsyncEnumerable<Enrollment> StreamCourseEnrollments(ulong courseId,
                                                                           IEnumerable<CourseEnrollmentType> types = null,
                                                                           IEnumerable<CourseEnrollmentState> states = null,

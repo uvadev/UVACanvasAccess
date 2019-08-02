@@ -105,12 +105,25 @@ namespace UVACanvasAccess.ApiParts {
                                                accountId?.ToString() ?? "self");
         }
 
+        /// <summary>
+        /// Gets participation details for the user for the entire history of the course.
+        /// </summary>
+        /// <param name="userId">The user id.</param>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The data.</returns>
         public async Task<UserParticipation> GetUserCourseParticipationData(ulong userId, ulong courseId) {
             var response = await _client.GetAsync($"courses/{courseId}/analytics/users/{userId}/activity");
 
             return new UserParticipation(JsonConvert.DeserializeObject<UserParticipationModel>(await response.Content.ReadAsStringAsync()));
         }
 
+        /// <summary>
+        /// Returns a list of assignments for the course sorted by due date, along with assignment information,
+        /// grade breakdown, and submission information if relevant.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="userId">The user id.</param>
+        /// <returns>The data.</returns>
         public async IAsyncEnumerable<UserAssignmentData> GetUserCourseAssignmentData(ulong courseId, ulong userId) {
             var response = await _client.GetAsync($"courses/{courseId}/analytics/users/{userId}/assignments");
 
@@ -119,6 +132,9 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// The columns which the data from <see cref="Api.StreamCourseStudentSummary"/> can be sorted by.
+        /// </summary>
         [PublicAPI]
         public enum StudentCourseSummarySortColumn : byte {
             [ApiRepresentation("name")]
@@ -139,6 +155,14 @@ namespace UVACanvasAccess.ApiParts {
             PageViewsDescending
         }
 
+        /// <summary>
+        /// Gets a summary of per-user access information for students in this course, including total page views,
+        /// total participations, and a breakdown of late statuses for all submissions.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="studentId">Optionally, a student id to filter by.</param>
+        /// <param name="sortBy">An optional <see cref="StudentCourseSummarySortColumn">column</see> to sort by.</param>
+        /// <returns>The data.</returns>
         public async IAsyncEnumerable<CourseStudentSummary> StreamCourseStudentSummary(ulong courseId, 
                                                                                        ulong? studentId = null, 
                                                                                        StudentCourseSummarySortColumn? sortBy = null) {
