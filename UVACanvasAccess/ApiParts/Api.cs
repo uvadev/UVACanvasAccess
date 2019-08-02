@@ -54,10 +54,15 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         #if DEBUG
-        internal void TestGet(string url, out bool success, out JToken response, params ValueTuple<string, string>[] args) {
+        internal void TestGet(string url, out bool success, out JToken response, out LinkHeader links, 
+                              params ValueTuple<string, string>[] args) {
             var r = _client.GetAsync(url + BuildQueryString(args)).Result;
+            
             response = JToken.Parse(r.Content.ReadAsStringAsync().Result);
             success = r.IsSuccessStatusCode;
+            
+            r.Headers.TryGetValues("Link", out var l);
+            links = l?.First().ConvertIfNotNull(LinkHeader.LinksFromHeader);
         }
         #endif
 

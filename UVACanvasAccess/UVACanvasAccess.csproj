@@ -225,6 +225,14 @@
     <Compile Include="Model\GradeChangelog\GradeChangeEventLinksModel.cs" />
     <Compile Include="Model\GradeChangelog\GradeChangeEventModel.cs" />
     <Compile Include="Model\GradeChangelog\RedundantGradeChangeEventResponse.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomeAlignmentModel.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomePathModel.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomePathPartModel.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomeResultModel.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomeRollupLinksModel.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomeRollupModel.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomeRollupScoreLinksModel.cs" />
+    <Compile Include="Model\OutcomeResults\OutcomeRollupScoreModel.cs" />
     <Compile Include="Model\Pages\PageModel.cs" />
     <Compile Include="Model\Pages\PageRevisionModel.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
