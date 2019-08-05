@@ -205,6 +205,8 @@
     <Compile Include="Model\Analytics\TardinessModel.cs" />
     <Compile Include="Model\Analytics\UserAssignmentDataModel.cs" />
     <Compile Include="Model\Analytics\UserParticipationModel.cs" />
+    <Compile Include="Model\Appointments\Appointment.cs" />
+    <Compile Include="Model\Appointments\AppointmentGroup.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
     <Compile Include="Model\Assignments\AssignmentModel.cs" />
     <Compile Include="Model\Assignments\AssignmentOverrideModel.cs" />
