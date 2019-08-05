@@ -24,6 +24,8 @@ namespace UVACanvasAccess.ApiParts {
     /// </remarks>
     [PublicAPI]
     public partial class Api : IDisposable {
+        
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly HttpClient _client;
         private ulong? _masquerade;
