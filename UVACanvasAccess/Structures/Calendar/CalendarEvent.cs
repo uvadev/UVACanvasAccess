@@ -106,10 +106,14 @@ namespace UVACanvasAccess.Structures.Calendar {
         }
 
         internal static CalendarEvent FromModel(Api api, CalendarEventModel model) {
-            if (model.Type == "event") {
+            if (model.ReserveUrl != null) {
+                return new TimeSlotCalendarEvent(api, model);
+            } if (model.User != null) {
+                return new UserReservationCalendarEvent(api, model);
+            } if (model.Type == "event") {
                 return new BasicCalendarEvent(api, model);
             }
-            
+
             throw new NotImplementedException("CalendarEvent::FromModel didn't recognize model");
         }
     }

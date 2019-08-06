@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using dotenv.net;
+using Newtonsoft.Json;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures.Calendar;
 using UVACanvasAccess.Util;
+using static UVACanvasAccess.ApiParts.Api.AppointmentGroupIncludes;
+using static UVACanvasAccess.ApiParts.Api.AppointmentVisibilityScope;
 using static UVACanvasAccess.Structures.Calendar.EventContextType;
 
 namespace UVACanvasAccess {
@@ -29,11 +32,9 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var events = api.StreamCalendarEvents(allEvents: true, contexts: new[] {
-                new EventContext(User, 3388)
-            });
+            var appointmentGroups = api.StreamAppointmentGroups(Manageable, includes: Everything);
 
-            Console.WriteLine(await events.ToPrettyStringAsync());
+            Console.WriteLine(await appointmentGroups.ToPrettyStringAsync());
         }
     }
 }

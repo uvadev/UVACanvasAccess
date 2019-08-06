@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.Appointments {
     
-    internal class Appointment {
+    internal class AppointmentModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }

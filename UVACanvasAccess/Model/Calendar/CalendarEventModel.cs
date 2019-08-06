@@ -84,7 +84,7 @@ namespace UVACanvasAccess.Model.Calendar {
         public DateTime UpdatedAt { get; set; }
         
         [JsonProperty("appointment_group_id")]
-        public object AppointmentGroupId { get; set; } // todo is this string or int?
+        public ulong AppointmentGroupId { get; set; }
         
         [JsonProperty("appointment_group_url")]
         public string AppointmentGroupUrl { get; set; }
@@ -123,5 +123,11 @@ namespace UVACanvasAccess.Model.Calendar {
         [CanBeNull]
         [JsonProperty("assignment_overrides")]
         public IEnumerable<AssignmentOverrideModel> AssignmentOverrides { get; set; }
+        
+        [JsonProperty("can_manage_appointment_group")]
+        public bool? CanManageAppointmentGroup { get; set; } // undocumented
+        
+        [JsonProperty("participants_per_appointment")]
+        public uint? ParticipantsPerAppointment { get; set; }
     }
 }

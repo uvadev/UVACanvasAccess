@@ -102,7 +102,7 @@ namespace UVACanvasAccess.Util {
             var strings = IsA<IPrettyPrint, T>() ? enumerable.Cast<IPrettyPrint>().Select(e => e.ToPrettyString()) 
                                                  : enumerable.Select(e => e.ToString());
             
-            return "[" + string.Join(", ", strings) + "]";
+            return "[\n" + string.Join(", ", strings).Indent(4) + "\n]";
         }
 
         /// <summary>

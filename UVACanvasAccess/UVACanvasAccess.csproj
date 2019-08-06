@@ -172,6 +172,7 @@
     <Compile Include="ApiParts\Accounts.cs" />
     <Compile Include="ApiParts\Analytics.cs" />
     <Compile Include="ApiParts\Api.cs" />
+    <Compile Include="ApiParts\Appointments.cs" />
     <Compile Include="ApiParts\Assignments.cs" />
     <Compile Include="ApiParts\Authentications.cs" />
     <Compile Include="ApiParts\Calendar.cs" />
@@ -205,8 +206,8 @@
     <Compile Include="Model\Analytics\TardinessModel.cs" />
     <Compile Include="Model\Analytics\UserAssignmentDataModel.cs" />
     <Compile Include="Model\Analytics\UserParticipationModel.cs" />
-    <Compile Include="Model\Appointments\Appointment.cs" />
-    <Compile Include="Model\Appointments\AppointmentGroup.cs" />
+    <Compile Include="Model\Appointments\AppointmentModel.cs" />
+    <Compile Include="Model\Appointments\AppointmentGroupModel.cs" />
     <Compile Include="Model\Assignments\AssignmentDateModel.cs" />
     <Compile Include="Model\Assignments\AssignmentModel.cs" />
     <Compile Include="Model\Assignments\AssignmentOverrideModel.cs" />
@@ -276,6 +277,8 @@
     <Compile Include="Structures\Analytics\Tardiness.cs" />
     <Compile Include="Structures\Analytics\UserAssignmentData.cs" />
     <Compile Include="Structures\Analytics\UserParticipation.cs" />
+    <Compile Include="Structures\Appointments\Appointment.cs" />
+    <Compile Include="Structures\Appointments\AppointmentGroup.cs" />
     <Compile Include="Structures\Assignments\Assignment.cs" />
     <Compile Include="Structures\Assignments\AssignmentDate.cs" />
     <Compile Include="Structures\Assignments\AssignmentOverride.cs" />
@@ -292,6 +295,8 @@
     <Compile Include="Structures\Calendar\CalendarEvent.cs" />
     <Compile Include="Structures\Calendar\EventContext.cs" />
     <Compile Include="Structures\Calendar\EventType.cs" />
+    <Compile Include="Structures\Calendar\UserReservationCalendarEvent.cs" />
+    <Compile Include="Structures\Calendar\TimeSlotCalendarEvent.cs" />
     <Compile Include="Structures\Courses\Course.cs" />
     <Compile Include="Structures\Courses\CourseFormat.cs" />
     <Compile Include="Structures\Courses\CourseProgress.cs" />

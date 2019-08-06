@@ -6,7 +6,7 @@ using UVACanvasAccess.Model.Calendar;
 
 namespace UVACanvasAccess.Model.Appointments {
     
-    internal class AppointmentGroup {
+    internal class AppointmentGroupModel {
         
         [JsonProperty("id")]
         public ulong Id { get; set; }
@@ -33,7 +33,7 @@ namespace UVACanvasAccess.Model.Appointments {
         public uint? ParticipantCount { get; set; }
         
         [JsonProperty("reserved_times")]
-        public IEnumerable<Appointment> ReservedTimes { get; set; }
+        public IEnumerable<AppointmentModel> ReservedTimes { get; set; }
         
         [JsonProperty("context_codes")]
         public IEnumerable<string> ContextCodes { get; set; }
