@@ -22,5 +22,13 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
             return new User(this, model);
         }
+
+        public async Task<User> RemoveObservee(ulong observerId, ulong observeeId, ulong? rootAccountId = null) {
+            var args = BuildQueryString(("root_account_id", rootAccountId?.ToString()));
+            var response = await _client.DeleteAsync($"users/{observerId}/observees/{observeeId}" + args);
+
+            var model = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
+            return new User(this, model);
+        }
     }
 }
