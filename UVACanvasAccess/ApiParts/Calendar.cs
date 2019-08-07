@@ -37,5 +37,7 @@ namespace UVACanvasAccess.ApiParts {
                 yield return CalendarEvent.FromModel(this, model);
             }
         }
+        
+        
     }
 }

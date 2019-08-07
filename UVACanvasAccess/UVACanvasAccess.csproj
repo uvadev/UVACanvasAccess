@@ -240,6 +240,8 @@
     <Compile Include="Model\GradeChangelog\GradeChangeEventLinksModel.cs" />
     <Compile Include="Model\GradeChangelog\GradeChangeEventModel.cs" />
     <Compile Include="Model\GradeChangelog\RedundantGradeChangeEventResponse.cs" />
+    <Compile Include="Model\Groups\GroupMembershipModel.cs" />
+    <Compile Include="Model\Groups\GroupModel.cs" />
     <Compile Include="Model\OutcomeResults\OutcomeAlignmentModel.cs" />
     <Compile Include="Model\OutcomeResults\OutcomePathModel.cs" />
     <Compile Include="Model\OutcomeResults\OutcomePathPartModel.cs" />
