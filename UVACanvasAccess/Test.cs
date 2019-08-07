@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 using Newtonsoft.Json;
@@ -31,10 +32,8 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
-
-            var appointmentGroups = api.StreamAppointmentGroups(Manageable, includes: Everything);
-
-            Console.WriteLine(await appointmentGroups.ToPrettyStringAsync());
+            var u = await api.AddObservee(TestUser1Id, TestUser4Id);
+            Console.WriteLine(u.ToPrettyString());
         }
     }
 }

@@ -183,6 +183,7 @@
     <Compile Include="ApiParts\Gradebook.cs" />
     <Compile Include="ApiParts\GradeChangelog.cs" />
     <Compile Include="ApiParts\Misc.cs" />
+    <Compile Include="ApiParts\Observers.cs" />
     <Compile Include="ApiParts\Pages.cs" />
     <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Roles.cs" />
