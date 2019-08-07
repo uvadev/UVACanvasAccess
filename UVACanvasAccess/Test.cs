@@ -32,6 +32,11 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
+            await api.AddObservee(TestUser1Id, TestUser4Id);
+            await api.AddObservee(TestUser1Id, TestUser3Id);
+            await api.AddObservee(TestUser1Id, TestUser2Id);
+            await api.AddObservee(TestUser2Id, TestUser4Id);
+            await api.AddObservee(TestUser2Id, TestUser3Id);
         }
     }
 }
