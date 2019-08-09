@@ -97,5 +97,7 @@ namespace UVACanvasAccess.ApiParts {
                 yield return new AppointmentGroup(this, model);
             }
         }
+        
+        
     }
 }
