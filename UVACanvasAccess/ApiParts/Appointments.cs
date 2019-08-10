@@ -148,11 +148,30 @@ namespace UVACanvasAccess.ApiParts {
             return EditAppointmentGroup(appointmentGroup, (IEnumerable<EventContext>) contexts);
         }
 
+        /// <summary>
+        /// Gets a single appointment group.
+        /// </summary>
+        /// <param name="id">The id of the group.</param>
+        /// <param name="includes">Optional data to include in the result.</param>
+        /// <returns>The appointment group.</returns>
         public async Task<AppointmentGroup> GetAppointmentGroup(ulong id, AppointmentGroupIncludes includes = 0) {
             var response = await _client.GetAsync($"appointment_groups/{id}" +
                                                   BuildDuplicateKeyQueryString(includes.GetFlagsApiRepresentations()
                                                                                        .Select(f => ("include[]", f))
                                                                                        .ToArray()));
+            var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
+            return new AppointmentGroup(this, model);
+        }
+        
+        /// <summary>
+        /// Deletes an appointment group.
+        /// </summary>
+        /// <param name="id">The id of the group.</param>
+        /// <param name="reason">An optional reason.</param>
+        /// <returns>The deleted appointment group.</returns>
+        public async Task<AppointmentGroup> DeleteAppointmentGroup(ulong id, string reason = null) {
+            var response = await _client.DeleteAsync($"appointment_groups/{id}" + (reason == null ? "" 
+                                                                                                           : $"?reason={reason}"));
             var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
             return new AppointmentGroup(this, model);
         }
