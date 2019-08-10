@@ -7,9 +7,11 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Appointments;
+using UVACanvasAccess.Model.Groups;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Appointments;
 using UVACanvasAccess.Structures.Calendar;
+using UVACanvasAccess.Structures.Groups;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
@@ -185,23 +187,22 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="appointmentGroupId">The id of the appointment group.</param>
         /// <typeparam name="T">The participant type. Either <see cref="User"/> or Group.</typeparam>
         /// <returns>The stream of participants.</returns>
-        /// <exception cref="NotImplementedException">fixme</exception>
         public async IAsyncEnumerable<T> StreamAppointmentGroupParticipants<T>(ulong appointmentGroupId)
         where T: IAppointmentGroupParticipant, IPrettyPrint {
 
             var isUser = typeof(T).IsAssignableFrom(typeof(User));
 
-            if (!isUser) {
-                throw new NotImplementedException("group in StreamAppointmentGroupParticipants");
-            }
-            
             var response = await _client.GetAsync($"appointment_groups/{appointmentGroupId}/{(isUser ? "users" : "groups")}?registration_status=registered")
                                         .AssertSuccess();
 
-            // todo groups
-            
-            await foreach (var model in StreamDeserializePages<UserModel>(response)) {
-                yield return (T) (IAppointmentGroupParticipant) new User(this, model); // c# has a good type checker
+            if (isUser) {
+                await foreach (var model in StreamDeserializePages<UserModel>(response)) {
+                    yield return (T) (IAppointmentGroupParticipant) new User(this, model); // c# has a good type checker
+                }
+            } else {
+                await foreach (var model in StreamDeserializePages<GroupModel>(response)) {
+                    yield return (T) (IAppointmentGroupParticipant) new Group(this, model);
+                }
             }
         }
     }

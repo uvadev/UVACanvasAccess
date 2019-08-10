@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
@@ -29,7 +28,8 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var participants = api.StreamAppointmentGroupParticipants<User>(TestAppointmentGroup);
+            var participants = await api.GetAppointmentGroup(TestAppointmentGroup)
+                                        .ThenApply(ag => ag.StreamUserParticipants());
 
             Console.WriteLine(await participants.ToPrettyStringAsync());
         }

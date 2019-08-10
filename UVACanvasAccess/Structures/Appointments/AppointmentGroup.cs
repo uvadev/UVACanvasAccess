@@ -5,12 +5,15 @@ using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Appointments;
 using UVACanvasAccess.Structures.Calendar;
+using UVACanvasAccess.Structures.Groups;
+using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Appointments {
     
     [PublicAPI]
     public class AppointmentGroup : IPrettyPrint {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly Api _api;
         
         public ulong Id { get; }
@@ -63,6 +66,20 @@ namespace UVACanvasAccess.Structures.Appointments {
         public DateTime CreatedAt { get; }
         
         public DateTime UpdatedAt { get; }
+
+        public IAsyncEnumerable<User> StreamUserParticipants() {
+            if (ParticipantType != "User") {
+                Logger.Warn("StreamUserParticipants on an appointment group with Group participants will yield no results.");
+            }
+            return _api.StreamAppointmentGroupParticipants<User>(Id);
+        }
+        
+        public IAsyncEnumerable<Group> StreamGroupParticipants() {
+            if (ParticipantType != "Group") {
+                Logger.Warn("StreamGroupParticipants on an appointment group with User participants will yield no results.");
+            }
+            return _api.StreamAppointmentGroupParticipants<Group>(Id);
+        }
 
         internal AppointmentGroup(Api api, AppointmentGroupModel model) {
             _api = api;
