@@ -147,5 +147,14 @@ namespace UVACanvasAccess.ApiParts {
         public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup, params EventContext[] contexts) {
             return EditAppointmentGroup(appointmentGroup, (IEnumerable<EventContext>) contexts);
         }
+
+        public async Task<AppointmentGroup> GetAppointmentGroup(ulong id, AppointmentGroupIncludes includes = 0) {
+            var response = await _client.GetAsync($"appointment_groups/{id}" +
+                                                  BuildDuplicateKeyQueryString(includes.GetFlagsApiRepresentations()
+                                                                                       .Select(f => ("include[]", f))
+                                                                                       .ToArray()));
+            var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
+            return new AppointmentGroup(this, model);
+        }
     }
 }

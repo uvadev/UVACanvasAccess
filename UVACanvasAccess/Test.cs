@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Structures.Calendar;
-using static UVACanvasAccess.Structures.Calendar.EventContextType;
+using static UVACanvasAccess.ApiParts.Api.AppointmentGroupIncludes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -20,7 +19,8 @@ namespace UVACanvasAccess {
                             TestAssignment2Override2 = 71,
                             TestAssignment1Override1 = 72,
                             TestingSubAccount = 154, 
-                            TestDomainCourse = 1268;
+                            TestDomainCourse = 1268,
+                            TestAppointmentGroup = 65;
 
         public static async Task Main(string[] args) {
             DotEnv.Config();
@@ -28,18 +28,13 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var now = DateTime.Now;
+            var group = await api.GetAppointmentGroup(TestAppointmentGroup, Everything);
 
-            var newGroup = await api.CreateAppointmentGroup("Test Generated Appointment Group", 
-                                                            new EventContext(Course, TestCourse))
-                                    .WithDescription("Generated programatically.")
-                                    .WithLocationName("UVA")
-                                    .AddTimeSlot(now, now.AddHours(2))
-                                    .AddTimeSlot(now.AddHours(2), now.AddHours(4))
-                                    .AddTimeSlot(now.AddHours(4), now.AddHours(8))
-                                    .WithProtectedVisibility()
-                                    .Post();
-            Console.WriteLine(newGroup.ToPrettyString());
+            group = await api.EditAppointmentGroup(group)
+                             .Published()
+                             .Post();
+            
+            Console.WriteLine(group.ToPrettyString());
         }
     }
 }
