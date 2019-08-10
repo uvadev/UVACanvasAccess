@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Appointments;
+using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Appointments;
 using UVACanvasAccess.Structures.Calendar;
+using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.ApiParts {
@@ -174,6 +177,30 @@ namespace UVACanvasAccess.ApiParts {
                                                                                                            : $"?reason={reason}"));
             var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
             return new AppointmentGroup(this, model);
+        }
+
+        /// <summary>
+        /// Streams all registered participants in the assignment group.
+        /// </summary>
+        /// <param name="appointmentGroupId">The id of the appointment group.</param>
+        /// <typeparam name="T">The participant type. Either <see cref="User"/> or Group.</typeparam>
+        /// <returns>The stream of participants.</returns>
+        /// <exception cref="NotImplementedException">fixme</exception>
+        public async IAsyncEnumerable<T> StreamAppointmentGroupParticipants<T>(ulong appointmentGroupId)
+        where T: IAppointmentGroupParticipant, IPrettyPrint {
+            var response = await _client.GetAsync($"appointment_groups/{appointmentGroupId}/users?registration_status=registered")
+                                        .AssertSuccess();
+
+            var type = await GetAppointmentGroup(appointmentGroupId).ThenApply(a => a.ParticipantType);
+
+            if (type != "User") {
+                throw new NotImplementedException("groups api not implemented yet for StreamAppointmentGroupParticipants");
+                // todo
+            }
+            
+            await foreach (var model in StreamDeserializePages<UserModel>(response)) {
+                yield return (T) (IAppointmentGroupParticipant) new User(this, model); // c# has a good type checker
+            }
         }
     }
 }

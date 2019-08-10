@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
-using static UVACanvasAccess.ApiParts.Api.AppointmentGroupIncludes;
+using UVACanvasAccess.Structures.Users;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -28,13 +29,9 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var group = await api.GetAppointmentGroup(TestAppointmentGroup, Everything);
+            var participants = api.StreamAppointmentGroupParticipants<User>(TestAppointmentGroup);
 
-            group = await api.EditAppointmentGroup(group)
-                             .Published()
-                             .Post();
-            
-            Console.WriteLine(group.ToPrettyString());
+            Console.WriteLine(await participants.ToPrettyStringAsync());
         }
     }
 }

@@ -11,7 +11,7 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.Structures.Users {
     
     [PublicAPI]
-    public class User : IPrettyPrint {
+    public class User : IPrettyPrint, IAppointmentGroupParticipant {
         // We keep a reference to the API that yielded this User so that getters can query for needed info and setters
         // can update the API. Many API endpoints that return User omit some fields, so some getters will need to check
         // for null and query the API if required. Setters that do not have an implementation that directly updates the
