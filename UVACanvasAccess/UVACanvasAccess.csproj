@@ -321,6 +321,8 @@
     <Compile Include="Structures\Gradebook\SubmissionVersion.cs" />
     <Compile Include="Structures\GradeChangelog\GradeChangeEvent.cs" />
     <Compile Include="Structures\GradeChangelog\GradeChangeEventLinks.cs" />
+    <Compile Include="Structures\Groups\Group.cs" />
+    <Compile Include="Structures\Groups\GroupMembership.cs" />
     <Compile Include="Structures\Pages\Page.cs" />
     <Compile Include="Structures\Pages\PageRevision.cs" />
     <Compile Include="Structures\Pages\PageRoles.cs" />
