@@ -188,15 +188,17 @@ namespace UVACanvasAccess.ApiParts {
         /// <exception cref="NotImplementedException">fixme</exception>
         public async IAsyncEnumerable<T> StreamAppointmentGroupParticipants<T>(ulong appointmentGroupId)
         where T: IAppointmentGroupParticipant, IPrettyPrint {
-            var response = await _client.GetAsync($"appointment_groups/{appointmentGroupId}/users?registration_status=registered")
+
+            var isUser = typeof(T).IsAssignableFrom(typeof(User));
+
+            if (!isUser) {
+                throw new NotImplementedException("group in StreamAppointmentGroupParticipants");
+            }
+            
+            var response = await _client.GetAsync($"appointment_groups/{appointmentGroupId}/{(isUser ? "users" : "groups")}?registration_status=registered")
                                         .AssertSuccess();
 
-            var type = await GetAppointmentGroup(appointmentGroupId).ThenApply(a => a.ParticipantType);
-
-            if (type != "User") {
-                throw new NotImplementedException("groups api not implemented yet for StreamAppointmentGroupParticipants");
-                // todo
-            }
+            // todo groups
             
             await foreach (var model in StreamDeserializePages<UserModel>(response)) {
                 yield return (T) (IAppointmentGroupParticipant) new User(this, model); // c# has a good type checker
