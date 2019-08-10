@@ -1,16 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Structures.Appointments;
 using UVACanvasAccess.Structures.Calendar;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {
 
+    [PublicAPI]
     public class AppointmentGroupBuilder {
         private readonly Api _api;
         private readonly bool _isEditing;
-        private uint dateN = 0;
+        internal readonly ulong EditingId;
+        private uint _dateN;
         
         internal Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
 
@@ -20,8 +26,19 @@ namespace UVACanvasAccess.Builders {
                                                                     .ToLookup(kv => kv.Key,
                                                                               kv => kv.Value);
 
-        internal AppointmentGroupBuilder(string title, IEnumerable<EventContext> contexts) {
+        internal AppointmentGroupBuilder(Api api, string title, IEnumerable<EventContext> contexts) {
+            _api = api;
+            _isEditing = false;
             Put("title", title);
+            foreach (var context in contexts) {
+                PutArr("context_codes", context.ContextCode);
+            }
+        }
+
+        internal AppointmentGroupBuilder(Api api, ulong editingId, IEnumerable<EventContext> contexts) {
+            _api = api;
+            _isEditing = true;
+            EditingId = editingId;
             foreach (var context in contexts) {
                 PutArr("context_codes", context.ContextCode);
             }
@@ -64,14 +81,22 @@ namespace UVACanvasAccess.Builders {
         }
 
         public AppointmentGroupBuilder AddTimeSlot(DateTime start, DateTime end) {
-            PutArr2("new_appointments", dateN.ToString(), start.ToIso8601Date());
-            PutArr2("new_appointments", dateN.ToString(), end.ToIso8601Date());
-            dateN++;
+            PutArr2("new_appointments", _dateN.ToString(), start.ToIso8601Date());
+            PutArr2("new_appointments", _dateN.ToString(), end.ToIso8601Date());
+            _dateN++;
             return this;
         }
 
         public AppointmentGroupBuilder WithProtectedVisibility(bool @protected = true) {
             return Put("participant_visibility", @protected ? "protected" : "private");
+        }
+
+        public Task<AppointmentGroup> Post() {
+            if (!_isEditing) {
+                return _api.PostCreateAppointmentGroup(this);
+            }
+            Debug.Assert(EditingId != 0);
+            return _api.PutUpdateAppointmentsGroup(this);
         }
         
         private AppointmentGroupBuilder Put(string key, string s) {

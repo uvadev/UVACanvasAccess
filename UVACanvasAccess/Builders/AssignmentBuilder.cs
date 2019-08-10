@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Structures.Submissions;
 using UVACanvasAccess.Util;
@@ -17,6 +17,7 @@ namespace UVACanvasAccess.Builders {
     /// A class used to create or edit assignments using the builder pattern.
     /// When all desired fields are set, call <see cref="Post"/> to execute the operation.
     /// </summary>
+    [PublicAPI]
     public class AssignmentBuilder {
         private readonly Api _api;
         private readonly bool _isEditing;

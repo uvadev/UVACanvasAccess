@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Appointments;
@@ -30,9 +31,9 @@ namespace UVACanvasAccess.Structures.Appointments {
 
         public IEnumerable<Appointment> ReservedTimes { get; }
 
-        public IEnumerable<string> ContextCodes { get; }
+        public IEnumerable<EventContext> ContextCodes { get; }
 
-        public IEnumerable<string> SubContextCodes { get; }
+        public IEnumerable<EventContext> SubContextCodes { get; }
         
         public string WorkflowState { get; }
         
@@ -74,8 +75,8 @@ namespace UVACanvasAccess.Structures.Appointments {
             LocationAddress = model.LocationAddress;
             ParticipantCount = model.ParticipantCount;
             ReservedTimes = model.ReservedTimes.SelectNotNull(m => new Appointment(api, m));
-            ContextCodes = model.ContextCodes;
-            SubContextCodes = model.SubContextCodes;
+            ContextCodes = model.ContextCodes.Select(cc => new EventContext(cc));
+            SubContextCodes = model.SubContextCodes.Select(scc => new EventContext(scc));
             WorkflowState = model.WorkflowState;
             RequiringAction = model.RequiringAction;
             AppointmentsCount = model.AppointmentsCount;

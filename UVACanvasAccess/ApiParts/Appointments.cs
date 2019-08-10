@@ -1,8 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
+using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Appointments;
 using UVACanvasAccess.Structures.Appointments;
 using UVACanvasAccess.Structures.Calendar;
@@ -97,7 +99,53 @@ namespace UVACanvasAccess.ApiParts {
                 yield return new AppointmentGroup(this, model);
             }
         }
+
+        internal async Task<AppointmentGroup> PostCreateAppointmentGroup(AppointmentGroupBuilder builder) {
+            var args = builder.Fields
+                              .Select(kv => (kv.Key, kv.Value))
+                              .Concat(builder.ArrayFields
+                                             .SelectMany(k => k, (k, v) => (k.Key, v)));
+            var response = await _client.PostAsync("appointment_groups", BuildMultipartHttpArguments(args));
+            response.AssertSuccess();
+
+            var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.Content.ReadAsStringAsync());
+            return new AppointmentGroup(this, model);
+        }
+
+        internal async Task<AppointmentGroup> PutUpdateAppointmentsGroup(AppointmentGroupBuilder builder) {
+            var args = builder.Fields
+                              .Select(kv => (kv.Key, kv.Value))
+                              .Concat(builder.ArrayFields
+                                             .SelectMany(k => k, (k, v) => (k.Key, v)));
+            var response = await _client.PutAsync($"appointment_groups/{builder.EditingId}", BuildMultipartHttpArguments(args));
+            response.AssertSuccess();
+
+            var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.Content.ReadAsStringAsync());
+            return new AppointmentGroup(this, model);
+        }
+
+        public AppointmentGroupBuilder CreateAppointmentGroup(string title, IEnumerable<EventContext> contexts) {
+            return new AppointmentGroupBuilder(this, title, contexts);
+        }
         
+        public AppointmentGroupBuilder CreateAppointmentGroup(string title, params EventContext[] contexts) {
+            return CreateAppointmentGroup(title, (IEnumerable<EventContext>) contexts);
+        }
+
+        public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup) {
+            if (appointmentGroup.ContextCodes == null || !appointmentGroup.ContextCodes.Any()) {
+                Logger.Warn("Editing an appointment group with no context codes and without supplying any. The operation " +
+                            "might fail.");
+            }
+            return new AppointmentGroupBuilder(this, appointmentGroup.Id, appointmentGroup.ContextCodes);
+        }
+
+        public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup, IEnumerable<EventContext> contexts) {
+            return new AppointmentGroupBuilder(this, appointmentGroup.Id, contexts);
+        }
         
+        public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup, params EventContext[] contexts) {
+            return EditAppointmentGroup(appointmentGroup, (IEnumerable<EventContext>) contexts);
+        }
     }
 }

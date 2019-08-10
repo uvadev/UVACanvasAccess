@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
-using Newtonsoft.Json;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures.Calendar;
-using UVACanvasAccess.Util;
-using static UVACanvasAccess.ApiParts.Api.AppointmentGroupIncludes;
-using static UVACanvasAccess.ApiParts.Api.AppointmentVisibilityScope;
 using static UVACanvasAccess.Structures.Calendar.EventContextType;
 
 namespace UVACanvasAccess {
@@ -32,11 +27,19 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
-            await api.AddObservee(TestUser1Id, TestUser4Id);
-            await api.AddObservee(TestUser1Id, TestUser3Id);
-            await api.AddObservee(TestUser1Id, TestUser2Id);
-            await api.AddObservee(TestUser2Id, TestUser4Id);
-            await api.AddObservee(TestUser2Id, TestUser3Id);
+
+            var now = DateTime.Now;
+
+            var newGroup = await api.CreateAppointmentGroup("Test Generated Appointment Group", 
+                                                            new EventContext(Course, TestCourse))
+                                    .WithDescription("Generated programatically.")
+                                    .WithLocationName("UVA")
+                                    .AddTimeSlot(now, now.AddHours(2))
+                                    .AddTimeSlot(now.AddHours(2), now.AddHours(4))
+                                    .AddTimeSlot(now.AddHours(4), now.AddHours(8))
+                                    .WithProtectedVisibility()
+                                    .Post();
+            Console.WriteLine(newGroup.ToPrettyString());
         }
     }
 }
