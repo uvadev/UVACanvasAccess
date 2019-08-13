@@ -255,6 +255,7 @@
     <Compile Include="Model\Pages\PageRevisionModel.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
     <Compile Include="Model\Reports\ReportModel.cs" />
+    <Compile Include="Model\Results\ResultModel.cs" />
     <Compile Include="Model\Roles\RoleModel.cs" />
     <Compile Include="Model\Roles\RolePermissionsModel.cs" />
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
@@ -328,6 +329,7 @@
     <Compile Include="Structures\Pages\PageRoles.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
+    <Compile Include="Structures\Results\Result.cs" />
     <Compile Include="Structures\Roles\Role.cs" />
     <Compile Include="Structures\Roles\RolePermissions.cs" />
     <Compile Include="Structures\Roles\RolePermissionsSet.cs" />
