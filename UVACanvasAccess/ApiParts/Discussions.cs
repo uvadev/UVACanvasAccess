@@ -294,5 +294,16 @@ namespace UVACanvasAccess.ApiParts {
             return from model in models
                    select new TopicEntry(this, model, DiscussionTopic.DiscussionHome.Course, courseId, topicId);
         }
+        
+        public async Task<IEnumerable<TopicEntry>> ListGroupDiscussionTopicEntries(ulong groupId,
+                                                                                   ulong topicId) {
+            var response = await RawListTopicEntries("groups", groupId.ToString(), topicId.ToString());
+            response.AssertSuccess();
+
+            var models = await AccumulateDeserializePages<TopicEntryModel>(response);
+            
+            return from model in models
+                   select new TopicEntry(this, model, DiscussionTopic.DiscussionHome.Group, groupId, topicId);
+        }
     }
 }

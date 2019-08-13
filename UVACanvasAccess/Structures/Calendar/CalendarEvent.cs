@@ -7,8 +7,6 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Calendar {
 
-    // todo appointments api for that impl
-
     [PublicAPI]
     public abstract class CalendarEvent : IPrettyPrint {
         private protected readonly Api Api;

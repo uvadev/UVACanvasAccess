@@ -90,17 +90,14 @@ namespace UVACanvasAccess.Structures.Discussions {
         /// </summary>
         /// <returns>The list of entries.</returns>
         public Task<IEnumerable<TopicEntry>> GetEntries() {
-            switch (Home) {
-                case DiscussionHome.Course:
-                    return _api.ListCourseDiscussionTopicEntries(HomeId, Id);
-                case DiscussionHome.Group:
-                    throw new NotImplementedException("group discussions not yet supported");
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            return Home switch {
+                DiscussionHome.Course => _api.ListCourseDiscussionTopicEntries(HomeId, Id),
+                DiscussionHome.Group => _api.ListGroupDiscussionTopicEntries(HomeId, Id),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
-        public enum DiscussionHome {
+        public enum DiscussionHome : byte {
             Course,
             Group
         }

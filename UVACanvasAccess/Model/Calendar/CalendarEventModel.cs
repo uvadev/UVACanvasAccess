@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Assignments;
+using UVACanvasAccess.Model.Groups;
 using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Model.Calendar {
@@ -114,7 +115,7 @@ namespace UVACanvasAccess.Model.Calendar {
         
         [CanBeNull]
         [JsonProperty("group")]
-        public object Group { get; set; } // todo Groups api
+        public GroupModel Group { get; set; }
         
         [CanBeNull]
         [JsonProperty("assignment")]
