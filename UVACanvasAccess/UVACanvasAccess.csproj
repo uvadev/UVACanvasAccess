@@ -185,6 +185,7 @@
     <Compile Include="ApiParts\Misc.cs" />
     <Compile Include="ApiParts\Observers.cs" />
     <Compile Include="ApiParts\Pages.cs" />
+    <Compile Include="ApiParts\ProficiencyRatings.cs" />
     <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Roles.cs" />
     <Compile Include="ApiParts\Users.cs" />
