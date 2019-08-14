@@ -253,6 +253,8 @@
     <Compile Include="Model\OutcomeResults\OutcomeRollupScoreModel.cs" />
     <Compile Include="Model\Pages\PageModel.cs" />
     <Compile Include="Model\Pages\PageRevisionModel.cs" />
+    <Compile Include="Model\ProficiencyRatings\ProficiencyModel.cs" />
+    <Compile Include="Model\ProficiencyRatings\ProficiencyRatingModel.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
     <Compile Include="Model\Reports\ReportModel.cs" />
     <Compile Include="Model\Results\ResultModel.cs" />
@@ -327,6 +329,8 @@
     <Compile Include="Structures\Pages\Page.cs" />
     <Compile Include="Structures\Pages\PageRevision.cs" />
     <Compile Include="Structures\Pages\PageRoles.cs" />
+    <Compile Include="Structures\ProficiencyRatings\Proficiency.cs" />
+    <Compile Include="Structures\ProficiencyRatings\ProficiencyRating.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Results\Result.cs" />
