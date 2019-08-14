@@ -1,8 +1,16 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using dotenv.net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Util;
+using static UVACanvasAccess.ApiParts.Api.CourseSearchBy;
+using static UVACanvasAccess.ApiParts.Api.SectionIncludes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -28,10 +36,43 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var participants = await api.GetAppointmentGroup(TestAppointmentGroup)
-                                        .ThenApply(ag => ag.StreamUserParticipants());
+            var noSisCourses = new JArray();
+            var document = new JObject {
+                ["noSis"] = noSisCourses
+            };
 
-            Console.WriteLine(await participants.ToPrettyStringAsync());
+            await foreach (var master in api.StreamCourses(searchTerm: "Master", searchBy: Course)) {
+                var noSidSections = new JArray();
+                var masterObj = new JObject {
+                    ["name"] = master.Name,
+                    ["canvasId"] = master.Id,
+                    ["isBlueprint"] = master.Blueprint ?? false,
+                    ["noSid"] = noSidSections
+                };
+
+
+                await foreach (var section in api.StreamCourseSections(master.Id, Everything)) {
+                    var sectionObj = new JObject {
+                        ["name"] = section.Name ?? "",
+                        ["canvasId"] = section.Id
+                    };
+
+                    if (section.SisSectionId != null) {
+                        masterObj[section.SisSectionId] = sectionObj;
+                    } else {
+                        noSidSections.Add(sectionObj);
+                    }
+                }
+
+                if (master.SisCourseId != null) {
+                    document[master.SisCourseId] = masterObj;
+                } else {
+                    noSisCourses.Add(masterObj);
+                }
+                
+            }
+
+            File.WriteAllText("SectionsAndTerms.json", document.ToString(Formatting.Indented));
         }
     }
 }

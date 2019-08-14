@@ -188,6 +188,7 @@
     <Compile Include="ApiParts\ProficiencyRatings.cs" />
     <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Roles.cs" />
+    <Compile Include="ApiParts\Sections.cs" />
     <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AppointmentGroupBuilder.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
@@ -261,6 +262,7 @@
     <Compile Include="Model\Results\ResultModel.cs" />
     <Compile Include="Model\Roles\RoleModel.cs" />
     <Compile Include="Model\Roles\RolePermissionsModel.cs" />
+    <Compile Include="Model\Sections\SectionModel.cs" />
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionModel.cs" />
@@ -338,6 +340,7 @@
     <Compile Include="Structures\Roles\Role.cs" />
     <Compile Include="Structures\Roles\RolePermissions.cs" />
     <Compile Include="Structures\Roles\RolePermissionsSet.cs" />
+    <Compile Include="Structures\Sections\Section.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\INewSubmissionContent.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\OnlineTextEntrySubmission.cs" />
