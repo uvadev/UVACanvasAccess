@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using dotenv.net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Util;
+using static UVACanvasAccess.ApiParts.Api.AccountLevelCourseIncludes;
 using static UVACanvasAccess.ApiParts.Api.CourseSearchBy;
-using static UVACanvasAccess.ApiParts.Api.SectionIncludes;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -36,40 +32,38 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var noSisCourses = new JArray();
-            var document = new JObject {
-                ["noSis"] = noSisCourses
-            };
+            var document = new JObject();
 
-            await foreach (var master in api.StreamCourses(searchTerm: "Master", searchBy: Course)) {
+            await foreach (var master in api.StreamCourses(searchTerm: "Master", searchBy: Course, includes: Term)) {
                 var noSidSections = new JArray();
+                var masterSections = new JObject {
+                    ["noSid"] = noSidSections
+                };
+                
                 var masterObj = new JObject {
                     ["name"] = master.Name,
                     ["canvasId"] = master.Id,
                     ["isBlueprint"] = master.Blueprint ?? false,
-                    ["noSid"] = noSidSections
+                    ["sections"] = masterSections,
+                    ["term"] = new JObject {
+                        ["name"] = master.Term?.Name,
+                        ["id"] = master.Term?.Id
+                    }
                 };
-
-
-                await foreach (var section in api.StreamCourseSections(master.Id, Everything)) {
+                
+                await foreach (var section in api.StreamCourseSections(master.Id)) {
                     var sectionObj = new JObject {
-                        ["name"] = section.Name ?? "",
+                        ["name"] = section.Name,
                         ["canvasId"] = section.Id
                     };
 
                     if (section.SisSectionId != null) {
-                        masterObj[section.SisSectionId] = sectionObj;
+                        masterSections[section.SisSectionId] = sectionObj;
                     } else {
                         noSidSections.Add(sectionObj);
                     }
                 }
-
-                if (master.SisCourseId != null) {
-                    document[master.SisCourseId] = masterObj;
-                } else {
-                    noSisCourses.Add(masterObj);
-                }
-                
+                document[master.Id.ToString()] = masterObj;
             }
 
             File.WriteAllText("SectionsAndTerms.json", document.ToString(Formatting.Indented));
