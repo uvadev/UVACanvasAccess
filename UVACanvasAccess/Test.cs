@@ -28,8 +28,7 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            Console.WriteLine(await api.StreamPersonalFiles(sortBy: Api.FileSort.CreatedAt)
-                                       .ToPrettyStringAsync());
+            Console.WriteLine(await api.GetPersonalFile(5219).ThenApply(pf => pf.ToPrettyString()));
         }
     }
 }

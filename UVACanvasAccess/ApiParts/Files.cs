@@ -199,6 +199,13 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        public async Task<CanvasFile> GetPersonalFile(ulong fileId, FileIncludes? includes = null) {
+            var response = await _client.GetAsync($"files/{fileId}" + (includes == null ? "" 
+                                                                           : BuildDuplicateKeyQueryString(includes.GetFlagsApiRepresentations().Select(r => ("include[]", r)).ToArray())));
+            var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
+            return new CanvasFile(this, model);
+        }
+
         [PublicAPI]
         [Flags]
         public enum FileIncludes : byte {
