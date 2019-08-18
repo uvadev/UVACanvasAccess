@@ -50,18 +50,18 @@ namespace UVACanvasAccess.Model.Files {
         public DateTime? UnlockAt { get; set; }
         
         [JsonProperty("hidden")]
-        public bool Hidden { get; set; }
+        public bool? Hidden { get; set; }
         
         [JsonProperty("hidden_for_user")]
-        public bool HiddenForUser { get; set; }
+        public bool? HiddenForUser { get; set; }
         
         [JsonProperty("locker")]
-        public bool Locked { get; set; }
+        public bool? Locked { get; set; }
         
         [JsonProperty("locked_for_user")]
-        public bool LockedForUser { get; set; }
+        public bool? LockedForUser { get; set; }
         
         [JsonProperty("for_submissions")]
-        public bool ForSubmissions { get; set; }
+        public bool? ForSubmissions { get; set; }
     }
 }

@@ -110,7 +110,27 @@ namespace UVACanvasAccess.ApiParts {
                               parentFolderPath: parentFolderName
                              );
         }
-        
-        
+
+        public async Task<Folder> CreatePersonalFolder(string name,
+                                                       string parentFolderName = null,
+                                                       DateTime? lockDate = null,
+                                                       DateTime? unlockDate = null,
+                                                       bool? locked = null,
+                                                       bool? hidden = null,
+                                                       int? position = null) {
+            var args = BuildHttpArguments(new [] {
+                ("name", name),
+                ("parent_folder_path", parentFolderName),
+                ("lock_at", lockDate?.ToIso8601Date()),
+                ("unlock_at", unlockDate?.ToIso8601Date()),
+                ("locked", locked?.ToShortString()),
+                ("hidden", hidden?.ToShortString()),
+                ("position", position?.ToString())
+            });
+            var response = await _client.PostAsync("users/self/folders", args);
+
+            var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
+            return new Folder(this, model);
+        }
     }
 }

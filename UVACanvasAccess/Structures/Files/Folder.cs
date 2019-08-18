@@ -40,15 +40,15 @@ namespace UVACanvasAccess.Structures.Files {
 
         public DateTime? UnlockAt { get; }
 
-        public bool Hidden { get; }
+        public bool? Hidden { get; }
         
-        public bool HiddenForUser { get; }
+        public bool? HiddenForUser { get; }
 
-        public bool Locked { get; }
+        public bool? Locked { get; }
         
-        public bool LockedForUser { get; }
+        public bool? LockedForUser { get; }
         
-        public bool ForSubmissions { get; }
+        public bool? ForSubmissions { get; }
 
         internal Folder(Api api, FolderModel model) {
             _api = api;
