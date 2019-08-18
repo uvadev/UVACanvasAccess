@@ -16,7 +16,7 @@ namespace UVACanvasAccess.Structures.Files {
 
         public uint FilesCount { get; }
         
-        public int Position { get; }
+        public int? Position { get; }
         
         public DateTime UpdatedAt { get; }
 

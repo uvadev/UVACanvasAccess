@@ -14,7 +14,7 @@ namespace UVACanvasAccess.Model.Files {
         public uint FilesCount { get; set; }
         
         [JsonProperty("position")]
-        public int Position { get; set; }
+        public int? Position { get; set; }
         
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }

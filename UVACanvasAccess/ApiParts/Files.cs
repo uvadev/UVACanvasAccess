@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -131,6 +132,22 @@ namespace UVACanvasAccess.ApiParts {
 
             var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
             return new Folder(this, model);
+        }
+
+        public async Task<Folder> GetPersonalFolder(ulong? folderId) {
+            var folder = folderId?.ToString() ?? "root";
+            var response = await _client.GetAsync($"users/self/folders/{folder}");
+
+            var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
+            return new Folder(this, model);
+        }
+
+        public async IAsyncEnumerable<Folder> StreamPersonalFolders() {
+            var response = await _client.GetAsync("users/self/folders");
+
+            await foreach (var model in StreamDeserializePages<FolderModel>(response)) {
+                yield return new Folder(this, model);
+            }
         }
     }
 }
