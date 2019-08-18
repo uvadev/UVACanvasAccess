@@ -5,8 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using System.Web;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Model.Files;
@@ -148,6 +150,78 @@ namespace UVACanvasAccess.ApiParts {
             await foreach (var model in StreamDeserializePages<FolderModel>(response)) {
                 yield return new Folder(this, model);
             }
+        }
+
+        public async IAsyncEnumerable<CanvasFile> StreamPersonalFiles(IEnumerable<ContentType> includeContentTypes = null,
+                                                                      IEnumerable<ContentType> excludeContentTypes = null,
+                                                                      string searchTerm = null,
+                                                                      FileIncludes? includes = null,
+                                                                      bool onlyIncludeFileNames = false,
+                                                                      FileSort? sortBy = null,
+                                                                      Order? order = null) {
+            var args = new List<(string, string)>();
+
+            if (includeContentTypes != null) {
+                args.AddRange(includeContentTypes.Select(ct => ct.MediaType)
+                                                 .Select(mt => ("content_types[]", mt)));
+            }
+
+            if (excludeContentTypes != null) {
+                args.AddRange(excludeContentTypes.Select(ct => ct.MediaType)
+                                                 .Select(mt => ("exclude_content_types[]", mt)));
+            }
+
+            if (searchTerm != null) {
+                args.Add(("search_term", searchTerm));
+            }
+
+            if (includes != null) {
+                args.AddRange(includes.GetFlagsApiRepresentations()
+                                      .Select(r => ("include[]", r)));
+            }
+
+            if (onlyIncludeFileNames) {
+                args.Add(("only[]", "names"));
+            }
+
+            if (sortBy != null) {
+                args.Add(("sort", sortBy.GetApiRepresentation()));
+            }
+
+            if (order != null) {
+                args.Add(("order", order.GetApiRepresentation()));
+            }
+            
+            var response = await _client.GetAsync("users/self/files" + BuildDuplicateKeyQueryString(args.ToArray()));
+
+            await foreach (var model in StreamDeserializePages<CanvasFileModel>(response)) {
+                yield return new CanvasFile(this, model);
+            }
+        }
+
+        [PublicAPI]
+        [Flags]
+        public enum FileIncludes : byte {
+            [ApiRepresentation("user")]
+            User = 1 << 0,
+            [ApiRepresentation("usage_rights")]
+            UsageRights = 1 << 1
+        }
+
+        [PublicAPI]
+        public enum FileSort : byte {
+            [ApiRepresentation("name")]
+            Name,
+            [ApiRepresentation("size")]
+            Size,
+            [ApiRepresentation("created_at")]
+            CreatedAt,
+            [ApiRepresentation("updated_at")]
+            UpdatedAt,
+            [ApiRepresentation("content_type")]
+            ContentType,
+            [ApiRepresentation("user")]
+            User
         }
     }
 }

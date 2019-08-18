@@ -27,7 +27,9 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
-            Console.WriteLine(await api.StreamPersonalFolders().ToPrettyStringAsync());
+
+            Console.WriteLine(await api.StreamPersonalFiles(sortBy: Api.FileSort.CreatedAt)
+                                       .ToPrettyStringAsync());
         }
     }
 }
