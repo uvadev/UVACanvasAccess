@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using UVACanvasAccess.Model.Sections;
 using UVACanvasAccess.Structures.Sections;
 using UVACanvasAccess.Util;
@@ -36,6 +38,18 @@ namespace UVACanvasAccess.ApiParts {
             await foreach (var model in StreamDeserializePages<SectionModel>(response)) {
                 yield return new Section(this, model);
             }
+        }
+
+        public async Task<Section> CrossListSection(ulong sectionId, ulong targetCourseId) {
+            var response = await _client.PostAsync($"sections/{sectionId}/crosslist/{targetCourseId}", null);
+            var model = JsonConvert.DeserializeObject<SectionModel>(await response.Content.ReadAsStringAsync());
+            return new Section(this, model);
+        }
+
+        public async Task<Section> UnCrossListSection(ulong sectionId) {
+            var response = await _client.DeleteAsync($"sections/{sectionId}/crosslist");
+            var model = JsonConvert.DeserializeObject<SectionModel>(await response.Content.ReadAsStringAsync());
+            return new Section(this, model);
         }
     }
 }
