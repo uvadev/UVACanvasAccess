@@ -237,6 +237,8 @@
     <Compile Include="Model\Enrollments\GradeModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
     <Compile Include="Model\Files\FolderModel.cs" />
+    <Compile Include="Model\Files\LicenseModel.cs" />
+    <Compile Include="Model\Files\UsageRightsModel.cs" />
     <Compile Include="Model\Gradebook\DayModel.cs" />
     <Compile Include="Model\Gradebook\GraderModel.cs" />
     <Compile Include="Model\Gradebook\SubmissionHistoryModel.cs" />
@@ -323,6 +325,8 @@
     <Compile Include="Structures\Enrollments\Grade.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
     <Compile Include="Structures\Files\Folder.cs" />
+    <Compile Include="Structures\Files\License.cs" />
+    <Compile Include="Structures\Files\UsageRights.cs" />
     <Compile Include="Structures\Gradebook\Day.cs" />
     <Compile Include="Structures\Gradebook\Grader.cs" />
     <Compile Include="Structures\Gradebook\SubmissionHistory.cs" />
