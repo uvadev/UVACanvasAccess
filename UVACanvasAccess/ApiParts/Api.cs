@@ -84,10 +84,12 @@ namespace UVACanvasAccess.ApiParts {
         /// <summary>
         /// If the current user is an administrator, he can "act as" another user.
         /// When this is set, every API call will be made as if it came from this user's token, even if the user does
-        /// not have any tokens generated.
+        /// not have any tokens generated. Audit logs will indicate if an action was made through masquerade, though.<br/>
+        /// 
+        /// Masquerading <b>is not thread safe</b>, so do not share <see cref="Api"/> between threads if using masquerading.
         /// </summary>
         /// <param name="id">The user to masquerade as.</param>
-        /// <remarks>Certain endpoints, like those relating to the activity stream and personal file upload, can only
+        /// <remarks>Certain endpoints, for example those relating to the activity stream and personal files, can only
         /// be called on <c>self</c>. Masquerading makes it possible to bypass this restriction.</remarks>
         public void MasqueradeAs(ulong id) {
             _masquerade = id;
