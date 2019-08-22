@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UVACanvasAccess.ApiParts;
 
 namespace UVACanvasAccess {
@@ -27,8 +30,37 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
             
-            var (quota, used) = await api.GetPersonalQuotaMiB();
-            Console.WriteLine($"Used about {Math.Round(used, 2)}/{Math.Round(quota, 2)} MiB ({Math.Round(quota - used, 2)} MiB free)");
+            var users = new JObject();
+            var document = new JObject {
+                ["users"] = users
+            };
+
+            uint count = 0;
+            
+            await foreach (var user in api.StreamUsers().Take(15)) {
+                try {
+                    var o = new JObject {
+                        ["sis"] = user.SisUserId
+                    };
+                    api.MasqueradeAs(user.Id);
+                    
+                    var (quota, used) = await api.GetPersonalQuotaMiB();
+                    o["quotaMiB"] = Math.Round(quota, 5);
+                    o["usedMiB"] = Math.Round(used, 5);
+                    o["freeMiB"] = Math.Round(quota - used, 5);
+
+                    users[user.Id.ToString()] = o;
+                    ++count;
+                } catch (Exception e) {
+                    Console.WriteLine(e);
+                } finally {
+                    api.StopMasquerading();
+                }
+            }
+
+            document["usersInReport"] = count;
+
+            Console.WriteLine(document.ToString(Formatting.Indented));
         }
     }
 }
