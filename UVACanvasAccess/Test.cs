@@ -26,7 +26,9 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
-
+            
+            var (quota, used) = await api.GetPersonalQuotaMiB();
+            Console.WriteLine($"Used about {Math.Round(used, 2)}/{Math.Round(quota, 2)} MiB ({Math.Round(quota - used, 2)} MiB free)");
         }
     }
 }

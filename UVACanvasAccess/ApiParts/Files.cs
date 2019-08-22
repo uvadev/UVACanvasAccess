@@ -230,5 +230,26 @@ namespace UVACanvasAccess.ApiParts {
             [ApiRepresentation("user")]
             User
         }
+
+        /// <summary>
+        /// Returns the storage quota in bytes of the current user, along with the amount currently used.
+        /// </summary>
+        /// <returns>The tuple of quota and used quota.</returns>
+        public async Task<(ulong, ulong)> GetPersonalQuota() {
+            var response = await _client.GetAsync($"users/self/files/quota" + BuildQueryString());
+
+            var q = JObject.Parse(await response.Content.ReadAsStringAsync());
+            return (q["quota"].Value<ulong>(), q["quota_used"].Value<ulong>());
+        }
+
+        /// <summary>
+        /// Returns the storage quota in MiB of the current user, along with the amount currently used.
+        /// </summary>
+        /// <returns>The tuple of quota and used quota.</returns>
+        public Task<(decimal, decimal)> GetPersonalQuotaMiB() {
+            return GetPersonalQuota().ThenApply(t => 
+                ((decimal)t.Item1 / 1048576, (decimal)t.Item2 / 1048576)
+            );
+        }
     }
 }
