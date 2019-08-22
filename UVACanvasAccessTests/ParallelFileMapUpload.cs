@@ -73,8 +73,13 @@ namespace UVACanvasAccessTests {
 
                                 try {
                                     var user = api.StreamUsers(userKey)
-                                                  .FirstAsync()
+                                                  .FirstOrDefaultAsync(u => u.SisUserId == userKey)
                                                   .Result;
+                                    
+                                    if (user == null) {
+                                        _testOutputHelper.WriteLine($"WARN: Couldn't find the user for sis {userKey} !!");
+                                        continue;
+                                    }
 
                                     var bytes = File.ReadAllBytes(fileMapDir + userFile);
 

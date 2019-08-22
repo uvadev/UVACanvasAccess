@@ -67,6 +67,19 @@ namespace UVACanvasAccess.ApiParts {
             links = l?.First().ConvertIfNotNull(LinkHeader.LinksFromHeader);
         }
         #endif
+        
+        #if DEBUG
+        internal void TestDelete(string url, out bool success, out JToken response, out LinkHeader links, 
+                                 params ValueTuple<string, string>[] args) {
+            var r = _client.DeleteAsync(url + BuildDuplicateKeyQueryString(args)).Result;
+            
+            response = JToken.Parse(r.Content.ReadAsStringAsync().Result);
+            success = r.IsSuccessStatusCode;
+            
+            r.Headers.TryGetValues("Link", out var l);
+            links = l?.First().ConvertIfNotNull(LinkHeader.LinksFromHeader);
+        }
+        #endif
 
         /// <summary>
         /// If the current user is an administrator, he can "act as" another user.

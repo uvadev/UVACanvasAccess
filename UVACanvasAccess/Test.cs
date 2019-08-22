@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using dotenv.net;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -28,7 +27,6 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            Console.WriteLine(await api.GetPersonalFile(5219).ThenApply(pf => pf.ToPrettyString()));
         }
     }
 }

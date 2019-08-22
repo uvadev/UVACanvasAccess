@@ -145,7 +145,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         public async IAsyncEnumerable<Folder> StreamPersonalFolders() {
-            var response = await _client.GetAsync("users/self/folders");
+            var response = await _client.GetAsync("users/self/folders" + BuildQueryString()); // todo fixme HACK!!!
 
             await foreach (var model in StreamDeserializePages<FolderModel>(response)) {
                 yield return new Folder(this, model);
