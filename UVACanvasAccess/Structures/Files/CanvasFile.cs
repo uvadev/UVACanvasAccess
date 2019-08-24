@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using StatePrinting;
 using UVACanvasAccess.ApiParts;
@@ -14,7 +15,7 @@ namespace UVACanvasAccess.Structures.Files {
         
         public string Uuid { get; }
         
-        public ulong FolderId { get; }
+        public ulong FolderId { get; private set; }
         
         public string DisplayName { get; }
         
@@ -115,5 +116,38 @@ namespace UVACanvasAccess.Structures.Files {
                    $"\n{nameof(PreviewUrl)}: {PreviewUrl}").Indent(4) + 
                    "\n}";
         }
+
+        public async Task<bool> MoveTo(ulong folderId, Api.OnDuplicate onDuplicate) {
+            var r = await _api.MoveFile(Id, onDuplicate, folderId: folderId);
+            
+            if (r.Id != Id) {
+                return false;
+            }
+
+            FolderId = r.FolderId;
+            return true;
+        }
+        
+        public Task<bool> MoveTo(Folder folder, Api.OnDuplicate onDuplicate) => MoveTo(folder.Id, onDuplicate);
+
+        public async Task<bool> Rename(string newName, Api.OnDuplicate onDuplicate) {
+            var r = await _api.MoveFile(Id, onDuplicate, newName);
+            
+            if (r.Id != Id) {
+                return false;
+            }
+
+            FolderId = r.FolderId;
+            return true;
+        }
+
+        public async Task<CanvasFile> CopyTo(ulong folderId, Api.OnDuplicate onDuplicate) {
+            var r = await _api.CopyFile(Id, folderId, onDuplicate);
+
+            return r.Id == Id ? r
+                              : null;
+        }
+
+        public Task<CanvasFile> CopyTo(Folder folder, Api.OnDuplicate onDuplicate) => CopyTo(folder.Id, onDuplicate);
     }
 }
