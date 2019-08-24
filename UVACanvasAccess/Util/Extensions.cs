@@ -114,6 +114,12 @@ namespace UVACanvasAccess.Util {
         public static Task<string> ToPrettyStringAsync<T>([NotNull] this IAsyncEnumerable<T> iae) {
             return iae.CollectAsync().ThenApply(l => l.ToPrettyString());
         }
+        
+        [Pure]
+        [PublicAPI]
+        public static Task<string> ToPrettyStringAsync<T>([NotNull] this Task<T> t) where T: IPrettyPrint {
+            return t.ThenApply(l => l.ToPrettyString());
+        }
 
         /// <summary>
         /// Asynchronously enumerates an entire <see cref="IAsyncEnumerable{T}">asynchronous stream</see> into a

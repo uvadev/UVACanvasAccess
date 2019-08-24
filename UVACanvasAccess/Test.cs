@@ -31,8 +31,7 @@ namespace UVACanvasAccess {
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
 
-            var f = await api.UpdatePersonalFile(6954, "secret_potoo_bird.png", DateTime.Now.AddDays(1), hidden: true);
-            Console.WriteLine(f.ToPrettyString());
+            Console.WriteLine(await api.GetPersonalFolder(34841).ToPrettyStringAsync());
         }
     }
 }

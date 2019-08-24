@@ -253,19 +253,33 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         public async Task<CanvasFile> UpdatePersonalFile(ulong fileId,
-                                                         string name = null,
                                                          DateTime? lockAt = null,
                                                          DateTime? unlockAt = null,
                                                          bool? locked = null,
                                                          bool? hidden = null) {
             var args = new[] {
-                ("name", name),
                 ("lock_at", lockAt?.ToIso8601Date()),
                 ("unlock_at", unlockAt?.ToIso8601Date()),
                 ("locked", locked?.ToShortString()),
                 ("hidden", hidden?.ToShortString())
             };
 
+            var response = await _client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
+
+            var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
+            return new CanvasFile(this, model);
+        }
+
+        public async Task<CanvasFile> MovePersonalFile(ulong fileId,
+                                                       OnDuplicate onDuplicate,
+                                                       string name = null,
+                                                       ulong? folderId = null) {
+            var args = new[] {
+                ("name", name),
+                ("parent_folder_id", folderId.ToString()),
+                ("on_duplicate", onDuplicate.GetApiRepresentation())
+            };
+            
             var response = await _client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
 
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());

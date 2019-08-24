@@ -317,11 +317,19 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         [PublicAPI]
-        public enum Order {
+        public enum Order : byte {
             [ApiRepresentation("asc")]
             Ascending,
             [ApiRepresentation("desc")]
             Descending
+        }
+
+        [PublicAPI]
+        public enum OnDuplicate : byte  {
+            [ApiRepresentation("overwrite")]
+            Overwrite,
+            [ApiRepresentation("rename")]
+            Rename
         }
     }
 }
