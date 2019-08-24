@@ -5,6 +5,7 @@ using dotenv.net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess {
     internal static class Test {
@@ -29,38 +30,9 @@ namespace UVACanvasAccess {
             var api = new Api(Environment.GetEnvironmentVariable("TEST_TOKEN") 
                               ?? ".env should have TEST_TOKEN",
                               "https://uview.instructure.com/api/v1/");
-            
-            var users = new JObject();
-            var document = new JObject {
-                ["users"] = users
-            };
 
-            uint count = 0;
-            
-            await foreach (var user in api.StreamUsers().Take(15)) {
-                try {
-                    var o = new JObject {
-                        ["sis"] = user.SisUserId
-                    };
-                    api.MasqueradeAs(user.Id);
-                    
-                    var (quota, used) = await api.GetPersonalQuotaMiB();
-                    o["quotaMiB"] = Math.Round(quota, 5);
-                    o["usedMiB"] = Math.Round(used, 5);
-                    o["freeMiB"] = Math.Round(quota - used, 5);
-
-                    users[user.Id.ToString()] = o;
-                    ++count;
-                } catch (Exception e) {
-                    Console.WriteLine(e);
-                } finally {
-                    api.StopMasquerading();
-                }
-            }
-
-            document["usersInReport"] = count;
-
-            Console.WriteLine(document.ToString(Formatting.Indented));
+            var f = await api.UpdatePersonalFile(6954, "secret_potoo_bird.png", DateTime.Now.AddDays(1), hidden: true);
+            Console.WriteLine(f.ToPrettyString());
         }
     }
 }

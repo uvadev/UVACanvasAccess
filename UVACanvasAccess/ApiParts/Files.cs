@@ -236,7 +236,7 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <returns>The tuple of quota and used quota.</returns>
         public async Task<(ulong, ulong)> GetPersonalQuota() {
-            var response = await _client.GetAsync($"users/self/files/quota" + BuildQueryString());
+            var response = await _client.GetAsync("users/self/files/quota" + BuildQueryString());
 
             var q = JObject.Parse(await response.Content.ReadAsStringAsync());
             return (q["quota"].Value<ulong>(), q["quota_used"].Value<ulong>());
@@ -250,6 +250,26 @@ namespace UVACanvasAccess.ApiParts {
             return GetPersonalQuota().ThenApply(t => 
                 ((decimal)t.Item1 / 1048576, (decimal)t.Item2 / 1048576)
             );
+        }
+
+        public async Task<CanvasFile> UpdatePersonalFile(ulong fileId,
+                                                         string name = null,
+                                                         DateTime? lockAt = null,
+                                                         DateTime? unlockAt = null,
+                                                         bool? locked = null,
+                                                         bool? hidden = null) {
+            var args = new[] {
+                ("name", name),
+                ("lock_at", lockAt?.ToIso8601Date()),
+                ("unlock_at", unlockAt?.ToIso8601Date()),
+                ("locked", locked?.ToShortString()),
+                ("hidden", hidden?.ToShortString())
+            };
+
+            var response = await _client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
+
+            var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
+            return new CanvasFile(this, model);
         }
     }
 }

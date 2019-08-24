@@ -40,6 +40,7 @@ namespace UVACanvasAccessTests {
                     o["quotaMiB"] = Math.Round(quota, 5);
                     o["usedMiB"] = Math.Round(used, 5);
                     o["freeMiB"] = Math.Round(quota - used, 5);
+                    o["usedPercent"] = Math.Round(used / quota * 100, 2);
 
                     users[user.Id.ToString()] = o;
                     ++count;
