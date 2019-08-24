@@ -270,10 +270,10 @@ namespace UVACanvasAccess.ApiParts {
             return new CanvasFile(this, model);
         }
 
-        public async Task<CanvasFile> MovePersonalFile(ulong fileId,
-                                                       OnDuplicate onDuplicate,
-                                                       string name = null,
-                                                       ulong? folderId = null) {
+        public async Task<CanvasFile> MoveFile(ulong fileId,
+                                               OnDuplicate onDuplicate,
+                                               string name = null,
+                                               ulong? folderId = null) {
             var args = new[] {
                 ("name", name),
                 ("parent_folder_id", folderId.ToString()),
@@ -282,6 +282,19 @@ namespace UVACanvasAccess.ApiParts {
             
             var response = await _client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
 
+            var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
+            return new CanvasFile(this, model);
+        }
+
+        public async Task<CanvasFile> CopyFile(ulong fileId, ulong destinationFolderId, OnDuplicate onDuplicate) {
+            var args = new[] {
+                ("source_file_id", fileId.ToString()),
+                ("on_duplicate", onDuplicate.GetApiRepresentation())
+            };
+
+            var response =
+                await _client.PostAsync($"folders/{destinationFolderId}/copy_file", BuildHttpArguments(args));
+            
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
         }
