@@ -205,11 +205,17 @@ namespace UVACanvasAccess.ApiParts {
         [PublicAPI]
         [Flags]
         public enum CourseEnrollmentIncludes : byte {
+            [ApiRepresentation("avatar_url")]
             AvatarUrl = 1 << 0,
+            [ApiRepresentation("group_ids")]
             GroupIds = 1 << 1,
+            [ApiRepresentation("locked")]
             Locked = 1 << 2,
+            [ApiRepresentation("observed_users")]
             ObservedUsers = 1 << 3,
+            [ApiRepresentation("can_be_removed")]
             CanBeRemoved = 1 << 4,
+            [ApiRepresentation("uuid")]
             Uuid = 1 << 5
         }
         
@@ -242,6 +248,41 @@ namespace UVACanvasAccess.ApiParts {
             }
             
             var response = await _client.GetAsync($"courses/{courseId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
+
+            await foreach (var model in StreamDeserializePages<EnrollmentModel>(response)) {
+                yield return new Enrollment(this, model);
+            }
+        }
+
+        /// <summary>
+        /// Streams all enrollments for the user.
+        /// </summary>
+        /// <param name="userId">The user id.</param>
+        /// <param name="types">Optionally, the set of enrollment types to filter by.</param>
+        /// <param name="states">Optionally, the set of enrollment states to filter by.</param>
+        /// <param name="includes">Optional data to include in the result.</param>
+        /// <returns>The stream of enrollments.</returns>
+        // todo params
+        // todo {types, states} should probably be flags
+        public async IAsyncEnumerable<Enrollment> StreamUserEnrollments(ulong userId,
+                                                                        IEnumerable<CourseEnrollmentType> types = null,
+                                                                        IEnumerable<CourseEnrollmentState> states = null,
+                                                                        CourseEnrollmentIncludes? includes = null) {
+            var args = new List<(string, string)>();
+            if (types != null) {
+                args.AddRange(types.Select(t => t.GetApiRepresentation())
+                                   .Select(a => ("type[]", a)));
+            }
+            if (states != null) {
+                args.AddRange(states.Select(s => s.GetApiRepresentation())
+                                    .Select(a => ("state[]", a)));
+            }
+            if (includes != null) {
+                args.AddRange(includes.GetFlagsApiRepresentations()
+                                      .Select(a => ("include[]", a)));
+            }
+            
+            var response = await _client.GetAsync($"users/{userId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<EnrollmentModel>(response)) {
                 yield return new Enrollment(this, model);
