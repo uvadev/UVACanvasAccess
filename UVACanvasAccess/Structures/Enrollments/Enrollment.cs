@@ -65,7 +65,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         
         public DateTime? LastAttendedAt { get; }
         
-        public double? TotalActivityTime { get; }
+        public ulong? TotalActivityTime { get; }
         
         public string HtmlUrl { get; }
         

@@ -86,7 +86,7 @@ namespace UVACanvasAccess.Model.Enrollments {
         public DateTime? LastAttendedAt { get; set; }
         
         [JsonProperty("total_activity_time")]
-        public double? TotalActivityTime { get; set; }
+        public ulong? TotalActivityTime { get; set; }
         
         [JsonProperty("html_url")]
         public string HtmlUrl { get; set; }
