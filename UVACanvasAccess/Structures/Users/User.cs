@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using StatePrinting;
@@ -7,15 +8,14 @@ using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Enrollments;
 using UVACanvasAccess.Util;
+using static UVACanvasAccess.ApiParts.Api;
+using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentState;
+using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
 
 namespace UVACanvasAccess.Structures.Users {
     
     [PublicAPI]
     public class User : IPrettyPrint, IAppointmentGroupParticipant {
-        // We keep a reference to the API that yielded this User so that getters can query for needed info and setters
-        // can update the API. Many API endpoints that return User omit some fields, so some getters will need to check
-        // for null and query the API if required. Setters that do not have an implementation that directly updates the
-        // API should remain private.
         private readonly Api _api;
         
         public ulong Id { get; }
@@ -99,14 +99,6 @@ namespace UVACanvasAccess.Structures.Users {
             Permissions = model.Permissions ?? new Dictionary<string, bool>();
         }
 
-        public Task<Profile> GetProfile() {
-            return _api.GetUserProfile(Id);
-        }
-
-        public Task<IEnumerable<PageView>> GetPageViews(DateTime? startDate = null, DateTime? endDate = null) {
-            return _api.GetUserPageViews(Id, startDate, endDate);
-        }
-
         private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {
             return Printer.PrintObject(this);
@@ -132,6 +124,29 @@ namespace UVACanvasAccess.Structures.Users {
                    $"\n{nameof(Bio)}: {Bio}," +
                    $"\n{nameof(Permissions)}: {Permissions.ToPrettyString()}").Indent(4) +
                    "\n}";
+        }
+        
+        public Task<Profile> GetProfile() {
+            return _api.GetUserProfile(Id);
+        }
+
+        public Task<IEnumerable<PageView>> GetPageViews(DateTime? startDate = null, DateTime? endDate = null) {
+            return _api.GetUserPageViews(Id, startDate, endDate);
+        }
+
+        /// <summary>
+        /// Returns whether or not this user is a teacher.
+        /// Specifically, whether or not this user has enrolled with the Teacher role in at least one course.
+        /// </summary>
+        /// <param name="currentCoursesOnly">
+        /// If true, this user is only considered a teacher if he is enrolled as a teacher in a currently active
+        /// course.
+        /// </param>
+        /// <returns>Whether or not this user is a teacher.</returns>
+        public async Task<bool> IsTeacher(bool currentCoursesOnly = false) {
+            var state = currentCoursesOnly ? new[] {Active} 
+                                           : new CourseEnrollmentState[]{};
+            return !await _api.StreamUserEnrollments(Id, new[] {TeacherEnrollment}, state).IsEmptyAsync();
         }
     }
 }
