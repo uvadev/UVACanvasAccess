@@ -365,6 +365,7 @@
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ApiRepresentationAttribute.cs" />
+    <Compile Include="Util\Enigmatic.cs" />
     <Compile Include="Util\IAppointmentGroupParticipant.cs" />
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\IPrettyPrint.cs" />

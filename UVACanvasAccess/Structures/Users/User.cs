@@ -52,6 +52,8 @@ namespace UVACanvasAccess.Structures.Users {
         public string IntegrationId { get; private set; }
         public string LoginId { get; private set; }
         public string AvatarUrl { get; private set; }
+        
+        [Enigmatic]
         public IEnumerable<Enrollment> Enrollments { get; private set; }
         public string Email { get; private set; }
         public string Locale { get; private set; }
