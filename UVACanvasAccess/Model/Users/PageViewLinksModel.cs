@@ -17,7 +17,7 @@ namespace UVACanvasAccess.Model.Users {
         public ulong? RealUser { get; set; }
         
         [JsonProperty("account")]
-        public ulong Account { get; set; }
+        public ulong? Account { get; set; }
 
         private static readonly Stateprinter Printer = new Stateprinter();
         public override string ToString() {

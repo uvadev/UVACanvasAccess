@@ -36,7 +36,7 @@ namespace UVACanvasAccess.Structures.Users {
         /// <summary>
         /// The account id for the context.
         /// </summary>
-        public ulong Account { get; }
+        public ulong? Account { get; }
 
         internal PageViewLinks(Api api, PageViewLinksModel model) {
             _api = api;

@@ -61,24 +61,23 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         /// <summary>
-        /// Returns the user's page view history. Page views are returned in descending order; newest to oldest.
+        /// Streams the user's page view history. Page views are returned in descending order; newest to oldest.
         /// </summary>
         /// <param name="userId">The id of the user. Defaults to <c>self</c>.</param>
         /// <param name="startTime">The beginning of the date-time range to retrieve page views from. Defaults to unbounded.</param>
         /// <param name="endTime">The end of the date-time range to retrieve page views from. Defaults to unbounded.</param>
-        /// <returns>The collection of page views.</returns>
-        public async Task<IEnumerable<PageView>> GetUserPageViews(ulong? userId = null, 
-                                                                  DateTime? startTime = null,
-                                                                  DateTime? endTime = null) {
+        /// <returns>The stream of page views.</returns>
+        public async IAsyncEnumerable<PageView> StreamUserPageViews(ulong? userId = null, 
+                                                                    DateTime? startTime = null,
+                                                                    DateTime? endTime = null) {
             var response = await RawGetUserPageViews(userId?.ToString() ?? "self", 
                                                      startTime == null ? null : JsonConvert.SerializeObject(startTime), 
                                                      endTime == null ? null : JsonConvert.SerializeObject(endTime));
             response.AssertSuccess();
 
-            var models = await AccumulateDeserializePages<PageViewModel>(response);
-
-            return from model in models
-                   select new PageView(this, model);
+            await foreach (var model in StreamDeserializePages<PageViewModel>(response)) {
+                yield return new PageView(this, model);
+            }
         }
 
         private Task<HttpResponseMessage> RawDeleteCustomJson(string userId, string scopes, string ns) {

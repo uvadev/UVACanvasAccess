@@ -99,13 +99,13 @@
     <Compile Include="GradeReporting.cs" />
     <Compile Include="MasterCourseSectionsReport.cs" />
     <Compile Include="ObserversToObservees.cs" />
-    <Compile Include="PageViewsExample.cs" />
     <Compile Include="ParallelFileMapUpload.cs" />
     <Compile Include="SingleThreadedFileMapUpload.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserCourseActivityReport.cs" />
     <Compile Include="UserGradeReport.cs" />
+    <Compile Include="UserInteractionReport.cs" />
     <Compile Include="UserLoginReport.cs" />
     <Compile Include="UsersTests.cs" />
     <Compile Include="UserStorageQuotaReport.cs" />

@@ -132,8 +132,8 @@ namespace UVACanvasAccess.Structures.Users {
             return _api.GetUserProfile(Id);
         }
 
-        public Task<IEnumerable<PageView>> GetPageViews(DateTime? startDate = null, DateTime? endDate = null) {
-            return _api.GetUserPageViews(Id, startDate, endDate);
+        public IAsyncEnumerable<PageView> StreamPageViews(DateTime? startDate = null, DateTime? endDate = null) {
+            return _api.StreamUserPageViews(Id, startDate, endDate);
         }
 
         /// <summary>
