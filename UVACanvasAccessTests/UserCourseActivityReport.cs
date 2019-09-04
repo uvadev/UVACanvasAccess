@@ -49,9 +49,10 @@ namespace UVACanvasAccessTests {
                 await foreach (var userEnrollment in _api.StreamUserEnrollments(user.Id, new[] {StudentEnrollment})) {
                     if (userEnrollment.LastActivityAt == null)
                         continue;
-                    
+
                     userCoursesObj[userEnrollment.CourseId.ToString()] = JToken.FromObject(new {
                         courseSisId = userEnrollment.SisCourseId,
+                        courseName = await _api.GetCourse(userEnrollment.CourseId).ThenApply(c => c.Name),
                         secondsSpent = userEnrollment.TotalActivityTime,
                         lastActivity = userEnrollment.LastActivityAt?.ToIso8601Date()
                     });

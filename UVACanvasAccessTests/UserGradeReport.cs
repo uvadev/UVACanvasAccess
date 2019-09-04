@@ -51,6 +51,7 @@ namespace UVACanvasAccessTests {
 
                     userObj[enrollment.CourseId.ToString()] = new JObject {
                         ["courseSis"] = enrollment.SisCourseId,
+                        ["courseName"] = await _api.GetCourse(enrollment.CourseId).ThenApply(c => c.Name),
                         ["currentLetterGrade"] = grades.CurrentGrade,
                         ["finalLetterGrade"] = grades.FinalGrade,
                         ["currentScore"] = grades.CurrentScore,
