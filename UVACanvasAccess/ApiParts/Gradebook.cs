@@ -90,26 +90,26 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         /// <summary>
-        /// Returns an uncollated list of submission versions for all matching submissions in the context.
+        /// Streams an uncollated list of submission versions for all matching submissions in the context.
         /// </summary>
         /// <param name="courseId">The course id.</param>
         /// <param name="assignmentId">An optional assignment id to filter by.</param>
         /// <param name="userId">An optional user id to filter by.</param>
         /// <param name="ascending">Sorts the list in ascending order by date.</param>
-        /// <returns>The list of submission versions.</returns>
+        /// <returns>The stream of submission versions.</returns>
         /// <remarks>The returned objects will be missing the properties <c>NewGrade</c> and <c>PreviousGrade</c>.</remarks>
-        public async Task<IEnumerable<SubmissionVersion>> GetSubmissionVersions(ulong courseId,
-                                                                                ulong? assignmentId = null,
-                                                                                ulong? userId = null,
-                                                                                bool? ascending = null) {
+        public async IAsyncEnumerable<SubmissionVersion> StreamSubmissionVersions(ulong courseId,
+                                                                                  ulong? assignmentId = null,
+                                                                                  ulong? userId = null,
+                                                                                  bool? ascending = null) {
             var response = await RawGetSubmissionVersions(courseId.ToString(),
                                                           assignmentId?.ToString(),
                                                           userId?.ToString(),
                                                           ascending?.ToShortString());
 
-            var models = await AccumulateDeserializePages<SubmissionVersionModel>(response);
-            return from m in models
-                   select new SubmissionVersion(this, m);
+            await foreach (var model in StreamDeserializePages<SubmissionVersionModel>(response)) {
+                yield return new SubmissionVersion(this, model);
+            }
         }
     }
 }

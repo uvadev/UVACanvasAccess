@@ -42,14 +42,15 @@ namespace UVACanvasAccess.Structures.Submissions {
 
         public string SubmissionType { get; }
         
-        public DateTime SubmittedAt { get; }
+        public DateTime? SubmittedAt { get; }
         
         [CanBeNull]
         public string Url { get; }
 
         public ulong UserId { get; }
 
-        public ulong? GraderId { get; }
+        [Enigmatic]
+        public long? GraderId { get; }
         
         public DateTime? GradedAt { get; }
 

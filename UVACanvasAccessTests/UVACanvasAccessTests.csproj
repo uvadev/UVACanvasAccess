@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiFixture.cs" />
+    <Compile Include="AssignmentPerformanceStatisticsReport.cs" />
     <Compile Include="AssignmentsTests.cs" />
     <Compile Include="CurrentAssignmentsReport.cs" />
     <Compile Include="ExportLoggedInUsers.cs" />

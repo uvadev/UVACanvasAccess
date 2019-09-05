@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Model.Submissions {
     
@@ -50,7 +51,7 @@ namespace UVACanvasAccess.Model.Submissions {
         public string SubmissionType { get; set; }
         
         [JsonProperty("submitted_at")]
-        public DateTime SubmittedAt { get; set; }
+        public DateTime? SubmittedAt { get; set; }
         
         [CanBeNull]
         [JsonProperty("url")]
@@ -60,7 +61,8 @@ namespace UVACanvasAccess.Model.Submissions {
         public ulong UserId { get; set; }
         
         [JsonProperty("grader_id")]
-        public ulong? GraderId { get; set; }
+        [Enigmatic]
+        public long? GraderId { get; set; } // why can this be negative???
         
         [JsonProperty("graded_at")]
         public DateTime? GradedAt { get; set; }
