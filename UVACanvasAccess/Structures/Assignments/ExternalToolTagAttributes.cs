@@ -11,7 +11,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         
         public string Url { get; }
         
-        public bool NewTab { get; }
+        public bool? NewTab { get; }
         
         public string ResourceLinkId { get; }
 

@@ -24,7 +24,7 @@ namespace UVACanvasAccessTests {
         /// </summary>
         [Fact]
         public async Task Test1() {
-            IEnumerable<Assignment> assignments = await _api.ListCourseAssignments(TestCourse);
+            IEnumerable<Assignment> assignments = await _api.StreamCourseAssignments(TestCourse).ToListAsync();
             Assert.NotEmpty(assignments);
         }
 

@@ -17,7 +17,7 @@ namespace UVACanvasAccess.Model.Assignments {
         
         [CanBeNull]
         [JsonProperty("context_module")]
-        public string ContextModule { get; set; }
+        public object ContextModule { get; set; }
         
         [JsonProperty("manually_locked")]
         public bool? ManuallyLocked { get; set; }

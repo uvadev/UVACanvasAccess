@@ -122,13 +122,13 @@ namespace UVACanvasAccess.Model.Assignments {
         public bool? Muted { get; set; }
         
         [JsonProperty("points_possible")]
-        public uint PointsPossible { get; set; }
+        public uint? PointsPossible { get; set; }
         
         [JsonProperty("submission_types")]
         public IEnumerable<string> SubmissionTypes { get; set; }
         
         [JsonProperty("has_submitted_submissions")]
-        public bool HasSubmittedSubmissions { get; set; }
+        public bool? HasSubmittedSubmissions { get; set; }
         
         [JsonProperty("grading_type")]
         public string GradingType { get; set; }

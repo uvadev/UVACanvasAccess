@@ -8,7 +8,7 @@ namespace UVACanvasAccess.Model.Assignments {
         public string Url { get; set; }
         
         [JsonProperty("new_tab")]
-        public bool NewTab { get; set; }
+        public bool? NewTab { get; set; }
         
         [JsonProperty("resource_link_id")]
         public string ResourceLinkId { get; set; }

@@ -13,7 +13,7 @@ namespace UVACanvasAccess.Structures.Assignments {
     public class RubricCriteria : IPrettyPrint {
         private readonly Api _api;
         
-        public uint Points { get; }
+        public uint? Points { get; }
 
         public string Id { get; }
         
@@ -27,12 +27,12 @@ namespace UVACanvasAccess.Structures.Assignments {
 
         public string LongDescription { get; }
 
-        public bool CriterionUseRange { get; }
+        public bool? CriterionUseRange { get; }
         
         [CanBeNull]
         public IEnumerable<RubricRating> Ratings { get; }
 
-        public bool IgnoreForScoring { get; }
+        public bool? IgnoreForScoring { get; }
 
         internal RubricCriteria(Api api, RubricCriteriaModel model) {
             _api = api;

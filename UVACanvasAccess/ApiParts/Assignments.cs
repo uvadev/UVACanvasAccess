@@ -307,7 +307,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         /// <summary>
-        /// Returns a list of all assignments in this course that are visible to the current user.
+        /// Streams all assignments in this course that are visible to the current user.
         /// </summary>
         /// <param name="courseId">The course id.</param>
         /// <param name="inclusions">Optional extra data to include in the assignment response.</param>
@@ -317,10 +317,10 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="bucket">An optional bucket to filter the returned assignments by.</param>
         /// <param name="assignmentIds">An optional list of ids to filter the returned assignments by.</param>
         /// <param name="orderBy">An optional string determining the order of assignments.</param>
-        /// <returns>The list of assignments.</returns>
+        /// <returns>The stream of assignments.</returns>
         /// <seealso cref="AssignmentInclusions"/>
         /// <seealso cref="AssignmentBucket"/>
-        public async Task<IEnumerable<Assignment>> ListCourseAssignments(ulong courseId,
+        public async IAsyncEnumerable<Assignment> StreamCourseAssignments(ulong courseId,
                                                                          AssignmentInclusions inclusions = AssignmentInclusions.Default,
                                                                          string searchTerm = null,
                                                                          bool? overrideAssignmentDates = null,
@@ -338,10 +338,9 @@ namespace UVACanvasAccess.ApiParts {
                                                           assignmentIds,
                                                           orderBy);
 
-            var models = await AccumulateDeserializePages<AssignmentModel>(response);
-
-            return from model in models
-                   select new Assignment(this, model);
+            await foreach (var model in StreamDeserializePages<AssignmentModel>(response)) {
+                yield return new Assignment(this, model);
+            }
         }
 
         private Task<HttpResponseMessage> RawGetSingleAssignment(string courseId,

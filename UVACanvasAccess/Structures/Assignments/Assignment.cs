@@ -216,7 +216,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         /// <summary>
         /// The maximum amount of points possible for this assignment.
         /// </summary>
-        public uint PointsPossible { get; }
+        public uint? PointsPossible { get; }
         
         /// <summary>
         /// The submission types supported for this assignment.
@@ -226,7 +226,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         /// <summary>
         /// Whether or not any submissions have been made yet.
         /// </summary>
-        public bool HasSubmittedSubmissions { get; }
+        public bool? HasSubmittedSubmissions { get; }
 
         /// <summary>
         /// The type of grading used by this assignment.

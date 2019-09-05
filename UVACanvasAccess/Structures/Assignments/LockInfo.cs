@@ -20,7 +20,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public DateTime? LockAt { get; }
         
         [CanBeNull]
-        public string ContextModule { get; }
+        public object ContextModule { get; }
         
         public bool? ManuallyLocked { get; }
 

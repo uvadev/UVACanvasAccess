@@ -7,7 +7,7 @@ namespace UVACanvasAccess.Model.Assignments {
     internal class RubricCriteriaModel {
         
         [JsonProperty("points")]
-        public uint Points { get; set; }
+        public uint? Points { get; set; }
         
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -27,13 +27,13 @@ namespace UVACanvasAccess.Model.Assignments {
         public string LongDescription { get; set; }
         
         [JsonProperty("criterion_use_range")]
-        public bool CriterionUseRange { get; set; }
+        public bool? CriterionUseRange { get; set; }
         
         [CanBeNull]
         [JsonProperty("ratings")]
         public IEnumerable<RubricRatingModel> Ratings { get; set; }
         
         [JsonProperty("ignore_for_scoring")]
-        public bool IgnoreForScoring { get; set; }
+        public bool? IgnoreForScoring { get; set; }
     }
 }
