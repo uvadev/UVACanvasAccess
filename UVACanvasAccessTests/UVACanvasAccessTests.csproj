@@ -98,6 +98,7 @@
     <Compile Include="AssignmentPerformanceStatisticsWithIndividualsReport.cs" />
     <Compile Include="AssignmentsTests.cs" />
     <Compile Include="CurrentAssignmentsReport.cs" />
+    <Compile Include="CurrentAssignmentsReportTabularized.cs" />
     <Compile Include="ExportLoggedInUsers.cs" />
     <Compile Include="GradeReporting.cs" />
     <Compile Include="MasterCourseSectionsReport.cs" />
