@@ -110,6 +110,7 @@
     <Compile Include="UserCourseActivityReport.cs" />
     <Compile Include="UserGradeReport.cs" />
     <Compile Include="UserInteractionReport.cs" />
+    <Compile Include="UserInteractionReportTabularized.cs" />
     <Compile Include="UserLoginReport.cs" />
     <Compile Include="UsersTests.cs" />
     <Compile Include="UserStorageQuotaReport.cs" />
