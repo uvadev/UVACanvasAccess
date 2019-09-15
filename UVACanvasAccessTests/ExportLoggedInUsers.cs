@@ -39,7 +39,7 @@ namespace UVACanvasAccessTests {
 
             await foreach (var (userId, dateTime) in events) {
                 try {
-                    var name = await _api.GetUserDetails(userId)
+                    var name = await _api.GetUser(userId)
                                          .ThenApply(u => u.Name);
 
                     queue.Enqueue($"{userId},\"{name}\",\"{dateTime: yyyy-MM-dd HH:mm 'UTC+'K}\"");

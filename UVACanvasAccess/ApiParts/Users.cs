@@ -93,7 +93,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="id">The id of the user. A null id is interpreted as <c>self</c>.</param>
         /// <returns>The User object.</returns>
         /// <exception cref="Exception">Thrown if the API returns a failing response code.</exception>
-        public async Task<User> GetUserDetails(ulong? id = null) {
+        public async Task<User> GetUser(ulong? id = null) {
             var response = await RawGetUserDetails(id?.ToString() ?? "self");
             
             response.AssertSuccess();

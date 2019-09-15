@@ -25,7 +25,7 @@ namespace UVACanvasAccessTests {
         [InlineData(3392)]
         [InlineData(3394)]
         public async Task Test1(ulong testUser) {
-            var user = await _api.GetUserDetails(testUser);
+            var user = await _api.GetUser(testUser);
 
             Assert.Equal(testUser, user.Id);
             Assert.NotNull(user.Name);
@@ -53,7 +53,7 @@ namespace UVACanvasAccessTests {
         [InlineData(2323232323232)]
         [InlineData(0)]
         public async Task Test2(ulong nonexistentId) {
-            await Assert.ThrowsAsync<DoesNotExistException>(() => _api.GetUserDetails(nonexistentId));
+            await Assert.ThrowsAsync<DoesNotExistException>(() => _api.GetUser(nonexistentId));
         }
 
         /// <summary>

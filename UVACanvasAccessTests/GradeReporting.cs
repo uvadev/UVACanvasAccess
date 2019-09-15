@@ -33,7 +33,7 @@ namespace UVACanvasAccessTests {
             var students = new JArray();
 
             await foreach (var enrollment in enrollments) {
-                var student = await _api.GetUserDetails(enrollment.UserId);
+                var student = await _api.GetUser(enrollment.UserId);
                 students.Add(JObject.FromObject(new {
                     student = new {
                         id = student.Id,

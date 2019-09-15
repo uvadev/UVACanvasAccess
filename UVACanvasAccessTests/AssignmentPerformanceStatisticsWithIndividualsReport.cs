@@ -128,7 +128,7 @@ namespace UVACanvasAccessTests {
                         var individualsObj = new JObject();
 
                         foreach (var submission in submissions) {
-                            var individual = await _api.GetUserDetails(submission.UserId);
+                            var individual = await _api.GetUser(submission.UserId);
                             
                             Debug.Assert(submission.Score != null, "submission.Score != null");
                             var score = submission.Score.Value;
