@@ -176,6 +176,7 @@
     <Compile Include="ApiParts\Assignments.cs" />
     <Compile Include="ApiParts\Authentications.cs" />
     <Compile Include="ApiParts\Calendar.cs" />
+    <Compile Include="ApiParts\Conversations.cs" />
     <Compile Include="ApiParts\Courses.cs" />
     <Compile Include="ApiParts\Discussions.cs" />
     <Compile Include="ApiParts\Enrollments.cs" />
@@ -224,6 +225,8 @@
     <Compile Include="Model\Authentications\AuthenticationEventModel.cs" />
     <Compile Include="Model\Authentications\AuthenticationEventsResponseModel.cs" />
     <Compile Include="Model\Calendar\CalendarEventModel.cs" />
+    <Compile Include="Model\Conversations\ConversationModel.cs" />
+    <Compile Include="Model\Conversations\ConversationParticipantModel.cs" />
     <Compile Include="Model\Courses\CalendarLinkModel.cs" />
     <Compile Include="Model\Courses\CourseModel.cs" />
     <Compile Include="Model\Courses\CourseProgressModel.cs" />
@@ -310,6 +313,8 @@
     <Compile Include="Structures\Calendar\EventType.cs" />
     <Compile Include="Structures\Calendar\UserReservationCalendarEvent.cs" />
     <Compile Include="Structures\Calendar\TimeSlotCalendarEvent.cs" />
+    <Compile Include="Structures\Conversations\Conversation.cs" />
+    <Compile Include="Structures\Conversations\ConversationParticipant.cs" />
     <Compile Include="Structures\Courses\Course.cs" />
     <Compile Include="Structures\Courses\CourseFormat.cs" />
     <Compile Include="Structures\Courses\CourseProgress.cs" />
@@ -340,6 +345,7 @@
     <Compile Include="Structures\Pages\PageRoles.cs" />
     <Compile Include="Structures\ProficiencyRatings\Proficiency.cs" />
     <Compile Include="Structures\ProficiencyRatings\ProficiencyRating.cs" />
+    <Compile Include="Structures\QualifiedId.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Results\Result.cs" />

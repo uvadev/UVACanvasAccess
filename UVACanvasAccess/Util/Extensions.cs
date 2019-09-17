@@ -249,8 +249,8 @@ namespace UVACanvasAccess.Util {
         
         [Pure]
         internal static string ToShortString(this bool b) {
-            return b ? "1" 
-                     : "0";
+            return b ? "true" 
+                     : "false";
         }
 
         /// <summary>
@@ -289,6 +289,13 @@ namespace UVACanvasAccess.Util {
         [Pure]
         internal static TO ConvertIfNotNull<TI, TO>([CanBeNull] this TI o, [NotNull] Func<TI, TO> f) where TO: class {
             return o == null ? null
+                             : f(o);
+        }
+        
+        [ContractAnnotation("o:null => null; o:notnull => notnull")]
+        [Pure]
+        internal static TO? ConvertIfNotNullValue<TI, TO>([CanBeNull] this TI o, [NotNull] Func<TI, TO> f) where TO: struct {
+            return o == null ? (TO?) null
                              : f(o);
         }
 
