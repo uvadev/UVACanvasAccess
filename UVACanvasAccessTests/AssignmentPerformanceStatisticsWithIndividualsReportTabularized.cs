@@ -40,12 +40,14 @@ namespace UVACanvasAccessTests {
             uint usersInReport = 0;
             var teachersObj = new JObject();
             var coursesObj = new JObject();
+            var studentsObj = new JObject();
             var assignmentsOverallObj = new JObject();
             var assignmentsIndividualObj = new JObject();
             
             var document = new JObject {
                 ["dateGenerated"] = DateTime.Now.ToIso8601Date(),
                 ["teachers"] = teachersObj,
+                ["students"] = studentsObj,
                 ["courses"] = coursesObj,
                 ["assignmentsOverall"] = assignmentsOverallObj,
                 ["assignmentsIndividual"] = assignmentsIndividualObj
@@ -114,24 +116,19 @@ namespace UVACanvasAccessTests {
                                                     .Aggregate(0.0, (acc, s) => acc + Math.Pow(s - Convert.ToDouble(scoresMean), 2)) / scores.Count);
 
                         var assignmentOverallObj = new JObject {
-                            ["assignmentId"] = assignment.Id,
                             ["assignmentName"] = assignment.Name,
                             ["countedInFinalGrade"] = !(assignment.OmitFromFinalGrade ?? false),
                             ["pointsPossible"] = assignment.PointsPossible,
                             ["createdDate"] = assignment.CreatedAt.ToIso8601Date(),
                             ["dueDate"] = assignment.DueAt?.ToIso8601Date(),
                             ["gradesInSample"] = submissions.Count,
-                            ["scoreStats"] = new JObject {
-                                ["mean"] = scoresMean,
-                                ["mode"] = scoresMode,
-                                ["q1"] = scoresQ1,
-                                ["median"] = scoresMedian,
-                                ["q3"] = scoresQ3,
-                                ["sigma"] = sigma
-                            }
+                            ["meanScore"] = scoresMean,
+                            ["modeScore"] = scoresMode,
+                            ["q1Score"] = scoresQ1,
+                            ["medianScore"] = scoresMedian,
+                            ["q3Score"] = scoresQ3,
+                            ["sigmaScore"] = sigma
                         };
-                        
-                        var individualsObj = new JObject();
 
                         foreach (var submission in submissions) {
                             var individual = await _api.GetUser(submission.UserId);
@@ -141,9 +138,9 @@ namespace UVACanvasAccessTests {
                             var z = Convert.ToDouble(score - scoresMean) / sigma;
                             var iqr = scoresQ3 - scoresQ1;
 
-                            individualsObj[submission.UserId.ToString()] = new JObject {
-                                ["studentSis"] = individual.SisUserId,
-                                ["studentFullName"] = individual.Name,
+                            assignmentsIndividualObj[Guid.NewGuid().ToString()] = new JObject {
+                                ["studentId"] = submission.UserId,
+                                ["assignmentId"] = assignment.Id,
                                 ["score"] = score,
                                 ["z"] = z,
                                 ["isUnusual"] = Math.Abs(z) > 1.96,
@@ -152,10 +149,16 @@ namespace UVACanvasAccessTests {
                                 ["isMajorOutlier"] = score < scoresQ1 - iqr * 3m
                                                   || score > scoresQ3 + iqr * 3m,
                             };
+
+                            if (!studentsObj.ContainsKey(submission.UserId.ToString())) {
+                                studentsObj[submission.UserId.ToString()] = new JObject {
+                                    ["studentSis"] = individual.SisUserId,
+                                    ["studentFullName"] = individual.Name
+                                };
+                            }
                         }
 
                         //assignmentOverallObj["individuals"] = individualsObj;
-                        assignmentsIndividualObj[assignment.Id.ToString()] = individualsObj;
                         //courseObj[assignment.Id.ToString()] = assignmentOverallObj;
                         assignmentsOverallObj[assignment.Id.ToString()] = assignmentOverallObj;
                     }
