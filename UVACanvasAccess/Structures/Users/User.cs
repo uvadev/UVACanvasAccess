@@ -145,7 +145,7 @@ namespace UVACanvasAccess.Structures.Users {
         /// course.
         /// </param>
         /// <returns>Whether or not this user is a teacher.</returns>
-        public async Task<bool> IsTeacher(bool currentCoursesOnly = false) {
+        public async ValueTask<bool> IsTeacher(bool currentCoursesOnly = false) {
             var state = currentCoursesOnly ? new[] {Active} 
                                            : new CourseEnrollmentState[]{};
             return !await _api.StreamUserEnrollments(Id, new[] {TeacherEnrollment}, state).IsEmptyAsync();

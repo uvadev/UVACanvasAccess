@@ -376,7 +376,7 @@ namespace UVACanvasAccess.Util {
         /// </summary>
         /// <returns>The IEnumerable.</returns>
         [Pure]
-        internal static IEnumerable<T> Yield<T>(this T t) {
+        public static IEnumerable<T> Yield<T>(this T t) {
             yield return t;
         }
 

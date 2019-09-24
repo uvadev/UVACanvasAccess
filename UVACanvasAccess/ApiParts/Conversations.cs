@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using UVACanvasAccess.Model.Conversations;
 using UVACanvasAccess.Structures;
 using UVACanvasAccess.Structures.Conversations;
@@ -11,15 +9,15 @@ namespace UVACanvasAccess.ApiParts {
     public partial class Api {
 
         public async IAsyncEnumerable<Conversation> CreateConversation(IEnumerable<QualifiedId> recipients,
-                                                           string body,
-                                                           string subject = null,
-                                                           bool? forceNew = null,
-                                                           bool? groupConversation = null,
-                                                           IEnumerable<string> attachmentIds = null,
-                                                           string mediaCommentId = null,
-                                                           string mediaCommentType = null,
-                                                           bool? addJournalEntry = null,
-                                                           QualifiedId? context = null) {
+                                                                       string body,
+                                                                       string subject = null,
+                                                                       bool? forceNew = null,
+                                                                       bool? groupConversation = null,
+                                                                       IEnumerable<string> attachmentIds = null,
+                                                                       string mediaCommentId = null,
+                                                                       string mediaCommentType = null,
+                                                                       bool? addJournalEntry = null,
+                                                                       QualifiedId? context = null) {
             var args = new List<(string, string)> {
                 ("subject", subject),
                 ("body", body),
@@ -43,6 +41,29 @@ namespace UVACanvasAccess.ApiParts {
                 yield return new Conversation(this, conversation);
             }
         }
-        
+
+        public async IAsyncEnumerable<Conversation> StreamConversations(ConversationReadState? readState = null,
+                                                                        IEnumerable<QualifiedId> filter = null,
+                                                                        bool filterIntersection = false,
+                                                                        bool includeParticipantAvatars = false) {
+            var args = new List<(string, string)> {
+                ("scope", readState?.GetApiRepresentation()),
+                ("filter_mode", filterIntersection ? "and" : "or")
+            };
+
+            if (includeParticipantAvatars) {
+                args.Add(("include[]", "participant_avatars"));
+            }
+
+            if (filter != null) {
+                args.AddRange(filter.Select(id => ("filter[]", id.AsString)));
+            }
+
+            var response = await _client.GetAsync("conversations" + BuildDuplicateKeyQueryString(args.ToArray()));
+            
+            await foreach (var conversation in StreamDeserializePages<ConversationModel>(response)) {
+                yield return new Conversation(this, conversation);
+            }
+        }
     }
 }
