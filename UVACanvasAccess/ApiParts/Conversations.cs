@@ -23,7 +23,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="mediaCommentId">(Optional) Media comment id.</param>
         /// <param name="mediaCommentType">(Optional) Media comment type.</param>
         /// <param name="addJournalEntry">(Optional) If true, a faculty journal entry will be created to record this conversation.</param>
-        /// <param name="context">The context of this conversation (???).</param>
+        /// <param name="context">(Optional) The context of this conversation (???).</param>
         /// <returns>The created conversations.</returns>
         public async IAsyncEnumerable<Conversation> CreateConversation(IEnumerable<QualifiedId> recipients,
                                                                        string body,

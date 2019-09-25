@@ -520,5 +520,27 @@ namespace UVACanvasAccess.Util {
                                          return t.Result;
                                      });
         }
+
+        /// <summary>
+        /// Like LINQ Distinct but the second param is actually useful.
+        /// </summary>
+        /// <param name="seq">The list.</param>
+        /// <param name="keySelector">The key selector.</param>
+        /// <returns>The list of distinct elements.</returns>
+        public static IEnumerable<T> Distinct<T, TU>(this IEnumerable<T> seq, Func<T, TU> keySelector) {
+            return seq.GroupBy(keySelector)
+                      .Select(gp => gp.First());
+        }
+
+        /// <summary>
+        /// Like LINQ Distinct but the second param is actually useful and it works on streams.
+        /// </summary>
+        /// <param name="seq">The stream.</param>
+        /// <param name="keySelector">The key selector.</param>
+        /// <returns>The stream of distinct elements.</returns>
+        public static IAsyncEnumerable<T> Distinct<T, TU>(this IAsyncEnumerable<T> seq, Func<T, TU> keySelector) {
+            return seq.GroupBy(keySelector)
+                      .SelectAwait(gp => gp.FirstAsync());
+        }
     }
 }

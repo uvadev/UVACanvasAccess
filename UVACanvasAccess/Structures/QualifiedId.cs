@@ -19,8 +19,10 @@ namespace UVACanvasAccess.Structures {
         public ContextType Type { get; }
         public ulong Id { get; }
         
-        internal string AsString => Type == User ? $"{Id}"
-                                                 : $"{Type.GetApiRepresentation()}_{Id}";
+        internal string AsUserUnqualifiedString => Type == User ? $"{Id}"
+                                                                : $"{Type.GetApiRepresentation()}_{Id}";
+        
+        internal string AsString => $"{Type.GetApiRepresentation()}_{Id}";
         
         public static implicit operator QualifiedId(ulong id) => new QualifiedId(id);
         public static implicit operator QualifiedId(int id) => new QualifiedId((ulong) id);
