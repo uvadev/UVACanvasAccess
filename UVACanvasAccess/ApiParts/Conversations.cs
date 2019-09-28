@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using UVACanvasAccess.Exceptions;
 using UVACanvasAccess.Model.Conversations;
 using UVACanvasAccess.Structures;
 using UVACanvasAccess.Structures.Conversations;
@@ -118,7 +120,12 @@ namespace UVACanvasAccess.ApiParts {
             }
             
             var response = await _client.GetAsync($"conversations/{conversationId}" + BuildDuplicateKeyQueryString(args.ToArray()));
-            return new DetailedConversation(this, JsonConvert.DeserializeObject<DetailedConversationModel>(await response.Content.ReadAsStringAsync()));
+
+            try {
+                return new DetailedConversation(this, JsonConvert.DeserializeObject<DetailedConversationModel>(await response.Content.ReadAsStringAsync()));
+            } catch (InvalidOperationException) {
+                throw new DoesNotExistException($"Conversation with id {conversationId} does not exist.");
+            }
         }
     }
 }
