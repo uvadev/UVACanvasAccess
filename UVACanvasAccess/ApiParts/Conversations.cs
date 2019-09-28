@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using UVACanvasAccess.Model.Conversations;
 using UVACanvasAccess.Structures;
 using UVACanvasAccess.Structures.Conversations;
@@ -89,6 +91,25 @@ namespace UVACanvasAccess.ApiParts {
             await foreach (var conversation in StreamDeserializePages<ConversationModel>(response)) {
                 yield return new Conversation(this, conversation);
             }
+        }
+
+        public async Task<DetailedConversation> GetConversation(ulong conversationId,
+                                                                ConversationReadState? readState = null,
+                                                                IEnumerable<QualifiedId> filter = null,
+                                                                bool filterIntersection = false,
+                                                                bool markAsRead = false) {
+            var args = new List<(string, string)> {
+                ("scope", readState?.GetApiRepresentation()),
+                ("filter_mode", filterIntersection ? "and" : "or"),
+                ("auto_mark_as_read", markAsRead.ToShortString())
+            };
+
+            if (filter != null) {
+                args.AddRange(filter.Select(id => ("filter[]", id.AsString)));
+            }
+            
+            var response = await _client.GetAsync($"conversations/{conversationId}" + BuildDuplicateKeyQueryString(args.ToArray()));
+            return new DetailedConversation(this, JsonConvert.DeserializeObject<DetailedConversationModel>(await response.Content.ReadAsStringAsync()));
         }
     }
 }

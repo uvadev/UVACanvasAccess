@@ -225,8 +225,10 @@
     <Compile Include="Model\Authentications\AuthenticationEventModel.cs" />
     <Compile Include="Model\Authentications\AuthenticationEventsResponseModel.cs" />
     <Compile Include="Model\Calendar\CalendarEventModel.cs" />
+    <Compile Include="Model\Conversations\ConversationMessageModel.cs" />
     <Compile Include="Model\Conversations\ConversationModel.cs" />
     <Compile Include="Model\Conversations\ConversationParticipantModel.cs" />
+    <Compile Include="Model\Conversations\DetailedConversationModel.cs" />
     <Compile Include="Model\Courses\CalendarLinkModel.cs" />
     <Compile Include="Model\Courses\CourseModel.cs" />
     <Compile Include="Model\Courses\CourseProgressModel.cs" />
@@ -314,7 +316,9 @@
     <Compile Include="Structures\Calendar\UserReservationCalendarEvent.cs" />
     <Compile Include="Structures\Calendar\TimeSlotCalendarEvent.cs" />
     <Compile Include="Structures\Conversations\Conversation.cs" />
+    <Compile Include="Structures\Conversations\ConversationMessage.cs" />
     <Compile Include="Structures\Conversations\ConversationParticipant.cs" />
+    <Compile Include="Structures\Conversations\DetailedConversation.cs" />
     <Compile Include="Structures\Courses\Course.cs" />
     <Compile Include="Structures\Courses\CourseFormat.cs" />
     <Compile Include="Structures\Courses\CourseProgress.cs" />

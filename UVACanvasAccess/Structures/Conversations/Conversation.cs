@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Conversations;
@@ -10,7 +9,7 @@ namespace UVACanvasAccess.Structures.Conversations {
     
     [PublicAPI]
     public class Conversation : IPrettyPrint {
-        private readonly Api _api;
+        private protected readonly Api Api;
         
         public ulong Id { get; set; }
         
@@ -49,7 +48,7 @@ namespace UVACanvasAccess.Structures.Conversations {
         public string ContextName { get; set; }
 
         internal Conversation(Api api, ConversationModel model) {
-            _api = api;
+            Api = api;
             Id = model.Id;
             Subject = model.Subject;
             ReadState = model.WorkflowState.ConvertIfNotNullValue(wf => wf.ToApiRepresentedEnum<ConversationReadState>().Value).Value;
