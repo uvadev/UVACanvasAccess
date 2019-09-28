@@ -93,6 +93,15 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Gets a single conversation by id.
+        /// </summary>
+        /// <param name="conversationId">The conversation id.</param>
+        /// <param name="readState">(Optional) The read state to filter by.</param>
+        /// <param name="filter">(Optional) The qualified ids to filter by.</param>
+        /// <param name="filterIntersection">(Optional) If true, the predicate in <paramref name="filter"/> is an AND instead of an OR.</param>
+        /// <param name="markAsRead">(Optional, default false) If true, mark the conversation as read.</param>
+        /// <returns>The conversation.</returns>
         public async Task<DetailedConversation> GetConversation(ulong conversationId,
                                                                 ConversationReadState? readState = null,
                                                                 IEnumerable<QualifiedId> filter = null,
