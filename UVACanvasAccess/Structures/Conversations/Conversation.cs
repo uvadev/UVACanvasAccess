@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Conversations;
@@ -7,6 +8,10 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Conversations {
     
+    /// <summary>
+    /// Summarizes a conversation thread between 2 or more users.
+    /// </summary>
+    /// <seealso cref="DetailedConversation"/>
     [PublicAPI]
     public class Conversation : IPrettyPrint {
         private protected readonly Api Api;
@@ -86,6 +91,15 @@ namespace UVACanvasAccess.Structures.Conversations {
                    $"\n{nameof(Visible)}: {Visible}," +
                    $"\n{nameof(ContextName)}: {ContextName}").Indent(4) + 
                    "\n}";
+        }
+
+        /// <summary>
+        /// Converts this conversation to a <see cref="DetailedConversation"/> with full message history.
+        /// </summary>
+        /// <returns>The <see cref="DetailedConversation"/> summarized by this conversation.</returns>
+        /// <seealso cref="UVACanvasAccess.ApiParts.Api.GetConversation"/>
+        public virtual Task<DetailedConversation> AsDetailedConversation() {
+            return Api.GetConversation(Id);
         }
     }
 

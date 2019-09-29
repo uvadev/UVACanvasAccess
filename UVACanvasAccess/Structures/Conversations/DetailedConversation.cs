@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Conversations;
@@ -6,6 +7,9 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Conversations {
     
+    /// <summary>
+    /// Fully represents a conversation thread between 2 or more users.
+    /// </summary>
     [PublicAPI]
     public class DetailedConversation : Conversation, IPrettyPrint {
         
@@ -35,6 +39,14 @@ namespace UVACanvasAccess.Structures.Conversations {
                     $"\n{nameof(ContextName)}: {ContextName}," +
                     $"\n{nameof(Messages)}: {Messages.ToPrettyString()}").Indent(4) + 
                    "\n}";
+        }
+
+        /// <summary>
+        /// Returns this conversation.
+        /// </summary>
+        /// <returns>This.</returns>
+        public sealed override Task<DetailedConversation> AsDetailedConversation() {
+            return Task.FromResult(this);
         }
     }
 }

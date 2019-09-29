@@ -99,27 +99,14 @@ namespace UVACanvasAccess.ApiParts {
         /// Gets a single conversation by id.
         /// </summary>
         /// <param name="conversationId">The conversation id.</param>
-        /// <param name="readState">(Optional) The read state to filter by.</param>
-        /// <param name="filter">(Optional) The qualified ids to filter by.</param>
-        /// <param name="filterIntersection">(Optional) If true, the predicate in <paramref name="filter"/> is an AND instead of an OR.</param>
         /// <param name="markAsRead">(Optional, default false) If true, mark the conversation as read.</param>
         /// <exception cref="DoesNotExistException">If the conversation with the given id does not exist or is not visible to the current user.</exception>
         /// <returns>The conversation.</returns>
-        public async Task<DetailedConversation> GetConversation(ulong conversationId,
-                                                                ConversationReadState? readState = null,
-                                                                IEnumerable<QualifiedId> filter = null,
-                                                                bool filterIntersection = false,
-                                                                bool markAsRead = false) {
+        public async Task<DetailedConversation> GetConversation(ulong conversationId, bool markAsRead = false) {
             var args = new List<(string, string)> {
-                ("scope", readState?.GetApiRepresentation()),
-                ("filter_mode", filterIntersection ? "and" : "or"),
                 ("auto_mark_as_read", markAsRead.ToShortString())
             };
 
-            if (filter != null) {
-                args.AddRange(filter.Select(id => ("filter[]", id.AsString)));
-            }
-            
             var response = await _client.GetAsync($"conversations/{conversationId}" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             try {
