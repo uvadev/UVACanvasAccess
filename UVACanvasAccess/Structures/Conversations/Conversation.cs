@@ -101,6 +101,27 @@ namespace UVACanvasAccess.Structures.Conversations {
         public virtual Task<DetailedConversation> AsDetailedConversation() {
             return Api.GetConversation(Id);
         }
+
+        /// <summary>
+        /// Adds a message to this conversation.
+        /// </summary>
+        /// <param name="body">The message to send.</param>
+        /// <param name="specificRecipients">(Optional) Specific recipients to send the message to.</param>
+        /// <param name="includedMessages">(Optional) The set of past messages to send to recipients not already present in the conversation.</param>
+        /// <param name="attachmentIds">(Optional) Attachment ids. Attachments must have been uploaded to the current user's attachments folder.</param>
+        /// <param name="mediaCommentId">(Optional) Media comment id.</param>
+        /// <param name="mediaCommentType">(Optional) Media comment type.</param>
+        /// <param name="addJournalEntry">(Optional) If true, a faculty journal entry will be created to record this conversation.</param>
+        /// <returns>The updated conversation.</returns>
+        public Task<Conversation> AddMessage(string body,
+                                             IEnumerable<QualifiedId> specificRecipients = null,
+                                             IEnumerable<ulong> includedMessages = null,
+                                             IEnumerable<string> attachmentIds = null,
+                                             string mediaCommentId = null,
+                                             string mediaCommentType = null,
+                                             bool? addJournalEntry = null) {
+            return Api.AddMessageToConversation(Id, body, specificRecipients, includedMessages, attachmentIds, mediaCommentId, mediaCommentType, addJournalEntry);
+        }
     }
 
     [PublicAPI]

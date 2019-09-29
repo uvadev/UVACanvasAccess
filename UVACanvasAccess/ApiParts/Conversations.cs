@@ -142,5 +142,52 @@ namespace UVACanvasAccess.ApiParts {
                 throw new DoesNotExistException($"Conversation with id {conversationId} does not exist or is not visible to the current user.");
             }
         }
+
+        /// <summary>
+        /// Adds a message to the given conversation.
+        /// </summary>
+        /// <param name="conversationId">The conversation id.</param>
+        /// <param name="body">The message to send.</param>
+        /// <param name="specificRecipients">(Optional) Specific recipients to send the message to.</param>
+        /// <param name="includedMessages">(Optional) The set of past messages to send to recipients not already present in the conversation.</param>
+        /// <param name="attachmentIds">(Optional) Attachment ids. Attachments must have been uploaded to the current user's attachments folder.</param>
+        /// <param name="mediaCommentId">(Optional) Media comment id.</param>
+        /// <param name="mediaCommentType">(Optional) Media comment type.</param>
+        /// <param name="addJournalEntry">(Optional) If true, a faculty journal entry will be created to record this conversation.</param>
+        /// <returns>The conversation.</returns>
+        public async Task<Conversation> AddMessageToConversation(ulong conversationId,
+                                                                 string body,
+                                                                 IEnumerable<QualifiedId> specificRecipients = null,
+                                                                 IEnumerable<ulong> includedMessages = null,
+                                                                 IEnumerable<string> attachmentIds = null,
+                                                                 string mediaCommentId = null,
+                                                                 string mediaCommentType = null,
+                                                                 bool? addJournalEntry = null) {
+            var args = new List<(string, string)> {
+                ("body", body),
+                ("media_comment_id", mediaCommentId),
+                ("media_comment_type", mediaCommentType),
+                ("user_note", addJournalEntry?.ToShortString()),
+            };
+            
+            if (specificRecipients != null) {
+                args.AddRange(specificRecipients.Select(r => ("recipients[]", r.AsString)));
+            }
+            
+            if (includedMessages != null) {
+                args.AddRange(includedMessages.Select(m => ("included_messages[]", m.ToString())));
+            }
+            
+            if (attachmentIds != null) {
+                args.AddRange(attachmentIds.Select(attachment => ("attachment_ids[]", attachment)));
+            }
+
+            var response = await _client.PostAsync($"conversations/{conversationId}/add_message", BuildHttpArguments(args));
+            try {
+                return new Conversation(this, JsonConvert.DeserializeObject<ConversationModel>(await response.Content.ReadAsStringAsync()));
+            } catch (InvalidOperationException) {
+                throw new DoesNotExistException($"Conversation with id {conversationId} does not exist or is not visible to the current user.");
+            }
+        }
     }
 }
