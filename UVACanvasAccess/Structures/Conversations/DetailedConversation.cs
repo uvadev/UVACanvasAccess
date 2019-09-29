@@ -21,7 +21,7 @@ namespace UVACanvasAccess.Structures.Conversations {
                     $"\n{nameof(Subject)}: {Subject}," +
                     $"\n{nameof(ReadState)}: {ReadState}," +
                     $"\n{nameof(LastMessage)}: {LastMessage}," +
-                    $"\n{nameof(StartAt)}: {StartAt}," +
+                    $"\n{nameof(LastMessageAt)}: {LastMessageAt}," +
                     $"\n{nameof(MessageCount)}: {MessageCount}," +
                     $"\n{nameof(Subscribed)}: {Subscribed}," +
                     $"\n{nameof(Private)}: {Private}," +

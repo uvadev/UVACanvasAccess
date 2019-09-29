@@ -19,7 +19,7 @@ namespace UVACanvasAccess.Structures.Conversations {
         
         public string LastMessage { get; set; }
         
-        public DateTime StartAt { get; set; }
+        public DateTime LastMessageAt { get; set; }
         
         public uint MessageCount { get; set; }
         
@@ -53,7 +53,7 @@ namespace UVACanvasAccess.Structures.Conversations {
             Subject = model.Subject;
             ReadState = model.WorkflowState.ConvertIfNotNullValue(wf => wf.ToApiRepresentedEnum<ConversationReadState>().Value).Value;
             LastMessage = model.LastMessage;
-            StartAt = model.StartAt;
+            LastMessageAt = model.LastMessageAt;
             MessageCount = model.MessageCount;
             Subscribed = model.Subscribed;
             Private = model.Private;
@@ -73,7 +73,7 @@ namespace UVACanvasAccess.Structures.Conversations {
                    $"\n{nameof(Subject)}: {Subject}," +
                    $"\n{nameof(ReadState)}: {ReadState}," +
                    $"\n{nameof(LastMessage)}: {LastMessage}," +
-                   $"\n{nameof(StartAt)}: {StartAt}," +
+                   $"\n{nameof(LastMessageAt)}: {LastMessageAt}," +
                    $"\n{nameof(MessageCount)}: {MessageCount}," +
                    $"\n{nameof(Subscribed)}: {Subscribed}," +
                    $"\n{nameof(Private)}: {Private}," +

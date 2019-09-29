@@ -19,8 +19,8 @@ namespace UVACanvasAccess.Model.Conversations {
         [JsonProperty("last_message")]
         public string LastMessage { get; set; }
         
-        [JsonProperty("start_at")]
-        public DateTime StartAt { get; set; }
+        [JsonProperty("last_message_at")]
+        public DateTime LastMessageAt { get; set; }
         
         [JsonProperty("message_count")]
         public uint MessageCount { get; set; }

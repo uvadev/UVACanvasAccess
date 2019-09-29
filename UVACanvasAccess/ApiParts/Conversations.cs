@@ -103,6 +103,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="filter">(Optional) The qualified ids to filter by.</param>
         /// <param name="filterIntersection">(Optional) If true, the predicate in <paramref name="filter"/> is an AND instead of an OR.</param>
         /// <param name="markAsRead">(Optional, default false) If true, mark the conversation as read.</param>
+        /// <exception cref="DoesNotExistException">If the conversation with the given id does not exist or is not visible to the current user.</exception>
         /// <returns>The conversation.</returns>
         public async Task<DetailedConversation> GetConversation(ulong conversationId,
                                                                 ConversationReadState? readState = null,
@@ -124,7 +125,34 @@ namespace UVACanvasAccess.ApiParts {
             try {
                 return new DetailedConversation(this, JsonConvert.DeserializeObject<DetailedConversationModel>(await response.Content.ReadAsStringAsync()));
             } catch (InvalidOperationException) {
-                throw new DoesNotExistException($"Conversation with id {conversationId} does not exist.");
+                throw new DoesNotExistException($"Conversation with id {conversationId} does not exist or is not visible to the current user.");
+            }
+        }
+
+        /// <summary>
+        /// Edits the current user's view of a conversation by id.
+        /// </summary>
+        /// <param name="conversationId">The conversation id.</param>
+        /// <param name="readState">(Optional) Changes the read state of the conversation.</param>
+        /// <param name="subscribed">(Optional) Changes the subscribed state of this conversation.</param>
+        /// <param name="starred">(Optional) Changes the starred state of this conversation.</param>
+        /// <returns>The edited conversation.</returns>
+        public async Task<Conversation> EditConversation(ulong conversationId, 
+                                                         ConversationReadState? readState = null,
+                                                         bool? subscribed = null,
+                                                         bool? starred = null) {
+            var args = new List<(string, string)> {
+                ("conversation[workflow_state]", readState?.GetApiRepresentation()),
+                ("conversation[subscribed]", subscribed?.ToShortString()),
+                ("conversation[starred]", starred?.ToShortString())
+            };
+
+            var response = await _client.PutAsync($"conversations/{conversationId}", BuildHttpArguments(args));
+            
+            try {
+                return new Conversation(this, JsonConvert.DeserializeObject<ConversationModel>(await response.Content.ReadAsStringAsync()));
+            } catch (InvalidOperationException) {
+                throw new DoesNotExistException($"Conversation with id {conversationId} does not exist or is not visible to the current user.");
             }
         }
     }
