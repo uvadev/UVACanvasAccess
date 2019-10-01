@@ -161,5 +161,10 @@ namespace UVACanvasAccess.ApiParts {
                 yield return user;
             }
         }
+
+        public async Task<User> DeleteUser(ulong userId, ulong? accountId = null) {
+            var response = await _client.DeleteAsync($"accounts/{accountId?.ToString() ?? "self"}/users/{userId}");
+            return new User(this, JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync()));
+        }
     }
 }
