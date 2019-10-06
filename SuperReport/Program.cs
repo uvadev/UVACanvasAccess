@@ -1,24 +1,29 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Tomlyn;
 using Tomlyn.Model;
 using Tomlyn.Syntax;
 using static System.Environment;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Util;
+using static Newtonsoft.Json.Formatting;
 
 namespace SuperReport {
     internal static class Program {
     
-        public static void Main(string[] args) {
+        public static async Task Main(string[] args) {
             var shareDir = GetFolderPath(SpecialFolder.LocalApplicationData, 
                                           SpecialFolderOption.Create);
-            var configPath = Path.Combine(shareDir, "uva_super_report");
+            var reportDir = Path.Combine(shareDir, "uva_super_report");
 
-            if (!Directory.Exists(configPath)) {
-                Directory.CreateDirectory(configPath);
+            if (!Directory.Exists(reportDir)) {
+                Directory.CreateDirectory(reportDir);
             }
 
-            configPath = Path.Combine(configPath, "config.toml");
+            var configPath = Path.Combine(reportDir, "config.toml");
 
             Console.WriteLine($"Using config path: {configPath}");
 
@@ -62,14 +67,63 @@ namespace SuperReport {
 
             var config = configDoc.ToModel();
             var token = (string) ((TomlTable) config["tokens"])["token"];
-            var sampleTake = (long) ((TomlTable) config["limits"])["sample_take"];
-            var sampleSkip = (long) ((TomlTable) config["limits"])["sample_skip"];
+            var sampleTake = (int)(long) ((TomlTable) config["limits"])["sample_take"];
+            var sampleSkip = (int)(long) ((TomlTable) config["limits"])["sample_skip"];
+
+            Console.WriteLine($"SKIPPING {sampleSkip} users.");
+            Console.WriteLine($"TAKING {sampleTake} users.");
             
             // --------------------------------------------------------------------
 
             var api = new Api(token, "https://uview.instructure.com/api/v1/");
             
+            var studentsObj = new JObject();
+            var teachersObj = new JObject();
+            var coursesObj = new JObject();
+            var assignmentsOverallObj = new JObject();
+            var assignmentsIndividualObj = new JObject();
+
+            var started = DateTime.Now;
             
+            var document = new JObject {
+                ["teachers"] = teachersObj,
+                ["students"] = studentsObj,
+                ["courses"] = coursesObj,
+                ["assignmentsOverall"] = assignmentsOverallObj,
+                ["assignmentsIndividual"] = assignmentsIndividualObj,
+                ["dateStarted"] = started.ToIso8601Date()
+            };
+
+            var sample = api.StreamUsers()
+                            .Where(u => !u.Name.ToLowerInvariant().Contains("test"))
+                            .Where(u => !u.SisUserId?.StartsWith("pG") ?? false)
+                            .Skip(sampleSkip)
+                            .Take(sampleTake);
+
+            await foreach (var user in sample) {
+                if (await user.IsTeacher()) {
+                    if (!teachersObj.ContainsKey(user.Id.ToString())) {
+                        teachersObj[user.Id.ToString()] = new JObject {
+                            ["sisId"] = user.SisUserId,
+                            ["fullName"] = user.Name
+                        };
+                    } 
+                } else {
+                    if (!studentsObj.ContainsKey(user.Id.ToString())) {
+                        studentsObj[user.Id.ToString()] = new JObject {
+                            ["sisId"] = user.SisUserId,
+                            ["fullName"] = user.Name
+                        };
+                    }
+                }
+            }
+
+            document["dateCompleted"] = DateTime.Now.ToIso8601Date();
+            document["usersInReport"] = studentsObj.Count + teachersObj.Count;
+
+            var outPath = Path.Combine(reportDir, $"SuperReport_{started.Ticks}.json");
+            File.WriteAllText(outPath, document.ToString(Indented));
+            Console.WriteLine($"Wrote report to {outPath}");
         }
     }
 }
