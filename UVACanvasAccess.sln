@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVACanvasAccessTests", "UVA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuotaWatcher", "QuotaWatcher\QuotaWatcher.csproj", "{A3C88768-505B-4CC7-9C7C-0CAA829D14EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperReport", "SuperReport\SuperReport.csproj", "{AEB12F12-FB22-446B-B6B4-189F2374D3C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A3C88768-505B-4CC7-9C7C-0CAA829D14EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3C88768-505B-4CC7-9C7C-0CAA829D14EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3C88768-505B-4CC7-9C7C-0CAA829D14EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB12F12-FB22-446B-B6B4-189F2374D3C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB12F12-FB22-446B-B6B4-189F2374D3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB12F12-FB22-446B-B6B4-189F2374D3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB12F12-FB22-446B-B6B4-189F2374D3C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
