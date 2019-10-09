@@ -65,7 +65,7 @@ namespace FileMapUploader {
 
             var list = File.ReadAllLines(mapFilePath).ToList();
             
-            List<string>[] taskLists = list.Chunk(list.Count / Environment.ProcessorCount)
+            List<string>[] taskLists = list.Chunk(list.Count / 7)
                                            .ToArray();
             
             var nThreads = taskLists.Length;
@@ -79,6 +79,7 @@ namespace FileMapUploader {
             Console.WriteLine($"Using {nThreads} threads.");
             
             var completed = new ConcurrentBag<string>();
+            var keys = new ConcurrentBag<string>();
             
             using (var countdown = new CountdownEvent(nThreads)) {
                 for (int i = 0; i < nThreads; i++) {
@@ -90,6 +91,7 @@ namespace FileMapUploader {
                                 Debug.Assert(halves.Length == 2);
 
                                 var (userKey, userFile) = (halves[0], halves[1]);
+                                keys.Add(userKey);
 
                                 var api = apis[n];
 
@@ -103,7 +105,7 @@ namespace FileMapUploader {
                                         continue;
                                     }
 
-                                    var bytes = File.ReadAllBytes(Path.Combine(mapFilePath, userFile));
+                                    var bytes = File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(mapFilePath), userFile));
 
                                     Console.WriteLine($"Preparing to upload filename {userFile} to user " +
                                                       $"{userKey}, Id {user.Id}, SIS {user.SisUserId}");
@@ -137,7 +139,7 @@ namespace FileMapUploader {
 
             Console.WriteLine($"{completed.Distinct().Count()} out of {list.Count} operations were completed.");
 
-            var exc = list.Except(completed).ToList();
+            var exc = keys.Except(completed).ToList();
             if (exc.Any()) {
                 Console.WriteLine($"Operation failed for the following SIS IDs: {exc.ToPrettyString()}");
             }
