@@ -50,7 +50,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("context_code", context?.AsString)
             };
             
-            args.AddRange(recipients.Select(id => ("recipients[]", id.AsString)));
+            args.AddRange(recipients.Select(id => ("recipients[]", id.AsUserUnqualifiedString)));
 
             if (attachmentIds != null) {
                 args.AddRange(attachmentIds.Select(attachment => ("attachment_ids[]", attachment)));

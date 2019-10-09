@@ -24,7 +24,7 @@ namespace UVACanvasAccess.Structures.Conversations {
         
         public string LastMessage { get; set; }
         
-        public DateTime LastMessageAt { get; set; }
+        public DateTime? LastMessageAt { get; set; }
         
         public uint MessageCount { get; set; }
         
