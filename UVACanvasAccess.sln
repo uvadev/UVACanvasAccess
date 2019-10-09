@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuotaWatcher", "QuotaWatche
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperReport", "SuperReport\SuperReport.csproj", "{AEB12F12-FB22-446B-B6B4-189F2374D3C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMapUploader", "FileMapUploader\FileMapUploader.csproj", "{331FA5A4-EB4C-4CE1-A2AE-32A354675711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUtils", "AppUtils\AppUtils.csproj", "{7CB0F2BC-C54F-4E0D-AEB0-9BA7DE76DACB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{AEB12F12-FB22-446B-B6B4-189F2374D3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEB12F12-FB22-446B-B6B4-189F2374D3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEB12F12-FB22-446B-B6B4-189F2374D3C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{331FA5A4-EB4C-4CE1-A2AE-32A354675711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{331FA5A4-EB4C-4CE1-A2AE-32A354675711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{331FA5A4-EB4C-4CE1-A2AE-32A354675711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{331FA5A4-EB4C-4CE1-A2AE-32A354675711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB0F2BC-C54F-4E0D-AEB0-9BA7DE76DACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB0F2BC-C54F-4E0D-AEB0-9BA7DE76DACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB0F2BC-C54F-4E0D-AEB0-9BA7DE76DACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB0F2BC-C54F-4E0D-AEB0-9BA7DE76DACB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

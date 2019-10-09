@@ -3,11 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AppUtils;
 using Newtonsoft.Json.Linq;
-using Tomlyn;
-using Tomlyn.Model;
 using Tomlyn.Syntax;
-using static System.Environment;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Util;
 using static Newtonsoft.Json.Formatting;
@@ -17,22 +15,14 @@ namespace SuperReport {
     internal static class Program {
     
         public static async Task Main(string[] args) {
-            var shareDir = GetFolderPath(SpecialFolder.LocalApplicationData, 
-                                          SpecialFolderOption.Create);
-            var reportDir = Path.Combine(shareDir, "uva_super_report");
+            var home = new AppHome("uva_super_report");
 
-            if (!Directory.Exists(reportDir)) {
-                Directory.CreateDirectory(reportDir);
-            }
+            Console.WriteLine($"Using config path: {home.ConfigPath}");
 
-            var configPath = Path.Combine(reportDir, "config.toml");
-
-            Console.WriteLine($"Using config path: {configPath}");
-
-            if (!File.Exists(configPath)) {
-                Console.WriteLine($"No config file found at path {configPath}. Trying to create it.");
-
-                var doc = new DocumentSyntax {
+            if (!home.ConfigPresent()) {
+                Console.WriteLine("Need to generate a config file.");
+                
+                home.CreateConfig( new DocumentSyntax {
                     Tables = {
                         new TableSyntax("tokens") {
                             Items = {
@@ -49,34 +39,25 @@ namespace SuperReport {
                             }
                         }
                     }
-                };
-                
-                File.WriteAllText(configPath, doc.ToString());
+                });
 
-                Console.WriteLine("Wrote bare config file. Please go put in your token.");
+                Console.WriteLine("Created a new config file. Please go put in your token.");
                 return;
             }
 
             Console.WriteLine("Found config file.");
 
-            var configDoc = Toml.Parse(File.ReadAllText(configPath));
-            if (configDoc.HasErrors) {
-                Console.WriteLine("The config file had errors in it.");
+            var config = home.GetConfig();
+            Debug.Assert(config != null, nameof(config) + " != null");
+            
+            var token = config.GetTable("tokens").Get<string>("token");
 
-                foreach (var diag in configDoc.Diagnostics) {
-                    Console.WriteLine(diag.ToString());
-                }
-                
-                return;
-            }
-
-            var config = configDoc.ToModel();
-            var token = (string) ((TomlTable) config["tokens"])["token"];
-            var sampleTake = (int)(long) ((TomlTable) config["limits"])["sample_take"];
-            var sampleSkip = (int)(long) ((TomlTable) config["limits"])["sample_skip"];
-            var assignmentsPerCourse = (int)(long) ((TomlTable) config["limits"])["assignments_per_course"];
-            var submissionsPerAssignment = (int)(long) ((TomlTable) config["limits"])["submissions_per_assignment"];
-            var teachersOnly = ((TomlTable) config["limits"])["teachers_only"] as bool? ?? false;
+            var limits = config.GetTable("limits");
+            var sampleTake = limits.GetInt("sample_take");
+            var sampleSkip = limits.GetInt("sample_skip");
+            var assignmentsPerCourse = limits.GetInt("assignments_per_course");
+            var submissionsPerAssignment = limits.GetInt("submissions_per_assignment");
+            var teachersOnly = limits.Get<bool?>("teachers_only") ?? false;
 
             Console.WriteLine($"SKIPPING {sampleSkip} users.");
             Console.WriteLine($"TAKING {sampleTake} users.");
@@ -241,7 +222,7 @@ namespace SuperReport {
             document["dateCompleted"] = DateTime.Now.ToIso8601Date();
             document["usersInReport"] = studentsObj.Count + teachersObj.Count;
 
-            var outPath = Path.Combine(reportDir, $"SuperReport_{started.Ticks}.json");
+            var outPath = Path.Combine(home.NsDir, $"SuperReport_{started.Ticks}.json");
             File.WriteAllText(outPath, document.ToString(Indented) + "\n");
             Console.WriteLine($"Wrote report to {outPath}");
         }
