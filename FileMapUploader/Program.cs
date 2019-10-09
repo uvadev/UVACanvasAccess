@@ -65,7 +65,7 @@ namespace FileMapUploader {
 
             var list = File.ReadAllLines(mapFilePath).ToList();
             
-            List<string>[] taskLists = list.Chunk(list.Count / 7)
+            List<string>[] taskLists = list.Chunk(Math.Min(Math.Max(list.Count / 7, 2), list.Count - 1))
                                            .ToArray();
             
             var nThreads = taskLists.Length;
