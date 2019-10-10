@@ -53,14 +53,16 @@ namespace SuperReport {
             var token = config.GetTable("tokens").Get<string>("token");
 
             var limits = config.GetTable("limits");
-            var sampleTake = limits.GetInt("sample_take");
-            var sampleSkip = limits.GetInt("sample_skip");
-            var assignmentsPerCourse = limits.GetInt("assignments_per_course");
-            var submissionsPerAssignment = limits.GetInt("submissions_per_assignment");
-            var teachersOnly = limits.Get<bool?>("teachers_only") ?? false;
+            var sampleTake = (int) limits.GetOr<long>("sample_take");
+            var sampleSkip = (int) limits.GetOr<long>("sample_skip");
+            var assignmentsPerCourse = (int) limits.GetOr<long>("assignments_per_course");
+            var submissionsPerAssignment = (int) limits.GetOr<long>("submissions_per_assignment");
+            var teachersOnly = limits.GetOr<bool>("teachers_only");
 
             Console.WriteLine($"SKIPPING {sampleSkip} users.");
-            Console.WriteLine($"TAKING {sampleTake} users.");
+            Console.WriteLine($"TAKING {(sampleTake == default ? "ALL" : sampleTake.ToString())} users.");
+            Console.WriteLine($"TAKING {(assignmentsPerCourse == default ? "ALL" : assignmentsPerCourse.ToString())} assignments per course.");
+            Console.WriteLine($"TAKING {(submissionsPerAssignment == default ? "ALL" : submissionsPerAssignment.ToString())} submissions per assignment.");
             
             // --------------------------------------------------------------------
 
@@ -101,8 +103,11 @@ namespace SuperReport {
                 sample = sample.WhereAwait(async u => await u.IsTeacher());
             }
             
-            sample = sample.Skip(sampleSkip)
-                           .Take(sampleTake);
+            sample = sample.Skip(sampleSkip);
+
+            if (sampleTake != default) {
+                sample = sample.Take(sampleTake);
+            }
 
             await foreach (var user in sample) {
                 if (await user.IsTeacher()) {
@@ -122,19 +127,28 @@ namespace SuperReport {
                                 ["name"] = course.Name
                             };
                         }
+
+                        var assignmentsStream = api.StreamCourseAssignments(course.Id)
+                                                   .Where(a => a.Published);
+
+                        if (assignmentsPerCourse != default) {
+                            assignmentsStream = assignmentsStream.Take(assignmentsPerCourse);
+                        }
                         
-                        var assignments = await api.StreamCourseAssignments(course.Id)
-                                                   .Where(a => a.Published)
-                                                   .Take(assignmentsPerCourse)
-                                                   .ToListAsync();
+                        var assignments = await assignmentsStream.ToListAsync();
 
                         foreach (var assignment in assignments) {
-                            var submissions = await api.StreamSubmissionVersions(course.Id, assignment.Id)
+
+                            var submissionsStream = api.StreamSubmissionVersions(course.Id, assignment.Id)
                                                        .Where(s => s.Score != null)
                                                        .GroupBy(s => s.UserId)
-                                                       .SelectAwait(sg => sg.FirstAsync())
-                                                       .Take(submissionsPerAssignment)
-                                                       .ToListAsync();
+                                                       .SelectAwait(sg => sg.FirstAsync());
+
+                            if (submissionsPerAssignment != default) {
+                                submissionsStream = submissionsStream.Take(submissionsPerAssignment);
+                            }
+                            
+                            var submissions = await submissionsStream.ToListAsync();
                             
                             if (!submissions.Any()) {
                                 continue;

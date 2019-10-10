@@ -80,6 +80,7 @@
     <Compile Include="AppConfig.cs" />
     <Compile Include="AppHome.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TomlEnumValueAttribute.cs" />
     <Compile Include="TomlTableExtension.cs" />
   </ItemGroup>
   <ItemGroup>
