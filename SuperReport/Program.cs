@@ -115,6 +115,8 @@ namespace SuperReport {
 
             await foreach (var user in sample) {
                 if (await user.IsTeacher()) {
+                    #region CurrentUserIsTeacher
+
                     if (!teachersObj.ContainsKey(user.Id.ToString())) {
                         teachersObj[user.Id.ToString()] = new JObject {
                             ["sisId"] = user.SisUserId,
@@ -209,7 +211,11 @@ namespace SuperReport {
                             };
                         }
                     }
+
+                    #endregion
                 } else {
+                    #region CurrentUserIsStudent
+
                     if (!studentsObj.ContainsKey(user.Id.ToString())) {
                         studentsObj[user.Id.ToString()] = new JObject {
                             ["sisId"] = user.SisUserId,
@@ -239,6 +245,8 @@ namespace SuperReport {
                             ["finalScore"] = grades.FinalScore
                         };
                     }
+
+                    #endregion
                 }
             }
 
