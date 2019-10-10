@@ -33,6 +33,7 @@ namespace SuperReport {
                             Items = {
                                 {"sample_skip", 0},
                                 {"sample_take", 10},
+                                {"courses_per_teacher", 5},
                                 {"assignments_per_course", 2},
                                 {"submissions_per_assignment", 10},
                                 {"teachers_only", false}
@@ -55,12 +56,14 @@ namespace SuperReport {
             var limits = config.GetTable("limits");
             var sampleTake = (int) limits.GetOr<long>("sample_take");
             var sampleSkip = (int) limits.GetOr<long>("sample_skip");
+            var coursesPerTeacher = (int) limits.GetOr<long>("courses_per_teacher");
             var assignmentsPerCourse = (int) limits.GetOr<long>("assignments_per_course");
             var submissionsPerAssignment = (int) limits.GetOr<long>("submissions_per_assignment");
             var teachersOnly = limits.GetOr<bool>("teachers_only");
 
             Console.WriteLine($"SKIPPING {sampleSkip} users.");
             Console.WriteLine($"TAKING {(sampleTake == default ? "ALL" : sampleTake.ToString())} users.");
+            Console.WriteLine($"TAKING {(coursesPerTeacher == default ? "ALL" : coursesPerTeacher.ToString())} courses per teacher.");
             Console.WriteLine($"TAKING {(assignmentsPerCourse == default ? "ALL" : assignmentsPerCourse.ToString())} assignments per course.");
             Console.WriteLine($"TAKING {(submissionsPerAssignment == default ? "ALL" : submissionsPerAssignment.ToString())} submissions per assignment.");
             
@@ -87,6 +90,7 @@ namespace SuperReport {
                 ["limits"] = new JObject {
                     ["sampleTake"] = sampleTake,
                     ["sampleSkip"] = sampleSkip,
+                    ["coursesPerTeacher"] = coursesPerTeacher,
                     ["assignmentsPerCourse"] = assignmentsPerCourse,
                     ["submissionsPerAssignment"] = submissionsPerAssignment,
                     ["teachers_only"] = teachersOnly
@@ -118,7 +122,12 @@ namespace SuperReport {
                         };
                     }
 
-                    await foreach (var enrollment in api.StreamUserEnrollments(user.Id, TeacherEnrollment.Yield())) {
+                    var enrollmentsStream = api.StreamUserEnrollments(user.Id, TeacherEnrollment.Yield());
+                    if (coursesPerTeacher != default) {
+                        enrollmentsStream = enrollmentsStream.Take(coursesPerTeacher);
+                    }
+                    
+                    await foreach (var enrollment in enrollmentsStream) {
                         var course = await api.GetCourse(enrollment.CourseId);
                         
                         if (!coursesObj.ContainsKey(course.Id.ToString())) {
