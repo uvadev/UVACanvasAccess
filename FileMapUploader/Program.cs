@@ -99,13 +99,14 @@ namespace FileMapUploader {
                                     var user = api.StreamUsers(userKey)
                                                   .FirstOrDefaultAsync(u => u.SisUserId == userKey)
                                                   .Result;
-                                    
+
                                     if (user == null) {
                                         Console.WriteLine($"WARN: Couldn't find the user for sis {userKey} !!");
                                         continue;
                                     }
 
-                                    var bytes = File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(mapFilePath), userFile));
+                                    var bytes = File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(mapFilePath),
+                                                                               userFile));
 
                                     Console.WriteLine($"Preparing to upload filename {userFile} to user " +
                                                       $"{userKey}, Id {user.Id}, SIS {user.SisUserId}");
@@ -122,9 +123,13 @@ namespace FileMapUploader {
 
                                     if (sendMessage) {
                                         api.StopMasquerading();
-                                        api.CreateConversation(new QualifiedId(user.Id).Yield(), message, forceNew: true);
+                                        api.CreateConversation(new QualifiedId(user.Id).Yield(), 
+                                                               message,
+                                                               forceNew: true);
                                     }
 
+                                } catch (Exception e) {
+                                    Console.WriteLine($"Caught an exception during upload for {userKey}: {e}");
                                 } finally {
                                     api.StopMasquerading();
                                 }
