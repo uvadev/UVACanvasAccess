@@ -76,7 +76,8 @@ namespace SuperReport {
             var coursesObj = new JObject();
             var assignmentsOverallObj = new JObject();
             var assignmentsIndividualObj = new JObject();
-            var coursePerformanceObj = new JObject();
+            var individualCoursePerformanceObj = new JObject();
+            var overallCoursePerformanceObj = new JObject();
 
             var started = DateTime.Now;
             
@@ -86,7 +87,8 @@ namespace SuperReport {
                 ["courses"] = coursesObj,
                 ["assignmentsOverall"] = assignmentsOverallObj,
                 ["assignmentsIndividual"] = assignmentsIndividualObj,
-                ["coursePerformance"] = coursePerformanceObj,
+                ["individualCoursePerformance"] = individualCoursePerformanceObj,
+                ["overallCoursePerformance"] = overallCoursePerformanceObj,
                 ["limits"] = new JObject {
                     ["sampleTake"] = sampleTake,
                     ["sampleSkip"] = sampleSkip,
@@ -139,6 +141,12 @@ namespace SuperReport {
                             };
                         }
 
+                        if (!overallCoursePerformanceObj.ContainsKey(course.Id.ToString())) {
+                            overallCoursePerformanceObj[course.Id.ToString()] = new JObject {
+                                
+                            };
+                        }
+
                         var assignmentsStream = api.StreamCourseAssignments(course.Id)
                                                    .Where(a => a.Published);
 
@@ -175,15 +183,28 @@ namespace SuperReport {
                             var scoresQ1Point = scores.Count / 4;
                             var scoresQ2Point = scores.Count / 2;
                             var scoresQ3Point = scores.Count / 4 * 3;
+
+                            decimal scoresQ1, scoresMedian, scoresQ3;
+
+                            var scoreCountOdd = scores.Count % 2 != 0;
+
+                            if (scoresQ1Point == 0 || scoreCountOdd) {
+                                scoresQ1 = scores[scoresQ1Point];
+                            } else {
+                                scoresQ1 = (scores[scoresQ1Point] + scores[scoresQ1Point - 1]) / 2;
+                            }
+
+                            if (scoresQ2Point == 0 || scoreCountOdd) {
+                                scoresMedian = scores[scoresQ2Point];
+                            } else {
+                                scoresMedian = (scores[scoresQ2Point] + scores[scoresQ2Point - 1]) / 2;
+                            }
                         
-                            var scoresQ1 = scores.Count % 2 != 0 ? scores[scoresQ1Point]
-                                                                 : (scores[scoresQ1Point] + scores[scoresQ1Point - 1]) / 2;
-                        
-                            var scoresMedian = scores.Count % 2 != 0 ? scores[scoresQ2Point]
-                                                                     : (scores[scoresQ2Point] + scores[scoresQ2Point - 1]) / 2;
-                        
-                            var scoresQ3 = scores.Count % 2 != 0 ? scores[scoresQ3Point]
-                                                                 : (scores[scoresQ3Point] + scores[scoresQ3Point - 1]) / 2;
+                            if (scoresQ3Point == 0 || scoreCountOdd) {
+                                scoresQ3 = scores[scoresQ3Point];
+                            } else {
+                                scoresQ3 = (scores[scoresQ3Point] + scores[scoresQ3Point - 1]) / 2;
+                            }
                         
                             var scoresMode = scores.GroupBy(s => s)
                                                    .OrderByDescending(g => g.Count())
@@ -233,10 +254,10 @@ namespace SuperReport {
                             };
                         }
                         
-                        Debug.Assert(!coursePerformanceObj.ContainsKey(enrollment.Id.ToString()));
+                        Debug.Assert(!individualCoursePerformanceObj.ContainsKey(enrollment.Id.ToString()));
 
                         var grades = enrollment.Grades;
-                        coursePerformanceObj[enrollment.Id.ToString()] = new JObject {
+                        individualCoursePerformanceObj[enrollment.Id.ToString()] = new JObject {
                             ["studentId"] = user.Id,
                             ["courseId"] = enrollment.CourseId,
                             ["currentLetterGrade"] = grades.CurrentGrade,
