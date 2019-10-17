@@ -175,44 +175,9 @@ namespace SuperReport {
                             
                             var scores = submissions.Select(s => s.Score)
                                                     .Cast<decimal>()
-                                                    .OrderBy(d => d)
                                                     .ToList();
 
-                            var scoresMean = scores.Average();
-                        
-                            var scoresQ1Point = scores.Count / 4;
-                            var scoresQ2Point = scores.Count / 2;
-                            var scoresQ3Point = scores.Count / 4 * 3;
-
-                            decimal scoresQ1, scoresMedian, scoresQ3;
-
-                            var scoreCountOdd = scores.Count % 2 != 0;
-
-                            if (scoresQ1Point == 0 || scoreCountOdd) {
-                                scoresQ1 = scores[scoresQ1Point];
-                            } else {
-                                scoresQ1 = (scores[scoresQ1Point] + scores[scoresQ1Point - 1]) / 2;
-                            }
-
-                            if (scoresQ2Point == 0 || scoreCountOdd) {
-                                scoresMedian = scores[scoresQ2Point];
-                            } else {
-                                scoresMedian = (scores[scoresQ2Point] + scores[scoresQ2Point - 1]) / 2;
-                            }
-                        
-                            if (scoresQ3Point == 0 || scoreCountOdd) {
-                                scoresQ3 = scores[scoresQ3Point];
-                            } else {
-                                scoresQ3 = (scores[scoresQ3Point] + scores[scoresQ3Point - 1]) / 2;
-                            }
-                        
-                            var scoresMode = scores.GroupBy(s => s)
-                                                   .OrderByDescending(g => g.Count())
-                                                   .First()
-                                                   .Key;
-
-                            var sigma = Math.Sqrt(scores.Select(Convert.ToDouble)
-                                                        .Aggregate(0.0, (acc, s) => acc + Math.Pow(s - Convert.ToDouble(scoresMean), 2)) / scores.Count);
+                            var stats = new Stats(scores);
                             
                             assignmentsOverallObj[assignment.Id.ToString()] = new JObject {
                                 ["assignmentName"] = assignment.Name,
@@ -223,12 +188,12 @@ namespace SuperReport {
                                 ["createdDate"] = assignment.CreatedAt.ToIso8601Date(),
                                 ["dueDate"] = assignment.DueAt?.ToIso8601Date(),
                                 ["gradesInSample"] = submissions.Count,
-                                ["meanScore"] = scoresMean,
-                                ["modeScore"] = scoresMode,
-                                ["25thPercentileScore"] = scoresQ1,
-                                ["medianScore"] = scoresMedian,
-                                ["75thPercentileScore"] = scoresQ3,
-                                ["scoreStandardDeviation"] = sigma
+                                ["meanScore"] = stats.Mean,
+                                ["modeScore"] = stats.Mode,
+                                ["25thPercentileScore"] = stats.Q1,
+                                ["medianScore"] = stats.Median,
+                                ["75thPercentileScore"] = stats.Q3,
+                                ["scoreStandardDeviation"] = stats.Sigma
                             };
                         }
                     }
