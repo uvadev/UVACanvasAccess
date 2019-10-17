@@ -28,7 +28,7 @@ namespace SuperReport {
         
         [PublicAPI]
         public double Sigma { get; }
-
+        
         public Stats(IEnumerable<decimal> data) {
             Data = data.OrderBy(d => d)
                        .ToImmutableList();

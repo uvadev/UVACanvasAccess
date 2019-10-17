@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -105,7 +106,7 @@ namespace SuperReport {
                             .Where(u => !u.SisUserId?.StartsWith("pG") ?? false);
 
             if (teachersOnly) {
-                Console.WriteLine("Taking TEACHERS ONLY.");
+                Console.WriteLine("TAKING TEACHERS ONLY.");
                 sample = sample.WhereAwait(async u => await u.IsTeacher());
             }
             
@@ -126,13 +127,15 @@ namespace SuperReport {
                         };
                     }
 
-                    var enrollmentsStream = api.StreamUserEnrollments(user.Id, TeacherEnrollment.Yield());
+                    var enrollmentsStream = api.StreamUserEnrollments(user.Id, TeacherEnrollment.Yield())
+                                               .SelectAwait(async e => (e, await api.GetCourse(e.CourseId)))
+                                               .Where(ec => !ec.Item2.Name.ToLowerInvariant().Contains("advisory"));
+                    
                     if (coursesPerTeacher != default) {
                         enrollmentsStream = enrollmentsStream.Take(coursesPerTeacher);
                     }
                     
-                    await foreach (var enrollment in enrollmentsStream) {
-                        var course = await api.GetCourse(enrollment.CourseId);
+                    await foreach (var (enrollment, course) in enrollmentsStream) {
                         
                         if (!coursesObj.ContainsKey(course.Id.ToString())) {
                             coursesObj[course.Id.ToString()] = new JObject {
@@ -142,8 +145,43 @@ namespace SuperReport {
                         }
 
                         if (!overallCoursePerformanceObj.ContainsKey(course.Id.ToString())) {
+                            
+                            var studentEnrollments = api.StreamCourseEnrollments(course.Id, StudentEnrollment.Yield());
+                            
+                            var courseScores = new List<decimal>();
+                            await foreach (var studentEnrollment in studentEnrollments) {
+                                var grades = studentEnrollment.Grades;
+
+                                if (!individualCoursePerformanceObj.ContainsKey(enrollment.Id.ToString())) {
+                                    individualCoursePerformanceObj[enrollment.Id.ToString()] = new JObject {
+                                        ["studentId"] = user.Id,
+                                        ["courseId"] = enrollment.CourseId, 
+                                        ["currentLetterGrade"] = grades.CurrentGrade, 
+                                        ["finalLetterGrade"] = grades.FinalGrade, 
+                                        ["currentScore"] = grades.CurrentScore, 
+                                        ["finalScore"] = grades.FinalScore
+                                    };
+                                }
+
+                                var currentScore = grades.CurrentScore;
+                                courseScores.Add(string.IsNullOrEmpty(currentScore) ? 0
+                                                                                    : Convert.ToDecimal(grades.CurrentScore));
+                            }
+
+                            if (!courseScores.Any()) {
+                                continue;
+                            }
+                            
+                            var courseScoreStats = new Stats(courseScores);
+                            
                             overallCoursePerformanceObj[course.Id.ToString()] = new JObject {
-                                
+                                ["gradesInSample"] = courseScores.Count,
+                                ["meanCourseScore"] = courseScoreStats.Mean,
+                                ["modeCourseScore"] = courseScoreStats.Mode,
+                                ["25thPercentileCourseScore"] = courseScoreStats.Q1,
+                                ["medianCourseScore"] = courseScoreStats.Median,
+                                ["75thPercentileCourseScore"] = courseScoreStats.Q3,
+                                ["courseScoreStandardDeviation"] = courseScoreStats.Sigma
                             };
                         }
 
@@ -219,17 +257,17 @@ namespace SuperReport {
                             };
                         }
                         
-                        Debug.Assert(!individualCoursePerformanceObj.ContainsKey(enrollment.Id.ToString()));
+                        // Debug.Assert(!individualCoursePerformanceObj.ContainsKey(enrollment.Id.ToString()));
 
-                        var grades = enrollment.Grades;
-                        individualCoursePerformanceObj[enrollment.Id.ToString()] = new JObject {
-                            ["studentId"] = user.Id,
-                            ["courseId"] = enrollment.CourseId,
-                            ["currentLetterGrade"] = grades.CurrentGrade,
-                            ["finalLetterGrade"] = grades.FinalGrade,
-                            ["currentScore"] = grades.CurrentScore,
-                            ["finalScore"] = grades.FinalScore
-                        };
+                        // var grades = enrollment.Grades;
+                        // individualCoursePerformanceObj[enrollment.Id.ToString()] = new JObject {
+                        //     ["studentId"] = user.Id,
+                        //     ["courseId"] = enrollment.CourseId,
+                        //     ["currentLetterGrade"] = grades.CurrentGrade,
+                        //     ["finalLetterGrade"] = grades.FinalGrade,
+                        //     ["currentScore"] = grades.CurrentScore,
+                        //     ["finalScore"] = grades.FinalScore
+                        // };
                     }
 
                     #endregion
