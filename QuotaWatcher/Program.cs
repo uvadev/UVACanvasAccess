@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
-using dotenv.net;
+using AppUtils;
+using Newtonsoft.Json.Linq;
+using Tomlyn.Syntax;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures;
 using UVACanvasAccess.Util;
+using static Newtonsoft.Json.Formatting;
 
 namespace QuotaWatcher {
     internal static class Program {
@@ -18,17 +23,58 @@ namespace QuotaWatcher {
             "[This message was generated automatically.]";
         
         public static async Task Main(string[] args) {
-            DotEnv.Config();
-            var api = new Api(Environment.GetEnvironmentVariable("DO_NOT_REPLY_TOKEN")
-                              ?? ".env should have DO_NOT_REPLY_TOKEN",
-                              "https://uview.instructure.com/api/v1/");
 
-            if (await api.GetUser().ThenApply(u => u.Id) != 9140) {
-                Console.WriteLine("Token for wrong account.");
+            var home = new AppHome("uva_quota_watcher");
+
+            Console.WriteLine($"Using config path: {home.ConfigPath}");
+
+            if (!home.ConfigPresent()) {
+                Console.WriteLine("Need to generate a config file.");
+                
+                home.CreateConfig(new DocumentSyntax {
+                    Tables = {
+                        new TableSyntax("tokens") {
+                            Items = {
+                                {"token", "PUT_TOKEN_HERE"}
+                            }
+                        },
+                        new TableSyntax("options") {
+                            Items = {
+                                {"send_message", false}
+                            }
+                        }
+                    }
+                });
+
+                Console.WriteLine("Created a new config file. Please go put in your token.");
                 return;
             }
 
-            uint nagged = 0;
+            Console.WriteLine("Found config file.");
+
+            var config = home.GetConfig();
+            Debug.Assert(config != null, nameof(config) + " != null");
+            
+            var token = config.GetTable("tokens").Get<string>("token");
+
+            var options = config.GetTable("options");
+            var sendMessage = options.GetOr<bool>("send_message");
+
+            Console.WriteLine($"Sending message? {(sendMessage ? "YES" : "NO")}");
+
+            // --------------------------------------------------------------------
+
+            var api = new Api(token, "https://uview.instructure.com/api/v1/");
+            
+            var started = DateTime.Now;
+
+            var detectedUsers = new JObject();
+            var document = new JObject {
+                ["detectedUsers"] = detectedUsers,
+                ["dateStarted"] = started.ToIso8601Date(),
+                ["sentMessages"] = sendMessage
+            };
+
             await foreach (var user in api.StreamUsers()) {
                 try {
                     api.MasqueradeAs(user.Id);
@@ -39,28 +85,41 @@ namespace QuotaWatcher {
                         continue;
                     }
 
-                    Console.WriteLine($"Nagging {user.Id} ({used}/{quota})");
+                    Console.WriteLine($"Noticed {user.Id} ({used / quota * 100}%).");
                     
-                    var message = string.Format(WarningMessageTemplate, 
-                                                user.Name,
-                                                Math.Round(used / quota * 100, 2), 
-                                                Math.Round(used, 3));
+                    detectedUsers[user.Id.ToString()] = new JObject {
+                        ["userSis"] = user.SisUserId,
+                        ["userFullName"] = user.Name,
+                        ["quotaUsedMiB"] = used,
+                        ["quotaUsedPercent"] = used / quota * 100
+                    };
 
-                    await foreach (var c in api.CreateConversation(new QualifiedId[] {user.Id},
-                                                                   message,
-                                                                   "File Storage Alert",
-                                                                   true)) {
-                        Console.WriteLine($"sent the message to {user.Id}.\n{c.ToPrettyString()}\n------\n");
-                        ++nagged;
+                    if (sendMessage) {
+                        var message = string.Format(WarningMessageTemplate, 
+                                                    user.Name,
+                                                    Math.Round(used / quota * 100, 2), 
+                                                    Math.Round(used, 3));
+
+                        await foreach (var c in api.CreateConversation(new QualifiedId[] {user.Id},
+                                                                       message,
+                                                                       "File Storage Alert",
+                                                                       true)) {
+                            Console.WriteLine($"sent the message to {user.Id}.\n{c.ToPrettyString()}\n------\n");
+                        }
                     }
                 } catch (Exception e) {
-                    Console.WriteLine(e);
+                    Console.WriteLine($"Caught exception, skipping check for user {user.Id}.\n{e}\n");
                 } finally {
                     api.StopMasquerading();
                 }
             }
-
-            Console.WriteLine($"nagged {nagged} users.");
+            
+            document["dateCompleted"] = DateTime.Now.ToIso8601Date();
+            document["usersInLog"] = detectedUsers.Count;
+                
+            var outPath = Path.Combine(home.NsDir, $"QuotaWatcher_Log_{started.Ticks}.json");
+            File.WriteAllText(outPath, document.ToString(Indented) + "\n");
+            Console.WriteLine($"Wrote log to {outPath}");
         }
     }
 }

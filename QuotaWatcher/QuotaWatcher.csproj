@@ -50,6 +50,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -62,12 +66,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="Tomlyn, Version=0.1.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Tomlyn.0.1.1\lib\net45\Tomlyn.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppUtils\AppUtils.csproj">
+      <Project>{7cb0f2bc-c54f-4e0d-aeb0-9ba7de76dacb}</Project>
+      <Name>AppUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UVACanvasAccess\UVACanvasAccess.csproj">
       <Project>{1fb84d6a-da03-443f-b358-0b9fa56ec20a}</Project>
       <Name>UVACanvasAccess</Name>
