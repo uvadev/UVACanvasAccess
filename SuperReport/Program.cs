@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AppUtils;
+using C5;
 using Newtonsoft.Json.Linq;
 using Tomlyn.Syntax;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Util;
 using static Newtonsoft.Json.Formatting;
 using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
@@ -79,6 +81,7 @@ namespace SuperReport {
             var assignmentsIndividualObj = new JObject();
             var individualCoursePerformanceObj = new JObject();
             var overallCoursePerformanceObj = new JObject();
+            var teacherPerformanceObj = new JObject();
 
             var started = DateTime.Now;
             
@@ -90,13 +93,14 @@ namespace SuperReport {
                 ["assignmentsIndividual"] = assignmentsIndividualObj,
                 ["individualCoursePerformance"] = individualCoursePerformanceObj,
                 ["overallCoursePerformance"] = overallCoursePerformanceObj,
+                ["teacherPerformance"] = teacherPerformanceObj,
                 ["limits"] = new JObject {
                     ["sampleTake"] = sampleTake,
                     ["sampleSkip"] = sampleSkip,
                     ["coursesPerTeacher"] = coursesPerTeacher,
                     ["assignmentsPerCourse"] = assignmentsPerCourse,
                     ["submissionsPerAssignment"] = submissionsPerAssignment,
-                    ["teachers_only"] = teachersOnly
+                    ["teachersOnly"] = teachersOnly
                 },
                 ["dateStarted"] = started.ToIso8601Date()
             };
@@ -134,6 +138,11 @@ namespace SuperReport {
                     if (coursesPerTeacher != default) {
                         enrollmentsStream = enrollmentsStream.Take(coursesPerTeacher);
                     }
+
+                    var ungradedAssignments = new IntervalHeap<Assignment>(Comparer<Assignment>.Create((a1, a2) => {
+                        Debug.Assert(a1.DueAt != null && a2.DueAt != null);
+                        return a1.DueAt.Value.CompareTo(a2.DueAt.Value);
+                    }));
                     
                     await foreach (var (enrollment, course) in enrollmentsStream) {
                         
@@ -173,7 +182,8 @@ namespace SuperReport {
                             }
                             
                             var courseScoreStats = new Stats(courseScores);
-                            
+                            var pass = (decimal) courseScores.Count(s => s > 66.5m);
+
                             overallCoursePerformanceObj[course.Id.ToString()] = new JObject {
                                 ["gradesInSample"] = courseScores.Count,
                                 ["meanCourseScore"] = courseScoreStats.Mean,
@@ -181,7 +191,9 @@ namespace SuperReport {
                                 ["25thPercentileCourseScore"] = courseScoreStats.Q1,
                                 ["medianCourseScore"] = courseScoreStats.Median,
                                 ["75thPercentileCourseScore"] = courseScoreStats.Q3,
-                                ["courseScoreStandardDeviation"] = courseScoreStats.Sigma
+                                ["courseScoreStandardDeviation"] = courseScoreStats.Sigma,
+                                ["coursePassFailRatio"] = pass == courseScores.Count ? -1 
+                                                                                     : pass / (courseScores.Count - pass)
                             };
                         }
 
@@ -196,10 +208,20 @@ namespace SuperReport {
 
                         foreach (var assignment in assignments) {
 
-                            var submissionsStream = api.StreamSubmissionVersions(course.Id, assignment.Id)
-                                                       .Where(s => s.Score != null)
-                                                       .GroupBy(s => s.UserId)
-                                                       .SelectAwait(sg => sg.FirstAsync());
+                            var allSubmissionsStream = api.StreamSubmissionVersions(course.Id, assignment.Id);
+
+                            if (assignment.DueAt != null) {
+                                var ungraded = await allSubmissionsStream.GroupBy(s => s.UserId)
+                                                                         .AnyAwaitAsync(async g => !await g.AnyAsync(s => s.Score != null));
+
+                                if (ungraded) {
+                                    ungradedAssignments.Add(assignment);
+                                }
+                            }
+
+                            var submissionsStream = allSubmissionsStream.Where(s => s.Score != null)
+                                                                        .GroupBy(s => s.UserId)
+                                                                        .SelectAwait(sg => sg.FirstAsync());
 
                             if (submissionsPerAssignment != default) {
                                 submissionsStream = submissionsStream.Take(submissionsPerAssignment);
@@ -236,6 +258,15 @@ namespace SuperReport {
                         }
                     }
 
+                    var ungradedAssignmentsList = new List<Assignment>(ungradedAssignments.Count);
+                    while (ungradedAssignments.Count > 0) {
+                        ungradedAssignmentsList.Add(ungradedAssignments.DeleteMin());
+                    }
+
+                    teacherPerformanceObj[user.Id.ToString()] = new JObject {
+                        ["ungradedAssignments"] = new JArray(ungradedAssignmentsList.Select(a => a.Id).Distinct())
+                    };
+
                     #endregion
                 } else {
                     #region CurrentUserIsStudent
@@ -256,18 +287,6 @@ namespace SuperReport {
                                 ["name"] = course.Name
                             };
                         }
-                        
-                        // Debug.Assert(!individualCoursePerformanceObj.ContainsKey(enrollment.Id.ToString()));
-
-                        // var grades = enrollment.Grades;
-                        // individualCoursePerformanceObj[enrollment.Id.ToString()] = new JObject {
-                        //     ["studentId"] = user.Id,
-                        //     ["courseId"] = enrollment.CourseId,
-                        //     ["currentLetterGrade"] = grades.CurrentGrade,
-                        //     ["finalLetterGrade"] = grades.FinalGrade,
-                        //     ["currentScore"] = grades.CurrentScore,
-                        //     ["finalScore"] = grades.FinalScore
-                        // };
                     }
 
                     #endregion
