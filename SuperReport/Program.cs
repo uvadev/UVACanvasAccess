@@ -121,198 +121,205 @@ namespace SuperReport {
             }
 
             await foreach (var user in sample) {
-                if (await user.IsTeacher()) {
-                    #region CurrentUserIsTeacher
+                try {
+                    if (await user.IsTeacher()) {
+                        #region CurrentUserIsTeacher
 
-                    if (!teachersObj.ContainsKey(user.Id.ToString())) {
-                        teachersObj[user.Id.ToString()] = new JObject {
-                            ["sisId"] = user.SisUserId,
-                            ["fullName"] = user.Name
-                        };
-                    }
-
-                    var enrollmentsStream = api.StreamUserEnrollments(user.Id, TeacherEnrollment.Yield())
-                                               .SelectAwait(async e => (e, await api.GetCourse(e.CourseId)))
-                                               .Where(ec => !ec.Item2.Name.ToLowerInvariant().Contains("advisory"));
-                    
-                    if (coursesPerTeacher != default) {
-                        enrollmentsStream = enrollmentsStream.Take(coursesPerTeacher);
-                    }
-
-                    var ungradedAssignments = new IntervalHeap<Assignment>(Comparer<Assignment>.Create((a1, a2) => {
-                        Debug.Assert(a1.DueAt != null && a2.DueAt != null);
-                        return a1.DueAt.Value.CompareTo(a2.DueAt.Value);
-                    }));
-                    
-                    await foreach (var (enrollment, course) in enrollmentsStream) {
-                        
-                        if (!coursesObj.ContainsKey(course.Id.ToString())) {
-                            coursesObj[course.Id.ToString()] = new JObject {
-                                ["sisId"] = course.SisCourseId,
-                                ["name"] = course.Name
+                        if (!teachersObj.ContainsKey(user.Id.ToString())) {
+                            teachersObj[user.Id.ToString()] = new JObject {
+                                ["sisId"] = user.SisUserId,
+                                ["fullName"] = user.Name
                             };
                         }
 
-                        if (!overallCoursePerformanceObj.ContainsKey(course.Id.ToString())) {
-                            
-                            var studentEnrollments = api.StreamCourseEnrollments(course.Id, StudentEnrollment.Yield());
-                            
-                            var courseScores = new List<decimal>();
-                            await foreach (var studentEnrollment in studentEnrollments) {
-                                var grades = studentEnrollment.Grades;
+                        var enrollmentsStream = api.StreamUserEnrollments(user.Id, TeacherEnrollment.Yield())
+                                                   .SelectAwait(async e => (e, await api.GetCourse(e.CourseId)))
+                                                   .Where(ec => !ec.Item2.Name.ToLowerInvariant().Contains("advisory"));
 
-                                if (!individualCoursePerformanceObj.ContainsKey(enrollment.Id.ToString())) {
-                                    individualCoursePerformanceObj[enrollment.Id.ToString()] = new JObject {
-                                        ["studentId"] = user.Id,
-                                        ["courseId"] = enrollment.CourseId, 
-                                        ["currentLetterGrade"] = grades.CurrentGrade, 
-                                        ["finalLetterGrade"] = grades.FinalGrade, 
-                                        ["currentScore"] = grades.CurrentScore, 
-                                        ["finalScore"] = grades.FinalScore
+                        if (coursesPerTeacher != default) {
+                            enrollmentsStream = enrollmentsStream.Take(coursesPerTeacher);
+                        }
+
+                        var ungradedAssignments = new IntervalHeap<Assignment>(Comparer<Assignment>.Create((a1, a2) => {
+                            Debug.Assert(a1.DueAt != null && a2.DueAt != null);
+                            return a1.DueAt.Value.CompareTo(a2.DueAt.Value);
+                        }));
+
+                        await foreach (var (enrollment, course) in enrollmentsStream) {
+
+                            if (!coursesObj.ContainsKey(course.Id.ToString())) {
+                                coursesObj[course.Id.ToString()] = new JObject {
+                                    ["sisId"] = course.SisCourseId,
+                                    ["name"] = course.Name
+                                };
+                            }
+
+                            if (!overallCoursePerformanceObj.ContainsKey(course.Id.ToString())) {
+
+                                var studentEnrollments =
+                                    api.StreamCourseEnrollments(course.Id, StudentEnrollment.Yield());
+
+                                var courseScores = new List<decimal>();
+                                await foreach (var studentEnrollment in studentEnrollments) {
+                                    var grades = studentEnrollment.Grades;
+
+                                    if (!individualCoursePerformanceObj.ContainsKey(enrollment.Id.ToString())) {
+                                        individualCoursePerformanceObj[enrollment.Id.ToString()] = new JObject {
+                                            ["studentId"] = user.Id,
+                                            ["courseId"] = enrollment.CourseId,
+                                            ["currentLetterGrade"] = grades.CurrentGrade,
+                                            ["finalLetterGrade"] = grades.FinalGrade,
+                                            ["currentScore"] = grades.CurrentScore,
+                                            ["finalScore"] = grades.FinalScore
+                                        };
+                                    }
+
+                                    var currentScore = grades.CurrentScore;
+                                    courseScores.Add(string.IsNullOrEmpty(currentScore) ? 0
+                                                                                        : Convert.ToDecimal(grades.CurrentScore));
+                                }
+
+                                if (!courseScores.Any()) {
+                                    continue;
+                                }
+
+                                var courseScoreStats = new Stats(courseScores);
+                                var pass = (decimal) courseScores.Count(s => s > 66.5m);
+
+                                overallCoursePerformanceObj[course.Id.ToString()] = new JObject {
+                                    ["gradesInSample"] = courseScores.Count,
+                                    ["meanCourseScore"] = courseScoreStats.Mean,
+                                    ["modeCourseScore"] = courseScoreStats.Mode,
+                                    ["25thPercentileCourseScore"] = courseScoreStats.Q1,
+                                    ["medianCourseScore"] = courseScoreStats.Median,
+                                    ["75thPercentileCourseScore"] = courseScoreStats.Q3,
+                                    ["courseScoreStandardDeviation"] = courseScoreStats.Sigma,
+                                    ["coursePassFailRatio"] = pass == courseScores.Count ? -1
+                                                                                         : pass / (courseScores.Count - pass)
+                                };
+                            }
+
+                            var assignmentsStream = api.StreamCourseAssignments(course.Id)
+                                                       .Where(a => a.Published);
+
+                            if (assignmentsPerCourse != default) {
+                                assignmentsStream = assignmentsStream.Take(assignmentsPerCourse);
+                            }
+
+                            var assignments = await assignmentsStream.ToListAsync();
+
+                            foreach (var assignment in assignments) {
+
+                                var allSubmissionsStream = api.StreamSubmissionVersions(course.Id, assignment.Id);
+
+                                if (assignment.DueAt != null) {
+                                    var ungraded = await allSubmissionsStream.GroupBy(s => s.UserId)
+                                                                             .AnyAwaitAsync(async g =>
+                                                                                                !await g.AnyAsync(s => s.Score != null));
+
+                                    if (ungraded) {
+                                        ungradedAssignments.Add(assignment);
+                                    }
+                                }
+
+                                var submissionsStream = allSubmissionsStream.Where(s => s.Score != null)
+                                                                            .GroupBy(s => s.UserId)
+                                                                            .SelectAwait(sg => sg.FirstAsync());
+
+                                if (submissionsPerAssignment != default) {
+                                    submissionsStream = submissionsStream.Take(submissionsPerAssignment);
+                                }
+
+                                var submissions = await submissionsStream.ToListAsync();
+
+                                if (!submissions.Any()) {
+                                    continue;
+                                }
+
+                                var scores = submissions.Select(s => s.Score)
+                                                        .Cast<decimal>()
+                                                        .ToList();
+
+                                var stats = new Stats(scores);
+
+                                assignmentsOverallObj[assignment.Id.ToString()] = new JObject {
+                                    ["assignmentName"] = assignment.Name,
+                                    ["courseId"] = course.Id,
+                                    ["teacherId"] = user.Id,
+                                    ["countedInFinalGrade"] = !(assignment.OmitFromFinalGrade ?? false),
+                                    ["pointsPossible"] = assignment.PointsPossible,
+                                    ["createdDate"] = assignment.CreatedAt.ToIso8601Date(),
+                                    ["dueDate"] = assignment.DueAt?.ToIso8601Date(),
+                                    ["gradesInSample"] = submissions.Count,
+                                    ["meanScore"] = stats.Mean,
+                                    ["modeScore"] = stats.Mode,
+                                    ["25thPercentileScore"] = stats.Q1,
+                                    ["medianScore"] = stats.Median,
+                                    ["75thPercentileScore"] = stats.Q3,
+                                    ["scoreStandardDeviation"] = stats.Sigma
+                                };
+
+                                foreach (var submission in submissions) {
+                                    var submitter = await api.GetUser(submission.UserId);
+                                    Debug.Assert(!assignmentsIndividualObj
+                                                    .ContainsKey($"{assignment.Id}|{submitter.Id}"));
+
+                                    var score = submission.Score.Value;
+                                    var z = Convert.ToDouble(score - stats.Mean) / stats.Sigma;
+                                    var iqr = stats.Q3 - stats.Q1;
+
+                                    assignmentsIndividualObj[$"{assignment.Id}|{submitter.Id}"] = new JObject {
+                                        ["assignmentId"] = assignment.Id,
+                                        ["courseId"] = course.Id,
+                                        ["userId"] = submitter.Id,
+                                        ["submissionDate"] = submission.SubmittedAt,
+                                        ["pointsEarned"] = score,
+                                        ["z"] = z,
+                                        ["isUnusual"] = Math.Abs(z) > 1.96,
+                                        ["isMinorOutlier"] = score < stats.Q1 - iqr * 1.5m
+                                                             || score > stats.Q3 + iqr * 1.5m,
+                                        ["isMajorOutlier"] = score < stats.Q1 - iqr * 3m
+                                                             || score > stats.Q3 + iqr * 3m,
                                     };
                                 }
-
-                                var currentScore = grades.CurrentScore;
-                                courseScores.Add(string.IsNullOrEmpty(currentScore) ? 0
-                                                                                    : Convert.ToDecimal(grades.CurrentScore));
                             }
+                        }
 
-                            if (!courseScores.Any()) {
-                                continue;
-                            }
-                            
-                            var courseScoreStats = new Stats(courseScores);
-                            var pass = (decimal) courseScores.Count(s => s > 66.5m);
+                        var ungradedAssignmentsList = new List<Assignment>(ungradedAssignments.Count);
+                        while (ungradedAssignments.Count > 0) {
+                            ungradedAssignmentsList.Add(ungradedAssignments.DeleteMin());
+                        }
 
-                            overallCoursePerformanceObj[course.Id.ToString()] = new JObject {
-                                ["gradesInSample"] = courseScores.Count,
-                                ["meanCourseScore"] = courseScoreStats.Mean,
-                                ["modeCourseScore"] = courseScoreStats.Mode,
-                                ["25thPercentileCourseScore"] = courseScoreStats.Q1,
-                                ["medianCourseScore"] = courseScoreStats.Median,
-                                ["75thPercentileCourseScore"] = courseScoreStats.Q3,
-                                ["courseScoreStandardDeviation"] = courseScoreStats.Sigma,
-                                ["coursePassFailRatio"] = pass == courseScores.Count ? -1 
-                                                                                     : pass / (courseScores.Count - pass)
+                        teacherPerformanceObj[user.Id.ToString()] = new JObject {
+                            ["ungradedAssignments"] = new JArray(ungradedAssignmentsList.Select(a => a.Id).Distinct())
+                        };
+
+                        #endregion
+                    } else {
+                        #region CurrentUserIsStudent
+
+                        if (!studentsObj.ContainsKey(user.Id.ToString())) {
+                            studentsObj[user.Id.ToString()] = new JObject {
+                                ["sisId"] = user.SisUserId,
+                                ["fullName"] = user.Name
                             };
                         }
 
-                        var assignmentsStream = api.StreamCourseAssignments(course.Id)
-                                                   .Where(a => a.Published);
+                        await foreach (var enrollment in api.StreamUserEnrollments(user.Id)) {
 
-                        if (assignmentsPerCourse != default) {
-                            assignmentsStream = assignmentsStream.Take(assignmentsPerCourse);
-                        }
-                        
-                        var assignments = await assignmentsStream.ToListAsync();
-
-                        foreach (var assignment in assignments) {
-
-                            var allSubmissionsStream = api.StreamSubmissionVersions(course.Id, assignment.Id);
-
-                            if (assignment.DueAt != null) {
-                                var ungraded = await allSubmissionsStream.GroupBy(s => s.UserId)
-                                                                         .AnyAwaitAsync(async g => !await g.AnyAsync(s => s.Score != null));
-
-                                if (ungraded) {
-                                    ungradedAssignments.Add(assignment);
-                                }
-                            }
-
-                            var submissionsStream = allSubmissionsStream.Where(s => s.Score != null)
-                                                                        .GroupBy(s => s.UserId)
-                                                                        .SelectAwait(sg => sg.FirstAsync());
-
-                            if (submissionsPerAssignment != default) {
-                                submissionsStream = submissionsStream.Take(submissionsPerAssignment);
-                            }
-                            
-                            var submissions = await submissionsStream.ToListAsync();
-                            
-                            if (!submissions.Any()) {
-                                continue;
-                            }
-                            
-                            var scores = submissions.Select(s => s.Score)
-                                                    .Cast<decimal>()
-                                                    .ToList();
-
-                            var stats = new Stats(scores);
-                            
-                            assignmentsOverallObj[assignment.Id.ToString()] = new JObject {
-                                ["assignmentName"] = assignment.Name,
-                                ["courseId"] = course.Id,
-                                ["teacherId"] = user.Id,
-                                ["countedInFinalGrade"] = !(assignment.OmitFromFinalGrade ?? false),
-                                ["pointsPossible"] = assignment.PointsPossible,
-                                ["createdDate"] = assignment.CreatedAt.ToIso8601Date(),
-                                ["dueDate"] = assignment.DueAt?.ToIso8601Date(),
-                                ["gradesInSample"] = submissions.Count,
-                                ["meanScore"] = stats.Mean,
-                                ["modeScore"] = stats.Mode,
-                                ["25thPercentileScore"] = stats.Q1,
-                                ["medianScore"] = stats.Median,
-                                ["75thPercentileScore"] = stats.Q3,
-                                ["scoreStandardDeviation"] = stats.Sigma
-                            };
-
-                            foreach (var submission in submissions) {
-                                var submitter = await api.GetUser(submission.UserId);
-                                Debug.Assert(!assignmentsIndividualObj.ContainsKey($"{assignment.Id}|{submitter.Id}"));
-
-                                var score = submission.Score.Value;
-                                var z = Convert.ToDouble(score - stats.Mean) / stats.Sigma;
-                                var iqr = stats.Q3 - stats.Q1;
-                                
-                                assignmentsIndividualObj[$"{assignment.Id}|{submitter.Id}"] = new JObject {
-                                    ["assignmentId"] = assignment.Id,
-                                    ["courseId"] = course.Id,
-                                    ["userId"] = submitter.Id,
-                                    ["submissionDate"] = submission.SubmittedAt,
-                                    ["pointsEarned"] = score,
-                                    ["z"] = z,
-                                    ["isUnusual"] = Math.Abs(z) > 1.96,
-                                    ["isMinorOutlier"] = score < stats.Q1 - iqr * 1.5m
-                                                      || score > stats.Q3 + iqr * 1.5m,
-                                    ["isMajorOutlier"] = score < stats.Q1 - iqr * 3m
-                                                      || score > stats.Q3 + iqr * 3m,
+                            if (!coursesObj.ContainsKey(enrollment.CourseId.ToString())) {
+                                var course = await api.GetCourse(enrollment.CourseId);
+                                coursesObj[course.Id.ToString()] = new JObject {
+                                    ["sisId"] = course.SisCourseId,
+                                    ["name"] = course.Name
                                 };
                             }
                         }
+
+                        #endregion
                     }
-
-                    var ungradedAssignmentsList = new List<Assignment>(ungradedAssignments.Count);
-                    while (ungradedAssignments.Count > 0) {
-                        ungradedAssignmentsList.Add(ungradedAssignments.DeleteMin());
-                    }
-
-                    teacherPerformanceObj[user.Id.ToString()] = new JObject {
-                        ["ungradedAssignments"] = new JArray(ungradedAssignmentsList.Select(a => a.Id).Distinct())
-                    };
-
-                    #endregion
-                } else {
-                    #region CurrentUserIsStudent
-
-                    if (!studentsObj.ContainsKey(user.Id.ToString())) {
-                        studentsObj[user.Id.ToString()] = new JObject {
-                            ["sisId"] = user.SisUserId,
-                            ["fullName"] = user.Name
-                        };
-                    }
-
-                    await foreach (var enrollment in api.StreamUserEnrollments(user.Id)) {
-
-                        if (!coursesObj.ContainsKey(enrollment.CourseId.ToString())) {
-                            var course = await api.GetCourse(enrollment.CourseId);
-                            coursesObj[course.Id.ToString()] = new JObject {
-                                ["sisId"] = course.SisCourseId,
-                                ["name"] = course.Name
-                            };
-                        }
-                    }
-
-                    #endregion
+                } catch (Exception e) {
+                    Console.WriteLine($"Caught an exception while processing user id {user.Id}\n{e}\n-------\n");
                 }
             }
 
