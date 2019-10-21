@@ -255,6 +255,29 @@ namespace SuperReport {
                                 ["75thPercentileScore"] = stats.Q3,
                                 ["scoreStandardDeviation"] = stats.Sigma
                             };
+
+                            foreach (var submission in submissions) {
+                                var submitter = await api.GetUser(submission.UserId);
+                                Debug.Assert(!assignmentsIndividualObj.ContainsKey($"{assignment.Id}|{submitter.Id}"));
+
+                                var score = submission.Score.Value;
+                                var z = Convert.ToDouble(score - stats.Mean) / stats.Sigma;
+                                var iqr = stats.Q3 - stats.Q1;
+                                
+                                assignmentsIndividualObj[$"{assignment.Id}|{submitter.Id}"] = new JObject {
+                                    ["assignmentId"] = assignment.Id,
+                                    ["courseId"] = course.Id,
+                                    ["userId"] = submitter.Id,
+                                    ["submissionDate"] = submission.SubmittedAt,
+                                    ["pointsEarned"] = score,
+                                    ["z"] = z,
+                                    ["isUnusual"] = Math.Abs(z) > 1.96,
+                                    ["isMinorOutlier"] = score < stats.Q1 - iqr * 1.5m
+                                                      || score > stats.Q3 + iqr * 1.5m,
+                                    ["isMajorOutlier"] = score < stats.Q1 - iqr * 3m
+                                                      || score > stats.Q3 + iqr * 3m,
+                                };
+                            }
                         }
                     }
 
