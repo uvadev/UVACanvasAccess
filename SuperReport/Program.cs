@@ -13,6 +13,7 @@ using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Util;
 using static Newtonsoft.Json.Formatting;
 using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
+using MoreLinq;
 
 namespace SuperReport {
     internal static class Program {
@@ -199,14 +200,14 @@ namespace SuperReport {
                                 };
                             }
 
-                            var assignmentsStream = api.StreamCourseAssignments(course.Id)
-                                                       .Where(a => a.Published);
+                            var assignments = (await api.StreamCourseAssignments(course.Id)
+                                                        .Where(a => a.Published)
+                                                        .ToListAsync())
+                                                        .DistinctBy(a => a.Id);
 
                             if (assignmentsPerCourse != default) {
-                                assignmentsStream = assignmentsStream.Take(assignmentsPerCourse);
+                                assignments = assignments.Take(assignmentsPerCourse);
                             }
-
-                            var assignments = await assignmentsStream.ToListAsync();
 
                             foreach (var assignment in assignments) {
 
@@ -242,8 +243,14 @@ namespace SuperReport {
 
                                 var stats = new Stats(scores);
 
-                                assignmentsOverallObj[assignment.Id.ToString()] = new JObject {
+                                if (assignmentsOverallObj.ContainsKey($"c_{course.Id}|a_{assignment.Id}")) {
+                                    Console.WriteLine($"WARN: Duplicated assignment?\nc={course.Id}\na={assignment.Id}\n\n{assignment}\nSkipping!------\n");
+                                    continue;
+                                }
+
+                                assignmentsOverallObj[$"c_{course.Id}|a_{assignment.Id}"] = new JObject {
                                     ["assignmentName"] = assignment.Name,
+                                    ["assignmentId"] = assignment.Id,
                                     ["courseId"] = course.Id,
                                     ["teacherId"] = user.Id,
                                     ["countedInFinalGrade"] = !(assignment.OmitFromFinalGrade ?? false),
@@ -261,14 +268,13 @@ namespace SuperReport {
 
                                 foreach (var submission in submissions) {
                                     var submitter = await api.GetUser(submission.UserId);
-                                    Debug.Assert(!assignmentsIndividualObj
-                                                    .ContainsKey($"{assignment.Id}|{submitter.Id}"));
+                                    Debug.Assert(!assignmentsIndividualObj.ContainsKey($"c_{course.Id}|a_{assignment.Id}|s_{submitter.Id}"));
 
                                     var score = submission.Score.Value;
                                     var z = Convert.ToDouble(score - stats.Mean) / stats.Sigma;
                                     var iqr = stats.Q3 - stats.Q1;
 
-                                    assignmentsIndividualObj[$"{assignment.Id}|{submitter.Id}"] = new JObject {
+                                    assignmentsIndividualObj[$"c_{course.Id}|a_{assignment.Id}|s_{submitter.Id}"] = new JObject {
                                         ["assignmentId"] = assignment.Id,
                                         ["courseId"] = course.Id,
                                         ["userId"] = submitter.Id,
@@ -277,9 +283,9 @@ namespace SuperReport {
                                         ["z"] = z,
                                         ["isUnusual"] = Math.Abs(z) > 1.96,
                                         ["isMinorOutlier"] = score < stats.Q1 - iqr * 1.5m
-                                                             || score > stats.Q3 + iqr * 1.5m,
+                                                          || score > stats.Q3 + iqr * 1.5m,
                                         ["isMajorOutlier"] = score < stats.Q1 - iqr * 3m
-                                                             || score > stats.Q3 + iqr * 3m,
+                                                          || score > stats.Q3 + iqr * 3m,
                                     };
                                 }
                             }
