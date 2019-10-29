@@ -171,7 +171,9 @@ namespace SuperReport {
                                             ["currentLetterGrade"] = grades.CurrentGrade,
                                             ["finalLetterGrade"] = grades.FinalGrade,
                                             ["currentScore"] = grades.CurrentScore,
-                                            ["finalScore"] = grades.FinalScore
+                                            ["finalScore"] = grades.FinalScore,
+                                            ["activitySecondsSpent"] = studentEnrollment.TotalActivityTime,
+                                            ["mostRecentActivity"] = studentEnrollment.LastActivityAt?.ToIso8601Date()
                                         };
                                     }
 
@@ -244,7 +246,7 @@ namespace SuperReport {
                                 var stats = new Stats(scores);
 
                                 if (assignmentsOverallObj.ContainsKey($"c_{course.Id}|a_{assignment.Id}")) {
-                                    Console.WriteLine($"WARN: Duplicated assignment?\nc={course.Id}\na={assignment.Id}\n\n{assignment}\nSkipping!------\n");
+                                    Console.WriteLine($"WARN: Duplicated assignment?\nc={course.Id}\na={assignment.Id}\n\n{assignment.ToPrettyString()}\nSkipping!------\n");
                                     continue;
                                 }
 
