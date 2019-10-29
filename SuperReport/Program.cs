@@ -36,10 +36,10 @@ namespace SuperReport {
                         new TableSyntax("limits") {
                             Items = {
                                 {"sample_skip", 0},
-                                {"sample_take", 10},
-                                {"courses_per_teacher", 5},
-                                {"assignments_per_course", 2},
-                                {"submissions_per_assignment", 10},
+                                {"sample_take", 0},
+                                {"courses_per_teacher", 0},
+                                {"assignments_per_course", 0},
+                                {"submissions_per_assignment", 0},
                                 {"teachers_only", false}
                             }
                         }
