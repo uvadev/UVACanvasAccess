@@ -187,7 +187,7 @@ namespace SuperReport {
                                 }
 
                                 var courseScoreStats = new Stats(courseScores);
-                                var pass = (decimal) courseScores.Count(s => s > 66.5m);
+                                var pass = courseScores.Count(s => s > 66.5m);
 
                                 overallCoursePerformanceObj[course.Id.ToString()] = new JObject {
                                     ["gradesInSample"] = courseScores.Count,
@@ -197,8 +197,8 @@ namespace SuperReport {
                                     ["medianCourseScore"] = courseScoreStats.Median,
                                     ["75thPercentileCourseScore"] = courseScoreStats.Q3,
                                     ["courseScoreStandardDeviation"] = courseScoreStats.Sigma,
-                                    ["coursePassFailRatio"] = pass == courseScores.Count ? -1
-                                                                                         : pass / (courseScores.Count - pass)
+                                    ["coursePassCount"] = pass,
+                                    ["courseFailCount"] = courseScores.Count - pass
                                 };
                             }
 
