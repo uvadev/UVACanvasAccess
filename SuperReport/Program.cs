@@ -14,6 +14,7 @@ using UVACanvasAccess.Util;
 using static Newtonsoft.Json.Formatting;
 using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
 using MoreLinq;
+using UVACanvasAccess.Structures.Authentications;
 
 namespace SuperReport {
     internal static class Program {
@@ -173,7 +174,8 @@ namespace SuperReport {
                                             ["currentScore"] = grades.CurrentScore,
                                             ["finalScore"] = grades.FinalScore,
                                             ["activitySecondsSpent"] = studentEnrollment.TotalActivityTime,
-                                            ["mostRecentActivity"] = studentEnrollment.LastActivityAt?.ToIso8601Date()
+                                            ["lastAttendedAt"] = studentEnrollment.LastAttendedAt?.ToIso8601Date(),
+                                            ["lastActivityAt"] = studentEnrollment.LastActivityAt?.ToIso8601Date()
                                         };
                                     }
 
@@ -307,9 +309,17 @@ namespace SuperReport {
                         #region CurrentUserIsStudent
 
                         if (!studentsObj.ContainsKey(user.Id.ToString())) {
+
+                            var lastLogin = api.StreamUserAuthenticationEvents(user.Id)
+                                               .Where(e => e.Event == EventType.Login)
+                                               .Select(e => e.CreatedAt)
+                                               .DefaultIfEmpty()
+                                               .MaxAsync();
+                            
                             studentsObj[user.Id.ToString()] = new JObject {
                                 ["sisId"] = user.SisUserId,
-                                ["fullName"] = user.Name
+                                ["fullName"] = user.Name,
+                                ["lastLogin"] = (await lastLogin).ToIso8601Date()
                             };
                         }
 
