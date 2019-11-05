@@ -79,6 +79,7 @@ namespace SuperReport {
             var studentsObj = new JObject();
             var teachersObj = new JObject();
             var coursesObj = new JObject();
+            var submissionsObj = new JObject();
             var assignmentsOverallObj = new JObject();
             var assignmentsIndividualObj = new JObject();
             var individualCoursePerformanceObj = new JObject();
@@ -91,6 +92,7 @@ namespace SuperReport {
                 ["teachers"] = teachersObj,
                 ["students"] = studentsObj,
                 ["courses"] = coursesObj,
+                ["submissions"] = submissionsObj,
                 ["assignmentsOverall"] = assignmentsOverallObj,
                 ["assignmentsIndividual"] = assignmentsIndividualObj,
                 ["individualCoursePerformance"] = individualCoursePerformanceObj,
@@ -216,26 +218,49 @@ namespace SuperReport {
                             foreach (var assignment in assignments) {
 
                                 var allSubmissionsStream = api.StreamSubmissionVersions(course.Id, assignment.Id);
-
-                                if (assignment.DueAt != null) {
-                                    var ungraded = await allSubmissionsStream.GroupBy(s => s.UserId)
-                                                                             .AnyAwaitAsync(async g =>
-                                                                                                !await g.AnyAsync(s => s.Score != null));
-
-                                    if (ungraded) {
-                                        ungradedAssignments.Add(assignment);
-                                    }
-                                }
-
-                                var submissionsStream = allSubmissionsStream.Where(s => s.Score != null)
-                                                                            .GroupBy(s => s.UserId)
-                                                                            .SelectAwait(sg => sg.FirstAsync());
-
+                                
                                 if (submissionsPerAssignment != default) {
-                                    submissionsStream = submissionsStream.Take(submissionsPerAssignment);
+                                    allSubmissionsStream = allSubmissionsStream.Take(submissionsPerAssignment);
                                 }
 
-                                var submissions = await submissionsStream.ToListAsync();
+                                var allSubmissions = await allSubmissionsStream.ToListAsync();
+
+                                //if (assignment.DueAt != null) {
+                                //    //var ungraded = await allSubmissionsStream.GroupBy(s => s.UserId)
+                                //    //                                         .AnyAwaitAsync(async g =>
+                                //    //                                                            !await g.AnyAsync(s => s.Score != null));
+
+                                //    //if (ungraded) {
+                                //    //    ungradedAssignments.Add(assignment);
+                                //    //} 
+                                //    
+                                //    
+                                //}
+                                
+                                // just listing every submission here
+                                foreach (var submission in allSubmissions) {
+                                    var submitter = await api.GetUser(submission.UserId);
+                                    
+                                    submissionsObj[$"c_{course.Id}|a_{assignment.Id}|u_{submitter.Id}|n_{submission.Attempt??0}"] = new JObject {
+                                        ["assignmentId"] = assignment.Id,
+                                        ["courseId"] = course.Id,
+                                        ["userId"] = submitter.Id,
+                                        ["versionNumber"] = submission.Attempt,
+                                        ["submissionDate"] = submission.SubmittedAt,
+                                        ["pointsEarned"] = submission.Score,
+                                        ["dateSubmitted"] = submission.SubmittedAt,
+                                        ["dateGraded"] = submission.GradedAt,
+                                        ["gradeMatchesCurrent"] = submission.GradeMatchesCurrentSubmission,
+                                        ["late"] = submission.Late ?? false,
+                                        ["missing"] = submission.Missing ?? false
+                                    };
+                                }
+                                
+                                // now narrow down for assignment performance 
+                                var submissions = allSubmissions.Where(s => s.Score != null)
+                                                                .GroupBy(s => s.UserId)
+                                                                .Select(sg => sg.First())
+                                                                .ToList();
 
                                 if (!submissions.Any()) {
                                     continue;
@@ -270,9 +295,10 @@ namespace SuperReport {
                                     ["scoreStandardDeviation"] = stats.Sigma
                                 };
 
+                                // here we're listing the submissions per user that actually count for grades
                                 foreach (var submission in submissions) {
                                     var submitter = await api.GetUser(submission.UserId);
-                                    Debug.Assert(!assignmentsIndividualObj.ContainsKey($"c_{course.Id}|a_{assignment.Id}|s_{submitter.Id}"));
+                                    Debug.Assert(!assignmentsIndividualObj.ContainsKey($"c_{course.Id}|a_{assignment.Id}|u_{submitter.Id}"));
 
                                     var score = submission.Score.Value;
                                     var z = Convert.ToDouble(score - stats.Mean) / stats.Sigma;
@@ -283,7 +309,7 @@ namespace SuperReport {
                                         minutesSubmittedBeforeDueDate = assignment.DueAt.Value - submission.SubmittedAt.Value;
                                     }
 
-                                    assignmentsIndividualObj[$"c_{course.Id}|a_{assignment.Id}|s_{submitter.Id}"] = new JObject {
+                                    assignmentsIndividualObj[$"c_{course.Id}|a_{assignment.Id}|u_{submitter.Id}"] = new JObject {
                                         ["assignmentId"] = assignment.Id,
                                         ["courseId"] = course.Id,
                                         ["userId"] = submitter.Id,
@@ -307,7 +333,7 @@ namespace SuperReport {
                         }
 
                         teacherPerformanceObj[user.Id.ToString()] = new JObject {
-                            ["ungradedAssignments"] = new JArray(ungradedAssignmentsList.Select(a => a.Id).Distinct())
+                            //["ungradedAssignments"] = new JArray(ungradedAssignmentsList.Select(a => a.Id).Distinct())
                         };
 
                         #endregion
