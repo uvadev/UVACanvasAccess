@@ -278,6 +278,11 @@ namespace SuperReport {
                                     var z = Convert.ToDouble(score - stats.Mean) / stats.Sigma;
                                     var iqr = stats.Q3 - stats.Q1;
 
+                                    TimeSpan? minutesSubmittedBeforeDueDate = null;
+                                    if (submission.SubmittedAt != null && assignment.DueAt != null) {
+                                        minutesSubmittedBeforeDueDate = assignment.DueAt.Value - submission.SubmittedAt.Value;
+                                    }
+
                                     assignmentsIndividualObj[$"c_{course.Id}|a_{assignment.Id}|s_{submitter.Id}"] = new JObject {
                                         ["assignmentId"] = assignment.Id,
                                         ["courseId"] = course.Id,
@@ -290,6 +295,7 @@ namespace SuperReport {
                                                           || score > stats.Q3 + iqr * 1.5m,
                                         ["isMajorOutlier"] = score < stats.Q1 - iqr * 3m
                                                           || score > stats.Q3 + iqr * 3m,
+                                        ["minutesSubmittedBeforeDueDate"] = minutesSubmittedBeforeDueDate?.TotalMinutes
                                     };
                                 }
                             }
