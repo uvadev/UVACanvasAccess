@@ -85,7 +85,7 @@ namespace QuotaWatcher {
                         continue;
                     }
 
-                    Console.WriteLine($"Noticed {user.Id} ({used / quota * 100}%).");
+                    Console.WriteLine($"Noticed {user.Id, -4} - {Math.Round(used / quota * 100, 3), 8:####.000}%");
                     
                     detectedUsers[user.Id.ToString()] = new JObject {
                         ["userSis"] = user.SisUserId,
@@ -104,7 +104,7 @@ namespace QuotaWatcher {
                                                                        message,
                                                                        "File Storage Alert",
                                                                        true)) {
-                            Console.WriteLine($"sent the message to {user.Id}.\n{c.ToPrettyString()}\n------\n");
+                            Console.WriteLine($"Sent the message to {user.Id}.\n{c.ToPrettyString()}\n------\n");
                         }
                     }
                 } catch (Exception e) {

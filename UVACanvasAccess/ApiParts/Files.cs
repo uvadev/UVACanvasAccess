@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -247,9 +248,14 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <returns>The tuple of quota and used quota.</returns>
         public Task<(decimal, decimal)> GetPersonalQuotaMiB() {
-            return GetPersonalQuota().ThenApply(t => 
-                ((decimal)t.Item1 / 1048576, (decimal)t.Item2 / 1048576)
-            );
+            var q = GetPersonalQuota();
+
+            if (!q.IsFaulted) {
+                return q.ThenApply(t => ((decimal)t.Item1 / 1048576, (decimal)t.Item2 / 1048576));
+            }
+
+            Debug.Assert(q.Exception != null);
+            return Task.FromException<(decimal, decimal)>(q.Exception);
         }
 
         public async Task<CanvasFile> UpdatePersonalFile(ulong fileId,
