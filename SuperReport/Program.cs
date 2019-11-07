@@ -144,11 +144,6 @@ namespace SuperReport {
                             enrollmentsStream = enrollmentsStream.Take(coursesPerTeacher);
                         }
 
-                        var ungradedAssignments = new IntervalHeap<Assignment>(Comparer<Assignment>.Create((a1, a2) => {
-                            Debug.Assert(a1.DueAt != null && a2.DueAt != null);
-                            return a1.DueAt.Value.CompareTo(a2.DueAt.Value);
-                        }));
-
                         await foreach (var (enrollment, course) in enrollmentsStream) {
 
                             if (!coursesObj.ContainsKey(course.Id.ToString())) {
@@ -225,18 +220,6 @@ namespace SuperReport {
 
                                 var allSubmissions = await allSubmissionsStream.ToListAsync();
 
-                                //if (assignment.DueAt != null) {
-                                //    //var ungraded = await allSubmissionsStream.GroupBy(s => s.UserId)
-                                //    //                                         .AnyAwaitAsync(async g =>
-                                //    //                                                            !await g.AnyAsync(s => s.Score != null));
-
-                                //    //if (ungraded) {
-                                //    //    ungradedAssignments.Add(assignment);
-                                //    //} 
-                                //    
-                                //    
-                                //}
-                                
                                 // just listing every submission here
                                 foreach (var submission in allSubmissions) {
                                     var submitter = await api.GetUser(submission.UserId);
@@ -327,13 +310,8 @@ namespace SuperReport {
                             }
                         }
 
-                        var ungradedAssignmentsList = new List<Assignment>(ungradedAssignments.Count);
-                        while (ungradedAssignments.Count > 0) {
-                            ungradedAssignmentsList.Add(ungradedAssignments.DeleteMin());
-                        }
-
                         teacherPerformanceObj[user.Id.ToString()] = new JObject {
-                            //["ungradedAssignments"] = new JArray(ungradedAssignmentsList.Select(a => a.Id).Distinct())
+                            
                         };
 
                         #endregion
