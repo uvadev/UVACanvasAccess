@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AppUtils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Tomlyn.Syntax;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures;
@@ -60,6 +62,8 @@ namespace FileMapUploader {
             var mapFilePath = Path.Combine(home.NsDir, mapFileName);
 
             Console.WriteLine($"Sourcing map from {mapFilePath}");
+
+            var startedAt = DateTime.Now;
             
             // ------------------------------------------------------------------------
 
@@ -79,6 +83,8 @@ namespace FileMapUploader {
             Console.WriteLine($"Using {nThreads} threads.");
             
             var completed = new ConcurrentBag<string>();
+            var notFound = new ConcurrentBag<string>();
+            var error = new ConcurrentBag<string>();
             var keys = new ConcurrentBag<string>();
             
             using (var countdown = new CountdownEvent(nThreads)) {
@@ -102,6 +108,7 @@ namespace FileMapUploader {
 
                                     if (user == null) {
                                         Console.WriteLine($"WARN: Couldn't find the user for sis {userKey} !!");
+                                        notFound.Add(userKey);
                                         continue;
                                     }
 
@@ -130,6 +137,7 @@ namespace FileMapUploader {
 
                                 } catch (Exception e) {
                                     Console.WriteLine($"Caught an exception during upload for {userKey}: {e}");
+                                    error.Add(userKey);
                                 } finally {
                                     api.StopMasquerading();
                                 }
@@ -142,12 +150,31 @@ namespace FileMapUploader {
                 countdown.Wait();
             }
 
-            Console.WriteLine($"{completed.Distinct().Count()} out of {list.Count} operations were completed.");
+            var completedE = completed.Distinct().ToList();
+            var errorE = error.Distinct().ToList();
+            var notFoundE = notFound.Distinct().ToList();
 
-            var exc = keys.Except(completed).ToList();
-            if (exc.Any()) {
-                Console.WriteLine($"Operation failed for the following SIS IDs: {exc.ToPrettyString()}");
+            Console.WriteLine($"{completedE.Count} out of {list.Count} operations were completed.");
+
+            if (errorE.Any()) {
+                Console.WriteLine($"Operation failed for the following SIS IDs: {errorE.ToPrettyString()}");
             }
+
+            if (notFoundE.Any()) {
+                Console.WriteLine($"The following SIS IDs could not be resolved: {notFoundE.ToPrettyString()}");
+            }
+
+            var document = new JObject {
+                ["dateStarted"] = startedAt.ToIso8601Date(),
+                ["dateCompleted"] = DateTime.Now.ToIso8601Date(),
+                ["completed"] = new JArray(completedE),
+                ["error"] = new JArray(errorE),
+                ["notFound"] = new JArray(notFoundE)
+            };
+            
+            var outPath = Path.Combine(home.NsDir, $"FileMapUploader_Log_{startedAt.Ticks}.json");
+            File.WriteAllText(outPath, document.ToString(Formatting.Indented) + "\n");
+            Console.WriteLine($"Wrote log to {outPath}");
         }
     }
 }
