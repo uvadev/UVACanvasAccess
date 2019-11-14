@@ -304,5 +304,17 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
         }
+
+        public async Task<CanvasFile> DeleteFile(ulong fileId, bool? replace = null) {
+            var args = new[] {
+                ("replace", replace?.ToShortString())
+            };
+            
+            var response =
+                await _client.DeleteAsync($"files/{fileId}" + BuildQueryString(args));
+            
+            var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
+            return new CanvasFile(this, model);
+        }
     }
 }

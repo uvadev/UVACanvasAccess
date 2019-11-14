@@ -150,8 +150,14 @@ namespace QuotaPurger {
                     }
 
                     try {
+                        api.MasqueradeAs(userId);
+
+                        await foreach (var file in api.StreamPersonalFiles()) {
+                            await api.DeleteFile(file.Id);
+                            Console.WriteLine($"Deleted file {file.Id} for user {userId}.");
+                        }
                         
-                        // todo
+                        api.StopMasquerading();
                         
                         actionTakenUsers[userId.ToString()] = JToken.FromObject(new {
                             userData.userSis,
@@ -160,8 +166,11 @@ namespace QuotaPurger {
                             // todo extra fields?
                         });
 
-                        Console.WriteLine($"User {userId} was over the limit, and his quota was purged.");
-                        continue;
+                        Console.WriteLine($"User {userId} was over the limit, and his files were purged.");
+
+                        if (sendMessage) {
+                            // todo
+                        }
                     } catch (Exception e) {
                         Console.WriteLine($"Exception when taking action for user {userId}.\n{e}\nContinuing as normal ------");
                         actionFailedUsers[userId.ToString()] = JToken.FromObject(new {
