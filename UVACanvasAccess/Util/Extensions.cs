@@ -242,7 +242,7 @@ namespace UVACanvasAccess.Util {
                          .Aggregate((a, b) => a | b);
         }
 
-        internal static void Deconstruct<TK, TV>(this KeyValuePair<TK, TV> kvp, out TK key, out TV val) {
+        public static void Deconstruct<TK, TV>(this KeyValuePair<TK, TV> kvp, out TK key, out TV val) {
             key = kvp.Key;
             val = kvp.Value;
         }
@@ -352,12 +352,12 @@ namespace UVACanvasAccess.Util {
 
 
         [Pure]
-        internal static Dictionary<TO, TV> KeySelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TK, TO> f) {
+        public static Dictionary<TO, TV> KeySelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TK, TO> f) {
             return d.Select(kv => kv.KeySelect(f)).IdentityDictionary();
         }
         
         [Pure]
-        internal static Dictionary<TK, TO> ValSelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TV, TO> f) {
+        public static Dictionary<TK, TO> ValSelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TV, TO> f) {
             return d.Select(kv => kv.ValSelect(f)).IdentityDictionary();
         }
 
