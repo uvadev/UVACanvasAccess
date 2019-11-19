@@ -13,6 +13,9 @@ using static Newtonsoft.Json.Formatting;
 namespace QuotaPurger {
     internal static class Program {
 
+        private const string DeletionMessageTemplate = 
+            "";
+
         public static async Task Main(string[] args) {
             
             var home = new AppHome("uva_quota_purger");
@@ -115,8 +118,6 @@ namespace QuotaPurger {
 
                     var overLimit = used / quota >= .85m;
 
-                    Console.WriteLine(quota);
-
                     if (!overLimit) {
                         resolvedUsers[userId.ToString()] = JToken.FromObject(new {
                             userData.userSis,
@@ -140,21 +141,23 @@ namespace QuotaPurger {
                     }
 
                     if (!destroy) {
-                        actionTakenUsers[userId.ToString()] = JToken.FromObject(new {
-                            userData.userSis,
-                            userData.userFullName,
-                            filesWereDeleted = false
-                        });
-                        Console.WriteLine($"User {userId} was over the limit, and his quota would have been purged, but destructive mode is off.");
-                        continue;
-                    }
-
-                    try {
+                        
+                        var mockDeletedFiles = new JObject();
+                        
                         api.MasqueradeAs(userId);
 
                         await foreach (var file in api.StreamPersonalFiles()) {
-                            await api.DeleteFile(file.Id);
-                            Console.WriteLine($"Deleted file {file.Id} for user {userId}.");
+                            Console.WriteLine($"[MOCK] Would delete file {file.Id} for user {userId}.");
+                            mockDeletedFiles[file.Id.ToString()] = JToken.FromObject(new {
+                                fileName = file.Filename,
+                                displayName = file.DisplayName,
+                                fileSize = file.Size,
+                                url = file.Url,
+                                contentType = file.ContentType,
+                                createdAt = file.CreatedAt,
+                                modifiedAt = file.ModifiedAt,
+                                updatedAt = file.UpdatedAt
+                            });
                         }
                         
                         api.StopMasquerading();
@@ -162,8 +165,40 @@ namespace QuotaPurger {
                         actionTakenUsers[userId.ToString()] = JToken.FromObject(new {
                             userData.userSis,
                             userData.userFullName,
-                            filesWereDeleted = true
-                            // todo extra fields?
+                            filesWereDeleted = false,
+                            mockDeletedFiles
+                        });
+                        Console.WriteLine($"User {userId} was over the limit, and his quota would have been purged, but destructive mode is off.");
+                        continue;
+                    }
+
+                    try {
+                        var deletedFiles = new JObject();
+                        
+                        api.MasqueradeAs(userId);
+
+                        await foreach (var file in api.StreamPersonalFiles()) {
+                            await api.DeleteFile(file.Id);
+                            Console.WriteLine($"Deleted file {file.Id} for user {userId}.");
+                            deletedFiles[file.Id.ToString()] = JToken.FromObject(new {
+                                fileName = file.Filename,
+                                displayName = file.DisplayName,
+                                fileSize = file.Size,
+                                url = file.Url,
+                                contentType = file.ContentType,
+                                createdAt = file.CreatedAt,
+                                modifiedAt = file.ModifiedAt,
+                                updatedAt = file.UpdatedAt
+                            });
+                        }
+                        
+                        api.StopMasquerading();
+                        
+                        actionTakenUsers[userId.ToString()] = JToken.FromObject(new {
+                            userData.userSis,
+                            userData.userFullName,
+                            filesWereDeleted = true,
+                            deletedFiles
                         });
 
                         Console.WriteLine($"User {userId} was over the limit, and his files were purged.");
