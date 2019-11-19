@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using AppUtils;
 using Newtonsoft.Json.Linq;
@@ -9,6 +10,8 @@ using Tomlyn.Syntax;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Util;
 using static Newtonsoft.Json.Formatting;
+using static UVACanvasAccess.ApiParts.Api.FileSort;
+using static UVACanvasAccess.ApiParts.Api.Order;
 
 namespace QuotaPurger {
     internal static class Program {
@@ -139,14 +142,17 @@ namespace QuotaPurger {
                         Console.WriteLine($"User {userId} is still over the limit, but is a teacher. No action taken.");
                         continue;
                     }
-
+                    
                     if (!destroy) {
-                        
                         var mockDeletedFiles = new JObject();
                         
                         api.MasqueradeAs(userId);
+                        
+                        var conversationAttachments = await api.StreamPersonalFolders()
+                                                               .FirstAsync(pf => pf.Name.ToLowerInvariant().Equals("conversation attachments"));
 
-                        await foreach (var file in api.StreamPersonalFiles()) {
+                        await foreach (var file in api.StreamPersonalFiles(sortBy: Size, order: Descending)
+                                                      .Where(f => f.FolderId == conversationAttachments.Id)) {
                             Console.WriteLine($"[MOCK] Would delete file {file.Id} for user {userId}.");
                             mockDeletedFiles[file.Id.ToString()] = JToken.FromObject(new {
                                 fileName = file.Filename,
@@ -168,7 +174,7 @@ namespace QuotaPurger {
                             filesWereDeleted = false,
                             mockDeletedFiles
                         });
-                        Console.WriteLine($"User {userId} was over the limit, and his quota would have been purged, but destructive mode is off.");
+                        Console.WriteLine($"User {userId} was over the limit, and his files would have been purged, but destructive mode is off.");
                         continue;
                     }
 
@@ -176,8 +182,13 @@ namespace QuotaPurger {
                         var deletedFiles = new JObject();
                         
                         api.MasqueradeAs(userId);
+                        
+                        var conversationAttachments = await api.StreamPersonalFolders()
+                                                               .FirstAsync(pf => pf.Name.ToLowerInvariant().Equals("conversation attachments"));
 
-                        await foreach (var file in api.StreamPersonalFiles()) {
+
+                        await foreach (var file in api.StreamPersonalFiles(sortBy: Size, order: Descending)
+                                                      .Where(f => f.FolderId == conversationAttachments.Id)) {
                             await api.DeleteFile(file.Id);
                             Console.WriteLine($"Deleted file {file.Id} for user {userId}.");
                             deletedFiles[file.Id.ToString()] = JToken.FromObject(new {
