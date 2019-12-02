@@ -76,6 +76,14 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync(url + BuildQueryString(args.ToArray()));
         }
 
+        /// <summary>
+        /// Get a single course by id.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="accountId">(Optional) The account id.</param>
+        /// <param name="includes">Additional data to include.</param>
+        /// <param name="teacherLimit"></param>
+        /// <returns></returns>
         public async Task<Course> GetCourse(ulong courseId,
                                             ulong? accountId = null,
                                             IndividualLevelCourseIncludes? includes = null,
@@ -97,6 +105,11 @@ namespace UVACanvasAccess.ApiParts {
             return new Course(this, model);
         }
         
+        /// <summary>
+        /// Return a new <see cref="Builders.CourseBuilder"/>
+        /// </summary>
+        /// <param name="accountId">(Optional) The account id.</param>
+        /// <returns>The course builder.</returns>
         public CourseBuilder CreateCourse(ulong? accountId = null) {
             return new CourseBuilder(this, accountId);
         }
@@ -105,20 +118,41 @@ namespace UVACanvasAccess.ApiParts {
             return _client.DeleteAsync($"courses/{id}" + BuildQueryString(("event", action)));
         }
 
+        /// <summary>
+        /// Delete a course.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The deleted course.</returns>
         public async Task DeleteCourse(ulong courseId) {
             await RawDeleteCourse(courseId.ToString(), "delete").AssertSuccess();
         }
         
+        /// <summary>
+        /// End a course without deleting it.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The concluded course.</returns>
         public async Task ConcludeCourse(ulong courseId) {
             await RawDeleteCourse(courseId.ToString(), "conclude").AssertSuccess();
         }
 
+        /// <summary>
+        /// Get a course's settings.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The course settings.</returns>
         public async Task<CourseSettings> GetCourseSettings(ulong courseId) {
             var response = await _client.GetAsync($"courses/{courseId}/settings");
             var model = JsonConvert.DeserializeObject<CourseSettingsModel>(await response.Content.ReadAsStringAsync());
             return new CourseSettings(model);
         }
 
+        /// <summary>
+        /// Update a course's settings.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="cs">The new settings.</param>
+        /// <returns>A void task.</returns>
         public async Task UpdateCourseSettings(ulong courseId, CourseSettings cs) {
             await _client.PutAsync($"courses/{courseId}/settings", BuildHttpArguments(cs.GetTuples()));
         }

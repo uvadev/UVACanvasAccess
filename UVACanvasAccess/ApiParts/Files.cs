@@ -115,6 +115,17 @@ namespace UVACanvasAccess.ApiParts {
                              );
         }
 
+        /// <summary>
+        /// Create a folder in the current user's personal files section.
+        /// </summary>
+        /// <param name="name">The folder name.</param>
+        /// <param name="parentFolderName">(Optional) The path to create the folder in. By default, root.</param>
+        /// <param name="lockDate">(Optional) The date to lock the folder on.</param>
+        /// <param name="unlockDate">(Optional) The date to unlock the folder on.</param>
+        /// <param name="locked">(Optional) Lock the folder.</param>
+        /// <param name="hidden">(Optional) Hide the folder.</param>
+        /// <param name="position">(Optional) The folder's position in the list of folders.</param>
+        /// <returns>The new folder.</returns>
         public async Task<Folder> CreatePersonalFolder(string name,
                                                        string parentFolderName = null,
                                                        DateTime? lockDate = null,
@@ -137,6 +148,11 @@ namespace UVACanvasAccess.ApiParts {
             return new Folder(this, model);
         }
 
+        /// <summary>
+        /// Get a single personal folder for the current user.
+        /// </summary>
+        /// <param name="folderId">(Optional) The folder id. By default, root.</param>
+        /// <returns>The folder.</returns>
         public async Task<Folder> GetPersonalFolder(ulong? folderId) {
             var folder = folderId?.ToString() ?? "root";
             var response = await _client.GetAsync($"users/self/folders/{folder}");
@@ -145,6 +161,10 @@ namespace UVACanvasAccess.ApiParts {
             return new Folder(this, model);
         }
 
+        /// <summary>
+        /// Stream the current user's personal folders.
+        /// </summary>
+        /// <returns>The stream of folders.</returns>
         public async IAsyncEnumerable<Folder> StreamPersonalFolders() {
             var response = await _client.GetAsync("users/self/folders" + BuildQueryString()); // todo fixme HACK!!!
 
@@ -153,6 +173,17 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Stream the current user's personal files.
+        /// </summary>
+        /// <param name="includeContentTypes">(Optional) Content types to include.</param>
+        /// <param name="excludeContentTypes">(Optional) Content type to exclude.</param>
+        /// <param name="searchTerm">(Optional) A search term.</param>
+        /// <param name="includes">(Optional) Extra data to include with the results.</param>
+        /// <param name="onlyIncludeFileNames">(Optional) Only include file names with the results.</param>
+        /// <param name="sortBy">(Optional) The category to sort the results by.</param>
+        /// <param name="order">(Optional) The order to sort the results by.</param>
+        /// <returns>The stream of files.</returns>
         public async IAsyncEnumerable<CanvasFile> StreamPersonalFiles(IEnumerable<ContentType> includeContentTypes = null,
                                                                       IEnumerable<ContentType> excludeContentTypes = null,
                                                                       string searchTerm = null,
@@ -200,6 +231,12 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Get a single personal file for the current user.
+        /// </summary>
+        /// <param name="fileId">The file id.</param>
+        /// <param name="includes">(Optional) Extra data to include with the result.</param>
+        /// <returns>The file.</returns>
         public async Task<CanvasFile> GetPersonalFile(ulong fileId, FileIncludes? includes = null) {
             var response = await _client.GetAsync($"files/{fileId}" + (includes == null ? "" 
                                                                            : BuildDuplicateKeyQueryString(includes.GetFlagsApiRepresentations().Select(r => ("include[]", r)).ToArray())));

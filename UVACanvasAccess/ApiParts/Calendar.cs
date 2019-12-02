@@ -8,6 +8,17 @@ using static UVACanvasAccess.Util.Extensions;
 namespace UVACanvasAccess.ApiParts {
     public partial class Api {
         
+        /// <summary>
+        /// Stream calendar events.
+        /// </summary>
+        /// <param name="userId">(Optional) The user to filter by.</param>
+        /// <param name="type">(Optional) The event type to filter by.</param>
+        /// <param name="startDate">(Optional) The beginning of the date range to search.</param>
+        /// <param name="endDate">(Optional) The end of the date range to search.</param>
+        /// <param name="undated">(Optional) Allow undated events.</param>
+        /// <param name="allEvents">(Optional) Include all events.</param>
+        /// <param name="contexts">Event contexts to search.</param>
+        /// <returns></returns>
         public async IAsyncEnumerable<CalendarEvent> StreamCalendarEvents(ulong? userId = null, 
                                                                           EventType? type = null, 
                                                                           DateTime? startDate = null,

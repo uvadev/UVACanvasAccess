@@ -31,6 +31,13 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync("accounts" + BuildQueryString(includes.Select(i => ("include[]", i)).ToArray()));
         }
 
+        
+        // todo this should probably be a stream
+        /// <summary>
+        /// List the accounts in this domain.
+        /// </summary>
+        /// <param name="includes">(Optional) Extra data to include in the response.</param>
+        /// <returns>The list of accounts.</returns>
         public async Task<IEnumerable<Account>> ListAccounts(AccountIncludes includes = AccountIncludes.Default) {
             var response = await RawListAccounts(includes.GetFlags().Select(f => f.GetApiRepresentation()));
 
@@ -44,6 +51,11 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync($"accounts/{id}");
         }
 
+        /// <summary>
+        /// Get a single account by id.
+        /// </summary>
+        /// <param name="accountId">The account id.</param>
+        /// <returns>The account.</returns>
         public async Task<Account> GetAccount(ulong accountId) {
             var response = await RawGetAccount(accountId.ToString());
 
@@ -56,6 +68,12 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync(url + BuildDuplicateKeyQueryString(permissions.Select(p => ("permissions[]", p)).ToArray()));
         }
 
+        /// <summary>
+        /// Get the permissions set of an account.
+        /// </summary>
+        /// <param name="checkedPermissions">The permissions to test.</param>
+        /// <param name="accountId">The account id.</param>
+        /// <returns>The account permissions set.</returns>
         public async Task<BasicAccountPermissionsSet> GetAccountPermissions(AccountRolePermissions checkedPermissions, 
                                                                             ulong? accountId = null) {
             var response = await RawGetAccountPermissions(accountId?.ToString() ?? "self",
@@ -70,7 +88,7 @@ namespace UVACanvasAccess.ApiParts {
             foreach (var (k, v) in dictionary) {
                 AccountRolePermissions? permission = k.ToApiRepresentedEnum<AccountRolePermissions>();
                 if (permission == null) {
-                    Console.Error.WriteLine("WARNING: encountered unknown permission type: " + k);
+                    Logger.Warn("Encountered unknown permission type: " + k);
                     continue;
                 }
                 
@@ -88,6 +106,11 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync($"accounts/{id}/terms_of_service");
         }
 
+        /// <summary>
+        /// Get an account's Terms of Service.
+        /// </summary>
+        /// <param name="accountId">The account id.</param>
+        /// <returns>The Terms of Service.</returns>
         public async Task<TermsOfService> GetTermsOfService(ulong? accountId = null) {
             var response = await RawGetTermsOfService(accountId?.ToString() ?? "self");
 
@@ -99,6 +122,11 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync($"accounts/{id}/help_links");
         }
 
+        /// <summary>
+        /// Get an account's set of help links.
+        /// </summary>
+        /// <param name="accountId">The account id.</param>
+        /// <returns>The set of help links.</returns>
         public async Task<HelpLinks> GetHelpLinks(ulong? accountId = null) {
             var response = await RawGetHelpLinks(accountId?.ToString() ?? "self");
 
@@ -106,6 +134,9 @@ namespace UVACanvasAccess.ApiParts {
             return new HelpLinks(this, model);
         }
 
+        /// <summary>
+        /// The types of enrollment a user can have in a course.
+        /// </summary>
         [Flags]
         [PublicAPI]
         public enum CourseEnrollmentTypes : byte {
@@ -121,6 +152,9 @@ namespace UVACanvasAccess.ApiParts {
             Designer = 1 << 4
         }
 
+        /// <summary>
+        /// The types of states a course can have.
+        /// </summary>
         [Flags]
         [PublicAPI]
         public enum CourseStates : byte {
@@ -138,6 +172,9 @@ namespace UVACanvasAccess.ApiParts {
             All = 1 << 5
         }
         
+        /// <summary>
+        /// Optional account-related data to include with courses.
+        /// </summary>
         [Flags]
         [PublicAPI]
         public enum AccountLevelCourseIncludes : byte {
@@ -160,6 +197,9 @@ namespace UVACanvasAccess.ApiParts {
             Everything = byte.MaxValue
         }
 
+        /// <summary>
+        /// Categories that courses can be sorted by.
+        /// </summary>
         [PublicAPI]
         public enum CourseSort : byte {
             [ApiRepresentation("course_name")]
@@ -172,6 +212,9 @@ namespace UVACanvasAccess.ApiParts {
             AccountName
         }
 
+        /// <summary>
+        /// Categories that courses can be searched by.
+        /// </summary>
         [PublicAPI]
         public enum CourseSearchBy : byte {
             [ApiRepresentation("course")]

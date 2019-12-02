@@ -162,6 +162,12 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Delete a user.
+        /// </summary>
+        /// <param name="userId">The user id.</param>
+        /// <param name="accountId">The account the user is under. <c>self</c> by default.</param>
+        /// <returns>The deleted user.</returns>
         public async Task<User> DeleteUser(ulong userId, ulong? accountId = null) {
             var response = await _client.DeleteAsync($"accounts/{accountId?.ToString() ?? "self"}/users/{userId}");
             return new User(this, JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync()));

@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("UVACanvasAccess")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("Library for interacting with the Canvas API.")]
+[assembly: AssemblyConfiguration("Release")]
+[assembly: AssemblyCompany("University View Academy")]
 [assembly: AssemblyProduct("UVACanvasAccess")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
