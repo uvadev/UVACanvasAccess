@@ -1,5 +1,5 @@
-To test, make sure a file called `.env` exists in the root of the build directory, containing the line
-`TEST_TOKEN=YOUR_TOKEN_GOES_HERE`
+## UVACanvasAccess
+A .NET wrapper for the Canvas LMS API.
 
-To generate docs, `doxygen UVACanvasAccess/Doxyfile`.
-
+### Docs
+Docs are generated and deployed automatically on push. They can be found here [here](https://uvadev.github.io/UVACanvasAccess/annotated.html). For quick reference, API endpoint functions can be found [here](https://uvadev.github.io/UVACanvasAccess/classUVACanvasAccess_1_1ApiParts_1_1Api.html).
