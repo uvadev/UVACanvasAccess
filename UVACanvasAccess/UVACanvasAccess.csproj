@@ -253,6 +253,12 @@
     <Compile Include="Model\GradeChangelog\RedundantGradeChangeEventResponse.cs" />
     <Compile Include="Model\Groups\GroupMembershipModel.cs" />
     <Compile Include="Model\Groups\GroupModel.cs" />
+    <Compile Include="Model\Modules\CompletionRequirementModel.cs" />
+    <Compile Include="Model\Modules\ContentDetailsModel.cs" />
+    <Compile Include="Model\Modules\ModuleItemModel.cs" />
+    <Compile Include="Model\Modules\ModuleItemSequenceModel.cs" />
+    <Compile Include="Model\Modules\ModuleItemSequenceNodeModel.cs" />
+    <Compile Include="Model\Modules\ModuleModel.cs" />
     <Compile Include="Model\OutcomeResults\OutcomeAlignmentModel.cs" />
     <Compile Include="Model\OutcomeResults\OutcomePathModel.cs" />
     <Compile Include="Model\OutcomeResults\OutcomePathPartModel.cs" />
