@@ -1,27 +1,36 @@
-language: shell
+language: csharp
+solution: UVACanvasAccess.sln
 os: linux
 
-# Blacklist
 branches:
   only:
     - master
 
-# Install dependencies
+install:
+    - nuget restore UVACanvasAccess.sln
+
 addons:
   apt:
     packages:
       - doxygen
       - graphviz
 
-# Build your code e.g. by calling make
-script:
-  - doxygen UVACanvasAccess/Doxyfile
+before_script:
+  - cd UVACanvasAccess
 
-# Generate and deploy documentation
+script:
+  - nuget pack UVACanvasAccess.csproj -Build -Properties Configuration=Release -Properties BuildVersion=$(date "+%s")
+  - doxygen Doxyfile
+
 deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: docs/html
-  github_token: $GH_REPO_TOKEN
-  on:
-    branch: master
+  - provider: script
+    skip_cleanup: true
+    script: chmod +x ./deploy.sh && ./deploy.sh $GH_PACKAGES_USER $GH_PACKAGES_TOKEN
+    on:
+      branch: master
+  - provider: pages
+    skip_cleanup: true
+    local_dir: UVACanvasAccess/docs/html
+    github_token: $GH_REPO_TOKEN
+    on:
+      branch: master

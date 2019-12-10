@@ -1,7 +1,9 @@
 */docs/
 docs/
+UVACanvasAccess/docs
 .idea/
 packages/
 */bin/
 */obj/
 *.user
+*.nupkg

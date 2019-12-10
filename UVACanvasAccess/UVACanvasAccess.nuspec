@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$version$</version>
+    <version>1.0.0-rev1-build$BuildVersion$</version>
     <title>$title$</title>
     <authors>University View Academy</authors>
     <owners>University View Academy</owners>
@@ -10,6 +10,7 @@
     <description>Library for using the Canvas API.</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2019</copyright>
+    <repository type="git" url="https://github.com/uvadev/UVACanvasAccess"/>
     <tags></tags>
   </metadata>
 </package>

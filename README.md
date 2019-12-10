@@ -1,4 +1,4 @@
-## UVACanvasAccess
+## UVACanvasAccess [![Build Status](https://travis-ci.org/uvadev/UVACanvasAccess.svg?branch=master)](https://travis-ci.org/uvadev/UVACanvasAccess)
 A .NET wrapper for the Canvas LMS API.
 
 ### Docs
