@@ -542,5 +542,13 @@ namespace UVACanvasAccess.Util {
             return seq.GroupBy(keySelector)
                       .SelectAwait(gp => gp.FirstAsync());
         }
+
+        public static T Expect<T>(this T? nullableT, Func<Exception> exceptionProvider = null) where T: struct {
+            if (nullableT.HasValue) {
+                return nullableT.Value;
+            }
+
+            throw exceptionProvider?.Invoke() ?? new NullReferenceException("Expect() failed");
+        }
     }
 }
