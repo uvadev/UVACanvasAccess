@@ -195,6 +195,7 @@
     <Compile Include="Builders\CreateDiscussionTopicBuilder.cs" />
     <Compile Include="Builders\CreateUserBuilder.cs" />
     <Compile Include="Debugging\TraceToStdErr.cs" />
+    <Compile Include="Exceptions\BadApiStateException.cs" />
     <Compile Include="Exceptions\CommunicationException.cs" />
     <Compile Include="Exceptions\DoesNotExistException.cs" />
     <Compile Include="Model\Accounts\AccountModel.cs" />
@@ -347,6 +348,12 @@
     <Compile Include="Structures\GradeChangelog\GradeChangeEventLinks.cs" />
     <Compile Include="Structures\Groups\Group.cs" />
     <Compile Include="Structures\Groups\GroupMembership.cs" />
+    <Compile Include="Structures\Modules\CompletionRequirement.cs" />
+    <Compile Include="Structures\Modules\ContentDetails.cs" />
+    <Compile Include="Structures\Modules\Module.cs" />
+    <Compile Include="Structures\Modules\ModuleItem.cs" />
+    <Compile Include="Structures\Modules\ModuleItemSequence.cs" />
+    <Compile Include="Structures\Modules\ModuleItemSequenceNode.cs" />
     <Compile Include="Structures\Pages\Page.cs" />
     <Compile Include="Structures\Pages\PageRevision.cs" />
     <Compile Include="Structures\Pages\PageRoles.cs" />

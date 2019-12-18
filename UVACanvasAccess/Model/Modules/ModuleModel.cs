@@ -28,7 +28,7 @@ namespace UVACanvasAccess.Model.Modules {
         
         [CanBeNull]
         [JsonProperty("prerequisite_module_ids")]
-        public List<ulong> PrerequisiteModuleIds { get; set; }
+        public IEnumerable<ulong> PrerequisiteModuleIds { get; set; }
         
         [JsonProperty("items_count")]
         public uint ItemsCount { get; set; }
@@ -40,7 +40,7 @@ namespace UVACanvasAccess.Model.Modules {
         [CanBeNull]
         [Enigmatic] // can be null if "the module is deemed too large", even if opted-in
         [JsonProperty("items")]
-        public List<ModuleItemModel> Items { get; set; }
+        public IEnumerable<ModuleItemModel> Items { get; set; }
         
         [CanBeNull]
         [JsonProperty("state")]

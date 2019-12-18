@@ -22,7 +22,7 @@ namespace UVACanvasAccess.Model.Modules {
         public uint? Indent { get; set; }
         
         [JsonProperty("type")]
-        public string Type { get; set; } // todo make sure this is an enum in Structure class
+        public string Type { get; set; }
         
         [JsonProperty("content_id")]
         public ulong? ContentId { get; set; }

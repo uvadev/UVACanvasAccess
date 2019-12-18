@@ -6,6 +6,6 @@ namespace UVACanvasAccess.Model.Modules {
     internal class ModuleItemSequenceModel {
         
         [JsonProperty("items")]
-        public List<ModuleItemSequenceNodeModel> Items { get; set; }
+        public IEnumerable<ModuleItemSequenceNodeModel> Items { get; set; }
     }
 }
