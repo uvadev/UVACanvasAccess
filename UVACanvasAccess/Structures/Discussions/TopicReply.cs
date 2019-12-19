@@ -1,6 +1,6 @@
 using System;
 using JetBrains.Annotations;
-using StatePrinting;
+
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Util;
@@ -39,10 +39,7 @@ namespace UVACanvasAccess.Structures.Discussions {
             CreatedAt = model.CreatedAt;
         }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
         
         public  string ToPrettyString() {
             return "TopicReply {" + 

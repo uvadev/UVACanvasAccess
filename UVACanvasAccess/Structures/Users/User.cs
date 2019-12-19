@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using StatePrinting;
+
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Enrollments;
@@ -101,10 +101,7 @@ namespace UVACanvasAccess.Structures.Users {
             Permissions = model.Permissions ?? new Dictionary<string, bool>();
         }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
 
         public string ToPrettyString() {
             return "User {" + 

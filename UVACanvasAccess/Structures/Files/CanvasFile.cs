@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using StatePrinting;
+
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Util;
@@ -84,10 +84,7 @@ namespace UVACanvasAccess.Structures.Files {
             PreviewUrl = model.PreviewUrl;
         }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
 
         public string ToPrettyString() {
             return "CanvasFile { " +

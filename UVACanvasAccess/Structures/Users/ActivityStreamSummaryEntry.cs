@@ -1,5 +1,5 @@
 using JetBrains.Annotations;
-using StatePrinting;
+
 using UVACanvasAccess.Model.Users;
 
 namespace UVACanvasAccess.Structures.Users {
@@ -16,9 +16,6 @@ namespace UVACanvasAccess.Structures.Users {
             Count = model.Count;
         }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Users {
     internal class AvatarModel {
@@ -28,9 +28,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("size")]
         public ulong Size { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

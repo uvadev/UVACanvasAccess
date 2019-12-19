@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Discussions {
     
@@ -17,9 +17,6 @@ namespace UVACanvasAccess.Model.Discussions {
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

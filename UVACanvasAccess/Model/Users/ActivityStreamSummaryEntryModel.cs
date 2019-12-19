@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Users {
     
@@ -14,9 +14,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("count")]
         public uint Count { get; set; }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

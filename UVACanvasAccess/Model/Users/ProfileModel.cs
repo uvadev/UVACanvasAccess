@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Users {
     internal class ProfileModel {
@@ -46,9 +46,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("locale")]
         public string Locale { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

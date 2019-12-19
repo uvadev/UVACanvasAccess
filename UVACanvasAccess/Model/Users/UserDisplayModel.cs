@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Users {
     
@@ -23,9 +23,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("html_url")]
         public string HtmlUrl { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

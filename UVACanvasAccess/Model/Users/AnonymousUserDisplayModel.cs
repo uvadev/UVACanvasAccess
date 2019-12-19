@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Users {
     internal class AnonymousUserDisplayModel {
@@ -10,9 +10,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("avatar_image_url")]
         public string AvatarImageUrl { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

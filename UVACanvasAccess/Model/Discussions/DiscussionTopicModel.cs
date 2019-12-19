@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Discussions {
     
@@ -109,9 +109,6 @@ namespace UVACanvasAccess.Model.Discussions {
         [JsonProperty("sort_by_rating")]
         public bool? SortByRating { get; set; }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

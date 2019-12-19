@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using StatePrinting;
+
 using UVACanvasAccess.Model.Enrollments;
 
 namespace UVACanvasAccess.Model.Users {
@@ -58,9 +58,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("permissions")]
         public Dictionary<string, bool> Permissions { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

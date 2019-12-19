@@ -1,5 +1,5 @@
 using JetBrains.Annotations;
-using StatePrinting;
+
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Util;
@@ -94,10 +94,7 @@ namespace UVACanvasAccess.Structures.Users {
             Locale = model.Locale;
         }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
 
         public string ToPrettyString() {
             return "Profile {" + 

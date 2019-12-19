@@ -1,6 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Discussions {
     
@@ -30,9 +30,6 @@ namespace UVACanvasAccess.Model.Discussions {
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

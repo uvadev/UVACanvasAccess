@@ -1,6 +1,6 @@
 using System;
 using JetBrains.Annotations;
-using StatePrinting;
+
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Util;
@@ -116,10 +116,7 @@ namespace UVACanvasAccess.Structures.Users {
             Links = new PageViewLinks(api, model.Links);
         }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
 
         public string ToPrettyString() {
             return "PageView {" +

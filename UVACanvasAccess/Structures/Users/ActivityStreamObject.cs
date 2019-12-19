@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 using JetBrains.Annotations;
-using StatePrinting;
+
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
 
@@ -69,10 +69,7 @@ namespace UVACanvasAccess.Structures.Users {
             }
         }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
 
         public class DiscussionTopic : ActivityStreamObject {
             

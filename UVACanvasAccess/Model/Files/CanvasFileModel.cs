@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Files {
     internal class CanvasFileModel {
@@ -73,9 +73,6 @@ namespace UVACanvasAccess.Model.Files {
         [JsonProperty("preview_url")]
         public string PreviewUrl { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

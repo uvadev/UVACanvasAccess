@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Discussions {
     
@@ -46,9 +46,6 @@ namespace UVACanvasAccess.Model.Discussions {
         [JsonProperty("has_more_replies")]
         public bool? HasMoreReplies { get; set; }
         
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

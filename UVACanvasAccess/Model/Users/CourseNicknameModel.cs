@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Users {
     internal class CourseNicknameModel {
@@ -13,9 +13,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("nickname")]
         public string Nickname { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }

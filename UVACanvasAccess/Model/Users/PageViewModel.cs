@@ -1,6 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using StatePrinting;
+
 
 namespace UVACanvasAccess.Model.Users {
     internal class PageViewModel {
@@ -53,9 +53,6 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("links")]
         public PageViewLinksModel Links { get; set; }
 
-        private static readonly Stateprinter Printer = new Stateprinter();
-        public override string ToString() {
-            return Printer.PrintObject(this);
-        }
+        
     }
 }
