@@ -15,8 +15,10 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <remarks>
         /// Canvas allows these includes to be omitted even if requested if they exceed an unspecified size.
-        /// Consider using explicit list items methods instead of relying on includes.
+        /// Consider using <see cref="StreamModuleItems"/> for this data instead of relying on includes.
         /// </remarks>
+        /// <seealso cref="Api.StreamModules"/>
+        /// <seealso cref="Api.GetModule"/>
         public enum ModuleIncludeType : byte {
             /// <summary>
             /// No additional includes requested.
@@ -42,6 +44,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>The stream of modules.</returns>
         /// <remarks>
         /// Canvas does not guarantee that includes requested in <paramref name="includes"/> will actually be included.
+        /// Consider using <see cref="StreamModuleItems"/>.
         /// </remarks>
         public async IAsyncEnumerable<Module> StreamModules(ulong courseId,
                                                             [CanBeNull] string searchTerm = null,
@@ -79,6 +82,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>The module.</returns>
         /// <remarks>
         /// Canvas does not guarantee that includes requested in <paramref name="includes"/> will actually be included.
+        /// Consider using <see cref="StreamModuleItems"/>.
         /// </remarks>
         public async Task<Module> GetModule(ulong moduleId, 
                                             ulong courseId,
@@ -102,6 +106,33 @@ namespace UVACanvasAccess.ApiParts {
 
             var model = JsonConvert.DeserializeObject<ModuleModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
             return new Module(this, model);
+        }
+
+        /// <summary>
+        /// Streams the items in a module.
+        /// </summary>
+        /// <param name="moduleId">The module id.</param>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="includeContentDetails">(Optional; default = true) Whether or not to include content details.</param>
+        /// <param name="searchTerm">(Optional) A search term.</param>
+        /// <param name="studentId">(Optional) A student id. Returns module completion information for this student if specified.</param>
+        /// <returns></returns>
+        public async IAsyncEnumerable<ModuleItem> StreamModuleItems(ulong moduleId,
+                                                                    ulong courseId,
+                                                                    bool includeContentDetails = true,
+                                                                    [CanBeNull] string searchTerm = null,
+                                                                    ulong? studentId = null) {
+            (string, string)[] args = {
+                ("search_term", searchTerm),
+                ("student_id", studentId?.ToString()),
+                ("include[]", includeContentDetails ? "content_details" : null)
+            };
+
+            var response = await _client.GetAsync($"courses/{courseId}/modules/{moduleId}/items" + BuildDuplicateKeyQueryString(args));
+            
+            await foreach (var model in StreamDeserializePages<ModuleItemModel>(response)) {
+                yield return new ModuleItem(this, model);
+            }
         }
     }
 }
