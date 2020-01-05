@@ -134,5 +134,25 @@ namespace UVACanvasAccess.ApiParts {
                 yield return new ModuleItem(this, model);
             }
         }
+
+        /// <summary>
+        /// Given an asset, find the module item sequence it belongs to.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assetType">The asset type.</param>
+        /// <param name="assetId">The asset id.</param>
+        /// <returns>The item sequence.</returns>
+        public async Task<ModuleItemSequence> GetModuleItemSequence(ulong courseId, 
+                                                                    ModuleAssetType assetType,
+                                                                    ulong assetId) {
+            (string, string)[] args = {
+                ("asset_type", assetType.GetApiRepresentation()),
+                ("asset_id", assetId.ToString())
+            };
+            
+            var response = await _client.GetAsync($"courses/{courseId}/module_item_sequence" + BuildDuplicateKeyQueryString(args));
+            var model = JsonConvert.DeserializeObject<ModuleItemSequenceModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
+            return new ModuleItemSequence(this, model);
+        }
     }
 }

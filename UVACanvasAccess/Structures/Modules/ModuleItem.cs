@@ -25,6 +25,24 @@ namespace UVACanvasAccess.Structures.Modules {
         [ApiRepresentation("ExternalTool")]
         ExternalTool
     }
+
+    [PublicAPI]
+    public enum ModuleAssetType : byte {
+        [ApiRepresentation("ModuleItem")]
+        ModuleItem,
+        [ApiRepresentation("File")]
+        File,
+        [ApiRepresentation("Page")]
+        Page,
+        [ApiRepresentation("Discussion")]
+        Discussion,
+        [ApiRepresentation("Assignment")]
+        Assignment,
+        [ApiRepresentation("Quiz")]
+        Quiz,
+        [ApiRepresentation("ExternalTool")]
+        ExternalTool
+    }
     
     [PublicAPI]
     public class ModuleItem : IPrettyPrint {
