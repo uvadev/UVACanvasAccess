@@ -15,13 +15,28 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.ApiParts {
     public partial class Api {
 
+        /// <summary>
+        /// Additional data which can be included in <see cref="Account"/> responses.
+        /// </summary>
         [Flags]
         public enum AccountIncludes : byte {
+            /// <summary>
+            /// No additional data.
+            /// </summary>
             Default = 0,
+            /// <summary>
+            /// Include LTI GUID.
+            /// </summary>
             [ApiRepresentation("lti_guid")]
             LtiGuid = 1 << 0,
+            /// <summary>
+            /// Include registration settings.
+            /// </summary>
             [ApiRepresentation("registration_settings")]
             RegistrationSettings = 1 << 1,
+            /// <summary>
+            /// Include services.
+            /// </summary>
             [ApiRepresentation("services")]
             Services = 1 << 2
         }
@@ -178,22 +193,49 @@ namespace UVACanvasAccess.ApiParts {
         [Flags]
         [PublicAPI]
         public enum AccountLevelCourseIncludes : byte {
+            /// <summary>
+            /// Include the course syllabus body.
+            /// </summary>
             [ApiRepresentation("syllabus_body")]
             SyllabusBody = 1 << 0,
+            /// <summary>
+            /// Include the course term.
+            /// </summary>
             [ApiRepresentation("term")]
             Term = 1 << 1,
+            /// <summary>
+            /// Include the course progress.
+            /// </summary>
             [ApiRepresentation("course_progress")]
             CourseProgress = 1 << 2,
+            /// <summary>
+            /// Include the storage quota used by the course.
+            /// </summary>
             [ApiRepresentation("storage_quota_used_mb")]
             StorageQuotaUsedMb = 1 << 3,
+            /// <summary>
+            /// Include the total amount of students in the course.
+            /// </summary>
             [ApiRepresentation("total_students")]
             TotalStudents = 1 << 4,
+            /// <summary>
+            /// Include course teacher data.
+            /// </summary>
             [ApiRepresentation("teachers")]
             Teachers = 1 << 5,
+            /// <summary>
+            /// Include the account name.
+            /// </summary>
             [ApiRepresentation("account_name")]
             AccountName = 1 << 6,
+            /// <summary>
+            /// Include the course's conclusion status.
+            /// </summary>
             [ApiRepresentation("concluded")]
             Concluded = 1 << 7,
+            /// <summary>
+            /// Include everything.
+            /// </summary>
             Everything = byte.MaxValue
         }
 
@@ -202,12 +244,24 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         [PublicAPI]
         public enum CourseSort : byte {
+            /// <summary>
+            /// Sort by course name.
+            /// </summary>
             [ApiRepresentation("course_name")]
             CourseName,
+            /// <summary>
+            /// Sort by course SIS id.
+            /// </summary>
             [ApiRepresentation("sis_course_id")]
             SisCourseId,
+            /// <summary>
+            /// Sort by teacher.
+            /// </summary>
             [ApiRepresentation("teacher")]
             Teacher,
+            /// <summary>
+            /// Sort by the account the course is under.
+            /// </summary>
             [ApiRepresentation("account_name")]
             AccountName
         }

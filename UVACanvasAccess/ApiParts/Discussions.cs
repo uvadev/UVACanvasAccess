@@ -36,10 +36,19 @@ namespace UVACanvasAccess.ApiParts {
         /// An ordering that can be applied to sets of <see cref="DiscussionTopic"/>.
         /// </summary>
         public enum DiscussionTopicOrdering {
+            /// <summary>
+            /// Order by the topic position.
+            /// </summary>
             [ApiRepresentation("position")]
             Position,
+            /// <summary>
+            /// Order by recent activity.
+            /// </summary>
             [ApiRepresentation("recent_activity")]
             RecentActivity,
+            /// <summary>
+            /// Order by the topic title.
+            /// </summary>
             [ApiRepresentation("title")]
             Title
         }

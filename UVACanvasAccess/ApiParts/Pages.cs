@@ -11,12 +11,24 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.ApiParts {
     public partial class Api {
 
+        /// <summary>
+        /// Keys by which a <see cref="Page"/> can be sorted.
+        /// </summary>
         [PublicAPI]
         public enum PageSort {
+            /// <summary>
+            /// Sort by the page title/
+            /// </summary>
             [ApiRepresentation("title")]
             Title,
+            /// <summary>
+            /// Sort by the page creation date.
+            /// </summary>
             [ApiRepresentation("created_at")]
             CreatedAt,
+            /// <summary>
+            /// Sort by the page update date.
+            /// </summary>
             [ApiRepresentation("updated_at")]
             UpdatedAt
         }

@@ -324,10 +324,19 @@ namespace UVACanvasAccess.ApiParts {
             Descending
         }
 
+        /// <summary>
+        /// Behavior when encountering a duplicate item.
+        /// </summary>
         [PublicAPI]
         public enum OnDuplicate : byte  {
+            /// <summary>
+            /// Overwrite the previous item with the new item.
+            /// </summary>
             [ApiRepresentation("overwrite")]
             Overwrite,
+            /// <summary>
+            /// Rename the new item.
+            /// </summary>
             [ApiRepresentation("rename")]
             Rename
         }
