@@ -223,9 +223,9 @@ namespace UVACanvasAccess.ApiParts {
         /// Streams all enrollments for the course.
         /// </summary>
         /// <param name="courseId">The course id.</param>
-        /// <param name="types">Optionally, the set of enrollment types to filter by.</param>
-        /// <param name="states">Optionally, the set of enrollment states to filter by.</param>
-        /// <param name="includes">Optional data to include in the result.</param>
+        /// <param name="types">(Optional) The set of enrollment types to filter by.</param>
+        /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
+        /// <param name="includes">(Optional) Data to include in the result.</param>
         /// <returns>The stream of enrollments.</returns>
         // todo params
         // todo {types, states} should probably be flags
@@ -258,9 +258,9 @@ namespace UVACanvasAccess.ApiParts {
         /// Streams all enrollments for the user.
         /// </summary>
         /// <param name="userId">The user id.</param>
-        /// <param name="types">Optionally, the set of enrollment types to filter by.</param>
-        /// <param name="states">Optionally, the set of enrollment states to filter by.</param>
-        /// <param name="includes">Optional data to include in the result.</param>
+        /// <param name="types">(Optional) The set of enrollment types to filter by.</param>
+        /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
+        /// <param name="includes">(Optional) Data to include in the result.</param>
         /// <returns>The stream of enrollments.</returns>
         // todo params
         // todo {types, states} should probably be flags

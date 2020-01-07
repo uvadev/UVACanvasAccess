@@ -147,5 +147,18 @@ namespace UVACanvasAccess.Structures.Users {
                                            : new CourseEnrollmentState[]{};
             return !await _api.StreamUserEnrollments(Id, new[] {TeacherEnrollment}, state).IsEmptyAsync();
         }
+
+        /// <summary>
+        /// Streams all enrollments for this user.
+        /// </summary>
+        /// <param name="types">(Optional) The set of enrollment types to filter by.</param>
+        /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
+        /// <param name="includes">(Optional) Data to include in the result.</param>
+        /// <returns>The stream of enrollments.</returns>
+        public IAsyncEnumerable<Enrollment> StreamEnrollments(IEnumerable<CourseEnrollmentType> types = null,
+                                                              IEnumerable<CourseEnrollmentState> states = null,
+                                                              CourseEnrollmentIncludes? includes = null) {
+            return _api.StreamUserEnrollments(Id, types, states, includes);
+        }
     }
 }
