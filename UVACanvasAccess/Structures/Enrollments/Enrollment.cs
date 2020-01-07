@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Enrollments;
@@ -163,6 +164,44 @@ namespace UVACanvasAccess.Structures.Enrollments {
             CurrentPeriodUnpostedFinalGrade = model.CurrentPeriodUnpostedFinalGrade;
         }
 
+        /// <summary>
+        /// Concludes this enrollment without deleting it. <br/>
+        /// This is the same action that occurs automatically when the user reaches the end of their time in the course,
+        /// such as at the end of the school year.
+        /// </summary>
+        /// <returns>The concluded enrollment.</returns>
+        /// <remarks>
+        /// This object will be outdated once the operation completes. Use the returned object instead.
+        /// </remarks>
+        [Pure]
+        public Task<Enrollment> Conclude() {
+            return _api.ConcludeEnrollment(CourseId, Id);
+        }
+
+        /// <summary>
+        /// Irrecoverably deletes this enrollment.
+        /// </summary>
+        /// <returns>The deleted enrollment.</returns>
+        /// <remarks>
+        /// This object will be outdated once the operation completes. Use the returned object instead.
+        /// </remarks>
+        [Pure]
+        public Task<Enrollment> Delete() {
+            return _api.DeleteEnrollment(CourseId, Id);
+        }
+
+        /// <summary>
+        /// Sets an enrollment to <see cref="Api.CourseEnrollmentState.Inactive"/>.
+        /// </summary>
+        /// <returns>The inactivated enrollment.</returns>
+        /// <remarks>
+        /// This object will be outdated once the operation completes. Use the returned object instead.
+        /// </remarks>
+        [Pure]
+        public Task<Enrollment> Deactivate() {
+            return _api.DeactivateEnrollment(CourseId, Id);
+        }
+        
         public string ToPrettyString() {
             return "Enrollment {" + 
                    ($"\n{nameof(Id)}: {Id}," +
