@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -270,6 +270,8 @@
     <Compile Include="Model\Pages\PageRevisionModel.cs" />
     <Compile Include="Model\ProficiencyRatings\ProficiencyModel.cs" />
     <Compile Include="Model\ProficiencyRatings\ProficiencyRatingModel.cs" />
+    <Compile Include="Model\Quizzes\QuizModel.cs" />
+    <Compile Include="Model\Quizzes\QuizPermissionsModel.cs" />
     <Compile Include="Model\Reports\ReportDescriptionModel.cs" />
     <Compile Include="Model\Reports\ReportModel.cs" />
     <Compile Include="Model\Results\ResultModel.cs" />
@@ -361,6 +363,8 @@
     <Compile Include="Structures\ProficiencyRatings\Proficiency.cs" />
     <Compile Include="Structures\ProficiencyRatings\ProficiencyRating.cs" />
     <Compile Include="Structures\QualifiedId.cs" />
+    <Compile Include="Structures\Quizzes\Quiz.cs" />
+    <Compile Include="Structures\Quizzes\QuizPermissions.cs" />
     <Compile Include="Structures\Reports\Report.cs" />
     <Compile Include="Structures\Reports\ReportDescription.cs" />
     <Compile Include="Structures\Results\Result.cs" />
