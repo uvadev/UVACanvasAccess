@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -281,6 +281,7 @@
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionModel.cs" />
+    <Compile Include="Model\ToDos\ToDoItemModel.cs" />
     <Compile Include="Model\Users\ActivityStreamObjectModel.cs" />
     <Compile Include="Model\Users\ActivityStreamSummaryEntryModel.cs" />
     <Compile Include="Model\Users\AnonymousUserDisplayModel.cs" />
@@ -380,6 +381,7 @@
     <Compile Include="Structures\Submissions\Submission.cs" />
     <Compile Include="Structures\Submissions\SubmissionComment.cs" />
     <Compile Include="Structures\Submissions\SubmissionTypes.cs" />
+    <Compile Include="Structures\ToDos\ToDoItem.cs" />
     <Compile Include="Structures\Users\ActivityStreamObject.cs" />
     <Compile Include="Structures\Users\ActivityStreamSummaryEntry.cs" />
     <Compile Include="Structures\Users\PageView.cs" />

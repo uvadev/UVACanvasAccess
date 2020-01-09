@@ -5,7 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UVACanvasAccess.Builders;
+using UVACanvasAccess.Model.ToDos;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.ToDos;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
@@ -171,6 +173,18 @@ namespace UVACanvasAccess.ApiParts {
         public async Task<User> DeleteUser(ulong userId, ulong? accountId = null) {
             var response = await _client.DeleteAsync($"accounts/{accountId?.ToString() ?? "self"}/users/{userId}");
             return new User(this, JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync()));
+        }
+
+        public async IAsyncEnumerable<ToDoItem> StreamToDoItems(bool includeUngradedQuizzes = false) {
+            (string, string)[] args = includeUngradedQuizzes switch {
+                true => new[] {("include[]", "ungraded_quizzes")},
+                _    => new (string, string)[] { }
+            };
+
+            var response = await _client.GetAsync("users/self/todo" + BuildQueryString(args));
+            await foreach (var model in StreamDeserializePages<ToDoItemModel>(response)) {
+                yield return ToDoItem.NewToDoItem(this, model);
+            }
         }
     }
 }
