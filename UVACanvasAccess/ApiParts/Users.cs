@@ -5,8 +5,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UVACanvasAccess.Builders;
+using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Model.ToDos;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Structures.ToDos;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
@@ -189,6 +191,32 @@ namespace UVACanvasAccess.ApiParts {
             var response = await _client.GetAsync("users/self/todo" + BuildQueryString(args));
             await foreach (var model in StreamDeserializePages<ToDoItemModel>(response)) {
                 yield return ToDoItem.NewToDoItem(this, model);
+            }
+        }
+
+        /// <summary>
+        /// Stream a user's past-due assignments which have no submissions.
+        /// </summary>
+        /// <param name="userId">(Optional) The user id. <c>Self</c> by default.</param>
+        /// <param name="submittableOnly">(Optional) Only return assignments which still accept submissions.</param>
+        /// <param name="includePlannerOverrides">(Optional) Include planner overrides in the assignments.</param>
+        /// <param name="includeCourse">(Optional) Include courses in the assignments.</param>
+        /// <returns>The stream of assignments.</returns>
+        /// <remarks>If not calling this method on <c>self</c>, the caller must be an admin or observer.</remarks>
+        public async IAsyncEnumerable<Assignment> StreamMissingAssignments(ulong? userId = null, 
+                                                                           bool submittableOnly = false,
+                                                                           bool includePlannerOverrides = false,
+                                                                           bool includeCourse = false) {
+            (string, string)[] args = {
+                ("filter[]", submittableOnly ? "submittable" : null),
+                ("include[]", includePlannerOverrides ? "planner_overrides" : null),
+                ("include[]", includeCourse ? "course" : null)
+            };
+
+            var u = userId != null ? userId.ToString() : "self";
+            var response = await _client.GetAsync($"users/{u}/missing_submissions" + BuildDuplicateKeyQueryString(args));
+            await foreach (var model in StreamDeserializePages<AssignmentModel>(response)) {
+                yield return new Assignment(this, model);
             }
         }
 
