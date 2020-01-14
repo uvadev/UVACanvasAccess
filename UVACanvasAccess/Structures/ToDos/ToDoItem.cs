@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Exceptions;
@@ -48,6 +49,22 @@ namespace UVACanvasAccess.Structures.ToDos {
             } else {
                 return new QuizToDoItem(api, model);
             }
+        }
+
+        /// <summary>
+        /// Hide this item from future requests until it changes.
+        /// </summary>
+        /// <returns>A Task representing completion of this request.</returns>
+        public Task Ignore() {
+            return _api.IgnoreToDoItem(this, false);
+        }
+
+        /// <summary>
+        /// Hide this item from all future requests.
+        /// </summary>
+        /// <returns>A Task representing completion of this request.</returns>
+        public Task IgnorePermanently() {
+            return _api.IgnoreToDoItem(this, true);
         }
 
         public abstract string ToPrettyString();

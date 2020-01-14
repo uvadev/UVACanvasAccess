@@ -186,5 +186,13 @@ namespace UVACanvasAccess.ApiParts {
                 yield return ToDoItem.NewToDoItem(this, model);
             }
         }
+
+        internal async Task IgnoreToDoItem(ToDoItem item, bool permanent) {
+            if (permanent) {
+                await _client.GetAsync(item.PermanentIgnoreUrl);
+            } else {
+                await _client.GetAsync(item.IgnoreUrl);
+            }
+        }
     }
 }
