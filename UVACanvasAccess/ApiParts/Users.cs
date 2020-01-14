@@ -175,6 +175,11 @@ namespace UVACanvasAccess.ApiParts {
             return new User(this, JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync()));
         }
 
+        /// <summary>
+        /// Stream the current user's to-do items.
+        /// </summary>
+        /// <param name="includeUngradedQuizzes">(Optional) If true, include ungraded quizzes.</param>
+        /// <returns>The stream of to-do items.</returns>
         public async IAsyncEnumerable<ToDoItem> StreamToDoItems(bool includeUngradedQuizzes = false) {
             (string, string)[] args = includeUngradedQuizzes switch {
                 true => new[] {("include[]", "ungraded_quizzes")},
