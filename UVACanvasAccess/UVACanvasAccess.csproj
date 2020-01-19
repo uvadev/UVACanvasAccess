@@ -224,6 +224,8 @@
     <Compile Include="Model\Authentications\AuthenticationEventModel.cs" />
     <Compile Include="Model\Authentications\AuthenticationEventsResponseModel.cs" />
     <Compile Include="Model\Calendar\CalendarEventModel.cs" />
+    <Compile Include="Model\ContentShares\ContentExportIdModel.cs" />
+    <Compile Include="Model\ContentShares\ContentShareModel.cs" />
     <Compile Include="Model\Conversations\ConversationMessageModel.cs" />
     <Compile Include="Model\Conversations\ConversationModel.cs" />
     <Compile Include="Model\Conversations\ConversationParticipantModel.cs" />
@@ -232,6 +234,7 @@
     <Compile Include="Model\Courses\CourseModel.cs" />
     <Compile Include="Model\Courses\CourseProgressModel.cs" />
     <Compile Include="Model\Courses\CourseSettingsModel.cs" />
+    <Compile Include="Model\Courses\ShortCourseModel.cs" />
     <Compile Include="Model\Courses\TermModel.cs" />
     <Compile Include="Model\Discussions\DiscussionTopicModel.cs" />
     <Compile Include="Model\Discussions\FileAttachmentModel.cs" />
@@ -290,6 +293,7 @@
     <Compile Include="Model\Users\PageViewModel.cs" />
     <Compile Include="Model\Users\PageViewLinksModel.cs" />
     <Compile Include="Model\Users\ProfileModel.cs" />
+    <Compile Include="Model\Users\ShortUserModel.cs" />
     <Compile Include="Model\Users\UserModel.cs" />
     <Compile Include="Model\Users\UserDisplayModel.cs" />
     <Compile Include="Structures\Accounts\Account.cs" />
@@ -323,6 +327,7 @@
     <Compile Include="Structures\Calendar\EventType.cs" />
     <Compile Include="Structures\Calendar\UserReservationCalendarEvent.cs" />
     <Compile Include="Structures\Calendar\TimeSlotCalendarEvent.cs" />
+    <Compile Include="Structures\ContentShares\ContentShare.cs" />
     <Compile Include="Structures\Conversations\Conversation.cs" />
     <Compile Include="Structures\Conversations\ConversationMessage.cs" />
     <Compile Include="Structures\Conversations\ConversationParticipant.cs" />
