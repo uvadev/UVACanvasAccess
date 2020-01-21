@@ -202,7 +202,7 @@ namespace UVACanvasAccess.Structures.Courses {
                    $"\n{nameof(StartAt)}: {StartAt}," +
                    $"\n{nameof(EndAt)}: {EndAt}," +
                    $"\n{nameof(Locale)}: {Locale}," +
-                   $"\n{nameof(Enrollments)}: {Enrollments.ToPrettyString()}," +
+                   $"\n{nameof(Enrollments)}: {Enrollments?.ToPrettyString()}," +
                    $"\n{nameof(TotalStudents)}: {TotalStudents}," +
                    $"\n{nameof(CalendarLink)}: {CalendarLink}," +
                    $"\n{nameof(DefaultView)}: {DefaultView}," +
