@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Exceptions;
 using UVACanvasAccess.Model.ContentShares;
+using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.ContentShares {
@@ -76,11 +77,11 @@ namespace UVACanvasAccess.Structures.ContentShares {
 
     [PublicAPI]
     public sealed class ContentShareWithSender : ContentShare {
-        public ulong SenderId { get; }
+        public ShortUser Sender { get; }
 
         internal ContentShareWithSender(Api api, ContentShareModel model) : base(api, model) {
             Debug.Assert(model.Sender != null, "model.Sender != null");
-            SenderId = model.Sender.Id;
+            Sender = new ShortUser(api, model.Sender);
         }
 
         public override string ToPrettyString() {
@@ -94,18 +95,18 @@ namespace UVACanvasAccess.Structures.ContentShares {
                     $"\n{nameof(CourseId)}: {CourseId}," +
                     $"\n{nameof(ReadState)}: {ReadState}," +
                     $"\n{nameof(ContentExportId)}: {ContentExportId}," +
-                    $"\n{nameof(SenderId)}: {SenderId}").Indent(4) + 
+                    $"\n{nameof(Sender)}: {Sender.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
     }
 
     [PublicAPI]
     public sealed class ContentShareWithReceivers : ContentShare {
-        public IEnumerable<ulong> ReceiverIds { get; }
+        public IEnumerable<ShortUser> Receivers { get; }
 
         internal ContentShareWithReceivers(Api api, ContentShareModel model) : base(api, model) {
             Debug.Assert(model.Receivers != null, "model.Receivers != null");
-            ReceiverIds = model.Receivers.SelectNotNull(r => r.Id);
+            Receivers = model.Receivers.SelectNotNull(r => new ShortUser(api, r));
         }
 
         public override string ToPrettyString() {
@@ -119,7 +120,7 @@ namespace UVACanvasAccess.Structures.ContentShares {
                     $"\n{nameof(CourseId)}: {CourseId}," +
                     $"\n{nameof(ReadState)}: {ReadState}," +
                     $"\n{nameof(ContentExportId)}: {ContentExportId}," +
-                    $"\n{nameof(ReceiverIds)}: {ReceiverIds.ToPrettyString()}").Indent(4) + 
+                    $"\n{nameof(Receivers)}: {Receivers.ToPrettyString()}").Indent(4) + 
                    "\n}";
         }
     }
