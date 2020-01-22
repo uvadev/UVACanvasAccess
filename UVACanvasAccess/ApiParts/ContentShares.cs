@@ -19,6 +19,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="contentId">The id of the content being shared.</param>
         /// <param name="senderId">(Optional) The id of the sender. Self by default.</param>
         /// <returns>The created content share.</returns>
+        [ContractAnnotation("receivers:null => halt")]
         public async Task<ContentShare> CreateContentShare([NotNull] IEnumerable<ulong> receivers,
                                                            ContentShareType contentType,
                                                            ulong contentId,
@@ -45,6 +46,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="contentId">The id of the content being shared.</param>
         /// <param name="senderId">(Optional) The id of the sender. Self by default.</param>
         /// <returns>The created content share.</returns>
+        [ContractAnnotation("receivers:null => halt")]
         public Task<ContentShare> CreateContentShare([NotNull] [ItemNotNull] IEnumerable<User> receivers, 
                                                      ContentShareType contentType, 
                                                      ulong contentId, 
@@ -76,6 +78,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <remarks>
         /// The current user must be an observer of <paramref name="sender"/>, or an administrator.
         /// </remarks>
+        [ContractAnnotation("sender:null => halt")]
         public IAsyncEnumerable<ContentShareWithReceivers> StreamSentContentShares([NotNull] User sender) {
             return StreamSentContentShares(sender.Id);
         }
@@ -104,8 +107,39 @@ namespace UVACanvasAccess.ApiParts {
         /// <remarks>
         /// The current user must be an observer of <paramref name="receiver"/>, or an administrator.
         /// </remarks>
+        [ContractAnnotation("receiver:null => halt")]
         public IAsyncEnumerable<ContentShareWithSender> StreamReceivedContentShares([NotNull] User receiver) {
             return StreamReceivedContentShares(receiver.Id);
+        }
+
+        /// <summary>
+        /// Get a single content share by its id and associated user.
+        /// </summary>
+        /// <param name="shareId">The id of the share.</param>
+        /// <param name="userId">(Optional) The user with whom the share is associated with. Self by default.</param>
+        /// <returns>The share.</returns>
+        /// <remarks>
+        /// The current user must be an observer of <paramref name="userId"/>, or an administrator.
+        /// </remarks>
+        public async Task<ContentShare> GetContentShare(ulong shareId, ulong? userId = null) {
+            var response = await _client.GetAsync($"users/{userId?.ToString() ?? "self"}/content_shares/{shareId}");
+            
+            var model = JsonConvert.DeserializeObject<ContentShareModel>(await response.Content.ReadAsStringAsync());
+            return ContentShare.NewContentShare(this, model);
+        }
+
+        /// <summary>
+        /// Get a single content share by its id and associated user.
+        /// </summary>
+        /// <param name="shareId">The id of the share.</param>
+        /// <param name="user">The user with whom the share is associated with.</param>
+        /// <returns>The share.</returns>
+        /// <remarks>
+        /// The current user must be an observer of <paramref name="user"/>, or an administrator.
+        /// </remarks>
+        [ContractAnnotation("user:null => halt")]
+        public Task<ContentShare> GetContentShare(ulong shareId, [NotNull] User user) {
+            return GetContentShare(shareId, user.Id);
         }
     }
 }
