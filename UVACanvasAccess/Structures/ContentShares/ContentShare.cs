@@ -26,26 +26,56 @@ namespace UVACanvasAccess.Structures.ContentShares {
         ModuleItem
     }
     
+    /// <summary>
+    /// Represents a content share between a sender and one or more receivers.
+    /// </summary>
     [PublicAPI]
     public abstract class ContentShare : IPrettyPrint {
         private readonly Api _api;
         
+        /// <summary>
+        /// The id of the share (for the current user).
+        /// </summary>
         public ulong Id { get; }
         
+        /// <summary>
+        /// The name of the shared content.
+        /// </summary>
         public string Name { get; }
         
+        /// <summary>
+        /// The type of the shared content.
+        /// </summary>
         public ContentShareType ContentType { get; }
         
+        /// <summary>
+        /// When the content was initially shared.
+        /// </summary>
         public DateTime CreatedAt { get; }
         
+        /// <summary>
+        /// When the content was last updated.
+        /// </summary>
         public DateTime? UpdatedAt { get; }
         
+        /// <summary>
+        /// The id of the user who sent or received the content, i.e., the subject of the api call which returned this object.
+        /// </summary>
         public ulong? UserId { get; }
         
+        /// <summary>
+        /// The id of the course this content was originally shared from. 
+        /// </summary>
         public ulong? CourseId { get; }
         
+        /// <summary>
+        /// Whether or not the recipient has viewed the share.
+        /// </summary>
         public bool ReadState { get; }
         
+        /// <summary>
+        /// The content export id associated with this share.
+        /// </summary>
         public ulong? ContentExportId { get; }
         
         public abstract string ToPrettyString();
@@ -75,8 +105,15 @@ namespace UVACanvasAccess.Structures.ContentShares {
         }
     }
 
+    /// <summary>
+    /// Represents a content share along with the sender.
+    /// </summary>
     [PublicAPI]
     public sealed class ContentShareWithSender : ContentShare {
+        
+        /// <summary>
+        /// The sender of this share.
+        /// </summary>
         public ShortUser Sender { get; }
 
         internal ContentShareWithSender(Api api, ContentShareModel model) : base(api, model) {
@@ -100,8 +137,15 @@ namespace UVACanvasAccess.Structures.ContentShares {
         }
     }
 
+    /// <summary>
+    /// Represents a content share along with the list of receivers.
+    /// </summary>
     [PublicAPI]
     public sealed class ContentShareWithReceivers : ContentShare {
+        
+        /// <summary>
+        /// The receivers of this share. 
+        /// </summary>
         public IEnumerable<ShortUser> Receivers { get; }
 
         internal ContentShareWithReceivers(Api api, ContentShareModel model) : base(api, model) {
