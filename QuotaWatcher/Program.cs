@@ -84,8 +84,15 @@ namespace QuotaWatcher {
                     if (used / quota < .85m) {
                         continue;
                     }
+                    
+                    var isTeacher = await await api.GetUser(user.Id)
+                                                   .ThenApply(u => u.IsTeacher());
 
-                    Console.WriteLine($"Noticed {user.Id, -4} - {Math.Round(used / quota * 100, 3), 8:####.000}%");
+                    if (isTeacher) {
+                        Console.WriteLine($"Noticed teacher {user.Id, -4} - {Math.Round(used / quota * 100, 3), 8:####.000}%");
+                    } else {
+                        Console.WriteLine($"Noticed non-teacher {user.Id, -4} - {Math.Round(used / quota * 100, 3), 8:####.000}%");
+                    }
                     
                     detectedUsers[user.Id.ToString()] = new JObject {
                         ["userSis"] = user.SisUserId,
@@ -94,18 +101,24 @@ namespace QuotaWatcher {
                         ["quotaUsedPercent"] = used / quota * 100
                     };
 
-                    if (sendMessage) {
-                        var message = string.Format(WarningMessageTemplate, 
-                                                    user.Name,
-                                                    Math.Round(used / quota * 100, 2), 
-                                                    Math.Round(used, 3));
+                    if (!sendMessage) 
+                        continue;
+                    
+                    if (isTeacher) {
+                        Console.WriteLine($"Didn't send a message to {user.Id} because they are a teacher.");
+                        continue;
+                    }
+                        
+                    var message = string.Format(WarningMessageTemplate, 
+                                                user.Name,
+                                                Math.Round(used / quota * 100, 2), 
+                                                Math.Round(used, 3));
 
-                        await foreach (var c in api.CreateConversation(new QualifiedId[] {user.Id},
-                                                                       message,
-                                                                       "File Storage Alert",
-                                                                       true)) {
-                            Console.WriteLine($"Sent the message to {user.Id}.\n{c.ToPrettyString()}\n------\n");
-                        }
+                    await foreach (var c in api.CreateConversation(new QualifiedId[] {user.Id},
+                                                                   message,
+                                                                   "File Storage Alert",
+                                                                   true)) {
+                        Console.WriteLine($"Sent the message to {user.Id}.\n{c.ToPrettyString()}\n------\n");
                     }
                 } catch (Exception e) {
                     Console.WriteLine($"Caught exception, skipping check for user {user.Id}.\n{e}\n");
