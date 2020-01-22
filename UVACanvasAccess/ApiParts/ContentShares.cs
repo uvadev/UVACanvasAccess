@@ -51,5 +51,61 @@ namespace UVACanvasAccess.ApiParts {
                                                      ulong? senderId = null) {
             return CreateContentShare(receivers.Select(r => r.Id), contentType, contentId, senderId);
         }
+
+        /// <summary>
+        /// Stream the content shares for which some user is a sender.
+        /// </summary>
+        /// <param name="userId">(Optional) The id of the sender. Self by default.</param>
+        /// <returns>The stream of shares.</returns>
+        /// <remarks>
+        /// If <paramref name="userId"/> is not Self, the current user must be an observer of the user, or an administrator.
+        /// </remarks>
+        public async IAsyncEnumerable<ContentShareWithReceivers> StreamSentContentShares(ulong? userId = null) {
+            var response = await _client.GetAsync($"users/{userId?.ToString() ?? "self"}/content_shares/sent");
+
+            await foreach (var model in StreamDeserializePages<ContentShareModel>(response)) {
+                yield return new ContentShareWithReceivers(this, model);
+            }
+        }
+        
+        /// <summary>
+        /// Stream the content shares for which some user is a sender.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <returns>The stream of shares.</returns>
+        /// <remarks>
+        /// The current user must be an observer of <paramref name="sender"/>, or an administrator.
+        /// </remarks>
+        public IAsyncEnumerable<ContentShareWithReceivers> StreamSentContentShares([NotNull] User sender) {
+            return StreamSentContentShares(sender.Id);
+        }
+        
+        /// <summary>
+        /// Stream the content shares for which some user is a receiver.
+        /// </summary>
+        /// <param name="userId">(Optional) The id of the receiver. Self by default.</param>
+        /// <returns>The stream of shares.</returns>
+        /// <remarks>
+        /// If <paramref name="userId"/> is not Self, the current user must be an observer of the user, or an administrator.
+        /// </remarks>
+        public async IAsyncEnumerable<ContentShareWithSender> StreamReceivedContentShares(ulong? userId = null) {
+            var response = await _client.GetAsync($"users/{userId?.ToString() ?? "self"}/content_shares/received");
+
+            await foreach (var model in StreamDeserializePages<ContentShareModel>(response)) {
+                yield return new ContentShareWithSender(this, model);
+            }
+        }
+        
+        /// <summary>
+        /// Stream the content shares for which some user is a receiver.
+        /// </summary>
+        /// <param name="receiver">The receiver.</param>
+        /// <returns>The stream of shares.</returns>
+        /// <remarks>
+        /// The current user must be an observer of <paramref name="receiver"/>, or an administrator.
+        /// </remarks>
+        public IAsyncEnumerable<ContentShareWithSender> StreamReceivedContentShares([NotNull] User receiver) {
+            return StreamReceivedContentShares(receiver.Id);
+        }
     }
 }
