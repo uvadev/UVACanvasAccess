@@ -141,5 +141,16 @@ namespace UVACanvasAccess.ApiParts {
         public Task<ContentShare> GetContentShare(ulong shareId, [NotNull] User user) {
             return GetContentShare(shareId, user.Id);
         }
+
+        /// <summary>
+        /// Delete a single content share by its id from the list of a user.
+        /// </summary>
+        /// <param name="shareId">The id of the share.</param>
+        /// <param name="userId">(Optional) The user whose view of the share will be deleted. Self by default.</param>
+        /// <returns>A void task.</returns>
+        /// <remarks>The share will still be visible to other users.</remarks>
+        public async Task DeleteContentShare(ulong shareId, ulong? userId = null) {
+            await _client.DeleteAsync($"users/{userId?.ToString() ?? "self"}/content_shares/{shareId}");
+        }
     }
 }
