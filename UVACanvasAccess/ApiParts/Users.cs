@@ -173,7 +173,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">The account the user is under. <c>self</c> by default.</param>
         /// <returns>The deleted user.</returns>
         public async Task<User> DeleteUser(ulong userId, ulong? accountId = null) {
-            var response = await _client.DeleteAsync($"accounts/{accountId?.ToString() ?? "self"}/users/{userId}");
+            var response = await _client.DeleteAsync($"accounts/{accountId.IdOrSelf()}/users/{userId}");
             return new User(this, JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync()));
         }
 
@@ -212,9 +212,8 @@ namespace UVACanvasAccess.ApiParts {
                 ("include[]", includePlannerOverrides ? "planner_overrides" : null),
                 ("include[]", includeCourse ? "course" : null)
             };
-
-            var u = userId != null ? userId.ToString() : "self";
-            var response = await _client.GetAsync($"users/{u}/missing_submissions" + BuildDuplicateKeyQueryString(args));
+            
+            var response = await _client.GetAsync($"users/{userId.IdOrSelf()}/missing_submissions" + BuildDuplicateKeyQueryString(args));
             await foreach (var model in StreamDeserializePages<AssignmentModel>(response)) {
                 yield return new Assignment(this, model);
             }

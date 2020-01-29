@@ -550,5 +550,7 @@ namespace UVACanvasAccess.Util {
 
             throw exceptionProvider?.Invoke() ?? new NullReferenceException("Expect() failed");
         }
+
+        internal static string IdOrSelf(this ulong? uId) => uId != null ? uId.ToString() : "self";
     }
 }

@@ -23,7 +23,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">The account. <c>self</c> by default.</param>
         /// <returns>The participation data.</returns>
         public Task<DepartmentParticipation> GetDepartmentParticipationData(ulong termId, ulong? accountId = null) {
-            return BaseGetDepartmentParticipationData($"terms/{termId}", accountId?.ToString() ?? "self");
+            return BaseGetDepartmentParticipationData($"terms/{termId}", accountId.IdOrSelf());
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace UVACanvasAccess.ApiParts {
         public Task<DepartmentParticipation> GetDefaultTermDepartmentParticipationData(bool currentCourses = true, 
                                                                                        ulong? accountId = null) {
             return BaseGetDepartmentParticipationData(currentCourses ? "current" : "completed",
-                                                      accountId?.ToString() ?? "self");
+                                                      accountId.IdOrSelf());
         }
 
         private async Task<Dictionary<byte, ulong>> BaseGetDepartmentGradeData(string infix, string accountId) {
@@ -87,7 +87,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">The account. <c>self</c> by default.</param>
         /// <returns>The statistics.</returns>
         public Task<DepartmentStatistics> GetDepartmentStatistics(ulong termId, ulong? accountId = null) {
-            return BaseGetDepartmentStatistics($"terms/{termId}", accountId?.ToString() ?? "self");
+            return BaseGetDepartmentStatistics($"terms/{termId}", accountId.IdOrSelf());
         }
 
         /// <summary>
@@ -101,8 +101,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>The statistics.</returns>
         public Task<DepartmentStatistics> GetDefaultTermDepartmentStatistics(bool currentCourses = true,
                                                                              ulong? accountId = null) {
-            return BaseGetDepartmentStatistics(currentCourses ? "current" : "completed",
-                                               accountId?.ToString() ?? "self");
+            return BaseGetDepartmentStatistics(currentCourses ? "current" : "completed", accountId.IdOrSelf());
         }
 
         /// <summary>
