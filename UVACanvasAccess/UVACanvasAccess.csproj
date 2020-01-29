@@ -243,6 +243,17 @@
     <Compile Include="Model\Discussions\TopicReplyModel.cs" />
     <Compile Include="Model\Enrollments\EnrollmentModel.cs" />
     <Compile Include="Model\Enrollments\GradeModel.cs" />
+    <Compile Include="Model\ExternalTools\AccountNavigationModel.cs" />
+    <Compile Include="Model\ExternalTools\CourseHomeSubNavigationModel.cs" />
+    <Compile Include="Model\ExternalTools\CourseNavigationModel.cs" />
+    <Compile Include="Model\ExternalTools\EditorButtonModel.cs" />
+    <Compile Include="Model\ExternalTools\ExternalToolModel.cs" />
+    <Compile Include="Model\ExternalTools\HomeworkSubmissionModel.cs" />
+    <Compile Include="Model\ExternalTools\LinkSelectionModel.cs" />
+    <Compile Include="Model\ExternalTools\MigrationSelectionModel.cs" />
+    <Compile Include="Model\ExternalTools\ResourceSelectionModel.cs" />
+    <Compile Include="Model\ExternalTools\ToolConfigurationModel.cs" />
+    <Compile Include="Model\ExternalTools\UserNavigationModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
     <Compile Include="Model\Files\FolderModel.cs" />
     <Compile Include="Model\Files\LicenseModel.cs" />
