@@ -11,15 +11,15 @@ namespace UVACanvasAccess.Model.ExternalTools {
         public string Text { get; set; }
         
         [JsonProperty("visible")]
-        public string Visibility { get; set; } // todo enum
+        public string Visibility { get; set; } 
         
         [JsonProperty("window_target")]
-        public string WindowTarget { get; set; } // todo enum
+        public string WindowTarget { get; set; } 
         
         [JsonProperty("default")]
         public bool? Default { get; set; }
         
         [JsonProperty("display_type")]
-        public string DisplayType { get; set; } // todo enum
+        public string DisplayType { get; set; } 
     }
 }

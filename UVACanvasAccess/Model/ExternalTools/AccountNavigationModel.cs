@@ -20,6 +20,6 @@ namespace UVACanvasAccess.Model.ExternalTools {
         public uint? SelectionHeight { get; set; }
         
         [JsonProperty("display_type")]
-        public string DisplayType { get; set; } // todo enum
+        public string DisplayType { get; set; } 
     }
 }

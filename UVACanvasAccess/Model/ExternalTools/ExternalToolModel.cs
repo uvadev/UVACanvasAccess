@@ -28,7 +28,7 @@ namespace UVACanvasAccess.Model.ExternalTools {
         public DateTime? UpdatedAt { get; set; }
         
         [JsonProperty("privacy_level")]
-        public string PrivacyLevel { get; set; } // todo enum
+        public string PrivacyLevel { get; set; } 
         
         [JsonProperty("custom_fields")]
         public Dictionary<string, string> CustomFields { get; set; }

@@ -14,6 +14,6 @@ namespace UVACanvasAccess.Model.ExternalTools {
         public string Text { get; set; }
         
         [JsonProperty("visibility")]
-        public string Visibility { get; set; } // todo enum
+        public string Visibility { get; set; } 
     }
 }
