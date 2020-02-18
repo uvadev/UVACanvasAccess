@@ -245,6 +245,12 @@ namespace UVACanvasAccess.ApiParts {
             return new CanvasFile(this, model);
         }
 
+        /// <summary>
+        /// Retrieve a hierarchy of personal folders from a path.
+        /// </summary>
+        /// <param name="parts">Each folder in the path, in order.</param>
+        /// <returns>The list of folders, starting from root and ending with the deepest subfolder.</returns>
+        /// <exception cref="DoesNotExistException">If the path given does not exist or is not visible.</exception>
         public async Task<IEnumerable<Folder>> ResolvePersonalFolderPath(params string[] parts) {
             var path = string.Join("/", parts);
             var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
@@ -259,6 +265,11 @@ namespace UVACanvasAccess.ApiParts {
                                 .Select(fm => new Folder(this, fm));
         }
 
+        /// <summary>
+        /// Determine if a personal folder exists at the given path.
+        /// </summary>
+        /// <param name="parts">Each folder in the path, in order.</param>
+        /// <returns>Whether or not the personal folder exists.</returns>
         public async Task<bool> PersonalFolderPathExists(params string[] parts) {
             var path = string.Join("/", parts);
             var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
