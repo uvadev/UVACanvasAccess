@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Structures.Files;
 using UVACanvasAccess.Util;
+using UVACanvasAccess.Exceptions;
 
 namespace UVACanvasAccess.ApiParts {
     
@@ -242,6 +243,20 @@ namespace UVACanvasAccess.ApiParts {
                                                                            : BuildDuplicateKeyQueryString(includes.GetFlagsApiRepresentations().Select(r => ("include[]", r)).ToArray())));
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
+        }
+
+        public async Task<IEnumerable<Folder>> ResolvePersonalFolderPath(params string[] parts) {
+            var path = string.Join("/", parts);
+            var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
+                                        .ThenApplyAwait(async r => await r.Content.ReadAsStringAsync())
+                                        .ThenApply(JToken.Parse)
+                                        .ThenApply(jt => jt.CheckError());
+            if (response.IsT1) {
+                throw new DoesNotExistException(response.AsT1);
+            }
+
+            return response.AsT0.ToObject<IEnumerable<FolderModel>>()
+                                .Select(fm => new Folder(this, fm));
         }
 
         [PublicAPI]

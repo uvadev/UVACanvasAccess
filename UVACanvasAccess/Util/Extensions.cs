@@ -495,6 +495,10 @@ namespace UVACanvasAccess.Util {
             return task.ContinueWith(t => f(t.Result));
         }
         
+        public static async Task<TO> ThenApplyAwait<TI, TO>(this Task<TI> task, Func<TI, Task<TO>> f) {
+            return await await task.ContinueWith(t => f(t.Result));
+        }
+        
         /// <summary>
         /// Asynchronously applies the consumer <paramref name="f"/> to the result of this task.
         /// </summary>
