@@ -259,6 +259,15 @@ namespace UVACanvasAccess.ApiParts {
                                 .Select(fm => new Folder(this, fm));
         }
 
+        public async Task<bool> PersonalFolderPathExists(params string[] parts) {
+            var path = string.Join("/", parts);
+            var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
+                                        .ThenApplyAwait(async r => await r.Content.ReadAsStringAsync())
+                                        .ThenApply(JToken.Parse)
+                                        .ThenApply(jt => jt.CheckError());
+            return response.IsT0;
+        }
+
         [PublicAPI]
         [Flags]
         public enum FileIncludes : byte {
