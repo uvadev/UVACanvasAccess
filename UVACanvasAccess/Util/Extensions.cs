@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OneOf;
 using UVACanvasAccess.Exceptions;
 using static UVACanvasAccess.ApiParts.Api;
 
@@ -552,5 +553,31 @@ namespace UVACanvasAccess.Util {
         }
 
         internal static string IdOrSelf(this ulong? uId) => uId != null ? uId.ToString() : "self";
+
+        internal static OneOf<JToken, string> CheckError(this JToken jt) {
+            if (jt.Type != JTokenType.Object) 
+                return OneOf<JToken, string>.FromT0(jt);
+            
+            var jo = (JObject) jt;
+            
+            if (!jo.ContainsKey("errors")) 
+                return OneOf<JToken, string>.FromT0(jt);
+            
+            if (jo["errors"].Type != JTokenType.Array) 
+                return OneOf<JToken, string>.FromT1("");
+            
+            var ja = (JArray) jo["errors"];
+            
+            if (ja.Count <= 0 || ja[0].Type != JTokenType.Object) 
+                return OneOf<JToken, string>.FromT1("");
+            
+            var e = (JObject) ja[0];
+            
+            if (e.ContainsKey("message") && e["message"].Type == JTokenType.String) {
+                return OneOf<JToken, string>.FromT1((string) e["message"]);
+            }
+
+            return OneOf<JToken, string>.FromT1("");
+        }
     }
 }
