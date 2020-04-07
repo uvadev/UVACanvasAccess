@@ -431,6 +431,16 @@ namespace UVACanvasAccess.Util {
                                      tuples.Select(e => e.Item2));
         }
 
+        [Pure]
+        internal static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> ie) {
+            return ie.SelectMany(e => e);
+        }
+        
+        [Pure]
+        internal static IAsyncEnumerable<T> Flatten<T>(this IAsyncEnumerable<IAsyncEnumerable<T>> iae) {
+            return iae.SelectMany(e => e);
+        }
+
         /// <summary>
         /// Flattens this <see cref="ILookup{TKey,TElement}"/> to a collection of key-value tuples.
         /// </summary>
@@ -480,6 +490,18 @@ namespace UVACanvasAccess.Util {
         
         [Pure]
         internal static IEnumerable<T> DiscardNullValue<T>(this IEnumerable<T?> ie) where T: struct {
+            return ie.Where(e => e != null)
+                     .Select(e => e.Value);
+        }
+        
+        [ItemNotNull]
+        [Pure]
+        internal static IAsyncEnumerable<T> DiscardNull<T>([ItemCanBeNull] this IAsyncEnumerable<T> ie) {
+            return ie.Where(e => e != null);
+        }
+        
+        [Pure]
+        internal static IAsyncEnumerable<T> DiscardNullValue<T>(this IAsyncEnumerable<T?> ie) where T: struct {
             return ie.Where(e => e != null)
                      .Select(e => e.Value);
         }

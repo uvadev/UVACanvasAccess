@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.Assignments;
+using UVACanvasAccess.Model.Courses;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Util;
 
@@ -19,7 +20,7 @@ namespace UVACanvasAccess.Model.Submissions {
         
         [CanBeNull]
         [JsonProperty("course")]
-        public object Course { get; set; }
+        public CourseModel Course { get; set; }
         
         [JsonProperty("attempt")]
         public uint? Attempt { get; set; }

@@ -1,9 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using JetBrains.Annotations;
 
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Users;
+using UVACanvasAccess.Structures.Assignments;
+using UVACanvasAccess.Structures.Courses;
+using UVACanvasAccess.Structures.Submissions;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
     
@@ -49,27 +55,115 @@ namespace UVACanvasAccess.Structures.Users {
         }
 
         internal static ActivityStreamObject FromModel(Api api, ActivityStreamObjectModel model) {
-            switch (model.Type) {
-                case "DiscussionTopic":
-                    return new DiscussionTopic(api, model);
-                case "Announcement":
-                    return new Announcement(api, model);
-                case "Conversation":
-                    return new Conversation(api, model);
-                case "Message":
-                    return new Message(api, model);
-                case "Conference":
-                    return new Conference(api, model);
-                case "Collaboration":
-                    return new Collaboration(api, model);
-                case "AssignmentRequest":
-                    return new AssignmentRequest(api, model);
-                default:
-                    throw new NotImplementedException("unknown ActivityStreamObject type " + model.Type);
+            return model.Type switch {
+                "DiscussionTopic"   => (ActivityStreamObject) new DiscussionTopic(api, model),
+                "Announcement"      => new Announcement(api, model),
+                "Conversation"      => new Conversation(api, model),
+                "Message"           => new Message(api, model),
+                "Conference"        => new Conference(api, model),
+                "Collaboration"     => new Collaboration(api, model),
+                "AssignmentRequest" => new AssignmentRequest(api, model),
+                "Submission"        => new SubmissionObject(api, model),
+                _                   => throw new NotImplementedException("unknown ActivityStreamObject type " + model.Type)
+            };
+        }
+
+        public class SubmissionObject : ActivityStreamObject {
+            
+            public ulong? AssignmentId { get; }
+        
+            [CanBeNull]
+            public Assignment Assignment { get; }
+        
+            [CanBeNull]
+            public Course Course { get; }
+
+            public uint? Attempt { get; }
+        
+            [CanBeNull]
+            public string Body { get; }
+
+            public string Grade { get; }
+
+            public bool? GradeMatchesCurrentSubmission { get; }
+
+            public string PreviewUrl { get; }
+
+            public decimal? Score { get; }
+        
+            [CanBeNull]
+            public IEnumerable<SubmissionComment> SubmissionComments { get; }
+
+            public string SubmissionType { get; }
+        
+            public DateTime? SubmittedAt { get; }
+        
+            [CanBeNull]
+            public string Url { get; }
+
+            public ulong? UserId { get; }
+
+            [Enigmatic]
+            public long? GraderId { get; }
+        
+            public DateTime? GradedAt { get; }
+
+            public User User { get; }
+
+            public bool? Late { get; }
+
+            public bool? AssignmentVisible { get; }
+
+            public bool? Excused { get; }
+        
+            public bool? Missing { get; }
+
+            public string LatePolicyStatus { get; }
+
+            public double? PointsDeducted { get; }
+        
+            public double? SecondsLate { get; }
+
+            public string WorkflowState { get; }
+        
+            public uint? ExtraAttempts { get; }
+        
+            [CanBeNull]
+            public string AnonymousId { get; }
+            
+            internal SubmissionObject(Api api, ActivityStreamObjectModel model) : base(api, model) {
+                //Debug.Assert(model.AssignmentId != null, "model.AssignmentId != null");
+                //Debug.Assert(model.UserId != null, "model.UserId != null");
+
+                AssignmentId = model.AssignmentId;
+                Assignment = model.Assignment.ConvertIfNotNull(m => new Assignment(api, m));
+                Course = model.Course.ConvertIfNotNull(c => new Course(api, c));
+                Attempt = model.Attempt;
+                Body = model.Body;
+                Grade = model.Grade;
+                GradeMatchesCurrentSubmission = model.GradeMatchesCurrentSubmission;
+                PreviewUrl = model.PreviewUrl;
+                Score = model.Score;
+                SubmissionComments = model.SubmissionComments.ConvertIfNotNull(ie => ie.Select(m => new SubmissionComment(api, m)));
+                SubmissionType = model.SubmissionType;
+                SubmittedAt = model.SubmittedAt;
+                Url = model.Url;
+                UserId = model.UserId;
+                GraderId = model.GraderId;
+                GradedAt = model.GradedAt;
+                User = model.User.ConvertIfNotNull(m => new User(api, m));
+                Late = model.Late;
+                AssignmentVisible = model.AssignmentVisible;
+                Excused = model.Excused;
+                Missing = model.Missing;
+                LatePolicyStatus = model.LatePolicyStatus;
+                PointsDeducted = model.PointsDeducted;
+                SecondsLate = model.SecondsLate;
+                WorkflowState = model.WorkflowState;
+                ExtraAttempts = model.ExtraAttempts;
+                AnonymousId = model.AnonymousId;
             }
         }
-        
-        
 
         public class DiscussionTopic : ActivityStreamObject {
             
@@ -136,14 +230,12 @@ namespace UVACanvasAccess.Structures.Users {
 
         public class Message : ActivityStreamObject {
             
-            public ulong MessageId { get; }
+            public ulong? MessageId { get; }
         
             public string NotificationCategory { get; }
 
             internal Message(Api api, ActivityStreamObjectModel model) : base(api, model) {
-                Debug.Assert(model.MessageId != null, "model.MessageId != null");
-                
-                MessageId = (ulong) model.MessageId;
+                MessageId = model.MessageId;
                 NotificationCategory = model.NotificationCategory;
             }
         }

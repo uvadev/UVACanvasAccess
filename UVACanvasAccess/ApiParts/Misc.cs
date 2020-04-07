@@ -14,7 +14,7 @@ namespace UVACanvasAccess.ApiParts {
     public partial class Api {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {
-            return _client.GetAsync("/api/v1/users/activity_stream" +
+            return _client.GetAsync("users/activity_stream" +
                                     BuildQueryString(("only_active_courses", onlyActiveCourses?.ToString())));
         }
         
@@ -31,6 +31,15 @@ namespace UVACanvasAccess.ApiParts {
 
             return from model in models
                    select ActivityStreamObject.FromModel(this, model);
+        }
+        
+        public async IAsyncEnumerable<ActivityStreamObject> StreamActivityStream(bool? onlyActiveCourses = null) {
+            var response = await RawGetActivityStream(onlyActiveCourses);
+            response.AssertSuccess();
+
+            await foreach (var model in StreamDeserializePages<ActivityStreamObjectModel>(response)) {
+                yield return ActivityStreamObject.FromModel(this, model);
+            }
         }
 
         private Task<HttpResponseMessage> RawGetActivityStreamSummary() {

@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Submissions;
 using UVACanvasAccess.Structures.Assignments;
+using UVACanvasAccess.Structures.Courses;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
@@ -20,7 +21,7 @@ namespace UVACanvasAccess.Structures.Submissions {
         public Assignment Assignment { get; }
         
         [CanBeNull]
-        public object Course { get; }
+        public Course Course { get; set; } // bug remove setter
 
         public uint? Attempt { get; }
         
@@ -81,7 +82,7 @@ namespace UVACanvasAccess.Structures.Submissions {
             Api = api;
             AssignmentId = model.AssignmentId;
             Assignment = model.Assignment.ConvertIfNotNull(m => new Assignment(api, m));
-            Course = model.Course;
+            Course = model.Course.ConvertIfNotNull(c => new Course(api, c));
             Attempt = model.Attempt;
             Body = model.Body;
             Grade = model.Grade;

@@ -348,6 +348,18 @@ namespace UVACanvasAccess.ApiParts {
             return new CanvasFile(this, model);
         }
 
+        public async Task<Folder> UpdatePersonalFolder(ulong folderId, string name) { // todo incomplete
+            
+            var args = new[] {
+                ("name", name)
+            };
+
+            var response = await _client.PutAsync($"folders/{folderId}", BuildHttpArguments(args));
+            
+            var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
+            return new Folder(this, model);
+        }
+
         public async Task<CanvasFile> MoveFile(ulong fileId,
                                                OnDuplicate onDuplicate,
                                                string name = null,
