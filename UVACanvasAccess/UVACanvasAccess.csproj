@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -420,6 +420,12 @@
     <Compile Include="Structures\Roles\RolePermissions.cs" />
     <Compile Include="Structures\Roles\RolePermissionsSet.cs" />
     <Compile Include="Structures\Sections\Section.cs" />
+    <Compile Include="Structures\SisImports\SisImport.cs" />
+    <Compile Include="Structures\SisImports\SisImportCounts.cs" />
+    <Compile Include="Structures\SisImports\SisImportData.cs" />
+    <Compile Include="Structures\SisImports\SisImportState.cs" />
+    <Compile Include="Structures\SisImports\SisImportStatistic.cs" />
+    <Compile Include="Structures\SisImports\SisImportStatistics.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\INewSubmissionContent.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\OnlineTextEntrySubmission.cs" />
