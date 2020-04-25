@@ -193,6 +193,7 @@
     <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Roles.cs" />
     <Compile Include="ApiParts\Sections.cs" />
+    <Compile Include="ApiParts\SisImports.cs" />
     <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AppointmentGroupBuilder.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
