@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUtils", "AppUtils\AppUti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuotaPurger", "QuotaPurger\QuotaPurger.csproj", "{E4482D37-090D-410F-B764-EE0898B69B6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisImporter", "SisImporter\SisImporter.csproj", "{239907B4-C9AA-44DC-A04C-7C9E2AF6AB38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{E4482D37-090D-410F-B764-EE0898B69B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4482D37-090D-410F-B764-EE0898B69B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4482D37-090D-410F-B764-EE0898B69B6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{239907B4-C9AA-44DC-A04C-7C9E2AF6AB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{239907B4-C9AA-44DC-A04C-7C9E2AF6AB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{239907B4-C9AA-44DC-A04C-7C9E2AF6AB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{239907B4-C9AA-44DC-A04C-7C9E2AF6AB38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
