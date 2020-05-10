@@ -15,7 +15,7 @@ namespace UVACanvasAccess.Model.Assignments {
         public string Title { get; set; }
         
         [JsonProperty("due_at")]
-        public DateTime DueAt { get; set; }
+        public DateTime? DueAt { get; set; }
         
         [JsonProperty("unlock_at")]
         public DateTime? UnlockAt { get; set; }
