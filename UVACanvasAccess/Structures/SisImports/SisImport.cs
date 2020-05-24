@@ -84,5 +84,9 @@ namespace UVACanvasAccess.Structures.SisImports {
             DiffedAgainstImportId = model.DiffedAgainstImportId;
             CsvAttachments = model.CsvAttachments;
         }
+
+        public override string ToString() {
+            return $"{nameof(Id)}: {Id}, {nameof(CreatedAt)}: {CreatedAt}, {nameof(EndedAt)}: {EndedAt}, {nameof(UpdatedAt)}: {UpdatedAt}, {nameof(WorkflowState)}: {WorkflowState}, {nameof(Data)}: {Data}, {nameof(Statistics)}: {Statistics}, {nameof(Progress)}: {Progress}, {nameof(ErrorsAttachment)}: {ErrorsAttachment}, {nameof(User)}: {User}, {nameof(ProcessingWarnings)}: {ProcessingWarnings}, {nameof(ProcessingErrors)}: {ProcessingErrors}, {nameof(BatchMode)}: {BatchMode}, {nameof(BatchModeTermId)}: {BatchModeTermId}, {nameof(MultiTermBatchMode)}: {MultiTermBatchMode}, {nameof(SkipDeletes)}: {SkipDeletes}, {nameof(OverrideSisStickiness)}: {OverrideSisStickiness}, {nameof(AddSisStickiness)}: {AddSisStickiness}, {nameof(ClearSisStickiness)}: {ClearSisStickiness}, {nameof(DiffingDataSetIdentifier)}: {DiffingDataSetIdentifier}, {nameof(DiffedAgainstImportId)}: {DiffedAgainstImportId}, {nameof(CsvAttachments)}: {CsvAttachments}";
+        }
     }
 }

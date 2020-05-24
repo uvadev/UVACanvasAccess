@@ -67,5 +67,9 @@ namespace UVACanvasAccess.Structures.SisImports {
             UserObserver = model.UserObserver.ConvertIfNotNull(m => new SisImportStatistic(api, m));
             AccountUser = model.AccountUser.ConvertIfNotNull(m => new SisImportStatistic(api, m));
         }
+
+        public override string ToString() {
+            return $"{nameof(TotalStateChanges)}: {TotalStateChanges}, {nameof(Account)}: {Account}, {nameof(EnrollmentTerm)}: {EnrollmentTerm}, {nameof(CommunicationChannel)}: {CommunicationChannel}, {nameof(AbstractCourse)}: {AbstractCourse}, {nameof(Course)}: {Course}, {nameof(CourseSection)}: {CourseSection}, {nameof(Enrollment)}: {Enrollment}, {nameof(GroupCategory)}: {GroupCategory}, {nameof(Group)}: {Group}, {nameof(GroupMembership)}: {GroupMembership}, {nameof(Pseudonym)}: {Pseudonym}, {nameof(UserObserver)}: {UserObserver}, {nameof(AccountUser)}: {AccountUser}";
+        }
     }
 }

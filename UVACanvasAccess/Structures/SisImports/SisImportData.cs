@@ -23,5 +23,9 @@ namespace UVACanvasAccess.Structures.SisImports {
             SuppliedBatches = model.SuppliedBatches;
             Counts = model.Counts.ConvertIfNotNull(c => new SisImportCounts(api, c));
         }
+
+        public override string ToString() {
+            return $"{nameof(ImportType)}: {ImportType}, {nameof(SuppliedBatches)}: {SuppliedBatches}, {nameof(Counts)}: {Counts}";
+        }
     }
 }

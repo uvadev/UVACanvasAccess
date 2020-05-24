@@ -59,5 +59,9 @@ namespace UVACanvasAccess.Structures.SisImports {
             Errors = model.Errors;
             Warnings = model.Warnings;
         }
+
+        public override string ToString() {
+            return $"{nameof(Accounts)}: {Accounts}, {nameof(Terms)}: {Terms}, {nameof(AbstractCourses)}: {AbstractCourses}, {nameof(Courses)}: {Courses}, {nameof(Sections)}: {Sections}, {nameof(CrossLists)}: {CrossLists}, {nameof(Users)}: {Users}, {nameof(Enrollments)}: {Enrollments}, {nameof(Groups)}: {Groups}, {nameof(GroupMemberships)}: {GroupMemberships}, {nameof(GradePublishingResults)}: {GradePublishingResults}, {nameof(BatchCoursesDeleted)}: {BatchCoursesDeleted}, {nameof(BatchSectionsDeleted)}: {BatchSectionsDeleted}, {nameof(BatchEnrollmentsDeleted)}: {BatchEnrollmentsDeleted}, {nameof(Errors)}: {Errors}, {nameof(Warnings)}: {Warnings}";
+        }
     }
 }

@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OneOf;
 using UVACanvasAccess.Exceptions;
+using UVACanvasAccess.Structures.SisImports;
 using static UVACanvasAccess.ApiParts.Api;
 
 namespace UVACanvasAccess.Util {
@@ -605,5 +606,16 @@ namespace UVACanvasAccess.Util {
 
             return OneOf<JToken, string>.FromT1("");
         }
+
+        [PublicAPI]
+        public static bool IsHaltedState(this SisImportState state) {
+            return state == SisImportState.Aborted ||
+                   state == SisImportState.Failed ||
+                   state == SisImportState.FailedWithMessages ||
+                   state == SisImportState.Imported ||
+                   state == SisImportState.ImportedWithMessages ||
+                   state == SisImportState.Restored ||
+                   state == SisImportState.PartiallyRestored;
+        } 
     }
 }

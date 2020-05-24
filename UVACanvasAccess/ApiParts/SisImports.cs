@@ -35,5 +35,12 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<SisImportModel>(await response.Content.ReadAsStringAsync());
             return new SisImport(this, model);
         }
+
+        public async Task<SisImport> GetSisImport(ulong id, ulong? accountId = null) {
+            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/sis_imports/{id}");
+            
+            var model = JsonConvert.DeserializeObject<SisImportModel>(await response.Content.ReadAsStringAsync());
+            return new SisImport(this, model);
+        }
     }
 }
