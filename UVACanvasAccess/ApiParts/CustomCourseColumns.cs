@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Model.CustomGradebookColumns;
 using UVACanvasAccess.Structures.CustomGradebookColumns;
@@ -83,6 +82,15 @@ namespace UVACanvasAccess.ApiParts {
             var response = await _client.PutAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}", args);
             var model = JsonConvert.DeserializeObject<CustomColumnModel>(await response.Content.ReadAsStringAsync());
             return new CustomColumn(this, model);
+        }
+
+        public async IAsyncEnumerable<ColumnDatum> StreamColumnEntries(ulong columnId, ulong courseId) {
+            var args = BuildQueryString(("include_hidden", true.ToShortString()));
+            var response = await _client.GetAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data" + args);
+            
+            await foreach (var model in StreamDeserializePages<ColumnDatumModel>(response)) {
+                yield return new ColumnDatum(this, model);
+            }
         }
     }
 }
