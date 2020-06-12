@@ -84,6 +84,18 @@ namespace UVACanvasAccess.ApiParts {
             return new CustomColumn(this, model);
         }
 
+        /// <summary>
+        /// Deletes a gradebook column.
+        /// </summary>
+        /// <param name="columnId">The column id.</param>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The deleted column.</returns>
+        public async Task<CustomColumn> DeleteCustomColumn(ulong columnId, ulong courseId) {
+            var response = await _client.DeleteAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}");
+            var model = JsonConvert.DeserializeObject<CustomColumnModel>(await response.Content.ReadAsStringAsync());
+            return new CustomColumn(this, model);
+        }
+
         public async IAsyncEnumerable<ColumnDatum> StreamColumnEntries(ulong columnId, ulong courseId) {
             var args = BuildQueryString(("include_hidden", true.ToShortString()));
             var response = await _client.GetAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data" + args);
