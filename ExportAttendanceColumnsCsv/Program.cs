@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using AppUtils;
 using Tomlyn.Syntax;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Util;
+using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
 
 namespace ExportAttendanceColumnsCsv {
     
@@ -64,17 +66,24 @@ namespace ExportAttendanceColumnsCsv {
                 Console.WriteLine($"[DEBUG] Limited to course id {courseLimit}");
             }
 
-            var table = new StringBuilder("course_id,column_name,student_id,column_value\n");
+            var table = new StringBuilder("course_id,column_name,student_id,enrollment_id,column_value\n");
 
             try {
                 var courses = courseLimit <= 0 ? api.StreamCourses()
                                                : AsyncEnumerable.Repeat(await api.GetCourse(Convert.ToUInt64(courseLimit)), 1);
-                
+
                 await foreach (var course in courses) {
                     try {
+                        var enrollments = api.StreamCourseEnrollments(course.Id, StudentEnrollment.Yield())
+                                             .ToDictionaryAsync(e => e.UserId);
                         await foreach (var col in api.StreamCustomGradebookColumns(course.Id, includeHidden)) {
                             await foreach (var datum in api.StreamColumnEntries(col.Id, course.Id)) {
-                                table.Append($"{course.Id},\"{col.Title}\",{datum.UserId},\"{datum.Content}\"\n");
+                                (await enrollments).TryGetValue(datum.UserId, out var thisEnrollment);
+                                table.Append($"{course.Id}," +
+                                             $"\"{col.Title}\"," +
+                                             $"{datum.UserId}," +
+                                             $"{thisEnrollment?.Id.ToString() ?? "NULL"}" +
+                                             $",\"{datum.Content}\"\n");
                             }
                         }
                     } catch (Exception e) {
