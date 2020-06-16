@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportAttendanceColumns", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportAttendanceColumnsCsv", "ExportAttendanceColumnsCsv\ExportAttendanceColumnsCsv.csproj", "{32AC0503-B602-4844-BE4D-1C9CDC88994D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManageAttendanceColumns", "ManageAttendanceColumns\ManageAttendanceColumns.csproj", "{C086FE54-1137-46D5-9502-4EBEBBF0583A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +80,9 @@ Global
 		{32AC0503-B602-4844-BE4D-1C9CDC88994D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32AC0503-B602-4844-BE4D-1C9CDC88994D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32AC0503-B602-4844-BE4D-1C9CDC88994D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C086FE54-1137-46D5-9502-4EBEBBF0583A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C086FE54-1137-46D5-9502-4EBEBBF0583A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C086FE54-1137-46D5-9502-4EBEBBF0583A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C086FE54-1137-46D5-9502-4EBEBBF0583A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
