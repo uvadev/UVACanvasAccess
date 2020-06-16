@@ -382,6 +382,12 @@ namespace UVACanvasAccess.Util {
             yield return t;
         }
 
+        #pragma warning disable 1998
+        public static async IAsyncEnumerable<T> YieldAsync<T>(this T t) {
+            yield return t;
+        }
+        #pragma warning restore 1998
+
         /// <summary>
         /// Formats this DateTime according to ISO 8601, as expected by Canvas.
         /// </summary>

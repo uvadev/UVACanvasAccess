@@ -70,7 +70,7 @@ namespace ExportAttendanceColumnsCsv {
 
             try {
                 var courses = courseLimit <= 0 ? api.StreamCourses()
-                                               : AsyncEnumerable.Repeat(await api.GetCourse(Convert.ToUInt64(courseLimit)), 1);
+                                               : (await api.GetCourse(Convert.ToUInt64(courseLimit))).YieldAsync();
 
                 await foreach (var course in courses) {
                     try {
