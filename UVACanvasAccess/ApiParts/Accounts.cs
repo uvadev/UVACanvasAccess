@@ -19,6 +19,7 @@ namespace UVACanvasAccess.ApiParts {
         /// Additional data which can be included in <see cref="Account"/> responses.
         /// </summary>
         [Flags]
+        [PublicAPI]
         public enum AccountIncludes : byte {
             /// <summary>
             /// No additional data.
@@ -41,29 +42,18 @@ namespace UVACanvasAccess.ApiParts {
             Services = 1 << 2
         }
 
-        [PaginatedResponse]
-        private Task<HttpResponseMessage> RawListAccounts([NotNull] IEnumerable<string> includes) {
-            return _client.GetAsync("accounts" + BuildQueryString(includes.Select(i => ("include[]", i)).ToArray()));
-        }
-
-        
-        // todo this should probably be a stream
         /// <summary>
-        /// List the accounts in this domain.
+        /// Stream the accounts in this domain.
         /// </summary>
         /// <param name="includes">(Optional) Extra data to include in the response.</param>
-        /// <returns>The list of accounts.</returns>
-        public async Task<IEnumerable<Account>> ListAccounts(AccountIncludes includes = AccountIncludes.Default) {
-            var response = await RawListAccounts(includes.GetFlags().Select(f => f.GetApiRepresentation()));
+        /// <returns>The stream of accounts.</returns>
+        public async IAsyncEnumerable<Account> StreamAccounts(AccountIncludes includes = AccountIncludes.Default) {
+            var args = includes.GetFlagsApiRepresentations().Select(i => ("include[]", i));
+            var response = await _client.GetAsync("accounts" + BuildDuplicateKeyQueryString(args.ToArray()));
 
-            var models = await AccumulateDeserializePages<AccountModel>(response);
-
-            return from model in models
-                   select new Account(this, model);
-        }
-
-        private Task<HttpResponseMessage> RawGetAccount(string id) {
-            return _client.GetAsync($"accounts/{id}");
+            await foreach (var model in StreamDeserializePages<AccountModel>(response)) {
+                yield return new Account(this, model);
+            }
         }
 
         /// <summary>
@@ -72,33 +62,28 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">The account id.</param>
         /// <returns>The account.</returns>
         public async Task<Account> GetAccount(ulong accountId) {
-            var response = await RawGetAccount(accountId.ToString());
+            var response = await _client.GetAsync($"accounts/{accountId}");
 
             var model = JsonConvert.DeserializeObject<AccountModel>(await response.Content.ReadAsStringAsync());
             return new Account(this, model);
-        }
-
-        private Task<HttpResponseMessage> RawGetAccountPermissions(string id, [NotNull] IEnumerable<string> permissions) {
-            var url = $"accounts/{id}/permissions";
-            return _client.GetAsync(url + BuildDuplicateKeyQueryString(permissions.Select(p => ("permissions[]", p)).ToArray()));
         }
 
         /// <summary>
         /// Get the permissions set of an account.
         /// </summary>
         /// <param name="checkedPermissions">The permissions to test.</param>
-        /// <param name="accountId">The account id.</param>
+        /// <param name="accountId">(Optional; default = self) The account id.</param>
         /// <returns>The account permissions set.</returns>
         public async Task<BasicAccountPermissionsSet> GetAccountPermissions(AccountRolePermissions checkedPermissions, 
                                                                             ulong? accountId = null) {
-            var response = await RawGetAccountPermissions(accountId?.ToString() ?? "self",
-                                                          checkedPermissions.GetFlags()
-                                                                            .Select(p => p.GetApiRepresentation()));
-            
+            var args = checkedPermissions.GetFlagsApiRepresentations().Select(p => ("permissions[]", p));
+            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/permissions" + 
+                                                  BuildDuplicateKeyQueryString(args.ToArray()));
+
             var dictionary = JsonConvert.DeserializeObject<Dictionary<string, bool>>(await response.Content.ReadAsStringAsync());
 
             AccountRolePermissions allowed = default, 
-                                   denied = default;
+                                   denied  = default;
 
             foreach (var (k, v) in dictionary) {
                 AccountRolePermissions? permission = k.ToApiRepresentedEnum<AccountRolePermissions>();
@@ -117,33 +102,25 @@ namespace UVACanvasAccess.ApiParts {
             return new BasicAccountPermissionsSet(allowed, denied);
         }
 
-        private Task<HttpResponseMessage> RawGetTermsOfService(string id) {
-            return _client.GetAsync($"accounts/{id}/terms_of_service");
-        }
-
         /// <summary>
         /// Get an account's Terms of Service.
         /// </summary>
-        /// <param name="accountId">The account id.</param>
+        /// <param name="accountId">(Optional; default = self) The account id.</param>
         /// <returns>The Terms of Service.</returns>
         public async Task<TermsOfService> GetTermsOfService(ulong? accountId = null) {
-            var response = await RawGetTermsOfService(accountId?.ToString() ?? "self");
+            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/terms_of_service");
 
             var model = JsonConvert.DeserializeObject<TermsOfServiceModel>(await response.Content.ReadAsStringAsync());
             return new TermsOfService(this, model);
         }
-
-        private Task<HttpResponseMessage> RawGetHelpLinks(string id) {
-            return _client.GetAsync($"accounts/{id}/help_links");
-        }
-
+        
         /// <summary>
         /// Get an account's set of help links.
         /// </summary>
-        /// <param name="accountId">The account id.</param>
+        /// <param name="accountId">(Optional; default = self) The account id.</param>
         /// <returns>The set of help links.</returns>
         public async Task<HelpLinks> GetHelpLinks(ulong? accountId = null) {
-            var response = await RawGetHelpLinks(accountId?.ToString() ?? "self");
+            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/help_links");
 
             var model = JsonConvert.DeserializeObject<HelpLinksModel>(await response.Content.ReadAsStringAsync());
             return new HelpLinks(this, model);
@@ -394,7 +371,7 @@ namespace UVACanvasAccess.ApiParts {
                                                            CourseSearchBy? searchBy = null,
                                                            Order? order = null) {
             
-            var response = await RawListCourses(accountId?.ToString() ?? "self", searchTerm, withEnrollmentsOnly, 
+            var response = await RawListCourses(accountId.IdOrSelf(), searchTerm, withEnrollmentsOnly, 
                                                 published, completed, blueprint, blueprintAssociated, enrollmentTermId,
                                                 byTeachers, bySubaccounts, enrollmentTypes, states, includes, sort,
                                                 searchBy, order);

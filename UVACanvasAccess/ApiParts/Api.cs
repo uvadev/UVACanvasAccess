@@ -153,16 +153,14 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns></returns>
         private HttpContent BuildHttpArguments([NotNull] IEnumerable<ValueTuple<string, string>> args) {
 
-            var pairs = from a in args
-                        where a.Item2 != null
-                        select new KeyValuePair<string, string>(a.Item1, a.Item2);
+            var pairs = args.Where(a => a.Item2 != null)
+                            .Select(a => new KeyValuePair<string, string>(a.Item1, a.Item2));
 
             if (_masquerade != null) {
                 pairs = pairs.Append(new KeyValuePair<string, string>("as_user_id", _masquerade.ToString()));
             }
             
-            var content =
-                new FormUrlEncodedContent(pairs);
+            var content = new FormUrlEncodedContent(pairs);
             
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             return content;
