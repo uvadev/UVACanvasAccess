@@ -96,7 +96,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         internal async Task<Course> PostCreateCourse(CourseBuilder builder) {
-            var url = $"accounts/{builder.AccountId?.ToString() ?? "self"}/courses";
+            var url = $"accounts/{builder.AccountId.IdOrSelf()}/courses";
             var args = BuildHttpArguments(builder.Fields.Select(kv => (kv.Key, kv.Value)));
 
             var response = await _client.PostAsync(url, args);
@@ -105,13 +105,33 @@ namespace UVACanvasAccess.ApiParts {
             return new Course(this, model);
         }
         
+        internal async Task<Course> PutEditCourse(ulong id, CourseBuilder builder) {
+            var url = $"courses/{id}";
+            var args = BuildHttpArguments(builder.Fields.Select(kv => (kv.Key, kv.Value)));
+
+            var response = await _client.PutAsync(url, args);
+
+            var model = JsonConvert.DeserializeObject<CourseModel>(await response.Content.ReadAsStringAsync());
+            return new Course(this, model);
+        }
+        
         /// <summary>
-        /// Return a new <see cref="Builders.CourseBuilder"/>
+        /// Return a new <see cref="Builders.CourseBuilder"/>.
         /// </summary>
         /// <param name="accountId">(Optional) The account id.</param>
         /// <returns>The course builder.</returns>
         public CourseBuilder CreateCourse(ulong? accountId = null) {
-            return new CourseBuilder(this, accountId);
+            return new CourseBuilder(this, false, accountId);
+        }
+
+        /// <summary>
+        /// Return a new <see cref="Builders.CourseBuilder"/> for editing.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="accountId">(Optional) The account id.</param>
+        /// <returns>The course builder.</returns>
+        public CourseBuilder EditCourse(ulong courseId, ulong? accountId = null) {
+            return new CourseBuilder(this, true, accountId, courseId);
         }
 
         private Task<HttpResponseMessage> RawDeleteCourse(string id, [NotNull] string action) {

@@ -211,6 +211,14 @@ namespace UVACanvasAccess.Util {
             return list;
         }
 
+        [PublicAPI]
+        public static IAsyncEnumerable<T> Peek<T>([NotNull] this IAsyncEnumerable<T> iae, Action<T> a) {
+            return iae.Select(e => {
+                a(e);
+                return e;
+            });
+        }
+
         [Pure]
         internal static IEnumerable<string> GetApiRepresentations([NotNull] this IEnumerable<Enum> ie) {
             return ie.Select(e => e.GetApiRepresentation());
