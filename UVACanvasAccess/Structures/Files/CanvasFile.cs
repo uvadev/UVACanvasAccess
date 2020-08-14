@@ -146,5 +146,9 @@ namespace UVACanvasAccess.Structures.Files {
         }
 
         public Task<CanvasFile> CopyTo(Folder folder, Api.OnDuplicate onDuplicate) => CopyTo(folder.Id, onDuplicate);
+
+        public Task<byte[]> Download() {
+            return _api.DownloadPersonalFile(this);
+        }
     }
 }

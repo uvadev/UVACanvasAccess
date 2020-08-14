@@ -116,6 +116,10 @@ namespace UVACanvasAccess.ApiParts {
                              );
         }
 
+        internal Task<byte[]> DownloadPersonalFile(CanvasFile cf) {
+            return _client.GetByteArrayAsync(cf.Url);
+        }
+
         /// <summary>
         /// Create a folder in the current user's personal files section.
         /// </summary>
