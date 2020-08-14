@@ -9,7 +9,7 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.Structures.SisImports {
     
     [PublicAPI]
-    public class SisImport {
+    public class SisImport : IPrettyPrint {
         private readonly Api _api;
         
         public ulong Id { get; }
@@ -85,8 +85,31 @@ namespace UVACanvasAccess.Structures.SisImports {
             CsvAttachments = model.CsvAttachments;
         }
 
-        public override string ToString() {
-            return $"{nameof(Id)}: {Id}, {nameof(CreatedAt)}: {CreatedAt}, {nameof(EndedAt)}: {EndedAt}, {nameof(UpdatedAt)}: {UpdatedAt}, {nameof(WorkflowState)}: {WorkflowState}, {nameof(Data)}: {Data}, {nameof(Statistics)}: {Statistics}, {nameof(Progress)}: {Progress}, {nameof(ErrorsAttachment)}: {ErrorsAttachment}, {nameof(User)}: {User}, {nameof(ProcessingWarnings)}: {ProcessingWarnings}, {nameof(ProcessingErrors)}: {ProcessingErrors}, {nameof(BatchMode)}: {BatchMode}, {nameof(BatchModeTermId)}: {BatchModeTermId}, {nameof(MultiTermBatchMode)}: {MultiTermBatchMode}, {nameof(SkipDeletes)}: {SkipDeletes}, {nameof(OverrideSisStickiness)}: {OverrideSisStickiness}, {nameof(AddSisStickiness)}: {AddSisStickiness}, {nameof(ClearSisStickiness)}: {ClearSisStickiness}, {nameof(DiffingDataSetIdentifier)}: {DiffingDataSetIdentifier}, {nameof(DiffedAgainstImportId)}: {DiffedAgainstImportId}, {nameof(CsvAttachments)}: {CsvAttachments}";
+        public string ToPrettyString() {
+            return "SisImport {" +
+                   ($"\n{nameof(Id)}: {Id}," +
+                   $"\n{nameof(CreatedAt)}: {CreatedAt}," +
+                   $"\n{nameof(EndedAt)}: {EndedAt}," +
+                   $"\n{nameof(UpdatedAt)}: {UpdatedAt}," +
+                   $"\n{nameof(WorkflowState)}: {WorkflowState}," +
+                   $"\n{nameof(Data)}: {Data}," +
+                   $"\n{nameof(Statistics)}: {Statistics}," +
+                   $"\n{nameof(Progress)}: {Progress}," +
+                   $"\n{nameof(ErrorsAttachment)}: {ErrorsAttachment}," +
+                   $"\n{nameof(User)}: {User?.ToPrettyString()}," +
+                   $"\n{nameof(ProcessingWarnings)}: {ProcessingWarnings}," +
+                   $"\n{nameof(ProcessingErrors)}: {ProcessingErrors}," +
+                   $"\n{nameof(BatchMode)}: {BatchMode}," +
+                   $"\n{nameof(BatchModeTermId)}: {BatchModeTermId}," +
+                   $"\n{nameof(MultiTermBatchMode)}: {MultiTermBatchMode}," +
+                   $"\n{nameof(SkipDeletes)}: {SkipDeletes}," +
+                   $"\n{nameof(OverrideSisStickiness)}: {OverrideSisStickiness}," +
+                   $"\n{nameof(AddSisStickiness)}: {AddSisStickiness}," +
+                   $"\n{nameof(ClearSisStickiness)}: {ClearSisStickiness}," +
+                   $"\n{nameof(DiffingDataSetIdentifier)}: {DiffingDataSetIdentifier}," +
+                   $"\n{nameof(DiffedAgainstImportId)}: {DiffedAgainstImportId}," +
+                   $"\n{nameof(CsvAttachments)}: {CsvAttachments?.ToPrettyString()}").Indent(4) +
+                   "\n}";
         }
     }
 }
