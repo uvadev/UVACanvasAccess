@@ -268,7 +268,10 @@ namespace UVACanvasAccess.ApiParts {
                                                                         IEnumerable<CourseEnrollmentType> types = null,
                                                                         IEnumerable<CourseEnrollmentState> states = null,
                                                                         CourseEnrollmentIncludes? includes = null) {
-            var args = new List<(string, string)>();
+            var args = new List<(string, string)> {
+                ("per_page", "250")
+            };
+            
             if (types != null) {
                 args.AddRange(types.Select(t => t.GetApiRepresentation())
                                    .Select(a => ("type[]", a)));

@@ -364,6 +364,20 @@ namespace UVACanvasAccess.ApiParts {
             return new Folder(this, model);
         }
 
+        /// <summary>
+        /// Deletes a folder.
+        /// </summary>
+        /// <param name="folderId">The folder id.</param>
+        /// <param name="rf">(Optional) If true, the folder does not need to be empty.</param>
+        /// <returns></returns>
+        public async Task DeletePersonalFolder(ulong folderId, bool rf = false) {
+            var args = new[] {
+                ("force", rf.ToShortString())
+            };
+
+            await _client.DeleteAsync($"folders/{folderId}" + BuildQueryString(args)).AssertSuccess();
+        }
+
         public async Task<CanvasFile> MoveFile(ulong fileId,
                                                OnDuplicate onDuplicate,
                                                string name = null,

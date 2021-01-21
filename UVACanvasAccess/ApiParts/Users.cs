@@ -131,7 +131,8 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync("accounts/" + accountId + "/users" + BuildQueryString(
                                                                                         ("search_term", searchTerm),
                                                                                         ("sort", sort),
-                                                                                        ("order", order)
+                                                                                        ("order", order),
+                                                                                        ("per_page", "250")
                                                                                       ));
         }
         

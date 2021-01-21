@@ -43,7 +43,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawGetActivityStreamSummary() {
-            return _client.GetAsync("/api/v1/users/self/activity_stream/summary");
+            return _client.GetAsync("users/self/activity_stream/summary");
         }
 
         /// <summary>
