@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
@@ -15,12 +16,16 @@ namespace UVACanvasAccess.Builders {
     [PublicAPI]
     public class CourseBuilder {
         private readonly Api _api;
+        private readonly bool _isEditing;
+        private readonly ulong? _id;
         internal ulong? AccountId { get; }
         
         internal Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
 
-        internal CourseBuilder(Api api, ulong? accountId) {
+        internal CourseBuilder(Api api, bool isEditing, ulong? accountId, ulong? id = null) {
             _api = api;
+            _isEditing = isEditing;
+            _id = id;
             AccountId = accountId;
         }
 
@@ -276,12 +281,22 @@ namespace UVACanvasAccess.Builders {
             return Put("enable_sis_reactivation", tryToRecover.ToShortString());
         }
 
+        public CourseBuilder TakeAction(CourseEditAction action) {
+            return _isEditing ? PutArr("event", action.GetApiRepresentation()) 
+                              : this;
+        }
+
         /// <summary>
         /// Creates the assignment using the fields in this builder.
         /// </summary>
         /// <returns>The newly created assignment.</returns>
         public Task<Course> Post() {
-            return _api.PostCreateCourse(this);
+            if (!_isEditing) {
+                return _api.PostCreateCourse(this);
+            }
+
+            Debug.Assert(_id != null, nameof(_id) + " != null");
+            return _api.PutEditCourse((ulong) _id, this);
         }
 
         private CourseBuilder Put(string k, string v) {
@@ -293,5 +308,19 @@ namespace UVACanvasAccess.Builders {
             Fields[$"course[{k}]"] = v;
             return this;
         }
+
+        [PublicAPI]
+        public enum CourseEditAction : byte {
+            [ApiRepresentation("claim")]
+            Unpublish,
+            [ApiRepresentation("offer")]
+            Publish,
+            [ApiRepresentation("conclude")]
+            Conclude,
+            [ApiRepresentation("delete")]
+            Delete,
+            [ApiRepresentation("undelete")]
+            Undelete
+        } 
     }
 }

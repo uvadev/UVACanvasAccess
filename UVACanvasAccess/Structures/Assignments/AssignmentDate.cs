@@ -31,7 +31,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         /// <summary>
         /// When the assignment is due.
         /// </summary>
-        public DateTime DueAt { get; }
+        public DateTime? DueAt { get; }
         
         /// <summary>
         /// When the assignment unlocks itself.

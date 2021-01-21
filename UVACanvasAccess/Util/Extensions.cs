@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OneOf;
 using UVACanvasAccess.Exceptions;
+using UVACanvasAccess.Structures.SisImports;
 using static UVACanvasAccess.ApiParts.Api;
 
 namespace UVACanvasAccess.Util {
@@ -209,6 +211,14 @@ namespace UVACanvasAccess.Util {
             return list;
         }
 
+        [PublicAPI]
+        public static IAsyncEnumerable<T> Peek<T>([NotNull] this IAsyncEnumerable<T> iae, Action<T> a) {
+            return iae.Select(e => {
+                a(e);
+                return e;
+            });
+        }
+
         [Pure]
         internal static IEnumerable<string> GetApiRepresentations([NotNull] this IEnumerable<Enum> ie) {
             return ie.Select(e => e.GetApiRepresentation());
@@ -380,6 +390,12 @@ namespace UVACanvasAccess.Util {
             yield return t;
         }
 
+        #pragma warning disable 1998
+        public static async IAsyncEnumerable<T> YieldAsync<T>(this T t) {
+            yield return t;
+        }
+        #pragma warning restore 1998
+
         /// <summary>
         /// Formats this DateTime according to ISO 8601, as expected by Canvas.
         /// </summary>
@@ -428,6 +444,16 @@ namespace UVACanvasAccess.Util {
             var tuples = ie as (T1, T2)[] ?? ie.ToArray();
             return ValueTuple.Create(tuples.Select(e => e.Item1), 
                                      tuples.Select(e => e.Item2));
+        }
+
+        [Pure]
+        internal static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> ie) {
+            return ie.SelectMany(e => e);
+        }
+        
+        [Pure]
+        internal static IAsyncEnumerable<T> Flatten<T>(this IAsyncEnumerable<IAsyncEnumerable<T>> iae) {
+            return iae.SelectMany(e => e);
         }
 
         /// <summary>
@@ -482,6 +508,18 @@ namespace UVACanvasAccess.Util {
             return ie.Where(e => e != null)
                      .Select(e => e.Value);
         }
+        
+        [ItemNotNull]
+        [Pure]
+        internal static IAsyncEnumerable<T> DiscardNull<T>([ItemCanBeNull] this IAsyncEnumerable<T> ie) {
+            return ie.Where(e => e != null);
+        }
+        
+        [Pure]
+        internal static IAsyncEnumerable<T> DiscardNullValue<T>(this IAsyncEnumerable<T?> ie) where T: struct {
+            return ie.Where(e => e != null)
+                     .Select(e => e.Value);
+        }
 
         /// <summary>
         /// Asynchronously applies the mapping function <paramref name="f"/> to the result of this task and returns the
@@ -492,6 +530,10 @@ namespace UVACanvasAccess.Util {
         /// <returns>A task containing the result of the mapping function.</returns>
         public static Task<TO> ThenApply<TI, TO>(this Task<TI> task, Func<TI, TO> f) {
             return task.ContinueWith(t => f(t.Result));
+        }
+        
+        public static async Task<TO> ThenApplyAwait<TI, TO>(this Task<TI> task, Func<TI, Task<TO>> f) {
+            return await await task.ContinueWith(t => f(t.Result));
         }
         
         /// <summary>
@@ -552,5 +594,42 @@ namespace UVACanvasAccess.Util {
         }
 
         internal static string IdOrSelf(this ulong? uId) => uId != null ? uId.ToString() : "self";
+
+        internal static OneOf<JToken, string> CheckError(this JToken jt) {
+            if (jt.Type != JTokenType.Object) 
+                return OneOf<JToken, string>.FromT0(jt);
+            
+            var jo = (JObject) jt;
+            
+            if (!jo.ContainsKey("errors")) 
+                return OneOf<JToken, string>.FromT0(jt);
+            
+            if (jo["errors"].Type != JTokenType.Array) 
+                return OneOf<JToken, string>.FromT1("");
+            
+            var ja = (JArray) jo["errors"];
+            
+            if (ja.Count <= 0 || ja[0].Type != JTokenType.Object) 
+                return OneOf<JToken, string>.FromT1("");
+            
+            var e = (JObject) ja[0];
+            
+            if (e.ContainsKey("message") && e["message"].Type == JTokenType.String) {
+                return OneOf<JToken, string>.FromT1((string) e["message"]);
+            }
+
+            return OneOf<JToken, string>.FromT1("");
+        }
+
+        [PublicAPI]
+        public static bool IsHaltedState(this SisImportState state) {
+            return state == SisImportState.Aborted ||
+                   state == SisImportState.Failed ||
+                   state == SisImportState.FailedWithMessages ||
+                   state == SisImportState.Imported ||
+                   state == SisImportState.ImportedWithMessages ||
+                   state == SisImportState.Restored ||
+                   state == SisImportState.PartiallyRestored;
+        } 
     }
 }

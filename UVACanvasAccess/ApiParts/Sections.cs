@@ -40,6 +40,12 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        public async Task<Section> GetSection(ulong courseId, ulong sectionId) {
+            var response = await _client.GetAsync($"courses/{courseId}/sections/{sectionId}");
+            var model = JsonConvert.DeserializeObject<SectionModel>(await response.Content.ReadAsStringAsync());
+            return new Section(this, model);
+        }
+
         public async Task<Section> CrossListSection(ulong sectionId, ulong targetCourseId) {
             var response = await _client.PostAsync($"sections/{sectionId}/crosslist/{targetCourseId}", null);
             var model = JsonConvert.DeserializeObject<SectionModel>(await response.Content.ReadAsStringAsync());

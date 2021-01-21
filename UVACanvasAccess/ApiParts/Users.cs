@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Assignments;
@@ -107,6 +108,20 @@ namespace UVACanvasAccess.ApiParts {
 
             return new User(this, userModel);
         }
+        
+        /// <summary>
+        /// Search for a user by SIS id.
+        /// </summary>
+        /// <param name="sis">The SIS id to search for.</param>
+        /// <returns>The user with the matching SIS id, or null if none exists.</returns>
+        [ItemCanBeNull]
+        public ValueTask<User> GetUserBySis(string sis) {
+            if (string.IsNullOrWhiteSpace(sis)) {
+                return default;
+            }
+            return StreamUsers(sis)
+                  .FirstOrDefaultAsync(u => u.SisUserId == sis);
+        }
 
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetListUsers(string searchTerm, 
@@ -116,7 +131,8 @@ namespace UVACanvasAccess.ApiParts {
             return _client.GetAsync("accounts/" + accountId + "/users" + BuildQueryString(
                                                                                         ("search_term", searchTerm),
                                                                                         ("sort", sort),
-                                                                                        ("order", order)
+                                                                                        ("order", order),
+                                                                                        ("per_page", "250")
                                                                                       ));
         }
         

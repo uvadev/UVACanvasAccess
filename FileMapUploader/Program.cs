@@ -34,6 +34,7 @@ namespace FileMapUploader {
                         new TableSyntax("data") {
                             Items = {
                                 {"map_file", "RELATIVE_MAP_FILE_PATH_HERE"},
+                                {"id_is_sis", true},
                                 {"target_canvas_dir", "uploaded"},
                                 {"send_message", true},
                                 {"message", "An important file was pushed to your account."}
@@ -55,6 +56,7 @@ namespace FileMapUploader {
 
             var data = config.GetTable("data");
             var mapFileName = data.Get<string>("map_file");
+            var idIsSis = data.GetOr("id_is_sis", true);
             var targetFolder = data.Get<string>("target_canvas_dir");
             var sendMessage = data.Get<bool>("send_message");
             var message = data.Get<string>("message");
@@ -102,9 +104,10 @@ namespace FileMapUploader {
                                 var api = apis[n];
 
                                 try {
-                                    var user = api.StreamUsers(userKey)
-                                                  .FirstOrDefaultAsync(u => u.SisUserId == userKey)
-                                                  .Result;
+                                    var user = idIsSis switch {
+                                        true => api.GetUserBySis(userKey).Result,
+                                        _    => api.GetUser(ulong.Parse(userKey)).Result
+                                    };
 
                                     if (user == null) {
                                         Console.WriteLine($"WARN: Couldn't find the user for sis {userKey} !!");

@@ -32,15 +32,16 @@ namespace UVACanvasAccess.ApiParts {
             return from model in models
                    select ActivityStreamObject.FromModel(this, model);
         }
-
+        
         /// <summary>
         /// Streams the activity stream for the current user.
         /// </summary>
         /// <param name="onlyActiveCourses">If true, only entries for active courses will be returned.</param>
         /// <returns>The activity stream.</returns>
-        public async IAsyncEnumerable<ActivityStreamObject> StreamActivity(bool? onlyActiveCourses = null) {
+        public async IAsyncEnumerable<ActivityStreamObject> StreamActivityStream(bool? onlyActiveCourses = null) {
             var response = await RawGetActivityStream(onlyActiveCourses);
-            
+            response.AssertSuccess();
+
             await foreach (var model in StreamDeserializePages<ActivityStreamObjectModel>(response)) {
                 yield return ActivityStreamObject.FromModel(this, model);
             }

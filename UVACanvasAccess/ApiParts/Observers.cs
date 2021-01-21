@@ -8,12 +8,25 @@ namespace UVACanvasAccess.ApiParts {
     public partial class Api {
 
         /// <summary>
-        /// Streams the list of observees associated with an observer.
+        /// Streams the observees associated with an observer.
         /// </summary>
         /// <param name="observerId">The observer.</param>
         /// <returns>The stream of observees.</returns>
         public async IAsyncEnumerable<User> StreamObservees(ulong observerId) {
             var result = await _client.GetAsync($"users/{observerId}/observees?include[]=avatar_url");
+
+            await foreach (var model in StreamDeserializePages<UserModel>(result)) {
+                yield return new User(this, model);
+            }
+        }
+
+        /// <summary>
+        /// Streams the observers associated with an observee.
+        /// </summary>
+        /// <param name="observeeId">The observee.</param>
+        /// <returns>The stream of observers.</returns>
+        public async IAsyncEnumerable<User> StreamObservers(ulong observeeId) {
+            var result = await _client.GetAsync($"users/{observeeId}/observers?include[]=avatar_url");
 
             await foreach (var model in StreamDeserializePages<UserModel>(result)) {
                 yield return new User(this, model);

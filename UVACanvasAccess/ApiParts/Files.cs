@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Structures.Files;
 using UVACanvasAccess.Util;
+using UVACanvasAccess.Exceptions;
 
 namespace UVACanvasAccess.ApiParts {
     
@@ -113,6 +114,10 @@ namespace UVACanvasAccess.ApiParts {
                               Path.GetFileName(filePath),
                               parentFolderPath: parentFolderName
                              );
+        }
+
+        internal Task<byte[]> DownloadPersonalFile(CanvasFile cf) {
+            return _client.GetByteArrayAsync(cf.Url);
         }
 
         /// <summary>
@@ -244,6 +249,40 @@ namespace UVACanvasAccess.ApiParts {
             return new CanvasFile(this, model);
         }
 
+        /// <summary>
+        /// Retrieve a hierarchy of personal folders from a path.
+        /// </summary>
+        /// <param name="parts">Each folder in the path, in order.</param>
+        /// <returns>The list of folders, starting from root and ending with the deepest subfolder.</returns>
+        /// <exception cref="DoesNotExistException">If the path given does not exist or is not visible.</exception>
+        public async Task<IEnumerable<Folder>> ResolvePersonalFolderPath(params string[] parts) {
+            var path = string.Join("/", parts);
+            var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
+                                        .ThenApplyAwait(async r => await r.Content.ReadAsStringAsync())
+                                        .ThenApply(JToken.Parse)
+                                        .ThenApply(jt => jt.CheckError());
+            if (response.IsT1) {
+                throw new DoesNotExistException(response.AsT1);
+            }
+
+            return response.AsT0.ToObject<IEnumerable<FolderModel>>()
+                                .Select(fm => new Folder(this, fm));
+        }
+
+        /// <summary>
+        /// Determine if a personal folder exists at the given path.
+        /// </summary>
+        /// <param name="parts">Each folder in the path, in order.</param>
+        /// <returns>Whether or not the personal folder exists.</returns>
+        public async Task<bool> PersonalFolderPathExists(params string[] parts) {
+            var path = string.Join("/", parts);
+            var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
+                                        .ThenApplyAwait(async r => await r.Content.ReadAsStringAsync())
+                                        .ThenApply(JToken.Parse)
+                                        .ThenApply(jt => jt.CheckError());
+            return response.IsT0;
+        }
+
         [PublicAPI]
         [Flags]
         public enum FileIncludes : byte {
@@ -311,6 +350,32 @@ namespace UVACanvasAccess.ApiParts {
 
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
+        }
+
+        public async Task<Folder> UpdatePersonalFolder(ulong folderId, string name) { // todo incomplete
+            
+            var args = new[] {
+                ("name", name)
+            };
+
+            var response = await _client.PutAsync($"folders/{folderId}", BuildHttpArguments(args));
+            
+            var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
+            return new Folder(this, model);
+        }
+
+        /// <summary>
+        /// Deletes a folder.
+        /// </summary>
+        /// <param name="folderId">The folder id.</param>
+        /// <param name="rf">(Optional) If true, the folder does not need to be empty.</param>
+        /// <returns></returns>
+        public async Task DeletePersonalFolder(ulong folderId, bool rf = false) {
+            var args = new[] {
+                ("force", rf.ToShortString())
+            };
+
+            await _client.DeleteAsync($"folders/{folderId}" + BuildQueryString(args)).AssertSuccess();
         }
 
         public async Task<CanvasFile> MoveFile(ulong fileId,

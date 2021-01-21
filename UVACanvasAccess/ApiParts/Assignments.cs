@@ -17,14 +17,14 @@ namespace UVACanvasAccess.ApiParts {
     
     public partial class Api {
         
-        [PaginatedResponse]
-        private Task<HttpResponseMessage> RawListAssignmentOverrides(string courseId, string assignmentId) {
-            var url = $"courses/{courseId}/assignments/{assignmentId}/overrides";
-            return _client.GetAsync(url);
-        }
-
+        /// <summary>
+        /// Lists the assignment overrides for a given assignment.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <returns>The list of overrides.</returns>
         public async Task<IEnumerable<AssignmentOverride>> ListAssignmentOverrides(ulong courseId, ulong assignmentId) {
-            var response = await RawListAssignmentOverrides(courseId.ToString(), assignmentId.ToString());
+            var response = await _client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides");
 
             var models = await AccumulateDeserializePages<AssignmentOverrideModel>(response);
 
@@ -32,28 +32,30 @@ namespace UVACanvasAccess.ApiParts {
                    select new AssignmentOverride(this, model);
         }
 
-        private Task<HttpResponseMessage> RawGetAssignmentOverride(string courseId, 
-                                                                   string assignmentId,
-                                                                   string overrideId) {
-            var url = $"courses/{courseId}/assignments/{assignmentId}/overrides/{overrideId}";
-            return _client.GetAsync(url);
+        /// <summary>
+        /// Streams the assignment overrides for a given assignment.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <returns>The stream of overrides.</returns>
+        public async IAsyncEnumerable<AssignmentOverride> StreamAssignmentOverrides(ulong courseId, ulong assignmentId) {
+            var response = await _client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides");
+
+            await foreach (var model in StreamDeserializePages<AssignmentOverrideModel>(response)) {
+                yield return new AssignmentOverride(this, model);
+            }
         }
 
         public async Task<AssignmentOverride> GetAssignmentOverride(ulong courseId, 
                                                                     ulong assignmentId,
                                                                     ulong overrideId) {
             var response =
-                await RawGetAssignmentOverride(courseId.ToString(), assignmentId.ToString(), overrideId.ToString());
+                await _client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides/{overrideId}");
             response.AssertSuccess();
 
             var model =
                 JsonConvert.DeserializeObject<AssignmentOverrideModel>(await response.Content.ReadAsStringAsync());
             return new AssignmentOverride(this, model);
-        }
-
-        [PaginatedResponse]
-        private Task<HttpResponseMessage> RawBatchGetAssignmentOverrides(string courseId, string args) {
-            return _client.GetAsync($"/api/v1/courses/{courseId}/assignments/overrides" + args);
         }
 
         public async Task<IEnumerable<AssignmentOverride>> BatchGetAssignmentOverrides(ulong courseId,
@@ -67,15 +69,8 @@ namespace UVACanvasAccess.ApiParts {
             // mind the .Interleave() and the order of id and assignment_id; this endpoint is very specific about 
             // the order of parameters
 
-            
-            // endpoint expects duplicate keys in a GET because of course it does,
-            // c#'s standard query string builder (underlying NameValueCollection) does not support this nonstandard
-            // so we have to hack in our own. luckily we don't have to encode anything because our values
-            // are all just integers.
-
-            var q = "?" + string.Join("&", args.Select(kv => $"{kv.Item1}={kv.Item2}"));
-
-            var response = await RawBatchGetAssignmentOverrides(courseId.ToString(), q);
+            var response = 
+                await _client.GetAsync($"courses/{courseId}/assignments/overrides" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             var models = await AccumulateDeserializePages<AssignmentOverrideModel>(response);
             
@@ -83,22 +78,14 @@ namespace UVACanvasAccess.ApiParts {
                          .Select(model => new AssignmentOverride(this, model));
         }
 
-        private Task<HttpResponseMessage> RawCreateAssignmentOverride(string courseId,
-                                                                      string assignmentId,
-                                                                      HttpContent content) {
-            var url = $"courses/{courseId}/assignments/{assignmentId}/overrides";
-            return _client.PostAsync(url, content);
-        }
-
         internal async Task<AssignmentOverride> PostAssignmentOverride(AssignmentOverrideBuilder builder) {
             var args = builder.Fields
                               .Select(kv => (kv.Key, kv.Value))
                               .Concat(builder.ArrayFields
                                              .SelectMany(k => k, (k, v) => (k.Key, v)));
-            
-            var response = await RawCreateAssignmentOverride(builder.CourseId.ToString(), 
-                                                             builder.AssignmentId.ToString(),
-                                                             BuildMultipartHttpArguments(args));
+
+            var response = await _client.PostAsync($"courses/{builder.CourseId}/assignments/{builder.AssignmentId}/overrides",
+                                                   BuildMultipartHttpArguments(args));
             response.AssertSuccess();
 
             var model =
@@ -150,17 +137,14 @@ namespace UVACanvasAccess.ApiParts {
             return new Submission(this, model);
         }
 
-        private Task<HttpResponseMessage> RawCreateAssignment(string courseId, HttpContent content) {
-            return _client.PostAsync($"courses/{courseId}/assignments", content);
-        }
-
         internal async Task<Assignment> PostCreateAssignment(AssignmentBuilder builder) {
             IEnumerable<(string Key, string)> args = builder.Fields
                                                             .Select(kv => (kv.Key, kv.Value))
                                                             .Concat(builder.ArrayFields
                                                                            .SelectMany(k => k, (k, v) => (k.Key, v)));
-            
-            var response = await RawCreateAssignment(builder.CourseId.ToString(), BuildMultipartHttpArguments(args));
+
+            var response = await _client.PostAsync($"courses/{builder.CourseId}/assignments",
+                                                   BuildMultipartHttpArguments(args));
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<AssignmentModel>(await response.Content.ReadAsStringAsync());
@@ -209,6 +193,7 @@ namespace UVACanvasAccess.ApiParts {
         /// Flags representing optional data that can be included as part of an <see cref="Assignment"/>.
         /// </summary>
         [Flags]
+        [PublicAPI]
         public enum AssignmentInclusions {
             Default = 0,
             [ApiRepresentation("submission")]
@@ -226,6 +211,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <summary>
         /// Buckets that assignments can be sorted into.
         /// </summary>
+        [PublicAPI]
         public enum AssignmentBucket {
             [ApiRepresentation("past")]
             Past,

@@ -71,6 +71,10 @@
       <HintPath>..\packages\NLog.4.6.6\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OneOf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\OneOf.2.1.150\lib\net45\OneOf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -176,6 +180,7 @@
     <Compile Include="ApiParts\ContentShares.cs" />
     <Compile Include="ApiParts\Conversations.cs" />
     <Compile Include="ApiParts\Courses.cs" />
+    <Compile Include="ApiParts\CustomCourseColumns.cs" />
     <Compile Include="ApiParts\Discussions.cs" />
     <Compile Include="ApiParts\Enrollments.cs" />
     <Compile Include="ApiParts\Files.cs" />
@@ -189,6 +194,7 @@
     <Compile Include="ApiParts\Reports.cs" />
     <Compile Include="ApiParts\Roles.cs" />
     <Compile Include="ApiParts\Sections.cs" />
+    <Compile Include="ApiParts\SisImports.cs" />
     <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AppointmentGroupBuilder.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
@@ -237,12 +243,25 @@
     <Compile Include="Model\Courses\CourseSettingsModel.cs" />
     <Compile Include="Model\Courses\ShortCourseModel.cs" />
     <Compile Include="Model\Courses\TermModel.cs" />
+    <Compile Include="Model\CustomGradebookColumns\ColumnDatumModel.cs" />
+    <Compile Include="Model\CustomGradebookColumns\CustomColumnModel.cs" />
     <Compile Include="Model\Discussions\DiscussionTopicModel.cs" />
     <Compile Include="Model\Discussions\FileAttachmentModel.cs" />
     <Compile Include="Model\Discussions\TopicEntryModel.cs" />
     <Compile Include="Model\Discussions\TopicReplyModel.cs" />
     <Compile Include="Model\Enrollments\EnrollmentModel.cs" />
     <Compile Include="Model\Enrollments\GradeModel.cs" />
+    <Compile Include="Model\ExternalTools\AccountNavigationModel.cs" />
+    <Compile Include="Model\ExternalTools\CourseHomeSubNavigationModel.cs" />
+    <Compile Include="Model\ExternalTools\CourseNavigationModel.cs" />
+    <Compile Include="Model\ExternalTools\EditorButtonModel.cs" />
+    <Compile Include="Model\ExternalTools\ExternalToolModel.cs" />
+    <Compile Include="Model\ExternalTools\HomeworkSubmissionModel.cs" />
+    <Compile Include="Model\ExternalTools\LinkSelectionModel.cs" />
+    <Compile Include="Model\ExternalTools\MigrationSelectionModel.cs" />
+    <Compile Include="Model\ExternalTools\ResourceSelectionModel.cs" />
+    <Compile Include="Model\ExternalTools\ToolConfigurationModel.cs" />
+    <Compile Include="Model\ExternalTools\UserNavigationModel.cs" />
     <Compile Include="Model\Files\CanvasFileModel.cs" />
     <Compile Include="Model\Files\FolderModel.cs" />
     <Compile Include="Model\Files\LicenseModel.cs" />
@@ -282,6 +301,11 @@
     <Compile Include="Model\Roles\RoleModel.cs" />
     <Compile Include="Model\Roles\RolePermissionsModel.cs" />
     <Compile Include="Model\Sections\SectionModel.cs" />
+    <Compile Include="Model\SisImports\SisImportDataModel.cs" />
+    <Compile Include="Model\SisImports\SisImportCountsModel.cs" />
+    <Compile Include="Model\SisImports\SisImportModel.cs" />
+    <Compile Include="Model\SisImports\SisImportStatisticModel.cs" />
+    <Compile Include="Model\SisImports\SisImportStatisticsModel.cs" />
     <Compile Include="Model\Submissions\MediaCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionCommentModel.cs" />
     <Compile Include="Model\Submissions\SubmissionModel.cs" />
@@ -340,12 +364,35 @@
     <Compile Include="Structures\Courses\CourseView.cs" />
     <Compile Include="Structures\Courses\License.cs" />
     <Compile Include="Structures\Courses\Term.cs" />
+    <Compile Include="Structures\CustomGradebookColumns\ColumnDatum.cs" />
+    <Compile Include="Structures\CustomGradebookColumns\CustomColumn.cs" />
     <Compile Include="Structures\Discussions\DiscussionTopic.cs" />
     <Compile Include="Structures\Discussions\FileAttachment.cs" />
     <Compile Include="Structures\Discussions\TopicEntry.cs" />
     <Compile Include="Structures\Discussions\TopicReply.cs" />
     <Compile Include="Structures\Enrollments\Enrollment.cs" />
     <Compile Include="Structures\Enrollments\Grade.cs" />
+    <Compile Include="Structures\ExternalTools\AccountNavigationLocation.cs" />
+    <Compile Include="Structures\ExternalTools\CourseHomeSubNavigationLocation.cs" />
+    <Compile Include="Structures\ExternalTools\CourseNavigationLocation.cs" />
+    <Compile Include="Structures\ExternalTools\EditorButtonLocation.cs" />
+    <Compile Include="Structures\ExternalTools\ExternalToolLocation.cs" />
+    <Compile Include="Structures\ExternalTools\HomeworkSubmissionLocation.cs" />
+    <Compile Include="Structures\ExternalTools\IToolIconUrl.cs" />
+    <Compile Include="Structures\ExternalTools\IToolDisplayType.cs" />
+    <Compile Include="Structures\ExternalTools\IToolMessageType.cs" />
+    <Compile Include="Structures\ExternalTools\IToolSelectionDimensions.cs" />
+    <Compile Include="Structures\ExternalTools\IToolText.cs" />
+    <Compile Include="Structures\ExternalTools\IToolUrl.cs" />
+    <Compile Include="Structures\ExternalTools\IToolVisibility.cs" />
+    <Compile Include="Structures\ExternalTools\LinkSelectionLocation.cs" />
+    <Compile Include="Structures\ExternalTools\MigrationSelectionLocation.cs" />
+    <Compile Include="Structures\ExternalTools\ResourceSelectionLocation.cs" />
+    <Compile Include="Structures\ExternalTools\ToolConfigurationLocation.cs" />
+    <Compile Include="Structures\ExternalTools\ToolDisplayType.cs" />
+    <Compile Include="Structures\ExternalTools\ToolVisibility.cs" />
+    <Compile Include="Structures\ExternalTools\ToolWindowTarget.cs" />
+    <Compile Include="Structures\ExternalTools\UserNavigationLocation.cs" />
     <Compile Include="Structures\Files\CanvasFile.cs" />
     <Compile Include="Structures\Files\Folder.cs" />
     <Compile Include="Structures\Files\License.cs" />
@@ -379,6 +426,12 @@
     <Compile Include="Structures\Roles\RolePermissions.cs" />
     <Compile Include="Structures\Roles\RolePermissionsSet.cs" />
     <Compile Include="Structures\Sections\Section.cs" />
+    <Compile Include="Structures\SisImports\SisImport.cs" />
+    <Compile Include="Structures\SisImports\SisImportCounts.cs" />
+    <Compile Include="Structures\SisImports\SisImportData.cs" />
+    <Compile Include="Structures\SisImports\SisImportState.cs" />
+    <Compile Include="Structures\SisImports\SisImportStatistic.cs" />
+    <Compile Include="Structures\SisImports\SisImportStatistics.cs" />
     <Compile Include="Structures\Submissions\MediaComment.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\INewSubmissionContent.cs" />
     <Compile Include="Structures\Submissions\NewSubmission\OnlineTextEntrySubmission.cs" />
