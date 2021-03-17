@@ -1,0 +1,6 @@
+<map id="UVACanvasAccess.Structures.Calendar.CalendarEvent" name="UVACanvasAccess.Structures.Calendar.CalendarEvent">
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1BasicCalendarEvent.html" title="UVACanvasAccess.Structures.\lCalendar.BasicCalendarEvent" alt="" coords="409,39,625,80"/>
+<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of: ..." alt="" coords="5,46,97,73"/>
+<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1TimeSlotCalendarEvent.html" title="UVACanvasAccess.Structures.\lCalendar.TimeSlotCalendarEvent" alt="" coords="697,5,928,47"/>
+<area shape="rect" id="node5" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1UserReservationCalendarEvent.html" title="UVACanvasAccess.Structures.\lCalendar.UserReservationCalendarEvent" alt="" coords="673,71,952,112"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="UVACanvasAccess.Structures.ContentShares.ContentShare" name="UVACanvasAccess.Structures.ContentShares.ContentShare">
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1ContentShares_1_1ContentShareWithReceivers.html" title="Represents a content share along with the list of receivers. " alt="" coords="409,5,708,47"/>
+<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Structures_1_1ContentShares_1_1ContentShareWithSender.html" title="Represents a content share along with the sender. " alt="" coords="417,71,701,112"/>
+<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of: ..." alt="" coords="5,46,97,73"/>
+</map>

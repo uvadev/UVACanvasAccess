@@ -1,0 +1,5 @@
+<map id="UVACanvasAccess.Structures.ToDos.ToDoItem" name="UVACanvasAccess.Structures.ToDos.ToDoItem">
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1ToDos_1_1AssignmentToDoItem.html" title="UVACanvasAccess.Structures.\lToDos.AssignmentToDoItem" alt="" coords="409,5,625,47"/>
+<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Structures_1_1ToDos_1_1QuizToDoItem.html" title="UVACanvasAccess.Structures.\lToDos.QuizToDoItem" alt="" coords="409,71,625,112"/>
+<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of: ..." alt="" coords="5,46,97,73"/>
+</map>

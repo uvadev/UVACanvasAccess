@@ -1,0 +1,5 @@
+<map id="UVACanvasAccess.Structures.Gradebook.SubmissionVersion" name="UVACanvasAccess.Structures.Gradebook.SubmissionVersion">
+<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1Submission.html" title="Submission" alt="" coords="122,171,218,197"/>
+<area shape="rect" id="node3" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of: ..." alt="" coords="39,81,131,108"/>
+<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API. &#160;&#160;" alt="" coords="155,81,377,108"/>
+</map>

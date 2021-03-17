@@ -1,0 +1,12 @@
+<map id="UVACanvasAccess.Structures.ExternalTools.ExternalToolLocation" name="UVACanvasAccess.Structures.ExternalTools.ExternalToolLocation">
+<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1AccountNavigationLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.AccountNavigation\lLocation" alt="" coords="321,5,550,61"/>
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseHomeSubNavigationLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.CourseHomeSubNavigation\lLocation" alt="" coords="292,85,579,141"/>
+<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseNavigationLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.CourseNavigationLocation" alt="" coords="297,165,573,206"/>
+<area shape="rect" id="node5" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1EditorButtonLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.EditorButtonLocation" alt="" coords="314,230,557,271"/>
+<area shape="rect" id="node6" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1HomeworkSubmissionLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.HomeworkSubmission\lLocation" alt="" coords="310,295,561,351"/>
+<area shape="rect" id="node7" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1LinkSelectionLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.LinkSelectionLocation" alt="" coords="312,374,559,415"/>
+<area shape="rect" id="node8" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1MigrationSelectionLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.MigrationSelection\lLocation" alt="" coords="322,439,549,495"/>
+<area shape="rect" id="node9" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ResourceSelectionLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.ResourceSelection\lLocation" alt="" coords="322,519,549,575"/>
+<area shape="rect" id="node10" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ToolConfigurationLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.ToolConfiguration\lLocation" alt="" coords="326,599,545,655"/>
+<area shape="rect" id="node11" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1UserNavigationLocation.html" title="UVACanvasAccess.Structures.\lExternalTools.UserNavigationLocation" alt="" coords="305,678,566,719"/>
+</map>
