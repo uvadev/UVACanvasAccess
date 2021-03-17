@@ -179,7 +179,10 @@ namespace UVACanvasAccess.ApiParts {
             return content;
         }
 
-        private static HttpContent BuildHttpJsonBody(JObject json) {
+        private HttpContent BuildHttpJsonBody(JObject json) {
+            if (_masquerade != null) {
+                json.Add("as_user_id", _masquerade.ToString());
+            }
             var content = new StringContent(json.ToString(), Encoding.Default, "application/json");
             return content;
         }

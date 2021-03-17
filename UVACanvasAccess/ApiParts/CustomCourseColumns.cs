@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UVACanvasAccess.Model.CustomGradebookColumns;
 using UVACanvasAccess.Structures.CustomGradebookColumns;
 using UVACanvasAccess.Util;
@@ -96,6 +97,12 @@ namespace UVACanvasAccess.ApiParts {
             return new CustomColumn(this, model);
         }
 
+        /// <summary>
+        /// Streams column entries.
+        /// </summary>
+        /// <param name="columnId">The column id.</param>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The stream of entries.</returns>
         public async IAsyncEnumerable<ColumnDatum> StreamColumnEntries(ulong columnId, ulong courseId) {
             var args = BuildQueryString(("include_hidden", true.ToShortString()));
             var response = await _client.GetAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data" + args);
@@ -103,6 +110,55 @@ namespace UVACanvasAccess.ApiParts {
             await foreach (var model in StreamDeserializePages<ColumnDatumModel>(response)) {
                 yield return new ColumnDatum(this, model);
             }
+        }
+        
+        /// <summary>
+        /// Updates the content of a custom column entry.
+        /// </summary>
+        /// <param name="columnId">The column id.</param>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="userId">The user id.</param>
+        /// <param name="content">The content.</param>
+        /// <returns>The updated entry.</returns>
+        public async Task<ColumnDatum> UpdateColumnCustomEntry(ulong columnId, ulong courseId, ulong userId, string content) {
+            var args = BuildHttpArguments(new[] {("column_data[content]", content)});
+            var response = 
+                await _client.PutAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data/{userId}", args);
+
+            var model = JsonConvert.DeserializeObject<ColumnDatumModel>(await response.Content.ReadAsStringAsync());
+            return new ColumnDatum(this, model);
+        }
+
+        /// <summary>
+        /// Bulk update the contents of several custom column entries.
+        /// </summary>
+        /// <param name="courseId">The column id.</param>
+        /// <param name="updates">The updates.</param>
+        /// <returns></returns>
+        public async Task UpdateCustomColumnEntries(ulong courseId, IEnumerable<ColumnEntryUpdate> updates) {
+            var s = new JsonSerializerSettings {
+                TypeNameHandling = TypeNameHandling.None
+            };
+            var o = new {
+                column_data = updates
+            };
+            var body = BuildHttpJsonBody(JObject.FromObject(o, JsonSerializer.CreateDefault(s)));
+            await _client.PutAsync($"courses/{courseId}/custom_gradebook_column_data", body);
+        }
+
+        /// <summary>
+        /// Represents one update to a custom column entry.
+        /// </summary>
+        /// <see cref="Api.UpdateCustomColumnEntries"/>
+        public struct ColumnEntryUpdate {
+            [JsonProperty("column_id")]
+            public ulong ColumnId { get; set;  }
+            
+            [JsonProperty("user_id")]
+            public ulong UserId { get; set; }
+            
+            [JsonProperty("content")]
+            public string Content { get; set; }
         }
     }
 }
