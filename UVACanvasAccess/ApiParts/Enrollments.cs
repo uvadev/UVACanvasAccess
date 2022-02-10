@@ -261,13 +261,15 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="types">(Optional) The set of enrollment types to filter by.</param>
         /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
         /// <param name="includes">(Optional) Data to include in the result.</param>
+        /// <param name="gradingPeriodId">(Optional) The grading period id to filter grades by.</param>
         /// <returns>The stream of enrollments.</returns>
         // todo params
         // todo {types, states} should probably be flags
         public async IAsyncEnumerable<Enrollment> StreamUserEnrollments(ulong userId,
                                                                         IEnumerable<CourseEnrollmentType> types = null,
                                                                         IEnumerable<CourseEnrollmentState> states = null,
-                                                                        CourseEnrollmentIncludes? includes = null) {
+                                                                        CourseEnrollmentIncludes? includes = null,
+                                                                        ulong? gradingPeriodId = null) {
             var args = new List<(string, string)> {
                 ("per_page", "250")
             };
@@ -276,13 +278,19 @@ namespace UVACanvasAccess.ApiParts {
                 args.AddRange(types.Select(t => t.GetApiRepresentation())
                                    .Select(a => ("type[]", a)));
             }
+            
             if (states != null) {
                 args.AddRange(states.Select(s => s.GetApiRepresentation())
                                     .Select(a => ("state[]", a)));
             }
+            
             if (includes != null) {
                 args.AddRange(includes.GetFlagsApiRepresentations()
                                       .Select(a => ("include[]", a)));
+            }
+
+            if (gradingPeriodId != null) {
+                args.Add(("grading_period_id", gradingPeriodId.ToString()));
             }
             
             var response = await _client.GetAsync($"users/{userId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
