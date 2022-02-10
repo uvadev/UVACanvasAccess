@@ -186,6 +186,7 @@
     <Compile Include="ApiParts\Files.cs" />
     <Compile Include="ApiParts\Gradebook.cs" />
     <Compile Include="ApiParts\GradeChangelog.cs" />
+    <Compile Include="ApiParts\GradingPeriods.cs" />
     <Compile Include="ApiParts\Misc.cs" />
     <Compile Include="ApiParts\Modules.cs" />
     <Compile Include="ApiParts\Observers.cs" />
@@ -273,6 +274,8 @@
     <Compile Include="Model\GradeChangelog\GradeChangeEventLinksModel.cs" />
     <Compile Include="Model\GradeChangelog\GradeChangeEventModel.cs" />
     <Compile Include="Model\GradeChangelog\RedundantGradeChangeEventResponse.cs" />
+    <Compile Include="Model\GradingPeriods\GradingPeriodModel.cs" />
+    <Compile Include="Model\GradingPeriods\RedundantGradingPeriodResponse.cs" />
     <Compile Include="Model\Groups\GroupMembershipModel.cs" />
     <Compile Include="Model\Groups\GroupModel.cs" />
     <Compile Include="Model\Modules\CompletionRequirementModel.cs" />
@@ -403,6 +406,7 @@
     <Compile Include="Structures\Gradebook\SubmissionVersion.cs" />
     <Compile Include="Structures\GradeChangelog\GradeChangeEvent.cs" />
     <Compile Include="Structures\GradeChangelog\GradeChangeEventLinks.cs" />
+    <Compile Include="Structures\GradingPeriods\GradingPeriod.cs" />
     <Compile Include="Structures\Groups\Group.cs" />
     <Compile Include="Structures\Groups\GroupMembership.cs" />
     <Compile Include="Structures\Modules\CompletionRequirement.cs" />
