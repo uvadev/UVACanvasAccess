@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
@@ -23,6 +24,11 @@ namespace UVACanvasAccess.Structures.Discussions {
             Url = model.Url;
             Filename = model.Filename;
             DisplayName = model.DisplayName;
+        }
+
+        public Task<byte[]> Download() {
+            return string.IsNullOrWhiteSpace(Url) ? Task.FromResult<byte[]>(null) 
+                                                  : _api.DownloadFileAttachment(this);
         }
 
         public string ToPrettyString() {

@@ -16,6 +16,7 @@ using UVACanvasAccess.Model.Files;
 using UVACanvasAccess.Structures.Files;
 using UVACanvasAccess.Util;
 using UVACanvasAccess.Exceptions;
+using UVACanvasAccess.Structures.Discussions;
 
 namespace UVACanvasAccess.ApiParts {
     
@@ -118,6 +119,10 @@ namespace UVACanvasAccess.ApiParts {
 
         internal Task<byte[]> DownloadPersonalFile(CanvasFile cf) {
             return _client.GetByteArrayAsync(cf.Url);
+        }
+
+        internal Task<byte[]> DownloadFileAttachment(FileAttachment fa) {
+            return _client.GetByteArrayAsync(fa.Url);
         }
 
         /// <summary>
