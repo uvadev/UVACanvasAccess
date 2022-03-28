@@ -1,4 +1,4 @@
-## UVACanvasAccess [![Build Status](https://travis-ci.com/uvadev/UVACanvasAccess.svg?branch=master)](https://travis-ci.org/uvadev/UVACanvasAccess) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## UVACanvasAccess [![Build Status](https://github.com/uvadev/UVACanvasAccess/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://travis-ci.org/uvadev/UVACanvasAccess) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 A .NET wrapper for the Canvas LMS API.
 
 ### Installation
