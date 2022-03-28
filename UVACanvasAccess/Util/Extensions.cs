@@ -371,6 +371,15 @@ namespace UVACanvasAccess.Util {
             return d.Select(kv => kv.ValSelect(f)).IdentityDictionary();
         }
 
+        [Pure]
+        public static Dictionary<TKo, TVo> KeyValSelect<TK, TV, TKo, TVo>(
+            this Dictionary<TK, TV> d, Func<(TK, TV), (TKo, TVo)> f) {
+            return d.Select(kv => {
+                var mapped = f((kv.Key, kv.Value));
+                return KeyValuePair.New(mapped.Item1, mapped.Item2);
+            }).IdentityDictionary();
+        }
+
         /// <summary>
         /// Converts this enumerable of <see cref="KeyValuePair{TK,TV}"/> to a <see cref="Dictionary{TK,TV}"/>.
         /// </summary>

@@ -196,6 +196,7 @@
     <Compile Include="ApiParts\Roles.cs" />
     <Compile Include="ApiParts\Sections.cs" />
     <Compile Include="ApiParts\SisImports.cs" />
+    <Compile Include="ApiParts\EnrollmentTerms.cs" />
     <Compile Include="ApiParts\Users.cs" />
     <Compile Include="Builders\AppointmentGroupBuilder.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
@@ -252,6 +253,8 @@
     <Compile Include="Model\Discussions\TopicReplyModel.cs" />
     <Compile Include="Model\Enrollments\EnrollmentModel.cs" />
     <Compile Include="Model\Enrollments\GradeModel.cs" />
+    <Compile Include="Model\EnrollmentTerms\EnrollmentTermModel.cs" />
+    <Compile Include="Model\EnrollmentTerms\RedundantEnrollmentTermsResponse.cs" />
     <Compile Include="Model\ExternalTools\AccountNavigationModel.cs" />
     <Compile Include="Model\ExternalTools\CourseHomeSubNavigationModel.cs" />
     <Compile Include="Model\ExternalTools\CourseNavigationModel.cs" />
@@ -375,6 +378,8 @@
     <Compile Include="Structures\Discussions\TopicReply.cs" />
     <Compile Include="Structures\Enrollments\Enrollment.cs" />
     <Compile Include="Structures\Enrollments\Grade.cs" />
+    <Compile Include="Structures\EnrollmentTerms\EnrollmentTerm.cs" />
+    <Compile Include="Structures\EnrollmentTerms\EnrollmentTermBuilder.cs" />
     <Compile Include="Structures\ExternalTools\AccountNavigationLocation.cs" />
     <Compile Include="Structures\ExternalTools\CourseHomeSubNavigationLocation.cs" />
     <Compile Include="Structures\ExternalTools\CourseNavigationLocation.cs" />
