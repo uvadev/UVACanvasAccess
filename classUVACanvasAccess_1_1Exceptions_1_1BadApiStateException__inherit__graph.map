@@ -1,0 +1,4 @@
+<map id="UVACanvasAccess.Exceptions.BadApiStateException" name="UVACanvasAccess.Exceptions.BadApiStateException">
+<area shape="rect" id="node1" title="Indicates that an operation failed due to bad state, or because completing it would result in a bad s..." alt="" coords="5,80,227,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="73,5,159,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="UVACanvasAccess.Structures.Submissions.NewSubmission.OnlineTextEntrySubmission" name="UVACanvasAccess.Structures.Submissions.NewSubmission.OnlineTextEntrySubmission">
+<area shape="rect" id="node1" title="Represents the submission of text, as if it was entered into the online interface." alt="" coords="5,80,264,136"/>
+<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1INewSubmissionContent.html" title="Represents some content to be submitted as part of an assignment submission." alt="" coords="44,5,225,32"/>
+</map>

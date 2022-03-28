@@ -1,0 +1,4 @@
+<map id="UVACanvasAccess.Exceptions.CommunicationException" name="UVACanvasAccess.Exceptions.CommunicationException">
+<area shape="rect" id="node1" title="Indicates a generic HTTP failure response. If the API replied with a JSON error body,..." alt="" coords="5,80,227,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="73,5,159,32"/>
+</map>
