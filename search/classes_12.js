@@ -1,19 +1,12 @@
 var searchData=
 [
-  ['usagerights_774',['UsageRights',['../classUVACanvasAccess_1_1Structures_1_1Files_1_1UsageRights.html',1,'UVACanvasAccess::Structures::Files']]],
-  ['user_775',['User',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html',1,'UVACanvasAccess::Structures::Users']]],
-  ['userassignmentdata_776',['UserAssignmentData',['../classUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserAssignmentData.html',1,'UVACanvasAccess::Structures::Analytics']]],
-  ['userassignmentsubmissiondata_777',['UserAssignmentSubmissionData',['../structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserAssignmentSubmissionData.html',1,'UVACanvasAccess::Structures::Analytics']]],
-  ['usercourseactivityreport_778',['UserCourseActivityReport',['../classUVACanvasAccessTests_1_1UserCourseActivityReport.html',1,'UVACanvasAccessTests']]],
-  ['userdisplay_779',['UserDisplay',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1UserDisplay.html',1,'UVACanvasAccess::Structures::Users']]],
-  ['usergradereport_780',['UserGradeReport',['../classUVACanvasAccessTests_1_1UserGradeReport.html',1,'UVACanvasAccessTests']]],
-  ['userinteractionreport_781',['UserInteractionReport',['../classUVACanvasAccessTests_1_1UserInteractionReport.html',1,'UVACanvasAccessTests']]],
-  ['userinteractionreporttabularized_782',['UserInteractionReportTabularized',['../classUVACanvasAccessTests_1_1UserInteractionReportTabularized.html',1,'UVACanvasAccessTests']]],
-  ['userloginreport_783',['UserLoginReport',['../classUVACanvasAccessTests_1_1UserLoginReport.html',1,'UVACanvasAccessTests']]],
-  ['usernavigationlocation_784',['UserNavigationLocation',['../classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1UserNavigationLocation.html',1,'UVACanvasAccess::Structures::ExternalTools']]],
-  ['userparticipation_785',['UserParticipation',['../structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserParticipation.html',1,'UVACanvasAccess::Structures::Analytics']]],
-  ['userparticipationevent_786',['UserParticipationEvent',['../structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserParticipationEvent.html',1,'UVACanvasAccess::Structures::Analytics']]],
-  ['userreservationcalendarevent_787',['UserReservationCalendarEvent',['../classUVACanvasAccess_1_1Structures_1_1Calendar_1_1UserReservationCalendarEvent.html',1,'UVACanvasAccess::Structures::Calendar']]],
-  ['userstests_788',['UsersTests',['../classUVACanvasAccessTests_1_1UsersTests.html',1,'UVACanvasAccessTests']]],
-  ['userstoragequotareport_789',['UserStorageQuotaReport',['../classUVACanvasAccessTests_1_1UserStorageQuotaReport.html',1,'UVACanvasAccessTests']]]
+  ['usagerights_716',['UsageRights',['../classUVACanvasAccess_1_1Structures_1_1Files_1_1UsageRights.html',1,'UVACanvasAccess::Structures::Files']]],
+  ['user_717',['User',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html',1,'UVACanvasAccess::Structures::Users']]],
+  ['userassignmentdata_718',['UserAssignmentData',['../classUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserAssignmentData.html',1,'UVACanvasAccess::Structures::Analytics']]],
+  ['userassignmentsubmissiondata_719',['UserAssignmentSubmissionData',['../structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserAssignmentSubmissionData.html',1,'UVACanvasAccess::Structures::Analytics']]],
+  ['userdisplay_720',['UserDisplay',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1UserDisplay.html',1,'UVACanvasAccess::Structures::Users']]],
+  ['usernavigationlocation_721',['UserNavigationLocation',['../classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1UserNavigationLocation.html',1,'UVACanvasAccess::Structures::ExternalTools']]],
+  ['userparticipation_722',['UserParticipation',['../structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserParticipation.html',1,'UVACanvasAccess::Structures::Analytics']]],
+  ['userparticipationevent_723',['UserParticipationEvent',['../structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserParticipationEvent.html',1,'UVACanvasAccess::Structures::Analytics']]],
+  ['userreservationcalendarevent_724',['UserReservationCalendarEvent',['../classUVACanvasAccess_1_1Structures_1_1Calendar_1_1UserReservationCalendarEvent.html',1,'UVACanvasAccess::Structures::Calendar']]]
 ];
