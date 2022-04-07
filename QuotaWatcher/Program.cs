@@ -59,6 +59,7 @@ namespace QuotaWatcher {
 
             var options = config.GetTable("options");
             var sendMessage = options.GetOr<bool>("send_message");
+            var outOverride = options.MaybeGet<string>("out_path");
 
             Console.WriteLine($"Sending message? {(sendMessage ? "YES" : "NO")}");
 
@@ -116,12 +117,12 @@ namespace QuotaWatcher {
 
                     await foreach (var c in api.CreateConversation(new QualifiedId[] {user.Id},
                                                                    message,
-                                                                   "File Storage Alert",
+                                                                   "File Storage Notification",
                                                                    true)) {
                         Console.WriteLine($"Sent the message to {user.Id}.\n{c.ToPrettyString()}\n------\n");
                     }
                 } catch (Exception e) {
-                    Console.WriteLine($"Caught exception, skipping check for user {user.Id}.\n{e}\n");
+                    Console.WriteLine($"Caught exception, skipping check for user {user.Id}.");
                 } finally {
                     api.StopMasquerading();
                 }
@@ -129,8 +130,8 @@ namespace QuotaWatcher {
             
             document["dateCompleted"] = DateTime.Now.ToIso8601Date();
             document["usersInLog"] = detectedUsers.Count;
-                
-            var outPath = Path.Combine(home.NsDir, $"QuotaWatcher_Log_{started.Ticks}.json");
+
+            var outPath = outOverride ?? Path.Combine(home.NsDir, $"QuotaWatcher_Log_{started.Ticks}.json");
             File.WriteAllText(outPath, document.ToString(Indented) + "\n");
             Console.WriteLine($"Wrote log to {outPath}");
         }

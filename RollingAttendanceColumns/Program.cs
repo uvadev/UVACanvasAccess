@@ -112,19 +112,6 @@ namespace RollingAttendanceColumns {
 
                         var c = await api.CreateCustomColumn(course.Id, nextMondayStr);
                         Console.WriteLine($"[Course {course.Id}] Created new column id {c.Id}");
-
-                        var enrollments = api.StreamCourseEnrollments(
-                                course.Id, 
-                                Api.CourseEnrollmentType.StudentEnrollment.Yield()
-                        );
-                        var updates = await enrollments.Select(e => new Api.ColumnEntryUpdate {
-                            UserId = e.UserId,
-                            ColumnId = c.Id,
-                            Content = "N"
-                        }).ToListAsync();
-
-                        await api.UpdateCustomColumnEntries(course.Id, updates);
-                        Console.WriteLine($"[Course {course.Id} - Column {c.Id}] Submitted bulk default update");
                     } catch (Exception e) {
                         Console.WriteLine($"Threw up during course {course.Id}:\n{e}\nContinuing onwards.");
                     }

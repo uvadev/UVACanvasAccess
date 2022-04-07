@@ -112,8 +112,8 @@ namespace QuotaPurger {
 
             foreach (var (userId, userData) in detectedUsers) {
                 try {
-                    var isTeacher = await await api.GetUser(userId)
-                                                   .ThenApply(u => u.IsTeacher());
+                    var isTeacher = await api.GetUser(userId)
+                                             .ThenApplyAwait(async u => await u.IsTeacher());
                     
                     api.MasqueradeAs(userId);
                     var (quota, used) = await api.GetPersonalQuotaMiB();
