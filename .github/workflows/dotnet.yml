@@ -29,10 +29,6 @@ jobs:
       with:
         name: uvaca
         path: UVACanvasAccess/UVACanvasAccess*.nupkg
-    - uses: actions/upload-artifact@v3
-      with:
-        name: deploy-sh
-        path: UVACanvasAccess/deploy.sh
   build-docs:
  
    runs-on: ubuntu-latest
@@ -43,7 +39,6 @@ jobs:
    - name: Checkout
      uses: actions/checkout@v2
    - name: Run doxygen
-     #working-directory: ${{env.GITHUB_WORKSPACE}}/UVACanvasAccess
      run: doxygen UVACanvasAccess/Doxyfile
    - name: Deploy docs
      uses: peaceiris/actions-gh-pages@v3
@@ -60,10 +55,6 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: uvaca
-    - uses: actions/download-artifact@v3
-      with:
-        name: deploy-sh
     - name: Run deploy script
-      #run: chmod +x deploy.sh && ./deploy.sh uvadev ${{secrets.GITHUB_TOKEN}}
       run: curl -vX PUT -u "uvadev:${{secrets.GITHUB_TOKEN}}" -F package="@$(echo UVACanvasAccess.*.nupkg)" https://nuget.pkg.github.com/uvadev/
       shell: bash
