@@ -36,9 +36,6 @@ namespace UVACanvasAccess.ApiParts {
 
             if (contexts != null) {
                 var eventContexts = contexts.ToList();
-                if (eventContexts.Count > 10) {
-                    Logger.Warn("StreamCalendarEvent allows at most 10 contexts. Additional ones are being ignored.");
-                }
                 a = a.Concat(eventContexts.Select(cc => ("context_codes[]", cc.ContextCode)));
             }
 

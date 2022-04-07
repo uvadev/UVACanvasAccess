@@ -138,10 +138,6 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup) {
-            if (appointmentGroup.ContextCodes == null || !appointmentGroup.ContextCodes.Any()) {
-                Logger.Warn("Editing an appointment group with no context codes and without supplying any. The operation " +
-                            "might fail.");
-            }
             return new AppointmentGroupBuilder(this, appointmentGroup.Id, appointmentGroup.ContextCodes);
         }
 

@@ -88,7 +88,6 @@ namespace UVACanvasAccess.ApiParts {
             foreach (var (k, v) in dictionary) {
                 AccountRolePermissions? permission = k.ToApiRepresentedEnum<AccountRolePermissions>();
                 if (permission == null) {
-                    Logger.Warn("Encountered unknown permission type: " + k);
                     continue;
                 }
                 
