@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
+using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Discussions {
@@ -84,6 +85,8 @@ namespace UVACanvasAccess.Structures.Discussions {
         public bool? OnlyGradersCanRate { get; }
         
         public bool? SortByRating { get; }
+        
+        public UserDisplay Author { get; set; }
 
         /// <summary>
         /// Gets the list of entries for this topic.
@@ -138,12 +141,15 @@ namespace UVACanvasAccess.Structures.Discussions {
             PodcastUrl = model.PodcastUrl;
             DiscussionType = model.DiscussionType;
             GroupCategoryId = model.GroupCategoryId;
-            Attachments = from a in model.Attachments 
-                          select new FileAttachment(api, a);
+            Attachments = model.Attachments.Select(a => new FileAttachment(api, a));
             Permissions = model.Permissions;
             AllowRating = model.AllowRating;
             OnlyGradersCanRate = model.OnlyGradersCanRate;
             SortByRating = model.SortByRating;
+            
+            if (model.Author is { Id: { } }) { // Author might be empty instead of null
+                Author = new UserDisplay(api, model.Author);
+            }
         }
 
         public string ToPrettyString() {
@@ -171,7 +177,7 @@ namespace UVACanvasAccess.Structures.Discussions {
                    $"\n{nameof(LockInfo)}: {LockInfo}," +
                    $"\n{nameof(LockExplanation)}: {LockExplanation}," +
                    $"\n{nameof(UserName)}: {UserName}," +
-                   $"\n{nameof(TopicChildren)}: {TopicChildren}," +
+                   $"\n{nameof(TopicChildren)}: {TopicChildren.ToPrettyString()}," +
                    $"\n{nameof(GroupTopicChildren)}: {GroupTopicChildren}," +
                    $"\n{nameof(RootTopicId)}: {RootTopicId}," +
                    $"\n{nameof(PodcastUrl)}: {PodcastUrl}," +
@@ -181,7 +187,8 @@ namespace UVACanvasAccess.Structures.Discussions {
                    $"\n{nameof(Permissions)}: {Permissions.ToPrettyString()}," +
                    $"\n{nameof(AllowRating)}: {AllowRating}," +
                    $"\n{nameof(OnlyGradersCanRate)}: {OnlyGradersCanRate}," +
-                   $"\n{nameof(SortByRating)}: {SortByRating}").Indent(4) +
+                   $"\n{nameof(SortByRating)}: {SortByRating}," +
+                   $"\n{nameof(Author)}: {Author?.ToPrettyString()}").Indent(4) +
                    "\n}";
         }
     }

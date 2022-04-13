@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UVACanvasAccess.Model.Users;
 
 
 namespace UVACanvasAccess.Model.Discussions {
@@ -109,6 +110,7 @@ namespace UVACanvasAccess.Model.Discussions {
         [JsonProperty("sort_by_rating")]
         public bool? SortByRating { get; set; }
         
-        
+        [JsonProperty("author")]
+        public UserDisplayModel Author { get; set; }
     }
 }

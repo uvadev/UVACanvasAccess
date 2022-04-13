@@ -7,7 +7,7 @@ namespace UVACanvasAccess.Model.Users {
     internal class UserDisplayModel {
         
         [JsonProperty("id")]
-        public ulong Id { get; set; }
+        public ulong? Id { get; set; }
         
         [JsonProperty("short_name")]
         [CanBeNull]
@@ -23,6 +23,11 @@ namespace UVACanvasAccess.Model.Users {
         [JsonProperty("html_url")]
         public string HtmlUrl { get; set; }
 
+        [JsonProperty("pronouns")]
+        [CanBeNull]
+        public string Pronouns { get; set; }
         
+        [JsonProperty("anonymous_id")]
+        public string AnonymousId { get; set; }
     }
 }
