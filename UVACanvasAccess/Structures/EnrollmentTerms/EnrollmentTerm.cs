@@ -25,6 +25,8 @@ namespace UVACanvasAccess.Structures.EnrollmentTerms {
         
         public DateTime? EndAt { get; }
         
+        public ulong? GradingPeriodGroupId { get; }
+        
         public EnrollmentTermWorkflowState WorkflowState { get; }
         
         public Dictionary<Api.CourseEnrollmentType, EnrollmentTermDateOverride> Overrides { get; }
@@ -37,6 +39,7 @@ namespace UVACanvasAccess.Structures.EnrollmentTerms {
             Name = model.Name;
             StartAt = model.StartAt;
             EndAt = model.EndAt;
+            GradingPeriodGroupId = model.GradingPeriodGroupId;
             WorkflowState = model.WorkflowState?.ToApiRepresentedEnum<EnrollmentTermWorkflowState>() ?? Unknown;
             Overrides = model.Overrides?.KeyValSelect(kv => (kv.Item1.ToApiRepresentedEnum<Api.CourseEnrollmentType>().Expect(),
                                                              new EnrollmentTermDateOverride(kv.Item2))) 

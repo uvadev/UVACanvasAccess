@@ -22,6 +22,9 @@ namespace UVACanvasAccess.Model.EnrollmentTerms {
         [JsonProperty("end_at")]
         public DateTime? EndAt { get; set; }
         
+        [JsonProperty("grading_period_group_id")]
+        public ulong? GradingPeriodGroupId { get; set; }
+        
         [JsonProperty("workflow_state")]
         public string WorkflowState { get; set; }
         
