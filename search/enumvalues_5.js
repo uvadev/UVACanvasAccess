@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ltiguid_1035',['LtiGuid',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af7ff0dc84633a609585a087b86e198daa034125b469e415c4fc6a991a6d41cad1',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['inactive_1119',['Inactive',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350ea3cab03c00dbd11bc3569afa0748013f0',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['invited_1120',['Invited',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350eaaa3443ffdec7410e60018515486e1279',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['participantcount_1039',['ParticipantCount',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a67f853b2c60a15d40dce654f3f2d089ea2f763113175e55f3906f14366d0f0c67',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['position_1040',['Position',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251aa52f5e0bc3859bc5f5e25130b6c7e8881',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['observedusers_1125',['ObservedUsers',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1dab40b66af6bf586ba7a53639cb7b13b0e',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['overwrite_1126',['Overwrite',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#afb1a2c75bf04d00ea4ba3b3f2fea0ab4ada364eb37e143f6b2b5559aa03f5913a',1,'UVACanvasAccess::ApiParts::Api']]]
 ];
