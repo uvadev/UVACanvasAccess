@@ -46,6 +46,7 @@ namespace UVACanvasAccess.Structures.Accounts {
             Content = model.Content;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "TermsOfService {" +
                    ($"\n{nameof(Id)}: {Id}," +

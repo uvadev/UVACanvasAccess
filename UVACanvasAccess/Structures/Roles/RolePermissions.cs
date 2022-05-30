@@ -34,6 +34,7 @@ namespace UVACanvasAccess.Structures.Roles {
             PriorDefault = model.PriorDefault;
         }
 
+        /// <inheritdoc /> 
         public string ToPrettyString() {
             return "RolePermissions { " +
                    ($"\n{nameof(Enabled)}: {Enabled}," +

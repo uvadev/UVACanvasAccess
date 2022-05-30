@@ -31,7 +31,7 @@ namespace UVACanvasAccess.ApiParts {
 
             args.AddRange(receivers.Select(id => ("receiver_ids[]", id.ToString())));
 
-            var response = await _client.PostAsync($"users/{senderId?.ToString() ?? "self"}/content_shares",
+            var response = await client.PostAsync($"users/{senderId?.ToString() ?? "self"}/content_shares",
                                                    BuildHttpArguments(args));
 
             var model = JsonConvert.DeserializeObject<ContentShareModel>(await response.Content.ReadAsStringAsync());
@@ -63,7 +63,7 @@ namespace UVACanvasAccess.ApiParts {
         /// If <paramref name="userId"/> is not Self, the current user must be an observer of the user, or an administrator.
         /// </remarks>
         public async IAsyncEnumerable<ContentShareWithReceivers> StreamSentContentShares(ulong? userId = null) {
-            var response = await _client.GetAsync($"users/{userId?.ToString() ?? "self"}/content_shares/sent");
+            var response = await client.GetAsync($"users/{userId?.ToString() ?? "self"}/content_shares/sent");
 
             await foreach (var model in StreamDeserializePages<ContentShareModel>(response)) {
                 yield return new ContentShareWithReceivers(this, model);
@@ -92,7 +92,7 @@ namespace UVACanvasAccess.ApiParts {
         /// If <paramref name="userId"/> is not Self, the current user must be an observer of the user, or an administrator.
         /// </remarks>
         public async IAsyncEnumerable<ContentShareWithSender> StreamReceivedContentShares(ulong? userId = null) {
-            var response = await _client.GetAsync($"users/{userId.IdOrSelf()}/content_shares/received");
+            var response = await client.GetAsync($"users/{userId.IdOrSelf()}/content_shares/received");
 
             await foreach (var model in StreamDeserializePages<ContentShareModel>(response)) {
                 yield return new ContentShareWithSender(this, model);
@@ -122,7 +122,7 @@ namespace UVACanvasAccess.ApiParts {
         /// The current user must be an observer of <paramref name="userId"/>, or an administrator.
         /// </remarks>
         public async Task<ContentShare> GetContentShare(ulong shareId, ulong? userId = null) {
-            var response = await _client.GetAsync($"users/{userId.IdOrSelf()}/content_shares/{shareId}");
+            var response = await client.GetAsync($"users/{userId.IdOrSelf()}/content_shares/{shareId}");
             
             var model = JsonConvert.DeserializeObject<ContentShareModel>(await response.Content.ReadAsStringAsync());
             return ContentShare.NewContentShare(this, model);
@@ -150,7 +150,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>A void task.</returns>
         /// <remarks>The share will still be visible to other users.</remarks>
         public async Task DeleteContentShare(ulong shareId, ulong? userId = null) {
-            await _client.DeleteAsync($"users/{userId?.ToString() ?? "self"}/content_shares/{shareId}");
+            await client.DeleteAsync($"users/{userId?.ToString() ?? "self"}/content_shares/{shareId}");
         }
     }
 }

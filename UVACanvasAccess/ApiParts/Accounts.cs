@@ -49,7 +49,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>The stream of accounts.</returns>
         public async IAsyncEnumerable<Account> StreamAccounts(AccountIncludes includes = AccountIncludes.Default) {
             var args = includes.GetFlagsApiRepresentations().Select(i => ("include[]", i));
-            var response = await _client.GetAsync("accounts" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync("accounts" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<AccountModel>(response)) {
                 yield return new Account(this, model);
@@ -62,7 +62,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">The account id.</param>
         /// <returns>The account.</returns>
         public async Task<Account> GetAccount(ulong accountId) {
-            var response = await _client.GetAsync($"accounts/{accountId}");
+            var response = await client.GetAsync($"accounts/{accountId}");
 
             var model = JsonConvert.DeserializeObject<AccountModel>(await response.Content.ReadAsStringAsync());
             return new Account(this, model);
@@ -77,7 +77,7 @@ namespace UVACanvasAccess.ApiParts {
         public async Task<BasicAccountPermissionsSet> GetAccountPermissions(AccountRolePermissions checkedPermissions, 
                                                                             ulong? accountId = null) {
             var args = checkedPermissions.GetFlagsApiRepresentations().Select(p => ("permissions[]", p));
-            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/permissions" + 
+            var response = await client.GetAsync($"accounts/{accountId.IdOrSelf()}/permissions" + 
                                                   BuildDuplicateKeyQueryString(args.ToArray()));
 
             var dictionary = JsonConvert.DeserializeObject<Dictionary<string, bool>>(await response.Content.ReadAsStringAsync());
@@ -107,7 +107,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">(Optional; default = self) The account id.</param>
         /// <returns>The Terms of Service.</returns>
         public async Task<TermsOfService> GetTermsOfService(ulong? accountId = null) {
-            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/terms_of_service");
+            var response = await client.GetAsync($"accounts/{accountId.IdOrSelf()}/terms_of_service");
 
             var model = JsonConvert.DeserializeObject<TermsOfServiceModel>(await response.Content.ReadAsStringAsync());
             return new TermsOfService(this, model);
@@ -119,7 +119,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">(Optional; default = self) The account id.</param>
         /// <returns>The set of help links.</returns>
         public async Task<HelpLinks> GetHelpLinks(ulong? accountId = null) {
-            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/help_links");
+            var response = await client.GetAsync($"accounts/{accountId.IdOrSelf()}/help_links");
 
             var model = JsonConvert.DeserializeObject<HelpLinksModel>(await response.Content.ReadAsStringAsync());
             return new HelpLinks(this, model);
@@ -304,7 +304,7 @@ namespace UVACanvasAccess.ApiParts {
 
             var query = BuildDuplicateKeyQueryString(argsList.ToArray());
 
-            return _client.GetAsync(url + query);
+            return client.GetAsync(url + query);
         }
         
         /// <summary>

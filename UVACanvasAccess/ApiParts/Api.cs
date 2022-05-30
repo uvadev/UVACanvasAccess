@@ -25,8 +25,8 @@ namespace UVACanvasAccess.ApiParts {
     [PublicAPI]
     public partial class Api : IDisposable {
         
-        private readonly HttpClient _client;
-        private ulong? _masquerade;
+        private readonly HttpClient client;
+        private ulong? masquerade;
         
         /// <summary>
         /// Construct a new API instance.
@@ -36,11 +36,11 @@ namespace UVACanvasAccess.ApiParts {
         /// Ex: <c>https://uview.instructure.com/api/v1/</c>
         /// </param>
         public Api(string token, string baseUrl) {
-            _client = new HttpClient();
+            client = new HttpClient();
             
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            _client.BaseAddress = new Uri(baseUrl);
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         static Api() {
@@ -49,14 +49,15 @@ namespace UVACanvasAccess.ApiParts {
             };
         }
 
+        /// <inheritdoc cref="IDisposable.Dispose"/>
         public void Dispose() {
-            _client?.Dispose();
+            client?.Dispose();
         }
 
         #if DEBUG
         internal void TestGet(string url, out bool success, out JToken response, out LinkHeader links, 
                               params ValueTuple<string, string>[] args) {
-            var r = _client.GetAsync(url + BuildDuplicateKeyQueryString(args)).Result;
+            var r = client.GetAsync(url + BuildDuplicateKeyQueryString(args)).Result;
             
             response = JToken.Parse(r.Content.ReadAsStringAsync().Result);
             success = r.IsSuccessStatusCode;
@@ -69,7 +70,7 @@ namespace UVACanvasAccess.ApiParts {
         #if DEBUG
         internal void TestDelete(string url, out bool success, out JToken response, out LinkHeader links, 
                                  params ValueTuple<string, string>[] args) {
-            var r = _client.DeleteAsync(url + BuildDuplicateKeyQueryString(args)).Result;
+            var r = client.DeleteAsync(url + BuildDuplicateKeyQueryString(args)).Result;
             
             response = JToken.Parse(r.Content.ReadAsStringAsync().Result);
             success = r.IsSuccessStatusCode;
@@ -90,14 +91,14 @@ namespace UVACanvasAccess.ApiParts {
         /// <remarks>Certain endpoints, for example those relating to the activity stream and personal files, can only
         /// be called on <c>self</c>. Masquerading makes it possible to bypass this restriction.</remarks>
         public void MasqueradeAs(ulong id) {
-            _masquerade = id;
+            masquerade = id;
         }
 
         /// <summary>
         /// Stop "acting as" any user.
         /// </summary>
         public void StopMasquerading() {
-            _masquerade = null;
+            masquerade = null;
         }
 
         /// <summary>
@@ -114,8 +115,8 @@ namespace UVACanvasAccess.ApiParts {
                 }
             }
 
-            if (_masquerade != null) {
-                query["as_user_id"] = _masquerade.ToString();
+            if (masquerade != null) {
+                query["as_user_id"] = masquerade.ToString();
             }
             
             var s = query.ToString();
@@ -133,8 +134,8 @@ namespace UVACanvasAccess.ApiParts {
                 }
             }
 
-            if (_masquerade != null) {
-                entries.Add($"as_user_id={_masquerade.ToString()}");
+            if (masquerade != null) {
+                entries.Add($"as_user_id={masquerade.ToString()}");
             }
 
             if (entries.Count == 0) {
@@ -154,8 +155,8 @@ namespace UVACanvasAccess.ApiParts {
             var pairs = args.Where(a => a.Item2 != null)
                             .Select(a => new KeyValuePair<string, string>(a.Item1, a.Item2));
 
-            if (_masquerade != null) {
-                pairs = pairs.Append(new KeyValuePair<string, string>("as_user_id", _masquerade.ToString()));
+            if (masquerade != null) {
+                pairs = pairs.Append(new KeyValuePair<string, string>("as_user_id", masquerade.ToString()));
             }
             
             var content = new FormUrlEncodedContent(pairs);
@@ -170,16 +171,16 @@ namespace UVACanvasAccess.ApiParts {
                 content.Add(new StringContent(v), k);
             }
 
-            if (_masquerade != null) {
-                content.Add(new StringContent(_masquerade.ToString()), "as_user_id");
+            if (masquerade != null) {
+                content.Add(new StringContent(masquerade.ToString()), "as_user_id");
             }
 
             return content;
         }
 
         private HttpContent BuildHttpJsonBody(JObject json) {
-            if (_masquerade != null) {
-                json.Add("as_user_id", _masquerade.ToString());
+            if (masquerade != null) {
+                json.Add("as_user_id", masquerade.ToString());
             }
             var content = new StringContent(json.ToString(), Encoding.Default, "application/json");
             return content;
@@ -200,7 +201,7 @@ namespace UVACanvasAccess.ApiParts {
                 if (links?.NextLink == null)
                     break;
                 
-                response = await _client.GetAsync(links.NextLink);
+                response = await client.GetAsync(links.NextLink);
                 response.AssertSuccess();
                 pages.Add(response.Content);
             }
@@ -231,7 +232,7 @@ namespace UVACanvasAccess.ApiParts {
                 if (links?.NextLink == null)
                     break;
                 
-                response = await _client.GetAsync(links.NextLink);
+                response = await client.GetAsync(links.NextLink);
                 response.AssertSuccess();
                 pages.Add(response.Content);
             }
@@ -259,7 +260,7 @@ namespace UVACanvasAccess.ApiParts {
                 if (links?.NextLink == null)
                     break;
 
-                response = await _client.GetAsync(links.NextLink);
+                response = await client.GetAsync(links.NextLink);
                 
                 var content = response.AssertSuccess().Content;
 
@@ -282,7 +283,7 @@ namespace UVACanvasAccess.ApiParts {
                 if (links?.NextLink == null)
                     break;
 
-                response = await _client.GetAsync(links.NextLink);
+                response = await client.GetAsync(links.NextLink);
                 
                 var content = response.AssertSuccess().Content;
 
@@ -306,7 +307,7 @@ namespace UVACanvasAccess.ApiParts {
                 if (links?.NextLink == null)
                     break;
 
-                response = await _client.GetAsync(links.NextLink);
+                response = await client.GetAsync(links.NextLink);
                 
                 var content = response.AssertSuccess().Content;
 
@@ -315,10 +316,19 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Direction to sort by.
+        /// </summary>
         [PublicAPI]
         public enum Order : byte {
+            /// <summary>
+            /// Sort in ascending order.
+            /// </summary>
             [ApiRepresentation("asc")]
             Ascending,
+            /// <summary>
+            /// Sort in descending order.
+            /// </summary>
             [ApiRepresentation("desc")]
             Descending
         }

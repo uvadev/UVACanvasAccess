@@ -7,7 +7,7 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.Structures.Assignments {
     
     /// <summary>
-    /// Details about an assignment lock.
+    /// Details about an assignment or file lock.
     /// </summary>
     [PublicAPI]
     public class LockInfo : IPrettyPrint {
@@ -33,6 +33,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             ManuallyLocked = model.ManuallyLocked;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "LockInfo {" + 
                    ($"\n{nameof(AssetString)}: {AssetString}," +

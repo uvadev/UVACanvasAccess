@@ -33,7 +33,7 @@ namespace UVACanvasAccess.ApiParts {
                                                          .Select(s => ("include[]", s))
                                                          .ToArray());
 
-            var response = await _client.GetAsync($"courses/{courseId}/sections" + i);
+            var response = await client.GetAsync($"courses/{courseId}/sections" + i);
             
             await foreach (var model in StreamDeserializePages<SectionModel>(response)) {
                 yield return new Section(this, model);
@@ -41,19 +41,19 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         public async Task<Section> GetSection(ulong courseId, ulong sectionId) {
-            var response = await _client.GetAsync($"courses/{courseId}/sections/{sectionId}");
+            var response = await client.GetAsync($"courses/{courseId}/sections/{sectionId}");
             var model = JsonConvert.DeserializeObject<SectionModel>(await response.Content.ReadAsStringAsync());
             return new Section(this, model);
         }
 
         public async Task<Section> CrossListSection(ulong sectionId, ulong targetCourseId) {
-            var response = await _client.PostAsync($"sections/{sectionId}/crosslist/{targetCourseId}", null);
+            var response = await client.PostAsync($"sections/{sectionId}/crosslist/{targetCourseId}", null);
             var model = JsonConvert.DeserializeObject<SectionModel>(await response.Content.ReadAsStringAsync());
             return new Section(this, model);
         }
 
         public async Task<Section> UnCrossListSection(ulong sectionId) {
-            var response = await _client.DeleteAsync($"sections/{sectionId}/crosslist");
+            var response = await client.DeleteAsync($"sections/{sectionId}/crosslist");
             var model = JsonConvert.DeserializeObject<SectionModel>(await response.Content.ReadAsStringAsync());
             return new Section(this, model);
         }

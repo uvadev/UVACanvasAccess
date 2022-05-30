@@ -34,11 +34,20 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawListPages(string type, string id, string sort, string order, string search, bool? published) {
-            return _client.GetAsync($"{type}/{id}/pages" + BuildQueryString(("sort", sort), 
+            return client.GetAsync($"{type}/{id}/pages" + BuildQueryString(("sort", sort), 
                                                                             ("order", order), 
                                                                             ("published", published?.ToShortString())));
         }
 
+        /// <summary>
+        /// Stream all pages for a course.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="sort">(Optional) Which field to sort results by.</param>
+        /// <param name="order">(Optional) The order of sorted results; defaults to <see cref="Order.Ascending"/>.</param>
+        /// <param name="searchTerm">(Optional) A search term.</param>
+        /// <param name="published">(Optional) If true, only return published courses. If false, exclude published pages.</param>
+        /// <returns>The pages.</returns>
         public async IAsyncEnumerable<Page> StreamCoursePages(ulong courseId,
                                                               PageSort? sort = null,
                                                               Order? order = null,
@@ -57,9 +66,15 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawGetPage(string type, string baseId, string url) {
-            return _client.GetAsync($"{type}/{baseId}/pages/{url}");
+            return client.GetAsync($"{type}/{baseId}/pages/{url}");
         }
 
+        /// <summary>
+        /// Get a single course page by its URL.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="url">The page URL.</param>
+        /// <returns>The page.</returns>
         public async Task<Page> GetCoursePage(ulong courseId, string url) {
             var response = await RawGetPage("courses", courseId.ToString(), url).AssertSuccess();
             var model = JsonConvert.DeserializeObject<PageModel>(await response.Content.ReadAsStringAsync());
@@ -67,9 +82,14 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawGetFrontPage(string type, string id) {
-            return _client.GetAsync($"{type}/{id}/front_page");
+            return client.GetAsync($"{type}/{id}/front_page");
         }
 
+        /// <summary>
+        /// Get a course's front page.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The page.</returns>
         public async Task<Page> GetCourseFrontPage(ulong courseId) {
             var response = await RawGetFrontPage("courses", courseId.ToString()).AssertSuccess();
             var model = JsonConvert.DeserializeObject<PageModel>(await response.Content.ReadAsStringAsync());
@@ -77,9 +97,15 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawListRevisions(string type, string id, string url) {
-            return _client.GetAsync($"{type}/{id}/pages/{url}/revisions");
+            return client.GetAsync($"{type}/{id}/pages/{url}/revisions");
         }
 
+        /// <summary>
+        /// Streams the history of course page revisions.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="url">The page URL.</param>
+        /// <returns>The revision history.</returns>
         public async IAsyncEnumerable<PageRevision> StreamCoursePageRevisionHistory(ulong courseId, string url) {
             var response = await RawListRevisions("courses", courseId.ToString(), url);
             var models = StreamDeserializePages<PageRevisionModel>(response);
@@ -94,10 +120,18 @@ namespace UVACanvasAccess.ApiParts {
                                                          string url, 
                                                          string revisionId,
                                                          bool? omitDetails) {
-            return _client.GetAsync($"{type}/{id}/pages/{url}/revisions/{revisionId}" + 
+            return client.GetAsync($"{type}/{id}/pages/{url}/revisions/{revisionId}" + 
                                     BuildQueryString(("summary", omitDetails?.ToShortString())));
         }
 
+        /// <summary>
+        /// Returns a single course page revision.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="url">The page URL.</param>
+        /// <param name="revisionId">The revision id.</param>
+        /// <param name="omitDetails">(Optional) If true, omits page contents.</param>
+        /// <returns>The page revision.</returns>
         public async Task<PageRevision> GetCoursePageRevision(ulong courseId, 
                                                               string url,
                                                               ulong revisionId,

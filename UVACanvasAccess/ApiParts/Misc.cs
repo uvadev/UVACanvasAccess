@@ -14,7 +14,7 @@ namespace UVACanvasAccess.ApiParts {
     public partial class Api {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {
-            return _client.GetAsync("users/activity_stream" +
+            return client.GetAsync("users/activity_stream" +
                                     BuildQueryString(("only_active_courses", onlyActiveCourses?.ToString())));
         }
         
@@ -48,7 +48,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawGetActivityStreamSummary() {
-            return _client.GetAsync("users/self/activity_stream/summary");
+            return client.GetAsync("users/self/activity_stream/summary");
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawGetUserPageViews(string userId, string startTime, string endTime) {
-            return _client.GetAsync($"users/{userId}/page_views" +
+            return client.GetAsync($"users/{userId}/page_views" +
                                     BuildQueryString(("start_time", startTime), ("end_time", endTime)));
         }
 
@@ -95,7 +95,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawDeleteCustomJson(string userId, string scopes, string ns) {
-            return _client.DeleteAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
+            return client.DeleteAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawLoadCustomJson(string userId, string scopes, string ns) {
-            return _client.GetAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
+            return client.GetAsync($"users/{userId}/custom_data/{scopes}" + BuildQueryString(("ns", ns)));
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawStoreCustomJson(string userId, string scopes, HttpContent content) {
-            return _client.PutAsync($"users/{userId}/custom_data/{scopes}", content);
+            return client.PutAsync($"users/{userId}/custom_data/{scopes}", content);
         }
 
         /// <summary>

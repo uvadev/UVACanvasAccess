@@ -1,4 +1,4 @@
-// ReSharper disable InvalidXmlDocComment
+#pragma warning disable CS1570
 namespace UVACanvasAccess.Util {
     
     /// <summary>
@@ -14,6 +14,10 @@ namespace UVACanvasAccess.Util {
     /// </code>
     /// </summary>
     public interface IPrettyPrint {
+        /// <summary>
+        /// Returns a pretty, formatted string representation of the object.
+        /// </summary>
+        /// <returns>The formatted string.</returns>
         string ToPrettyString();
     }
 }

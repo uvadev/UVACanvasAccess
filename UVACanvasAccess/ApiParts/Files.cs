@@ -58,7 +58,7 @@ namespace UVACanvasAccess.ApiParts {
                                                               ("on_duplicate", onDuplicate)
                                                           });
 
-            var firstPostResponse = await _client.PostAsync(endpoint, firstPostArgs);
+            var firstPostResponse = await client.PostAsync(endpoint, firstPostArgs);
 
             firstPostResponse.AssertSuccess();
 
@@ -79,7 +79,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                   { bytesContent, fileName, filePath }
                                                               };
             
-            var secondPostResponse = await _client.PostAsync(uploadUrl, secondPostData);
+            var secondPostResponse = await client.PostAsync(uploadUrl, secondPostData);
 
             secondPostResponse.AssertSuccess();
 
@@ -88,7 +88,7 @@ namespace UVACanvasAccess.ApiParts {
             if (secondPostResponse.StatusCode != HttpStatusCode.MovedPermanently) {
                 model = JsonConvert.DeserializeObject<CanvasFileModel>(await secondPostResponse.Content.ReadAsStringAsync());
             } else {
-                var thirdResponse = await _client.GetAsync(secondPostResponse.Headers.Location);
+                var thirdResponse = await client.GetAsync(secondPostResponse.Headers.Location);
                 thirdResponse.AssertSuccess();
                 model = JsonConvert.DeserializeObject<CanvasFileModel>(await thirdResponse.Content.ReadAsStringAsync());
             }
@@ -118,11 +118,11 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         internal Task<byte[]> DownloadPersonalFile(CanvasFile cf) {
-            return _client.GetByteArrayAsync(cf.Url);
+            return client.GetByteArrayAsync(cf.Url);
         }
 
         internal Task<byte[]> DownloadFileAttachment(FileAttachment fa) {
-            return _client.GetByteArrayAsync(fa.Url);
+            return client.GetByteArrayAsync(fa.Url);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("hidden", hidden?.ToShortString()),
                 ("position", position?.ToString())
             });
-            var response = await _client.PostAsync("users/self/folders", args);
+            var response = await client.PostAsync("users/self/folders", args);
 
             var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
             return new Folder(this, model);
@@ -165,7 +165,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>The folder.</returns>
         public async Task<Folder> GetPersonalFolder(ulong? folderId) {
             var folder = folderId?.ToString() ?? "root";
-            var response = await _client.GetAsync($"users/self/folders/{folder}");
+            var response = await client.GetAsync($"users/self/folders/{folder}");
 
             var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
             return new Folder(this, model);
@@ -176,7 +176,7 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <returns>The stream of folders.</returns>
         public async IAsyncEnumerable<Folder> StreamPersonalFolders() {
-            var response = await _client.GetAsync("users/self/folders" + BuildQueryString()); // todo fixme HACK!!!
+            var response = await client.GetAsync("users/self/folders" + BuildQueryString());
 
             await foreach (var model in StreamDeserializePages<FolderModel>(response)) {
                 yield return new Folder(this, model);
@@ -234,7 +234,7 @@ namespace UVACanvasAccess.ApiParts {
                 args.Add(("order", order.GetApiRepresentation()));
             }
             
-            var response = await _client.GetAsync("users/self/files" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync("users/self/files" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<CanvasFileModel>(response)) {
                 yield return new CanvasFile(this, model);
@@ -248,7 +248,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="includes">(Optional) Extra data to include with the result.</param>
         /// <returns>The file.</returns>
         public async Task<CanvasFile> GetPersonalFile(ulong fileId, FileIncludes? includes = null) {
-            var response = await _client.GetAsync($"files/{fileId}" + (includes == null ? "" 
+            var response = await client.GetAsync($"files/{fileId}" + (includes == null ? "" 
                                                                            : BuildDuplicateKeyQueryString(includes.GetFlagsApiRepresentations().Select(r => ("include[]", r)).ToArray())));
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
@@ -262,7 +262,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <exception cref="DoesNotExistException">If the path given does not exist or is not visible.</exception>
         public async Task<IEnumerable<Folder>> ResolvePersonalFolderPath(params string[] parts) {
             var path = string.Join("/", parts);
-            var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
+            var response = await client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
                                         .ThenApplyAwait(async r => await r.Content.ReadAsStringAsync())
                                         .ThenApply(JToken.Parse)
                                         .ThenApply(jt => jt.CheckError());
@@ -281,7 +281,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>Whether or not the personal folder exists.</returns>
         public async Task<bool> PersonalFolderPathExists(params string[] parts) {
             var path = string.Join("/", parts);
-            var response = await _client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
+            var response = await client.GetAsync("users/self/folders/by_path/" + path + BuildQueryString())
                                         .ThenApplyAwait(async r => await r.Content.ReadAsStringAsync())
                                         .ThenApply(JToken.Parse)
                                         .ThenApply(jt => jt.CheckError());
@@ -318,7 +318,7 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <returns>The tuple of quota and used quota.</returns>
         public async Task<(ulong, ulong)> GetPersonalQuota() {
-            var response = await _client.GetAsync("users/self/files/quota" + BuildQueryString());
+            var response = await client.GetAsync("users/self/files/quota" + BuildQueryString());
 
             var q = JObject.Parse(await response.Content.ReadAsStringAsync());
             return (q["quota"].Value<ulong>(), q["quota_used"].Value<ulong>());
@@ -339,6 +339,15 @@ namespace UVACanvasAccess.ApiParts {
             return Task.FromException<(decimal, decimal)>(q.Exception);
         }
 
+        /// <summary>
+        /// Updates a personal file for the current user. All arguments except for <paramref name="fileId"/> are optional.
+        /// </summary>
+        /// <param name="fileId">The file id.</param>
+        /// <param name="lockAt">When the file should lock.</param>
+        /// <param name="unlockAt">When the file should unlock.</param>
+        /// <param name="locked">Whether or not the file is locked.</param>
+        /// <param name="hidden">Whether or not the file is hidden.</param>
+        /// <returns>The file.</returns>
         public async Task<CanvasFile> UpdatePersonalFile(ulong fileId,
                                                          DateTime? lockAt = null,
                                                          DateTime? unlockAt = null,
@@ -351,26 +360,32 @@ namespace UVACanvasAccess.ApiParts {
                 ("hidden", hidden?.ToShortString())
             };
 
-            var response = await _client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
+            var response = await client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
 
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
         }
 
+        /// <summary>
+        /// Updates a personal folder for the current user.
+        /// </summary>
+        /// <param name="folderId">The folder id.</param>
+        /// <param name="name">The folder name.</param>
+        /// <returns>The folder.</returns>
         public async Task<Folder> UpdatePersonalFolder(ulong folderId, string name) { // todo incomplete
             
             var args = new[] {
                 ("name", name)
             };
 
-            var response = await _client.PutAsync($"folders/{folderId}", BuildHttpArguments(args));
+            var response = await client.PutAsync($"folders/{folderId}", BuildHttpArguments(args));
             
             var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
             return new Folder(this, model);
         }
 
         /// <summary>
-        /// Deletes a folder.
+        /// Deletes a personal folder for the current user.
         /// </summary>
         /// <param name="folderId">The folder id.</param>
         /// <param name="rf">(Optional) If true, the folder does not need to be empty.</param>
@@ -380,45 +395,66 @@ namespace UVACanvasAccess.ApiParts {
                 ("force", rf.ToShortString())
             };
 
-            await _client.DeleteAsync($"folders/{folderId}" + BuildQueryString(args)).AssertSuccess();
+            await client.DeleteAsync($"folders/{folderId}" + BuildQueryString(args)).AssertSuccess();
         }
 
-        public async Task<CanvasFile> MoveFile(ulong fileId,
-                                               OnDuplicate onDuplicate,
-                                               string name = null,
-                                               ulong? folderId = null) {
+        /// <summary>
+        /// Moves a personal file for the current user.
+        /// </summary>
+        /// <param name="fileId">The file id.</param>
+        /// <param name="onDuplicate">The action taken to resolve a duplicate.</param>
+        /// <param name="name">(Optional) The new name. If none given, the previous name will be kept.</param>
+        /// <param name="destinationFolderId">(Optional) The id of the folder to move the file into. If none give, the file will remain in place.</param>
+        /// <returns>The file.</returns>
+        public async Task<CanvasFile> MovePersonalFile(ulong fileId, 
+                                                       OnDuplicate onDuplicate, 
+                                                       string name = null, 
+                                                       ulong? destinationFolderId = null) {
             var args = new[] {
                 ("name", name),
-                ("parent_folder_id", folderId.ToString()),
+                ("parent_folder_id", destinationFolderId.ToString()),
                 ("on_duplicate", onDuplicate.GetApiRepresentation())
             };
             
-            var response = await _client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
+            var response = await client.PutAsync($"files/{fileId}", BuildHttpArguments(args));
 
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
         }
 
-        public async Task<CanvasFile> CopyFile(ulong fileId, ulong destinationFolderId, OnDuplicate onDuplicate) {
+        /// <summary>
+        /// Copies a personal file for the current user.
+        /// </summary>
+        /// <param name="fileId">The file id.</param>
+        /// <param name="destinationFolderId">The id of the folder to copy the file into.</param>
+        /// <param name="onDuplicate">The action taken to resolve a duplicate.</param>
+        /// <returns>The new file.</returns>
+        public async Task<CanvasFile> CopyPersonalFile(ulong fileId, ulong destinationFolderId, OnDuplicate onDuplicate) {
             var args = new[] {
                 ("source_file_id", fileId.ToString()),
                 ("on_duplicate", onDuplicate.GetApiRepresentation())
             };
 
             var response =
-                await _client.PostAsync($"folders/{destinationFolderId}/copy_file", BuildHttpArguments(args));
+                await client.PostAsync($"folders/{destinationFolderId}/copy_file", BuildHttpArguments(args));
             
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);
         }
 
-        public async Task<CanvasFile> DeleteFile(ulong fileId, bool? replace = null) {
+        /// <summary>
+        /// Deletes a personal file for the current user.
+        /// </summary>
+        /// <param name="fileId">The file id.</param>
+        /// <param name="replace">(Optional) If true, the file and all generated previews will be replaced with a blank placeholder.</param>
+        /// <returns>The file.</returns>
+        public async Task<CanvasFile> DeletePersonalFile(ulong fileId, bool? replace = null) {
             var args = new[] {
                 ("replace", replace?.ToShortString())
             };
             
             var response =
-                await _client.DeleteAsync($"files/{fileId}" + BuildQueryString(args));
+                await client.DeleteAsync($"files/{fileId}" + BuildQueryString(args));
             
             var model = JsonConvert.DeserializeObject<CanvasFileModel>(await response.Content.ReadAsStringAsync());
             return new CanvasFile(this, model);

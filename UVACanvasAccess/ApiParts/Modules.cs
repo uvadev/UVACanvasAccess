@@ -65,7 +65,7 @@ namespace UVACanvasAccess.ApiParts {
                     break;
             }
 
-            var response = await _client.GetAsync($"courses/{courseId}/modules" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync($"courses/{courseId}/modules" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<ModuleModel>(response)) {
                 yield return new Module(this, model);
@@ -102,7 +102,7 @@ namespace UVACanvasAccess.ApiParts {
                     break;
             }
 
-            var response = await _client.GetAsync($"courses/{courseId}/modules/{moduleId}" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync($"courses/{courseId}/modules/{moduleId}" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             var model = JsonConvert.DeserializeObject<ModuleModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
             return new Module(this, model);
@@ -128,7 +128,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("include[]", includeContentDetails ? "content_details" : null)
             };
 
-            var response = await _client.GetAsync($"courses/{courseId}/modules/{moduleId}/items" + BuildDuplicateKeyQueryString(args));
+            var response = await client.GetAsync($"courses/{courseId}/modules/{moduleId}/items" + BuildDuplicateKeyQueryString(args));
             
             await foreach (var model in StreamDeserializePages<ModuleItemModel>(response)) {
                 yield return new ModuleItem(this, model);
@@ -150,7 +150,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("asset_id", assetId.ToString())
             };
             
-            var response = await _client.GetAsync($"courses/{courseId}/module_item_sequence" + BuildDuplicateKeyQueryString(args));
+            var response = await client.GetAsync($"courses/{courseId}/module_item_sequence" + BuildDuplicateKeyQueryString(args));
             var model = JsonConvert.DeserializeObject<ModuleItemSequenceModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
             return new ModuleItemSequence(this, model);
         }

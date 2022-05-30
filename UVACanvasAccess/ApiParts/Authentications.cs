@@ -16,7 +16,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                       DateTime? start,
                                                                       DateTime? end) {
             var url = $"audit/authentication/{endpoint}/{id}";
-            return _client.GetAsync(url+ BuildQueryString(("start_time", start?.ToIso8601Date()), 
+            return client.GetAsync(url+ BuildQueryString(("start_time", start?.ToIso8601Date()), 
                                                                    ("end_time", end?.ToIso8601Date())));
         }
 

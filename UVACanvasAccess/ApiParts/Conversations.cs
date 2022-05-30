@@ -56,7 +56,7 @@ namespace UVACanvasAccess.ApiParts {
                 args.AddRange(attachmentIds.Select(attachment => ("attachment_ids[]", attachment)));
             }
 
-            var response = await _client.PostAsync("conversations", BuildHttpArguments(args));
+            var response = await client.PostAsync("conversations", BuildHttpArguments(args));
 
             await foreach (var conversation in StreamDeserializePages<ConversationModel>(response)) {
                 yield return new Conversation(this, conversation);
@@ -88,7 +88,7 @@ namespace UVACanvasAccess.ApiParts {
                 args.AddRange(filter.Select(id => ("filter[]", id.AsString)));
             }
 
-            var response = await _client.GetAsync("conversations" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync("conversations" + BuildDuplicateKeyQueryString(args.ToArray()));
             
             await foreach (var conversation in StreamDeserializePages<ConversationModel>(response)) {
                 yield return new Conversation(this, conversation);
@@ -107,7 +107,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("auto_mark_as_read", markAsRead.ToShortString())
             };
 
-            var response = await _client.GetAsync($"conversations/{conversationId}" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync($"conversations/{conversationId}" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             try {
                 return new DetailedConversation(this, JsonConvert.DeserializeObject<DetailedConversationModel>(await response.Content.ReadAsStringAsync()));
@@ -134,7 +134,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("conversation[starred]", starred?.ToShortString())
             };
 
-            var response = await _client.PutAsync($"conversations/{conversationId}", BuildHttpArguments(args));
+            var response = await client.PutAsync($"conversations/{conversationId}", BuildHttpArguments(args));
             
             try {
                 return new Conversation(this, JsonConvert.DeserializeObject<ConversationModel>(await response.Content.ReadAsStringAsync()));
@@ -182,7 +182,7 @@ namespace UVACanvasAccess.ApiParts {
                 args.AddRange(attachmentIds.Select(attachment => ("attachment_ids[]", attachment)));
             }
 
-            var response = await _client.PostAsync($"conversations/{conversationId}/add_message", BuildHttpArguments(args));
+            var response = await client.PostAsync($"conversations/{conversationId}/add_message", BuildHttpArguments(args));
             try {
                 return new Conversation(this, JsonConvert.DeserializeObject<ConversationModel>(await response.Content.ReadAsStringAsync()));
             } catch (InvalidOperationException) {

@@ -34,6 +34,7 @@ namespace UVACanvasAccess.Structures.Users {
             AnonymousId = model.AnonymousId;
         }
 
+        /// <inheritdoc /> 
         public string ToPrettyString() {
             return "UserDisplay {" +
                    ($"\n{nameof(Id)}: {Id}," +

@@ -101,6 +101,7 @@ namespace UVACanvasAccess.Structures.Accounts {
             WorkflowState = model.WorkflowState;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "Account {" + 
                    ($"\n{nameof(Id)}: {Id}," +

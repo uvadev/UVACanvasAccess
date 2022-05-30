@@ -18,7 +18,7 @@ namespace UVACanvasAccess.ApiParts {
         public async IAsyncEnumerable<CustomColumn> StreamCustomGradebookColumns(ulong courseId, 
                                                                                  bool? includeHidden = null) {
             var args = BuildQueryString(("include_hidden", includeHidden?.ToShortString()));
-            var response = await _client.GetAsync($"courses/{courseId}/custom_gradebook_columns" + args);
+            var response = await client.GetAsync($"courses/{courseId}/custom_gradebook_columns" + args);
 
             await foreach (var model in StreamDeserializePages<CustomColumnModel>(response)) {
                 yield return new CustomColumn(this, model);
@@ -49,7 +49,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("read_only", readOnly?.ToShortString())
             }.KeySelect(k => $"column[{k}]"));
 
-            var response = await _client.PostAsync($"courses/{courseId}/custom_gradebook_columns", args);
+            var response = await client.PostAsync($"courses/{courseId}/custom_gradebook_columns", args);
             var model = JsonConvert.DeserializeObject<CustomColumnModel>(await response.Content.ReadAsStringAsync());
             return new CustomColumn(this, model);
         }
@@ -80,7 +80,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("read_only", readOnly?.ToShortString())
             }.KeySelect(k => $"column[{k}]"));
 
-            var response = await _client.PutAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}", args);
+            var response = await client.PutAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}", args);
             var model = JsonConvert.DeserializeObject<CustomColumnModel>(await response.Content.ReadAsStringAsync());
             return new CustomColumn(this, model);
         }
@@ -92,7 +92,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="courseId">The course id.</param>
         /// <returns>The deleted column.</returns>
         public async Task<CustomColumn> DeleteCustomColumn(ulong columnId, ulong courseId) {
-            var response = await _client.DeleteAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}");
+            var response = await client.DeleteAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}");
             var model = JsonConvert.DeserializeObject<CustomColumnModel>(await response.Content.ReadAsStringAsync());
             return new CustomColumn(this, model);
         }
@@ -105,7 +105,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>The stream of entries.</returns>
         public async IAsyncEnumerable<ColumnDatum> StreamColumnEntries(ulong columnId, ulong courseId) {
             var args = BuildQueryString(("include_hidden", true.ToShortString()));
-            var response = await _client.GetAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data" + args);
+            var response = await client.GetAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data" + args);
             
             await foreach (var model in StreamDeserializePages<ColumnDatumModel>(response)) {
                 yield return new ColumnDatum(this, model);
@@ -123,7 +123,7 @@ namespace UVACanvasAccess.ApiParts {
         public async Task<ColumnDatum> UpdateColumnCustomEntry(ulong columnId, ulong courseId, ulong userId, string content) {
             var args = BuildHttpArguments(new[] {("column_data[content]", content)});
             var response = 
-                await _client.PutAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data/{userId}", args);
+                await client.PutAsync($"courses/{courseId}/custom_gradebook_columns/{columnId}/data/{userId}", args);
 
             var model = JsonConvert.DeserializeObject<ColumnDatumModel>(await response.Content.ReadAsStringAsync());
             return new ColumnDatum(this, model);
@@ -143,7 +143,7 @@ namespace UVACanvasAccess.ApiParts {
                 column_data = updates
             };
             var body = BuildHttpJsonBody(JObject.FromObject(o, JsonSerializer.CreateDefault(s)));
-            await _client.PutAsync($"courses/{courseId}/custom_gradebook_column_data", body);
+            await client.PutAsync($"courses/{courseId}/custom_gradebook_column_data", body);
         }
 
         /// <summary>

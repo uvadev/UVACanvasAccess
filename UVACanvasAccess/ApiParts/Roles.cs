@@ -19,7 +19,7 @@ namespace UVACanvasAccess.ApiParts {
             var args = states.Select(s => ("state[]", s))
                              .Append(("show_inherited", showInherited?.ToShortString()));
             
-            return _client.GetAsync(url + BuildQueryString(args.ToArray()));
+            return client.GetAsync(url + BuildQueryString(args.ToArray()));
         }
 
         public async Task<IEnumerable<Role>> ListRoles(RoleState states = 0, bool? showInherited = null, ulong? accountId = null) {
@@ -34,7 +34,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawCreateRole(string accountId, HttpContent content) {
-            return _client.PostAsync($"accounts/{accountId}/roles", content);
+            return client.PostAsync($"accounts/{accountId}/roles", content);
         }
         
         private async Task<Role> CreateRole(string label,

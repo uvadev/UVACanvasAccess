@@ -30,14 +30,14 @@ namespace UVACanvasAccess.ApiParts {
             var bytesContent = new ByteArrayContent(file);
             bytesContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
 
-            var response = await _client.PostAsync($"accounts/{accountId.IdOrSelf()}/sis_imports" + args, bytesContent);
+            var response = await client.PostAsync($"accounts/{accountId.IdOrSelf()}/sis_imports" + args, bytesContent);
 
             var model = JsonConvert.DeserializeObject<SisImportModel>(await response.Content.ReadAsStringAsync());
             return new SisImport(this, model);
         }
 
         public async Task<SisImport> GetSisImport(ulong id, ulong? accountId = null) {
-            var response = await _client.GetAsync($"accounts/{accountId.IdOrSelf()}/sis_imports/{id}");
+            var response = await client.GetAsync($"accounts/{accountId.IdOrSelf()}/sis_imports/{id}");
             
             var model = JsonConvert.DeserializeObject<SisImportModel>(await response.Content.ReadAsStringAsync());
             return new SisImport(this, model);

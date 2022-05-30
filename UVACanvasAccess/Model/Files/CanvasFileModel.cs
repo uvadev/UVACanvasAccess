@@ -1,4 +1,7 @@
+using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
+using UVACanvasAccess.Structures.Assignments;
 
 
 namespace UVACanvasAccess.Model.Files {
@@ -29,13 +32,13 @@ namespace UVACanvasAccess.Model.Files {
         public ulong Size { get; set; }
         
         [JsonProperty("created_at")]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         
         [JsonProperty("updated_at")]
-        public string UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         
         [JsonProperty("unlock_at")]
-        public string UnlockAt { get; set; }
+        public DateTime? UnlockAt { get; set; }
         
         [JsonProperty("locked")]
         public bool Locked { get; set; }
@@ -44,7 +47,7 @@ namespace UVACanvasAccess.Model.Files {
         public bool Hidden { get; set; }
         
         [JsonProperty("lock_at")]
-        public string LockAt { get; set; }
+        public DateTime? LockAt { get; set; }
         
         [JsonProperty("hidden_for_user")]
         public bool HiddenForUser { get; set; }
@@ -53,7 +56,7 @@ namespace UVACanvasAccess.Model.Files {
         public string ThumbnailUrl { get; set; }
         
         [JsonProperty("modified_at")]
-        public string ModifiedAt { get; set; }
+        public DateTime? ModifiedAt { get; set; }
         
         [JsonProperty("mime_class")]
         public string MimeClass { get; set; }
@@ -65,14 +68,13 @@ namespace UVACanvasAccess.Model.Files {
         public bool LockedForUser { get; set; }
         
         [JsonProperty("lock_info")]
-        public object LockInfo { get; set; }
+        [CanBeNull]
+        public LockInfo LockInfo { get; set; }
         
         [JsonProperty("lock_explanation")]
         public string LockExplanation { get; set; }
         
         [JsonProperty("preview_url")]
         public string PreviewUrl { get; set; }
-
-        
     }
 }

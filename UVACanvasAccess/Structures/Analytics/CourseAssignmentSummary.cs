@@ -5,32 +5,75 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Analytics {
     
+    /// <summary>
+    /// A summary of per-assignment statistical information for a course.
+    /// </summary>
     [PublicAPI]
     public class CourseAssignmentSummary : IPrettyPrint {
+        /// <summary>
+        /// The assignment id.
+        /// </summary>
         public ulong AssignmentId { get; }
         
+        /// <summary>
+        /// The assignment title.
+        /// </summary>
         public string Title { get; }
         
+        /// <summary>
+        /// The assignment's due date.
+        /// </summary>
         public DateTime DueAt { get; }
         
+        /// <summary>
+        /// The date at which the assignment unlocks.
+        /// </summary>
         public DateTime? UnlockAt { get; }
         
+        /// <summary>
+        /// Whether the assignment is muted.
+        /// </summary>
         public bool Muted { get; }
         
+        /// <summary>
+        /// The maximum points possible for the assignment.
+        /// </summary>
         public decimal PointsPossible { get; }
         
+        /// <summary>
+        /// Whether the assignment is to be submitted non-digitally; i.e. on paper or outside of Canvas.
+        /// </summary>
         public bool? NonDigitalSubmission { get; }
         
+        /// <summary>
+        /// The maximum score any student has earned on this assignment.
+        /// </summary>
         public decimal? MaxScore { get; }
         
+        /// <summary>
+        /// The minimum score any student has earned on this assignment.
+        /// </summary>
         public decimal? MinScore { get; }
         
+        /// <summary>
+        /// The first quartile (Q1) score.
+        /// </summary>
         public decimal? FirstQuartile { get; }
         
+        /// <summary>
+        /// The median score.
+        /// </summary>
         public decimal? Median { get; }
         
+        /// <summary>
+        /// The third quartile (Q3) score.
+        /// </summary>
         public decimal? ThirdQuartile { get; }
         
+        /// <summary>
+        /// A breakdown of on-time/lateness statuses for the assignment.
+        /// </summary>
+        /// <seealso cref="Tardiness"/>
         public Tardiness TardinessBreakdown { get; }
 
         internal CourseAssignmentSummary(CourseAssignmentSummaryModel model) {
@@ -49,6 +92,7 @@ namespace UVACanvasAccess.Structures.Analytics {
             TardinessBreakdown = model.TardinessBreakdown.ConvertIfNotNull(m => new Tardiness(m));
         }
 
+        /// <inheritdoc/>
         public string ToPrettyString() {
             return "CourseAssignmentSummary {" +
                    ($"\n{nameof(AssignmentId)}: {AssignmentId}," +

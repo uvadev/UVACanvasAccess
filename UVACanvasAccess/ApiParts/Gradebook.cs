@@ -13,7 +13,7 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetGradebookDays(string courseId) {
             var url = $"courses/{courseId}/gradebook_history/days";
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetDailyGraders(string courseId, DateTime date) {
             var url = $"courses/{courseId}/gradebook_history/{date.ToIso8601Date()}";
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetDailySubmissionHistories(string courseId, DateTime date, string graderId, string assignmentId) {
             var url = $"courses/{courseId}/gradebook_history/{date.ToIso8601Date()}/graders/{graderId}/assignments/{assignmentId}/submissions";
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                    string userId,
                                                                    string ascending) {
             var url = $"courses/{courseId}/gradebook_history/feed";
-            return _client.GetAsync(url + BuildQueryString(("assignment_id", assignmentId), 
+            return client.GetAsync(url + BuildQueryString(("assignment_id", assignmentId), 
                                                            ("user_id", userId), 
                                                            ("ascending", ascending)
                                                            ));

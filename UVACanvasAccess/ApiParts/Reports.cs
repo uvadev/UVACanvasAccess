@@ -14,7 +14,7 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawListAvailableReports(string accountId) {
             var url = $"accounts/{accountId}/reports";
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace UVACanvasAccess.ApiParts {
 
         private Task<HttpResponseMessage> RawStartReport(string accountId, string reportType, HttpContent args) {
             var url = $"accounts/{accountId}/reports/{reportType}";
-            return _client.PostAsync(url, args);
+            return client.PostAsync(url, args);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">The account id the report was run under; defaults to self.</param>
         /// <returns>The task containing the report.</returns>
         public async Task<Report> GetReportStatus(string reportType, ulong reportId, ulong? accountId = null) {
-            var response = await _client.GetAsync($"accounts/{accountId?.ToString() ?? "self"}/reports/{reportType}/{reportId}");
+            var response = await client.GetAsync($"accounts/{accountId?.ToString() ?? "self"}/reports/{reportType}/{reportId}");
             var model = JsonConvert.DeserializeObject<ReportModel>(await response.Content.ReadAsStringAsync());
             return new Report(this, model);
         }
@@ -77,7 +77,7 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetReportIndex(string accountId, string reportType) {
             var url = $"accounts/{accountId}/reports/{reportType}";
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         public async Task<IEnumerable<Report>> GetReportIndex(string reportType, ulong? accountId = null) {

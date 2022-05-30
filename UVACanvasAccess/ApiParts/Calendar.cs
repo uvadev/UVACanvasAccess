@@ -39,7 +39,7 @@ namespace UVACanvasAccess.ApiParts {
                 a = a.Concat(eventContexts.Select(cc => ("context_codes[]", cc.ContextCode)));
             }
 
-            var response = await _client.GetAsync($"users/{userId?.ToString() ?? "self"}/calendar_events" + BuildDuplicateKeyQueryString(a.ToArray()));
+            var response = await client.GetAsync($"users/{userId?.ToString() ?? "self"}/calendar_events" + BuildDuplicateKeyQueryString(a.ToArray()));
             
             await foreach (var model in StreamDeserializePages<CalendarEventModel>(response)) {
                 yield return CalendarEvent.FromModel(this, model);

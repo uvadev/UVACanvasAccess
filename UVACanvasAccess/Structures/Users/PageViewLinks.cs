@@ -47,8 +47,7 @@ namespace UVACanvasAccess.Structures.Users {
             Account = model.Account;
         }
         
-        
-
+        /// <inheritdoc /> 
         public string ToPrettyString() {
             return "PageViewLinks {" +
                    ($"\n{nameof(User)}: {User}," +

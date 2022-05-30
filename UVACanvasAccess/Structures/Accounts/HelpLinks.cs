@@ -41,6 +41,7 @@ namespace UVACanvasAccess.Structures.Accounts {
             DefaultHelpLinks = model.DefaultHelpLinks.SelectNotNull(m => new HelpLink(api, m));
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "HelpLinks {" + 
                    ($"\n{nameof(HelpLinkName)}: {HelpLinkName}," +

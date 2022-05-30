@@ -37,7 +37,7 @@ namespace UVACanvasAccess.ApiParts {
                                  ("associated_user_id", associatedUserId?.ToString())
                              }.KeySelect(k => $"enrollment[{k}]");
 
-            return _client.PostAsync($"courses/{courseId}/enrollments", BuildHttpArguments(args));
+            return client.PostAsync($"courses/{courseId}/enrollments", BuildHttpArguments(args));
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private async Task<Enrollment> RawDeleteEnrollment(ulong courseId, ulong enrollmentId, string task) {
-            var response = await _client.DeleteAsync($"courses/{courseId}/enrollments/{enrollmentId}" + 
+            var response = await client.DeleteAsync($"courses/{courseId}/enrollments/{enrollmentId}" + 
                                                      BuildQueryString(("task", task))).AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<EnrollmentModel>(await response.Content.ReadAsStringAsync());
@@ -171,7 +171,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="enrollmentId">The enrollment to accept.</param>
         /// <returns>Whether or not the operation was successful.</returns>
         public async Task<bool> AcceptEnrollmentInvitation(ulong courseId, ulong enrollmentId) {
-            var response = await _client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/accept", null);
+            var response = await client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/accept", null);
 
             return JObject.Parse(await response.Content.ReadAsStringAsync()).Value<bool>("success");
         }
@@ -183,7 +183,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="enrollmentId">The enrollment to accept.</param>
         /// <returns>Whether or not the operation was successful.</returns>
         public async Task<bool> DeclineEnrollmentInvitation(ulong courseId, ulong enrollmentId) {
-            var response = await _client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/reject", null);
+            var response = await client.PostAsync($"courses/{courseId}/enrollments/{enrollmentId}/reject", null);
 
             return JObject.Parse(await response.Content.ReadAsStringAsync()).Value<bool>("success");
         }
@@ -196,25 +196,43 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="enrollmentId">The enrollment.</param>
         /// <returns>The reactivated enrollment.</returns>
         public async Task<Enrollment> ReactivateEnrollment(ulong courseId, ulong enrollmentId) {
-            var response = await _client.PutAsync($"courses/{courseId}/enrollments/{enrollmentId}/reactivate", null);
+            var response = await client.PutAsync($"courses/{courseId}/enrollments/{enrollmentId}/reactivate", null);
             
             var model = JsonConvert.DeserializeObject<EnrollmentModel>(await response.Content.ReadAsStringAsync());
             return new Enrollment(this, model);
         }
 
+        /// <summary>
+        /// Requests for optional data that can be included with <see cref="Enrollment"/> objects.
+        /// </summary>
         [PublicAPI]
         [Flags]
         public enum CourseEnrollmentIncludes : byte {
+            /// <summary>
+            /// Include avatar URLs.
+            /// </summary>
             [ApiRepresentation("avatar_url")]
             AvatarUrl = 1 << 0,
+            /// <summary>
+            /// Include group ids.
+            /// </summary>
             [ApiRepresentation("group_ids")]
             GroupIds = 1 << 1,
+            /// <summary>
+            /// Include locked status.
+            /// </summary>
             [ApiRepresentation("locked")]
             Locked = 1 << 2,
+            /// <summary>
+            /// Include observation information.
+            /// </summary>
             [ApiRepresentation("observed_users")]
             ObservedUsers = 1 << 3,
             [ApiRepresentation("can_be_removed")]
             CanBeRemoved = 1 << 4,
+            /// <summary>
+            /// Include UUIDs.
+            /// </summary>
             [ApiRepresentation("uuid")]
             Uuid = 1 << 5
         }
@@ -247,7 +265,7 @@ namespace UVACanvasAccess.ApiParts {
                                       .Select(a => ("include[]", a)));
             }
             
-            var response = await _client.GetAsync($"courses/{courseId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync($"courses/{courseId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<EnrollmentModel>(response)) {
                 yield return new Enrollment(this, model);
@@ -293,7 +311,7 @@ namespace UVACanvasAccess.ApiParts {
                 args.Add(("grading_period_id", gradingPeriodId.ToString()));
             }
             
-            var response = await _client.GetAsync($"users/{userId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync($"users/{userId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<EnrollmentModel>(response)) {
                 yield return new Enrollment(this, model);

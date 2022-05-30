@@ -66,6 +66,9 @@ namespace UVACanvasAccess.ApiParts {
             /// </summary>
             [ApiRepresentation("all_context_codes")]
             AllContextCodes = 1 << 4,
+            /// <summary>
+            /// Include all optional data for the appointment group. 
+            /// </summary>
             Everything = byte.MaxValue
         }
         
@@ -98,7 +101,7 @@ namespace UVACanvasAccess.ApiParts {
                 args = args.Concat(contexts.Select(c => ("context_codes[]", c.ContextCode)));
             }
             
-            var response = await _client.GetAsync("appointment_groups" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync("appointment_groups" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<AppointmentGroupModel>(response)) {
                 yield return new AppointmentGroup(this, model);
@@ -110,7 +113,7 @@ namespace UVACanvasAccess.ApiParts {
                               .Select(kv => (kv.Key, kv.Value))
                               .Concat(builder.ArrayFields
                                              .SelectMany(k => k, (k, v) => (k.Key, v)));
-            var response = await _client.PostAsync("appointment_groups", BuildMultipartHttpArguments(args));
+            var response = await client.PostAsync("appointment_groups", BuildMultipartHttpArguments(args));
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.Content.ReadAsStringAsync());
@@ -122,29 +125,59 @@ namespace UVACanvasAccess.ApiParts {
                               .Select(kv => (kv.Key, kv.Value))
                               .Concat(builder.ArrayFields
                                              .SelectMany(k => k, (k, v) => (k.Key, v)));
-            var response = await _client.PutAsync($"appointment_groups/{builder.EditingId}", BuildMultipartHttpArguments(args));
+            var response = await client.PutAsync($"appointment_groups/{builder.EditingId}", BuildMultipartHttpArguments(args));
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.Content.ReadAsStringAsync());
             return new AppointmentGroup(this, model);
         }
 
+        
+        /// <summary>
+        /// Returns an <see cref="AppointmentGroupBuilder"/> for creating a new appointment group.
+        /// </summary>
+        /// <param name="title">The title of the appointment group.</param>
+        /// <param name="contexts">The event contexts relevant to the appointment group.</param>
+        /// <returns>The <see cref="AppointmentGroupBuilder"/>.</returns>
         public AppointmentGroupBuilder CreateAppointmentGroup(string title, IEnumerable<EventContext> contexts) {
             return new AppointmentGroupBuilder(this, title, contexts);
         }
         
+        /// <summary>
+        /// Returns an <see cref="AppointmentGroupBuilder"/> for creating a new appointment group.
+        /// </summary>
+        /// <param name="title">The title of the appointment group.</param>
+        /// <param name="contexts">The event contexts relevant to the appointment group.</param>
+        /// <returns>The <see cref="AppointmentGroupBuilder"/>.</returns>
         public AppointmentGroupBuilder CreateAppointmentGroup(string title, params EventContext[] contexts) {
             return CreateAppointmentGroup(title, (IEnumerable<EventContext>) contexts);
         }
 
+        /// <summary>
+        /// Returns an <see cref="AppointmentGroupBuilder"/> for modifying an existing appointment group.
+        /// </summary>
+        /// <param name="appointmentGroup">The <see cref="AppointmentGroup"/> to edit.</param>
+        /// <returns>The <see cref="AppointmentGroupBuilder"/>.</returns>
         public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup) {
             return new AppointmentGroupBuilder(this, appointmentGroup.Id, appointmentGroup.ContextCodes);
         }
 
+        /// <summary>
+        /// Returns an <see cref="AppointmentGroupBuilder"/> for modifying an existing appointment group.
+        /// </summary>
+        /// <param name="appointmentGroup">The <see cref="AppointmentGroup"/> to edit.</param>
+        /// <param name="contexts">The new set of event contexts; these will replace the previous event contexts.</param>
+        /// <returns>The <see cref="AppointmentGroupBuilder"/>.</returns>
         public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup, IEnumerable<EventContext> contexts) {
             return new AppointmentGroupBuilder(this, appointmentGroup.Id, contexts);
         }
         
+        /// <summary>
+        /// Returns an <see cref="AppointmentGroupBuilder"/> for modifying an existing appointment group.
+        /// </summary>
+        /// <param name="appointmentGroup">The <see cref="AppointmentGroup"/> to edit.</param>
+        /// <param name="contexts">The new set of event contexts; these will replace the previous event contexts.</param>
+        /// <returns>The <see cref="AppointmentGroupBuilder"/>.</returns>
         public AppointmentGroupBuilder EditAppointmentGroup(AppointmentGroup appointmentGroup, params EventContext[] contexts) {
             return EditAppointmentGroup(appointmentGroup, (IEnumerable<EventContext>) contexts);
         }
@@ -156,7 +189,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="includes">Optional data to include in the result.</param>
         /// <returns>The appointment group.</returns>
         public async Task<AppointmentGroup> GetAppointmentGroup(ulong id, AppointmentGroupIncludes includes = 0) {
-            var response = await _client.GetAsync($"appointment_groups/{id}" +
+            var response = await client.GetAsync($"appointment_groups/{id}" +
                                                   BuildDuplicateKeyQueryString(includes.GetFlagsApiRepresentations()
                                                                                        .Select(f => ("include[]", f))
                                                                                        .ToArray()));
@@ -171,7 +204,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="reason">An optional reason.</param>
         /// <returns>The deleted appointment group.</returns>
         public async Task<AppointmentGroup> DeleteAppointmentGroup(ulong id, string reason = null) {
-            var response = await _client.DeleteAsync($"appointment_groups/{id}" + (reason == null ? "" 
+            var response = await client.DeleteAsync($"appointment_groups/{id}" + (reason == null ? "" 
                                                                                                            : $"?reason={reason}"));
             var model = JsonConvert.DeserializeObject<AppointmentGroupModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
             return new AppointmentGroup(this, model);
@@ -188,7 +221,7 @@ namespace UVACanvasAccess.ApiParts {
 
             var isUser = typeof(T).IsAssignableFrom(typeof(User));
 
-            var response = await _client.GetAsync($"appointment_groups/{appointmentGroupId}/{(isUser ? "users" : "groups")}?registration_status=registered")
+            var response = await client.GetAsync($"appointment_groups/{appointmentGroupId}/{(isUser ? "users" : "groups")}?registration_status=registered")
                                         .AssertSuccess();
 
             if (isUser) {

@@ -23,7 +23,7 @@ namespace UVACanvasAccess.ApiParts {
                 args.AddRange(includes.GetFlagsApiRepresentations().Select(f => ("include[]", f)));
             }
             
-            var response = await _client.GetAsync($"accounts/{accountId?.ToString() ?? "self"}/terms" + 
+            var response = await client.GetAsync($"accounts/{accountId?.ToString() ?? "self"}/terms" + 
                                                   BuildDuplicateKeyQueryString(args.ToArray()));
             
             await foreach (var redundantModel in StreamDeserializeObjectPages<RedundantEnrollmentTermsResponse>(response)) {
@@ -51,26 +51,26 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         public async Task<EnrollmentTerm> GetEnrollmentTerm(ulong termId, ulong? accountId = null) {
-            var response = await _client.GetAsync($"accounts/{accountId?.ToString() ?? "self"}/terms/{termId}" + BuildQueryString());
+            var response = await client.GetAsync($"accounts/{accountId?.ToString() ?? "self"}/terms/{termId}" + BuildQueryString());
             var model = JsonConvert.DeserializeObject<EnrollmentTermModel>(await response.Content.ReadAsStringAsync());
             return new EnrollmentTerm(this, model);
         }
         
         public async Task<EnrollmentTerm> DeleteEnrollmentTerm(ulong termId, ulong? accountId = null) {
-            var response = await _client.DeleteAsync($"accounts/{accountId?.ToString() ?? "self"}/terms/{termId}" + BuildQueryString());
+            var response = await client.DeleteAsync($"accounts/{accountId?.ToString() ?? "self"}/terms/{termId}" + BuildQueryString());
             var model = JsonConvert.DeserializeObject<EnrollmentTermModel>(await response.Content.ReadAsStringAsync());
             return new EnrollmentTerm(this, model);
         }
 
         public async Task<EnrollmentTerm> CreateEnrollmentTerm(EnrollmentTermBuilder builder, ulong? accountId = null) {
-            var response = await _client.PostAsync($"accounts/{accountId?.ToString() ?? "self"}/terms", 
+            var response = await client.PostAsync($"accounts/{accountId?.ToString() ?? "self"}/terms", 
                                                    BuildHttpArguments(builder.ToParams()));
             var model = JsonConvert.DeserializeObject<EnrollmentTermModel>(await response.Content.ReadAsStringAsync());
             return new EnrollmentTerm(this, model);
         }
 
         public async Task<EnrollmentTerm> UpdateEnrollmentTerm(ulong enrollmentId, EnrollmentTermBuilder builder, ulong? accountId = null) {
-            var response = await _client.PutAsync($"accounts/{accountId?.ToString() ?? "self"}/terms/{enrollmentId}", 
+            var response = await client.PutAsync($"accounts/{accountId?.ToString() ?? "self"}/terms/{enrollmentId}", 
                                                   BuildHttpArguments(builder.ToParams()));
             var model = JsonConvert.DeserializeObject<EnrollmentTermModel>(await response.Content.ReadAsStringAsync());
             return new EnrollmentTerm(this, model);

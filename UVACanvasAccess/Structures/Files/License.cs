@@ -5,14 +5,26 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Files {
     
+    /// <summary>
+    /// Represents a content license.
+    /// </summary>
     [PublicAPI]
     public class License : IPrettyPrint {
         private readonly Api _api;
         
+        /// <summary>
+        /// The license id.
+        /// </summary>
         public string Id { get; }
         
+        /// <summary>
+        /// The license name.
+        /// </summary>
         public string Name { get; }
         
+        /// <summary>
+        /// The license url.
+        /// </summary>
         public string Url { get; }
 
         internal License(Api api, LicenseModel model) {
@@ -22,6 +34,7 @@ namespace UVACanvasAccess.Structures.Files {
             Url = model.Url;
         }
 
+        /// <inheritdoc /> 
         public string ToPrettyString() {
             return "License {" +
                    ($"\n{nameof(Id)}: {Id}," +

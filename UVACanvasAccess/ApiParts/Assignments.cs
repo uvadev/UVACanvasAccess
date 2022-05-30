@@ -24,7 +24,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="assignmentId">The assignment id.</param>
         /// <returns>The list of overrides.</returns>
         public async Task<IEnumerable<AssignmentOverride>> ListAssignmentOverrides(ulong courseId, ulong assignmentId) {
-            var response = await _client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides");
+            var response = await client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides");
 
             var models = await AccumulateDeserializePages<AssignmentOverrideModel>(response);
 
@@ -39,7 +39,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="assignmentId">The assignment id.</param>
         /// <returns>The stream of overrides.</returns>
         public async IAsyncEnumerable<AssignmentOverride> StreamAssignmentOverrides(ulong courseId, ulong assignmentId) {
-            var response = await _client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides");
+            var response = await client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides");
 
             await foreach (var model in StreamDeserializePages<AssignmentOverrideModel>(response)) {
                 yield return new AssignmentOverride(this, model);
@@ -50,7 +50,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                     ulong assignmentId,
                                                                     ulong overrideId) {
             var response =
-                await _client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides/{overrideId}");
+                await client.GetAsync($"courses/{courseId}/assignments/{assignmentId}/overrides/{overrideId}");
             response.AssertSuccess();
 
             var model =
@@ -70,7 +70,7 @@ namespace UVACanvasAccess.ApiParts {
             // the order of parameters
 
             var response = 
-                await _client.GetAsync($"courses/{courseId}/assignments/overrides" + BuildDuplicateKeyQueryString(args.ToArray()));
+                await client.GetAsync($"courses/{courseId}/assignments/overrides" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             var models = await AccumulateDeserializePages<AssignmentOverrideModel>(response);
             
@@ -84,7 +84,7 @@ namespace UVACanvasAccess.ApiParts {
                               .Concat(builder.ArrayFields
                                              .SelectMany(k => k, (k, v) => (k.Key, v)));
 
-            var response = await _client.PostAsync($"courses/{builder.CourseId}/assignments/{builder.AssignmentId}/overrides",
+            var response = await client.PostAsync($"courses/{builder.CourseId}/assignments/{builder.AssignmentId}/overrides",
                                                    BuildMultipartHttpArguments(args));
             response.AssertSuccess();
 
@@ -108,7 +108,7 @@ namespace UVACanvasAccess.ApiParts {
                                         .Append(("submission[submission_type]", submissionContent.Type.GetApiRepresentation()))
                                         .Append(("comment[text_comment]", comment));
             
-            return _client.PostAsync(url, BuildHttpArguments(args));
+            return client.PostAsync(url, BuildHttpArguments(args));
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace UVACanvasAccess.ApiParts {
                                                             .Concat(builder.ArrayFields
                                                                            .SelectMany(k => k, (k, v) => (k.Key, v)));
 
-            var response = await _client.PostAsync($"courses/{builder.CourseId}/assignments",
+            var response = await client.PostAsync($"courses/{builder.CourseId}/assignments",
                                                    BuildMultipartHttpArguments(args));
             response.AssertSuccess();
 
@@ -186,7 +186,7 @@ namespace UVACanvasAccess.ApiParts {
         }
         
         private Task<HttpResponseMessage> RawEditAssignment(string courseId, string assignmentId, HttpContent content) {
-            return _client.PutAsync($"courses/{courseId}/assignments/{assignmentId}", content);
+            return client.PutAsync($"courses/{courseId}/assignments/{assignmentId}", content);
         }
         
         /// <summary>
@@ -250,7 +250,7 @@ namespace UVACanvasAccess.ApiParts {
                                                 .Select(s => ("assignment_ids[]", s)));
             }
 
-            return _client.GetAsync(url + BuildQueryString(args.ToArray()));
+            return client.GetAsync(url + BuildQueryString(args.ToArray()));
         }
         
         [PaginatedResponse]
@@ -342,7 +342,7 @@ namespace UVACanvasAccess.ApiParts {
             
             var url = $"courses/{courseId}/assignments/{assignmentId}" + BuildQueryString(args.ToArray());
 
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>

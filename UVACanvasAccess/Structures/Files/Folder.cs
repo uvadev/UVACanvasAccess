@@ -6,52 +6,115 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Files {
     
+    /// <summary>
+    /// Represents a folder on the Canvas server. Folders contain <see cref="CanvasFile"/>s.
+    /// </summary>
     [PublicAPI]
     public class Folder : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The context of the folder; e.g. course, group, user, etc.
+        /// </summary>
         public string ContextType { get; }
 
+        /// <summary>
+        /// The id of the folder context. <see cref="Folder.ContextType"/> determines the type of this id.
+        /// </summary>
         public ulong ContextId { get; }
 
+        /// <summary>
+        /// The number of files in the folder.
+        /// </summary>
         public uint FilesCount { get; }
         
+        /// <summary>
+        /// The visual position of this folder relative to other folders in the same parent folder.
+        /// </summary>
         public int? Position { get; }
         
+        /// <summary>
+        /// When the folder was last updated.
+        /// </summary>
         public DateTime UpdatedAt { get; }
 
+        /// <summary>
+        /// The URL to this folder.
+        /// </summary>
         public string FoldersUrl { get; }
         
+        /// <summary>
+        /// The URL to the files within this folder.
+        /// </summary>
         public string FilesUrl { get; }
         
+        /// <summary>
+        /// The full path of this folder.
+        /// </summary>
         public string FullName { get; }
 
+        /// <summary>
+        /// When the folder is set to lock.
+        /// </summary>
         public DateTime? LockAt { get; }
         
+        /// <summary>
+        /// The folder id.
+        /// </summary>
         public ulong Id { get; }
         
+        /// <summary>
+        /// The number of folders in the folder.
+        /// </summary>
         public uint FoldersCount { get; }
         
+        /// <summary>
+        /// The name of the folder.
+        /// </summary>
         public string Name { get; }
         
+        /// <summary>
+        /// The id of the folder's parent folder, if it exists.
+        /// </summary>
         public ulong? ParentFolderId { get; }
 
+        /// <summary>
+        /// When the folder was created.
+        /// </summary>
         public DateTime CreatedAt { get; }
 
+        /// <summary>
+        /// When the folder is set to unlock.
+        /// </summary>
         public DateTime? UnlockAt { get; }
 
+        /// <summary>
+        /// Whether or not the folder is hidden.
+        /// </summary>
         public bool? Hidden { get; }
         
+        /// <summary>
+        /// Whether or not the folder is hidden for its owner.
+        /// </summary>
         public bool? HiddenForUser { get; }
 
+        /// <summary>
+        /// Whether or not the folder is locked.
+        /// </summary>
         public bool? Locked { get; }
         
+        /// <summary>
+        /// Whether or not the folder is locked for its owner.
+        /// </summary>
         public bool? LockedForUser { get; }
         
+        /// <summary>
+        /// Whether or not the folder is designated for assignment submissions.
+        /// </summary>
         public bool? ForSubmissions { get; }
 
         internal Folder(Api api, FolderModel model) {
-            _api = api;
+            this.api = api;
             ContextType = model.ContextType;
             ContextId = model.ContextId;
             FilesCount = model.FilesCount;
@@ -74,6 +137,7 @@ namespace UVACanvasAccess.Structures.Files {
             ForSubmissions = model.ForSubmissions;
         }
 
+        /// <inheritdoc /> 
         public string ToPrettyString() {
             return "Folder {" + 
                    ($"\n{nameof(ContextType)}: {ContextType}," +

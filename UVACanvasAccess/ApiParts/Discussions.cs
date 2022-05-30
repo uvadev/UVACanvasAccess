@@ -73,7 +73,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                 string topicId, 
                                                                 DiscussionTopicInclusions inclusions) {
             var url = $"{type}/{baseId}/discussion_topics/{topicId}" + BuildQueryString(inclusions.GetTuples().ToArray());
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace UVACanvasAccess.ApiParts {
             
             url += BuildQueryString(args.ToArray());
 
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                     HttpContent content) {
             var url = $"{type}/{baseId}/discussion_topics";
 
-            return _client.PostAsync(url, content);
+            return client.PostAsync(url, content);
         }
 
         internal async Task<DiscussionTopic> PostNewDiscussionTopic(CreateDiscussionTopicBuilder builder) {
@@ -198,9 +198,17 @@ namespace UVACanvasAccess.ApiParts {
                                                                         string topicId,
                                                                         string entryId) {
             var url = $"{type}/{baseId}/discussion_topics/{topicId}/entries/{entryId}/replies";
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Gets the list of replies to a discussion entry.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="topicId">The topic id.</param>
+        /// <param name="entryId">The discussion entry id.</param>
+        /// <param name="type">(Optional; default = 'courses') The type of discussion entry.</param>
+        /// <returns>The list of replies.</returns>
         public async Task<IEnumerable<TopicReply>> ListDiscussionEntryReplies(ulong courseId,
                                                                               ulong topicId,
                                                                               ulong entryId,
@@ -212,9 +220,7 @@ namespace UVACanvasAccess.ApiParts {
             response.AssertSuccess();
 
             var models = await AccumulateDeserializePages<TopicReplyModel>(response);
-
-            return from model in models
-                   select new TopicReply(this, model);
+            return models.Select(model => new TopicReply(this, model));
         }
 
         private Task<HttpResponseMessage> RawPostDiscussionEntry(string type, 
@@ -226,7 +232,7 @@ namespace UVACanvasAccess.ApiParts {
             var url = $"{type}/{baseId}/discussion_topics/{topicId}/entries";
 
             // Only if there is an attachment, the request must be a multipart, otherwise it must not.
-            // This is not documented by the API.
+            // This is undocumented.
             if (attachment != null) {
                 var bytesContent = new ByteArrayContent(attachment);
                 bytesContent.Headers.ContentType = new MediaTypeHeaderValue(MimeMapping.GetMimeMapping(filePath));
@@ -242,13 +248,13 @@ namespace UVACanvasAccess.ApiParts {
                                                                        Path.GetFileName(filePath)
                                                                    }
                                                            };
-                return _client.PostAsync(url, dataContent);
+                return client.PostAsync(url, dataContent);
             }
 
             var content = BuildHttpArguments(new[] {
                                                        ("message", body)
                                                    });
-            return _client.PostAsync(url, content);
+            return client.PostAsync(url, content);
         }
 
         /// <summary>
@@ -284,7 +290,7 @@ namespace UVACanvasAccess.ApiParts {
             
             var url = $"{type}/{baseId}/discussion_topics/{topicId}/entries";
 
-            return _client.GetAsync(url);
+            return client.GetAsync(url);
         }
 
         /// <summary>

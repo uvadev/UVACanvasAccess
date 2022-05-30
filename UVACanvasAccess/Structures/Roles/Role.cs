@@ -31,6 +31,7 @@ namespace UVACanvasAccess.Structures.Roles {
             Permissions = model.Permissions.ValSelect(m => new RolePermissions(api, m));
         }
 
+        /// <inheritdoc /> 
         public string ToPrettyString() {
             return "Role {" +
                    ($"\n{nameof(Label)}: {Label}," +

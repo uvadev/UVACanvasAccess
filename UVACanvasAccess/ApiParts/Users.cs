@@ -18,7 +18,7 @@ namespace UVACanvasAccess.ApiParts {
     
     public partial class Api {
         private Task<HttpResponseMessage> RawCreateUser(string accountId, HttpContent content) {
-            return _client.PostAsync($"accounts/{accountId}/users", content);
+            return client.PostAsync($"accounts/{accountId}/users", content);
         }
         
         internal async Task<User> PostCreateUser(CreateUserBuilder builder) {
@@ -43,7 +43,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawEditUser(string userId, HttpContent content) {
-            return _client.PutAsync("users/" + userId, content);
+            return client.PutAsync("users/" + userId, content);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UVACanvasAccess.ApiParts {
         }
         
         private Task<HttpResponseMessage> RawGetUserProfile(string userId) {
-            return _client.GetAsync("users/" + userId + "/profile");
+            return client.GetAsync("users/" + userId + "/profile");
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawGetUserDetails(string userId) {
-            return _client.GetAsync("users/" + userId + BuildQueryString());
+            return client.GetAsync("users/" + userId + BuildQueryString());
         }
         
         /// <summary>
@@ -128,7 +128,7 @@ namespace UVACanvasAccess.ApiParts {
                                                           string accountId,
                                                           string sort,
                                                           string order) {
-            return _client.GetAsync("accounts/" + accountId + "/users" + BuildQueryString(
+            return client.GetAsync("accounts/" + accountId + "/users" + BuildQueryString(
                                                                                         ("search_term", searchTerm),
                                                                                         ("sort", sort),
                                                                                         ("order", order),
@@ -189,7 +189,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="accountId">The account the user is under. <c>self</c> by default.</param>
         /// <returns>The deleted user.</returns>
         public async Task<User> DeleteUser(ulong userId, ulong? accountId = null) {
-            var response = await _client.DeleteAsync($"accounts/{accountId.IdOrSelf()}/users/{userId}");
+            var response = await client.DeleteAsync($"accounts/{accountId.IdOrSelf()}/users/{userId}");
             return new User(this, JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync()));
         }
 
@@ -204,7 +204,7 @@ namespace UVACanvasAccess.ApiParts {
                 _    => new (string, string)[] { }
             };
 
-            var response = await _client.GetAsync("users/self/todo" + BuildQueryString(args));
+            var response = await client.GetAsync("users/self/todo" + BuildQueryString(args));
             await foreach (var model in StreamDeserializePages<ToDoItemModel>(response)) {
                 yield return ToDoItem.NewToDoItem(this, model);
             }
@@ -229,7 +229,7 @@ namespace UVACanvasAccess.ApiParts {
                 ("include[]", includeCourse ? "course" : null)
             };
             
-            var response = await _client.GetAsync($"users/{userId.IdOrSelf()}/missing_submissions" + BuildDuplicateKeyQueryString(args));
+            var response = await client.GetAsync($"users/{userId.IdOrSelf()}/missing_submissions" + BuildDuplicateKeyQueryString(args));
             await foreach (var model in StreamDeserializePages<AssignmentModel>(response)) {
                 yield return new Assignment(this, model);
             }
@@ -237,9 +237,9 @@ namespace UVACanvasAccess.ApiParts {
 
         internal async Task IgnoreToDoItem(ToDoItem item, bool permanent) {
             if (permanent) {
-                await _client.GetAsync(item.PermanentIgnoreUrl);
+                await client.GetAsync(item.PermanentIgnoreUrl);
             } else {
-                await _client.GetAsync(item.IgnoreUrl);
+                await client.GetAsync(item.IgnoreUrl);
             }
         }
     }

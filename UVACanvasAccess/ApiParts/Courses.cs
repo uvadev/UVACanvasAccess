@@ -73,7 +73,7 @@ namespace UVACanvasAccess.ApiParts {
                      .Select(r => ("include[]", r))
                      .Peek(t => args.Add(t));
 
-            return _client.GetAsync(url + BuildQueryString(args.ToArray()));
+            return client.GetAsync(url + BuildQueryString(args.ToArray()));
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UVACanvasAccess.ApiParts {
             var url = $"accounts/{builder.AccountId.IdOrSelf()}/courses";
             var args = BuildHttpArguments(builder.Fields.Select(kv => (kv.Key, kv.Value)));
 
-            var response = await _client.PostAsync(url, args);
+            var response = await client.PostAsync(url, args);
 
             var model = JsonConvert.DeserializeObject<CourseModel>(await response.Content.ReadAsStringAsync());
             return new Course(this, model);
@@ -109,7 +109,7 @@ namespace UVACanvasAccess.ApiParts {
             var url = $"courses/{id}";
             var args = BuildHttpArguments(builder.Fields.Select(kv => (kv.Key, kv.Value)));
 
-            var response = await _client.PutAsync(url, args);
+            var response = await client.PutAsync(url, args);
 
             var model = JsonConvert.DeserializeObject<CourseModel>(await response.Content.ReadAsStringAsync());
             return new Course(this, model);
@@ -135,7 +135,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private Task<HttpResponseMessage> RawDeleteCourse(string id, [NotNull] string action) {
-            return _client.DeleteAsync($"courses/{id}" + BuildQueryString(("event", action)));
+            return client.DeleteAsync($"courses/{id}" + BuildQueryString(("event", action)));
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="courseId">The course id.</param>
         /// <returns>The course settings.</returns>
         public async Task<CourseSettings> GetCourseSettings(ulong courseId) {
-            var response = await _client.GetAsync($"courses/{courseId}/settings");
+            var response = await client.GetAsync($"courses/{courseId}/settings");
             var model = JsonConvert.DeserializeObject<CourseSettingsModel>(await response.Content.ReadAsStringAsync());
             return new CourseSettings(model);
         }
@@ -174,7 +174,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="cs">The new settings.</param>
         /// <returns>A void task.</returns>
         public async Task UpdateCourseSettings(ulong courseId, CourseSettings cs) {
-            await _client.PutAsync($"courses/{courseId}/settings", BuildHttpArguments(cs.GetTuples()));
+            await client.PutAsync($"courses/{courseId}/settings", BuildHttpArguments(cs.GetTuples()));
         }
     }
 }

@@ -47,6 +47,7 @@ namespace UVACanvasAccess.Structures.Accounts {
             AvailableTo = model.AvailableTo;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "HelpLink {" + 
                    ($"\n{nameof(Id)}: {Id}," +

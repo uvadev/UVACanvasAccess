@@ -10,7 +10,7 @@ namespace UVACanvasAccess.ApiParts {
     public partial class Api {
 
         private async Task<DepartmentParticipation> BaseGetDepartmentParticipationData(string infix, string accountId) {
-            var response = await _client.GetAsync($"accounts/{accountId}/analytics/{infix}/activity");
+            var response = await client.GetAsync($"accounts/{accountId}/analytics/{infix}/activity");
             var model =
                 JsonConvert.DeserializeObject<DepartmentParticipationModel>(await response.Content.ReadAsStringAsync());
             return new DepartmentParticipation(model);
@@ -42,7 +42,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private async Task<Dictionary<byte, ulong>> BaseGetDepartmentGradeData(string infix, string accountId) {
-            var response = await _client.GetAsync($"accounts/{accountId}/analytics/{infix}/grades");
+            var response = await client.GetAsync($"accounts/{accountId}/analytics/{infix}/grades");
             var dict =
                 JsonConvert.DeserializeObject<Dictionary<string, ulong>>(await response.Content.ReadAsStringAsync());
             return dict.KeySelect(byte.Parse);
@@ -74,7 +74,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         private async Task<DepartmentStatistics> BaseGetDepartmentStatistics(string infix, string accountId) {
-            var response = await _client.GetAsync($"accounts/{accountId}/analytics/{infix}/statistics");
+            var response = await client.GetAsync($"accounts/{accountId}/analytics/{infix}/statistics");
             var model =
                 JsonConvert.DeserializeObject<DepartmentStatisticsModel>(await response.Content.ReadAsStringAsync());
             return new DepartmentStatistics(model);
@@ -111,7 +111,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="courseId">The course id.</param>
         /// <returns>The data.</returns>
         public async Task<UserParticipation> GetUserCourseParticipationData(ulong userId, ulong courseId) {
-            var response = await _client.GetAsync($"courses/{courseId}/analytics/users/{userId}/activity");
+            var response = await client.GetAsync($"courses/{courseId}/analytics/users/{userId}/activity");
 
             return new UserParticipation(JsonConvert.DeserializeObject<UserParticipationModel>(await response.Content.ReadAsStringAsync()));
         }
@@ -124,7 +124,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="userId">The user id.</param>
         /// <returns>The data.</returns>
         public async IAsyncEnumerable<UserAssignmentData> GetUserCourseAssignmentData(ulong courseId, ulong userId) {
-            var response = await _client.GetAsync($"courses/{courseId}/analytics/users/{userId}/assignments");
+            var response = await client.GetAsync($"courses/{courseId}/analytics/users/{userId}/assignments");
 
             await foreach (var m in StreamDeserializePages<UserAssignmentDataModel>(response)) {
                 yield return new UserAssignmentData(m);
@@ -161,11 +161,11 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="courseId">The course id.</param>
         /// <param name="studentId">Optionally, a student id to filter by.</param>
         /// <param name="sortBy">An optional <see cref="StudentCourseSummarySortColumn">column</see> to sort by.</param>
-        /// <returns>The data.</returns>
+        /// <returns>The stream of <see cref="CourseStudentSummary"/> objects.</returns>
         public async IAsyncEnumerable<CourseStudentSummary> StreamCourseStudentSummary(ulong courseId, 
                                                                                        ulong? studentId = null, 
                                                                                        StudentCourseSummarySortColumn? sortBy = null) {
-            var response = await _client.GetAsync($"courses/{courseId}/analytics/student_summaries" + 
+            var response = await client.GetAsync($"courses/{courseId}/analytics/student_summaries" + 
                                                   BuildQueryString(("student_id", studentId.ToString()),
                                                                    ("sort_column", sortBy?.GetApiRepresentation())));
 
@@ -176,8 +176,13 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Gets a summary of per-assignment information for this course, including statistical analysis of assignment scores.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <returns>The stream of <see cref="CourseAssignmentSummary"/> objects.</returns>
         public async IAsyncEnumerable<CourseAssignmentSummary> StreamCourseAssignmentSummary(ulong courseId) {
-            var response = await _client.GetAsync($"courses/{courseId}/analytics/assignments");
+            var response = await client.GetAsync($"courses/{courseId}/analytics/assignments");
             var models = StreamDeserializePages<CourseAssignmentSummaryModel>(response);
 
             await foreach (var model in models) {

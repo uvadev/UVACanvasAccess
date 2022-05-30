@@ -360,14 +360,13 @@ namespace UVACanvasAccess.Util {
             return kvp.Select(kv => kv.ValSelect(f));
         }
 
-
         [Pure]
-        public static Dictionary<TO, TV> KeySelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TK, TO> f) {
+        internal static Dictionary<TO, TV> KeySelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TK, TO> f) {
             return d.Select(kv => kv.KeySelect(f)).IdentityDictionary();
         }
         
         [Pure]
-        public static Dictionary<TK, TO> ValSelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TV, TO> f) {
+        internal static Dictionary<TK, TO> ValSelect<TK, TV, TO>(this IDictionary<TK, TV> d, Func<TV, TO> f) {
             return d.Select(kv => kv.ValSelect(f)).IdentityDictionary();
         }
 
@@ -400,6 +399,11 @@ namespace UVACanvasAccess.Util {
         }
 
         #pragma warning disable 1998
+        /// <summary>
+        /// Returns an <see cref="IAsyncEnumerable{T}"/> with a single element: <paramref name="t"/>. 
+        /// </summary>
+        /// <param name="t">The element.</param>
+        /// <returns>The single-element <see cref="IAsyncEnumerable{T}"/>.</returns>
         public static async IAsyncEnumerable<T> YieldAsync<T>(this T t) {
             yield return t;
         }
@@ -541,6 +545,13 @@ namespace UVACanvasAccess.Util {
             return task.ContinueWith(t => f(t.Result));
         }
         
+        /// <summary>
+        /// Asynchronously applies the mapping function <paramref name="f"/> to the result of this task and returns the
+        /// result.
+        /// </summary>
+        /// <param name="task">The task.</param>
+        /// <param name="f">The mapping function.</param>
+        /// <returns>A task containing the result of the mapping function.</returns>
         public static async Task<TO> ThenApplyAwait<TI, TO>(this Task<TI> task, Func<TI, Task<TO>> f) {
             return await await task.ContinueWith(t => f(t.Result));
         }
@@ -573,7 +584,9 @@ namespace UVACanvasAccess.Util {
         }
 
         /// <summary>
-        /// Like LINQ Distinct but the second param is actually useful.
+        /// Returns an <see cref="IEnumerable{T}"/> which contains all distinct elements of <paramref name="seq"/>.
+        /// Elements are compared after the application of the <paramref name="keySelector"/> function, but the returned
+        /// elements are not altered from the original sequence.
         /// </summary>
         /// <param name="seq">The list.</param>
         /// <param name="keySelector">The key selector.</param>
@@ -584,7 +597,9 @@ namespace UVACanvasAccess.Util {
         }
 
         /// <summary>
-        /// Like LINQ Distinct but the second param is actually useful and it works on streams.
+        /// Returns an <see cref="IAsyncEnumerable{T}"/> which contains all distinct elements of <paramref name="seq"/>.
+        /// Elements are compared after the application of the <paramref name="keySelector"/> function, but the returned
+        /// elements are not altered from the original sequence.
         /// </summary>
         /// <param name="seq">The stream.</param>
         /// <param name="keySelector">The key selector.</param>
@@ -594,6 +609,16 @@ namespace UVACanvasAccess.Util {
                       .SelectAwait(gp => gp.FirstAsync());
         }
 
+        /// <summary>
+        /// If <paramref name="nullableT"/> is non-null, extracts the value and returns it. Otherwise, throws the
+        /// exception provided by <paramref name="exceptionProvider"/>.
+        /// </summary>
+        /// <param name="nullableT">The nullable value.</param>
+        /// <param name="exceptionProvider">
+        /// (Optional) The exception provider.
+        /// If none is provided, <see cref="NullReferenceException"/> will be used.
+        /// </param>
+        /// <returns>The extracted value.</returns>
         public static T Expect<T>(this T? nullableT, Func<Exception> exceptionProvider = null) where T: struct {
             if (nullableT.HasValue) {
                 return nullableT.Value;
@@ -630,6 +655,11 @@ namespace UVACanvasAccess.Util {
             return OneOf<JToken, string>.FromT1("");
         }
 
+        /// <summary>
+        /// Returns whether or not the given <see cref="SisImportState"/> represents a halted state.
+        /// </summary>
+        /// <param name="state">The SIS import state.</param>
+        /// <returns>Whether or not the state represents a halted state.</returns>
         [PublicAPI]
         public static bool IsHaltedState(this SisImportState state) {
             return state == SisImportState.Aborted ||
