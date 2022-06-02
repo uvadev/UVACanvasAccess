@@ -27,20 +27,23 @@ namespace UVACanvasAccess.ApiParts {
         
         private readonly HttpClient client;
         private ulong? masquerade;
-        
+
         /// <summary>
         /// Construct a new API instance.
         /// </summary>
         /// <param name="token">The token used to authenticate this API instance.</param>
-        /// <param name="baseUrl">The base url of the API server, ending with the version number.
-        /// Ex: <c>https://uview.instructure.com/api/v1/</c>
-        /// </param>
-        public Api(string token, string baseUrl) {
+        /// <param name="baseUrl">The base API url, e.g. <c>https://YOUR_ORGANIZATION.instructure.com/api/v1/</c></param>
+        /// <param name="timeout">(Optional) The maximum amount of time one request may take before it is cancelled.</param>
+        public Api(string token, string baseUrl, TimeSpan? timeout = null) {
             client = new HttpClient();
             
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            if (timeout != null) {
+                client.Timeout = timeout.Value;
+            }
         }
 
         static Api() {
