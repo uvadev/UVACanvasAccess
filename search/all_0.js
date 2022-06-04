@@ -22,7 +22,7 @@ var searchData=
   ['announcement_19',['Announcement',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Announcement.html',1,'UVACanvasAccess::Structures::Users::ActivityStreamObject']]],
   ['anonymousgrading_20',['AnonymousGrading',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html#a845c94321496cb250a9fc5db210d594a',1,'UVACanvasAccess::Structures::Assignments::Assignment']]],
   ['anonymoussubmissions_21',['AnonymousSubmissions',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html#aeb0c7e67d98cb4e63eefb2d24b4c56f7',1,'UVACanvasAccess::Structures::Assignments::Assignment']]],
-  ['api_22',['Api',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html',1,'UVACanvasAccess.ApiParts.Api'],['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#adf321f2693b95f5eb11f57d032617723',1,'UVACanvasAccess.ApiParts.Api.Api()']]],
+  ['api_22',['Api',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html',1,'UVACanvasAccess.ApiParts.Api'],['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae1b17af467625593796757520ae428ed',1,'UVACanvasAccess.ApiParts.Api.Api()']]],
   ['appname_23',['AppName',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1PageView.html#aa8f21e5bbe1081ba81274efcbd9070da',1,'UVACanvasAccess::Structures::Users::PageView']]],
   ['appointment_24',['Appointment',['../classUVACanvasAccess_1_1Structures_1_1Appointments_1_1Appointment.html',1,'UVACanvasAccess::Structures::Appointments']]],
   ['appointmentgroup_25',['AppointmentGroup',['../classUVACanvasAccess_1_1Structures_1_1Appointments_1_1AppointmentGroup.html',1,'UVACanvasAccess::Structures::Appointments']]],

@@ -394,9 +394,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18ff9a0eaa4586d6c58e46ddfdc97a2e"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Analytics_1_1CourseAssignmentSummary.html">CourseAssignmentSummary</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a18ff9a0eaa4586d6c58e46ddfdc97a2e">StreamCourseAssignmentSummary</a> (ulong courseId)</td></tr>
 <tr class="memdesc:a18ff9a0eaa4586d6c58e46ddfdc97a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a summary of per-assignment information for this course, including statistical analysis of assignment scores.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a18ff9a0eaa4586d6c58e46ddfdc97a2e">More...</a><br /></td></tr>
 <tr class="separator:a18ff9a0eaa4586d6c58e46ddfdc97a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf321f2693b95f5eb11f57d032617723"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#adf321f2693b95f5eb11f57d032617723">Api</a> (string token, string baseUrl)</td></tr>
-<tr class="memdesc:adf321f2693b95f5eb11f57d032617723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new API instance.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#adf321f2693b95f5eb11f57d032617723">More...</a><br /></td></tr>
-<tr class="separator:adf321f2693b95f5eb11f57d032617723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1b17af467625593796757520ae428ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae1b17af467625593796757520ae428ed">Api</a> (string token, string baseUrl, TimeSpan? timeout=null)</td></tr>
+<tr class="memdesc:ae1b17af467625593796757520ae428ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new API instance.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae1b17af467625593796757520ae428ed">More...</a><br /></td></tr>
+<tr class="separator:ae1b17af467625593796757520ae428ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a595d2d3e004d6fda885368881879e2c9"><td class="memItemLeft" align="right" valign="top"><a id="a595d2d3e004d6fda885368881879e2c9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a595d2d3e004d6fda885368881879e2c9">Dispose</a> ()</td></tr>
 <tr class="separator:a595d2d3e004d6fda885368881879e2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1456,8 +1456,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="adf321f2693b95f5eb11f57d032617723"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf321f2693b95f5eb11f57d032617723">&#9670;&nbsp;</a></span>Api()</h2>
+<a id="ae1b17af467625593796757520ae428ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1b17af467625593796757520ae428ed">&#9670;&nbsp;</a></span>Api()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1475,7 +1475,13 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>baseUrl</em>&#160;</td>
+          <td class="paramname"><em>baseUrl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan?&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1494,7 +1500,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">token</td><td>The token used to authenticate this API instance.</td></tr>
-    <tr><td class="paramname">baseUrl</td><td>The base url of the API server, ending with the version number. Ex: <code><a href="https://uview.instructure.com/api/v1/">https://uview.instructure.com/api/v1/</a></code> </td></tr>
+    <tr><td class="paramname">baseUrl</td><td>The base API url, e.g. <code><a href="https://YOUR_ORGANIZATION.instructure.com/api/v1/">https://YOUR_ORGANIZATION.instructure.com/api/v1/</a></code></td></tr>
+    <tr><td class="paramname">timeout</td><td>(Optional) The maximum amount of time one request may take before it is cancelled.</td></tr>
   </table>
   </dd>
 </dl>
