@@ -155,12 +155,12 @@ namespace UVACanvasAccess.Util {
         }
 
         [Pure]
-        internal static IEnumerable<(string, string)> GetTuples(this DiscussionTopicInclusions includes) {
+        internal static IEnumerable<(string, string)> GetTuples(this DiscussionTopicIncludes includes) {
             return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
         }
         
         [Pure]
-        internal static IEnumerable<(string, string)> GetTuples(this AssignmentInclusions includes) {
+        internal static IEnumerable<(string, string)> GetTuples(this AssignmentIncludes includes) {
             return includes.GetFlags().Select(f => ("include[]", f.GetApiRepresentation())).ToList();
         }
         

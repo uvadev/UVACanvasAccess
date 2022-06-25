@@ -12,9 +12,9 @@ namespace UVACanvasAccess.Structures.Pages {
     
     [PublicAPI]
     public class Page : IPrettyPrint {
-        private readonly Api _api;
-        private readonly string _type;
-        private readonly ulong _courseId;
+        private readonly Api api;
+        private readonly string type;
+        private readonly ulong courseId;
 
         public string Url { get; }
         
@@ -30,19 +30,19 @@ namespace UVACanvasAccess.Structures.Pages {
         public UserDisplay LastEditedBy { get; }
 
         [CanBeNull]
-        private string _body;
+        private string body;
         
         [NotNull]
         public string Body {
             get {
-                if (_body == null) {
-                    Debug.Assert(_type == "courses", nameof(_type) + " == " + _type + " != " + "courses");
+                if (body == null) {
+                    Debug.Assert(type == "courses", nameof(type) + " == " + type + " != " + "courses");
                     Debug.Print($"DEBUG: The body of {Url} #{GetHashCode()} needs to be fetched.");
-                    var specific = _api.GetCoursePage(_courseId, Url).Result;
-                    _body = specific._body;
+                    var specific = api.GetCoursePage(courseId, Url).Result;
+                    body = specific.body;
                 }
-                Debug.Assert(_body != null, nameof(_body) + " != null");
-                return _body;
+                Debug.Assert(body != null, nameof(body) + " != null");
+                return body;
             }
         }
 
@@ -59,15 +59,15 @@ namespace UVACanvasAccess.Structures.Pages {
         public string LockExplanation { get; }
 
         public IAsyncEnumerable<PageRevision> StreamRevisionHistory() {
-            Debug.Assert(_type == "courses", nameof(_type) + " == " + _type + " != " + "courses");
-            return _api.StreamCoursePageRevisionHistory(_courseId, Url);
+            Debug.Assert(type == "courses", nameof(type) + " == " + type + " != " + "courses");
+            return api.StreamCoursePageRevisionHistory(courseId, Url);
         }
 
         internal Page(Api api, PageModel model, [NotNull] string type, ulong courseId) {
-            _api = api;
-            _type = type;
-            _body = model.Body;
-            _courseId = courseId;
+            this.api = api;
+            this.type = type;
+            body = model.Body;
+            this.courseId = courseId;
             Url = model.Url;
             Title = model.Title;
             CreatedAt = model.CreatedAt;
@@ -83,6 +83,7 @@ namespace UVACanvasAccess.Structures.Pages {
                                              ?? default;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "Page {" +
                    ($"\n{nameof(Url)}: {Url}," +

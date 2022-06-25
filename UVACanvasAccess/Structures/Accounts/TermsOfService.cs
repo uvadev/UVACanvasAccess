@@ -10,7 +10,7 @@ namespace UVACanvasAccess.Structures.Accounts {
     /// </summary>
     [PublicAPI]
     public class TermsOfService : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
         /// <summary>
         /// The id.
@@ -38,7 +38,7 @@ namespace UVACanvasAccess.Structures.Accounts {
         public string Content { get; }
 
         internal TermsOfService(Api api, TermsOfServiceModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             TermsType = model.TermsType;
             Passive = model.Passive;

@@ -17,10 +17,10 @@ namespace UVACanvasAccess.ApiParts {
     public partial class Api {
         
         /// <summary>
-        /// Flags representing optional data that can be included as part of a <see cref="DiscussionTopic"/>.
+        /// Categories of optional data that can be requested for inclusion within <see cref="DiscussionTopic"/> objects.
         /// </summary>
         [Flags]
-        public enum DiscussionTopicInclusions {
+        public enum DiscussionTopicIncludes {
             Default = 0,
             [ApiRepresentation("all_dates")]
             AllDates = 1 << 0,
@@ -71,8 +71,8 @@ namespace UVACanvasAccess.ApiParts {
         private Task<HttpResponseMessage> RawGetDiscussionTopic(string type, 
                                                                 string baseId, 
                                                                 string topicId, 
-                                                                DiscussionTopicInclusions inclusions) {
-            var url = $"{type}/{baseId}/discussion_topics/{topicId}" + BuildQueryString(inclusions.GetTuples().ToArray());
+                                                                DiscussionTopicIncludes includes) {
+            var url = $"{type}/{baseId}/discussion_topics/{topicId}" + BuildQueryString(includes.GetTuples().ToArray());
             return client.GetAsync(url);
         }
 
@@ -81,15 +81,15 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <param name="courseId">The course id.</param>
         /// <param name="discussionId">The discussion id.</param>
-        /// <param name="inclusions">Extra data to include in the result. See <see cref="DiscussionTopicInclusions"/>.</param>
+        /// <param name="includes">Extra data to include in the result. See <see cref="DiscussionTopicIncludes"/>.</param>
         /// <returns>The discussion topic.</returns>
         public async Task<DiscussionTopic> GetCourseDiscussionTopic(ulong courseId, 
                                                                     ulong discussionId, 
-                                                                    DiscussionTopicInclusions inclusions = DiscussionTopicInclusions.Default) {
+                                                                    DiscussionTopicIncludes includes = DiscussionTopicIncludes.Default) {
             var response = await RawGetDiscussionTopic("courses",
                                                        courseId.ToString(),
                                                        discussionId.ToString(),
-                                                       inclusions);
+                                                       includes);
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<DiscussionTopicModel>(await response.Content.ReadAsStringAsync());
@@ -105,7 +105,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                   string filterBy,
                                                                   string searchTerm,
                                                                   bool? excludeContextModuleLockedTopics,
-                                                                  DiscussionTopicInclusions includes) {
+                                                                  DiscussionTopicIncludes includes) {
             var url = $"{type}/{id}/discussion_topics";
             
             
@@ -136,9 +136,9 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="filterByUnread">Only return unread by the current user.</param>
         /// <param name="searchTerm">An optional search term.</param>
         /// <param name="excludeContextModuleLockedTopics">For students, exclude topics that are locked by module progression.</param>
-        /// <param name="includes">Extra data to include in the result. See <see cref="DiscussionTopicInclusions"/>.</param>
+        /// <param name="includes">Extra data to include in the result. See <see cref="DiscussionTopicIncludes"/>.</param>
         /// <returns>The list of discussion topics.</returns>
-        /// <seealso cref="DiscussionTopicInclusions"/>
+        /// <seealso cref="DiscussionTopicIncludes"/>
         /// <seealso cref="DiscussionTopicOrdering"/>
         /// <seealso cref="DiscussionTopicScopes"/>
         public async Task<IEnumerable<DiscussionTopic>> ListCourseDiscussionTopics(ulong id,
@@ -148,7 +148,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                                    bool filterByUnread = false,
                                                                                    string searchTerm = null,
                                                                                    bool? excludeContextModuleLockedTopics = null,
-                                                                                   DiscussionTopicInclusions includes = DiscussionTopicInclusions.Default) {
+                                                                                   DiscussionTopicIncludes includes = DiscussionTopicIncludes.Default) {
             var response = await RawListDiscussionTopics("courses",
                                                          id.ToString(),
                                                          orderBy?.GetString(),

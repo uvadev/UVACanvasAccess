@@ -190,11 +190,11 @@ namespace UVACanvasAccess.ApiParts {
         }
         
         /// <summary>
-        /// Flags representing optional data that can be included as part of an <see cref="Assignment"/>.
+        /// Categories of optional data that can be requested for inclusion within <see cref="Assignment"/> objects.
         /// </summary>
         [Flags]
         [PublicAPI]
-        public enum AssignmentInclusions {
+        public enum AssignmentIncludes {
             Default = 0,
             [ApiRepresentation("submission")]
             Submission = 1 << 0,
@@ -231,14 +231,14 @@ namespace UVACanvasAccess.ApiParts {
 
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawListAssignmentsGeneric(string url,
-                                                                    AssignmentInclusions inclusions,
+                                                                    AssignmentIncludes includes,
                                                                     [CanBeNull] string searchTerm,
                                                                     bool? overrideAssignmentDates,
                                                                     bool? needsGradingCountBySection, 
                                                                     AssignmentBucket? bucket,
                                                                     [CanBeNull] IEnumerable<ulong> assignmentIds,
                                                                     [CanBeNull] string orderBy) {
-            var args = inclusions.GetTuples()
+            var args = includes.GetTuples()
                                  .Append(("search_term", searchTerm))
                                  .Append(("override_assignment_dates", overrideAssignmentDates?.ToShortString()))
                                  .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToShortString()))
@@ -255,7 +255,7 @@ namespace UVACanvasAccess.ApiParts {
         
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawListCourseAssignments(string courseId,
-                                                                   AssignmentInclusions inclusions,
+                                                                   AssignmentIncludes includes,
                                                                    [CanBeNull] string searchTerm,
                                                                    bool? overrideAssignmentDates,
                                                                    bool? needsGradingCountBySection, 
@@ -263,7 +263,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                    [CanBeNull] IEnumerable<ulong> assignmentIds,
                                                                    [CanBeNull] string orderBy) {
             return RawListAssignmentsGeneric($"courses/{courseId}/assignments",
-                                             inclusions,
+                                             includes,
                                              searchTerm,
                                              overrideAssignmentDates,
                                              needsGradingCountBySection,
@@ -275,7 +275,7 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawListCourseGroupAssignments(string courseId,
                                                                         string assignmentGroupId,
-                                                                        AssignmentInclusions inclusions,
+                                                                        AssignmentIncludes includes,
                                                                         [CanBeNull] string searchTerm,
                                                                         bool? overrideAssignmentDates,
                                                                         bool? needsGradingCountBySection, 
@@ -283,7 +283,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                         [CanBeNull] IEnumerable<ulong> assignmentIds,
                                                                         [CanBeNull] string orderBy) {
             return RawListAssignmentsGeneric($"courses/{courseId}/assignment_groups/{assignmentGroupId}/assignments",
-                                             inclusions,
+                                             includes,
                                              searchTerm,
                                              overrideAssignmentDates,
                                              needsGradingCountBySection,
@@ -296,7 +296,7 @@ namespace UVACanvasAccess.ApiParts {
         /// Streams all assignments in this course that are visible to the current user.
         /// </summary>
         /// <param name="courseId">The course id.</param>
-        /// <param name="inclusions">Optional extra data to include in the assignment response.</param>
+        /// <param name="includes">Optional extra data to include in the assignment response.</param>
         /// <param name="searchTerm">An optional search term.</param>
         /// <param name="overrideAssignmentDates">Apply assignment overrides to dates. Defaults to true.</param>
         /// <param name="needsGradingCountBySection">Split the NeedsGradingCount key into sections. Defaults to false.</param>
@@ -304,10 +304,10 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="assignmentIds">An optional list of ids to filter the returned assignments by.</param>
         /// <param name="orderBy">An optional string determining the order of assignments.</param>
         /// <returns>The stream of assignments.</returns>
-        /// <seealso cref="AssignmentInclusions"/>
+        /// <seealso cref="AssignmentIncludes"/>
         /// <seealso cref="AssignmentBucket"/>
         public async IAsyncEnumerable<Assignment> StreamCourseAssignments(ulong courseId,
-                                                                         AssignmentInclusions inclusions = AssignmentInclusions.Default,
+                                                                         AssignmentIncludes includes = AssignmentIncludes.Default,
                                                                          string searchTerm = null,
                                                                          bool? overrideAssignmentDates = null,
                                                                          bool? needsGradingCountBySection = null,
@@ -316,7 +316,7 @@ namespace UVACanvasAccess.ApiParts {
                                                                          string orderBy = null) {
 
             var response = await RawListCourseAssignments(courseId.ToString(),
-                                                          inclusions,
+                                                          includes,
                                                           searchTerm,
                                                           overrideAssignmentDates,
                                                           needsGradingCountBySection,
@@ -331,11 +331,11 @@ namespace UVACanvasAccess.ApiParts {
 
         private Task<HttpResponseMessage> RawGetSingleAssignment(string courseId,
                                                                  string assignmentId,
-                                                                 AssignmentInclusions inclusions,
+                                                                 AssignmentIncludes includes,
                                                                  bool? overrideAssignmentDates,
                                                                  bool? needsGradingCountBySection,
                                                                  bool? allDates) {
-            var args = inclusions.GetTuples()
+            var args = includes.GetTuples()
                                  .Append(("override_assignment_dates", overrideAssignmentDates?.ToShortString()))
                                  .Append(("needs_grading_count_by_section", needsGradingCountBySection?.ToShortString()))
                                  .Append(("all_dates", allDates?.ToShortString()));
@@ -350,22 +350,22 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <param name="courseId">The course id.</param>
         /// <param name="assignmentId">The assignment id.</param>
-        /// <param name="inclusions">Optional extra data to include in the assignment response.</param>
+        /// <param name="includes">Optional extra data to include in the assignment response.</param>
         /// <param name="overrideAssignmentDates">Apply assignment overrides to dates. Defaults to true.</param>
         /// <param name="needsGradingCountBySection">Split the NeedsGradingCount key into sections. Defaults to false.</param>
         /// <param name="allDates">Return all dates associated with the assignment, if applicable.</param>
         /// <returns>The assignment.</returns>
-        /// <seealso cref="AssignmentInclusions"/>
+        /// <seealso cref="AssignmentIncludes"/>
         public async Task<Assignment> GetAssignment(ulong courseId, 
                                                     ulong assignmentId, 
-                                                    AssignmentInclusions inclusions = AssignmentInclusions.Default,
+                                                    AssignmentIncludes includes = AssignmentIncludes.Default,
                                                     bool? overrideAssignmentDates = null,
                                                     bool? needsGradingCountBySection = null,
                                                     bool? allDates = null) {
             
             var response = await RawGetSingleAssignment(courseId.ToString(),
                                                         assignmentId.ToString(),
-                                                        inclusions,
+                                                        includes,
                                                         overrideAssignmentDates,
                                                         needsGradingCountBySection,
                                                         allDates);

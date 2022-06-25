@@ -203,7 +203,7 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         /// <summary>
-        /// Requests for optional data that can be included with <see cref="Enrollment"/> objects.
+        /// Categories of optional data that can be requested for inclusion within <see cref="Enrollment"/> objects.
         /// </summary>
         [PublicAPI]
         [Flags]

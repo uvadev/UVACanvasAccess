@@ -11,7 +11,7 @@ namespace UVACanvasAccess.Structures.Accounts {
     /// </summary>
     [PublicAPI]
     public class HelpLink : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
         /// <summary>
         /// The help link's id.
@@ -39,7 +39,7 @@ namespace UVACanvasAccess.Structures.Accounts {
         public IEnumerable<string> AvailableTo { get; }
 
         internal HelpLink(Api api, HelpLinkModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             Text = model.Text;
             Subtext = model.Subtext;

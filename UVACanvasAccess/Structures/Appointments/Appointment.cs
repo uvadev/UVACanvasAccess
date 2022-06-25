@@ -6,23 +6,36 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Appointments {
     
+    /// <summary>
+    /// Represents an appointment.
+    /// </summary>
     [PublicAPI]
     public class Appointment : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The appointment id.
+        /// </summary>
         public ulong Id { get; }
         
+        /// <summary>
+        /// When the appointment starts.
+        /// </summary>
         public DateTime StartAt { get; }
         
+        /// <summary>
+        /// When the appointment ends.
+        /// </summary>
         public DateTime EndAt { get; }
 
         internal Appointment(Api api, AppointmentModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             StartAt = model.StartAt;
             EndAt = model.EndAt;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "Appointment {" +
                    ($"\n{nameof(Id)}: {Id}," +

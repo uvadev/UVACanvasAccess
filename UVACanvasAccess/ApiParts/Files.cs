@@ -66,8 +66,7 @@ namespace UVACanvasAccess.ApiParts {
             var uploadUrl = firstResponseJson["upload_url"].ToString();
             var uploadParams = (JObject) firstResponseJson["upload_params"];
 
-            var uploadParamsList = from kv in uploadParams.Properties()
-                                   select (kv.Name, kv.Value.ToString());
+            var uploadParamsList = uploadParams.Properties().Select(kv => (kv.Name, kv.Value.ToString()));
 
             var secondPostArgs = BuildHttpArguments(uploadParamsList.Append(("file", fileName)));
             
@@ -288,55 +287,105 @@ namespace UVACanvasAccess.ApiParts {
             return response.IsT0;
         }
 
+        /// <summary>
+        /// Categories of optional data that can be requested for inclusion within <see cref="CanvasFile"/> objects.
+        /// </summary>
         [PublicAPI]
         [Flags]
         public enum FileIncludes : byte {
+            /// <summary>
+            /// Include the file's owner as a complete user object.
+            /// </summary>
             [ApiRepresentation("user")]
             User = 1 << 0,
+            /// <summary>
+            /// Include usage rights/licensing information for the file.
+            /// </summary>
             [ApiRepresentation("usage_rights")]
             UsageRights = 1 << 1
         }
 
+        /// <summary>
+        /// Categories a <see cref="CanvasFile"/> can be sorted by.
+        /// </summary>
         [PublicAPI]
         public enum FileSort : byte {
+            /// <summary>
+            /// Sort by name.
+            /// </summary>
             [ApiRepresentation("name")]
             Name,
+            /// <summary>
+            /// Sort by size.
+            /// </summary>
             [ApiRepresentation("size")]
             Size,
+            /// <summary>
+            /// Sort by creation time.
+            /// </summary>
             [ApiRepresentation("created_at")]
             CreatedAt,
+            /// <summary>
+            /// Sort by update time.
+            /// </summary>
             [ApiRepresentation("updated_at")]
             UpdatedAt,
+            /// <summary>
+            /// Sort by <see cref="CanvasFile.ContentType">content type</see>.
+            /// </summary>
             [ApiRepresentation("content_type")]
             ContentType,
+            /// <summary>
+            /// Sort by the file owner.
+            /// </summary>
             [ApiRepresentation("user")]
             User
+        }
+        
+        /// <summary>
+        /// Contains the total storage quota and quota usage for a user.
+        /// </summary>
+        [PublicAPI]
+        public readonly struct QuotaInfo<T> where T: struct {
+            /// <summary>
+            /// The total storage quota.
+            /// </summary>
+            public T TotalQuota { get; }
+            
+            /// <summary>
+            /// The amount of quota currently used.
+            /// </summary>
+            public T UsedQuota { get; }
+
+            internal QuotaInfo(T totalQuota, T usedQuota) {
+                TotalQuota = totalQuota;
+                UsedQuota = usedQuota;
+            }
+            
+            public void Deconstruct(out T totalQuota, out T usedQuota) {
+                totalQuota = TotalQuota;
+                usedQuota = UsedQuota;
+            }
         }
 
         /// <summary>
         /// Returns the storage quota in bytes of the current user, along with the amount currently used.
         /// </summary>
-        /// <returns>The tuple of quota and used quota.</returns>
-        public async Task<(ulong, ulong)> GetPersonalQuota() {
+        /// <returns>The quota information.</returns>
+        public async Task<QuotaInfo<ulong>> GetPersonalQuota() {
             var response = await client.GetAsync("users/self/files/quota" + BuildQueryString());
 
             var q = JObject.Parse(await response.Content.ReadAsStringAsync());
-            return (q["quota"].Value<ulong>(), q["quota_used"].Value<ulong>());
+            return new QuotaInfo<ulong>(q["quota"].Value<ulong>(), q["quota_used"].Value<ulong>());
         }
 
         /// <summary>
         /// Returns the storage quota in MiB of the current user, along with the amount currently used.
         /// </summary>
-        /// <returns>The tuple of quota and used quota.</returns>
-        public Task<(decimal, decimal)> GetPersonalQuotaMiB() {
-            var q = GetPersonalQuota();
-
-            if (!q.IsFaulted) {
-                return q.ThenApply(t => ((decimal)t.Item1 / 1048576, (decimal)t.Item2 / 1048576));
-            }
-
-            Debug.Assert(q.Exception != null);
-            return Task.FromException<(decimal, decimal)>(q.Exception);
+        /// <returns>The quota information.</returns>
+        public Task<QuotaInfo<decimal>> GetPersonalQuotaMiB() {
+            const decimal mib = 1024 * 1024;
+            return GetPersonalQuota().ThenApply(t => new QuotaInfo<decimal>(t.TotalQuota / mib, t.UsedQuota / mib));
         }
 
         /// <summary>

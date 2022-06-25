@@ -11,7 +11,7 @@ namespace UVACanvasAccess.Structures.Accounts {
     /// </summary>
     [PublicAPI]
     public class HelpLinks : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
         /// <summary>
         /// The name of the help button.
@@ -34,7 +34,7 @@ namespace UVACanvasAccess.Structures.Accounts {
         public IEnumerable<HelpLink> DefaultHelpLinks { get; }
 
         internal HelpLinks(Api api, HelpLinksModel model) {
-            _api = api;
+            this.api = api;
             HelpLinkName = model.HelpLinkName;
             HelpLinkIcon = model.HelpLinkIcon;
             CustomHelpLinks = model.CustomHelpLinks.SelectNotNull(m => new HelpLink(api, m));
