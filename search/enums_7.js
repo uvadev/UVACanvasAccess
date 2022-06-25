@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['studentcoursesummarysortcolumn_1104',['StudentCourseSummarySortColumn',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1a09f1425d0398b297014a5b5ff5c87a',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['pagesort_1113',['PageSort',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a301407e4ae32ef83cc796b075df40d26',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

@@ -1,6 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,78,92,105"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Exceptions_1_1BadApiStateException.html" title="Indicates that an operation failed due to bad state, or because completing it would result in a bad s..." alt="" coords="140,5,361,47"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Exceptions_1_1CommunicationException.html" title="Indicates a generic HTTP failure response. If the API replied with a JSON error body,..." alt="" coords="140,71,361,112"/>
-<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Exceptions_1_1DoesNotExistException.html" title="Indicates that some operation failed because the target thereof does not exist or is invisible to the..." alt="" coords="140,136,361,177"/>
+<area shape="rect" id="node1" href="$classUVACanvasAccess_1_1Builders_1_1CreateUserBuilder.html" title="A class used to create new Users using the builder pattern. When all desired fields are set,..." alt="" coords="5,5,208,47"/>
 </map>

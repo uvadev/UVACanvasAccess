@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structUVACanvasAccess_1_1Structures_1_1Roles_1_1RolePermissionsSet.html" title=" " alt="" coords="5,5,221,47"/>
+<area shape="rect" id="node1" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="5,342,253,383"/>
+<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1AccountNavigationLocation.html" title=" " alt="" coords="329,5,565,61"/>
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseHomeSubNavigationLocation.html" title=" " alt="" coords="301,85,593,141"/>
+<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseNavigationLocation.html" title=" " alt="" coords="305,166,589,207"/>
+<area shape="rect" id="node5" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1EditorButtonLocation.html" title=" " alt="" coords="323,231,572,273"/>
+<area shape="rect" id="node6" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1HomeworkSubmissionLocation.html" title=" " alt="" coords="318,297,577,353"/>
+<area shape="rect" id="node7" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1LinkSelectionLocation.html" title=" " alt="" coords="320,378,575,419"/>
+<area shape="rect" id="node8" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1MigrationSelectionLocation.html" title=" " alt="" coords="330,444,565,500"/>
+<area shape="rect" id="node9" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ResourceSelectionLocation.html" title=" " alt="" coords="331,524,564,580"/>
+<area shape="rect" id="node10" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ToolConfigurationLocation.html" title=" " alt="" coords="334,604,561,660"/>
+<area shape="rect" id="node11" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1UserNavigationLocation.html" title=" " alt="" coords="313,685,582,726"/>
 </map>

@@ -84,6 +84,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1ColumnEntryUpdate.html">ColumnEntryUpdate</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents one update to a custom column entry.  <a href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1ColumnEntryUpdate.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html">QuotaInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the total storage quota and quota usage for a user.  <a href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -186,7 +189,7 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a67f853b2c60a15d40dce654f3f2d089e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data that can be included in responses containing <a class="el" href="">appointment groups.</a>  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a67f853b2c60a15d40dce654f3f2d089e">More...</a><br /></td></tr>
 <tr class="separator:a67f853b2c60a15d40dce654f3f2d089e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0726d6dacc5b5141eaa56f07c5c30ca"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca">AssignmentInclusions</a> { <br />
+<tr class="memitem:afaa049d417a2e74f929c18c4d3c26429"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429">AssignmentIncludes</a> { <br />
 &#160;&#160;<b>Default</b> = 0, 
 <b>Submission</b> = 1 &lt;&lt; 0, 
 <b>AssignmentVisibility</b> = 1 &lt;&lt; 1, 
@@ -196,8 +199,8 @@ Public Types</h2></td></tr>
 <b>AllDates</b> = 1 &lt;&lt; 4
 <br />
  }</td></tr>
-<tr class="memdesc:af0726d6dacc5b5141eaa56f07c5c30ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags representing optional data that can be included as part of an Assignment.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca">More...</a><br /></td></tr>
-<tr class="separator:af0726d6dacc5b5141eaa56f07c5c30ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:afaa049d417a2e74f929c18c4d3c26429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categories of optional data that can be requested for inclusion within Assignment objects.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429">More...</a><br /></td></tr>
+<tr class="separator:afaa049d417a2e74f929c18c4d3c26429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53e10da8ba76a5e8cd40eb50456cb0d0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53e10da8ba76a5e8cd40eb50456cb0d0">AssignmentBucket</a> { <br />
 &#160;&#160;<b>Past</b>, 
 <b>Overdue</b>, 
@@ -241,7 +244,7 @@ Public Types</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:aa4b8306b00e1b77d3c25714c29747d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeedd8b9f36b590aab7075f6093b3281c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c">DiscussionTopicInclusions</a> { <br />
+<tr class="memitem:af1690ef4e5e128123c3b7108e3c09f40"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">DiscussionTopicIncludes</a> { <br />
 &#160;&#160;<b>Default</b> = 0, 
 <b>AllDates</b> = 1 &lt;&lt; 0, 
 <b>Sections</b> = 1 &lt;&lt; 1, 
@@ -250,8 +253,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>Overrides</b> = 1 &lt;&lt; 3
 <br />
  }</td></tr>
-<tr class="memdesc:aeedd8b9f36b590aab7075f6093b3281c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags representing optional data that can be included as part of a DiscussionTopic.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c">More...</a><br /></td></tr>
-<tr class="separator:aeedd8b9f36b590aab7075f6093b3281c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:af1690ef4e5e128123c3b7108e3c09f40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categories of optional data that can be requested for inclusion within DiscussionTopic objects.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">More...</a><br /></td></tr>
+<tr class="separator:af1690ef4e5e128123c3b7108e3c09f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a433682d48da2eeedac4166d2feb0251a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251a">DiscussionTopicOrdering</a> { <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251aa52f5e0bc3859bc5f5e25130b6c7e8881">DiscussionTopicOrdering.Position</a>, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251aa3b0d0194f0f3b4a924fd390117902d5c">DiscussionTopicOrdering.RecentActivity</a>, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251aab78a3223503896721cca1303f776159b">DiscussionTopicOrdering.Title</a>
@@ -292,7 +295,7 @@ Public Types</h2></td></tr>
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1da755bf05a8e6c3925f7d7d779bc5cfddc">CourseEnrollmentIncludes.Uuid</a> = 1 &lt;&lt; 5
 <br />
  }</td></tr>
-<tr class="memdesc:a088552df02f205aca72d0fd4b55b4b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests for optional data that can be included with Enrollment objects.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">More...</a><br /></td></tr>
+<tr class="memdesc:a088552df02f205aca72d0fd4b55b4b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categories of optional data that can be requested for inclusion within Enrollment objects.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">More...</a><br /></td></tr>
 <tr class="separator:a088552df02f205aca72d0fd4b55b4b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f1fefdc43795ea64ae5a77b0e8e99a4"><td class="memItemLeft" align="right" valign="top"><a id="a6f1fefdc43795ea64ae5a77b0e8e99a4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>EnrollmentTermWorkflowStateFilter</b> { <b>Active</b>, 
 <b>Deleted</b>, 
@@ -302,20 +305,22 @@ Public Types</h2></td></tr>
 <tr class="memitem:ac24f83fa9e3a0d9b2a008219f762f0ff"><td class="memItemLeft" align="right" valign="top"><a id="ac24f83fa9e3a0d9b2a008219f762f0ff"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>EnrollmentTermIncludes</b> { <b>Overrides</b>
  }</td></tr>
 <tr class="separator:ac24f83fa9e3a0d9b2a008219f762f0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af85a5f4f2054bb849ce3ea77a5587028"><td class="memItemLeft" align="right" valign="top"><a id="af85a5f4f2054bb849ce3ea77a5587028"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>FileIncludes</b> : byte { <b>User</b> = 1 &lt;&lt; 0, 
-<b>UsageRights</b> = 1 &lt;&lt; 1
+<tr class="memitem:af85a5f4f2054bb849ce3ea77a5587028"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">FileIncludes</a> : byte { <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028a8f9bfe9d1345237cb3b2b205864da075">FileIncludes.User</a> = 1 &lt;&lt; 0, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028a0251cdf51cd59160ac0d011dc7999243">FileIncludes.UsageRights</a> = 1 &lt;&lt; 1
  }</td></tr>
+<tr class="memdesc:af85a5f4f2054bb849ce3ea77a5587028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categories of optional data that can be requested for inclusion within CanvasFile objects.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">More...</a><br /></td></tr>
 <tr class="separator:af85a5f4f2054bb849ce3ea77a5587028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31bbf764ed8a37770043d717913d9f4d"><td class="memItemLeft" align="right" valign="top"><a id="a31bbf764ed8a37770043d717913d9f4d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>FileSort</b> : byte { <br />
-&#160;&#160;<b>Name</b>, 
-<b>Size</b>, 
-<b>CreatedAt</b>, 
-<b>UpdatedAt</b>, 
+<tr class="memitem:a31bbf764ed8a37770043d717913d9f4d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4d">FileSort</a> : byte { <br />
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4da49ee3087348e8d44e1feda1917443987">FileSort.Name</a>, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4da6f6cb72d544962fa333e2e34ce64f719">FileSort.Size</a>, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4da46d295c8a97befd247d2d634ac8cc4b3">FileSort.CreatedAt</a>, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4da0b2a8a8fed13280ecd74f7545bc2b962">FileSort.UpdatedAt</a>, 
 <br />
-&#160;&#160;<b>ContentType</b>, 
-<b>User</b>
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4dab8178dd7819d7531e93b9d8112c16e11">FileSort.ContentType</a>, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4da8f9bfe9d1345237cb3b2b205864da075">FileSort.User</a>
 <br />
  }</td></tr>
+<tr class="memdesc:a31bbf764ed8a37770043d717913d9f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categories a CanvasFile can be sorted by.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4d">More...</a><br /></td></tr>
 <tr class="separator:a31bbf764ed8a37770043d717913d9f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87b66ae46b2529b073dd083e59e43085"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a87b66ae46b2529b073dd083e59e43085">ModuleIncludeType</a> : byte { <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a87b66ae46b2529b073dd083e59e43085a6adf97f83acf6453d4a6a4b1070f3754">ModuleIncludeType.None</a>, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a87b66ae46b2529b073dd083e59e43085ad53eb6d4026e8c9321c69b11a1b19519">ModuleIncludeType.TryIncludeItems</a>, 
@@ -458,12 +463,12 @@ async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Struc
 <tr class="memitem:acc4fa254c365b816f2db3fffa0308bfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1AssignmentBuilder.html">AssignmentBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#acc4fa254c365b816f2db3fffa0308bfc">EditAssignment</a> (ulong courseId, ulong assignmentId)</td></tr>
 <tr class="memdesc:acc4fa254c365b816f2db3fffa0308bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a AssignmentBuilder for editing an existing assignment.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#acc4fa254c365b816f2db3fffa0308bfc">More...</a><br /></td></tr>
 <tr class="separator:acc4fa254c365b816f2db3fffa0308bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac80e6360627ad49dc27fdeb56929b498"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html">Assignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac80e6360627ad49dc27fdeb56929b498">StreamCourseAssignments</a> (ulong courseId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca">AssignmentInclusions</a> inclusions=AssignmentInclusions.Default, string searchTerm=null, bool? overrideAssignmentDates=null, bool? needsGradingCountBySection=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53e10da8ba76a5e8cd40eb50456cb0d0">AssignmentBucket</a>? bucket=null, IEnumerable&lt; ulong &gt; assignmentIds=null, string orderBy=null)</td></tr>
-<tr class="memdesc:ac80e6360627ad49dc27fdeb56929b498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all assignments in this course that are visible to the current user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac80e6360627ad49dc27fdeb56929b498">More...</a><br /></td></tr>
-<tr class="separator:ac80e6360627ad49dc27fdeb56929b498"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe8bdd0c1786a34cf20e3d742e685387"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html">Assignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#abe8bdd0c1786a34cf20e3d742e685387">GetAssignment</a> (ulong courseId, ulong assignmentId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca">AssignmentInclusions</a> inclusions=AssignmentInclusions.Default, bool? overrideAssignmentDates=null, bool? needsGradingCountBySection=null, bool? allDates=null)</td></tr>
-<tr class="memdesc:abe8bdd0c1786a34cf20e3d742e685387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a single assignment from this course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#abe8bdd0c1786a34cf20e3d742e685387">More...</a><br /></td></tr>
-<tr class="separator:abe8bdd0c1786a34cf20e3d742e685387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d163a67efd4bd0130a17ec6e7e10085"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html">Assignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7d163a67efd4bd0130a17ec6e7e10085">StreamCourseAssignments</a> (ulong courseId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429">AssignmentIncludes</a> includes=AssignmentIncludes.Default, string searchTerm=null, bool? overrideAssignmentDates=null, bool? needsGradingCountBySection=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53e10da8ba76a5e8cd40eb50456cb0d0">AssignmentBucket</a>? bucket=null, IEnumerable&lt; ulong &gt; assignmentIds=null, string orderBy=null)</td></tr>
+<tr class="memdesc:a7d163a67efd4bd0130a17ec6e7e10085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all assignments in this course that are visible to the current user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7d163a67efd4bd0130a17ec6e7e10085">More...</a><br /></td></tr>
+<tr class="separator:a7d163a67efd4bd0130a17ec6e7e10085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a079d88c3275ddff072b31826319fbff4"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html">Assignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a079d88c3275ddff072b31826319fbff4">GetAssignment</a> (ulong courseId, ulong assignmentId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429">AssignmentIncludes</a> includes=AssignmentIncludes.Default, bool? overrideAssignmentDates=null, bool? needsGradingCountBySection=null, bool? allDates=null)</td></tr>
+<tr class="memdesc:a079d88c3275ddff072b31826319fbff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a single assignment from this course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a079d88c3275ddff072b31826319fbff4">More...</a><br /></td></tr>
+<tr class="separator:a079d88c3275ddff072b31826319fbff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a414b67a10903b7231b80733665f91fc2"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Authentications_1_1AuthenticationEvent.html">AuthenticationEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a414b67a10903b7231b80733665f91fc2">StreamUserAuthenticationEvents</a> (ulong userId, DateTime? start=null, DateTime? end=null)</td></tr>
 <tr class="memdesc:a414b67a10903b7231b80733665f91fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the list of authentication events recorded for the given user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a414b67a10903b7231b80733665f91fc2">More...</a><br /></td></tr>
 <tr class="separator:a414b67a10903b7231b80733665f91fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -558,12 +563,12 @@ async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Struc
 <tr class="memitem:abfa37b3e08e0530c126295afe4326311"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#abfa37b3e08e0530c126295afe4326311">UpdateCustomColumnEntries</a> (ulong courseId, IEnumerable&lt; <a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1ColumnEntryUpdate.html">ColumnEntryUpdate</a> &gt; updates)</td></tr>
 <tr class="memdesc:abfa37b3e08e0530c126295afe4326311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bulk update the contents of several custom column entries.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#abfa37b3e08e0530c126295afe4326311">More...</a><br /></td></tr>
 <tr class="separator:abfa37b3e08e0530c126295afe4326311"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8e21b3e9d245d2b28a13da0ed14e693"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Discussions_1_1DiscussionTopic.html">DiscussionTopic</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af8e21b3e9d245d2b28a13da0ed14e693">GetCourseDiscussionTopic</a> (ulong courseId, ulong discussionId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c">DiscussionTopicInclusions</a> inclusions=DiscussionTopicInclusions.Default)</td></tr>
-<tr class="memdesc:af8e21b3e9d245d2b28a13da0ed14e693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a single course discussion topic by its id.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af8e21b3e9d245d2b28a13da0ed14e693">More...</a><br /></td></tr>
-<tr class="separator:af8e21b3e9d245d2b28a13da0ed14e693"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f786e84ffedfc32d906877658b364a5"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Discussions_1_1DiscussionTopic.html">DiscussionTopic</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7f786e84ffedfc32d906877658b364a5">ListCourseDiscussionTopics</a> (ulong id, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251a">DiscussionTopicOrdering</a>? orderBy=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8">DiscussionTopicScopes</a>? scopes=null, bool? onlyAnnouncements=null, bool filterByUnread=false, string searchTerm=null, bool? excludeContextModuleLockedTopics=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c">DiscussionTopicInclusions</a> includes=DiscussionTopicInclusions.Default)</td></tr>
-<tr class="memdesc:a7f786e84ffedfc32d906877658b364a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of discussion topics for this course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7f786e84ffedfc32d906877658b364a5">More...</a><br /></td></tr>
-<tr class="separator:a7f786e84ffedfc32d906877658b364a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0371fb8aaf78d75efc71737701539f50"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Discussions_1_1DiscussionTopic.html">DiscussionTopic</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a0371fb8aaf78d75efc71737701539f50">GetCourseDiscussionTopic</a> (ulong courseId, ulong discussionId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">DiscussionTopicIncludes</a> includes=DiscussionTopicIncludes.Default)</td></tr>
+<tr class="memdesc:a0371fb8aaf78d75efc71737701539f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a single course discussion topic by its id.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a0371fb8aaf78d75efc71737701539f50">More...</a><br /></td></tr>
+<tr class="separator:a0371fb8aaf78d75efc71737701539f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af99732cc829b3a79102dc0bf0b593e34"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Discussions_1_1DiscussionTopic.html">DiscussionTopic</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af99732cc829b3a79102dc0bf0b593e34">ListCourseDiscussionTopics</a> (ulong id, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251a">DiscussionTopicOrdering</a>? orderBy=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8">DiscussionTopicScopes</a>? scopes=null, bool? onlyAnnouncements=null, bool filterByUnread=false, string searchTerm=null, bool? excludeContextModuleLockedTopics=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">DiscussionTopicIncludes</a> includes=DiscussionTopicIncludes.Default)</td></tr>
+<tr class="memdesc:af99732cc829b3a79102dc0bf0b593e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of discussion topics for this course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af99732cc829b3a79102dc0bf0b593e34">More...</a><br /></td></tr>
+<tr class="separator:af99732cc829b3a79102dc0bf0b593e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a588277c0572d108b24a7eaa48c8be47d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CreateDiscussionTopicBuilder.html">CreateDiscussionTopicBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a588277c0572d108b24a7eaa48c8be47d">CreateCourseDiscussionTopic</a> (ulong courseId)</td></tr>
 <tr class="memdesc:a588277c0572d108b24a7eaa48c8be47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a CreateDiscussionTopicBuilder for building a new discussion topic for the course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a588277c0572d108b24a7eaa48c8be47d">More...</a><br /></td></tr>
 <tr class="separator:a588277c0572d108b24a7eaa48c8be47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -634,10 +639,10 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollm
 <tr class="memitem:aab1e5393943cd38f58f72f77f36707a9"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1Folder.html">Folder</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aab1e5393943cd38f58f72f77f36707a9">StreamPersonalFolders</a> ()</td></tr>
 <tr class="memdesc:aab1e5393943cd38f58f72f77f36707a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream the current user's personal folders.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aab1e5393943cd38f58f72f77f36707a9">More...</a><br /></td></tr>
 <tr class="separator:aab1e5393943cd38f58f72f77f36707a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34a5d4b83aa704c965182eba4277e1b9"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a34a5d4b83aa704c965182eba4277e1b9">StreamPersonalFiles</a> (IEnumerable&lt; ContentType &gt; includeContentTypes=null, IEnumerable&lt; ContentType &gt; excludeContentTypes=null, string searchTerm=null, FileIncludes? includes=null, bool onlyIncludeFileNames=false, FileSort? sortBy=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a335293f7c22c915b7d1dc5597bc37b83">Order</a>? order=null)</td></tr>
+<tr class="memitem:a34a5d4b83aa704c965182eba4277e1b9"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a34a5d4b83aa704c965182eba4277e1b9">StreamPersonalFiles</a> (IEnumerable&lt; ContentType &gt; includeContentTypes=null, IEnumerable&lt; ContentType &gt; excludeContentTypes=null, string searchTerm=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">FileIncludes</a>? includes=null, bool onlyIncludeFileNames=false, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4d">FileSort</a>? sortBy=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a335293f7c22c915b7d1dc5597bc37b83">Order</a>? order=null)</td></tr>
 <tr class="memdesc:a34a5d4b83aa704c965182eba4277e1b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream the current user's personal files.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a34a5d4b83aa704c965182eba4277e1b9">More...</a><br /></td></tr>
 <tr class="separator:a34a5d4b83aa704c965182eba4277e1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf9f05fa3dbd16ac8a45f0667e7044ad"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#adf9f05fa3dbd16ac8a45f0667e7044ad">GetPersonalFile</a> (ulong fileId, FileIncludes? includes=null)</td></tr>
+<tr class="memitem:adf9f05fa3dbd16ac8a45f0667e7044ad"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#adf9f05fa3dbd16ac8a45f0667e7044ad">GetPersonalFile</a> (ulong fileId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">FileIncludes</a>? includes=null)</td></tr>
 <tr class="memdesc:adf9f05fa3dbd16ac8a45f0667e7044ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a single personal file for the current user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#adf9f05fa3dbd16ac8a45f0667e7044ad">More...</a><br /></td></tr>
 <tr class="separator:adf9f05fa3dbd16ac8a45f0667e7044ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4207af3d6edda62ab21e6652061a9ee8"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1Folder.html">Folder</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4207af3d6edda62ab21e6652061a9ee8">ResolvePersonalFolderPath</a> (params string[] parts)</td></tr>
@@ -646,12 +651,12 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollm
 <tr class="memitem:a71bf19425d6f38e7be4acd0aa045280e"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a71bf19425d6f38e7be4acd0aa045280e">PersonalFolderPathExists</a> (params string[] parts)</td></tr>
 <tr class="memdesc:a71bf19425d6f38e7be4acd0aa045280e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if a personal folder exists at the given path.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a71bf19425d6f38e7be4acd0aa045280e">More...</a><br /></td></tr>
 <tr class="separator:a71bf19425d6f38e7be4acd0aa045280e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1481b37b356c8e7d4b78c5a6d583ef35"><td class="memItemLeft" align="right" valign="top">async Task&lt;(ulong, ulong)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1481b37b356c8e7d4b78c5a6d583ef35">GetPersonalQuota</a> ()</td></tr>
-<tr class="memdesc:a1481b37b356c8e7d4b78c5a6d583ef35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the storage quota in bytes of the current user, along with the amount currently used.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1481b37b356c8e7d4b78c5a6d583ef35">More...</a><br /></td></tr>
-<tr class="separator:a1481b37b356c8e7d4b78c5a6d583ef35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea4592910c22b95b762f2f500c06bed0"><td class="memItemLeft" align="right" valign="top">Task&lt;(decimal, decimal)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aea4592910c22b95b762f2f500c06bed0">GetPersonalQuotaMiB</a> ()</td></tr>
-<tr class="memdesc:aea4592910c22b95b762f2f500c06bed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the storage quota in MiB of the current user, along with the amount currently used.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aea4592910c22b95b762f2f500c06bed0">More...</a><br /></td></tr>
-<tr class="separator:aea4592910c22b95b762f2f500c06bed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc6d3941aa9024d14afa5d507c923e79"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html">QuotaInfo</a>&lt; ulong &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afc6d3941aa9024d14afa5d507c923e79">GetPersonalQuota</a> ()</td></tr>
+<tr class="memdesc:afc6d3941aa9024d14afa5d507c923e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the storage quota in bytes of the current user, along with the amount currently used.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afc6d3941aa9024d14afa5d507c923e79">More...</a><br /></td></tr>
+<tr class="separator:afc6d3941aa9024d14afa5d507c923e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91bb3be747e9d3e7ef1c0e1827e208dd"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html">QuotaInfo</a>&lt; decimal &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a91bb3be747e9d3e7ef1c0e1827e208dd">GetPersonalQuotaMiB</a> ()</td></tr>
+<tr class="memdesc:a91bb3be747e9d3e7ef1c0e1827e208dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the storage quota in MiB of the current user, along with the amount currently used.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a91bb3be747e9d3e7ef1c0e1827e208dd">More...</a><br /></td></tr>
+<tr class="separator:a91bb3be747e9d3e7ef1c0e1827e208dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7e38578113dc192dd9678333a0a50c"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8b7e38578113dc192dd9678333a0a50c">UpdatePersonalFile</a> (ulong fileId, DateTime? lockAt=null, DateTime? unlockAt=null, bool? locked=null, bool? hidden=null)</td></tr>
 <tr class="memdesc:a8b7e38578113dc192dd9678333a0a50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a personal file for the current user. All arguments except for <em>fileId</em>  are optional.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8b7e38578113dc192dd9678333a0a50c">More...</a><br /></td></tr>
 <tr class="separator:a8b7e38578113dc192dd9678333a0a50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1003,8 +1008,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 
 </div>
 </div>
-<a id="af0726d6dacc5b5141eaa56f07c5c30ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0726d6dacc5b5141eaa56f07c5c30ca">&#9670;&nbsp;</a></span>AssignmentInclusions</h2>
+<a id="afaa049d417a2e74f929c18c4d3c26429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaa049d417a2e74f929c18c4d3c26429">&#9670;&nbsp;</a></span>AssignmentIncludes</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1013,7 +1018,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca">UVACanvasAccess.ApiParts.Api.AssignmentInclusions</a></td>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429">UVACanvasAccess.ApiParts.Api.AssignmentIncludes</a></td>
         </tr>
       </table>
   </td>
@@ -1023,7 +1028,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 </table>
 </div><div class="memdoc">
 
-<p>Flags representing optional data that can be included as part of an Assignment. </p>
+<p>Categories of optional data that can be requested for inclusion within Assignment objects. </p>
 
 </div>
 </div>
@@ -1047,7 +1052,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 </table>
 </div><div class="memdoc">
 
-<p>Requests for optional data that can be included with Enrollment objects. </p>
+<p>Categories of optional data that can be requested for inclusion within Enrollment objects. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a088552df02f205aca72d0fd4b55b4b1dac510e1bf2d2e48011d5ef951e14b3bca"></a>AvatarUrl&#160;</td><td class="fielddoc"><p>Include avatar URLs. </p>
 </td></tr>
@@ -1225,8 +1230,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 
 </div>
 </div>
-<a id="aeedd8b9f36b590aab7075f6093b3281c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeedd8b9f36b590aab7075f6093b3281c">&#9670;&nbsp;</a></span>DiscussionTopicInclusions</h2>
+<a id="af1690ef4e5e128123c3b7108e3c09f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1690ef4e5e128123c3b7108e3c09f40">&#9670;&nbsp;</a></span>DiscussionTopicIncludes</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1235,7 +1240,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c">UVACanvasAccess.ApiParts.Api.DiscussionTopicInclusions</a></td>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">UVACanvasAccess.ApiParts.Api.DiscussionTopicIncludes</a></td>
         </tr>
       </table>
   </td>
@@ -1245,7 +1250,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 </table>
 </div><div class="memdoc">
 
-<p>Flags representing optional data that can be included as part of a DiscussionTopic. </p>
+<p>Categories of optional data that can be requested for inclusion within DiscussionTopic objects. </p>
 
 </div>
 </div>
@@ -1302,6 +1307,74 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 </div><div class="memdoc">
 
 <p>Scopes that DiscussionTopics can be filtered by. </p>
+
+</div>
+</div>
+<a id="af85a5f4f2054bb849ce3ea77a5587028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af85a5f4f2054bb849ce3ea77a5587028">&#9670;&nbsp;</a></span>FileIncludes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">UVACanvasAccess.ApiParts.Api.FileIncludes</a> : byte</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Categories of optional data that can be requested for inclusion within CanvasFile objects. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af85a5f4f2054bb849ce3ea77a5587028a8f9bfe9d1345237cb3b2b205864da075"></a>User&#160;</td><td class="fielddoc"><p>Include the file's owner as a complete user object. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af85a5f4f2054bb849ce3ea77a5587028a0251cdf51cd59160ac0d011dc7999243"></a>UsageRights&#160;</td><td class="fielddoc"><p>Include usage rights/licensing information for the file. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a31bbf764ed8a37770043d717913d9f4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31bbf764ed8a37770043d717913d9f4d">&#9670;&nbsp;</a></span>FileSort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4d">UVACanvasAccess.ApiParts.Api.FileSort</a> : byte</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Categories a CanvasFile can be sorted by. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a31bbf764ed8a37770043d717913d9f4da49ee3087348e8d44e1feda1917443987"></a>Name&#160;</td><td class="fielddoc"><p>Sort by name. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a31bbf764ed8a37770043d717913d9f4da6f6cb72d544962fa333e2e34ce64f719"></a>Size&#160;</td><td class="fielddoc"><p>Sort by size. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a31bbf764ed8a37770043d717913d9f4da46d295c8a97befd247d2d634ac8cc4b3"></a>CreatedAt&#160;</td><td class="fielddoc"><p>Sort by creation time. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a31bbf764ed8a37770043d717913d9f4da0b2a8a8fed13280ecd74f7545bc2b962"></a>UpdatedAt&#160;</td><td class="fielddoc"><p>Sort by update time. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a31bbf764ed8a37770043d717913d9f4dab8178dd7819d7531e93b9d8112c16e11"></a>ContentType&#160;</td><td class="fielddoc"><p>Sort by <a class="el" href="">content type</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a31bbf764ed8a37770043d717913d9f4da8f9bfe9d1345237cb3b2b205864da075"></a>User&#160;</td><td class="fielddoc"><p>Sort by the file owner. </p>
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -3582,8 +3655,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 
 </div>
 </div>
-<a id="abe8bdd0c1786a34cf20e3d742e685387"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe8bdd0c1786a34cf20e3d742e685387">&#9670;&nbsp;</a></span>GetAssignment()</h2>
+<a id="a079d88c3275ddff072b31826319fbff4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079d88c3275ddff072b31826319fbff4">&#9670;&nbsp;</a></span>GetAssignment()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3606,8 +3679,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca">AssignmentInclusions</a>&#160;</td>
-          <td class="paramname"><em>inclusions</em> = <code>AssignmentInclusions.Default</code>, </td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429">AssignmentIncludes</a>&#160;</td>
+          <td class="paramname"><em>includes</em> = <code>AssignmentIncludes.Default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -3645,7 +3718,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   <table class="params">
     <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
     <tr><td class="paramname">assignmentId</td><td>The assignment id.</td></tr>
-    <tr><td class="paramname">inclusions</td><td>Optional extra data to include in the assignment response.</td></tr>
+    <tr><td class="paramname">includes</td><td>Optional extra data to include in the assignment response.</td></tr>
     <tr><td class="paramname">overrideAssignmentDates</td><td>Apply assignment overrides to dates. Defaults to true.</td></tr>
     <tr><td class="paramname">needsGradingCountBySection</td><td>Split the NeedsGradingCount key into sections. Defaults to false.</td></tr>
     <tr><td class="paramname">allDates</td><td>Return all dates associated with the assignment, if applicable.</td></tr>
@@ -3653,7 +3726,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The assignment.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca" title="Flags representing optional data that can be included as part of an Assignment.">AssignmentInclusions</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429" title="Categories of optional data that can be requested for inclusion within Assignment objects.">AssignmentIncludes</a></dd></dl>
 
 </div>
 </div>
@@ -3863,8 +3936,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 
 </div>
 </div>
-<a id="af8e21b3e9d245d2b28a13da0ed14e693"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8e21b3e9d245d2b28a13da0ed14e693">&#9670;&nbsp;</a></span>GetCourseDiscussionTopic()</h2>
+<a id="a0371fb8aaf78d75efc71737701539f50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0371fb8aaf78d75efc71737701539f50">&#9670;&nbsp;</a></span>GetCourseDiscussionTopic()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3887,8 +3960,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c">DiscussionTopicInclusions</a>&#160;</td>
-          <td class="paramname"><em>inclusions</em> = <code>DiscussionTopicInclusions.Default</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">DiscussionTopicIncludes</a>&#160;</td>
+          <td class="paramname"><em>includes</em> = <code>DiscussionTopicIncludes.Default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3908,7 +3981,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   <table class="params">
     <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
     <tr><td class="paramname">discussionId</td><td>The discussion id.</td></tr>
-    <tr><td class="paramname">inclusions</td><td>Extra data to include in the result. See <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c" title="Flags representing optional data that can be included as part of a DiscussionTopic.">DiscussionTopicInclusions</a>.</td></tr>
+    <tr><td class="paramname">includes</td><td>Extra data to include in the result. See <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40" title="Categories of optional data that can be requested for inclusion within DiscussionTopic objects.">DiscussionTopicIncludes</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -4676,7 +4749,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileIncludes?&#160;</td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">FileIncludes</a>?&#160;</td>
           <td class="paramname"><em>includes</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
@@ -4739,8 +4812,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 
 </div>
 </div>
-<a id="a1481b37b356c8e7d4b78c5a6d583ef35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1481b37b356c8e7d4b78c5a6d583ef35">&#9670;&nbsp;</a></span>GetPersonalQuota()</h2>
+<a id="afc6d3941aa9024d14afa5d507c923e79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc6d3941aa9024d14afa5d507c923e79">&#9670;&nbsp;</a></span>GetPersonalQuota()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4749,7 +4822,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;(ulong, ulong)&gt; UVACanvasAccess.ApiParts.Api.GetPersonalQuota </td>
+          <td class="memname">async Task&lt;<a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html">QuotaInfo</a>&lt;ulong&gt; &gt; UVACanvasAccess.ApiParts.Api.GetPersonalQuota </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -4763,12 +4836,12 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 </div><div class="memdoc">
 
 <p>Returns the storage quota in bytes of the current user, along with the amount currently used. </p>
-<dl class="section return"><dt>Returns</dt><dd>The tuple of quota and used quota.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The quota information.</dd></dl>
 
 </div>
 </div>
-<a id="aea4592910c22b95b762f2f500c06bed0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea4592910c22b95b762f2f500c06bed0">&#9670;&nbsp;</a></span>GetPersonalQuotaMiB()</h2>
+<a id="a91bb3be747e9d3e7ef1c0e1827e208dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91bb3be747e9d3e7ef1c0e1827e208dd">&#9670;&nbsp;</a></span>GetPersonalQuotaMiB()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4777,7 +4850,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Task&lt;(decimal, decimal)&gt; UVACanvasAccess.ApiParts.Api.GetPersonalQuotaMiB </td>
+          <td class="memname">Task&lt;<a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html">QuotaInfo</a>&lt;decimal&gt; &gt; UVACanvasAccess.ApiParts.Api.GetPersonalQuotaMiB </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -4791,7 +4864,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 </div><div class="memdoc">
 
 <p>Returns the storage quota in MiB of the current user, along with the amount currently used. </p>
-<dl class="section return"><dt>Returns</dt><dd>The tuple of quota and used quota.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The quota information.</dd></dl>
 
 </div>
 </div>
@@ -5219,8 +5292,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 
 </div>
 </div>
-<a id="a7f786e84ffedfc32d906877658b364a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f786e84ffedfc32d906877658b364a5">&#9670;&nbsp;</a></span>ListCourseDiscussionTopics()</h2>
+<a id="af99732cc829b3a79102dc0bf0b593e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af99732cc829b3a79102dc0bf0b593e34">&#9670;&nbsp;</a></span>ListCourseDiscussionTopics()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -5273,8 +5346,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c">DiscussionTopicInclusions</a>&#160;</td>
-          <td class="paramname"><em>includes</em> = <code>DiscussionTopicInclusions.Default</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">DiscussionTopicIncludes</a>&#160;</td>
+          <td class="paramname"><em>includes</em> = <code>DiscussionTopicIncludes.Default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -5299,12 +5372,12 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
     <tr><td class="paramname">filterByUnread</td><td>Only return unread by the current user.</td></tr>
     <tr><td class="paramname">searchTerm</td><td>An optional search term.</td></tr>
     <tr><td class="paramname">excludeContextModuleLockedTopics</td><td>For students, exclude topics that are locked by module progression.</td></tr>
-    <tr><td class="paramname">includes</td><td>Extra data to include in the result. See <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c" title="Flags representing optional data that can be included as part of a DiscussionTopic.">DiscussionTopicInclusions</a>.</td></tr>
+    <tr><td class="paramname">includes</td><td>Extra data to include in the result. See <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40" title="Categories of optional data that can be requested for inclusion within DiscussionTopic objects.">DiscussionTopicIncludes</a>.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The list of discussion topics.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aeedd8b9f36b590aab7075f6093b3281c" title="Flags representing optional data that can be included as part of a DiscussionTopic.">DiscussionTopicInclusions</a>, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251a" title="An ordering that can be applied to sets of DiscussionTopic.">DiscussionTopicOrdering</a>, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8" title="Scopes that DiscussionTopics can be filtered by.">DiscussionTopicScopes</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40" title="Categories of optional data that can be requested for inclusion within DiscussionTopic objects.">DiscussionTopicIncludes</a>, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251a" title="An ordering that can be applied to sets of DiscussionTopic.">DiscussionTopicOrdering</a>, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8" title="Scopes that DiscussionTopics can be filtered by.">DiscussionTopicScopes</a></dd></dl>
 
 </div>
 </div>
@@ -6646,8 +6719,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 
 </div>
 </div>
-<a id="ac80e6360627ad49dc27fdeb56929b498"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac80e6360627ad49dc27fdeb56929b498">&#9670;&nbsp;</a></span>StreamCourseAssignments()</h2>
+<a id="a7d163a67efd4bd0130a17ec6e7e10085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d163a67efd4bd0130a17ec6e7e10085">&#9670;&nbsp;</a></span>StreamCourseAssignments()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6664,8 +6737,8 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca">AssignmentInclusions</a>&#160;</td>
-          <td class="paramname"><em>inclusions</em> = <code>AssignmentInclusions.Default</code>, </td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429">AssignmentIncludes</a>&#160;</td>
+          <td class="paramname"><em>includes</em> = <code>AssignmentIncludes.Default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -6720,7 +6793,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
-    <tr><td class="paramname">inclusions</td><td>Optional extra data to include in the assignment response.</td></tr>
+    <tr><td class="paramname">includes</td><td>Optional extra data to include in the assignment response.</td></tr>
     <tr><td class="paramname">searchTerm</td><td>An optional search term.</td></tr>
     <tr><td class="paramname">overrideAssignmentDates</td><td>Apply assignment overrides to dates. Defaults to true.</td></tr>
     <tr><td class="paramname">needsGradingCountBySection</td><td>Split the NeedsGradingCount key into sections. Defaults to false.</td></tr>
@@ -6731,7 +6804,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The stream of assignments.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af0726d6dacc5b5141eaa56f07c5c30ca" title="Flags representing optional data that can be included as part of an Assignment.">AssignmentInclusions</a>, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53e10da8ba76a5e8cd40eb50456cb0d0" title="Buckets that assignments can be sorted into.">AssignmentBucket</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afaa049d417a2e74f929c18c4d3c26429" title="Categories of optional data that can be requested for inclusion within Assignment objects.">AssignmentIncludes</a>, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53e10da8ba76a5e8cd40eb50456cb0d0" title="Buckets that assignments can be sorted into.">AssignmentBucket</a></dd></dl>
 
 </div>
 </div>
@@ -7582,7 +7655,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileIncludes?&#160;</td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">FileIncludes</a>?&#160;</td>
           <td class="paramname"><em>includes</em> = <code>null</code>, </td>
         </tr>
         <tr>
@@ -7594,7 +7667,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1SisImpo
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileSort?&#160;</td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4d">FileSort</a>?&#160;</td>
           <td class="paramname"><em>sortBy</em> = <code>null</code>, </td>
         </tr>
         <tr>
