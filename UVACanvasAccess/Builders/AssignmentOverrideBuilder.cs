@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Util;
@@ -12,22 +13,23 @@ namespace UVACanvasAccess.Builders {
     /// A class used to create or edit assignment overrides using the builder pattern.
     /// When all desired fields are set, call <see cref="Post"/> to execute the operation.
     /// </summary>
+    [PublicAPI]
     public class AssignmentOverrideBuilder {
-        private readonly Api _api;
+        private readonly Api api;
         
         internal ulong CourseId { get; }
         internal ulong AssignmentId { get; }
 
         internal Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
         
-        private readonly List<KeyValuePair<string, string>> _arrayFields = new List<KeyValuePair<string, string>>();
+        private readonly List<KeyValuePair<string, string>> arrayFields = new List<KeyValuePair<string, string>>();
         
-        internal ILookup<string, string> ArrayFields => _arrayFields.Distinct()
-                                                                    .ToLookup(kv => kv.Key,
-                                                                              kv => kv.Value);
+        internal ILookup<string, string> ArrayFields => arrayFields.Distinct()
+                                                                   .ToLookup(kv => kv.Key,
+                                                                             kv => kv.Value);
 
         internal AssignmentOverrideBuilder(Api api, ulong courseId, ulong assignmentId) {
-            _api = api;
+            this.api = api;
             CourseId = courseId;
             AssignmentId = assignmentId;
         }
@@ -116,12 +118,17 @@ namespace UVACanvasAccess.Builders {
         }
 
         private AssignmentOverrideBuilder PutArr(string key, string s) {
-            _arrayFields.Add(new KeyValuePair<string, string>($"assignment_override[{key}][]", s));
+            arrayFields.Add(new KeyValuePair<string, string>($"assignment_override[{key}][]", s));
             return this;
         }
 
+        /// <summary>
+        /// Complete the operation.
+        /// </summary>
+        /// <returns>The resulting <see cref="AssignmentOverride"/>.</returns>
+        /// <seealso cref="AssignmentOverride"/>
         public Task<AssignmentOverride> Post() {
-            return _api.PostAssignmentOverride(this);
+            return api.PostAssignmentOverride(this);
         }
     }
 }

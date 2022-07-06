@@ -46,6 +46,13 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Gets an <see cref="AssignmentOverride"/> by the course, assignment, and override IDs.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <param name="overrideId">The override id.</param>
+        /// <returns>The <see cref="AssignmentOverride"/>.</returns>
         public async Task<AssignmentOverride> GetAssignmentOverride(ulong courseId, 
                                                                     ulong assignmentId,
                                                                     ulong overrideId) {
@@ -58,6 +65,13 @@ namespace UVACanvasAccess.ApiParts {
             return new AssignmentOverride(this, model);
         }
 
+        /// <summary>
+        /// Gets a collection of <see cref="AssignmentOverride"/> objects, given a course id, a set of override ids,
+        /// and the assignments they belong to.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentsToOverrides">A mapping of assignment ids to override ids.</param>
+        /// <returns>The collection of <see cref="AssignmentOverride"/>s.</returns>
         public async Task<IEnumerable<AssignmentOverride>> BatchGetAssignmentOverrides(ulong courseId,
                                                                                        ILookup<ulong, ulong> assignmentsToOverrides) {
             var args = assignmentsToOverrides.Flatten()
@@ -93,6 +107,12 @@ namespace UVACanvasAccess.ApiParts {
             return new AssignmentOverride(this, model);
         }
 
+        /// <summary>
+        /// Returns an <see cref="AssignmentOverrideBuilder"/> for creating a new assignment override.
+        /// </summary>
+        /// <param name="courseId">The course id.</param>
+        /// <param name="assignmentId">The assignment id.</param>
+        /// <returns>The <see cref="AssignmentOverrideBuilder"/>.</returns>
         public AssignmentOverrideBuilder CreateAssignmentOverride(ulong courseId, ulong assignmentId) {
             return new AssignmentOverrideBuilder(this, courseId, assignmentId);
         }
@@ -195,15 +215,33 @@ namespace UVACanvasAccess.ApiParts {
         [Flags]
         [PublicAPI]
         public enum AssignmentIncludes {
+            /// <summary>
+            /// Include no extra data.
+            /// </summary>
             Default = 0,
+            /// <summary>
+            /// Include the assignment's submissions.
+            /// </summary>
             [ApiRepresentation("submission")]
             Submission = 1 << 0,
+            /// <summary>
+            /// Include the assignment's visibility information.
+            /// </summary>
             [ApiRepresentation("assignment_visibility")]
             AssignmentVisibility = 1 << 1,
+            /// <summary>
+            /// Include any applicable assignment overrides.
+            /// </summary>
             [ApiRepresentation("overrides")]
             Overrides = 1 << 2,
+            /// <summary>
+            /// Include any observed users.
+            /// </summary>
             [ApiRepresentation("observed_users")]
             ObservedUsers = 1 << 3,
+            /// <summary>
+            /// Include all relevant dates.
+            /// </summary>
             [ApiRepresentation("all_dates")]
             AllDates = 1 << 4
         }
@@ -213,18 +251,39 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         [PublicAPI]
         public enum AssignmentBucket {
+            /// <summary>
+            /// Past assignments.
+            /// </summary>
             [ApiRepresentation("past")]
             Past,
+            /// <summary>
+            /// Overdue assignments.
+            /// </summary>
             [ApiRepresentation("overdue")]
             Overdue,
+            /// <summary>
+            /// Undated assignments.
+            /// </summary>
             [ApiRepresentation("undated")]
             Undated,
+            /// <summary>
+            /// Ungraded assignments.
+            /// </summary>
             [ApiRepresentation("ungraded")]
             Ungraded,
-            [ApiRepresentation("ubsubmitted")]
+            /// <summary>
+            /// Unsubmitted assignments.
+            /// </summary>
+            [ApiRepresentation("unsubmitted")]
             Unsubmitted,
+            /// <summary>
+            /// Upcoming assignments.
+            /// </summary>
             [ApiRepresentation("upcoming")]
             Upcoming,
+            /// <summary>
+            /// Future assignments.
+            /// </summary>
             [ApiRepresentation("future")]
             Future
         }

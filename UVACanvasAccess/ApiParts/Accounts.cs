@@ -131,14 +131,29 @@ namespace UVACanvasAccess.ApiParts {
         [Flags]
         [PublicAPI]
         public enum CourseEnrollmentTypes : byte {
+            /// <summary>
+            /// The user is a teacher.
+            /// </summary>
             [ApiRepresentation("teacher")]
             Teacher = 1 << 0,
+            /// <summary>
+            /// The user is a student.
+            /// </summary>
             [ApiRepresentation("students")]
             Students = 1 << 1,
+            /// <summary>
+            /// The user is a TA.
+            /// </summary>
             [ApiRepresentation("ta")]
             Ta = 1 << 2,
+            /// <summary>
+            /// The user is an observer.
+            /// </summary>
             [ApiRepresentation("observer")]
             Observer = 1 << 3,
+            /// <summary>
+            /// The user is a course designer.
+            /// </summary>
             [ApiRepresentation("designer")]
             Designer = 1 << 4
         }
@@ -149,16 +164,34 @@ namespace UVACanvasAccess.ApiParts {
         [Flags]
         [PublicAPI]
         public enum CourseStates : byte {
+            /// <summary>
+            /// The course is freshly created.
+            /// </summary>
             [ApiRepresentation("created")]
             Created = 1 << 0,
+            /// <summary>
+            /// The course is claimed.
+            /// </summary>
             [ApiRepresentation("claimed")]
             Claimed = 1 << 1,
+            /// <summary>
+            /// The course is available.
+            /// </summary>
             [ApiRepresentation("available")]
             Available = 1 << 2,
+            /// <summary>
+            /// The course has concluded.
+            /// </summary>
             [ApiRepresentation("completed")]
             Completed = 1 << 3,
+            /// <summary>
+            /// The course has been deleted.
+            /// </summary>
             [ApiRepresentation("deleted")]
             Deleted = 1 << 4,
+            /// <summary>
+            /// All states; used for searching and filtering.
+            /// </summary>
             [ApiRepresentation("all")]
             All = 1 << 5
         }
@@ -247,8 +280,14 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         [PublicAPI]
         public enum CourseSearchBy : byte {
+            /// <summary>
+            /// Search by course.
+            /// </summary>
             [ApiRepresentation("course")]
             Course,
+            /// <summary>
+            /// Search by teacher.
+            /// </summary>
             [ApiRepresentation("teacher")]
             Teacher
         }

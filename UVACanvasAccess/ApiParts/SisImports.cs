@@ -11,6 +11,18 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.ApiParts {
     public partial class Api {
 
+        /// <summary>
+        /// Performs a SIS import.
+        /// </summary>
+        /// <param name="file">The file containing the import data.</param>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="accountId">The account id. Defaults to the current account.</param>
+        /// <param name="batchMode">
+        /// Whether the import should be run in batch mode. Normally, when the import file is missing an entry currently
+        /// present in Canvas, the entry is left alone. In batch mode, it will be deleted instead. Defaults to false.
+        /// </param>
+        /// <param name="overrideStickiness">Whether the import should override SIS stickiness.</param>
+        /// <returns>The <see cref="SisImport"/>.</returns>
         public async Task<SisImport> ImportSisData([NotNull] byte[] file, 
                                                    [NotNull] string filePath, 
                                                    ulong? accountId = null,
@@ -36,6 +48,12 @@ namespace UVACanvasAccess.ApiParts {
             return new SisImport(this, model);
         }
 
+        /// <summary>
+        /// Gets a previously performed SIS import.
+        /// </summary>
+        /// <param name="id">The import ID.</param>
+        /// <param name="accountId">The account id. Defaults to the current account.</param>
+        /// <returns>The <see cref="SisImport"/>.</returns>
         public async Task<SisImport> GetSisImport(ulong id, ulong? accountId = null) {
             var response = await client.GetAsync($"accounts/{accountId.IdOrSelf()}/sis_imports/{id}");
             

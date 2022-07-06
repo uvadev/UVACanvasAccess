@@ -52,6 +52,14 @@ namespace UVACanvasAccess.ApiParts {
             return new Role(this, model);
         }
 
+        /// <summary>
+        /// Creates a new role.
+        /// </summary>
+        /// <param name="label">The role's name/label.</param>
+        /// <param name="permissions">The role's permissions.</param>
+        /// <param name="baseRoleType">The existing role type to inherit from.</param>
+        /// <param name="accountId">The account id. Defaults to the current account.</param>
+        /// <returns>The newly created <see cref="Role"/>.</returns>
         public Task<Role> CreateRole(string label,
                                      in RolePermissionsSet? permissions = null,
                                      string baseRoleType = null,

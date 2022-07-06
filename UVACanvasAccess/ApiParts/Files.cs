@@ -362,6 +362,11 @@ namespace UVACanvasAccess.ApiParts {
                 UsedQuota = usedQuota;
             }
             
+            /// <summary>
+            /// Deconstructs the <see cref="QuotaInfo{T}"/> into <see cref="TotalQuota"/> and <see cref="UsedQuota"/>.
+            /// </summary>
+            /// <param name="totalQuota">The total storage quota.</param>
+            /// <param name="usedQuota">The amount of quota currently used.</param>
             public void Deconstruct(out T totalQuota, out T usedQuota) {
                 totalQuota = TotalQuota;
                 usedQuota = UsedQuota;

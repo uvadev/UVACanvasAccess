@@ -45,14 +45,29 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         [PublicAPI]
         public enum CourseEnrollmentType {
+            /// <summary>
+            /// The user is a student.
+            /// </summary>
             [ApiRepresentation("StudentEnrollment")]
             StudentEnrollment,
+            /// <summary>
+            /// The user is a teacher.
+            /// </summary>
             [ApiRepresentation("TeacherEnrollment")]
             TeacherEnrollment,
+            /// <summary>
+            /// The user is a TA.
+            /// </summary>
             [ApiRepresentation("TaEnrollment")]
             TaEnrollment,
+            /// <summary>
+            /// The user is an observer.
+            /// </summary>
             [ApiRepresentation("ObserverEnrollment")]
             ObserverEnrollment,
+            /// <summary>
+            /// The user is a designer.
+            /// </summary>
             [ApiRepresentation("DesignerEnrollment")]
             DesignerEnrollment
         }
@@ -228,6 +243,9 @@ namespace UVACanvasAccess.ApiParts {
             /// </summary>
             [ApiRepresentation("observed_users")]
             ObservedUsers = 1 << 3,
+            /// <summary>
+            /// Include whether the enrollment is removable.
+            /// </summary>
             [ApiRepresentation("can_be_removed")]
             CanBeRemoved = 1 << 4,
             /// <summary>

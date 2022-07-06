@@ -151,12 +151,21 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <see cref="Api.UpdateCustomColumnEntries"/>
         public struct ColumnEntryUpdate {
+            /// <summary>
+            /// The column id.
+            /// </summary>
             [JsonProperty("column_id")]
             public ulong ColumnId { get; set;  }
             
+            /// <summary>
+            /// The user id.
+            /// </summary>
             [JsonProperty("user_id")]
             public ulong UserId { get; set; }
             
+            /// <summary>
+            /// The new content of the entry.
+            /// </summary>
             [JsonProperty("content")]
             public string Content { get; set; }
         }

@@ -13,49 +13,118 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.ApiParts {
     public partial class Api {
         
+        /// <summary>
+        /// Categories of optional data that can be included with <see cref="Course"/> objects, when fetched
+        /// individually by ID.
+        /// </summary>
+        /// <remarks>These options are generally unavailable when fetching courses in bulk, such as by
+        /// <see cref="Api.StreamCourses"/>.</remarks>
         [Flags]
         [PublicAPI]
         public enum IndividualLevelCourseIncludes : uint {
+            /// <summary>
+            /// Include the syllabus body.
+            /// </summary>
             [ApiRepresentation("syllabus_body")]
             SyllabusBody = 1 << 0,
+            /// <summary>
+            /// Include the course term.
+            /// </summary>
             [ApiRepresentation("term")]
             Term = 1 << 1,
+            /// <summary>
+            /// Include the course progress.
+            /// </summary>
             [ApiRepresentation("course_progress")]
             CourseProgress = 1 << 2,
+            /// <summary>
+            /// Include the amount of storage quota this course has used.
+            /// </summary>
             [ApiRepresentation("storage_quota_used_mb")]
             StorageQuotaUsedMb = 1 << 3,
+            /// <summary>
+            /// Include the total number of students in the course.
+            /// </summary>
             [ApiRepresentation("total_students")]
             TotalStudents = 1 << 4,
+            /// <summary>
+            /// Include the teachers of the course.
+            /// </summary>
             [ApiRepresentation("teachers")]
             Teachers = 1 << 5,
+            /// <summary>
+            /// Include the name of the account or subaccount the course is associated with.
+            /// </summary>
             [ApiRepresentation("account_name")]
             AccountName = 1 << 6,
+            /// <summary>
+            /// Include whether the course is concluded.
+            /// </summary>
             [ApiRepresentation("concluded")]
             Concluded = 1 << 7,
+            /// <summary>
+            /// Include related courses.
+            /// </summary>
             [ApiRepresentation("all_courses")]
             AllCourses = 1 << 8,
+            /// <summary>
+            /// Include course permissions.
+            /// </summary>
             [ApiRepresentation("permissions")]
             Permissions = 1 << 9,
+            /// <summary>
+            /// Include observed users.
+            /// </summary>
             [ApiRepresentation("observed_users")]
             ObservedUsers = 1 << 10,
+            /// <summary>
+            /// Include the course image.
+            /// </summary>
             [ApiRepresentation("course_image")]
             CourseImage = 1 << 11,
+            /// <summary>
+            /// Include the count of how many assignments need grading.
+            /// </summary>
             [ApiRepresentation("needs_grading_count")]
             NeedsGradingCount = 1 << 12,
+            /// <summary>
+            /// Include the course's public description.
+            /// </summary>
             [ApiRepresentation("public_description")]
             PublicDescription = 1 << 13,
+            /// <summary>
+            /// Include the course's overall scores.
+            /// </summary>
             [ApiRepresentation("total_scores")]
             TotalScores = 1 << 14,
+            /// <summary>
+            /// Include the course's scores for the current grading period.
+            /// </summary>
             [ApiRepresentation("current_grading_period_scores")]
             CurrentGradingPeriodScores = 1 << 15,
+            /// <summary>
+            /// Include the account or subaccount the course is associated with.
+            /// </summary>
             [ApiRepresentation("account")]
             Account = 1 << 16,
+            /// <summary>
+            /// Include the course's sections.
+            /// </summary>
             [ApiRepresentation("sections")]
             Sections = 1 << 17,
+            /// <summary>
+            /// Include the course's passback status.
+            /// </summary>
             [ApiRepresentation("passback_status")]
             PassbackStatus = 1 << 18,
+            /// <summary>
+            /// Include the course's favorites.
+            /// </summary>
             [ApiRepresentation("favorites")]
             Favorites = 1 << 19,
+            /// <summary>
+            /// Include all possible data.
+            /// </summary>
             Everything = uint.MaxValue
         }
 

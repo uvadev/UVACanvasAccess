@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UVACanvasAccess.Builders;
 using UVACanvasAccess.Model.Discussions;
@@ -21,13 +22,28 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         [Flags]
         public enum DiscussionTopicIncludes {
+            /// <summary>
+            /// Include no optional data.
+            /// </summary>
             Default = 0,
+            /// <summary>
+            /// Include relevant dates.
+            /// </summary>
             [ApiRepresentation("all_dates")]
             AllDates = 1 << 0,
+            /// <summary>
+            /// Include section information.
+            /// </summary>
             [ApiRepresentation("sections")]
             Sections = 1 << 1,
+            /// <summary>
+            /// Include quantitative section information.
+            /// </summary>
             [ApiRepresentation("sections_user_count")]
             SectionsUserCount = 1 << 2,
+            /// <summary>
+            /// Include any overrides.
+            /// </summary>
             [ApiRepresentation("overrides")]
             Overrides = 1 << 3
         }
@@ -57,13 +73,26 @@ namespace UVACanvasAccess.ApiParts {
         /// Scopes that <see cref="DiscussionTopic"/>s can be filtered by.
         /// </summary>
         [Flags]
+        [PublicAPI]
         public enum DiscussionTopicScopes {
+            /// <summary>
+            /// The topic is locked.
+            /// </summary>
             [ApiRepresentation("locked")]
             Locked = 1 << 0,
+            /// <summary>
+            /// The topic is unlocked.
+            /// </summary>
             [ApiRepresentation("unlocked")]
             Unlocked = 1 << 1,
+            /// <summary>
+            /// The discussion is pinned to the top.
+            /// </summary>
             [ApiRepresentation("pinned")]
             Pinned = 1 << 2, 
+            /// <summary>
+            /// The discussion is not pinned.
+            /// </summary>
             [ApiRepresentation("unpinned")]
             Unpinned = 1 << 3
         }
@@ -310,6 +339,12 @@ namespace UVACanvasAccess.ApiParts {
                    select new TopicEntry(this, model, DiscussionTopic.DiscussionHome.Course, courseId, topicId);
         }
         
+        /// <summary>
+        /// Gets a list of discussion topic entries for a group topic, given the group and topic IDs.
+        /// </summary>
+        /// <param name="groupId">The group id.</param>
+        /// <param name="topicId">The topic id.</param>
+        /// <returns>The list of <see cref="TopicEntry"/>.</returns>
         public async Task<IEnumerable<TopicEntry>> ListGroupDiscussionTopicEntries(ulong groupId,
                                                                                    ulong topicId) {
             var response = await RawListTopicEntries("groups", groupId.ToString(), topicId.ToString());

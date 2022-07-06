@@ -80,12 +80,17 @@ namespace UVACanvasAccess.ApiParts {
             return client.GetAsync(url);
         }
 
+        /// <summary>
+        /// Get a set of reports for an account, given the report type.
+        /// </summary>
+        /// <param name="reportType">The report type.</param>
+        /// <param name="accountId">The account id. Defaults to the current account.</param>
+        /// <returns>The collection of <see cref="Report"/>s.</returns>
         public async Task<IEnumerable<Report>> GetReportIndex(string reportType, ulong? accountId = null) {
             var response = await RawGetReportIndex(accountId?.ToString() ?? "self", reportType);
 
             var models = await AccumulateDeserializePages<ReportModel>(response);
-            return from model in models
-                   select new Report(this, model);
+            return models.Select(model => new Report(this, model));
         }
     }
 }

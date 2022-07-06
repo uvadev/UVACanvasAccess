@@ -5,22 +5,40 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Submissions {
     
+    /// <summary>
+    /// Represents a media/attachment comment.
+    /// </summary>
     [PublicAPI]
     public class MediaComment : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The content type.
+        /// </summary>
         public string ContentType { get; }
         
+        /// <summary>
+        /// The display name.
+        /// </summary>
         public string DisplayName { get; }
         
+        /// <summary>
+        /// The media ID.
+        /// </summary>
         public string MediaId { get; }
         
+        /// <summary>
+        /// The media type.
+        /// </summary>
         public string MediaType { get; }
         
+        /// <summary>
+        /// The URL.
+        /// </summary>
         public string Url { get; }
 
         internal MediaComment(Api api, MediaCommentModel model) {
-            _api = api;
+            this.api = api;
             ContentType = model.ContentType;
             DisplayName = model.DisplayName;
             MediaId = model.MediaId;
@@ -28,6 +46,7 @@ namespace UVACanvasAccess.Structures.Submissions {
             Url = model.Url;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "MediaComment {" +
                    ($"\n{nameof(ContentType)}: {ContentType}," +

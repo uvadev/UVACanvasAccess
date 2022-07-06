@@ -136,20 +136,44 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         [PublicAPI]
         public enum StudentCourseSummarySortColumn : byte {
+            /// <summary>
+            /// Sort by name, ascending.
+            /// </summary>
             [ApiRepresentation("name")]
             Name,
+            /// <summary>
+            /// Sort by name, descending.
+            /// </summary>
             [ApiRepresentation("name_descending")]
             NameDescending,
+            /// <summary>
+            /// Sort by score, ascending.
+            /// </summary>
             [ApiRepresentation("score")]
             Score,
+            /// <summary>
+            /// Sort by score, descending.
+            /// </summary>
             [ApiRepresentation("score_descending")]
             ScoreDescending,
+            /// <summary>
+            /// Sort by participation, ascending.
+            /// </summary>
             [ApiRepresentation("participations")]
             Participations,
+            /// <summary>
+            /// Sort by participation, descending.
+            /// </summary>
             [ApiRepresentation("participations_descending")]
             ParticipationsDescending,
+            /// <summary>
+            /// Sort by page views, ascending.
+            /// </summary>
             [ApiRepresentation("page_views")]
             PageViews,
+            /// <summary>
+            /// Sort by page views, descending.
+            /// </summary>
             [ApiRepresentation("page_views_descending")]
             PageViewsDescending
         }
