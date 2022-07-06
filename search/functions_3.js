@@ -1,9 +1,19 @@
 var searchData=
 [
-  ['editappointmentgroup_873',['EditAppointmentGroup',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a9ab34190dd5110db0d7556a4c651d66a',1,'UVACanvasAccess.ApiParts.Api.EditAppointmentGroup(AppointmentGroup appointmentGroup)'],['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa7a5d8fe93a396316e1a9f6436ed5606',1,'UVACanvasAccess.ApiParts.Api.EditAppointmentGroup(AppointmentGroup appointmentGroup, IEnumerable&lt; EventContext &gt; contexts)'],['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5d6e6f84fb5883c4546ddb95ead362d5',1,'UVACanvasAccess.ApiParts.Api.EditAppointmentGroup(AppointmentGroup appointmentGroup, params EventContext[] contexts)']]],
-  ['editassignment_874',['EditAssignment',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#acc4fa254c365b816f2db3fffa0308bfc',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['editconversation_875',['EditConversation',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5c24fa79c52a79236c131e8882d518c5',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['editcourse_876',['EditCourse',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae5bd9a4f8e7a8521c6c65d55480554ac',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['edituser_877',['EditUser',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a6261bc2c3b50488cfbd8e7e213fd1345',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['enrollcurrentuser_878',['EnrollCurrentUser',['../classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a7a2ab527fbc3cde82420cad6eb172e21',1,'UVACanvasAccess::Builders::CourseBuilder']]]
+  ['deactivate_938',['Deactivate',['../classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html#a170e3d538d062aef33bf9e47e6f9e781',1,'UVACanvasAccess::Structures::Enrollments::Enrollment']]],
+  ['deactivateenrollment_939',['DeactivateEnrollment',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4ed7b81ee5ccadbc9834c591acc68f55',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['declineenrollmentinvitation_940',['DeclineEnrollmentInvitation',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a414be23fc620b1db7e6ef9e56dc5b208',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deconstruct_941',['Deconstruct',['../structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html#a6161d1b9ef5190ef6f88f1f0f09defb6',1,'UVACanvasAccess::ApiParts::Api::QuotaInfo']]],
+  ['delete_942',['Delete',['../classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html#ae368b8d9dfd244d08225d25fcaeb3f95',1,'UVACanvasAccess::Structures::Enrollments::Enrollment']]],
+  ['deleteappointmentgroup_943',['DeleteAppointmentGroup',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a904af20cd5d804a6ed5372f26fc40c64',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletecontentshare_944',['DeleteContentShare',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a30daff34b0bffa10b0c80187134847c6',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletecourse_945',['DeleteCourse',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5c829d0a03e5751f89788ef29690fe79',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletecustomcolumn_946',['DeleteCustomColumn',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a9d5a1536325a1e242c7e30d7883eb868',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletecustomjson_947',['DeleteCustomJson',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a730440794382c9c0b3a5ac5b1d21275a',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deleteenrollment_948',['DeleteEnrollment',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a91c7787cd463d80846571f9ebf267fd0',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deleteenrollmentterm_949',['DeleteEnrollmentTerm',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#add760a9b13f087f4b4b01a027962df8e',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletepersonalfile_950',['DeletePersonalFile',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#afeff6337c9b66a1877173fe7bfbcce62',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletepersonalfolder_951',['DeletePersonalFolder',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae8dfd13988c2d8e587b15cc369d4eab4',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deleteuser_952',['DeleteUser',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5743cc6c5937d481cef681490c719eb4',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['dispose_953',['Dispose',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a595d2d3e004d6fda885368881879e2c9',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

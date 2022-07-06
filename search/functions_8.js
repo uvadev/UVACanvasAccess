@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['offerimmediately_931',['OfferImmediately',['../classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a5591dbadda1d76a41bdf288461e8309b',1,'UVACanvasAccess::Builders::CourseBuilder']]],
-  ['omitfromfinalgrade_932',['OmitFromFinalGrade',['../classUVACanvasAccess_1_1Builders_1_1AssignmentBuilder.html#a5568771f2bd3377957a8e14b7ecf7025',1,'UVACanvasAccess::Builders::AssignmentBuilder']]],
-  ['onlyvisibletooverrides_933',['OnlyVisibleToOverrides',['../classUVACanvasAccess_1_1Builders_1_1AssignmentBuilder.html#a164f185ed54974512823db82354d1ea1',1,'UVACanvasAccess::Builders::AssignmentBuilder']]]
+  ['masqueradeas_1017',['MasqueradeAs',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af08e2ba55e191c8f0cc759e5f3551e2e',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['movepersonalfile_1018',['MovePersonalFile',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a61f866fe76489a2be675280eedc7b20d',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['muted_1019',['Muted',['../classUVACanvasAccess_1_1Builders_1_1AssignmentBuilder.html#a654f61e105257bfb8599cd1db60067ad',1,'UVACanvasAccess::Builders::AssignmentBuilder']]]
 ];

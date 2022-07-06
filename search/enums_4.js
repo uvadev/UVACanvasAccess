@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gradingtype_1109',['GradingType',['../namespaceUVACanvasAccess_1_1Structures_1_1Assignments.html#a19deeacd2bcee4ec6290e881f2a86086',1,'UVACanvasAccess::Structures::Assignments']]]
+  ['fileincludes_1203',['FileIncludes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['filesort_1204',['FileSort',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a31bbf764ed8a37770043d717913d9f4d',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

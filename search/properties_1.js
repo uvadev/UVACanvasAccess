@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['base_1180',['Base',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1AssignmentDate.html#aa71c1223b883566f1153e31274ee7910',1,'UVACanvasAccess::Structures::Assignments::AssignmentDate']]]
+  ['base_1331',['Base',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1AssignmentDate.html#aa71c1223b883566f1153e31274ee7910',1,'UVACanvasAccess::Structures::Assignments::AssignmentDate']]],
+  ['body_1332',['Body',['../classUVACanvasAccess_1_1Structures_1_1Conversations_1_1ConversationMessage.html#a070acd41ba01c2e452c79550fd1e77a6',1,'UVACanvasAccess::Structures::Conversations::ConversationMessage']]]
 ];

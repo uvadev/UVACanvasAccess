@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['courseenrollmentincludes_1097',['CourseEnrollmentIncludes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['courseenrollmentstate_1098',['CourseEnrollmentState',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['courseenrollmenttype_1099',['CourseEnrollmentType',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['courseenrollmenttypes_1100',['CourseEnrollmentTypes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['coursesearchby_1101',['CourseSearchBy',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a429ca576abf7c47304b30aeb8b59ea23',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['coursesort_1102',['CourseSort',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae65203c9ad2b0d86f96d49c5d73e22d4',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['coursestates_1103',['CourseStates',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7dfc22b4dd1de677542b0fefd3faf525',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['courseenrollmentincludes_1191',['CourseEnrollmentIncludes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['courseenrollmentstate_1192',['CourseEnrollmentState',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['courseenrollmenttype_1193',['CourseEnrollmentType',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['courseenrollmenttypes_1194',['CourseEnrollmentTypes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['coursesearchby_1195',['CourseSearchBy',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a429ca576abf7c47304b30aeb8b59ea23',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['coursesort_1196',['CourseSort',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae65203c9ad2b0d86f96d49c5d73e22d4',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['coursestates_1197',['CourseStates',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7dfc22b4dd1de677542b0fefd3faf525',1,'UVACanvasAccess::ApiParts::Api']]]
 ];
