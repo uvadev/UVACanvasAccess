@@ -5,20 +5,30 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
+    /// <summary>
+    /// A count of how many assignments need to be graded within a section.
+    /// </summary>
     [PublicAPI]
     public class NeedsGradingCount : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The section id.
+        /// </summary>
         public string SectionId { get; }
         
+        /// <summary>
+        /// The amount of ungraded assignments.
+        /// </summary>
         public uint Count { get; }
 
         internal NeedsGradingCount(Api api, NeedsGradingCountModel model) {
-            _api = api;
+            this.api = api;
             SectionId = model.SectionId;
             Count = model.NeedsGradingCount;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "NeedsGradingCount {" + 
                    ($"\n{nameof(SectionId)}: {SectionId}," +

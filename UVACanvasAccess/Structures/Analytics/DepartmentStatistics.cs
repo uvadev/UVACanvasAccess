@@ -4,21 +4,45 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Analytics {
     
+    /// <summary>
+    /// Represents numerical department-level statistics.
+    /// </summary>
     [PublicAPI]
     public class DepartmentStatistics : IPrettyPrint {
         
+        /// <summary>
+        /// The number of subaccounts.
+        /// </summary>
         public ulong Subaccounts { get; }
 
+        /// <summary>
+        /// The number of teachers.
+        /// </summary>
         public ulong Teachers { get; }
 
+        /// <summary>
+        /// The number of students.
+        /// </summary>
         public ulong Students { get; }
 
+        /// <summary>
+        /// The number of discussion topics.
+        /// </summary>
         public ulong DiscussionTopics { get; }
         
+        /// <summary>
+        /// The number of media objects.
+        /// </summary>
         public ulong MediaObjects { get; }
         
+        /// <summary>
+        /// The number of attachments.
+        /// </summary>
         public ulong Attachments { get; }
 
+        /// <summary>
+        /// The number of assignments.
+        /// </summary>
         public ulong Assignments { get; }
 
         internal DepartmentStatistics(DepartmentStatisticsModel model) {
@@ -31,6 +55,7 @@ namespace UVACanvasAccess.Structures.Analytics {
             Assignments = model.Assignments;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "DepartmentStatistics { " +
                    ($"\n{nameof(Subaccounts)}: {Subaccounts}," +

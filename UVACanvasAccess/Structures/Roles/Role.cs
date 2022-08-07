@@ -44,6 +44,7 @@ namespace UVACanvasAccess.Structures.Roles {
     }
 
     [Flags]
+    [PublicAPI]
     public enum RoleState : byte {
         [ApiRepresentation("active")]
         Active = 1 << 0,

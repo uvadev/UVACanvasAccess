@@ -11,31 +11,58 @@ namespace UVACanvasAccess.Structures.Assignments {
     /// </summary>
     [PublicAPI]
     public class RubricCriteria : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The total amount of points in this criterion.
+        /// </summary>
         public uint? Points { get; }
 
+        /// <summary>
+        /// The id of the rubric criterion.
+        /// </summary>
         public string Id { get; }
         
+        /// <summary>
+        /// The id of the learning outcome this rubric uses, if any.
+        /// </summary>
         [CanBeNull]
         public string LearningOutcomeId { get; }
         
+        /// <summary>
+        /// A third-party GUID, if any.
+        /// </summary>
         [CanBeNull]
         public string VendorGuid { get; }
         
+        /// <summary>
+        /// The criterion description.
+        /// </summary>
         public string Description { get; }
 
+        /// <summary>
+        /// The criterion long description.
+        /// </summary>
         public string LongDescription { get; }
 
+        /// <summary>
+        /// Whether this criterion uses a range.
+        /// </summary>
         public bool? CriterionUseRange { get; }
         
+        /// <summary>
+        /// The list of possible <see cref="RubricRating">ratings</see>.
+        /// </summary>
         [CanBeNull]
         public IEnumerable<RubricRating> Ratings { get; }
 
+        /// <summary>
+        /// Whether to ignore this criterion when calculating the total score.
+        /// </summary>
         public bool? IgnoreForScoring { get; }
 
         internal RubricCriteria(Api api, RubricCriteriaModel model) {
-            _api = api;
+            this.api = api;
             Points = model.Points;
             Id = model.Id;
             LearningOutcomeId = model.LearningOutcomeId;
@@ -47,6 +74,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             IgnoreForScoring = model.IgnoreForScoring;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "RubricCriteria {" +
                    ($"\n{nameof(Points)}: {Points}," +

@@ -22,6 +22,13 @@ namespace UVACanvasAccess.ApiParts {
             return client.GetAsync(url + BuildQueryString(args.ToArray()));
         }
 
+        /// <summary>
+        /// Returns a list of <see cref="Role">roles</see> under a given account.
+        /// </summary>
+        /// <param name="states">Only roles with these <see cref="RoleState">states</see> will be returned. Defaults to <see cref="RoleState.Active"/>.</param>
+        /// <param name="showInherited">If true, include roles inherited from parent accounts.</param>
+        /// <param name="accountId">The account id. Defaults to <c>self</c>.</param>
+        /// <returns>The list of roles.</returns>
         public async Task<IEnumerable<Role>> ListRoles(RoleState states = 0, bool? showInherited = null, ulong? accountId = null) {
             var response = await RawListRoles(accountId?.ToString() ?? "self", 
                                               states.GetFlags().Select(f => f.GetApiRepresentation()),

@@ -4,6 +4,9 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Analytics {
     
+    /// <summary>
+    /// Represents a tardiness summary. Depending on the context, the values may be percentages out of 1 or absolute values.
+    /// </summary>
     [PublicAPI]
     public class Tardiness : IPrettyPrint {
         public decimal Missing { get; }
@@ -24,6 +27,7 @@ namespace UVACanvasAccess.Structures.Analytics {
             Total = model.Total;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "Tardiness {" + 
                    ($"\n{nameof(Missing)}: {Missing}," +

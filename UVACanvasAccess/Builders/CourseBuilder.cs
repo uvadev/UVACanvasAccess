@@ -281,6 +281,13 @@ namespace UVACanvasAccess.Builders {
             return Put("enable_sis_reactivation", tryToRecover.ToShortString());
         }
 
+        /// <summary>
+        /// Perform the action indicated by <paramref name="action"/> when editing a course;
+        /// publish, unpublish, conclude, delete, or undelete the course.
+        /// </summary>
+        /// <param name="action">What <see cref="CourseEditAction">action</see> to take.</param>
+        /// <returns></returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
         public CourseBuilder TakeAction(CourseEditAction action) {
             return _isEditing ? PutArr("event", action.GetApiRepresentation()) 
                               : this;
@@ -309,16 +316,38 @@ namespace UVACanvasAccess.Builders {
             return this;
         }
 
+        /// <summary>
+        /// Actions that can be taken when editing a course.
+        /// </summary>
         [PublicAPI]
         public enum CourseEditAction : byte {
+            /// <summary>
+            /// Make the course invisible to students.
+            /// Depending on the state of the course, this action may not be possible.
+            /// </summary>
+            /// <remarks>This is sometimes called 'claim' internally.</remarks>
             [ApiRepresentation("claim")]
             Unpublish,
+            /// <summary>
+            /// Make the course visible to students.
+            /// Depending on the state of the course, this action may irreversible.
+            /// </summary>
+            /// <remarks>This is sometimes called 'offer' internally.</remarks>
             [ApiRepresentation("offer")]
             Publish,
+            /// <summary>
+            /// Conclude the course.
+            /// </summary>
             [ApiRepresentation("conclude")]
             Conclude,
+            /// <summary>
+            /// Delete the course.
+            /// </summary>
             [ApiRepresentation("delete")]
             Delete,
+            /// <summary>
+            /// Undelete the course. This action may not be possible.
+            /// </summary>
             [ApiRepresentation("undelete")]
             Undelete
         } 

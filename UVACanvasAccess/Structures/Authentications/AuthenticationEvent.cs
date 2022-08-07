@@ -12,24 +12,45 @@ namespace UVACanvasAccess.Structures.Authentications {
     /// </summary>
     [PublicAPI]
     public class AuthenticationEvent : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The id.
+        /// </summary>
         public string Id { get; }
         
+        /// <summary>
+        /// When the event occurred.
+        /// </summary>
         public DateTime CreatedAt { get; }
         
+        /// <summary>
+        /// The event type.
+        /// </summary>
         public EventType Event { get; }
         
+        /// <summary>
+        /// The login id.
+        /// </summary>
         public ulong LoginId { get; }
         
+        /// <summary>
+        /// The account id.
+        /// </summary>
         public ulong AccountId { get; }
         
+        /// <summary>
+        /// The id of the user who performed the event.
+        /// </summary>
         public ulong UserId { get; }
         
+        /// <summary>
+        /// If any, the page view id.
+        /// </summary>
         public ulong? PageViewId { get; }
 
         internal AuthenticationEvent(Api api, AuthenticationEventModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             CreatedAt = model.CreatedAt;
             Event = model.EventType.ToApiRepresentedEnum<EventType>() ?? throw new CommunicationException();
@@ -38,7 +59,8 @@ namespace UVACanvasAccess.Structures.Authentications {
             UserId = model.Links.User;
             PageViewId = model.Links.PageView;
         }
-
+        
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "AuthenticationEvent {" +
                    ($"\n{nameof(Id)}: {Id}," +

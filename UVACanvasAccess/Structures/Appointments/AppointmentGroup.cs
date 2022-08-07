@@ -11,71 +11,154 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Appointments {
     
+    /// <summary>
+    /// Represents an appointment group.
+    /// </summary>
     [PublicAPI]
     public class AppointmentGroup : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The appointment group id.
+        /// </summary>
         public ulong Id { get; }
         
+        /// <summary>
+        /// The title.
+        /// </summary>
         public string Title { get; }
 
+        /// <summary>
+        /// When the appointment group begins.
+        /// </summary>
         public DateTime StartAt { get; }
 
+        /// <summary>
+        /// When the appointment group ends.
+        /// </summary>
         public DateTime EndAt { get; }
 
+        /// <summary>
+        /// The description.
+        /// </summary>
         public string Description { get; }
 
+        /// <summary>
+        /// The location at which the appointment group takes place.
+        /// </summary>
         public string LocationName { get; }
 
+        /// <summary>
+        /// The address of the <see cref="AppointmentGroup.LocationName">location</see>.
+        /// </summary>
         public string LocationAddress { get; }
 
+        /// <summary>
+        /// The participant count.
+        /// </summary>
         public uint? ParticipantCount { get; }
 
+        /// <summary>
+        /// The set of reserved <see cref="Appointment">appointments</see>.
+        /// </summary>
         public IEnumerable<Appointment> ReservedTimes { get; }
 
+        /// <summary>
+        /// The set of <see cref="EventContext">event contexts</see>.
+        /// </summary>
         public IEnumerable<EventContext> ContextCodes { get; }
-
+        
+        /// <summary>
+        /// The set of sub-event contexts.
+        /// </summary>
         public IEnumerable<EventContext> SubContextCodes { get; }
         
+        /// <summary>
+        /// The state of the appointment group.
+        /// </summary>
         public string WorkflowState { get; }
         
+        /// <summary>
+        /// Whether or not the appointment group requires action from attendees.
+        /// </summary>
         public bool? RequiringAction { get; }
         
+        /// <summary>
+        /// The amount of appointments.
+        /// </summary>
         public uint AppointmentsCount { get; }
         
+        /// <summary>
+        /// The list of appointments, in the form of calendar events.
+        /// </summary>
         public IEnumerable<TimeSlotCalendarEvent> Appointments { get; }
 
         [CanBeNull]
         public IEnumerable<TimeSlotCalendarEvent> NewAppointments { get; }
 
+        /// <summary>
+        /// The max appointments per participant.
+        /// </summary>
         public uint? MaxAppointmentsPerParticipant { get; }
 
+        /// <summary>
+        /// The minimum appointments per participant.
+        /// </summary>
         public uint? MinAppointmentsPerParticipant { get; }
         
+        /// <summary>
+        /// The amount of participants per appointment.
+        /// </summary>
         public uint? ParticipantsPerAppointment { get; }
         
+        /// <summary>
+        /// The participant visibility.
+        /// </summary>
         public string ParticipantVisibility { get; }
         
+        /// <summary>
+        /// The participant type.
+        /// </summary>
         public string ParticipantType { get; }
         
+        /// <summary>
+        /// The url.
+        /// </summary>
         public string Url { get; }
         
+        /// <summary>
+        /// The url to the web interface.
+        /// </summary>
         public string HtmlUrl { get; }
         
+        /// <summary>
+        /// The creation date.
+        /// </summary>
         public DateTime CreatedAt { get; }
         
+        /// <summary>
+        /// The update date.
+        /// </summary>
         public DateTime UpdatedAt { get; }
 
+        /// <summary>
+        /// Stream the list of participants in this appointment group.
+        /// </summary>
+        /// <returns>The stream of users.</returns>
         public IAsyncEnumerable<User> StreamUserParticipants() {
-            return _api.StreamAppointmentGroupParticipants<User>(Id);
+            return api.StreamAppointmentGroupParticipants<User>(Id);
         }
         
+        /// <summary>
+        /// Stream the list of group participants in this appointment group.
+        /// </summary>
+        /// <returns>The stream of groups.</returns>
         public IAsyncEnumerable<Group> StreamGroupParticipants() {
-            return _api.StreamAppointmentGroupParticipants<Group>(Id);
+            return api.StreamAppointmentGroupParticipants<Group>(Id);
         }
 
         internal AppointmentGroup(Api api, AppointmentGroupModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             Title = model.Title;
             StartAt = model.StartAt;
@@ -103,6 +186,7 @@ namespace UVACanvasAccess.Structures.Appointments {
             UpdatedAt = model.UpdatedAt;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "AppointmentGroup {" +
                    ($"\n{nameof(Id)}: {Id}," +

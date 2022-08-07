@@ -5,39 +5,69 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Enrollments {
     
+    /// <summary>
+    /// Represents a student's grade in a <see cref="Enrollment">course enrollment</see>.
+    /// </summary>
     [PublicAPI]
     public class Grade : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The corresponding URL on the web interface.
+        /// </summary>
         [CanBeNull]
         public string HtmlUrl { get; }
         
+        /// <summary>
+        /// The current grade.
+        /// </summary>
         [CanBeNull]
         public string CurrentGrade { get; }
 
+        /// <summary>
+        /// The final grade.
+        /// </summary>
         [CanBeNull]
         public string FinalGrade { get; }
 
+        /// <summary>
+        /// The current score.
+        /// </summary>
         [CanBeNull]
         public string CurrentScore { get; }
 
+        /// <summary>
+        /// The final score.
+        /// </summary>
         [CanBeNull]
         public string FinalScore { get; }
 
+        /// <summary>
+        /// The unposted current grade.
+        /// </summary>
         [CanBeNull]
         public string UnpostedCurrentGrade { get; }
         
+        /// <summary>
+        /// The unposted final grade.
+        /// </summary>
         [CanBeNull]
         public string UnpostedFinalGrade { get; }
 
+        /// <summary>
+        /// The unposted final score.
+        /// </summary>
         [CanBeNull]
         public string UnpostedCurrentScore { get; }
 
+        /// <summary>
+        /// The unposted final score.
+        /// </summary>
         [CanBeNull]
         public string UnpostedFinalScore { get; }
 
         internal Grade(Api api, GradeModel model) {
-            _api = api;
+            this.api = api;
             HtmlUrl = model.HtmlUrl;
             CurrentGrade = model.CurrentGrade;
             FinalGrade = model.FinalGrade;
@@ -48,7 +78,8 @@ namespace UVACanvasAccess.Structures.Enrollments {
             UnpostedCurrentScore = model.UnpostedCurrentScore;
             UnpostedFinalScore = model.UnpostedFinalScore;
         }
-
+        
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "Grade {" + 
                    ($"\n{nameof(HtmlUrl)}: {HtmlUrl}," +

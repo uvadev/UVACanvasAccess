@@ -5,10 +5,16 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Assignments {
     
+    /// <summary>
+    /// Represents TurnItIn settings.
+    /// </summary>
     [PublicAPI]
     public class TurnitinSettings : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// When the originality report will be visible to students.
+        /// </summary>
         public string OriginalityReportVisibility { get; }
 
         public string SPaperCheck { get; }
@@ -26,7 +32,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public uint ExcludeSmallMatchesValue { get; }
 
         internal TurnitinSettings(Api api, TurnitinSettingsModel model) {
-            _api = api;
+            this.api = api;
             OriginalityReportVisibility = model.OriginalityReportVisibility;
             SPaperCheck = model.SPaperCheck;
             InternetCheck = model.InternetCheck;

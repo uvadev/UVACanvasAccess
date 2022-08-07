@@ -11,7 +11,7 @@ namespace UVACanvasAccess.Structures.Assignments {
     /// </summary>
     [PublicAPI]
     public class LockInfo : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
         public string AssetString { get; }
         
@@ -25,7 +25,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         public bool? ManuallyLocked { get; }
 
         internal LockInfo(Api api, LockInfoModel model) {
-            _api = api;
+            this.api = api;
             AssetString = model.AssetString;
             UnlockAt = model.UnlockAt;
             LockAt = model.LockAt;

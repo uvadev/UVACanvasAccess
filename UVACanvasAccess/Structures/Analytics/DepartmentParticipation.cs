@@ -7,9 +7,20 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Analytics {
     
+    /// <summary>
+    /// Represents department-level participation data/page views.
+    /// </summary>
     [PublicAPI]
     public readonly struct DepartmentParticipation : IPrettyPrint {
+        
+        /// <summary>
+        /// Page views grouped by date.
+        /// </summary>
         public Dictionary<DateTime, DateEntry> ByDate { get; }
+        
+        /// <summary>
+        /// Page views grouped by category.
+        /// </summary>
         public Categories ByCategory { get; }
 
         internal DepartmentParticipation(DepartmentParticipationModel dpm) {
@@ -22,6 +33,7 @@ namespace UVACanvasAccess.Structures.Analytics {
                         .ValSelect(v => new DateEntry(v.Views, v.Participations));
         }
 
+        /// <inheritdoc/>
         public string ToPrettyString() {
             return "DepartmentParticipation {" +
                    ($"\n{nameof(ByDate)}: {ByDate.ToPrettyString()}," +
@@ -29,10 +41,20 @@ namespace UVACanvasAccess.Structures.Analytics {
                    "\n}";
         }
 
+        /// <summary>
+        /// A date-grouped entry in a <see cref="DepartmentParticipation"/>.
+        /// </summary>
         [PublicAPI]
         public class DateEntry : IPrettyPrint {
+            
+            /// <summary>
+            /// The amount of views on this date.
+            /// </summary>
             public ulong Views { get; }
             
+            /// <summary>
+            /// The amount of participations on this date.
+            /// </summary>
             public ulong Participations { get; }
 
             internal DateEntry(ulong views, ulong participations) {
@@ -40,6 +62,7 @@ namespace UVACanvasAccess.Structures.Analytics {
                 Participations = participations;
             }
 
+            /// <inheritdoc/>
             public string ToPrettyString() {
                 return "DateEntry {" +
                        ($"\n{nameof(Views)}: {Views}," +
@@ -48,20 +71,75 @@ namespace UVACanvasAccess.Structures.Analytics {
             }
         }
 
+        /// <summary>
+        /// A category-grouped entry in a <see cref="DepartmentParticipation"/>.
+        /// </summary>
         [PublicAPI]
         public class Categories : IPrettyPrint {
+            
+            /// <summary>
+            /// The amount of views in the announcements category.
+            /// </summary>
             public ulong? Announcements { get; }
+            
+            /// <summary>
+            /// The amount of views in the assignments category.
+            /// </summary>
             public ulong? Assignments { get; }
+            
+            /// <summary>
+            /// The amount of views in the collaborations category.
+            /// </summary>
             public ulong? Collaborations { get; }
+            
+            /// <summary>
+            /// The amount of views in the conferences category.
+            /// </summary>
             public ulong? Conferences { get; }
+            
+            /// <summary>
+            /// The amount of views in the discussions category.
+            /// </summary>
             public ulong? Discussions { get; }
+            
+            /// <summary>
+            /// The amount of views in the files category.
+            /// </summary>
             public ulong? Files { get; }
+            
+            /// <summary>
+            /// The amount of views in the general category.
+            /// </summary>
             public ulong? General { get; }
+            
+            /// <summary>
+            /// The amount of views in the grades category.
+            /// </summary>
             public ulong? Grades { get; }
+            
+            /// <summary>
+            /// The amount of views in the groups category.
+            /// </summary>
             public ulong? Groups { get; }
+            
+            /// <summary>
+            /// The amount of views in the modules category.
+            /// </summary>
             public ulong? Modules { get; }
+            
+            /// <summary>
+            /// The amount of views in the other category.
+            /// </summary>
             public ulong? Other { get; }
+            
+            /// <summary>
+            /// The amount of views in the pages category.
+            /// </summary>
             public ulong? Pages { get; }
+            
+            /// <summary>
+            /// The amount of views in the quizzes category.
+            /// </summary>
             public ulong? Quizzes { get; }
 
             internal Categories(IEnumerable<DepartmentParticipationCategoryEntryModel> entries) {
@@ -123,6 +201,7 @@ namespace UVACanvasAccess.Structures.Analytics {
                 }
             }
 
+            /// <inheritdoc/>
             public string ToPrettyString() {
                 return "ByCategory {" +
                        ($"\n{nameof(Announcements)}: {Announcements}," +
