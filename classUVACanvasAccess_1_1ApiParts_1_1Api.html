@@ -781,8 +781,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a53c3ab5ec975c5fdc893560a0bf94906"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Reports_1_1Report.html">Report</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53c3ab5ec975c5fdc893560a0bf94906">GetReportIndex</a> (string reportType, ulong? accountId=null)</td></tr>
 <tr class="memdesc:a53c3ab5ec975c5fdc893560a0bf94906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a set of reports for an account, given the report type.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53c3ab5ec975c5fdc893560a0bf94906">More...</a><br /></td></tr>
 <tr class="separator:a53c3ab5ec975c5fdc893560a0bf94906"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a512c59c049c17fb67ed67004064584d3"><td class="memItemLeft" align="right" valign="top"><a id="a512c59c049c17fb67ed67004064584d3"></a>
-async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Roles_1_1Role.html">Role</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ListRoles</b> (RoleState states=0, bool? showInherited=null, ulong? accountId=null)</td></tr>
+<tr class="memitem:a512c59c049c17fb67ed67004064584d3"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Roles_1_1Role.html">Role</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a512c59c049c17fb67ed67004064584d3">ListRoles</a> (RoleState states=0, bool? showInherited=null, ulong? accountId=null)</td></tr>
+<tr class="memdesc:a512c59c049c17fb67ed67004064584d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of <a class="el" href="">roles</a> under a given account.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a512c59c049c17fb67ed67004064584d3">More...</a><br /></td></tr>
 <tr class="separator:a512c59c049c17fb67ed67004064584d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a232925559693221d94b41afe4ab77928"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Roles_1_1Role.html">Role</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a232925559693221d94b41afe4ab77928">CreateRole</a> (string label, in <a class="el" href="structUVACanvasAccess_1_1Structures_1_1Roles_1_1RolePermissionsSet.html">RolePermissionsSet</a>? permissions=null, string baseRoleType=null, ulong? accountId=null)</td></tr>
 <tr class="memdesc:a232925559693221d94b41afe4ab77928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new role.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a232925559693221d94b41afe4ab77928">More...</a><br /></td></tr>
@@ -6546,6 +6546,59 @@ async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Struc
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The list of TopicEntry.</dd></dl>
+
+</div>
+</div>
+<a id="a512c59c049c17fb67ed67004064584d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a512c59c049c17fb67ed67004064584d3">&#9670;&nbsp;</a></span>ListRoles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;IEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Roles_1_1Role.html">Role</a>&gt; &gt; UVACanvasAccess.ApiParts.Api.ListRoles </td>
+          <td>(</td>
+          <td class="paramtype">RoleState&#160;</td>
+          <td class="paramname"><em>states</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>showInherited</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?&#160;</td>
+          <td class="paramname"><em>accountId</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a list of <a class="el" href="">roles</a> under a given account. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">states</td><td>Only roles with these <a class="el" href="">states</a> will be returned. Defaults to RoleState.Active.</td></tr>
+    <tr><td class="paramname">showInherited</td><td>If true, include roles inherited from parent accounts.</td></tr>
+    <tr><td class="paramname">accountId</td><td>The account id. Defaults to <code>self</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The list of roles.</dd></dl>
 
 </div>
 </div>

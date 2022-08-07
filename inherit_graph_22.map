@@ -9,26 +9,26 @@
 <area shape="rect" id="node8" href="$classUVACanvasAccess_1_1Structures_1_1Accounts_1_1TermsOfService.html" title="Represents the active Terms of Service for an account." alt="" coords="356,724,572,765"/>
 <area shape="rect" id="node9" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1CourseAssignmentSummary.html" title="A summary of per&#45;assignment statistical information for a course." alt="" coords="329,789,599,831"/>
 <area shape="rect" id="node10" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1CourseStudentSummary.html" title="A summary of per&#45;user participation information for a course." alt="" coords="342,855,586,896"/>
-<area shape="rect" id="node11" href="$structUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation.html" title=" " alt="" coords="341,920,587,961"/>
-<area shape="rect" id="node12" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation_1_1Categories.html" title=" " alt="" coords="339,986,589,1042"/>
-<area shape="rect" id="node13" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation_1_1DateEntry.html" title=" " alt="" coords="339,1066,589,1122"/>
-<area shape="rect" id="node14" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentStatistics.html" title=" " alt="" coords="352,1147,576,1188"/>
-<area shape="rect" id="node15" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1Tardiness.html" title=" " alt="" coords="356,1212,572,1253"/>
+<area shape="rect" id="node11" href="$structUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation.html" title="Represents department&#45;level participation data/page views." alt="" coords="341,920,587,961"/>
+<area shape="rect" id="node12" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation_1_1Categories.html" title="A category&#45;grouped entry in a DepartmentParticipation." alt="" coords="339,986,589,1042"/>
+<area shape="rect" id="node13" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation_1_1DateEntry.html" title="A date&#45;grouped entry in a DepartmentParticipation." alt="" coords="339,1066,589,1122"/>
+<area shape="rect" id="node14" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentStatistics.html" title="Represents numerical department&#45;level statistics." alt="" coords="352,1147,576,1188"/>
+<area shape="rect" id="node15" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1Tardiness.html" title="Represents a tardiness summary. Depending on the context, the values may be percentages out of 1 or a..." alt="" coords="356,1212,572,1253"/>
 <area shape="rect" id="node16" href="$classUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserAssignmentData.html" title=" " alt="" coords="352,1277,576,1319"/>
 <area shape="rect" id="node17" href="$structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserAssignmentSubmissionData.html" title=" " alt="" coords="315,1343,613,1384"/>
 <area shape="rect" id="node18" href="$structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserParticipation.html" title=" " alt="" coords="356,1408,572,1449"/>
 <area shape="rect" id="node19" href="$structUVACanvasAccess_1_1Structures_1_1Analytics_1_1UserParticipationEvent.html" title=" " alt="" coords="347,1473,581,1515"/>
 <area shape="rect" id="node20" href="$classUVACanvasAccess_1_1Structures_1_1Appointments_1_1Appointment.html" title="Represents an appointment." alt="" coords="356,1539,572,1580"/>
-<area shape="rect" id="node21" href="$classUVACanvasAccess_1_1Structures_1_1Appointments_1_1AppointmentGroup.html" title=" " alt="" coords="344,1604,584,1645"/>
+<area shape="rect" id="node21" href="$classUVACanvasAccess_1_1Structures_1_1Appointments_1_1AppointmentGroup.html" title="Represents an appointment group." alt="" coords="344,1604,584,1645"/>
 <area shape="rect" id="node22" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html" title="Represents an assignment." alt="" coords="356,1669,572,1711"/>
 <area shape="rect" id="node23" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1AssignmentDate.html" title="Represents the set of dates applicable to an assignment." alt="" coords="355,1735,573,1776"/>
 <area shape="rect" id="node24" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1AssignmentOverride.html" title="Represents a change in dates for an assignment for a subset of students." alt="" coords="343,1800,585,1841"/>
 <area shape="rect" id="node25" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1ExternalToolTagAttributes.html" title=" " alt="" coords="326,1865,602,1907"/>
 <area shape="rect" id="node26" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1LockInfo.html" title="Details about an assignment or file lock." alt="" coords="356,1931,572,1972"/>
-<area shape="rect" id="node27" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1NeedsGradingCount.html" title=" " alt="" coords="344,1996,584,2037"/>
+<area shape="rect" id="node27" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1NeedsGradingCount.html" title="A count of how many assignments need to be graded within a section." alt="" coords="344,1996,584,2037"/>
 <area shape="rect" id="node28" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1RubricCriteria.html" title="Represents some rubric criteria." alt="" coords="356,2061,572,2103"/>
-<area shape="rect" id="node29" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1RubricRating.html" title="Represents one rating as part of a rubric." alt="" coords="356,2127,572,2168"/>
-<area shape="rect" id="node30" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1TurnitinSettings.html" title=" " alt="" coords="356,2192,572,2233"/>
+<area shape="rect" id="node29" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1RubricRating.html" title="Represents one rating as part of a rubric criterion." alt="" coords="356,2127,572,2168"/>
+<area shape="rect" id="node30" href="$classUVACanvasAccess_1_1Structures_1_1Assignments_1_1TurnitinSettings.html" title="Represents TurnItIn settings." alt="" coords="356,2192,572,2233"/>
 <area shape="rect" id="node31" href="$classUVACanvasAccess_1_1Structures_1_1Authentications_1_1AuthenticationEvent.html" title="An authentication (login/logout) event." alt="" coords="334,2257,594,2299"/>
 <area shape="rect" id="node32" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1CalendarEvent.html" title=" " alt="" coords="356,2323,572,2364"/>
 <area shape="rect" id="node36" href="$structUVACanvasAccess_1_1Structures_1_1Calendar_1_1EventContext.html" title=" " alt="" coords="356,2388,572,2429"/>
@@ -46,9 +46,9 @@
 <area shape="rect" id="node50" href="$classUVACanvasAccess_1_1Structures_1_1Discussions_1_1TopicEntry.html" title=" " alt="" coords="356,3159,572,3200"/>
 <area shape="rect" id="node51" href="$classUVACanvasAccess_1_1Structures_1_1Discussions_1_1TopicReply.html" title=" " alt="" coords="356,3224,572,3265"/>
 <area shape="rect" id="node52" href="$classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html" title=" " alt="" coords="356,3289,572,3331"/>
-<area shape="rect" id="node53" href="$classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Grade.html" title=" " alt="" coords="356,3355,572,3396"/>
-<area shape="rect" id="node54" href="$classUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTerm.html" title=" " alt="" coords="345,3420,583,3461"/>
-<area shape="rect" id="node55" href="$structUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTermDateOverride.html" title=" " alt="" coords="329,3486,599,3542"/>
+<area shape="rect" id="node53" href="$classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Grade.html" title="Represents a student&#39;s grade in a course enrollment." alt="" coords="356,3355,572,3396"/>
+<area shape="rect" id="node54" href="$classUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTerm.html" title="Represents an enrollment term, or simply term." alt="" coords="345,3420,583,3461"/>
+<area shape="rect" id="node55" href="$structUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTermDateOverride.html" title="Represents a date override for a specific enrollment type within a term." alt="" coords="329,3486,599,3542"/>
 <area shape="rect" id="node56" href="$classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html" title="Represents a file present on the Canvas server." alt="" coords="356,3567,572,3608"/>
 <area shape="rect" id="node57" href="$classUVACanvasAccess_1_1Structures_1_1Files_1_1Folder.html" title="Represents a folder on the Canvas server. Folders contain CanvasFiles." alt="" coords="356,3632,572,3673"/>
 <area shape="rect" id="node58" href="$classUVACanvasAccess_1_1Structures_1_1Files_1_1License.html" title="Represents a content license." alt="" coords="356,3697,572,3739"/>

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['endat_1355',['EndAt',['../classUVACanvasAccess_1_1Structures_1_1Appointments_1_1Appointment.html#a2f31273c7938cfe7e1252aba17ab5630',1,'UVACanvasAccess::Structures::Appointments::Appointment']]],
-  ['endedat_1356',['EndedAt',['../classUVACanvasAccess_1_1Structures_1_1Reports_1_1Report.html#aa04563d73df4883364bdcbc84af7787c',1,'UVACanvasAccess::Structures::Reports::Report']]],
-  ['externaltooltagattributes_1357',['ExternalToolTagAttributes',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html#ae29b10a2ac65097825289158650cca83',1,'UVACanvasAccess::Structures::Assignments::Assignment']]]
+  ['endat_1452',['EndAt',['../classUVACanvasAccess_1_1Structures_1_1Appointments_1_1Appointment.html#a2f31273c7938cfe7e1252aba17ab5630',1,'UVACanvasAccess.Structures.Appointments.Appointment.EndAt()'],['../classUVACanvasAccess_1_1Structures_1_1Appointments_1_1AppointmentGroup.html#a4fd300e3bcde9a65252e1e4084557880',1,'UVACanvasAccess.Structures.Appointments.AppointmentGroup.EndAt()'],['../classUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTerm.html#a246f276bbfbeaf10f7628d6950b41e85',1,'UVACanvasAccess.Structures.EnrollmentTerms.EnrollmentTerm.EndAt()'],['../structUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTermDateOverride.html#a0b6ff670a1df3085242a9454e09b8b75',1,'UVACanvasAccess.Structures.EnrollmentTerms.EnrollmentTermDateOverride.EndAt()']]],
+  ['endedat_1453',['EndedAt',['../classUVACanvasAccess_1_1Structures_1_1Reports_1_1Report.html#aa04563d73df4883364bdcbc84af7787c',1,'UVACanvasAccess::Structures::Reports::Report']]],
+  ['event_1454',['Event',['../classUVACanvasAccess_1_1Structures_1_1Authentications_1_1AuthenticationEvent.html#afae9e9453ce97b236088a34c811c2705',1,'UVACanvasAccess::Structures::Authentications::AuthenticationEvent']]],
+  ['externaltooltagattributes_1455',['ExternalToolTagAttributes',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html#ae29b10a2ac65097825289158650cca83',1,'UVACanvasAccess::Structures::Assignments::Assignment']]]
 ];
