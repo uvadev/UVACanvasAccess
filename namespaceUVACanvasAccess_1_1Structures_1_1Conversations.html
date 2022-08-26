@@ -89,12 +89,84 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a4ecd7d40ffb1a3df6504e1c34d1d9ee9"><td class="memItemLeft" align="right" valign="top"><a id="a4ecd7d40ffb1a3df6504e1c34d1d9ee9"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ConversationReadState</b> : byte { <b>Read</b>, 
-<b>Unread</b>, 
-<b>Archived</b>
+<tr class="memitem:a4ecd7d40ffb1a3df6504e1c34d1d9ee9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9">ConversationReadState</a> : byte { <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9a7a1a5f3e79fdc91edf2f5ead9d66abb4">ConversationReadState.Read</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9a53770fd374062f5b825b25dcd60fb498">ConversationReadState.Unread</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9a7d69b3cb4cada18ae61811304f8fbcb5">ConversationReadState.Archived</a>
  }</td></tr>
+<tr class="memdesc:a4ecd7d40ffb1a3df6504e1c34d1d9ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The conversation read state, from the perspective of the current user.  <a href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9">More...</a><br /></td></tr>
 <tr class="separator:a4ecd7d40ffb1a3df6504e1c34d1d9ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac82c4a464e308223cfb83d8b86a4df4f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4f">ConversationFlags</a> : byte { <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4faa742d495cb2509b306cc8024357c5ddf">ConversationFlags.LastAuthor</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4fa7e2708aeb65763c54052f57ed1a1ec1d">ConversationFlags.Attachments</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4fa27eaf9b8b21b8f36e68c516920aaeb56">ConversationFlags.MediaObjects</a>
+ }</td></tr>
+<tr class="memdesc:ac82c4a464e308223cfb83d8b86a4df4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional property flags for Conversation.  <a href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4f">More...</a><br /></td></tr>
+<tr class="separator:ac82c4a464e308223cfb83d8b86a4df4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ac82c4a464e308223cfb83d8b86a4df4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac82c4a464e308223cfb83d8b86a4df4f">&#9670;&nbsp;</a></span>ConversationFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4f">UVACanvasAccess.Structures.Conversations.ConversationFlags</a> : byte</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Additional property flags for <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html" title="Summarizes a conversation thread between 2 or more users.">Conversation</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac82c4a464e308223cfb83d8b86a4df4faa742d495cb2509b306cc8024357c5ddf"></a>LastAuthor&#160;</td><td class="fielddoc"><p>The current user is the author of the most recently sent message. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac82c4a464e308223cfb83d8b86a4df4fa7e2708aeb65763c54052f57ed1a1ec1d"></a>Attachments&#160;</td><td class="fielddoc"><p>The conversation contains attachments. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac82c4a464e308223cfb83d8b86a4df4fa27eaf9b8b21b8f36e68c516920aaeb56"></a>MediaObjects&#160;</td><td class="fielddoc"><p>The conversation contains media objects. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a4ecd7d40ffb1a3df6504e1c34d1d9ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ecd7d40ffb1a3df6504e1c34d1d9ee9">&#9670;&nbsp;</a></span>ConversationReadState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9">UVACanvasAccess.Structures.Conversations.ConversationReadState</a> : byte</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The conversation read state, from the perspective of the current user. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4ecd7d40ffb1a3df6504e1c34d1d9ee9a7a1a5f3e79fdc91edf2f5ead9d66abb4"></a>Read&#160;</td><td class="fielddoc"><p>The latest message is read. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4ecd7d40ffb1a3df6504e1c34d1d9ee9a53770fd374062f5b825b25dcd60fb498"></a>Unread&#160;</td><td class="fielddoc"><p>The latest message is unread. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4ecd7d40ffb1a3df6504e1c34d1d9ee9a7d69b3cb4cada18ae61811304f8fbcb5"></a>Archived&#160;</td><td class="fielddoc"><p>The conversation is archived. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

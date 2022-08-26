@@ -80,12 +80,20 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a media/attachment comment.  <a href="classUVACanvasAccess_1_1Structures_1_1Submissions_1_1MediaComment.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Submissions_1_1Submission.html">Submission</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an assignment submission.  <a href="classUVACanvasAccess_1_1Structures_1_1Submissions_1_1Submission.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Submissions_1_1SubmissionComment.html">SubmissionComment</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:a38d80251c80e752872033399739215b6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Submissions.html#a38d80251c80e752872033399739215b6">SubmissionLateStatus</a> { <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Submissions.html#a38d80251c80e752872033399739215b6ad9359722ca1b596c94882e47ad970cb5">SubmissionLateStatus.Late</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Submissions.html#a38d80251c80e752872033399739215b6a2aee0be2678ee90fd327cc186826438e">SubmissionLateStatus.Missing</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Submissions.html#a38d80251c80e752872033399739215b6af23578fcd2a868168854ab714e7de537">SubmissionLateStatus.Extended</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Submissions.html#a38d80251c80e752872033399739215b6a6adf97f83acf6453d4a6a4b1070f3754">SubmissionLateStatus.None</a>
+ }</td></tr>
+<tr class="memdesc:a38d80251c80e752872033399739215b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ways in which a submission can be late.  <a href="namespaceUVACanvasAccess_1_1Structures_1_1Submissions.html#a38d80251c80e752872033399739215b6">More...</a><br /></td></tr>
+<tr class="separator:a38d80251c80e752872033399739215b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7831f182e5b958fab141691eb5bdb88d"><td class="memItemLeft" align="right" valign="top"><a id="a7831f182e5b958fab141691eb5bdb88d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>SubmissionTypes</b> { <br />
 &#160;&#160;<b>None</b> = 0, 
 <b>OnlineQuiz</b> = 1 &lt;&lt; 0, 
@@ -102,6 +110,41 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:a7831f182e5b958fab141691eb5bdb88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a38d80251c80e752872033399739215b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38d80251c80e752872033399739215b6">&#9670;&nbsp;</a></span>SubmissionLateStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Submissions.html#a38d80251c80e752872033399739215b6">UVACanvasAccess.Structures.Submissions.SubmissionLateStatus</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ways in which a submission can be late. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a38d80251c80e752872033399739215b6ad9359722ca1b596c94882e47ad970cb5"></a>Late&#160;</td><td class="fielddoc"><p>The submission exists, but is late. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a38d80251c80e752872033399739215b6a2aee0be2678ee90fd327cc186826438e"></a>Missing&#160;</td><td class="fielddoc"><p>The submission does not exist. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a38d80251c80e752872033399739215b6af23578fcd2a868168854ab714e7de537"></a>Extended&#160;</td><td class="fielddoc"><p>The submission falls under an extended deadline. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a38d80251c80e752872033399739215b6a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"><p>The submission is not late. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,5 +1,5 @@
 <map id="UVACanvasAccess.Structures.Submissions.Submission" name="UVACanvasAccess.Structures.Submissions.Submission">
-<area shape="rect" id="node1" title=" " alt="" coords="7,80,223,121"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Gradebook_1_1SubmissionVersion.html" title=" " alt="" coords="5,169,225,211"/>
+<area shape="rect" id="node1" title="Represents an assignment submission." alt="" coords="7,80,223,121"/>
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Gradebook_1_1SubmissionVersion.html" title="Represents one version of a Submission as part of an overall version history." alt="" coords="5,169,225,211"/>
 <area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="68,5,163,32"/>
 </map>

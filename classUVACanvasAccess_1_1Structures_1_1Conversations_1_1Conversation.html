@@ -67,6 +67,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation-members.html">List of all members</a>  </div>
@@ -100,15 +101,28 @@ Collaboration diagram for UVACanvasAccess.Structures.Conversations.Conversation:
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7af1102cd4d12a8c5d5ea4df79490034"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a7af1102cd4d12a8c5d5ea4df79490034">ToPrettyString</a> ()</td></tr>
-<tr class="memdesc:a7af1102cd4d12a8c5d5ea4df79490034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pretty, formatted string representation of the object.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a7af1102cd4d12a8c5d5ea4df79490034">More...</a><br /></td></tr>
-<tr class="separator:a7af1102cd4d12a8c5d5ea4df79490034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6152fee83a224b15d4a7bf817e5185db"><td class="memItemLeft" align="right" valign="top"><a id="a6152fee83a224b15d4a7bf817e5185db"></a>
+virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a6152fee83a224b15d4a7bf817e5185db">ToPrettyString</a> ()</td></tr>
+<tr class="memdesc:a6152fee83a224b15d4a7bf817e5185db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pretty, formatted string representation of the object. <br /></td></tr>
+<tr class="separator:a6152fee83a224b15d4a7bf817e5185db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cfbcd7cda09eceb2e34a1ae37979a63"><td class="memItemLeft" align="right" valign="top">virtual Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1DetailedConversation.html">DetailedConversation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a8cfbcd7cda09eceb2e34a1ae37979a63">AsDetailedConversation</a> ()</td></tr>
 <tr class="memdesc:a8cfbcd7cda09eceb2e34a1ae37979a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this conversation to a <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1DetailedConversation.html" title="Fully represents a conversation thread between 2 or more users.">DetailedConversation</a> with full message history.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a8cfbcd7cda09eceb2e34a1ae37979a63">More...</a><br /></td></tr>
 <tr class="separator:a8cfbcd7cda09eceb2e34a1ae37979a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefd8466b4a88635e1c0fb1f464384155"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html">Conversation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#aefd8466b4a88635e1c0fb1f464384155">AddMessage</a> (string body, IEnumerable&lt; <a class="el" href="structUVACanvasAccess_1_1Structures_1_1QualifiedId.html">QualifiedId</a> &gt; specificRecipients=null, IEnumerable&lt; ulong &gt; includedMessages=null, IEnumerable&lt; string &gt; attachmentIds=null, string mediaCommentId=null, string mediaCommentType=null, bool? addJournalEntry=null)</td></tr>
 <tr class="memdesc:aefd8466b4a88635e1c0fb1f464384155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a message to this conversation.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#aefd8466b4a88635e1c0fb1f464384155">More...</a><br /></td></tr>
 <tr class="separator:aefd8466b4a88635e1c0fb1f464384155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a299a72c672f2c2c8ca0588e2bff50965"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a299a72c672f2c2c8ca0588e2bff50965">CurrentUserIsLastAuthor</a> =&gt; Properties.HasFlag(<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4faa742d495cb2509b306cc8024357c5ddf">ConversationFlags.LastAuthor</a>)</td></tr>
+<tr class="memdesc:a299a72c672f2c2c8ca0588e2bff50965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the current user authored the most recent message in the conversation.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a299a72c672f2c2c8ca0588e2bff50965">More...</a><br /></td></tr>
+<tr class="separator:a299a72c672f2c2c8ca0588e2bff50965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7f0c58d0e137464823aed59a4845cef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ac7f0c58d0e137464823aed59a4845cef">HasAttachments</a> =&gt; Properties.HasFlag(<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4fa7e2708aeb65763c54052f57ed1a1ec1d">ConversationFlags.Attachments</a>)</td></tr>
+<tr class="memdesc:ac7f0c58d0e137464823aed59a4845cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the conversation has attachments.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ac7f0c58d0e137464823aed59a4845cef">More...</a><br /></td></tr>
+<tr class="separator:ac7f0c58d0e137464823aed59a4845cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04716eb5a5be0dd4e871ce02766099a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a04716eb5a5be0dd4e871ce02766099a1">HasMediaObjects</a> =&gt; Properties.HasFlag(<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4fa27eaf9b8b21b8f36e68c516920aaeb56">ConversationFlags.MediaObjects</a>)</td></tr>
+<tr class="memdesc:a04716eb5a5be0dd4e871ce02766099a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the conversation has media objects.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a04716eb5a5be0dd4e871ce02766099a1">More...</a><br /></td></tr>
+<tr class="separator:a04716eb5a5be0dd4e871ce02766099a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -118,53 +132,53 @@ readonly <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html">Api</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:acb85a15cbb5a46f5dcf7f758c105b262"><td class="memItemLeft" align="right" valign="top"><a id="acb85a15cbb5a46f5dcf7f758c105b262"></a>
-ulong&#160;</td><td class="memItemRight" valign="bottom"><b>Id</b><code> [get, set]</code></td></tr>
+<tr class="memitem:acb85a15cbb5a46f5dcf7f758c105b262"><td class="memItemLeft" align="right" valign="top">ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#acb85a15cbb5a46f5dcf7f758c105b262">Id</a><code> [get]</code></td></tr>
+<tr class="memdesc:acb85a15cbb5a46f5dcf7f758c105b262"><td class="mdescLeft">&#160;</td><td class="mdescRight">The conversation id.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#acb85a15cbb5a46f5dcf7f758c105b262">More...</a><br /></td></tr>
 <tr class="separator:acb85a15cbb5a46f5dcf7f758c105b262"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1873ed2da7966e9bc7a2cb3878ebfa1f"><td class="memItemLeft" align="right" valign="top"><a id="a1873ed2da7966e9bc7a2cb3878ebfa1f"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>Subject</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a1873ed2da7966e9bc7a2cb3878ebfa1f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a1873ed2da7966e9bc7a2cb3878ebfa1f">Subject</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1873ed2da7966e9bc7a2cb3878ebfa1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The conversation subject.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a1873ed2da7966e9bc7a2cb3878ebfa1f">More...</a><br /></td></tr>
 <tr class="separator:a1873ed2da7966e9bc7a2cb3878ebfa1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed63f93d4b83c4d25c3626b797d5f049"><td class="memItemLeft" align="right" valign="top"><a id="aed63f93d4b83c4d25c3626b797d5f049"></a>
-ConversationReadState&#160;</td><td class="memItemRight" valign="bottom"><b>ReadState</b><code> [get, set]</code></td></tr>
+<tr class="memitem:aed63f93d4b83c4d25c3626b797d5f049"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9">ConversationReadState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#aed63f93d4b83c4d25c3626b797d5f049">ReadState</a><code> [get]</code></td></tr>
+<tr class="memdesc:aed63f93d4b83c4d25c3626b797d5f049"><td class="mdescLeft">&#160;</td><td class="mdescRight">The conversation's read state from the perspective of the current user.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#aed63f93d4b83c4d25c3626b797d5f049">More...</a><br /></td></tr>
 <tr class="separator:aed63f93d4b83c4d25c3626b797d5f049"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad40718919e0cf8bce66ea1c918643594"><td class="memItemLeft" align="right" valign="top"><a id="ad40718919e0cf8bce66ea1c918643594"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>LastMessage</b><code> [get, set]</code></td></tr>
+<tr class="memitem:ad40718919e0cf8bce66ea1c918643594"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ad40718919e0cf8bce66ea1c918643594">LastMessage</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad40718919e0cf8bce66ea1c918643594"><td class="mdescLeft">&#160;</td><td class="mdescRight">The most recent message.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ad40718919e0cf8bce66ea1c918643594">More...</a><br /></td></tr>
 <tr class="separator:ad40718919e0cf8bce66ea1c918643594"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6684a9acc695117522e9e52a82064e45"><td class="memItemLeft" align="right" valign="top"><a id="a6684a9acc695117522e9e52a82064e45"></a>
-DateTime?&#160;</td><td class="memItemRight" valign="bottom"><b>LastMessageAt</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a6684a9acc695117522e9e52a82064e45"><td class="memItemLeft" align="right" valign="top">DateTime?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a6684a9acc695117522e9e52a82064e45">LastMessageAt</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6684a9acc695117522e9e52a82064e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the last message was sent.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a6684a9acc695117522e9e52a82064e45">More...</a><br /></td></tr>
 <tr class="separator:a6684a9acc695117522e9e52a82064e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3ad3a8678a2122b56554875125ec70d"><td class="memItemLeft" align="right" valign="top"><a id="aa3ad3a8678a2122b56554875125ec70d"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>MessageCount</b><code> [get, set]</code></td></tr>
+<tr class="memitem:aa3ad3a8678a2122b56554875125ec70d"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#aa3ad3a8678a2122b56554875125ec70d">MessageCount</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa3ad3a8678a2122b56554875125ec70d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The message count.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#aa3ad3a8678a2122b56554875125ec70d">More...</a><br /></td></tr>
 <tr class="separator:aa3ad3a8678a2122b56554875125ec70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a942869a53b929889757ad8561676ef3b"><td class="memItemLeft" align="right" valign="top"><a id="a942869a53b929889757ad8561676ef3b"></a>
-bool?&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribed</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a942869a53b929889757ad8561676ef3b"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a942869a53b929889757ad8561676ef3b">Subscribed</a><code> [get]</code></td></tr>
+<tr class="memdesc:a942869a53b929889757ad8561676ef3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the current user is subscribed to the conversation.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a942869a53b929889757ad8561676ef3b">More...</a><br /></td></tr>
 <tr class="separator:a942869a53b929889757ad8561676ef3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfe1c88362bc2d5241751f8611ec8d18"><td class="memItemLeft" align="right" valign="top"><a id="acfe1c88362bc2d5241751f8611ec8d18"></a>
-bool?&#160;</td><td class="memItemRight" valign="bottom"><b>Private</b><code> [get, set]</code></td></tr>
+<tr class="memitem:acfe1c88362bc2d5241751f8611ec8d18"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#acfe1c88362bc2d5241751f8611ec8d18">Private</a><code> [get]</code></td></tr>
+<tr class="memdesc:acfe1c88362bc2d5241751f8611ec8d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the conversation is private.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#acfe1c88362bc2d5241751f8611ec8d18">More...</a><br /></td></tr>
 <tr class="separator:acfe1c88362bc2d5241751f8611ec8d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a71a8e2aa5248848e9e5fbc4d92e900"><td class="memItemLeft" align="right" valign="top"><a id="a3a71a8e2aa5248848e9e5fbc4d92e900"></a>
-bool?&#160;</td><td class="memItemRight" valign="bottom"><b>Starred</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a3a71a8e2aa5248848e9e5fbc4d92e900"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a3a71a8e2aa5248848e9e5fbc4d92e900">Starred</a><code> [get]</code></td></tr>
+<tr class="memdesc:a3a71a8e2aa5248848e9e5fbc4d92e900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the conversation is starred.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a3a71a8e2aa5248848e9e5fbc4d92e900">More...</a><br /></td></tr>
 <tr class="separator:a3a71a8e2aa5248848e9e5fbc4d92e900"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af83896941dad0980a59d64ded1c54998"><td class="memItemLeft" align="right" valign="top"><a id="af83896941dad0980a59d64ded1c54998"></a>
-IEnumerable&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Properties</b><code> [get, set]</code></td></tr>
-<tr class="separator:af83896941dad0980a59d64ded1c54998"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9db4a3c53e2df6184bcd37e2f285cbdb"><td class="memItemLeft" align="right" valign="top"><a id="a9db4a3c53e2df6184bcd37e2f285cbdb"></a>
-IEnumerable&lt; ulong &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Audience</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a95068ac7cacae26bf7e8606192095286"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4f">ConversationFlags</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a95068ac7cacae26bf7e8606192095286">Properties</a><code> [get]</code></td></tr>
+<tr class="memdesc:a95068ac7cacae26bf7e8606192095286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional flags.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a95068ac7cacae26bf7e8606192095286">More...</a><br /></td></tr>
+<tr class="separator:a95068ac7cacae26bf7e8606192095286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db4a3c53e2df6184bcd37e2f285cbdb"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; ulong &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a9db4a3c53e2df6184bcd37e2f285cbdb">Audience</a><code> [get]</code></td></tr>
+<tr class="memdesc:a9db4a3c53e2df6184bcd37e2f285cbdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of user ids involved in the conversation.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a9db4a3c53e2df6184bcd37e2f285cbdb">More...</a><br /></td></tr>
 <tr class="separator:a9db4a3c53e2df6184bcd37e2f285cbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c1891cca64bea7adbb72ae79749e84c"><td class="memItemLeft" align="right" valign="top"><a id="a6c1891cca64bea7adbb72ae79749e84c"></a>
-Dictionary&lt; string, Dictionary&lt; string, IEnumerable&lt; string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>AudienceContexts</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a6c1891cca64bea7adbb72ae79749e84c"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, Dictionary&lt; string, IEnumerable&lt; string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a6c1891cca64bea7adbb72ae79749e84c">AudienceContexts</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6c1891cca64bea7adbb72ae79749e84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared contexts between the <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a9db4a3c53e2df6184bcd37e2f285cbdb">audience members</a>.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a6c1891cca64bea7adbb72ae79749e84c">More...</a><br /></td></tr>
 <tr class="separator:a6c1891cca64bea7adbb72ae79749e84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab266549a2ff6a77c99c252595acf09ad"><td class="memItemLeft" align="right" valign="top"><a id="ab266549a2ff6a77c99c252595acf09ad"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>AvatarUrl</b><code> [get, set]</code></td></tr>
+<tr class="memitem:ab266549a2ff6a77c99c252595acf09ad"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ab266549a2ff6a77c99c252595acf09ad">AvatarUrl</a><code> [get]</code></td></tr>
+<tr class="memdesc:ab266549a2ff6a77c99c252595acf09ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">The avatar url.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ab266549a2ff6a77c99c252595acf09ad">More...</a><br /></td></tr>
 <tr class="separator:ab266549a2ff6a77c99c252595acf09ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32fb7b16df374a5d4438a4b52866f69c"><td class="memItemLeft" align="right" valign="top"><a id="a32fb7b16df374a5d4438a4b52866f69c"></a>
-IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1ConversationParticipant.html">ConversationParticipant</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Participants</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a32fb7b16df374a5d4438a4b52866f69c"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1ConversationParticipant.html">ConversationParticipant</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a32fb7b16df374a5d4438a4b52866f69c">Participants</a><code> [get]</code></td></tr>
+<tr class="memdesc:a32fb7b16df374a5d4438a4b52866f69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of participants.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a32fb7b16df374a5d4438a4b52866f69c">More...</a><br /></td></tr>
 <tr class="separator:a32fb7b16df374a5d4438a4b52866f69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8b211baa8689f10c3de253657fec62c"><td class="memItemLeft" align="right" valign="top"><a id="ae8b211baa8689f10c3de253657fec62c"></a>
-bool?&#160;</td><td class="memItemRight" valign="bottom"><b>Visible</b><code> [get, set]</code></td></tr>
+<tr class="memitem:ae8b211baa8689f10c3de253657fec62c"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ae8b211baa8689f10c3de253657fec62c">Visible</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae8b211baa8689f10c3de253657fec62c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the conversation would be visible to the current user in the web UI.  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ae8b211baa8689f10c3de253657fec62c">More...</a><br /></td></tr>
 <tr class="separator:ae8b211baa8689f10c3de253657fec62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f05df843833a83433cab8193908f318"><td class="memItemLeft" align="right" valign="top"><a id="a6f05df843833a83433cab8193908f318"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>ContextName</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a6f05df843833a83433cab8193908f318"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a6f05df843833a83433cab8193908f318">ContextName</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6f05df843833a83433cab8193908f318"><td class="mdescLeft">&#160;</td><td class="mdescRight">The context name (e.g. which course or group the conversation is occuring in).  <a href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a6f05df843833a83433cab8193908f318">More...</a><br /></td></tr>
 <tr class="separator:a6f05df843833a83433cab8193908f318"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -283,8 +297,58 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>ContextName</b><cod
 
 </div>
 </div>
-<a id="a7af1102cd4d12a8c5d5ea4df79490034"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7af1102cd4d12a8c5d5ea4df79490034">&#9670;&nbsp;</a></span>ToPrettyString()</h2>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a299a72c672f2c2c8ca0588e2bff50965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a299a72c672f2c2c8ca0588e2bff50965">&#9670;&nbsp;</a></span>CurrentUserIsLastAuthor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UVACanvasAccess.Structures.Conversations.Conversation.CurrentUserIsLastAuthor =&gt; Properties.HasFlag(<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4faa742d495cb2509b306cc8024357c5ddf">ConversationFlags.LastAuthor</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether the current user authored the most recent message in the conversation. </p>
+
+</div>
+</div>
+<a id="ac7f0c58d0e137464823aed59a4845cef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7f0c58d0e137464823aed59a4845cef">&#9670;&nbsp;</a></span>HasAttachments</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UVACanvasAccess.Structures.Conversations.Conversation.HasAttachments =&gt; Properties.HasFlag(<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4fa7e2708aeb65763c54052f57ed1a1ec1d">ConversationFlags.Attachments</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether the conversation has attachments. </p>
+
+</div>
+</div>
+<a id="a04716eb5a5be0dd4e871ce02766099a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04716eb5a5be0dd4e871ce02766099a1">&#9670;&nbsp;</a></span>HasMediaObjects</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UVACanvasAccess.Structures.Conversations.Conversation.HasMediaObjects =&gt; Properties.HasFlag(<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4fa27eaf9b8b21b8f36e68c516920aaeb56">ConversationFlags.MediaObjects</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether the conversation has media objects. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a9db4a3c53e2df6184bcd37e2f285cbdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db4a3c53e2df6184bcd37e2f285cbdb">&#9670;&nbsp;</a></span>Audience</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -293,23 +357,378 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>ContextName</b><cod
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string UVACanvasAccess.Structures.Conversations.Conversation.ToPrettyString </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">IEnumerable&lt;ulong&gt; UVACanvasAccess.Structures.Conversations.Conversation.Audience</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a pretty, formatted string representation of the object. </p>
-<dl class="section return"><dt>Returns</dt><dd>The formatted string.</dd></dl>
+<p>List of user ids involved in the conversation. </p>
 
-<p>Implements <a class="el" href="interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html#a60b7e15ba08358a8c4c78e7b0b65bb08">UVACanvasAccess.Util.IPrettyPrint</a>.</p>
+</div>
+</div>
+<a id="a6c1891cca64bea7adbb72ae79749e84c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1891cca64bea7adbb72ae79749e84c">&#9670;&nbsp;</a></span>AudienceContexts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt;string, Dictionary&lt;string, IEnumerable&lt;string&gt; &gt; &gt; UVACanvasAccess.Structures.Conversations.Conversation.AudienceContexts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shared contexts between the <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a9db4a3c53e2df6184bcd37e2f285cbdb">audience members</a>. </p>
+
+</div>
+</div>
+<a id="ab266549a2ff6a77c99c252595acf09ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab266549a2ff6a77c99c252595acf09ad">&#9670;&nbsp;</a></span>AvatarUrl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string UVACanvasAccess.Structures.Conversations.Conversation.AvatarUrl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The avatar url. </p>
+
+</div>
+</div>
+<a id="a6f05df843833a83433cab8193908f318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f05df843833a83433cab8193908f318">&#9670;&nbsp;</a></span>ContextName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string UVACanvasAccess.Structures.Conversations.Conversation.ContextName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The context name (e.g. which course or group the conversation is occuring in). </p>
+
+</div>
+</div>
+<a id="acb85a15cbb5a46f5dcf7f758c105b262"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb85a15cbb5a46f5dcf7f758c105b262">&#9670;&nbsp;</a></span>Id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ulong UVACanvasAccess.Structures.Conversations.Conversation.Id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The conversation id. </p>
+
+</div>
+</div>
+<a id="ad40718919e0cf8bce66ea1c918643594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad40718919e0cf8bce66ea1c918643594">&#9670;&nbsp;</a></span>LastMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string UVACanvasAccess.Structures.Conversations.Conversation.LastMessage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The most recent message. </p>
+
+</div>
+</div>
+<a id="a6684a9acc695117522e9e52a82064e45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6684a9acc695117522e9e52a82064e45">&#9670;&nbsp;</a></span>LastMessageAt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime? UVACanvasAccess.Structures.Conversations.Conversation.LastMessageAt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>When the last message was sent. </p>
+
+</div>
+</div>
+<a id="aa3ad3a8678a2122b56554875125ec70d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3ad3a8678a2122b56554875125ec70d">&#9670;&nbsp;</a></span>MessageCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint UVACanvasAccess.Structures.Conversations.Conversation.MessageCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The message count. </p>
+
+</div>
+</div>
+<a id="a32fb7b16df374a5d4438a4b52866f69c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32fb7b16df374a5d4438a4b52866f69c">&#9670;&nbsp;</a></span>Participants</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1ConversationParticipant.html">ConversationParticipant</a>&gt; UVACanvasAccess.Structures.Conversations.Conversation.Participants</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of participants. </p>
+
+</div>
+</div>
+<a id="acfe1c88362bc2d5241751f8611ec8d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfe1c88362bc2d5241751f8611ec8d18">&#9670;&nbsp;</a></span>Private</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool? UVACanvasAccess.Structures.Conversations.Conversation.Private</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the conversation is private. </p>
+
+</div>
+</div>
+<a id="a95068ac7cacae26bf7e8606192095286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95068ac7cacae26bf7e8606192095286">&#9670;&nbsp;</a></span>Properties</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#ac82c4a464e308223cfb83d8b86a4df4f">ConversationFlags</a> UVACanvasAccess.Structures.Conversations.Conversation.Properties</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Additional flags. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a299a72c672f2c2c8ca0588e2bff50965" title="Whether the current user authored the most recent message in the conversation.">CurrentUserIsLastAuthor</a>, <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#ac7f0c58d0e137464823aed59a4845cef" title="Whether the conversation has attachments.">HasAttachments</a>, <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html#a04716eb5a5be0dd4e871ce02766099a1" title="Whether the conversation has media objects.">HasMediaObjects</a></dd></dl>
+
+</div>
+</div>
+<a id="aed63f93d4b83c4d25c3626b797d5f049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed63f93d4b83c4d25c3626b797d5f049">&#9670;&nbsp;</a></span>ReadState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9">ConversationReadState</a> UVACanvasAccess.Structures.Conversations.Conversation.ReadState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The conversation's read state from the perspective of the current user. </p>
+
+</div>
+</div>
+<a id="a3a71a8e2aa5248848e9e5fbc4d92e900"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a71a8e2aa5248848e9e5fbc4d92e900">&#9670;&nbsp;</a></span>Starred</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool? UVACanvasAccess.Structures.Conversations.Conversation.Starred</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the conversation is starred. </p>
+
+</div>
+</div>
+<a id="a1873ed2da7966e9bc7a2cb3878ebfa1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1873ed2da7966e9bc7a2cb3878ebfa1f">&#9670;&nbsp;</a></span>Subject</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string UVACanvasAccess.Structures.Conversations.Conversation.Subject</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The conversation subject. </p>
+
+</div>
+</div>
+<a id="a942869a53b929889757ad8561676ef3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a942869a53b929889757ad8561676ef3b">&#9670;&nbsp;</a></span>Subscribed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool? UVACanvasAccess.Structures.Conversations.Conversation.Subscribed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the current user is subscribed to the conversation. </p>
+
+</div>
+</div>
+<a id="ae8b211baa8689f10c3de253657fec62c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b211baa8689f10c3de253657fec62c">&#9670;&nbsp;</a></span>Visible</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool? UVACanvasAccess.Structures.Conversations.Conversation.Visible</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the conversation would be visible to the current user in the web UI. </p>
 
 </div>
 </div>
