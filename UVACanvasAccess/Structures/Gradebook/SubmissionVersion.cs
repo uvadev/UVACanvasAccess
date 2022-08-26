@@ -7,27 +7,60 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Gradebook {
     
+    /// <summary>
+    /// Represents one version of a <see cref="Submission"/> as part of an overall version history.
+    /// </summary>
     [PublicAPI]
-    public class SubmissionVersion : Submission, IPrettyPrint {
+    public class SubmissionVersion : Submission {
         
+        /// <summary>
+        /// The assignment name.
+        /// </summary>
         public string AssignmentName { get; }
 
+        /// <summary>
+        /// The current grade as of the most recent version.
+        /// </summary>
         public string CurrentGrade { get; }
 
+        /// <summary>
+        /// When the most recent version of the grade was assigned.
+        /// </summary>
         public DateTime? CurrentGradedAt { get; }
 
+        /// <summary>
+        /// The identity of the grader as of the most recent version.
+        /// </summary>
         public string CurrentGrader { get; }
 
+        /// <summary>
+        /// The current grade as of this version.
+        /// </summary>
         public string NewGrade { get; }
 
+        /// <summary>
+        /// When this version of the grade was assigned.
+        /// </summary>
         public DateTime? NewGradedAt { get; }
 
+        /// <summary>
+        /// The identity of the grader as of this version.
+        /// </summary>
         public string NewGrader { get; }
 
+        /// <summary>
+        /// The current grade as of the version preceding this one.
+        /// </summary>
         public string PreviousGrade { get; }
 
+        /// <summary>
+        /// When the preceding version of the grade was assigned.
+        /// </summary>
         public DateTime? PreviousGradedAt { get; }
 
+        /// <summary>
+        /// The identity of the grader as of the version preceding this one.
+        /// </summary>
         public string PreviousGrader { get; }
 
         internal SubmissionVersion(Api api, SubmissionVersionModel model) : base(api, model) {
@@ -43,7 +76,8 @@ namespace UVACanvasAccess.Structures.Gradebook {
             PreviousGrader = model.PreviousGrader;
         }
 
-        public new string ToPrettyString() {
+        ///<inheritdoc/ >
+        public override string ToPrettyString() {
             return "SubmissionVersion {" + 
                    ($"\n{nameof(AssignmentId)}: {AssignmentId}," +
                    $"\n{nameof(Assignment)}: {Assignment}," +

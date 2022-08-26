@@ -5,51 +5,76 @@ using UVACanvasAccess.Model.Analytics;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Analytics {
-
-    [PublicAPI]
-    public struct UserAssignmentSubmissionData : IPrettyPrint {
-        public DateTime? SubmittedAt { get; }
-        public uint? Score { get; }
-
-        internal UserAssignmentSubmissionData(UserAssignmentSubmissionDataModel model) {
-            SubmittedAt = model.SubmittedAt;
-            Score = model.Score;
-        }
-
-        public string ToPrettyString() {
-            return "UserAssignmentSubmissionData {" + 
-                   ($"\n{nameof(SubmittedAt)}: {SubmittedAt}," +
-                   $"\n{nameof(Score)}: {Score}").Indent(4) + 
-                   "\n}";
-        }
-    }
-
+    
+    /// <summary>
+    /// Assignment statistics for a single user and single assignment.
+    /// </summary>
     [PublicAPI]
     public class UserAssignmentData : IPrettyPrint {
+        
+        /// <summary>
+        /// The assignment id.
+        /// </summary>
         public ulong AssignmentId { get; }
         
+        /// <summary>
+        /// The assignment title.
+        /// </summary>
         public string Title { get; }
         
+        /// <summary>
+        /// The maximum points possible for the assignment.
+        /// </summary>
         public uint? PointsPossible { get; }
         
+        /// <summary>
+        /// When the assignment is due.
+        /// </summary>
         public DateTime? DueAt { get; }
         
+        /// <summary>
+        /// When the assignment unlocks.
+        /// </summary>
         public DateTime? UnlockAt { get; }
         
+        /// <summary>
+        /// Whether the assignment is muted.
+        /// </summary>
         public bool? Muted { get; }
         
+        /// <summary>
+        /// The minimum score ever earned by any student for this assignment.
+        /// </summary>
         public uint? MinScore { get; }
         
+        /// <summary>
+        /// The maximum score ever earned by any student for this assignment.
+        /// </summary>
         public uint? MaxScore { get; }
         
+        /// <summary>
+        /// The median score.
+        /// </summary>
         public uint? Median { get; }
         
+        /// <summary>
+        /// The Q1 score.
+        /// </summary>
         public uint? FirstQuartile { get; }
         
+        /// <summary>
+        /// The Q3 score.
+        /// </summary>
         public uint? ThirdQuartile { get; }
         
+        /// <summary>
+        /// Module ids.
+        /// </summary>
         public IEnumerable<ulong> ModuleIds { get; }
         
+        /// <summary>
+        /// The student's score for this assignment, if it exists.
+        /// </summary>
         public UserAssignmentSubmissionData? Submission { get; }
 
         internal UserAssignmentData(UserAssignmentDataModel model) {
@@ -69,6 +94,7 @@ namespace UVACanvasAccess.Structures.Analytics {
                                                   : new UserAssignmentSubmissionData(model.Submission.Value);
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "UserAssignmentData {" + 
                    ($"\n{nameof(AssignmentId)}: {AssignmentId}," +
@@ -84,6 +110,36 @@ namespace UVACanvasAccess.Structures.Analytics {
                    $"\n{nameof(ThirdQuartile)}: {ThirdQuartile}," +
                    $"\n{nameof(ModuleIds)}: {ModuleIds?.ToPrettyString()}," +
                    $"\n{nameof(Submission)}: {Submission?.ToPrettyString()}").Indent(4) + 
+                   "\n}";
+        }
+    }
+
+    /// <summary>
+    /// One user score in a <see cref="UserAssignmentData"/>.
+    /// </summary>
+    [PublicAPI]
+    public struct UserAssignmentSubmissionData : IPrettyPrint {
+        
+        /// <summary>
+        /// When the submission was created.
+        /// </summary>
+        public DateTime? SubmittedAt { get; }
+        
+        /// <summary>
+        /// The score earned, if it exists.
+        /// </summary>
+        public uint? Score { get; }
+
+        internal UserAssignmentSubmissionData(UserAssignmentSubmissionDataModel model) {
+            SubmittedAt = model.SubmittedAt;
+            Score = model.Score;
+        }
+
+        /// <inheritdoc />
+        public string ToPrettyString() {
+            return "UserAssignmentSubmissionData {" + 
+                   ($"\n{nameof(SubmittedAt)}: {SubmittedAt}," +
+                    $"\n{nameof(Score)}: {Score}").Indent(4) + 
                    "\n}";
         }
     }

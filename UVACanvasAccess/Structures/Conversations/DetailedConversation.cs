@@ -11,15 +11,19 @@ namespace UVACanvasAccess.Structures.Conversations {
     /// Fully represents a conversation thread between 2 or more users.
     /// </summary>
     [PublicAPI]
-    public class DetailedConversation : Conversation, IPrettyPrint {
+    public class DetailedConversation : Conversation {
         
+        /// <summary>
+        /// List of messages in the conversation.
+        /// </summary>
         public IEnumerable<ConversationMessage> Messages { get; }
         
         internal DetailedConversation(Api api, DetailedConversationModel model) : base(api, model) {
             Messages = model.Messages.SelectNotNull(m => new ConversationMessage(api, m));
         }
         
-        public new string ToPrettyString() {
+        /// <inheritdoc />
+        public override string ToPrettyString() {
             return "DetailedConversation {" + 
                    ($"\n{nameof(Id)}: {Id}," +
                     $"\n{nameof(Subject)}: {Subject}," +
@@ -30,7 +34,7 @@ namespace UVACanvasAccess.Structures.Conversations {
                     $"\n{nameof(Subscribed)}: {Subscribed}," +
                     $"\n{nameof(Private)}: {Private}," +
                     $"\n{nameof(Starred)}: {Starred}," +
-                    $"\n{nameof(Properties)}: {Properties.ToPrettyString()}," +
+                    $"\n{nameof(Properties)}: {Properties}," +
                     $"\n{nameof(Audience)}: {Audience.ToPrettyString()}," +
                     $"\n{nameof(AudienceContexts)}: {AudienceContexts.ToPrettyString()}," +
                     $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +

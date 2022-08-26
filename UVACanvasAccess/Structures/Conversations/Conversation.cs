@@ -16,55 +16,120 @@ namespace UVACanvasAccess.Structures.Conversations {
     public class Conversation : IPrettyPrint {
         private protected readonly Api Api;
         
-        public ulong Id { get; set; }
+        /// <summary>
+        /// The conversation id.
+        /// </summary>
+        public ulong Id { get; }
         
-        public string Subject { get; set; }
+        /// <summary>
+        /// The conversation subject.
+        /// </summary>
+        public string Subject { get; }
         
-        public ConversationReadState ReadState { get; set; }
+        /// <summary>
+        /// The conversation's read state from the perspective of the current user.
+        /// </summary>
+        public ConversationReadState ReadState { get; }
         
-        public string LastMessage { get; set; }
+        /// <summary>
+        /// The most recent message.
+        /// </summary>
+        public string LastMessage { get; }
         
-        public DateTime? LastMessageAt { get; set; }
+        /// <summary>
+        /// When the last message was sent.
+        /// </summary>
+        public DateTime? LastMessageAt { get; }
         
-        public uint MessageCount { get; set; }
+        /// <summary>
+        /// The message count.
+        /// </summary>
+        public uint MessageCount { get; }
         
-        public bool? Subscribed { get; set; }
+        /// <summary>
+        /// Whether the current user is subscribed to the conversation.
+        /// </summary>
+        public bool? Subscribed { get; }
         
-        public bool? Private { get; set; }
+        /// <summary>
+        /// Whether the conversation is private.
+        /// </summary>
+        public bool? Private { get; }
         
-        public bool? Starred { get; set; }
+        /// <summary>
+        /// Whether the conversation is starred.
+        /// </summary>
+        public bool? Starred { get; }
         
+        /// <summary>
+        /// Additional flags.
+        /// </summary>
+        /// <seealso cref="CurrentUserIsLastAuthor"/>
+        /// <seealso cref="HasAttachments"/>
+        /// <seealso cref="HasMediaObjects"/>
+        public ConversationFlags Properties { get; }
+
+        /// <summary>
+        /// Whether the current user authored the most recent message in the conversation.
+        /// </summary>
+        public bool CurrentUserIsLastAuthor => Properties.HasFlag(ConversationFlags.LastAuthor);
+
+        /// <summary>
+        /// Whether the conversation has attachments.
+        /// </summary>
+        public bool HasAttachments => Properties.HasFlag(ConversationFlags.Attachments);
+
+        /// <summary>
+        /// Whether the conversation has media objects.
+        /// </summary>
+        public bool HasMediaObjects => Properties.HasFlag(ConversationFlags.MediaObjects);
+        
+        /// <summary>
+        /// List of user ids involved in the conversation.
+        /// </summary>
         [NotNull]
-        public IEnumerable<string> Properties { get; set; }
+        public IEnumerable<ulong> Audience { get; }
         
-        [NotNull]
-        public IEnumerable<ulong> Audience { get; set; }
-        
+        /// <summary>
+        /// Shared contexts between the <see cref="Audience">audience members</see>.
+        /// </summary>
         [CanBeNull]
-        public Dictionary<string, Dictionary<string, IEnumerable<string>>> AudienceContexts { get; set; }
+        public Dictionary<string, Dictionary<string, IEnumerable<string>>> AudienceContexts { get; }
         
-        public string AvatarUrl { get; set; }
+        /// <summary>
+        /// The avatar url.
+        /// </summary>
+        public string AvatarUrl { get; }
         
+        /// <summary>
+        /// List of participants.
+        /// </summary>
         [NotNull]
-        public IEnumerable<ConversationParticipant> Participants { get; set; }
+        public IEnumerable<ConversationParticipant> Participants { get; }
         
-        public bool? Visible { get; set; }
+        /// <summary>
+        /// Whether the conversation would be visible to the current user in the web UI.
+        /// </summary>
+        public bool? Visible { get; }
         
-        public string ContextName { get; set; }
+        /// <summary>
+        /// The context name (e.g. which course or group the conversation is occuring in).
+        /// </summary>
+        public string ContextName { get; }
 
         internal Conversation(Api api, ConversationModel model) {
             Api = api;
             Id = model.Id;
             Subject = model.Subject;
-            ReadState = model.WorkflowState.ConvertIfNotNullValue(wf => wf.ToApiRepresentedEnum<ConversationReadState>().Value).Value;
+            ReadState = model.WorkflowState.ConvertIfNotNullValue(wf => wf.ToApiRepresentedEnum<ConversationReadState>().Expect()).Value;
             LastMessage = model.LastMessage;
             LastMessageAt = model.LastMessageAt;
             MessageCount = model.MessageCount;
             Subscribed = model.Subscribed;
             Private = model.Private;
             Starred = model.Starred;
-            Properties = model.Properties ?? new string[0];
-            Audience = model.Audience ?? new ulong[0];
+            Properties = (model.Properties ?? Array.Empty<string>()).ToApiRepresentedFlagsEnum<ConversationFlags>();
+            Audience = model.Audience ?? Array.Empty<ulong>();
             AudienceContexts = model.AudienceContexts;
             AvatarUrl = model.AvatarUrl;
             Participants = model.Participants.SelectNotNull(cp => new ConversationParticipant(api, cp));
@@ -72,7 +137,8 @@ namespace UVACanvasAccess.Structures.Conversations {
             ContextName = model.ContextName;
         }
 
-        public string ToPrettyString() {
+        /// <inheritdoc />
+        public virtual string ToPrettyString() {
             return "Conversation {" + 
                    ($"\n{nameof(Id)}: {Id}," +
                    $"\n{nameof(Subject)}: {Subject}," +
@@ -83,7 +149,7 @@ namespace UVACanvasAccess.Structures.Conversations {
                    $"\n{nameof(Subscribed)}: {Subscribed}," +
                    $"\n{nameof(Private)}: {Private}," +
                    $"\n{nameof(Starred)}: {Starred}," +
-                   $"\n{nameof(Properties)}: {Properties.ToPrettyString()}," +
+                   $"\n{nameof(Properties)}: {Properties.ToString()}," +
                    $"\n{nameof(Audience)}: {Audience.ToPrettyString()}," +
                    $"\n{nameof(AudienceContexts)}: {AudienceContexts.ToPrettyString()}," +
                    $"\n{nameof(AvatarUrl)}: {AvatarUrl}," +
@@ -124,13 +190,48 @@ namespace UVACanvasAccess.Structures.Conversations {
         }
     }
 
+    /// <summary>
+    /// The conversation read state, from the perspective of the current user.
+    /// </summary>
     [PublicAPI]
     public enum ConversationReadState : byte {
+        /// <summary>
+        /// The latest message is read.
+        /// </summary>
         [ApiRepresentation("read")]
         Read,
+        /// <summary>
+        /// The latest message is unread.
+        /// </summary>
         [ApiRepresentation("unread")]
         Unread,
+        /// <summary>
+        /// The conversation is archived.
+        /// </summary>
         [ApiRepresentation("archived")]
         Archived
     }
+
+    /// <summary>
+    /// Additional property flags for <see cref="Conversation"/>.
+    /// </summary>
+    [PublicAPI]
+    [Flags]
+    public enum ConversationFlags : byte {
+        /// <summary>
+        /// The current user is the author of the most recently sent message.
+        /// </summary>
+        [ApiRepresentation("last_author")]
+        LastAuthor,
+        /// <summary>
+        /// The conversation contains attachments.
+        /// </summary>
+        [ApiRepresentation("attachments")]
+        Attachments,
+        /// <summary>
+        /// The conversation contains media objects.
+        /// </summary>
+        [ApiRepresentation("media_objects")]
+        MediaObjects
+    } 
 }
