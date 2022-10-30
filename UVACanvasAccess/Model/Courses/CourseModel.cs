@@ -26,6 +26,9 @@ namespace UVACanvasAccess.Model.Courses {
         [JsonProperty("name")]
         public string Name { get; set; }
         
+        [JsonProperty("original_name")]
+        public string OriginalName { get; set; }
+        
         [JsonProperty("course_code")]
         public string CourseCode { get; set; }
         

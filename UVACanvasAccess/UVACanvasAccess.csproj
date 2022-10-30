@@ -92,7 +92,6 @@
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Linq.Async, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263">
       <HintPath>..\packages\System.Linq.Async.4.0.0-preview.6.build.801\lib\net461\System.Linq.Async.dll</HintPath>
       <Private>True</Private>

@@ -93,6 +93,9 @@ namespace UVACanvasAccess.Structures.Appointments {
         /// </summary>
         public IEnumerable<TimeSlotCalendarEvent> Appointments { get; }
 
+        /// <summary>
+        /// The list of new appointments, in the form of calendar events.
+        /// </summary>
         [CanBeNull]
         public IEnumerable<TimeSlotCalendarEvent> NewAppointments { get; }
 

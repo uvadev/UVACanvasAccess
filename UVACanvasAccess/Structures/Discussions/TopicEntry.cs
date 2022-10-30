@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Discussions;
 using UVACanvasAccess.Util;
-using static UVACanvasAccess.Structures.Discussions.DiscussionTopic.DiscussionHome;
+using static UVACanvasAccess.Structures.Discussions.DiscussionHome;
 
 namespace UVACanvasAccess.Structures.Discussions {
     
@@ -15,7 +15,7 @@ namespace UVACanvasAccess.Structures.Discussions {
     public class TopicEntry : IPrettyPrint {
         private readonly Api _api;
         
-        public DiscussionTopic.DiscussionHome Home { get; }
+        public DiscussionHome Home { get; }
         
         public ulong HomeId { get; }
         
@@ -55,7 +55,7 @@ namespace UVACanvasAccess.Structures.Discussions {
                                                                   : "groups");
         }
 
-        internal TopicEntry(Api api, TopicEntryModel model, DiscussionTopic.DiscussionHome home, ulong homeId, ulong parentId) {
+        internal TopicEntry(Api api, TopicEntryModel model, DiscussionHome home, ulong homeId, ulong parentId) {
             _api = api;
             Home = home;
             HomeId = homeId;

@@ -76,7 +76,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
             PreviousGrader = model.PreviousGrader;
         }
 
-        ///<inheritdoc/ >
+        ///<inheritdoc />
         public override string ToPrettyString() {
             return "SubmissionVersion {" + 
                    ($"\n{nameof(AssignmentId)}: {AssignmentId}," +

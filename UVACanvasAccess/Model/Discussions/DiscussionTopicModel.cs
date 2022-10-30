@@ -48,7 +48,7 @@ namespace UVACanvasAccess.Model.Discussions {
         public string SubscriptionHold { get; set; }
         
         [JsonProperty("assignment_id")]
-        public string AssignmentId { get; set; }
+        public ulong? AssignmentId { get; set; }
         
         [JsonProperty("delayed_post_at")]
         public DateTime? DelayedPostAt { get; set; }

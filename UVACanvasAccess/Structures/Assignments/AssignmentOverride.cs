@@ -12,7 +12,7 @@ namespace UVACanvasAccess.Structures.Assignments {
     /// </summary>
     [PublicAPI]
     public class AssignmentOverride : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
 
         /// <summary>
         /// The override id.
@@ -45,18 +45,21 @@ namespace UVACanvasAccess.Structures.Assignments {
         /// </summary>
         public string Title { get; }
 
+        /// <inheritdoc cref="Assignment.DueAt"/>
         public DateTime? DueAt { get; }
 
         public bool? AllDay { get; }
 
         public DateTime? AllDayDate { get; }
 
+        /// <inheritdoc cref="Assignment.UnlockAt"/>
         public DateTime? UnlockAt { get; }
 
+        /// <inheritdoc cref="Assignment.LockAt"/>
         public DateTime? LockAt { get; }
 
         internal AssignmentOverride(Api api, AssignmentOverrideModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             AssignmentId = model.AssignmentId;
             StudentIds = model.StudentIds;
@@ -70,6 +73,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             LockAt = model.LockAt;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "AssignmentOverride {" + 
                    ($"\n{nameof(Id)}: {Id}," +

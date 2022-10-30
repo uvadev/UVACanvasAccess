@@ -5,9 +5,12 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Users {
     
+    /// <summary>
+    /// A limited representation of a <see cref="User"/>.
+    /// </summary>
     [PublicAPI]
     public class UserDisplay : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
         public ulong Id { get; }
         
@@ -24,7 +27,7 @@ namespace UVACanvasAccess.Structures.Users {
         public string AnonymousId { get; }
 
         internal UserDisplay(Api api, UserDisplayModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id ?? 0;
             ShortName = model.ShortName;
             AvatarImageUrl = model.AvatarImageUrl;

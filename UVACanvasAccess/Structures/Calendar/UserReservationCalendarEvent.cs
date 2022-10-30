@@ -6,58 +6,28 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Calendar {
     
-    /*
-     {
-       "id": 2562,
-       "title": "Test Appointment Group",
-       "start_at": "2019-08-07T03:34:00Z",
-       "end_at": "2019-08-07T13:12:00Z",
-       "workflow_state": "locked",
-       "created_at": "2019-08-06T16:45:15Z",
-       "updated_at": "2019-08-06T16:45:15Z",
-       "all_day": false,
-       "all_day_date": null,
-       "comments": "",
-       "location_address": null,
-       "location_name": "",
-       "type": "event",
-       "description": "TEST appointment group details",
-       "child_events_count": 0,
-       "effective_context_code": "course_1028",
-       "all_context_codes": "course_1028",
-       "context_code": "user_3392",
-       "parent_event_id": 1202,
-       "hidden": false,
-       "user": {
-         "id": 3392,
-         "name": "UVACanvasAccess Test Account 2",
-         "created_at": "2019-06-20T11:16:11-05:00",
-         "sortable_name": "2, UVACanvasAccess Test Account",
-         "short_name": "UVACanvasAccess Test Account 2",
-         "sis_user_id": null,
-         "integration_id": null,
-         "sis_import_id": null,
-         "login_id": "CANVAS_ACCESS_TEST_2"
-       },
-       "appointment_group_id": 58,
-       "appointment_group_url": "https://uview.instructure.com/api/v1/appointment_groups/58",
-       "can_manage_appointment_group": true,
-       "participant_type": "User",
-       "url": "https://uview.instructure.com/api/v1/calendar_events/2562",
-       "html_url": "https://uview.instructure.com/calendar?event_id=2562&include_contexts=course_1028",
-       "duplicates": []
-      }
-     */
-    
+    /// <summary>
+    /// Represents a user appointment within a <see cref="TimeSlotCalendarEvent"/> of an appointment group.
+    /// </summary>
     [PublicAPI]
     public class UserReservationCalendarEvent : BasicCalendarEvent {
+        
+        /// <summary>
+        /// The id of the appointment group this event belongs to.
+        /// </summary>
         public ulong AppointmentGroupId { get; }
         
+        /// <summary>
+        /// The API url of the appointment group this event belongs to.
+        /// </summary>
         public string AppointmentGroupUrl { get; }
         
         public bool? CanManageAppointmentGroup { get; }
         
-        public User User { get; set; }
+        /// <summary>
+        /// The user who made the reservation.
+        /// </summary>
+        public User User { get; }
 
         internal UserReservationCalendarEvent(Api api, CalendarEventModel model) : base(api, model) {
             AppointmentGroupId = model.AppointmentGroupId;
@@ -65,6 +35,7 @@ namespace UVACanvasAccess.Structures.Calendar {
             User = model.User.ConvertIfNotNull(m => new User(api, m));
         }
 
+        /// <inheritdoc />
         public override string ToPrettyString() {
             return "UserReservationCalendarEvent {" + 
                    ($"\n{nameof(Id)}: {Id}," +

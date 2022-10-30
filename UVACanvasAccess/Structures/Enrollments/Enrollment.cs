@@ -8,117 +8,258 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Enrollments {
     
+    /// <summary>
+    /// Represents an enrollment of a user in a course.
+    /// </summary>
     [PublicAPI]
     public class Enrollment : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The enrollment id.
+        /// </summary>
+        /// <remarks>
+        /// This is unrelated to the <see cref="CourseId">course id.</see>
+        /// </remarks>
         public ulong Id { get; }
         
+        /// <summary>
+        /// The id of the course which the user is enrolled in.
+        /// </summary>
         public ulong CourseId { get; }
         
+        /// <summary>
+        /// The SIS id of the course which the user is enrolled in.
+        /// </summary>
         [CanBeNull]
         public string SisCourseId { get; }
         
+        /// <summary>
+        /// The course integration id.
+        /// </summary>
         [CanBeNull]
         public string CourseIntegrationId { get; }
         
+        /// <summary>
+        /// The id of the section within the course which the user is enrolled in.
+        /// </summary>
         public ulong? CourseSectionId { get; }
         
+        /// <summary>
+        /// The section integration id.
+        /// </summary>
         [CanBeNull]
         public string SectionIntegrationId { get; }
         
+        /// <summary>
+        /// The SIS id of the account the enrollment is under.
+        /// </summary>
         [CanBeNull]
         public string SisAccountId { get; }
         
+        /// <summary>
+        /// The SIS id of the section within the course which the user is enrolled in.
+        /// </summary>
         [CanBeNull]
         public string SisSectionId { get; }
         
+        /// <summary>
+        /// The SIS id of the user involved in the enrollment.
+        /// </summary>
         [CanBeNull]
         public string SisUserId { get; }
         
-        public string EnrollmentState { get; }
+        /// <summary>
+        /// The state of the enrollment.
+        /// </summary>
+        public Api.CourseEnrollmentState? EnrollmentState { get; }
         
+        /// <summary>
+        /// Whether the user is limited to their own section within the course.
+        /// </summary>
         public bool? LimitPrivilegesToCourseSection { get; }
         
+        /// <summary>
+        /// The SIS import id.
+        /// </summary>
         public ulong? SisImportId { get; }
         
+        /// <summary>
+        /// The root account id of the account the enrollment is under.
+        /// </summary>
         public ulong? RootAccountId { get; }
         
-        public string Type { get; }
+        /// <summary>
+        /// The type of enrollment.
+        /// </summary>
+        public Api.CourseEnrollmentType? Type { get; }
         
+        /// <summary>
+        /// The id of the user involved in the enrollment.
+        /// </summary>
         public ulong UserId { get; }
         
+        /// <summary>
+        /// If the <see cref="Type"/> is <see cref="Api.CourseEnrollmentType.ObserverEnrollment"/>, the id of the
+        /// observed user.
+        /// </summary>
         public ulong? AssociatedUserId { get; }
         
+        /// <summary>
+        /// The enrollment role in the course. May match <see cref="Type"/>, but individual courses may also
+        /// customize these roles.
+        /// </summary>
         public string Role { get; }
         
+        /// <summary>
+        /// The id of the enrollment role.
+        /// </summary>
         public ulong RoleId { get; }
         
+        /// <summary>
+        /// When the enrollment was created.
+        /// </summary>
         public DateTime? CreatedAt { get; }
         
+        /// <summary>
+        /// When the enrollment was last updated.
+        /// </summary>
         public DateTime? UpdatedAt { get; }
         
+        /// <summary>
+        /// When the enrollment begins.
+        /// </summary>
         public DateTime? StartAt { get; }
         
+        /// <summary>
+        /// When the enrollment concludes.
+        /// </summary>
         public DateTime? EndAt { get; }
         
+        /// <summary>
+        /// The last activity time for the user in the context of the enrollment.
+        /// </summary>
         public DateTime? LastActivityAt { get; }
         
+        /// <summary>
+        /// The last attendance time for the user in the context of the enrollment.
+        /// </summary>
         public DateTime? LastAttendedAt { get; }
         
+        /// <summary>
+        /// The activity total time, in seconds, for the user in the context of the enrollment.
+        /// </summary>
         public ulong? TotalActivityTime { get; }
         
+        /// <summary>
+        /// The URL to the Canvas webpage displaying this enrollment.
+        /// </summary>
         public string HtmlUrl { get; }
         
+        /// <summary>
+        /// The user's grade summary in this enrollment.
+        /// </summary>
         public Grade Grades { get; }
         
+        /// <summary>
+        /// A <see cref="UserDisplay"/> for the user involved in the enrollment.
+        /// </summary>
         public UserDisplay User { get; }
         
+        /// <summary>
+        /// The override grade.
+        /// </summary>
+        [CanBeNull]
         public string OverrideGrade { get; }
         
+        /// <summary>
+        /// The override score.
+        /// </summary>
         public decimal? OverrideScore { get; }
         
+        /// <summary>
+        /// The user's current grade in the course, including unposted assignments.
+        /// </summary>
         [CanBeNull]
         public string UnpostedCurrentGrade { get; }
         
+        /// <summary>
+        /// The user's final grade in the course, including unposted assignments.
+        /// </summary>
         [CanBeNull]
         public string UnpostedFinalGrade { get; }
         
+        /// <summary>
+        /// The user's current score in the course, including unposted assignments.
+        /// </summary>
         [CanBeNull]
         public string UnpostedCurrentScore { get; }
         
+        /// <summary>
+        /// The user's final score in the course, including unposted assignments.
+        /// </summary>
         [CanBeNull]
         public string UnpostedFinalScore { get; }
         
+        /// <summary>
+        /// Whether the course has grading periods.
+        /// </summary>
         [CanBeNull]
+        [Enigmatic]
         public bool? HasGradingPeriods { get; }
         
+        /// <summary>
+        /// Whether the course has the 'Display Totals for All Grading Periods' option enabled.
+        /// </summary>
         [CanBeNull]
+        [Enigmatic]
         public bool? TotalsForAllGradingPeriodsOption { get; }
         
+        /// <summary>
+        /// The title of the current grading period, if the course has grading periods.
+        /// </summary>
         [CanBeNull]
+        [Enigmatic]
         public string CurrentGradingPeriodTitle { get; }
         
+        /// <summary>
+        /// The id of the current grading period, if the course has grading periods.
+        /// </summary>
         [CanBeNull]
         public ulong? CurrentGradingPeriodId { get; }
         
+        /// <summary>
+        /// The override grade for the current grading period, if the course has grading periods.
+        /// </summary>
         [CanBeNull]
         public string CurrentPeriodOverrideGrade { get; }
         
+        /// <summary>
+        /// The override score for the current grading period, if the course has grading periods.
+        /// </summary>
         [CanBeNull]
         public decimal? CurrentPeriodOverrideScore { get; }
         
+        /// <summary>
+        /// The user's final score in the course for the current grading period, including unposted assignments, if the course has grading periods.
+        /// </summary>
         [CanBeNull]
         public decimal? CurrentPeriodUnpostedFinalScore { get; }
         
+        /// <summary>
+        /// The user's current grade in the course for the current grading period, including unposted assignments, if the course has grading periods.
+        /// </summary>
         [CanBeNull]
         public string CurrentPeriodUnpostedCurrentGrade { get; }
         
+        /// <summary>
+        /// The user's final grade in the course for the current grading period, including unposted assignments, if the course has grading periods.
+        /// </summary>
         [CanBeNull]
         public string CurrentPeriodUnpostedFinalGrade { get; }
 
         internal Enrollment(Api api, EnrollmentModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             CourseId = model.CourseId;
             SisCourseId = model.SisCourseId;
@@ -128,11 +269,11 @@ namespace UVACanvasAccess.Structures.Enrollments {
             SisAccountId = model.SisAccountId;
             SisSectionId = model.SisSectionId;
             SisUserId = model.SisUserId;
-            EnrollmentState = model.EnrollmentState;
+            EnrollmentState = model.EnrollmentState.ToApiRepresentedEnum<Api.CourseEnrollmentState>();
             LimitPrivilegesToCourseSection = model.LimitPrivilegesToCourseSection;
             SisImportId = model.SisImportId;
             RootAccountId = model.RootAccountId;
-            Type = model.Type;
+            Type = model.Type.ToApiRepresentedEnum<Api.CourseEnrollmentType>();
             UserId = model.UserId;
             AssociatedUserId = model.AssociatedUserId;
             Role = model.Role;
@@ -175,7 +316,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         /// </remarks>
         [Pure]
         public Task<Enrollment> Conclude() {
-            return _api.ConcludeEnrollment(CourseId, Id);
+            return api.ConcludeEnrollment(CourseId, Id);
         }
 
         /// <summary>
@@ -187,7 +328,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         /// </remarks>
         [Pure]
         public Task<Enrollment> Delete() {
-            return _api.DeleteEnrollment(CourseId, Id);
+            return api.DeleteEnrollment(CourseId, Id);
         }
 
         /// <summary>
@@ -199,9 +340,10 @@ namespace UVACanvasAccess.Structures.Enrollments {
         /// </remarks>
         [Pure]
         public Task<Enrollment> Deactivate() {
-            return _api.DeactivateEnrollment(CourseId, Id);
+            return api.DeactivateEnrollment(CourseId, Id);
         }
         
+        /// <inheritdoc/>
         public string ToPrettyString() {
             return "Enrollment {" + 
                    ($"\n{nameof(Id)}: {Id}," +

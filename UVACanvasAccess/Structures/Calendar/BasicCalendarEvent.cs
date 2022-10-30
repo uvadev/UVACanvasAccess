@@ -5,11 +5,18 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Calendar {
 
+    /// <inheritdoc cref="CalendarEvent"/>
     [PublicAPI]
     public class BasicCalendarEvent : CalendarEvent {
         
+        /// <summary>
+        /// The event's location.
+        /// </summary>
         public string LocationName { get; }
         
+        /// <summary>
+        /// The event's address.
+        /// </summary>
         public string LocationAddress { get; }
 
         internal BasicCalendarEvent(Api api, CalendarEventModel model) : base(api, model) {
@@ -17,6 +24,7 @@ namespace UVACanvasAccess.Structures.Calendar {
             LocationAddress = model.LocationAddress;
         }
 
+        /// <inheritdoc />
         public override string ToPrettyString() {
             return "BasicCalendarEvent {" + 
                    ($"\n{nameof(Id)}: {Id}," +

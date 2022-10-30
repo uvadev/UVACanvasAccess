@@ -3,61 +3,52 @@ using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
 using UVACanvasAccess.Model.Calendar;
-using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.Calendar {
-    
-    /*
-      { 
-        "id": 1201,
-        "title": "Test Appointment Group",
-        "start_at": "2019-08-07T23:24:00Z",
-        "end_at": "2019-08-08T02:24:00Z",
-        "workflow_state": "active",
-        "created_at": "2019-08-02T17:17:29Z",
-        "updated_at": "2019-08-02T17:17:29Z",
-        "all_day": false,
-        "all_day_date": null,
-        "comments": null,
-        "location_address": null,
-        "location_name": "",
-        "type": "event",
-        "description": "TEST appointment group details",
-        "child_events_count": 0,
-        "effective_context_code": "course_1028",
-        "all_context_codes": "course_1028",
-        "context_code": "appointment_group_58",
-        "parent_event_id": null,
-        "hidden": false,
-        "appointment_group_id": 58,
-        "appointment_group_url": "https://uview.instructure.com/api/v1/appointment_groups/58",
-        "can_manage_appointment_group": true,
-        "participant_type": "User",
-        "reserve_url": "https://uview.instructure.com/api/v1/calendar_events/1201/reservations/%7B%7B%20id%20%7D%7D",
-        "available_slots": 2,
-        "participants_per_appointment": 2,
-        "url": "https://uview.instructure.com/api/v1/calendar_events/1201",
-        "html_url": "https://uview.instructure.com/calendar?event_id=1201&include_contexts=course_1028",
-        "duplicates": []
-      }
-     */
-    
+
+    /// <summary>
+    /// Represents a possible time-slot appointment within an appointment group.
+    /// Actual reserved appointments within this time-slot are represented by <see cref="UserReservationCalendarEvent"/>.
+    /// </summary>
     [PublicAPI]
     public class TimeSlotCalendarEvent : BasicCalendarEvent {
         
+        /// <summary>
+        /// The id of the appointment group this event belongs to.
+        /// </summary>
         public ulong AppointmentGroupId { get; }
         
+        /// <summary>
+        /// The API url of the appointment group this event belongs to.
+        /// </summary>
         public string AppointmentGroupUrl { get; }
         
         public bool? CanManageAppointmentGroup { get; }
         
+        /// <summary>
+        /// The API url which can be followed to reserve this time-slot.
+        /// </summary>
         public string ReserveUrl { get; }
         
+        /// <summary>
+        /// Whether this slot has been reserved.
+        /// </summary>
         public bool? Reserved { get; }
         
+        /// <summary>
+        /// The maximum amount of participants which may reserve this slot.
+        /// </summary>
         public uint? ParticipantsPerAppointment { get; }
         
+        /// <summary>
+        /// The amount of participants which may yet reserve this slot.
+        /// </summary>
+        public uint? AvailableSlots { get; }
+        
+        /// <summary>
+        /// Any reservations which have been made.
+        /// </summary>
         public IEnumerable<UserReservationCalendarEvent> Reservations { get; }
 
         internal TimeSlotCalendarEvent(Api api, CalendarEventModel model) : base(api, model) {
@@ -67,10 +58,12 @@ namespace UVACanvasAccess.Structures.Calendar {
             ReserveUrl = model.ReserveUrl;
             Reserved = model.Reserved;
             ParticipantsPerAppointment = model.ParticipantsPerAppointment;
+            AvailableSlots = model.AvailableSlots;
             Reservations = model.ChildEvents?.Select(m => new UserReservationCalendarEvent(api, m)) 
                                             ?? new List<UserReservationCalendarEvent>();
         }
         
+        /// <inheritdoc />
         public override string ToPrettyString() {
             return "TimeSlotCalendarEvent {" + 
                    ($"\n{nameof(Id)}: {Id}," +

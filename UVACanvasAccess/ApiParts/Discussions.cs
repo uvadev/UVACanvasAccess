@@ -122,7 +122,7 @@ namespace UVACanvasAccess.ApiParts {
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<DiscussionTopicModel>(await response.Content.ReadAsStringAsync());
-            return new DiscussionTopic(this, model, DiscussionTopic.DiscussionHome.Course, courseId);
+            return new DiscussionTopic(this, model, DiscussionHome.Course, courseId);
         }
 
         [PaginatedResponse]
@@ -192,7 +192,7 @@ namespace UVACanvasAccess.ApiParts {
             var models = await AccumulateDeserializePages<DiscussionTopicModel>(response);
 
             return from model in models
-                   select new DiscussionTopic(this, model, DiscussionTopic.DiscussionHome.Course, id);
+                   select new DiscussionTopic(this, model, DiscussionHome.Course, id);
         }
 
         private Task<HttpResponseMessage> RawPostNewDiscussionTopic(string type,
@@ -309,7 +309,7 @@ namespace UVACanvasAccess.ApiParts {
             response.AssertSuccess();
 
             var model = JsonConvert.DeserializeObject<TopicEntryModel>(await response.Content.ReadAsStringAsync());
-            return new TopicEntry(this, model, DiscussionTopic.DiscussionHome.Course, courseId, discussionId);
+            return new TopicEntry(this, model, DiscussionHome.Course, courseId, discussionId);
         }
 
         [PaginatedResponse]
@@ -336,7 +336,7 @@ namespace UVACanvasAccess.ApiParts {
             var models = await AccumulateDeserializePages<TopicEntryModel>(response);
             
             return from model in models
-                   select new TopicEntry(this, model, DiscussionTopic.DiscussionHome.Course, courseId, topicId);
+                   select new TopicEntry(this, model, DiscussionHome.Course, courseId, topicId);
         }
         
         /// <summary>
@@ -353,7 +353,7 @@ namespace UVACanvasAccess.ApiParts {
             var models = await AccumulateDeserializePages<TopicEntryModel>(response);
             
             return from model in models
-                   select new TopicEntry(this, model, DiscussionTopic.DiscussionHome.Group, groupId, topicId);
+                   select new TopicEntry(this, model, DiscussionHome.Group, groupId, topicId);
         }
     }
 }

@@ -198,11 +198,20 @@ namespace UVACanvasAccess.Structures.Assignments {
         /// </summary>
         public ulong Position { get; }
         
+        /// <summary>
+        /// Whether this assignment is posted to SIS.
+        /// </summary>
         public bool? PostToSis { get; }
         
+        /// <summary>
+        /// The integration id.
+        /// </summary>
         [CanBeNull]
         public string IntegrationId { get; }
         
+        /// <summary>
+        /// The integration data, if any.
+        /// </summary>
         [CanBeNull]
         public object IntegrationData { get; }
         
@@ -296,6 +305,9 @@ namespace UVACanvasAccess.Structures.Assignments {
         /// </summary>
         public bool? Frozen { get; }
         
+        /// <summary>
+        /// Attributes of the assignment which are frozen.
+        /// </summary>
         [CanBeNull]
         public IEnumerable<string> FrozenAttributes { get; }
         
@@ -435,7 +447,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             LockExplanation = model.LockExplanation;
             QuizId = model.QuizId;
             AnonymousSubmissions = model.AnonymousSubmissions;
-            DiscussionTopic = model.DiscussionTopic.ConvertIfNotNull(m => new DiscussionTopic(api, m, DiscussionTopic.DiscussionHome.Course, model.CourseId));
+            DiscussionTopic = model.DiscussionTopic.ConvertIfNotNull(m => new DiscussionTopic(api, m, DiscussionHome.Course, model.CourseId));
             FreezeOnCopy = model.FreezeOnCopy;
             Frozen = model.Frozen;
             FrozenAttributes = model.FrozenAttributes;
@@ -456,6 +468,7 @@ namespace UVACanvasAccess.Structures.Assignments {
             AllowedAttempts = model.AllowedAttempts;
         }
 
+        /// <inheritdoc/>
         public string ToPrettyString() {
             return "Assignment {" +
                    ($"\n{nameof(Id)}: {Id}," +
