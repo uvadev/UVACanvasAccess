@@ -78,16 +78,25 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1BasicCalendarEvent.html">BasicCalendarEvent</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1CalendarEvent.html">CalendarEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a calendar event.  <a href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1CalendarEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUVACanvasAccess_1_1Structures_1_1Calendar_1_1EventContext.html">EventContext</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1TimeSlotCalendarEvent.html">TimeSlotCalendarEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a possible time-slot appointment within an appointment group. Actual reserved appointments within this time-slot are represented by <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1UserReservationCalendarEvent.html" title="Represents a user appointment within a TimeSlotCalendarEvent of an appointment group.">UserReservationCalendarEvent</a>.  <a href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1TimeSlotCalendarEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1UserReservationCalendarEvent.html">UserReservationCalendarEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a user appointment within a <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1TimeSlotCalendarEvent.html" title="Represents a possible time-slot appointment within an appointment group. Actual reserved appointments...">TimeSlotCalendarEvent</a> of an appointment group.  <a href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1UserReservationCalendarEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:af804508e6bd6e6c191c923dbd99ea945"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Calendar.html#af804508e6bd6e6c191c923dbd99ea945">CalendarState</a> { <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Calendar.html#af804508e6bd6e6c191c923dbd99ea945a4d3d769b812b6faa6b76e1a8abaece2d">CalendarState.Active</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Calendar.html#af804508e6bd6e6c191c923dbd99ea945ad0f2e5376298c880665077b565ffd7dd">CalendarState.Locked</a>, 
+<a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Calendar.html#af804508e6bd6e6c191c923dbd99ea945a5fe6005bf6e415c950c011fb65f12b8f">CalendarState.Deleted</a>
+ }</td></tr>
+<tr class="memdesc:af804508e6bd6e6c191c923dbd99ea945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a workflow state a CalendarEvent can be in.  <a href="namespaceUVACanvasAccess_1_1Structures_1_1Calendar.html#af804508e6bd6e6c191c923dbd99ea945">More...</a><br /></td></tr>
+<tr class="separator:af804508e6bd6e6c191c923dbd99ea945"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac49ee6be430953ef479c64269558f3a0"><td class="memItemLeft" align="right" valign="top"><a id="ac49ee6be430953ef479c64269558f3a0"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>EventContextType</b> : byte { <b>Course</b>, 
 <b>Group</b>, 
 <b>User</b>
@@ -102,6 +111,39 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:a5033a66d485ed84cb783569f56014c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="af804508e6bd6e6c191c923dbd99ea945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af804508e6bd6e6c191c923dbd99ea945">&#9670;&nbsp;</a></span>CalendarState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Calendar.html#af804508e6bd6e6c191c923dbd99ea945">UVACanvasAccess.Structures.Calendar.CalendarState</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Represents a workflow state a <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Calendar_1_1CalendarEvent.html" title="Represents a calendar event.">CalendarEvent</a> can be in. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af804508e6bd6e6c191c923dbd99ea945a4d3d769b812b6faa6b76e1a8abaece2d"></a>Active&#160;</td><td class="fielddoc"><p>The event is active. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af804508e6bd6e6c191c923dbd99ea945ad0f2e5376298c880665077b565ffd7dd"></a>Locked&#160;</td><td class="fielddoc"><p>The event's start and end dates cannot be changed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af804508e6bd6e6c191c923dbd99ea945a5fe6005bf6e415c950c011fb65f12b8f"></a>Deleted&#160;</td><td class="fielddoc"><p>The event is deleted. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

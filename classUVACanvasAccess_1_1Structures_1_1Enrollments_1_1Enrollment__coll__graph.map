@@ -1,4 +1,4 @@
 <map id="UVACanvasAccess.Structures.Enrollments.Enrollment" name="UVACanvasAccess.Structures.Enrollments.Enrollment">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,221,121"/>
+<area shape="rect" id="node1" title="Represents an enrollment of a user in a course." alt="" coords="5,80,221,121"/>
 <area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="66,5,161,32"/>
 </map>

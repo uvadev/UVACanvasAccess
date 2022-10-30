@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['discussiontopicincludes_1325',['DiscussionTopicIncludes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['discussiontopicordering_1326',['DiscussionTopicOrdering',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251a',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['discussiontopicscopes_1327',['DiscussionTopicScopes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['discussionhome_1426',['DiscussionHome',['../namespaceUVACanvasAccess_1_1Structures_1_1Discussions.html#a245569a743314906b10f548c3467303d',1,'UVACanvasAccess::Structures::Discussions']]],
+  ['discussiontopicincludes_1427',['DiscussionTopicIncludes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['discussiontopicordering_1428',['DiscussionTopicOrdering',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251a',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['discussiontopicscopes_1429',['DiscussionTopicScopes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['discussiontype_1430',['DiscussionType',['../namespaceUVACanvasAccess_1_1Structures_1_1Discussions.html#a61cd5f773c66752fc9f303b2ff2ff3b8',1,'UVACanvasAccess::Structures::Discussions']]]
 ];
