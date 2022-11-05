@@ -59,7 +59,7 @@ namespace UVACanvasAccess.Structures.EnrollmentTerms {
         /// <summary>
         /// Date overrides for specific enrollment types, if any.
         /// </summary>
-        public Dictionary<Api.CourseEnrollmentType, EnrollmentTermDateOverride> Overrides { get; }
+        public Dictionary<Api.CourseEnrollmentRoleTypes, EnrollmentTermDateOverride> Overrides { get; }
 
         internal EnrollmentTerm(Api api, EnrollmentTermModel model) {
             this.api = api;
@@ -71,9 +71,9 @@ namespace UVACanvasAccess.Structures.EnrollmentTerms {
             EndAt = model.EndAt;
             GradingPeriodGroupId = model.GradingPeriodGroupId;
             WorkflowState = model.WorkflowState?.ToApiRepresentedEnum<EnrollmentTermWorkflowState>() ?? Unknown;
-            Overrides = model.Overrides?.KeyValSelect(kv => (kv.Item1.ToApiRepresentedEnum<Api.CourseEnrollmentType>().Expect(),
+            Overrides = model.Overrides?.KeyValSelect(kv => (kv.Item1.ToApiRepresentedEnum<Api.CourseEnrollmentRoleTypes>().Expect(),
                                                              new EnrollmentTermDateOverride(kv.Item2))) 
-                        ?? new Dictionary<Api.CourseEnrollmentType, EnrollmentTermDateOverride>();
+                        ?? new Dictionary<Api.CourseEnrollmentRoleTypes, EnrollmentTermDateOverride>();
         }
         
         /// <inheritdoc />

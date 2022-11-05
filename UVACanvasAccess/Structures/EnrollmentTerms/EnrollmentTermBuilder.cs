@@ -12,8 +12,8 @@ namespace UVACanvasAccess.Structures.EnrollmentTerms {
         private DateTime? startAt;
         private DateTime? endAt;
         private string sisTermId;
-        private Dictionary<Api.CourseEnrollmentType, EnrollmentTermDateOverride> overrides 
-            = new Dictionary<Api.CourseEnrollmentType, EnrollmentTermDateOverride>();
+        private Dictionary<Api.CourseEnrollmentRoleTypes, EnrollmentTermDateOverride> overrides 
+            = new Dictionary<Api.CourseEnrollmentRoleTypes, EnrollmentTermDateOverride>();
 
         public EnrollmentTermBuilder WithName(string name) {
             this.name = name;
@@ -35,7 +35,7 @@ namespace UVACanvasAccess.Structures.EnrollmentTerms {
             return this;
         }
 
-        public EnrollmentTermBuilder WithOverride(Api.CourseEnrollmentType type, EnrollmentTermDateOverride dateOverride) {
+        public EnrollmentTermBuilder WithOverride(Api.CourseEnrollmentRoleTypes type, EnrollmentTermDateOverride dateOverride) {
             overrides.Add(type, dateOverride);
             return this;
         }

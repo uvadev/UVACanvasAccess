@@ -350,7 +350,7 @@ namespace UVACanvasAccess.Structures.Courses {
         /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
         /// <param name="includes">(Optional) Data to include in the result.</param>
         /// <returns>The stream of enrollments.</returns>
-        public IAsyncEnumerable<Enrollment> StreamEnrollments(IEnumerable<Api.CourseEnrollmentType> types = null,
+        public IAsyncEnumerable<Enrollment> StreamEnrollments(IEnumerable<Api.CourseEnrollmentRoleTypes> types = null,
                                                               IEnumerable<Api.CourseEnrollmentState> states = null,
                                                               Api.CourseEnrollmentIncludes? includes = null) {
             return api.StreamCourseEnrollments(Id, types, states, includes);

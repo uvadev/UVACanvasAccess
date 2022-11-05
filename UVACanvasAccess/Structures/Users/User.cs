@@ -10,40 +10,46 @@ using UVACanvasAccess.Structures.Enrollments;
 using UVACanvasAccess.Util;
 using static UVACanvasAccess.ApiParts.Api;
 using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentState;
-using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentType;
+using static UVACanvasAccess.ApiParts.Api.CourseEnrollmentRoleTypes;
 
 namespace UVACanvasAccess.Structures.Users {
     
+    /// <summary>
+    /// Represents a user.
+    /// </summary>
     [PublicAPI]
     public class User : IPrettyPrint, IAppointmentGroupParticipant {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The user's unique id.
+        /// </summary>
         public ulong Id { get; }
 
-        private string _name;
+        private string name;
         public string Name {
-            get => _name;
+            get => name;
             set {
-                var _ = _api.EditUser(new[] {("name", value)}, Id).Result;
-                _name = value;
+                var _ = api.EditUser(new[] {("name", value)}, Id).Result;
+                name = value;
             }
         }
 
-        private string _sortableName;
+        private string sortableName;
         public string SortableName {
-            get => _sortableName;
+            get => sortableName;
             set {
-                var _ = _api.EditUser(new[] {("sortable_name", value)}, Id).Result;
-                _sortableName = value; 
+                var _ = api.EditUser(new[] {("sortable_name", value)}, Id).Result;
+                sortableName = value; 
             }
         }
 
-        private string _shortName;
+        private string shortName;
         public string ShortName {
-            get => _shortName;
+            get => shortName;
             set {
-                var _ = _api.EditUser(new[] {("short_name", value)}, Id).Result;
-                _shortName = value;
+                var _ = api.EditUser(new[] {("short_name", value)}, Id).Result;
+                shortName = value;
             }
         }
         
@@ -64,7 +70,7 @@ namespace UVACanvasAccess.Structures.Users {
         public string TimeZone {
             get => _timeZone;
             set {
-                var _ = _api.EditUser(new[] {("time_zone", value)}).Result;
+                var _ = api.EditUser(new[] {("time_zone", value)}).Result;
                 _timeZone = value;
             } 
         }
@@ -73,7 +79,7 @@ namespace UVACanvasAccess.Structures.Users {
         public string Bio {
             get => _bio;
             set {
-                var _ = _api.EditUser(new[] {("bio", value)}, Id).Result;
+                var _ = api.EditUser(new[] {("bio", value)}, Id).Result;
                 _bio = value;
             }
         }
@@ -81,11 +87,11 @@ namespace UVACanvasAccess.Structures.Users {
         public Dictionary<string, bool> Permissions { get; private set; }
 
         internal User(Api api, UserModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
-            _name = model.Name;
-            _sortableName = model.SortableName;
-            _shortName = model.ShortName;
+            name = model.Name;
+            sortableName = model.SortableName;
+            shortName = model.ShortName;
             SisUserId = model.SisUserId;
             SisImportId = model.SisImportId;
             IntegrationId = model.IntegrationId;
@@ -101,8 +107,7 @@ namespace UVACanvasAccess.Structures.Users {
             Permissions = model.Permissions ?? new Dictionary<string, bool>();
         }
 
-        
-
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "User {" + 
                    ($"\n{nameof(Id)}: {Id}," +
@@ -125,12 +130,22 @@ namespace UVACanvasAccess.Structures.Users {
                    "\n}";
         }
         
+        /// <summary>
+        /// Returns this user's profile.
+        /// </summary>
+        /// <returns>The profile.</returns>
         public Task<Profile> GetProfile() {
-            return _api.GetUserProfile(Id);
+            return api.GetUserProfile(Id);
         }
 
-        public IAsyncEnumerable<PageView> StreamPageViews(DateTime? startDate = null, DateTime? endDate = null) {
-            return _api.StreamUserPageViews(Id, startDate, endDate);
+        /// <summary>
+        /// Streams this user's page view history. Page views are returned in descending order; newest to oldest.
+        /// </summary>
+        /// <param name="startTime">The beginning of the date-time range to retrieve page views from. Defaults to unbounded.</param>
+        /// <param name="endTime">The end of the date-time range to retrieve page views from. Defaults to unbounded.</param>
+        /// <returns>The stream of page views.</returns>
+        public IAsyncEnumerable<PageView> StreamPageViews(DateTime? startTime = null, DateTime? endTime = null) {
+            return api.StreamUserPageViews(Id, startTime, endTime);
         }
 
         /// <summary>
@@ -145,7 +160,7 @@ namespace UVACanvasAccess.Structures.Users {
         public async ValueTask<bool> IsTeacher(bool currentCoursesOnly = false) {
             var state = currentCoursesOnly ? new[] {Active} 
                                            : new CourseEnrollmentState[]{};
-            return !await _api.StreamUserEnrollments(Id, new[] {TeacherEnrollment}, state).IsEmptyAsync();
+            return !await api.StreamUserEnrollments(Id, new[] {TeacherEnrollment}, state).IsEmptyAsync();
         }
 
         /// <summary>
@@ -155,10 +170,10 @@ namespace UVACanvasAccess.Structures.Users {
         /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
         /// <param name="includes">(Optional) Data to include in the result.</param>
         /// <returns>The stream of enrollments.</returns>
-        public IAsyncEnumerable<Enrollment> StreamEnrollments(IEnumerable<CourseEnrollmentType> types = null,
+        public IAsyncEnumerable<Enrollment> StreamEnrollments(IEnumerable<CourseEnrollmentRoleTypes> types = null,
                                                               IEnumerable<CourseEnrollmentState> states = null,
                                                               CourseEnrollmentIncludes? includes = null) {
-            return _api.StreamUserEnrollments(Id, types, states, includes);
+            return api.StreamUserEnrollments(Id, types, states, includes);
         }
     }
 }

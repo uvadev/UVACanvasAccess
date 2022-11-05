@@ -128,6 +128,9 @@ namespace UVACanvasAccess.ApiParts {
         /// <summary>
         /// The types of enrollment a user can have in a course.
         /// </summary>
+        /// <remarks>
+        /// These are distinct, in Canvas, from the values of <see cref="CourseEnrollmentRoleTypes"/>.
+        /// </remarks>
         [Flags]
         [PublicAPI]
         public enum CourseEnrollmentTypes : byte {
@@ -139,8 +142,8 @@ namespace UVACanvasAccess.ApiParts {
             /// <summary>
             /// The user is a student.
             /// </summary>
-            [ApiRepresentation("students")]
-            Students = 1 << 1,
+            [ApiRepresentation("student")]
+            Student = 1 << 1,
             /// <summary>
             /// The user is a TA.
             /// </summary>
@@ -155,7 +158,12 @@ namespace UVACanvasAccess.ApiParts {
             /// The user is a course designer.
             /// </summary>
             [ApiRepresentation("designer")]
-            Designer = 1 << 4
+            Designer = 1 << 4,
+            /// <summary>
+            /// The user is a <see cref="Api.GetCourseTestStudent">test student</see>.
+            /// </summary>
+            [ApiRepresentation("student_view")]
+            StudentView = 1 << 5
         }
 
         /// <summary>
@@ -194,6 +202,22 @@ namespace UVACanvasAccess.ApiParts {
             /// </summary>
             [ApiRepresentation("all")]
             All = 1 << 5
+        }
+        
+        /// <summary>
+        /// An alternate version of <see cref="CourseStates"/> used by <see cref="Api.StreamUserCourses">StreamUserCourses()</see>.
+        /// </summary>
+        [Flags]
+        [PublicAPI]
+        public enum CourseStatesAlt {
+            [ApiRepresentation("unpublished")]
+            Unpublished = 1 << 0,
+            [ApiRepresentation("available")]
+            Available = 1 << 1,
+            [ApiRepresentation("completed")]
+            Completed = 1 << 2,
+            [ApiRepresentation("deleted")]
+            Deleted = 1 << 3
         }
         
         /// <summary>

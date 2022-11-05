@@ -41,10 +41,13 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         /// <summary>
-        /// The types of enrollment a user can have in a course.
+        /// The types of enrollment a user can have in a course, in terms of enrollment role.
         /// </summary>
+        /// <remarks>
+        /// These are distinct, in Canvas, from the values of <see cref="CourseEnrollmentTypes"/>.
+        /// </remarks>
         [PublicAPI]
-        public enum CourseEnrollmentType {
+        public enum CourseEnrollmentRoleTypes {
             /// <summary>
             /// The user is a student.
             /// </summary>
@@ -91,7 +94,24 @@ namespace UVACanvasAccess.ApiParts {
             /// The student appears in the course roster, but is unable to participate in the course.
             /// </summary>
             [ApiRepresentation("inactive")]
-            Inactive
+            Inactive,
+            [ApiRepresentation("rejected")]
+            Rejected,
+            [ApiRepresentation("completed")]
+            Completed
+        }
+
+        /// <summary>
+        /// An alternate version of <see cref="CourseEnrollmentState"/> used by <see cref="Api.StreamUserCourses">StreamUserCourses()</see>.
+        /// </summary>
+        [PublicAPI]
+        public enum CourseEnrollmentStateAlt {
+            [ApiRepresentation("active")]
+            Active,
+            [ApiRepresentation("invited_or_pending")]
+            InvitedOrPending,
+            [ApiRepresentation("completed")]
+            Completed
         }
 
         /// <summary>
@@ -114,7 +134,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <returns>The new enrollment.</returns>
         public async Task<Enrollment> CreateEnrollment(ulong courseId,
                                                        ulong userId,
-                                                       CourseEnrollmentType enrollmentType,
+                                                       CourseEnrollmentRoleTypes enrollmentType,
                                                        ulong? roleId = null,
                                                        CourseEnrollmentState? enrollmentState = null,
                                                        ulong? courseSectionId = null,
@@ -263,10 +283,8 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
         /// <param name="includes">(Optional) Data to include in the result.</param>
         /// <returns>The stream of enrollments.</returns>
-        // todo params
-        // todo {types, states} should probably be flags
         public async IAsyncEnumerable<Enrollment> StreamCourseEnrollments(ulong courseId,
-                                                                          IEnumerable<CourseEnrollmentType> types = null,
+                                                                          IEnumerable<CourseEnrollmentRoleTypes> types = null,
                                                                           IEnumerable<CourseEnrollmentState> states = null,
                                                                           CourseEnrollmentIncludes? includes = null) {
             var args = new List<(string, string)>();
@@ -299,10 +317,8 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="includes">(Optional) Data to include in the result.</param>
         /// <param name="gradingPeriodId">(Optional) The grading period id to filter grades by.</param>
         /// <returns>The stream of enrollments.</returns>
-        // todo params
-        // todo {types, states} should probably be flags
         public async IAsyncEnumerable<Enrollment> StreamUserEnrollments(ulong userId,
-                                                                        IEnumerable<CourseEnrollmentType> types = null,
+                                                                        IEnumerable<CourseEnrollmentRoleTypes> types = null,
                                                                         IEnumerable<CourseEnrollmentState> states = null,
                                                                         CourseEnrollmentIncludes? includes = null,
                                                                         ulong? gradingPeriodId = null) {

@@ -92,7 +92,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         /// <summary>
         /// The type of enrollment.
         /// </summary>
-        public Api.CourseEnrollmentType? Type { get; }
+        public Api.CourseEnrollmentRoleTypes? Type { get; }
         
         /// <summary>
         /// The id of the user involved in the enrollment.
@@ -100,7 +100,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
         public ulong UserId { get; }
         
         /// <summary>
-        /// If the <see cref="Type"/> is <see cref="Api.CourseEnrollmentType.ObserverEnrollment"/>, the id of the
+        /// If the <see cref="Type"/> is <see cref="Api.CourseEnrollmentRoleTypes.ObserverEnrollment"/>, the id of the
         /// observed user.
         /// </summary>
         public ulong? AssociatedUserId { get; }
@@ -273,7 +273,7 @@ namespace UVACanvasAccess.Structures.Enrollments {
             LimitPrivilegesToCourseSection = model.LimitPrivilegesToCourseSection;
             SisImportId = model.SisImportId;
             RootAccountId = model.RootAccountId;
-            Type = model.Type.ToApiRepresentedEnum<Api.CourseEnrollmentType>();
+            Type = model.Type.ToApiRepresentedEnum<Api.CourseEnrollmentRoleTypes>();
             UserId = model.UserId;
             AssociatedUserId = model.AssociatedUserId;
             Role = model.Role;
