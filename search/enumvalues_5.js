@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['gpascale_1490',['GpaScale',['../namespaceUVACanvasAccess_1_1Structures_1_1Assignments.html#a19deeacd2bcee4ec6290e881f2a86086a49adf8e52528df691058b6da1291c942',1,'UVACanvasAccess::Structures::Assignments']]],
-  ['group_1491',['Group',['../namespaceUVACanvasAccess_1_1Structures_1_1Discussions.html#a245569a743314906b10f548c3467303da03937134cedab9078be39a77ee3a48a0',1,'UVACanvasAccess::Structures::Discussions']]],
-  ['groupids_1492',['GroupIds',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1da3914a3a9c07aae6f8242cca7d464257b',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['favorites_1515',['Favorites',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5aad78986947356ddd37b43d57df289dee9',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['future_1516',['Future',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53e10da8ba76a5e8cd40eb50456cb0d0aadff855173c9b92b5478129af7d39e03',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

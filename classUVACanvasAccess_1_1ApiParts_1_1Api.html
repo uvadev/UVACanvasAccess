@@ -99,11 +99,12 @@ Public Types</h2></td></tr>
 <tr class="separator:af7ff0dc84633a609585a087b86e198da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dc40a69fd35afe32c6db6a6de7ee674"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674">CourseEnrollmentTypes</a> : byte { <br />
 &#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674a8ab7bbdf01a24e988c50c4cfe9557814">CourseEnrollmentTypes.Teacher</a> = 1 &lt;&lt; 0, 
-<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674aaba064f896dc3eb1653c3b68b9548ef1">CourseEnrollmentTypes.Students</a> = 1 &lt;&lt; 1, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674af5c0a1c9384c2e25e79ba1abf5d9a037">CourseEnrollmentTypes.Student</a> = 1 &lt;&lt; 1, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674a86a1ea3adf8fbb53eb7a9b6b6b01c020">CourseEnrollmentTypes.Ta</a> = 1 &lt;&lt; 2, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674a83d694b8b98b155b8817ac412c4d3e9c">CourseEnrollmentTypes.Observer</a> = 1 &lt;&lt; 3, 
 <br />
-&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674a0aad40f415c9173fcc83acd984c0c83c">CourseEnrollmentTypes.Designer</a> = 1 &lt;&lt; 4
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674a0aad40f415c9173fcc83acd984c0c83c">CourseEnrollmentTypes.Designer</a> = 1 &lt;&lt; 4, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674a00f42c48f0319e926bc358262da44210">CourseEnrollmentTypes.StudentView</a> = 1 &lt;&lt; 5
 <br />
  }</td></tr>
 <tr class="memdesc:a4dc40a69fd35afe32c6db6a6de7ee674"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of enrollment a user can have in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674">More...</a><br /></td></tr>
@@ -120,6 +121,13 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a7dfc22b4dd1de677542b0fefd3faf525"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of states a course can have.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7dfc22b4dd1de677542b0fefd3faf525">More...</a><br /></td></tr>
 <tr class="separator:a7dfc22b4dd1de677542b0fefd3faf525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad510d2c6788a55fcd312335ea1f42b04"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad510d2c6788a55fcd312335ea1f42b04">CourseStatesAlt</a> { <b>Unpublished</b> = 1 &lt;&lt; 0, 
+<b>Available</b> = 1 &lt;&lt; 1, 
+<b>Completed</b> = 1 &lt;&lt; 2, 
+<b>Deleted</b> = 1 &lt;&lt; 3
+ }</td></tr>
+<tr class="memdesc:ad510d2c6788a55fcd312335ea1f42b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">An alternate version of <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7dfc22b4dd1de677542b0fefd3faf525" title="The types of states a course can have.">CourseStates</a> used by <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a48925485d28124a5a8c0305a82d9f348">StreamUserCourses()</a>.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad510d2c6788a55fcd312335ea1f42b04">More...</a><br /></td></tr>
+<tr class="separator:ad510d2c6788a55fcd312335ea1f42b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a3495ee32107e1fe8eec1d14649ad0a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3a3495ee32107e1fe8eec1d14649ad0a">AccountLevelCourseIncludes</a> : byte { <br />
 &#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3a3495ee32107e1fe8eec1d14649ad0aab7022b2c572d7686b40e927d088638a3">AccountLevelCourseIncludes.SyllabusBody</a> = 1 &lt;&lt; 0, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3a3495ee32107e1fe8eec1d14649ad0aacf5f3091e30dee6597885d8c0e0c357f">AccountLevelCourseIncludes.Term</a> = 1 &lt;&lt; 1, 
@@ -245,6 +253,20 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:aa4b8306b00e1b77d3c25714c29747d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categories of optional data that can be included with Course objects, when fetched individually by ID.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5a">More...</a><br /></td></tr>
 <tr class="separator:aa4b8306b00e1b77d3c25714c29747d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3771f93cea803957fc9c696c6d894f9a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9a">CourseUserIncludes</a> { <br />
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aa0bd23aac7bdbb5554cc200536fe442f6">CourseUserIncludes.Enrollments</a> = 1, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aad0f2e5376298c880665077b565ffd7dd">CourseUserIncludes.Locked</a> = 1 &lt;&lt; 1, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aac510e1bf2d2e48011d5ef951e14b3bca">CourseUserIncludes.AvatarUrl</a> = 1 &lt;&lt; 2, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aa454eeff038acea95aa44e0bd1054ef90">CourseUserIncludes.TestStudent</a> = 1 &lt;&lt; 3, 
+<br />
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aa713a01ab419f96cb320352765e8791d4">CourseUserIncludes.Bio</a> = 1 &lt;&lt; 4, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aa5ec8ccce955a660b7eac981f575c5ec5">CourseUserIncludes.CustomLinks</a> = 1 &lt;&lt; 5, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aa80babe3887439a6fd3bc8a8b382fa43c">CourseUserIncludes.CurrentGradingPeriodScores</a> = 1 &lt;&lt; 6, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aa755bf05a8e6c3925f7d7d779bc5cfddc">CourseUserIncludes.Uuid</a> = 1 &lt;&lt; 7
+<br />
+ }</td></tr>
+<tr class="memdesc:a3771f93cea803957fc9c696c6d894f9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional data that can be included with results from <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a542b53f52d44e1ecfa2ef32dec384c3f">StreamCourseUsers()</a>.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9a">More...</a><br /></td></tr>
+<tr class="separator:a3771f93cea803957fc9c696c6d894f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1690ef4e5e128123c3b7108e3c09f40"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40">DiscussionTopicIncludes</a> { <br />
 &#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40a7a1920d61156abc05a60135aefe8bc67">DiscussionTopicIncludes.Default</a> = 0, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af1690ef4e5e128123c3b7108e3c09f40ad6d4160e9bd7c6265a67a09ff679da71">DiscussionTopicIncludes.AllDates</a> = 1 &lt;&lt; 0, 
@@ -269,23 +291,34 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a2b6679eda9ad6a1c8b728830d1fe8df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scopes that DiscussionTopics can be filtered by.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8">More...</a><br /></td></tr>
 <tr class="separator:a2b6679eda9ad6a1c8b728830d1fe8df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74e12faf0bc1411147f2ac08a73ddcfe"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">CourseEnrollmentType</a> { <br />
-&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfea7eeb5620d4c4756dab3ee5e3870a64e7">CourseEnrollmentType.StudentEnrollment</a>, 
-<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfeaac01be8d9896ccae9bd00d582c25d5a3">CourseEnrollmentType.TeacherEnrollment</a>, 
-<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfea9bc1ec27b2f06a9085b8c90ce17c85ee">CourseEnrollmentType.TaEnrollment</a>, 
-<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfeac75ba1bb152472316365be8ca57cf5d4">CourseEnrollmentType.ObserverEnrollment</a>, 
+<tr class="memitem:a652a2470c5604d0b6ee81b14d74b6746"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> { <br />
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746a7eeb5620d4c4756dab3ee5e3870a64e7">CourseEnrollmentRoleTypes.StudentEnrollment</a>, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746aac01be8d9896ccae9bd00d582c25d5a3">CourseEnrollmentRoleTypes.TeacherEnrollment</a>, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746a9bc1ec27b2f06a9085b8c90ce17c85ee">CourseEnrollmentRoleTypes.TaEnrollment</a>, 
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746ac75ba1bb152472316365be8ca57cf5d4">CourseEnrollmentRoleTypes.ObserverEnrollment</a>, 
 <br />
-&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfea4c478170f404ec85ea5ac8fd6b6bb32b">CourseEnrollmentType.DesignerEnrollment</a>
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746a4c478170f404ec85ea5ac8fd6b6bb32b">CourseEnrollmentRoleTypes.DesignerEnrollment</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a74e12faf0bc1411147f2ac08a73ddcfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of enrollment a user can have in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">More...</a><br /></td></tr>
-<tr class="separator:a74e12faf0bc1411147f2ac08a73ddcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af18df6f578d66c20aaf336947cdb350e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> { <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350ea4d3d769b812b6faa6b76e1a8abaece2d">CourseEnrollmentState.Active</a>, 
+<tr class="memdesc:a652a2470c5604d0b6ee81b14d74b6746"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of enrollment a user can have in a course, in terms of enrollment role.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">More...</a><br /></td></tr>
+<tr class="separator:a652a2470c5604d0b6ee81b14d74b6746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18df6f578d66c20aaf336947cdb350e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> { <br />
+&#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350ea4d3d769b812b6faa6b76e1a8abaece2d">CourseEnrollmentState.Active</a>, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350eaaa3443ffdec7410e60018515486e1279">CourseEnrollmentState.Invited</a>, 
-<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350ea3cab03c00dbd11bc3569afa0748013f0">CourseEnrollmentState.Inactive</a>
+<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350ea3cab03c00dbd11bc3569afa0748013f0">CourseEnrollmentState.Inactive</a>, 
+<b>Rejected</b>, 
+<br />
+&#160;&#160;<b>Completed</b>
+<br />
  }</td></tr>
 <tr class="memdesc:af18df6f578d66c20aaf336947cdb350e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The states of enrollment a user can have in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">More...</a><br /></td></tr>
 <tr class="separator:af18df6f578d66c20aaf336947cdb350e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55c19f1ec68de45aac581faae9bda853"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a55c19f1ec68de45aac581faae9bda853">CourseEnrollmentStateAlt</a> { <b>Active</b>, 
+<b>InvitedOrPending</b>, 
+<b>Completed</b>
+ }</td></tr>
+<tr class="memdesc:a55c19f1ec68de45aac581faae9bda853"><td class="mdescLeft">&#160;</td><td class="mdescRight">An alternate version of <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e" title="The states of enrollment a user can have in a course.">CourseEnrollmentState</a> used by <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a48925485d28124a5a8c0305a82d9f348">StreamUserCourses()</a>.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a55c19f1ec68de45aac581faae9bda853">More...</a><br /></td></tr>
+<tr class="separator:a55c19f1ec68de45aac581faae9bda853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a088552df02f205aca72d0fd4b55b4b1d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a> : byte { <br />
 &#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1dac510e1bf2d2e48011d5ef951e14b3bca">CourseEnrollmentIncludes.AvatarUrl</a> = 1 &lt;&lt; 0, 
 <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1da3914a3a9c07aae6f8242cca7d464257b">CourseEnrollmentIncludes.GroupIds</a> = 1 &lt;&lt; 1, 
@@ -546,6 +579,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a5d1310c5707006cb0533743256de6ab6"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5d1310c5707006cb0533743256de6ab6">UpdateCourseSettings</a> (ulong courseId, <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Courses_1_1CourseSettings.html">CourseSettings</a> cs)</td></tr>
 <tr class="memdesc:a5d1310c5707006cb0533743256de6ab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a course's settings.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5d1310c5707006cb0533743256de6ab6">More...</a><br /></td></tr>
 <tr class="separator:a5d1310c5707006cb0533743256de6ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542b53f52d44e1ecfa2ef32dec384c3f"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a542b53f52d44e1ecfa2ef32dec384c3f">StreamCourseUsers</a> (ulong courseId, string searchTerm=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674">CourseEnrollmentTypes</a> &gt; enrollmentTypes=null, ulong? enrollmentRole=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9a">CourseUserIncludes</a>? includes=null, IEnumerable&lt; ulong &gt; userIds=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt; enrollmentStates=null)</td></tr>
+<tr class="memdesc:a542b53f52d44e1ecfa2ef32dec384c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the list of users enrolled in a course. <br  />
+ All arguments except for <code>courseId</code> are optional, and serve to narrow (or broaden) the results.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a542b53f52d44e1ecfa2ef32dec384c3f">More...</a><br /></td></tr>
+<tr class="separator:a542b53f52d44e1ecfa2ef32dec384c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48925485d28124a5a8c0305a82d9f348"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Courses_1_1Course.html">Course</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a48925485d28124a5a8c0305a82d9f348">StreamUserCourses</a> (ulong userId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5a">IndividualLevelCourseIncludes</a>? includes=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad510d2c6788a55fcd312335ea1f42b04">CourseStatesAlt</a>? courseStates=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a55c19f1ec68de45aac581faae9bda853">CourseEnrollmentStateAlt</a>? enrollmentState=null, bool? homeroomCoursesOnly=null)</td></tr>
+<tr class="memdesc:a48925485d28124a5a8c0305a82d9f348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the list of courses a user is enrolled in. All arguments except <code>userId</code> are optional, and serve to narrow (or broaden) the results.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a48925485d28124a5a8c0305a82d9f348">More...</a><br /></td></tr>
+<tr class="separator:a48925485d28124a5a8c0305a82d9f348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a9998f433b7bee30fa6abc44f62413"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a77a9998f433b7bee30fa6abc44f62413">StreamRecentCourseUsers</a> (ulong courseId)</td></tr>
+<tr class="memdesc:a77a9998f433b7bee30fa6abc44f62413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the list of users enrolled in a course who have recently logged in.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a77a9998f433b7bee30fa6abc44f62413">More...</a><br /></td></tr>
+<tr class="separator:a77a9998f433b7bee30fa6abc44f62413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac05913f67bbe58ee920c7bf7ba9745ed"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac05913f67bbe58ee920c7bf7ba9745ed">GetCourseTestStudent</a> (ulong courseId)</td></tr>
+<tr class="memdesc:ac05913f67bbe58ee920c7bf7ba9745ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the test student associated with a course. If the course does not already have a test student, a new one is created. The test student is used for the 'Student View' function on the webpage.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac05913f67bbe58ee920c7bf7ba9745ed">More...</a><br /></td></tr>
+<tr class="separator:ac05913f67bbe58ee920c7bf7ba9745ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb286c751c5e26a790dc38154178aab0"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Courses_1_1CourseProgress.html">CourseProgress</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afb286c751c5e26a790dc38154178aab0">GetUserCourseProgress</a> (ulong courseId, ulong? userId=null)</td></tr>
+<tr class="memdesc:afb286c751c5e26a790dc38154178aab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns progress information for a user in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afb286c751c5e26a790dc38154178aab0">More...</a><br /></td></tr>
+<tr class="separator:afb286c751c5e26a790dc38154178aab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c7710cbe94a7aeec01193cc8df98048"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1CustomGradebookColumns_1_1CustomColumn.html">CustomColumn</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a0c7710cbe94a7aeec01193cc8df98048">StreamCustomGradebookColumns</a> (ulong courseId, bool? includeHidden=null)</td></tr>
 <tr class="memdesc:a0c7710cbe94a7aeec01193cc8df98048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the custom gradebook columns in the given course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a0c7710cbe94a7aeec01193cc8df98048">More...</a><br /></td></tr>
 <tr class="separator:a0c7710cbe94a7aeec01193cc8df98048"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -588,9 +637,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a8fe1f4281d23d40f0e4c488d7701f306"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Discussions_1_1TopicEntry.html">TopicEntry</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8fe1f4281d23d40f0e4c488d7701f306">ListGroupDiscussionTopicEntries</a> (ulong groupId, ulong topicId)</td></tr>
 <tr class="memdesc:a8fe1f4281d23d40f0e4c488d7701f306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of discussion topic entries for a group topic, given the group and topic IDs.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8fe1f4281d23d40f0e4c488d7701f306">More...</a><br /></td></tr>
 <tr class="separator:a8fe1f4281d23d40f0e4c488d7701f306"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f4118dec0e70e3f78add75061f4e93e"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7f4118dec0e70e3f78add75061f4e93e">CreateEnrollment</a> (ulong courseId, ulong userId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">CourseEnrollmentType</a> enrollmentType, ulong? roleId=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a>? enrollmentState=null, ulong? courseSectionId=null, bool? limitPrivilegesToSection=null, bool? notify=null, string selfEnrollmentCode=null, bool? selfEnrolled=null, ulong? associatedUserId=null)</td></tr>
-<tr class="memdesc:a7f4118dec0e70e3f78add75061f4e93e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enrolls a user in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7f4118dec0e70e3f78add75061f4e93e">More...</a><br /></td></tr>
-<tr class="separator:a7f4118dec0e70e3f78add75061f4e93e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5af5f8adf7bf8aa752a5997421bffad7"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5af5f8adf7bf8aa752a5997421bffad7">CreateEnrollment</a> (ulong courseId, ulong userId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> enrollmentType, ulong? roleId=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a>? enrollmentState=null, ulong? courseSectionId=null, bool? limitPrivilegesToSection=null, bool? notify=null, string selfEnrollmentCode=null, bool? selfEnrolled=null, ulong? associatedUserId=null)</td></tr>
+<tr class="memdesc:a5af5f8adf7bf8aa752a5997421bffad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enrolls a user in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5af5f8adf7bf8aa752a5997421bffad7">More...</a><br /></td></tr>
+<tr class="separator:a5af5f8adf7bf8aa752a5997421bffad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ba5fd2185316522ec727b798f62fd73"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8ba5fd2185316522ec727b798f62fd73">ConcludeEnrollment</a> (ulong courseId, ulong enrollmentId)</td></tr>
 <tr class="memdesc:a8ba5fd2185316522ec727b798f62fd73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concludes an enrollment without deleting it. <br  />
  This is the same action that occurs automatically when the user reaches the end of their time in the course, such as at the end of the school year.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8ba5fd2185316522ec727b798f62fd73">More...</a><br /></td></tr>
@@ -610,12 +659,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a49e5375e75b3625fcef2ab3bc1d89a5a"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a49e5375e75b3625fcef2ab3bc1d89a5a">ReactivateEnrollment</a> (ulong courseId, ulong enrollmentId)</td></tr>
 <tr class="memdesc:a49e5375e75b3625fcef2ab3bc1d89a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350ea4d3d769b812b6faa6b76e1a8abaece2d">Reactivate</a> an enrollment that is <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350ea3cab03c00dbd11bc3569afa0748013f0">inactive</a>.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a49e5375e75b3625fcef2ab3bc1d89a5a">More...</a><br /></td></tr>
 <tr class="separator:a49e5375e75b3625fcef2ab3bc1d89a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8140f850d4ce742f66667b6b822763cd"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8140f850d4ce742f66667b6b822763cd">StreamCourseEnrollments</a> (ulong courseId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">CourseEnrollmentType</a> &gt; types=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt; states=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a>? includes=null)</td></tr>
-<tr class="memdesc:a8140f850d4ce742f66667b6b822763cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all enrollments for the course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8140f850d4ce742f66667b6b822763cd">More...</a><br /></td></tr>
-<tr class="separator:a8140f850d4ce742f66667b6b822763cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80e1bc402ef0cf1be1ec77e354519f10"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a80e1bc402ef0cf1be1ec77e354519f10">StreamUserEnrollments</a> (ulong userId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">CourseEnrollmentType</a> &gt; types=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt; states=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a>? includes=null, ulong? gradingPeriodId=null)</td></tr>
-<tr class="memdesc:a80e1bc402ef0cf1be1ec77e354519f10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all enrollments for the user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a80e1bc402ef0cf1be1ec77e354519f10">More...</a><br /></td></tr>
-<tr class="separator:a80e1bc402ef0cf1be1ec77e354519f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addb88b37227e50f4d33456a5703d24a5"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#addb88b37227e50f4d33456a5703d24a5">StreamCourseEnrollments</a> (ulong courseId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> &gt; types=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt; states=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a>? includes=null)</td></tr>
+<tr class="memdesc:addb88b37227e50f4d33456a5703d24a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all enrollments for the course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#addb88b37227e50f4d33456a5703d24a5">More...</a><br /></td></tr>
+<tr class="separator:addb88b37227e50f4d33456a5703d24a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c2b320767a26f06bd2aca4da9e5855d"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2c2b320767a26f06bd2aca4da9e5855d">StreamUserEnrollments</a> (ulong userId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> &gt; types=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt; states=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a>? includes=null, ulong? gradingPeriodId=null)</td></tr>
+<tr class="memdesc:a2c2b320767a26f06bd2aca4da9e5855d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all enrollments for the user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2c2b320767a26f06bd2aca4da9e5855d">More...</a><br /></td></tr>
+<tr class="separator:a2c2b320767a26f06bd2aca4da9e5855d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98d46d8a43486d3d726b71fadac7a5e1"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTerm.html">EnrollmentTerm</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a98d46d8a43486d3d726b71fadac7a5e1">StreamEnrollmentTerms</a> (ulong? accountId=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a6f1fefdc43795ea64ae5a77b0e8e99a4">EnrollmentTermWorkflowStateFilter</a>? workflowState=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac24f83fa9e3a0d9b2a008219f762f0ff">EnrollmentTermIncludes</a>? includes=null)</td></tr>
 <tr class="memdesc:a98d46d8a43486d3d726b71fadac7a5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the enrollment terms for an account.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a98d46d8a43486d3d726b71fadac7a5e1">More...</a><br /></td></tr>
 <tr class="separator:a98d46d8a43486d3d726b71fadac7a5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1104,6 +1153,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="a652a2470c5604d0b6ee81b14d74b6746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a652a2470c5604d0b6ee81b14d74b6746">&#9670;&nbsp;</a></span>CourseEnrollmentRoleTypes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">UVACanvasAccess.ApiParts.Api.CourseEnrollmentRoleTypes</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The types of enrollment a user can have in a course, in terms of enrollment role. </p>
+<p>These are distinct, in Canvas, from the values of <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674" title="The types of enrollment a user can have in a course.">CourseEnrollmentTypes</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a652a2470c5604d0b6ee81b14d74b6746a7eeb5620d4c4756dab3ee5e3870a64e7"></a>StudentEnrollment&#160;</td><td class="fielddoc"><p>The user is a student. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a652a2470c5604d0b6ee81b14d74b6746aac01be8d9896ccae9bd00d582c25d5a3"></a>TeacherEnrollment&#160;</td><td class="fielddoc"><p>The user is a teacher. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a652a2470c5604d0b6ee81b14d74b6746a9bc1ec27b2f06a9085b8c90ce17c85ee"></a>TaEnrollment&#160;</td><td class="fielddoc"><p>The user is a TA. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a652a2470c5604d0b6ee81b14d74b6746ac75ba1bb152472316365be8ca57cf5d4"></a>ObserverEnrollment&#160;</td><td class="fielddoc"><p>The user is an observer. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a652a2470c5604d0b6ee81b14d74b6746a4c478170f404ec85ea5ac8fd6b6bb32b"></a>DesignerEnrollment&#160;</td><td class="fielddoc"><p>The user is a designer. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="af18df6f578d66c20aaf336947cdb350e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af18df6f578d66c20aaf336947cdb350e">&#9670;&nbsp;</a></span>CourseEnrollmentState</h2>
 
@@ -1136,8 +1222,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a74e12faf0bc1411147f2ac08a73ddcfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74e12faf0bc1411147f2ac08a73ddcfe">&#9670;&nbsp;</a></span>CourseEnrollmentType</h2>
+<a id="a55c19f1ec68de45aac581faae9bda853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55c19f1ec68de45aac581faae9bda853">&#9670;&nbsp;</a></span>CourseEnrollmentStateAlt</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1146,7 +1232,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">UVACanvasAccess.ApiParts.Api.CourseEnrollmentType</a></td>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a55c19f1ec68de45aac581faae9bda853">UVACanvasAccess.ApiParts.Api.CourseEnrollmentStateAlt</a></td>
         </tr>
       </table>
   </td>
@@ -1156,19 +1242,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 </div><div class="memdoc">
 
-<p>The types of enrollment a user can have in a course. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a74e12faf0bc1411147f2ac08a73ddcfea7eeb5620d4c4756dab3ee5e3870a64e7"></a>StudentEnrollment&#160;</td><td class="fielddoc"><p>The user is a student. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a74e12faf0bc1411147f2ac08a73ddcfeaac01be8d9896ccae9bd00d582c25d5a3"></a>TeacherEnrollment&#160;</td><td class="fielddoc"><p>The user is a teacher. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a74e12faf0bc1411147f2ac08a73ddcfea9bc1ec27b2f06a9085b8c90ce17c85ee"></a>TaEnrollment&#160;</td><td class="fielddoc"><p>The user is a TA. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a74e12faf0bc1411147f2ac08a73ddcfeac75ba1bb152472316365be8ca57cf5d4"></a>ObserverEnrollment&#160;</td><td class="fielddoc"><p>The user is an observer. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a74e12faf0bc1411147f2ac08a73ddcfea4c478170f404ec85ea5ac8fd6b6bb32b"></a>DesignerEnrollment&#160;</td><td class="fielddoc"><p>The user is a designer. </p>
-</td></tr>
-</table>
+<p>An alternate version of <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e" title="The states of enrollment a user can have in a course.">CourseEnrollmentState</a> used by <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a48925485d28124a5a8c0305a82d9f348">StreamUserCourses()</a>. </p>
 
 </div>
 </div>
@@ -1193,16 +1267,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>The types of enrollment a user can have in a course. </p>
+<p>These are distinct, in Canvas, from the values of <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746" title="The types of enrollment a user can have in a course, in terms of enrollment role.">CourseEnrollmentRoleTypes</a>. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4dc40a69fd35afe32c6db6a6de7ee674a8ab7bbdf01a24e988c50c4cfe9557814"></a>Teacher&#160;</td><td class="fielddoc"><p>The user is a teacher. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a4dc40a69fd35afe32c6db6a6de7ee674aaba064f896dc3eb1653c3b68b9548ef1"></a>Students&#160;</td><td class="fielddoc"><p>The user is a student. </p>
+<tr><td class="fieldname"><a id="a4dc40a69fd35afe32c6db6a6de7ee674af5c0a1c9384c2e25e79ba1abf5d9a037"></a>Student&#160;</td><td class="fielddoc"><p>The user is a student. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a4dc40a69fd35afe32c6db6a6de7ee674a86a1ea3adf8fbb53eb7a9b6b6b01c020"></a>Ta&#160;</td><td class="fielddoc"><p>The user is a TA. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a4dc40a69fd35afe32c6db6a6de7ee674a83d694b8b98b155b8817ac412c4d3e9c"></a>Observer&#160;</td><td class="fielddoc"><p>The user is an observer. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a4dc40a69fd35afe32c6db6a6de7ee674a0aad40f415c9173fcc83acd984c0c83c"></a>Designer&#160;</td><td class="fielddoc"><p>The user is a course designer. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4dc40a69fd35afe32c6db6a6de7ee674a00f42c48f0319e926bc358262da44210"></a>StudentView&#160;</td><td class="fielddoc"><p>The user is a <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac05913f67bbe58ee920c7bf7ba9745ed">test student</a>. </p>
 </td></tr>
 </table>
 
@@ -1305,6 +1382,72 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="fieldname"><a id="a7dfc22b4dd1de677542b0fefd3faf525a5fe6005bf6e415c950c011fb65f12b8f"></a>Deleted&#160;</td><td class="fielddoc"><p>The course has been deleted. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a7dfc22b4dd1de677542b0fefd3faf525ab1c94ca2fbc3e78fc30069c8d0f01680"></a>All&#160;</td><td class="fielddoc"><p>All states; used for searching and filtering. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ad510d2c6788a55fcd312335ea1f42b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad510d2c6788a55fcd312335ea1f42b04">&#9670;&nbsp;</a></span>CourseStatesAlt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad510d2c6788a55fcd312335ea1f42b04">UVACanvasAccess.ApiParts.Api.CourseStatesAlt</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>An alternate version of <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7dfc22b4dd1de677542b0fefd3faf525" title="The types of states a course can have.">CourseStates</a> used by <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a48925485d28124a5a8c0305a82d9f348">StreamUserCourses()</a>. </p>
+
+</div>
+</div>
+<a id="a3771f93cea803957fc9c696c6d894f9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3771f93cea803957fc9c696c6d894f9a">&#9670;&nbsp;</a></span>CourseUserIncludes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9a">UVACanvasAccess.ApiParts.Api.CourseUserIncludes</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Optional data that can be included with results from <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a542b53f52d44e1ecfa2ef32dec384c3f">StreamCourseUsers()</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aa0bd23aac7bdbb5554cc200536fe442f6"></a>Enrollments&#160;</td><td class="fielddoc"><p>Include each user's <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">course enrollment</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aad0f2e5376298c880665077b565ffd7dd"></a>Locked&#160;</td><td class="fielddoc"><p>Include whether the enrollment is locked. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aac510e1bf2d2e48011d5ef951e14b3bca"></a>AvatarUrl&#160;</td><td class="fielddoc"><p>Include each user's avatar url. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aa454eeff038acea95aa44e0bd1054ef90"></a>TestStudent&#160;</td><td class="fielddoc"><p>Include the course's test student with the overall list. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aa713a01ab419f96cb320352765e8791d4"></a>Bio&#160;</td><td class="fielddoc"><p>Include each user's bio. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aa5ec8ccce955a660b7eac981f575c5ec5"></a>CustomLinks&#160;</td><td class="fielddoc"><p>Include each user's custom links supplied by plugins. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aa80babe3887439a6fd3bc8a8b382fa43c"></a>CurrentGradingPeriodScores&#160;</td><td class="fielddoc"><p>Depends on <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9aa0bd23aac7bdbb5554cc200536fe442f6" title="Include each user&#39;s course enrollment.">CourseUserIncludes.Enrollments</a>. Modifies the grades and scores returned with the enrollment objects to be for the current grading period. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3771f93cea803957fc9c696c6d894f9aa755bf05a8e6c3925f7d7d779bc5cfddc"></a>Uuid&#160;</td><td class="fielddoc"><p>Include each user's UUID. </p>
 </td></tr>
 </table>
 
@@ -1562,7 +1705,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Categories of optional data that can be included with Course objects, when fetched individually by ID. </p>
-<p>These options are generally unavailable when fetching courses in bulk, such as by <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa9f2a93868988527eecd7778c1478d7b" title="Asynchronously streams the courses associated with this account.">Api.StreamCourses</a>.</p>
+<p>These options are generally unavailable when fetching courses in bulk, such as by <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa9f2a93868988527eecd7778c1478d7b">StreamCourses()</a>.</p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa4b8306b00e1b77d3c25714c29747d5aab7022b2c572d7686b40e927d088638a3"></a>SyllabusBody&#160;</td><td class="fielddoc"><p>Include the syllabus body. </p>
 </td></tr>
@@ -2778,8 +2921,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a7f4118dec0e70e3f78add75061f4e93e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f4118dec0e70e3f78add75061f4e93e">&#9670;&nbsp;</a></span>CreateEnrollment()</h2>
+<a id="a5af5f8adf7bf8aa752a5997421bffad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5af5f8adf7bf8aa752a5997421bffad7">&#9670;&nbsp;</a></span>CreateEnrollment()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2802,7 +2945,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">CourseEnrollmentType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a>&#160;</td>
           <td class="paramname"><em>enrollmentType</em>, </td>
         </tr>
         <tr>
@@ -4796,6 +4939,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="ac05913f67bbe58ee920c7bf7ba9745ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac05913f67bbe58ee920c7bf7ba9745ed">&#9670;&nbsp;</a></span>GetCourseTestStudent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a>&gt; UVACanvasAccess.ApiParts.Api.GetCourseTestStudent </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the test student associated with a course. If the course does not already have a test student, a new one is created. The test student is used for the 'Student View' function on the webpage. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The test student.</dd></dl>
+
+</div>
+</div>
 <a id="ad6a7243b0c6de5795f1b4978b874c8b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6a7243b0c6de5795f1b4978b874c8b8">&#9670;&nbsp;</a></span>GetDailyGraders()</h2>
 
@@ -5971,6 +6149,52 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The data.</dd></dl>
+
+</div>
+</div>
+<a id="afb286c751c5e26a790dc38154178aab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb286c751c5e26a790dc38154178aab0">&#9670;&nbsp;</a></span>GetUserCourseProgress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Courses_1_1CourseProgress.html">CourseProgress</a>&gt; UVACanvasAccess.ApiParts.Api.GetUserCourseProgress </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?&#160;</td>
+          <td class="paramname"><em>userId</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns progress information for a user in a course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">userId</td><td>The user id. Defaults to 'self'.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The course progress.</dd></dl>
 
 </div>
 </div>
@@ -7859,8 +8083,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a8140f850d4ce742f66667b6b822763cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8140f850d4ce742f66667b6b822763cd">&#9670;&nbsp;</a></span>StreamCourseEnrollments()</h2>
+<a id="addb88b37227e50f4d33456a5703d24a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addb88b37227e50f4d33456a5703d24a5">&#9670;&nbsp;</a></span>StreamCourseEnrollments()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7877,7 +8101,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">CourseEnrollmentType</a> &gt;&#160;</td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> &gt;&#160;</td>
           <td class="paramname"><em>types</em> = <code>null</code>, </td>
         </tr>
         <tr>
@@ -8326,6 +8550,88 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The stream of CourseStudentSummary objects.</dd></dl>
+
+</div>
+</div>
+<a id="a542b53f52d44e1ecfa2ef32dec384c3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a542b53f52d44e1ecfa2ef32dec384c3f">&#9670;&nbsp;</a></span>StreamCourseUsers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a>&gt; UVACanvasAccess.ApiParts.Api.StreamCourseUsers </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>searchTerm</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4dc40a69fd35afe32c6db6a6de7ee674">CourseEnrollmentTypes</a> &gt;&#160;</td>
+          <td class="paramname"><em>enrollmentTypes</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?&#160;</td>
+          <td class="paramname"><em>enrollmentRole</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9a">CourseUserIncludes</a>?&#160;</td>
+          <td class="paramname"><em>includes</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; ulong &gt;&#160;</td>
+          <td class="paramname"><em>userIds</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt;&#160;</td>
+          <td class="paramname"><em>enrollmentStates</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Streams the list of users enrolled in a course. <br  />
+ All arguments except for <code>courseId</code> are optional, and serve to narrow (or broaden) the results. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">searchTerm</td><td>(Optional) The string or numeric id to search by.</td></tr>
+    <tr><td class="paramname">enrollmentTypes</td><td>(Optional) The enrollment types to filter by.</td></tr>
+    <tr><td class="paramname">enrollmentRole</td><td>(Optional) The role id to filter by.</td></tr>
+    <tr><td class="paramname">includes</td><td>Optional data to include with the results. See <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3771f93cea803957fc9c696c6d894f9a" title="Optional data that can be included with results from StreamCourseUsers().">CourseUserIncludes</a>.</td></tr>
+    <tr><td class="paramname">userIds</td><td>(Optional) User ids to filter by.</td></tr>
+    <tr><td class="paramname">enrollmentStates</td><td>(Optional) The enrollment states to filter by.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of users.</dd></dl>
 
 </div>
 </div>
@@ -8956,6 +9262,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="a77a9998f433b7bee30fa6abc44f62413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a9998f433b7bee30fa6abc44f62413">&#9670;&nbsp;</a></span>StreamRecentCourseUsers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a>&gt; UVACanvasAccess.ApiParts.Api.StreamRecentCourseUsers </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Streams the list of users enrolled in a course who have recently logged in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of users, sorted by User.LastLogin.</dd></dl>
+
+</div>
+</div>
 <a id="a3bc06784d03f2a987f07bfcbb3ecd904"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3bc06784d03f2a987f07bfcbb3ecd904">&#9670;&nbsp;</a></span>StreamSentContentShares() <span class="overload">[1/2]</span></h2>
 
@@ -9231,8 +9572,75 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a80e1bc402ef0cf1be1ec77e354519f10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80e1bc402ef0cf1be1ec77e354519f10">&#9670;&nbsp;</a></span>StreamUserEnrollments()</h2>
+<a id="a48925485d28124a5a8c0305a82d9f348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48925485d28124a5a8c0305a82d9f348">&#9670;&nbsp;</a></span>StreamUserCourses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Courses_1_1Course.html">Course</a>&gt; UVACanvasAccess.ApiParts.Api.StreamUserCourses </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>userId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5a">IndividualLevelCourseIncludes</a>?&#160;</td>
+          <td class="paramname"><em>includes</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad510d2c6788a55fcd312335ea1f42b04">CourseStatesAlt</a>?&#160;</td>
+          <td class="paramname"><em>courseStates</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a55c19f1ec68de45aac581faae9bda853">CourseEnrollmentStateAlt</a>?&#160;</td>
+          <td class="paramname"><em>enrollmentState</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>homeroomCoursesOnly</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Streams the list of courses a user is enrolled in. All arguments except <code>userId</code> are optional, and serve to narrow (or broaden) the results. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>The user id.</td></tr>
+    <tr><td class="paramname">includes</td><td>Optional data to include with the results. See <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5a" title="Categories of optional data that can be included with Course objects, when fetched individually by ID...">IndividualLevelCourseIncludes</a>.</td></tr>
+    <tr><td class="paramname">courseStates</td><td>(Optional) The course states to filter by.</td></tr>
+    <tr><td class="paramname">enrollmentState</td><td>(Optional) The enrollment state to filter by.</td></tr>
+    <tr><td class="paramname">homeroomCoursesOnly</td><td>(Optional) If true, only return homeroom courses.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a2c2b320767a26f06bd2aca4da9e5855d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c2b320767a26f06bd2aca4da9e5855d">&#9670;&nbsp;</a></span>StreamUserEnrollments()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -9249,7 +9657,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a74e12faf0bc1411147f2ac08a73ddcfe">CourseEnrollmentType</a> &gt;&#160;</td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> &gt;&#160;</td>
           <td class="paramname"><em>types</em> = <code>null</code>, </td>
         </tr>
         <tr>

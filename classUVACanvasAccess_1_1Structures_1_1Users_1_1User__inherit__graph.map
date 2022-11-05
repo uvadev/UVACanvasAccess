@@ -1,5 +1,5 @@
 <map id="UVACanvasAccess.Structures.Users.User" name="UVACanvasAccess.Structures.Users.User">
-<area shape="rect" id="node1" title=" " alt="" coords="35,80,251,121"/>
+<area shape="rect" id="node1" title="Represents a user." alt="" coords="35,80,251,121"/>
 <area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="5,5,100,32"/>
 <area shape="rect" id="node3" href="$interfaceUVACanvasAccess_1_1Util_1_1IAppointmentGroupParticipant.html" title="Indicates that implementing classes can be participants in an appointment group." alt="" coords="125,5,343,32"/>
 </map>

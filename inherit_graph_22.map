@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$interfaceUVACanvasAccess_1_1Util_1_1IAppointmentGroupParticipant.html" title="Indicates that implementing classes can be participants in an appointment group." alt="" coords="5,39,267,80"/>
 <area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Groups_1_1Group.html" title=" " alt="" coords="356,71,572,112"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html" title=" " alt="" coords="356,5,572,47"/>
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html" title="Represents a user." alt="" coords="356,5,572,47"/>
 <area shape="rect" id="node4" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="28,2911,244,2952"/>
 <area shape="rect" id="node5" href="$classUVACanvasAccess_1_1Structures_1_1Accounts_1_1Account.html" title="Represents a Canvas account." alt="" coords="356,528,572,569"/>
 <area shape="rect" id="node6" href="$classUVACanvasAccess_1_1Structures_1_1Accounts_1_1HelpLink.html" title="Represents an account help link." alt="" coords="356,593,572,635"/>
