@@ -6,26 +6,50 @@ using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.GradingPeriods {
     
+    /// <summary>
+    /// Represents a grading period.
+    /// </summary>
     [PublicAPI]
     public class GradingPeriod : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
+        /// <summary>
+        /// The grading period id.
+        /// </summary>
         public ulong Id { get; }
         
+        /// <summary>
+        /// The title of the grading period.
+        /// </summary>
         public string Title { get; }
         
+        /// <summary>
+        /// The start date of the grading period.
+        /// </summary>
         public DateTime? StartDate { get; }
 
+        /// <summary>
+        /// The end date of the grading period.
+        /// </summary>
         public DateTime? EndDate { get; }
         
+        /// <summary>
+        /// The close date of the grading period.
+        /// </summary>
         public DateTime? CloseDate { get; }
         
+        /// <summary>
+        /// The weight value of the grading period.
+        /// </summary>
         public double? Weight { get; }
         
+        /// <summary>
+        /// Whether the grading period is closed.
+        /// </summary>
         public bool? IsClosed { get; }
         
         internal GradingPeriod(Api api, GradingPeriodModel model) {
-            _api = api;
+            this.api = api;
             Id = model.Id;
             Title = model.Title;
             StartDate = model.StartDate;
@@ -35,6 +59,7 @@ namespace UVACanvasAccess.Structures.GradingPeriods {
             IsClosed = model.IsClosed;
         }
 
+        /// <inheritdoc />
         public string ToPrettyString() {
             return "GradingPeriod {" +
                    ($"\n{nameof(Id)}: {Id}," +

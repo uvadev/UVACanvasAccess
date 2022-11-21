@@ -24,6 +24,13 @@ namespace UVACanvasAccess.Model.Sections {
         [JsonProperty("sis_import_id")]
         public ulong? SisImportId { get; set; }
         
+        [JsonProperty("course_id")]
+        public ulong? CourseId { get; set; }
+        
+        [JsonProperty("sis_course_id")]
+        [CanBeNull]
+        public string SisCourseId { get; set; }
+        
         [JsonProperty("start_at")]
         public DateTime? StartAt { get; set; }
         

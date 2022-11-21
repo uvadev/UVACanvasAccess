@@ -669,6 +669,12 @@ namespace UVACanvasAccess.Util {
                    state == SisImportState.ImportedWithMessages ||
                    state == SisImportState.Restored ||
                    state == SisImportState.PartiallyRestored;
-        } 
+        }
+
+        internal static Task<HttpResponseMessage> PatchAsync(this HttpClient client, string requestUri, HttpContent content) {
+            return client.SendAsync(new HttpRequestMessage(new HttpMethod("PATCH"), requestUri) {
+                Content = content
+            });
+        }
     }
 }
