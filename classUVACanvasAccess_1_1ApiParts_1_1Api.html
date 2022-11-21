@@ -755,6 +755,39 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af12eab54eeab53f82e5360a07cd088f0"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af12eab54eeab53f82e5360a07cd088f0">StreamGradingPeriods</a> (ulong courseId)</td></tr>
 <tr class="memdesc:af12eab54eeab53f82e5360a07cd088f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all grading periods in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af12eab54eeab53f82e5360a07cd088f0">More...</a><br /></td></tr>
 <tr class="separator:af12eab54eeab53f82e5360a07cd088f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a29cb9d9268a372f383df4fdef27935"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8a29cb9d9268a372f383df4fdef27935">StreamAccountGradingPeriods</a> (ulong accountId)</td></tr>
+<tr class="memdesc:a8a29cb9d9268a372f383df4fdef27935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all grading periods in an account.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8a29cb9d9268a372f383df4fdef27935">More...</a><br /></td></tr>
+<tr class="separator:a8a29cb9d9268a372f383df4fdef27935"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a776f97a9a8797c0ee5941e6226f8eaae"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a776f97a9a8797c0ee5941e6226f8eaae">GetGradingPeriod</a> (ulong courseId, ulong gradingPeriodId)</td></tr>
+<tr class="memdesc:a776f97a9a8797c0ee5941e6226f8eaae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a grading period by its id.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a776f97a9a8797c0ee5941e6226f8eaae">More...</a><br /></td></tr>
+<tr class="separator:a776f97a9a8797c0ee5941e6226f8eaae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d82b59092cade0a2e57f9da23351f2"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad5d82b59092cade0a2e57f9da23351f2">UpdateGradingPeriod</a> (ulong courseId, ulong gradingPeriodId, DateTime? startDate=null, DateTime? endDate=null, double? weight=null)</td></tr>
+<tr class="memdesc:ad5d82b59092cade0a2e57f9da23351f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a single grading period.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad5d82b59092cade0a2e57f9da23351f2">More...</a><br /></td></tr>
+<tr class="separator:ad5d82b59092cade0a2e57f9da23351f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9fbd7ef3c32ab1e59a8ae22b9b6095e"><td class="memItemLeft" align="right" valign="top">IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa9fbd7ef3c32ab1e59a8ae22b9b6095e">BatchUpdateGradingPeriods</a> (ulong gradingPeriodSetId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriodUpdate.html">GradingPeriodUpdate</a> &gt; gradingPeriodUpdates)</td></tr>
+<tr class="memdesc:aa9fbd7ef3c32ab1e59a8ae22b9b6095e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a batch update on grading periods within a grading period set. Existing grading periods can be updated, and new ones created.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa9fbd7ef3c32ab1e59a8ae22b9b6095e">More...</a><br /></td></tr>
+<tr class="separator:aa9fbd7ef3c32ab1e59a8ae22b9b6095e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580425ce512d77231a82115496b416f4"><td class="memItemLeft" align="right" valign="top">IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a580425ce512d77231a82115496b416f4">BatchUpdateCourseGradingPeriods</a> (ulong courseId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriodUpdate.html">GradingPeriodUpdate</a> &gt; gradingPeriodUpdates)</td></tr>
+<tr class="memdesc:a580425ce512d77231a82115496b416f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a batch update on grading periods within a course. Existing grading periods can be updated, and new ones created.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a580425ce512d77231a82115496b416f4">More...</a><br /></td></tr>
+<tr class="separator:a580425ce512d77231a82115496b416f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a605d0f4924e326662f51df4afc854412"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a605d0f4924e326662f51df4afc854412">DeleteGradingPeriod</a> (ulong courseId, ulong gradingPeriodId)</td></tr>
+<tr class="memdesc:a605d0f4924e326662f51df4afc854412"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a grading period in a course.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a605d0f4924e326662f51df4afc854412">More...</a><br /></td></tr>
+<tr class="separator:a605d0f4924e326662f51df4afc854412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf7fa2c22998338a9598d9898fef088f"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aaf7fa2c22998338a9598d9898fef088f">DeleteAccountGradingPeriod</a> (ulong accountId, ulong gradingPeriodId)</td></tr>
+<tr class="memdesc:aaf7fa2c22998338a9598d9898fef088f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a grading period in an account.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aaf7fa2c22998338a9598d9898fef088f">More...</a><br /></td></tr>
+<tr class="separator:aaf7fa2c22998338a9598d9898fef088f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5fc88edb2a8ceb4b68bb0ac5080d295"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriodSets_1_1GradingPeriodSet.html">GradingPeriodSet</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af5fc88edb2a8ceb4b68bb0ac5080d295">StreamGradingPeriodSets</a> (ulong accountId)</td></tr>
+<tr class="memdesc:af5fc88edb2a8ceb4b68bb0ac5080d295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all grading period sets in an account.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af5fc88edb2a8ceb4b68bb0ac5080d295">More...</a><br /></td></tr>
+<tr class="separator:af5fc88edb2a8ceb4b68bb0ac5080d295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a675f737771f8731da87737aa36b74"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriodSets_1_1GradingPeriodSet.html">GradingPeriodSet</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad2a675f737771f8731da87737aa36b74">CreateGradingPeriodSet</a> (ulong accountId, string title, [CanBeNull] IEnumerable&lt; ulong &gt; termIds=null, bool? weighted=null, bool? displayTotalsForAllGradingPeriods=null)</td></tr>
+<tr class="memdesc:ad2a675f737771f8731da87737aa36b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new grading period set.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad2a675f737771f8731da87737aa36b74">More...</a><br /></td></tr>
+<tr class="separator:ad2a675f737771f8731da87737aa36b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a891247162c57d0f09f644c0ef8c7d793"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a891247162c57d0f09f644c0ef8c7d793">UpdateGradingPeriodSet</a> (ulong accountId, ulong gradingPeriodSetId, [CanBeNull] string title=null, [CanBeNull] IEnumerable&lt; ulong &gt; termIds=null, bool? weighted=null, bool? displayTotalsForAllGradingPeriods=null)</td></tr>
+<tr class="memdesc:a891247162c57d0f09f644c0ef8c7d793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates an existing grading period set.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a891247162c57d0f09f644c0ef8c7d793">More...</a><br /></td></tr>
+<tr class="separator:a891247162c57d0f09f644c0ef8c7d793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac740d6bd00655b34de3d6bca2da2122e"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac740d6bd00655b34de3d6bca2da2122e">DeleteGradingPeriodSet</a> (ulong accountId, ulong gradingPeriodSetId)</td></tr>
+<tr class="memdesc:ac740d6bd00655b34de3d6bca2da2122e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a grading period set.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac740d6bd00655b34de3d6bca2da2122e">More...</a><br /></td></tr>
+<tr class="separator:ac740d6bd00655b34de3d6bca2da2122e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affb08f0e4391094729a8c64c2941b34c"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html">ActivityStreamObject</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#affb08f0e4391094729a8c64c2941b34c">GetActivityStream</a> (bool? onlyActiveCourses=null)</td></tr>
 <tr class="memdesc:affb08f0e4391094729a8c64c2941b34c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the activity stream for the current user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#affb08f0e4391094729a8c64c2941b34c">More...</a><br /></td></tr>
 <tr class="separator:affb08f0e4391094729a8c64c2941b34c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2246,6 +2279,98 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="a580425ce512d77231a82115496b416f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a580425ce512d77231a82115496b416f4">&#9670;&nbsp;</a></span>BatchUpdateCourseGradingPeriods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a>&gt; UVACanvasAccess.ApiParts.Api.BatchUpdateCourseGradingPeriods </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriodUpdate.html">GradingPeriodUpdate</a> &gt;&#160;</td>
+          <td class="paramname"><em>gradingPeriodUpdates</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform a batch update on grading periods within a course. Existing grading periods can be updated, and new ones created. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">gradingPeriodUpdates</td><td>The list of updates.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of new and updated grading periods.</dd></dl>
+
+</div>
+</div>
+<a id="aa9fbd7ef3c32ab1e59a8ae22b9b6095e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9fbd7ef3c32ab1e59a8ae22b9b6095e">&#9670;&nbsp;</a></span>BatchUpdateGradingPeriods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a>&gt; UVACanvasAccess.ApiParts.Api.BatchUpdateGradingPeriods </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>gradingPeriodSetId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriodUpdate.html">GradingPeriodUpdate</a> &gt;&#160;</td>
+          <td class="paramname"><em>gradingPeriodUpdates</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform a batch update on grading periods within a grading period set. Existing grading periods can be updated, and new ones created. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gradingPeriodSetId</td><td>The grading period set id.</td></tr>
+    <tr><td class="paramname">gradingPeriodUpdates</td><td>The list of updates.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of new and updated grading periods.</dd></dl>
+
+</div>
+</div>
 <a id="adda7b0b5d66933c8c42dada1bd05297c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adda7b0b5d66933c8c42dada1bd05297c">&#9670;&nbsp;</a></span>ConcludeCourse()</h2>
 
@@ -3077,6 +3202,73 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="ad2a675f737771f8731da87737aa36b74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a675f737771f8731da87737aa36b74">&#9670;&nbsp;</a></span>CreateGradingPeriodSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriodSets_1_1GradingPeriodSet.html">GradingPeriodSet</a>&gt; UVACanvasAccess.ApiParts.Api.CreateGradingPeriodSet </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>accountId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CanBeNull] IEnumerable&lt; ulong &gt;&#160;</td>
+          <td class="paramname"><em>termIds</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>weighted</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>displayTotalsForAllGradingPeriods</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new grading period set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accountId</td><td>The id of the account under which to create the grading period set.</td></tr>
+    <tr><td class="paramname">title</td><td>The title of the set.</td></tr>
+    <tr><td class="paramname">termIds</td><td>Optional; Term ids to associate with the set.</td></tr>
+    <tr><td class="paramname">weighted</td><td>Optional; Whether the set is weighted.</td></tr>
+    <tr><td class="paramname">displayTotalsForAllGradingPeriods</td><td>Optional; Whether the totals for all grading periods in the set are displayed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly created set.</dd></dl>
+
+</div>
+</div>
 <a id="a1d06fffe78100cb4342ea033d2da0497"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d06fffe78100cb4342ea033d2da0497">&#9670;&nbsp;</a></span>CreatePersonalFolder()</h2>
 
@@ -3388,6 +3580,51 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether or not the operation was successful.</dd></dl>
+
+</div>
+</div>
+<a id="aaf7fa2c22998338a9598d9898fef088f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf7fa2c22998338a9598d9898fef088f">&#9670;&nbsp;</a></span>DeleteAccountGradingPeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task UVACanvasAccess.ApiParts.Api.DeleteAccountGradingPeriod </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>accountId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>gradingPeriodId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes a grading period in an account. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accountId</td><td>The id of the account the grading period belongs to.</td></tr>
+    <tr><td class="paramname">gradingPeriodId</td><td>The id of the grading period.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -3714,6 +3951,96 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The now-deleted EnrollmentTerm.</dd></dl>
+
+</div>
+</div>
+<a id="a605d0f4924e326662f51df4afc854412"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a605d0f4924e326662f51df4afc854412">&#9670;&nbsp;</a></span>DeleteGradingPeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task UVACanvasAccess.ApiParts.Api.DeleteGradingPeriod </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>gradingPeriodId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes a grading period in a course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The id of the course the grading period belongs to.</td></tr>
+    <tr><td class="paramname">gradingPeriodId</td><td>The id of the grading period.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac740d6bd00655b34de3d6bca2da2122e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac740d6bd00655b34de3d6bca2da2122e">&#9670;&nbsp;</a></span>DeleteGradingPeriodSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task UVACanvasAccess.ApiParts.Api.DeleteGradingPeriodSet </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>accountId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>gradingPeriodSetId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes a grading period set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accountId</td><td>The id of the account the grading period set belongs to.</td></tr>
+    <tr><td class="paramname">gradingPeriodSetId</td><td>The id of the grading period set.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -5434,6 +5761,52 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The list of days.</dd></dl>
+
+</div>
+</div>
+<a id="a776f97a9a8797c0ee5941e6226f8eaae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a776f97a9a8797c0ee5941e6226f8eaae">&#9670;&nbsp;</a></span>GetGradingPeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a>&gt; UVACanvasAccess.ApiParts.Api.GetGradingPeriod </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>gradingPeriodId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a grading period by its id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The id of the course the grading period belongs to.</td></tr>
+    <tr><td class="paramname">gradingPeriodId</td><td>The id of the grading period.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The grading period.</dd></dl>
 
 </div>
 </div>
@@ -7493,6 +7866,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="a8a29cb9d9268a372f383df4fdef27935"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a29cb9d9268a372f383df4fdef27935">&#9670;&nbsp;</a></span>StreamAccountGradingPeriods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a>&gt; UVACanvasAccess.ApiParts.Api.StreamAccountGradingPeriods </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>accountId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Streams all grading periods in an account. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accountId</td><td>The account id.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of GradingPeriods.</dd></dl>
+
+</div>
+</div>
 <a id="a3c1b3071d34f05d63d5662d72bd90e95"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c1b3071d34f05d63d5662d72bd90e95">&#9670;&nbsp;</a></span>StreamAccounts()</h2>
 
@@ -8819,6 +9227,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The stream of GradingPeriods.</dd></dl>
+
+</div>
+</div>
+<a id="af5fc88edb2a8ceb4b68bb0ac5080d295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5fc88edb2a8ceb4b68bb0ac5080d295">&#9670;&nbsp;</a></span>StreamGradingPeriodSets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriodSets_1_1GradingPeriodSet.html">GradingPeriodSet</a>&gt; UVACanvasAccess.ApiParts.Api.StreamGradingPeriodSets </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>accountId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Streams all grading period sets in an account. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accountId</td><td>The account id.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of grading period sets.</dd></dl>
 
 </div>
 </div>
@@ -10207,6 +10650,146 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="ad5d82b59092cade0a2e57f9da23351f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5d82b59092cade0a2e57f9da23351f2">&#9670;&nbsp;</a></span>UpdateGradingPeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1GradingPeriods_1_1GradingPeriod.html">GradingPeriod</a>&gt; UVACanvasAccess.ApiParts.Api.UpdateGradingPeriod </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>gradingPeriodId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DateTime?&#160;</td>
+          <td class="paramname"><em>startDate</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DateTime?&#160;</td>
+          <td class="paramname"><em>endDate</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double?&#160;</td>
+          <td class="paramname"><em>weight</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates a single grading period. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The id of the course the grading period belongs to.</td></tr>
+    <tr><td class="paramname">gradingPeriodId</td><td>The id of the grading period.</td></tr>
+    <tr><td class="paramname">startDate</td><td>Optional; The new start date.</td></tr>
+    <tr><td class="paramname">endDate</td><td>Optional; The new end date.</td></tr>
+    <tr><td class="paramname">weight</td><td>Optional; The new weight.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The updated grading period.</dd></dl>
+
+</div>
+</div>
+<a id="a891247162c57d0f09f644c0ef8c7d793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a891247162c57d0f09f644c0ef8c7d793">&#9670;&nbsp;</a></span>UpdateGradingPeriodSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task UVACanvasAccess.ApiParts.Api.UpdateGradingPeriodSet </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>accountId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>gradingPeriodSetId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CanBeNull] string&#160;</td>
+          <td class="paramname"><em>title</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CanBeNull] IEnumerable&lt; ulong &gt;&#160;</td>
+          <td class="paramname"><em>termIds</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>weighted</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>displayTotalsForAllGradingPeriods</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates an existing grading period set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accountId</td><td>The account id.</td></tr>
+    <tr><td class="paramname">gradingPeriodSetId</td><td>The grading period set id.</td></tr>
+    <tr><td class="paramname">title</td><td>Optional; The new title.</td></tr>
+    <tr><td class="paramname">termIds</td><td>Optional; The new list of term ids to associate with the set.</td></tr>
+    <tr><td class="paramname">weighted</td><td>Optional; The new value of this setting.</td></tr>
+    <tr><td class="paramname">displayTotalsForAllGradingPeriods</td><td>Optional; The new value of this setting.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a8b7e38578113dc192dd9678333a0a50c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b7e38578113dc192dd9678333a0a50c">&#9670;&nbsp;</a></span>UpdatePersonalFile()</h2>
 
@@ -10392,6 +10975,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <li>UVACanvasAccess/ApiParts/Gradebook.cs</li>
 <li>UVACanvasAccess/ApiParts/GradeChangelog.cs</li>
 <li>UVACanvasAccess/ApiParts/GradingPeriods.cs</li>
+<li>UVACanvasAccess/ApiParts/GradingPeriodSets.cs</li>
 <li>UVACanvasAccess/ApiParts/Misc.cs</li>
 <li>UVACanvasAccess/ApiParts/Modules.cs</li>
 <li>UVACanvasAccess/ApiParts/Observers.cs</li>

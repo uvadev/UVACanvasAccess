@@ -1,10 +1,21 @@
 var searchData=
 [
-  ['read_1557',['Read',['../namespaceUVACanvasAccess_1_1Structures_1_1Conversations.html#a4ecd7d40ffb1a3df6504e1c34d1d9ee9a7a1a5f3e79fdc91edf2f5ead9d66abb4',1,'UVACanvasAccess::Structures::Conversations']]],
-  ['recentactivity_1558',['RecentActivity',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251aa3b0d0194f0f3b4a924fd390117902d5c',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['registrationsettings_1559',['RegistrationSettings',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#af7ff0dc84633a609585a087b86e198daa809d230b3d9667fb59d663db7d1bf0a5',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['rename_1560',['Rename',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#afb1a2c75bf04d00ea4ba3b3f2fea0ab4a904a8304056d77e4547744781b7ceb50',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['reservable_1561',['Reservable',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa33b24772dcf732e167198a6b2ebbe01a54cfacf8c8c8de0d97eacc1c9324108f',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['reservations_1562',['Reservations',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a67f853b2c60a15d40dce654f3f2d089ea88497539356974df1c84efccd78c4cbb',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['reservedtimes_1563',['ReservedTimes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a67f853b2c60a15d40dce654f3f2d089eaea4cec08378a52ef37d93f3aa072613c',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['pageviews_1630',['PageViews',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1a09f1425d0398b297014a5b5ff5c87aac84de7b3b1c628b403f5c1e404d4ea94',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['pageviewsdescending_1631',['PageViewsDescending',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1a09f1425d0398b297014a5b5ff5c87aa042f68b1a6189eef94dbbcaf1eadeeb6',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['participantcount_1632',['ParticipantCount',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a67f853b2c60a15d40dce654f3f2d089ea2f763113175e55f3906f14366d0f0c67',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['participations_1633',['Participations',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1a09f1425d0398b297014a5b5ff5c87aa145f62e989b5061bfc09361f9a3d9253',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['participationsdescending_1634',['ParticipationsDescending',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1a09f1425d0398b297014a5b5ff5c87aa1ab09923cf48144b13a224ed5b598c02',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['passbackstatus_1635',['PassbackStatus',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5aa42a60db298e53fe2ccafb750adedf875',1,'UVACanvasAccess.ApiParts.Api.PassbackStatus()'],['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ab267c69700d39cf9b330de94a9905be6a42a60db298e53fe2ccafb750adedf875',1,'UVACanvasAccess.ApiParts.Api.PassbackStatus()']]],
+  ['passfail_1636',['PassFail',['../namespaceUVACanvasAccess_1_1Structures_1_1Assignments.html#a19deeacd2bcee4ec6290e881f2a86086ad3298c6c94b6658eb6019722a60dfb53',1,'UVACanvasAccess::Structures::Assignments']]],
+  ['past_1637',['Past',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a53e10da8ba76a5e8cd40eb50456cb0d0aa1636c2eb59276c90393af90ecce56db',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['percent_1638',['Percent',['../namespaceUVACanvasAccess_1_1Structures_1_1Assignments.html#a19deeacd2bcee4ec6290e881f2a86086aadaaee4b22041c27198d410c68d952c9',1,'UVACanvasAccess::Structures::Assignments']]],
+  ['permissions_1639',['Permissions',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5aad08ccf52b4cdd08e41cfb99ec42e0b29',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['pinned_1640',['Pinned',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a2b6679eda9ad6a1c8b728830d1fe8df8a3c5e891bff07947cbae2fda89162df9f',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['points_1641',['Points',['../namespaceUVACanvasAccess_1_1Structures_1_1Assignments.html#a19deeacd2bcee4ec6290e881f2a86086a75dd5f1160a3f02b6fae89c54361a1b3',1,'UVACanvasAccess::Structures::Assignments']]],
+  ['position_1642',['Position',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a433682d48da2eeedac4166d2feb0251aa52f5e0bc3859bc5f5e25130b6c7e8881',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['practicequiz_1643',['PracticeQuiz',['../namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#a86de1e22822d11bbfdc7cf647b9dbaa1ac3cdf1f52ec84101f40845f4838e4bb9',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['private_1644',['Private',['../namespaceUVACanvasAccess_1_1Structures_1_1Courses.html#a93b32e716176538a8e83ae82cd52c03ca47f9082fc380ca62d531096aa1d110f1',1,'UVACanvasAccess::Structures::Courses']]],
+  ['publicdescription_1645',['PublicDescription',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5aa05a6b17483df2574c94bd1e638ccfec4',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['publicdomain_1646',['PublicDomain',['../namespaceUVACanvasAccess_1_1Structures_1_1Courses.html#a93b32e716176538a8e83ae82cd52c03ca8c5daa18f59fc18f064a2a8b291e8afb',1,'UVACanvasAccess::Structures::Courses']]],
+  ['publish_1647',['Publish',['../classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#affb588efec9edd1f3bbab2093d1543e8a110a4b01beabd53b661a47d4b44bd7a8',1,'UVACanvasAccess::Builders::CourseBuilder']]]
 ];

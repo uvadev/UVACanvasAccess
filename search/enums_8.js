@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['moduleincludetype_1464',['ModuleIncludeType',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a87b66ae46b2529b073dd083e59e43085',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['license_1545',['License',['../namespaceUVACanvasAccess_1_1Structures_1_1Courses.html#a93b32e716176538a8e83ae82cd52c03c',1,'UVACanvasAccess::Structures::Courses']]]
 ];

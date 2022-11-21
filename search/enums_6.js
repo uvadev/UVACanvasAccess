@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['individuallevelcourseincludes_1462',['IndividualLevelCourseIncludes',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa4b8306b00e1b77d3c25714c29747d5a',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['hideresults_1543',['HideResults',['../namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#ae8797638bc74cb13183e671456e1dfc4',1,'UVACanvasAccess::Structures::Quizzes']]]
 ];
