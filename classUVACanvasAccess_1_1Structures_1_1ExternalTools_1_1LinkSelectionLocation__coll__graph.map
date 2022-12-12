@@ -1,8 +1,9 @@
 <map id="UVACanvasAccess.Structures.ExternalTools.LinkSelectionLocation" name="UVACanvasAccess.Structures.ExternalTools.LinkSelectionLocation">
-<area shape="rect" id="node1" title=" " alt="" coords="193,171,447,212"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="39,95,196,121"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,5,229,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="221,95,291,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="315,95,455,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="479,95,558,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="193,247,447,288"/>
+<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="39,171,196,197"/>
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,81,229,108"/>
+<area shape="rect" id="node4" title=" " alt="" coords="68,5,167,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="221,171,291,197"/>
+<area shape="rect" id="node6" title=" " alt="" coords="315,171,455,197"/>
+<area shape="rect" id="node7" title=" " alt="" coords="479,171,558,197"/>
 </map>

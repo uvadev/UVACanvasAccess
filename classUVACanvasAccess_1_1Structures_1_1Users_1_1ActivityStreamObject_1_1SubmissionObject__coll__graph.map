@@ -1,5 +1,6 @@
 <map id="UVACanvasAccess.Structures.Users.ActivityStreamObject.SubmissionObject" name="UVACanvasAccess.Structures.Users.ActivityStreamObject.SubmissionObject">
-<area shape="rect" id="node1" title=" " alt="" coords="5,171,287,227"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html" title=" " alt="" coords="65,95,227,121"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="34,5,258,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,247,287,303"/>
+<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html" title=" " alt="" coords="65,171,227,197"/>
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="34,81,258,108"/>
+<area shape="rect" id="node4" title=" " alt="" coords="97,5,195,32"/>
 </map>

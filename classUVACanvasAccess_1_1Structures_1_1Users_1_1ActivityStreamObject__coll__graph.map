@@ -1,4 +1,5 @@
 <map id="UVACanvasAccess.Structures.Users.ActivityStreamObject" name="UVACanvasAccess.Structures.Users.ActivityStreamObject">
-<area shape="rect" id="node1" title=" " alt="" coords="9,95,225,136"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,5,229,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="9,171,225,212"/>
+<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,81,229,108"/>
+<area shape="rect" id="node3" title=" " alt="" coords="68,5,167,32"/>
 </map>

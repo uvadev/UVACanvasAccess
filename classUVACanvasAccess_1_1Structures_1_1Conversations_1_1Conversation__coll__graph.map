@@ -1,5 +1,6 @@
 <map id="UVACanvasAccess.Structures.Conversations.Conversation" name="UVACanvasAccess.Structures.Conversations.Conversation">
-<area shape="rect" id="node1" title="Summarizes a conversation thread between 2 or more users." alt="" coords="37,95,253,136"/>
-<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="125,5,349,32"/>
+<area shape="rect" id="node1" title="Summarizes a conversation thread between 2 or more users." alt="" coords="5,171,221,212"/>
+<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="45,81,139,108"/>
+<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="164,81,388,108"/>
+<area shape="rect" id="node4" title=" " alt="" coords="227,5,325,32"/>
 </map>
