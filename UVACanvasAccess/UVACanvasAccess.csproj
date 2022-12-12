@@ -422,6 +422,7 @@
     <Compile Include="Structures\SisImports\SisImport.cs" />
     <Compile Include="Structures\SisImports\SisImportCounts.cs" />
     <Compile Include="Structures\SisImports\SisImportData.cs" />
+    <Compile Include="Structures\SisImports\SisImportMessage.cs" />
     <Compile Include="Structures\SisImports\SisImportState.cs" />
     <Compile Include="Structures\SisImports\SisImportStatistic.cs" />
     <Compile Include="Structures\SisImports\SisImportStatistics.cs" />

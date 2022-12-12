@@ -73,6 +73,9 @@ namespace UVACanvasAccess.Model.SisImports {
         
         [JsonProperty("diffed_against_import_id")]
         public ulong? DiffedAgainstImportId { get; set; }
+        
+        [JsonProperty("diffing_threshold_exceeded")]
+        public bool? DiffingThresholdExceeded { get; set; }
 
         [JsonProperty("csv_attachments")]
         public IEnumerable<object> CsvAttachments { get; set; }
