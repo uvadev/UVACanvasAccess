@@ -308,7 +308,8 @@ namespace UVACanvasAccess.ApiParts {
                                                                           IEnumerable<bool> createdForSisId = null) {
             var args = new List<(string, string)> {
                 ("user_id", userId?.ToString()),
-                ("grading_period_id", gradingPeriodId?.ToString())
+                ("grading_period_id", gradingPeriodId?.ToString()),
+                ("per_page", "250")
             };
 
             if (enrollmentTermId != null) {
@@ -439,6 +440,92 @@ namespace UVACanvasAccess.ApiParts {
             }
             
             var response = await client.GetAsync($"users/{userId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
+
+            await foreach (var model in StreamDeserializePages<EnrollmentModel>(response)) {
+                yield return new Enrollment(this, model);
+            }
+        }
+        
+        /// <summary>
+        /// Streams all enrollments for the section.
+        /// </summary>
+        /// <param name="sectionId">The section id.</param>
+        /// <param name="types">(Optional) The set of enrollment types to filter by.</param>
+        /// <param name="states">(Optional) The set of enrollment states to filter by.</param>
+        /// <param name="includes">(Optional) Data to include in the result.</param>
+        /// <param name="userId">(Optional) The user id to filter by.</param>
+        /// <param name="gradingPeriodId">(Optional) The grading period id to filter by.</param>
+        /// <param name="enrollmentTermId">(Optional) The enrollment term id to filter by. Cannot be used with <c>enrollmentTermSisId</c>.</param>
+        /// <param name="enrollmentTermSisId">(Optional) The enrollment term SIS id to filter by. Cannot be used with <c>enrollmentTermId</c>.</param>
+        /// <param name="sisAccountIds">(Optional) The set of account SIS ids to filter by.</param>
+        /// <param name="sisCourseIds">(Optional) The set of course SIS ids to filter by.</param>
+        /// <param name="sisSectionIds">(Optional) The set of section SIS ids to filter by.</param>
+        /// <param name="sisUserIds">(Optional) The set of user SIS ids to filter by.</param>
+        /// <param name="createdForSisId">(Optional) If using <c>sisUserIds</c>, restrict the filtering per SIS id to
+        /// only include enrollments made for that exact SIS id. This is relevant when a user has multiple SIS ids.</param>
+        /// <returns>The stream of enrollments.</returns>
+        public async IAsyncEnumerable<Enrollment> StreamSectionEnrollments(ulong sectionId, 
+                                                                           IEnumerable<CourseEnrollmentRoleTypes> types = null, 
+                                                                           IEnumerable<CourseEnrollmentState> states = null, 
+                                                                           CourseEnrollmentIncludes? includes = null, 
+                                                                           ulong? userId = null, 
+                                                                           ulong? gradingPeriodId = null, 
+                                                                           ulong? enrollmentTermId = null, 
+                                                                           string enrollmentTermSisId = null, 
+                                                                           IEnumerable<string> sisAccountIds = null, 
+                                                                           IEnumerable<string> sisCourseIds = null, 
+                                                                           IEnumerable<string> sisSectionIds = null, 
+                                                                           IEnumerable<string> sisUserIds = null, 
+                                                                           IEnumerable<bool> createdForSisId = null) { 
+            var args = new List<(string, string)> {
+                ("user_id", userId?.ToString()),
+                ("grading_period_id", gradingPeriodId?.ToString()),
+                ("per_page", "250")
+            };
+
+            if (enrollmentTermId != null) {
+                args.Add(("enrollment_term_id", enrollmentTermId!.ToString()));
+            } else if (enrollmentTermSisId != null) {
+                args.Add(("enrollment_term_id", $"sis_term_id:{enrollmentTermSisId}"));
+            }
+
+            if (types != null) {
+                args.AddRange(types.Select(t => t.GetApiRepresentation())
+                                   .Select(a => ("type[]", a)));
+            }
+            
+            if (states != null) {
+                args.AddRange(states.Select(s => s.GetApiRepresentation())
+                                    .Select(a => ("state[]", a)));
+            }
+            
+            if (includes != null) {
+                args.AddRange(includes.GetFlagsApiRepresentations()
+                                      .Select(a => ("include[]", a)));
+            }
+
+            if (sisAccountIds != null) {
+                args.AddRange(sisAccountIds.Select(id => ("sis_account_id[]", id)));
+            }
+            
+            if (sisCourseIds != null) {
+                args.AddRange(sisCourseIds.Select(id => ("sis_course_id[]", id)));
+            }
+            
+            if (sisSectionIds != null) {
+                args.AddRange(sisSectionIds.Select(id => ("sis_section_id[]", id)));
+            }
+            
+            if (sisUserIds != null) {
+                args.AddRange(sisUserIds.Select(id => ("sis_user_id[]", id)));
+            }
+            
+            if (createdForSisId != null) {
+                args.AddRange(createdForSisId.Select(id => ("created_for_sis_id[]", id.ToShortString())));
+            }
+            
+            
+            var response = await client.GetAsync($"sections/{sectionId}/enrollments" + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<EnrollmentModel>(response)) {
                 yield return new Enrollment(this, model);
