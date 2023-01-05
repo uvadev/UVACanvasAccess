@@ -683,6 +683,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a3a7ab2ab3d5b166116c1d07696fbc82e"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3a7ab2ab3d5b166116c1d07696fbc82e">StreamUserEnrollments</a> (ulong userId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> &gt; types=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt; states=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a>? includes=null, ulong? gradingPeriodId=null, ulong? enrollmentTermId=null, string enrollmentTermSisId=null, IEnumerable&lt; string &gt; sisAccountIds=null, IEnumerable&lt; string &gt; sisCourseIds=null, IEnumerable&lt; string &gt; sisSectionIds=null, IEnumerable&lt; string &gt; sisUserIds=null, IEnumerable&lt; bool &gt; createdForSisId=null)</td></tr>
 <tr class="memdesc:a3a7ab2ab3d5b166116c1d07696fbc82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all enrollments for the user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3a7ab2ab3d5b166116c1d07696fbc82e">More...</a><br /></td></tr>
 <tr class="separator:a3a7ab2ab3d5b166116c1d07696fbc82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb0621d20e3e57ec620afe6668c6a53e"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afb0621d20e3e57ec620afe6668c6a53e">StreamSectionEnrollments</a> (ulong sectionId, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> &gt; types=null, IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt; states=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a>? includes=null, ulong? userId=null, ulong? gradingPeriodId=null, ulong? enrollmentTermId=null, string enrollmentTermSisId=null, IEnumerable&lt; string &gt; sisAccountIds=null, IEnumerable&lt; string &gt; sisCourseIds=null, IEnumerable&lt; string &gt; sisSectionIds=null, IEnumerable&lt; string &gt; sisUserIds=null, IEnumerable&lt; bool &gt; createdForSisId=null)</td></tr>
+<tr class="memdesc:afb0621d20e3e57ec620afe6668c6a53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams all enrollments for the section.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afb0621d20e3e57ec620afe6668c6a53e">More...</a><br /></td></tr>
+<tr class="separator:afb0621d20e3e57ec620afe6668c6a53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98d46d8a43486d3d726b71fadac7a5e1"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTerm.html">EnrollmentTerm</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a98d46d8a43486d3d726b71fadac7a5e1">StreamEnrollmentTerms</a> (ulong? accountId=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a6f1fefdc43795ea64ae5a77b0e8e99a4">EnrollmentTermWorkflowStateFilter</a>? workflowState=null, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac24f83fa9e3a0d9b2a008219f762f0ff">EnrollmentTermIncludes</a>? includes=null)</td></tr>
 <tr class="memdesc:a98d46d8a43486d3d726b71fadac7a5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the enrollment terms for an account.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a98d46d8a43486d3d726b71fadac7a5e1">More...</a><br /></td></tr>
 <tr class="separator:a98d46d8a43486d3d726b71fadac7a5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -9818,6 +9821,129 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The stream of users, sorted by User.LastLogin.</dd></dl>
+
+</div>
+</div>
+<a id="afb0621d20e3e57ec620afe6668c6a53e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb0621d20e3e57ec620afe6668c6a53e">&#9670;&nbsp;</a></span>StreamSectionEnrollments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async IAsyncEnumerable&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Enrollments_1_1Enrollment.html">Enrollment</a>&gt; UVACanvasAccess.ApiParts.Api.StreamSectionEnrollments </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>sectionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a652a2470c5604d0b6ee81b14d74b6746">CourseEnrollmentRoleTypes</a> &gt;&#160;</td>
+          <td class="paramname"><em>types</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af18df6f578d66c20aaf336947cdb350e">CourseEnrollmentState</a> &gt;&#160;</td>
+          <td class="paramname"><em>states</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a088552df02f205aca72d0fd4b55b4b1d">CourseEnrollmentIncludes</a>?&#160;</td>
+          <td class="paramname"><em>includes</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?&#160;</td>
+          <td class="paramname"><em>userId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?&#160;</td>
+          <td class="paramname"><em>gradingPeriodId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?&#160;</td>
+          <td class="paramname"><em>enrollmentTermId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>enrollmentTermSisId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>sisAccountIds</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>sisCourseIds</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>sisSectionIds</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>sisUserIds</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; bool &gt;&#160;</td>
+          <td class="paramname"><em>createdForSisId</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Streams all enrollments for the section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>The section id.</td></tr>
+    <tr><td class="paramname">types</td><td>(Optional) The set of enrollment types to filter by.</td></tr>
+    <tr><td class="paramname">states</td><td>(Optional) The set of enrollment states to filter by.</td></tr>
+    <tr><td class="paramname">includes</td><td>(Optional) Data to include in the result.</td></tr>
+    <tr><td class="paramname">userId</td><td>(Optional) The user id to filter by.</td></tr>
+    <tr><td class="paramname">gradingPeriodId</td><td>(Optional) The grading period id to filter by.</td></tr>
+    <tr><td class="paramname">enrollmentTermId</td><td>(Optional) The enrollment term id to filter by. Cannot be used with <code>enrollmentTermSisId</code>.</td></tr>
+    <tr><td class="paramname">enrollmentTermSisId</td><td>(Optional) The enrollment term SIS id to filter by. Cannot be used with <code>enrollmentTermId</code>.</td></tr>
+    <tr><td class="paramname">sisAccountIds</td><td>(Optional) The set of account SIS ids to filter by.</td></tr>
+    <tr><td class="paramname">sisCourseIds</td><td>(Optional) The set of course SIS ids to filter by.</td></tr>
+    <tr><td class="paramname">sisSectionIds</td><td>(Optional) The set of section SIS ids to filter by.</td></tr>
+    <tr><td class="paramname">sisUserIds</td><td>(Optional) The set of user SIS ids to filter by.</td></tr>
+    <tr><td class="paramname">createdForSisId</td><td>(Optional) If using <code>sisUserIds</code>, restrict the filtering per SIS id to only include enrollments made for that exact SIS id. This is relevant when a user has multiple SIS ids.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of enrollments.</dd></dl>
 
 </div>
 </div>
