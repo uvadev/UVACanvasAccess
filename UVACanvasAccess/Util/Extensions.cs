@@ -594,6 +594,20 @@ namespace UVACanvasAccess.Util {
                       .SelectAwait(gp => gp.FirstAsync());
         }
 
+        /// <summary>
+        /// Merges multiple async streams into one stream, sequentially.
+        /// </summary>
+        /// <param name="streams">The streams to merge.</param>
+        /// <typeparam name="T">The type of values.</typeparam>
+        /// <returns>The merged async stream.</returns>
+        public static async IAsyncEnumerable<T> Merge<T>(params IAsyncEnumerable<T>[] streams) {
+            foreach (var stream in streams) {
+                await foreach (var e in stream) {
+                    yield return e;
+                }
+            }
+        }
+
         public static T Expect<T>(this T? nullableT, Func<Exception> exceptionProvider = null) where T: struct {
             if (nullableT.HasValue) {
                 return nullableT.Value;

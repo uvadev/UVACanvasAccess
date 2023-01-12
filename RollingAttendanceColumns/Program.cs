@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,9 +7,9 @@ using AppUtils;
 using Tomlyn.Model;
 using Tomlyn.Syntax;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Structures.Courses;
 using UVACanvasAccess.Util;
 using static System.DayOfWeek;
-using static UVACanvasAccess.ApiParts.Api.AccountLevelCourseIncludes;
 
 namespace RollingAttendanceColumns {
     
@@ -80,9 +81,22 @@ namespace RollingAttendanceColumns {
             }
 
             try {
-                var courses = courseLimit <= 0 ? api.StreamCourses(includes: Term)
-                                               : AsyncEnumerable.Repeat(await api.GetCourse(Convert.ToUInt64(courseLimit), includes: Api.IndividualLevelCourseIncludes.Term), 1);
+                var termLookup = await api.StreamEnrollmentTerms()
+                                          .ToLookupAsync(term => term.Name);
                 
+                IAsyncEnumerable<Course> courses;
+                if (courseLimit > 0) {
+                    courses = AsyncEnumerable.Repeat(await api.GetCourse(Convert.ToUInt64(courseLimit), includes: Api.IndividualLevelCourseIncludes.Term), 1);
+                } else {
+                    var terms = filterTerms.Select(termName => termLookup[termName].FirstOrDefault())
+                                           .Where(t => t != default);
+
+                    var streams = 
+                        terms.Select(term => api.StreamCourses(includes: Api.AccountLevelCourseIncludes.Term, enrollmentTermId: term.Id));
+                    
+                    courses = Extensions.Merge(streams.ToArray());
+                }
+
                 var nextMonday = NextWeekday(DateTime.Today, Monday);
                 var nextMondayStr = FormatColumnName(nextMonday);
                 
