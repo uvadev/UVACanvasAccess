@@ -124,8 +124,15 @@ namespace RollingAttendanceColumns {
                             }
                         }
 
-                        var c = await api.CreateCustomColumn(course.Id, nextMondayStr);
-                        Console.WriteLine($"[Course {course.Id}] Created new column id {c.Id}");
+                        var preexisting = await api.StreamCustomGradebookColumns(course.Id)
+                                                   .FirstOrDefaultAsync(col => col.Title == nextMondayStr);
+
+                        if (preexisting != null) {
+                            Console.WriteLine($"[Course {course.Id}] Column id {preexisting.Id} already exists, skipping");
+                        } else {
+                            var c = await api.CreateCustomColumn(course.Id, nextMondayStr);
+                            Console.WriteLine($"[Course {course.Id}] Created new column id {c.Id}");
+                        }
                     } catch (Exception e) {
                         Console.WriteLine($"Threw up during course {course.Id}:\n{e}\nContinuing onwards.");
                     }
