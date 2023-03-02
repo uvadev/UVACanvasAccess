@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['qualifiedid_655',['QualifiedId',['../structUVACanvasAccess_1_1Structures_1_1QualifiedId.html',1,'UVACanvasAccess::Structures']]],
-  ['questioncount_656',['QuestionCount',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html#a9b445bd28291a4062539cb548e0773df',1,'UVACanvasAccess::Structures::Quizzes::Quiz']]],
-  ['quiz_657',['Quiz',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html',1,'UVACanvasAccess::Structures::Quizzes']]],
-  ['quizextensionsurl_658',['QuizExtensionsUrl',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html#aebaa86d625775fde8a78b6c082e444dc',1,'UVACanvasAccess::Structures::Quizzes::Quiz']]],
-  ['quizid_659',['QuizId',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html#a1ee7d13f255254569035efd798d9ed0d',1,'UVACanvasAccess::Structures::Assignments::Assignment']]],
-  ['quizpermissions_660',['QuizPermissions',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizPermissions.html',1,'UVACanvasAccess::Structures::Quizzes']]],
-  ['quiztodoitem_661',['QuizToDoItem',['../classUVACanvasAccess_1_1Structures_1_1ToDos_1_1QuizToDoItem.html',1,'UVACanvasAccess::Structures::ToDos']]],
-  ['quiztype_662',['QuizType',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html#a825302fa74716acd098eafc6c84f2dea',1,'UVACanvasAccess.Structures.Quizzes.Quiz.QuizType()'],['../namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#a86de1e22822d11bbfdc7cf647b9dbaa1',1,'UVACanvasAccess.Structures.Quizzes.QuizType()']]],
-  ['quizzes_663',['Quizzes',['../classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation_1_1Categories.html#ade0bd5e968dacd9684e37f1ae4b76b4c',1,'UVACanvasAccess::Structures::Analytics::DepartmentParticipation::Categories']]],
-  ['quotainfo_664',['QuotaInfo',['../structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['qualifiedid_659',['QualifiedId',['../structUVACanvasAccess_1_1Structures_1_1QualifiedId.html',1,'UVACanvasAccess::Structures']]],
+  ['questioncount_660',['QuestionCount',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html#a9b445bd28291a4062539cb548e0773df',1,'UVACanvasAccess::Structures::Quizzes::Quiz']]],
+  ['quiz_661',['Quiz',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['quizextensionsurl_662',['QuizExtensionsUrl',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html#aebaa86d625775fde8a78b6c082e444dc',1,'UVACanvasAccess::Structures::Quizzes::Quiz']]],
+  ['quizid_663',['QuizId',['../classUVACanvasAccess_1_1Structures_1_1Assignments_1_1Assignment.html#a1ee7d13f255254569035efd798d9ed0d',1,'UVACanvasAccess::Structures::Assignments::Assignment']]],
+  ['quizpermissions_664',['QuizPermissions',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizPermissions.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['quiztodoitem_665',['QuizToDoItem',['../classUVACanvasAccess_1_1Structures_1_1ToDos_1_1QuizToDoItem.html',1,'UVACanvasAccess::Structures::ToDos']]],
+  ['quiztype_666',['QuizType',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html#a825302fa74716acd098eafc6c84f2dea',1,'UVACanvasAccess.Structures.Quizzes.Quiz.QuizType()'],['../namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#a86de1e22822d11bbfdc7cf647b9dbaa1',1,'UVACanvasAccess.Structures.Quizzes.QuizType()']]],
+  ['quizzes_667',['Quizzes',['../classUVACanvasAccess_1_1Structures_1_1Analytics_1_1DepartmentParticipation_1_1Categories.html#ade0bd5e968dacd9684e37f1ae4b76b4c',1,'UVACanvasAccess::Structures::Analytics::DepartmentParticipation::Categories']]],
+  ['quotainfo_668',['QuotaInfo',['../structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

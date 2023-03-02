@@ -809,6 +809,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac740d6bd00655b34de3d6bca2da2122e"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac740d6bd00655b34de3d6bca2da2122e">DeleteGradingPeriodSet</a> (ulong accountId, ulong gradingPeriodSetId)</td></tr>
 <tr class="memdesc:ac740d6bd00655b34de3d6bca2da2122e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a grading period set.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac740d6bd00655b34de3d6bca2da2122e">More...</a><br /></td></tr>
 <tr class="separator:ac740d6bd00655b34de3d6bca2da2122e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a440e1695404af72d653f5492f9ac8"><td class="memItemLeft" align="right" valign="top"><a id="a09a440e1695404af72d653f5492f9ac8"></a>
+IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Logins_1_1UserLogin.html">UserLogin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StreamUserLogins</b> (ulong userId)</td></tr>
+<tr class="separator:a09a440e1695404af72d653f5492f9ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae41e9c537e13907b78b482f5e7f3ad0"><td class="memItemLeft" align="right" valign="top"><a id="aae41e9c537e13907b78b482f5e7f3ad0"></a>
+IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Logins_1_1UserLogin.html">UserLogin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StreamAccountLogins</b> (ulong accountId)</td></tr>
+<tr class="separator:aae41e9c537e13907b78b482f5e7f3ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affb08f0e4391094729a8c64c2941b34c"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html">ActivityStreamObject</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#affb08f0e4391094729a8c64c2941b34c">GetActivityStream</a> (bool? onlyActiveCourses=null)</td></tr>
 <tr class="memdesc:affb08f0e4391094729a8c64c2941b34c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the activity stream for the current user.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#affb08f0e4391094729a8c64c2941b34c">More...</a><br /></td></tr>
 <tr class="separator:affb08f0e4391094729a8c64c2941b34c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -923,6 +929,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a24580b6708383523a4c615b4e349e0e0"><td class="memItemLeft" align="right" valign="top">ValueTask&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a24580b6708383523a4c615b4e349e0e0">GetUserBySis</a> (string sis)</td></tr>
 <tr class="memdesc:a24580b6708383523a4c615b4e349e0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for a user by SIS id.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a24580b6708383523a4c615b4e349e0e0">More...</a><br /></td></tr>
 <tr class="separator:a24580b6708383523a4c615b4e349e0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce28861f996b7c537aed23159ed77cc"><td class="memItemLeft" align="right" valign="top">ValueTask&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afce28861f996b7c537aed23159ed77cc">GetUserByLoginSis</a> (string sis)</td></tr>
+<tr class="memdesc:afce28861f996b7c537aed23159ed77cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for a user by SIS id, using <a class="el" href="">user login records</a>.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afce28861f996b7c537aed23159ed77cc">More...</a><br /></td></tr>
+<tr class="separator:afce28861f996b7c537aed23159ed77cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a103314b09ee617ba35da5bccd64b2030"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a103314b09ee617ba35da5bccd64b2030">ListUsers</a> (string searchTerm=null, string sort=null, string order=null, string accountId=&quot;self&quot;)</td></tr>
 <tr class="memdesc:a103314b09ee617ba35da5bccd64b2030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of users associated with the account. Corresponds to the API endpoint <code>GET /api/v1/accounts/:account_id/users</code>.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a103314b09ee617ba35da5bccd64b2030">More...</a><br /></td></tr>
 <tr class="separator:a103314b09ee617ba35da5bccd64b2030"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -6419,6 +6428,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="afce28861f996b7c537aed23159ed77cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afce28861f996b7c537aed23159ed77cc">&#9670;&nbsp;</a></span>GetUserByLoginSis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ValueTask&lt;<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a>&gt; UVACanvasAccess.ApiParts.Api.GetUserByLoginSis </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sis</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Search for a user by SIS id, using <a class="el" href="">user login records</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sis</td><td>The SIS id to search for.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The user with the matching SIS id, or null if none exists.</dd></dl>
+<p>In the event that a user has more than one SIS id, the faster <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a24580b6708383523a4c615b4e349e0e0" title="Search for a user by SIS id.">GetUserBySis</a> method may fail because <a class="el" href="">User.SisUserId</a> can only return one value. In that case, use this method. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a24580b6708383523a4c615b4e349e0e0" title="Search for a user by SIS id.">GetUserBySis</a></dd></dl>
+
+</div>
+</div>
 <a id="a24580b6708383523a4c615b4e349e0e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a24580b6708383523a4c615b4e349e0e0">&#9670;&nbsp;</a></span>GetUserBySis()</h2>
 
@@ -6451,6 +6497,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The user with the matching SIS id, or null if none exists.</dd></dl>
+<p>In the event that a user has more than one SIS id, this method may fail because <a class="el" href="">User.SisUserId</a> can only return one value. In that case, use the slower <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afce28861f996b7c537aed23159ed77cc" title="Search for a user by SIS id, using user login records.">GetUserByLoginSis</a> method. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#afce28861f996b7c537aed23159ed77cc" title="Search for a user by SIS id, using user login records.">GetUserByLoginSis</a></dd></dl>
 
 </div>
 </div>
@@ -11232,6 +11280,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <li>UVACanvasAccess/ApiParts/GradeChangelog.cs</li>
 <li>UVACanvasAccess/ApiParts/GradingPeriods.cs</li>
 <li>UVACanvasAccess/ApiParts/GradingPeriodSets.cs</li>
+<li>UVACanvasAccess/ApiParts/Logins.cs</li>
 <li>UVACanvasAccess/ApiParts/Misc.cs</li>
 <li>UVACanvasAccess/ApiParts/Modules.cs</li>
 <li>UVACanvasAccess/ApiParts/Observers.cs</li>
