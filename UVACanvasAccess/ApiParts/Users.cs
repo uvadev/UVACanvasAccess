@@ -10,6 +10,7 @@ using UVACanvasAccess.Model.Assignments;
 using UVACanvasAccess.Model.ToDos;
 using UVACanvasAccess.Model.Users;
 using UVACanvasAccess.Structures.Assignments;
+using UVACanvasAccess.Structures.Logins;
 using UVACanvasAccess.Structures.ToDos;
 using UVACanvasAccess.Structures.Users;
 using UVACanvasAccess.Util;
@@ -114,13 +115,45 @@ namespace UVACanvasAccess.ApiParts {
         /// </summary>
         /// <param name="sis">The SIS id to search for.</param>
         /// <returns>The user with the matching SIS id, or null if none exists.</returns>
+        /// <remarks>
+        /// In the event that a user has more than one SIS id, this method may fail because
+        /// <see cref="User.SisUserId">User.SisUserId</see> can only return one value. In that case, use the
+        /// slower <see cref="GetUserByLoginSis"/> method.
+        /// </remarks>
+        /// <seealso cref="GetUserByLoginSis"/>
         [ItemCanBeNull]
         public ValueTask<User> GetUserBySis(string sis) {
             if (string.IsNullOrWhiteSpace(sis)) {
                 return default;
             }
+            
             return StreamUsers(sis)
                   .FirstOrDefaultAsync(u => u.SisUserId == sis);
+        }
+        
+        /// <summary>
+        /// Search for a user by SIS id, using <see cref="UserLogin">user login records</see>.
+        /// </summary>
+        /// <param name="sis">The SIS id to search for.</param>
+        /// <returns>The user with the matching SIS id, or null if none exists.</returns>
+        /// <remarks>
+        /// In the event that a user has more than one SIS id, the faster <see cref="GetUserBySis"/> method may fail because
+        /// <see cref="User.SisUserId">User.SisUserId</see> can only return one value. In that case, use this method.
+        /// </remarks>
+        /// <seealso cref="GetUserBySis"/>
+        [ItemCanBeNull]
+        public ValueTask<User> GetUserByLoginSis(string sis) {
+            if (string.IsNullOrWhiteSpace(sis)) {
+                return default;
+            }
+
+            return StreamUsers(sis)
+                  .SelectMany(u => StreamUserLogins(u.Id), (u, l) => new { User = u, Login = l })
+                  .Where(o => o.Login.SisUserId == sis)
+                  .Select(o => o.User)
+                  .FirstOrDefaultAsync();
+
+
         }
 
         [PaginatedResponse]

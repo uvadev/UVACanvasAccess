@@ -167,6 +167,7 @@
     <Compile Include="ApiParts\GradeChangelog.cs" />
     <Compile Include="ApiParts\GradingPeriods.cs" />
     <Compile Include="ApiParts\GradingPeriodSets.cs" />
+    <Compile Include="ApiParts\Logins.cs" />
     <Compile Include="ApiParts\Misc.cs" />
     <Compile Include="ApiParts\Modules.cs" />
     <Compile Include="ApiParts\Observers.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="Model\GradingPeriods\RedundantGradingPeriodResponse.cs" />
     <Compile Include="Model\Groups\GroupMembershipModel.cs" />
     <Compile Include="Model\Groups\GroupModel.cs" />
+    <Compile Include="Model\Logins\UserLoginModel.cs" />
     <Compile Include="Model\Modules\CompletionRequirementModel.cs" />
     <Compile Include="Model\Modules\ContentDetailsModel.cs" />
     <Compile Include="Model\Modules\ModuleItemModel.cs" />
@@ -398,6 +400,7 @@
     <Compile Include="Structures\GradingPeriods\GradingPeriodUpdate.cs" />
     <Compile Include="Structures\Groups\Group.cs" />
     <Compile Include="Structures\Groups\GroupMembership.cs" />
+    <Compile Include="Structures\Logins\UserLogin.cs" />
     <Compile Include="Structures\Modules\CompletionRequirement.cs" />
     <Compile Include="Structures\Modules\ContentDetails.cs" />
     <Compile Include="Structures\Modules\Module.cs" />
