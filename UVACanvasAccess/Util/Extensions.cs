@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -675,6 +676,39 @@ namespace UVACanvasAccess.Util {
             return client.SendAsync(new HttpRequestMessage(new HttpMethod("PATCH"), requestUri) {
                 Content = content
             });
+        }
+
+        /// <summary>
+        /// Attempts to split the contents of a UTF-8 byte stream by a delimiter, returning each piece in an asynchronous stream.
+        /// </summary>
+        /// <param name="stream">The byte stream.</param>
+        /// <param name="delimiter">The delimiter.</param>
+        /// <param name="bufferSize">(Optional) How many bytes to read from the stream at a time.</param>
+        /// <returns>An asynchronous stream of strings.</returns>
+        [PublicAPI]
+        public static async IAsyncEnumerable<string> SplitByteStream(Stream stream, char delimiter, int bufferSize = 81920) {
+            byte[] buf = new byte[bufferSize];
+            var prefix = new StringBuilder();
+
+            for (;;) {
+                var bytesRead = await stream.ReadAsync(buf, 0, bufferSize);
+                
+                if (bytesRead == 0) {
+                    yield break;
+                }
+
+                var str = Encoding.UTF8.GetString(buf);
+                
+                while (str.Contains(delimiter)) {
+                    var item = str.Split(delimiter)[0];
+                    str = str.Substring(item.Length + 1);
+                    prefix.Append(item);
+                    yield return prefix.ToString();
+                    prefix.Clear();
+                }
+
+                prefix.Append(str);
+            }
         }
     }
 }

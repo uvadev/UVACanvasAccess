@@ -124,6 +124,10 @@ namespace UVACanvasAccess.ApiParts {
             return client.GetByteArrayAsync(fa.Url);
         }
 
+        internal Task<Stream> StreamFileAttachment(FileAttachment fa) {
+            return client.GetStreamAsync(fa.Url);
+        }
+
         /// <summary>
         /// Create a folder in the current user's personal files section.
         /// </summary>

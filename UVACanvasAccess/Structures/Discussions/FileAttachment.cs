@@ -1,3 +1,4 @@
+using System.IO;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
@@ -29,6 +30,11 @@ namespace UVACanvasAccess.Structures.Discussions {
         public Task<byte[]> Download() {
             return string.IsNullOrWhiteSpace(Url) ? Task.FromResult<byte[]>(null) 
                                                   : _api.DownloadFileAttachment(this);
+        }
+
+        public Task<Stream> Stream() {
+            return string.IsNullOrWhiteSpace(Url) ? Task.FromResult<Stream>(null) 
+                                                  : _api.StreamFileAttachment(this);
         }
 
         public string ToPrettyString() {
