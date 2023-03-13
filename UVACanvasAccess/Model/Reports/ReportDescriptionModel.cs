@@ -17,6 +17,10 @@ namespace UVACanvasAccess.Model.Reports {
         [CanBeNull] 
         [JsonProperty("parameters")]
         public Dictionary<string, ReportParameterDescriptionModel> Parameters { get; set; }
+        
+        [CanBeNull] 
+        [JsonProperty("last_run")]
+        public ReportModel LastRun { get; set; }
     }
 
     internal class ReportParameterDescriptionModel {

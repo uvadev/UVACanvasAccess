@@ -16,6 +16,9 @@ namespace UVACanvasAccess.Structures.Reports {
 
         [NotNull]
         public Dictionary<string, ReportParameterDescription> Parameters { get; }
+        
+        [CanBeNull]
+        public Report LastRun { get; }
 
         internal ReportDescription(Api api, ReportDescriptionModel model) {
             _api = api;
@@ -23,17 +26,22 @@ namespace UVACanvasAccess.Structures.Reports {
             Title = model.Title;
             Parameters = model.Parameters?.ValSelect(m => new ReportParameterDescription(m))
                                          ?? new Dictionary<string, ReportParameterDescription>();
+            if (model.LastRun != null) {
+                LastRun = new Report(api, model.LastRun);
+            }
         }
 
         public string ToPrettyString() {
             return "ReportDescription {" +
                    ($"\n{nameof(Report)}: {Report}," +
                    $"\n{nameof(Title)}: {Title}," + 
-                   $"\n{nameof(Parameters)}: {Parameters.ToPrettyString()}").Indent(4) +
+                   $"\n{nameof(Parameters)}: {Parameters.ToPrettyString()}," +
+                   $"\n{nameof(LastRun)}: {LastRun?.ToPrettyString()}").Indent(4) +
                    "\n}";
         }
     }
 
+    [PublicAPI]
     public class ReportParameterDescription : IPrettyPrint {
         public string Description { get; }
         
