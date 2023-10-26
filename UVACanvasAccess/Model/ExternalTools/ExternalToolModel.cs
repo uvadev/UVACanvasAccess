@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
+using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Model.ExternalTools {
     
@@ -11,6 +13,14 @@ namespace UVACanvasAccess.Model.ExternalTools {
         
         [JsonProperty("domain")]
         public string Domain { get; set; }
+        
+        [JsonProperty("url")]
+        public string Url { get; set; }
+        
+        [JsonProperty("workflow_state")]
+        [Undocumented]
+        [UndocumentedRange]
+        public string WorkflowState { get; set; }
         
         [JsonProperty("consumer_key")]
         public string ConsumerKey { get; set; }
@@ -33,6 +43,9 @@ namespace UVACanvasAccess.Model.ExternalTools {
         [JsonProperty("custom_fields")]
         public Dictionary<string, string> CustomFields { get; set; }
         
+        [JsonProperty("is_rce_favorite")]
+        public bool? IsRceFavorite { get; set; }
+        
         [JsonProperty("account_navigation")]
         public AccountNavigationModel AccountNavigation { get; set; }
         
@@ -54,6 +67,9 @@ namespace UVACanvasAccess.Model.ExternalTools {
         [JsonProperty("resource_selection")]
         public ResourceSelectionModel ResourceSelection { get; set; }
         
+        [JsonProperty("link_selection")]
+        public LinkSelectionModel LinkSelection { get; set; }
+
         [JsonProperty("tool_configuration")]
         public ToolConfigurationModel ToolConfiguration { get; set; }
         
@@ -71,5 +87,10 @@ namespace UVACanvasAccess.Model.ExternalTools {
         
         [JsonProperty("not_selectable")]
         public bool? NotSelectable { get; set; }
+        
+        [CanBeNull]
+        [UndocumentedType("Observed to be a string.")]
+        [JsonProperty("deployment_id")]
+        public string DeploymentId { get; set; }
     }
 }

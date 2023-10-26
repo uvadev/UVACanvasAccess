@@ -12,7 +12,7 @@ namespace UVACanvasAccess.Structures.ExternalTools {
         public uint? SelectionWidth { get; }
         public uint? SelectionHeight { get; }
         
-        public ToolDisplayType DisplayType { get; }
+        public ToolDisplayType? DisplayType { get; }
 
         internal AccountNavigationLocation(Api api, AccountNavigationModel model) : base(api, model.Enabled) {
             Url = model.Url;

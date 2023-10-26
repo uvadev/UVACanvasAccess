@@ -1,6 +1,9 @@
+using JetBrains.Annotations;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Structures.ExternalTools {
+    
+    [PublicAPI]
     public enum ToolDisplayType : byte {
         [ApiRepresentation("full_width")]
         FullWidth,

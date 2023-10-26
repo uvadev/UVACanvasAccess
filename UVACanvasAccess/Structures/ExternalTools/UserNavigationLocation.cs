@@ -9,12 +9,12 @@ namespace UVACanvasAccess.Structures.ExternalTools {
     public class UserNavigationLocation : ExternalToolLocation, IToolUrl, IToolText, IToolVisibility {
         public string Url { get; }
         public string Text { get; }
-        public ToolVisibility Visibility { get; }
+        public ToolVisibility? Visibility { get; }
 
         internal UserNavigationLocation(Api api, UserNavigationModel model) : base(api, model.Enabled) {
             Url = model.Url;
             Text = model.Text;
-            Visibility = model.Visibility.ToApiRepresentedEnum<ToolVisibility>().Expect();
+            Visibility = model.Visibility?.ToApiRepresentedEnum<ToolVisibility>();
         }
     }
 }
