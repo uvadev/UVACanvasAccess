@@ -359,6 +359,27 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ac24f83fa9e3a0d9b2a008219f762f0ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional data that can be included with EnrollmentTerm objects.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac24f83fa9e3a0d9b2a008219f762f0ff">More...</a><br /></td></tr>
 <tr class="separator:ac24f83fa9e3a0d9b2a008219f762f0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe096687750f2a6fe1cae9357d1fc3d9"><td class="memItemLeft" align="right" valign="top"><a id="afe096687750f2a6fe1cae9357d1fc3d9"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ExternalToolContextType</b> : byte { <b>Group</b>
+, <b>Course</b>
+, <b>Account</b>
+ }</td></tr>
+<tr class="separator:afe096687750f2a6fe1cae9357d1fc3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc683a9627423a72ab5ba77e739f4eda"><td class="memItemLeft" align="right" valign="top"><a id="acc683a9627423a72ab5ba77e739f4eda"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ExternalToolPlacementType</b> { <br />
+&#160;&#160;<b>AccountNavigation</b>
+, <b>CourseHomeSubNavigation</b>
+, <b>CourseNavigation</b>
+, <b>EditorButton</b>
+, <br />
+&#160;&#160;<b>HomeworkSubmission</b>
+, <b>MigrationSelection</b>
+, <b>ResourceSelection</b>
+, <b>LinkSelection</b>
+, <br />
+&#160;&#160;<b>ToolConfiguration</b>
+, <b>UserNavigation</b>
+<br />
+ }</td></tr>
+<tr class="separator:acc683a9627423a72ab5ba77e739f4eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af85a5f4f2054bb849ce3ea77a5587028"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028">FileIncludes</a> : byte { <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028a8f9bfe9d1345237cb3b2b205864da075">User</a> = 1 &lt;&lt; 0
 , <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#af85a5f4f2054bb849ce3ea77a5587028a0251cdf51cd59160ac0d011dc7999243">UsageRights</a> = 1 &lt;&lt; 1
  }</td></tr>
@@ -701,6 +722,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a63b5652b2457ca99d61111f15d963ff9"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTerm.html">EnrollmentTerm</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a63b5652b2457ca99d61111f15d963ff9">UpdateEnrollmentTerm</a> (ulong enrollmentId, <a class="el" href="classUVACanvasAccess_1_1Structures_1_1EnrollmentTerms_1_1EnrollmentTermBuilder.html">EnrollmentTermBuilder</a> builder, ulong? accountId=null)</td></tr>
 <tr class="memdesc:a63b5652b2457ca99d61111f15d963ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates an enrollment term.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a63b5652b2457ca99d61111f15d963ff9">More...</a><br /></td></tr>
 <tr class="separator:a63b5652b2457ca99d61111f15d963ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8732e8d62e4df7c1d9608f4fdf8d1bf"><td class="memItemLeft" align="right" valign="top"><a id="ae8732e8d62e4df7c1d9608f4fdf8d1bf"></a>
+async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalTool.html">ExternalTool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StreamExternalTools</b> (ulong contextId, ExternalToolContextType contextType, string searchTerm=null, bool? filterSelectable=null, bool? includeParents=null, ExternalToolPlacementType? filterPlacement=null)</td></tr>
+<tr class="separator:ae8732e8d62e4df7c1d9608f4fdf8d1bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78740f829d79b1984b21fd70dded3f55"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a78740f829d79b1984b21fd70dded3f55">UploadPersonalFile</a> (byte[] file, string filePath, string parentFolderName=null)</td></tr>
 <tr class="memdesc:a78740f829d79b1984b21fd70dded3f55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads a file to the current user's personal files section.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a78740f829d79b1984b21fd70dded3f55">More...</a><br /></td></tr>
 <tr class="separator:a78740f829d79b1984b21fd70dded3f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -11275,6 +11299,7 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 <li>UVACanvasAccess/ApiParts/Discussions.cs</li>
 <li>UVACanvasAccess/ApiParts/Enrollments.cs</li>
 <li>UVACanvasAccess/ApiParts/EnrollmentTerms.cs</li>
+<li>UVACanvasAccess/ApiParts/ExternalTools.cs</li>
 <li>UVACanvasAccess/ApiParts/Files.cs</li>
 <li>UVACanvasAccess/ApiParts/Gradebook.cs</li>
 <li>UVACanvasAccess/ApiParts/GradeChangelog.cs</li>
