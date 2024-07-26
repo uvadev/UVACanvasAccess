@@ -58,7 +58,7 @@ namespace UVACanvasAccess.Structures.Files {
         /// <summary>
         /// The file's size in bytes.
         /// </summary>
-        public ulong Size { get; }
+        public ulong? Size { get; }
         
         /// <summary>
         /// When the file was created.

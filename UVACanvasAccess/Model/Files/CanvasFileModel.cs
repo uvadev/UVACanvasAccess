@@ -29,7 +29,7 @@ namespace UVACanvasAccess.Model.Files {
         public string Url { get; set; }
         
         [JsonProperty("size")]
-        public ulong Size { get; set; }
+        public ulong? Size { get; set; }
         
         [JsonProperty("created_at")]
         public DateTime? CreatedAt { get; set; }
