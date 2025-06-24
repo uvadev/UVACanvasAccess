@@ -268,6 +268,41 @@ namespace UVACanvasAccess.ApiParts {
             }
         }
 
+        /// <summary>
+        /// Merge two users into one.
+        /// </summary>
+        /// <param name="srcUserId">The id of the 'source' user. This user will cease to exist after the merge completes.</param>
+        /// <param name="destUserId">The id of the 'destination' user. This will be the only user remaining after the merge completes.</param>
+        /// <returns>The newly merged user.</returns>
+        /// <remarks>
+        /// This generally cannot be undone, but <see cref="SplitMergedUsers"/> can be used to approximately
+        /// split the merged user back into its constituents.
+        /// See <a href="https://canvas.instructure.com/doc/api/users.html#method.users.merge_into">the Canvas documentation</a> for details and caveats.
+        /// </remarks>
+        /// <seealso cref="SplitMergedUsers"/>
+        public async Task<User> MergeUsers(ulong srcUserId, ulong destUserId) {
+            var emptyArgs = BuildHttpArguments(new (string, string)[] { });
+            var response = await client.PutAsync($"users/{srcUserId}/merge_into/{destUserId}", emptyArgs);
+            var model = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
+            return new User(this, model);
+        }
+
+        /// <summary>
+        /// Attempts to split a merged user created by <see cref="MergeUsers"/> back into its constituents.
+        /// </summary>
+        /// <param name="mergedUserId">The id of the user to split.</param>
+        /// <returns>A list of the users created by the split operation.</returns>
+        /// <remarks>
+        /// See <a href="https://canvas.instructure.com/doc/api/users.html#method.users.split">the Canvas documentation</a> for limitations and caveats.
+        /// </remarks>
+        /// <seealso cref="MergeUsers"/>
+        public async Task<IEnumerable<User>> SplitMergedUsers(ulong mergedUserId) {
+            var emptyArgs = BuildHttpArguments(new (string, string)[] { });
+            var response = await client.PostAsync($"users/{mergedUserId}/split", emptyArgs);
+            var modelList = JsonConvert.DeserializeObject<List<UserModel>>(await response.Content.ReadAsStringAsync());
+            return modelList.Select(model => new User(this, model));
+        }
+
         internal async Task IgnoreToDoItem(ToDoItem item, bool permanent) {
             if (permanent) {
                 await client.GetAsync(item.PermanentIgnoreUrl);
