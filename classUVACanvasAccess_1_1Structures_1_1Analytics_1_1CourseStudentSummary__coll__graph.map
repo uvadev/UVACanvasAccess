@@ -1,4 +1,5 @@
 <map id="UVACanvasAccess.Structures.Analytics.CourseStudentSummary" name="UVACanvasAccess.Structures.Analytics.CourseStudentSummary">
-<area shape="rect" id="node1" title="A summary of per&#45;user participation information for a course." alt="" coords="5,80,249,121"/>
-<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="80,5,175,32"/>
+<area shape="rect" id="Node000001" title="A summary of per&#45;user participation information for a course." alt="" coords="5,79,249,119"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="80,5,175,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,44,130,79,125,79,125,44"/>
 </map>

@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structUVACanvasAccess_1_1ApiParts_1_1Api_1_1ColumnEntryUpdate.html" title="Represents one update to a custom column entry." alt="" coords="5,5,208,47"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,77,92,102"/>
+<area shape="rect" id="Node000001" href="$classUVACanvasAccess_1_1Exceptions_1_1BadApiStateException.html" title="Indicates that an operation failed due to bad state, or because completing it would result in a bad s..." alt="" coords="140,5,361,45"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="96,69,139,55,178,43,179,48,141,60,98,75"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Exceptions_1_1CommunicationException.html" title="Indicates a generic HTTP failure response. If the API replied with a JSON error body,..." alt="" coords="140,69,361,109"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="106,87,140,87,140,92,106,92"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Exceptions_1_1DoesNotExistException.html" title="Indicates that some operation failed because the target thereof does not exist or is invisible to the..." alt="" coords="140,133,361,173"/>
+<area shape="poly" id="edge4_Node000000_Node000003" title=" " alt="" coords="98,104,141,119,179,131,178,136,139,124,96,109"/>
 </map>

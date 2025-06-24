@@ -1,3 +1,19 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamSummaryEntry.html" title=" " alt="" coords="5,5,263,47"/>
+<area shape="rect" id="Node000000" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html" title=" " alt="" coords="5,245,221,285"/>
+<area shape="rect" id="Node000001" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Announcement.html" title=" " alt="" coords="272,5,576,45"/>
+<area shape="poly" id="edge19_Node000000_Node000001" title=" " alt="" coords="127,232,149,190,180,142,220,95,268,55,291,43,294,48,271,60,224,98,184,146,154,193,132,234"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1AssignmentRequest.html" title=" " alt="" coords="283,70,565,125"/>
+<area shape="poly" id="edge20_Node000000_Node000002" title=" " alt="" coords="141,234,197,183,231,157,268,135,297,122,299,127,271,140,234,162,200,187,144,238"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Collaboration.html" title=" " alt="" coords="277,149,571,189"/>
+<area shape="poly" id="edge21_Node000000_Node000003" title=" " alt="" coords="169,237,269,199,313,187,315,192,270,204,171,242"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Conference.html" title=" " alt="" coords="284,213,564,253"/>
+<area shape="poly" id="edge22_Node000000_Node000004" title=" " alt="" coords="235,250,284,245,284,250,235,255"/>
+<area shape="rect" id="Node000005" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Conversation.html" title=" " alt="" coords="278,277,570,317"/>
+<area shape="poly" id="edge23_Node000000_Node000005" title=" " alt="" coords="235,275,278,280,277,285,235,280"/>
+<area shape="rect" id="Node000006" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1DiscussionTopic.html" title=" " alt="" coords="269,341,579,381"/>
+<area shape="poly" id="edge24_Node000000_Node000006" title=" " alt="" coords="171,289,270,327,315,339,313,344,269,332,169,294"/>
+<area shape="rect" id="Node000007" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Message.html" title=" " alt="" coords="292,405,556,445"/>
+<area shape="poly" id="edge25_Node000000_Node000007" title=" " alt="" coords="144,294,199,344,234,370,270,391,301,403,299,408,268,396,231,374,196,349,141,298"/>
+<area shape="rect" id="Node000008" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1SubmissionObject.html" title=" " alt="" coords="283,470,565,525"/>
+<area shape="poly" id="edge26_Node000000_Node000008" title=" " alt="" coords="134,296,157,333,188,376,226,419,271,455,294,468,291,472,268,460,223,423,184,380,152,336,129,299"/>
 </map>

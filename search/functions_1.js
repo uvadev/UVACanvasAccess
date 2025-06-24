@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['batchgetassignmentoverrides_1285',['BatchGetAssignmentOverrides',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa70e09ccedaac8cdb28f9d2b0e55f8ec',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['batchupdatecoursegradingperiods_1286',['BatchUpdateCourseGradingPeriods',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a580425ce512d77231a82115496b416f4',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['batchupdategradingperiods_1287',['BatchUpdateGradingPeriods',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa9fbd7ef3c32ab1e59a8ae22b9b6095e',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['batchgetassignmentoverrides_0',['BatchGetAssignmentOverrides',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a04a6aca7e2e75bd86fc172e19d52bb48',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['batchupdatecoursegradingperiods_1',['BatchUpdateCourseGradingPeriods',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a0ee42abe0c29171f77cd17ce595bc12e',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['batchupdategradingperiods_2',['BatchUpdateGradingPeriods',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a61624b8710af893f690a9159b44e5d26',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

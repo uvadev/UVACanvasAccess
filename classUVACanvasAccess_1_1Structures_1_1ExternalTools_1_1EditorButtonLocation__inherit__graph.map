@@ -1,8 +1,13 @@
 <map id="UVACanvasAccess.Structures.ExternalTools.EditorButtonLocation" name="UVACanvasAccess.Structures.ExternalTools.EditorButtonLocation">
-<area shape="rect" id="node1" title=" " alt="" coords="253,80,502,121"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="5,5,163,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="187,5,258,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="283,5,472,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="496,5,595,32"/>
-<area shape="rect" id="node6" title=" " alt="" coords="619,5,759,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="253,79,502,119"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="5,5,163,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,32,307,76,306,81,139,37"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="187,5,258,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,35,341,76,339,81,256,39"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="283,5,472,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="380,44,380,79,375,79,375,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="496,5,595,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="510,39,419,81,417,76,507,34"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="619,5,759,31"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="632,37,453,81,452,76,630,31"/>
 </map>

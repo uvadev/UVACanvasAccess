@@ -1,4 +1,5 @@
 <map id="UVACanvasAccess.Structures.Submissions.NewSubmission.OnlineUploadSubmission" name="UVACanvasAccess.Structures.Submissions.NewSubmission.OnlineUploadSubmission">
-<area shape="rect" id="node1" title="Represents the submission of one or more previously uploaded files." alt="" coords="5,80,264,136"/>
-<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1INewSubmissionContent.html" title="Represents some content to be submitted as part of an assignment submission." alt="" coords="44,5,225,32"/>
+<area shape="rect" id="Node000001" title="Represents the submission of one or more previously uploaded files." alt="" coords="5,79,264,133"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1INewSubmissionContent.html" title="Represents some content to be submitted as part of an assignment submission." alt="" coords="44,5,225,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,44,137,79,132,79,132,44"/>
 </map>

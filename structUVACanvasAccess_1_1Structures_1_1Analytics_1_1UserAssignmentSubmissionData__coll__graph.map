@@ -1,4 +1,5 @@
 <map id="UVACanvasAccess.Structures.Analytics.UserAssignmentSubmissionData" name="UVACanvasAccess.Structures.Analytics.UserAssignmentSubmissionData">
-<area shape="rect" id="node1" title="One user score in a UserAssignmentData." alt="" coords="5,80,304,121"/>
-<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="107,5,202,32"/>
+<area shape="rect" id="Node000001" title="One user score in a UserAssignmentData." alt="" coords="5,79,304,119"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="107,5,202,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,44,157,79,152,79,152,44"/>
 </map>

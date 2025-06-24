@@ -1,10 +1,17 @@
 <map id="UVACanvasAccess.Structures.ExternalTools.AccountNavigationLocation" name="UVACanvasAccess.Structures.ExternalTools.AccountNavigationLocation">
-<area shape="rect" id="node1" title=" " alt="" coords="237,247,473,303"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="39,171,196,197"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,81,229,108"/>
-<area shape="rect" id="node4" title=" " alt="" coords="68,5,167,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="221,171,291,197"/>
-<area shape="rect" id="node6" title=" " alt="" coords="315,171,394,197"/>
-<area shape="rect" id="node7" title=" " alt="" coords="419,171,608,197"/>
-<area shape="rect" id="node8" title=" " alt="" coords="632,171,763,197"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="237,243,473,297"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="39,168,196,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,196,284,240,282,245,161,201"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,80,229,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,119,120,167,115,167,115,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="68,5,167,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="120,45,120,80,115,80,115,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="221,168,291,193"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,200,327,241,323,245,278,205"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="315,168,394,193"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="357,207,357,243,352,243,352,207"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="419,168,608,193"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="481,203,404,245,401,240,478,198"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="632,168,763,193"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="639,199,458,245,457,240,638,194"/>
 </map>

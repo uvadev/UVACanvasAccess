@@ -1,6 +1,9 @@
 <map id="UVACanvasAccess.Structures.Submissions.NewSubmission.INewSubmissionContent" name="UVACanvasAccess.Structures.Submissions.NewSubmission.INewSubmissionContent">
-<area shape="rect" id="node1" title="Represents some content to be submitted as part of an assignment submission." alt="" coords="5,85,329,141"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineTextEntrySubmission.html" title="Represents the submission of text, as if it was entered into the online interface." alt="" coords="377,5,636,61"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineUploadSubmission.html" title="Represents the submission of one or more previously uploaded files." alt="" coords="377,85,636,141"/>
-<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineUrlSubmission.html" title="Represents the submission of a URL." alt="" coords="377,165,636,221"/>
+<area shape="rect" id="Node000001" title="Represents some content to be submitted as part of an assignment submission." alt="" coords="5,84,329,139"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineTextEntrySubmission.html" title="Represents the submission of text, as if it was entered into the online interface." alt="" coords="377,5,636,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,78,387,58,389,63,300,83"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineUploadSubmission.html" title="Represents the submission of one or more previously uploaded files." alt="" coords="377,84,636,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="343,109,377,109,377,114,343,114"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineUrlSubmission.html" title="Represents the submission of a URL." alt="" coords="377,163,636,217"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="300,139,389,160,387,165,299,144"/>
 </map>

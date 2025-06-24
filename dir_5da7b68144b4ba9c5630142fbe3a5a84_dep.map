@@ -1,0 +1,38 @@
+<map id="UVACanvasAccess/Model" name="UVACanvasAccess/Model">
+<area shape="rect" id="node2" href="dir_4c3e7176f7a32d97e0c96af40a31d4f4.html" title="Accounts" alt="" coords="4041,63,4122,88"/>
+<area shape="rect" id="node3" href="dir_b4f6840b6899d7283410bc91a3da108f.html" title="Analytics" alt="" coords="3933,63,4016,88"/>
+<area shape="rect" id="node4" href="dir_b4359622ea54876f04e9fb42f1aeb962.html" title="Appointments" alt="" coords="3795,63,3909,88"/>
+<area shape="rect" id="node5" href="dir_ed481105a71966356ab93b8a9cc1104e.html" title="Assignments" alt="" coords="3664,63,3771,88"/>
+<area shape="rect" id="node6" href="dir_0616c1589b404d3e30f4ed9c73423597.html" title="Authentications" alt="" coords="3515,63,3639,88"/>
+<area shape="rect" id="node7" href="dir_8a5e8e72eb49b84c9026532f6207fbf6.html" title="Calendar" alt="" coords="3411,63,3491,88"/>
+<area shape="rect" id="node8" href="dir_cbdb266c7c782ab258f290875689a05e.html" title="ContentShares" alt="" coords="3269,63,3387,88"/>
+<area shape="rect" id="node9" href="dir_47bb334e02c4d4f0b1b602ef3e49df62.html" title="Conversations" alt="" coords="3131,63,3245,88"/>
+<area shape="rect" id="node10" href="dir_3af71e1b97dcdfbe50258f036cfd8721.html" title="Courses" alt="" coords="3032,63,3107,88"/>
+<area shape="rect" id="node11" href="dir_7c8eb057b64a51b20d0de79eb3fca778.html" title="CustomGradebookColumns" alt="" coords="2808,63,3008,88"/>
+<area shape="rect" id="node12" href="dir_5c69f1b99c7c28d03697a5ee1ab43bea.html" title="Discussions" alt="" coords="2685,63,2784,88"/>
+<area shape="rect" id="node13" href="dir_3a6c8a77dc2823abfd20ad875479e9fd.html" title="Enrollments" alt="" coords="2561,63,2661,88"/>
+<area shape="rect" id="node14" href="dir_fdc9392bb0a571c9e7386fc7f5cc7dde.html" title="EnrollmentTerms" alt="" coords="2405,63,2537,88"/>
+<area shape="rect" id="node15" href="dir_200798a5db65dfa3f91a4656ef895d8c.html" title="ExternalTools" alt="" coords="2271,63,2380,88"/>
+<area shape="rect" id="node16" href="dir_f674702faf487c9e56b6a797734e46e9.html" title="Files" alt="" coords="2194,63,2246,88"/>
+<area shape="rect" id="node17" href="dir_7313ca9efc496f73ae5ea83758d1410b.html" title="Gradebook" alt="" coords="2076,63,2169,88"/>
+<area shape="rect" id="node18" href="dir_70cab0c396a989776565406981001b4e.html" title="GradeChangelog" alt="" coords="1921,63,2052,88"/>
+<area shape="rect" id="node19" href="dir_efe9bfddd713059f91906b97e82dfa81.html" title="GradingPeriods" alt="" coords="1775,63,1897,88"/>
+<area shape="rect" id="node20" href="dir_7261ac6815ff800cc71804fe620650cb.html" title="GradingPeriodSets" alt="" coords="1609,63,1751,88"/>
+<area shape="rect" id="node21" href="dir_4321efdbe23f2a29b26e9f974adadc0f.html" title="Groups" alt="" coords="1517,63,1585,88"/>
+<area shape="rect" id="node22" href="dir_a9586e79d4ad459fa38f85d72da39882.html" title="Logins" alt="" coords="1428,63,1492,88"/>
+<area shape="rect" id="node23" href="dir_3e148c30976d1cd277b6765bac08fe4e.html" title="Modules" alt="" coords="1327,63,1404,88"/>
+<area shape="rect" id="node24" href="dir_5e443465a8ebd23e161df5d810c70fc4.html" title="OutcomeResults" alt="" coords="1173,63,1302,88"/>
+<area shape="rect" id="node25" href="dir_507049ae70e947c7c6b46fdb17eda60d.html" title="Pages" alt="" coords="1089,63,1149,88"/>
+<area shape="rect" id="node26" href="dir_7f4b741b3e0b32fbde3f704eb91f9822.html" title="ProficiencyRatings" alt="" coords="922,63,1065,88"/>
+<area shape="rect" id="node27" href="dir_b5606fc7be27766015b652d0ae08b170.html" title="Quizzes" alt="" coords="825,63,898,88"/>
+<area shape="rect" id="node28" href="dir_2b3ce991fe5953ef64a43b575aa33241.html" title="Reports" alt="" coords="728,63,800,88"/>
+<area shape="rect" id="node29" href="dir_25ffa4ed452d81f775b6f87fae223bcf.html" title="Results" alt="" coords="633,63,703,88"/>
+<area shape="rect" id="node30" href="dir_5d3b89437902d8814c202c24894acccf.html" title="Roles" alt="" coords="549,63,608,88"/>
+<area shape="rect" id="node31" href="dir_9a4430aee961da6e031c65632a6c8e0b.html" title="Sections" alt="" coords="448,63,525,88"/>
+<area shape="rect" id="node32" href="dir_b07a51d4bf8796e902baea7c72106406.html" title="SisImports" alt="" coords="333,63,424,88"/>
+<area shape="rect" id="node33" href="dir_3d2cd992235e0511e71158e9f43ac33e.html" title="Submissions" alt="" coords="205,63,309,88"/>
+<area shape="rect" id="node34" href="dir_ae505f100a6a5c1be6b73b5ec04dd514.html" title="ToDos" alt="" coords="120,63,181,88"/>
+<area shape="rect" id="node35" href="dir_5a5e20045aa298db1a33d3b705f6a1be.html" title="Users" alt="" coords="37,63,96,88"/>
+<area shape="rect" id="clust2" href="dir_5da7b68144b4ba9c5630142fbe3a5a84.html" alt="" coords="27,52,4220,99"/>
+<area shape="rect" id="clust1" href="dir_d6587f23ce0155d9d95922d996ecf6f8.html" title="UVACanvasAccess" alt="" coords="16,16,4231,109"/>
+</map>

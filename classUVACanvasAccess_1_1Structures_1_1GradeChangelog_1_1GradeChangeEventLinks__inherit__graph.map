@@ -1,4 +1,5 @@
 <map id="UVACanvasAccess.Structures.GradeChangelog.GradeChangeEventLinks" name="UVACanvasAccess.Structures.GradeChangelog.GradeChangeEventLinks">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,299,121"/>
-<area shape="rect" id="node2" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="105,5,199,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,299,119"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="105,5,199,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,44,155,79,149,79,149,44"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="UVACanvasAccess.Structures.Users.ActivityStreamObject.Announcement" name="UVACanvasAccess.Structures.Users.ActivityStreamObject.Announcement">
-<area shape="rect" id="node1" title=" " alt="" coords="5,247,309,288"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html" title=" " alt="" coords="77,171,238,197"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="45,81,269,108"/>
-<area shape="rect" id="node4" title=" " alt="" coords="108,5,207,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,243,309,283"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html" title=" " alt="" coords="77,168,238,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,207,160,243,155,243,155,207"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="45,80,269,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="160,119,160,167,155,167,155,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="108,5,207,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="160,45,160,80,155,80,155,45"/>
 </map>

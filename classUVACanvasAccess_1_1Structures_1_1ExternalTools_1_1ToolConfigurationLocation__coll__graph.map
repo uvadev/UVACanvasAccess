@@ -1,8 +1,13 @@
 <map id="UVACanvasAccess.Structures.ExternalTools.ToolConfigurationLocation" name="UVACanvasAccess.Structures.ExternalTools.ToolConfigurationLocation">
-<area shape="rect" id="node1" title=" " alt="" coords="143,247,369,303"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="39,171,196,197"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,81,229,108"/>
-<area shape="rect" id="node4" title=" " alt="" coords="68,5,167,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="221,171,291,197"/>
-<area shape="rect" id="node6" title=" " alt="" coords="315,171,455,197"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="143,243,369,297"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="39,168,196,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,199,216,240,213,245,146,203"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="5,80,229,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,119,120,167,115,167,115,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="68,5,167,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="120,45,120,80,115,80,115,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="221,168,291,193"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="259,207,259,243,253,243,253,207"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="315,168,455,193"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="358,204,296,245,293,240,355,199"/>
 </map>

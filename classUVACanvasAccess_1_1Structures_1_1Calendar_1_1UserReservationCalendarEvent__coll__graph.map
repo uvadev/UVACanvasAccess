@@ -1,8 +1,13 @@
 <map id="UVACanvasAccess.Structures.Calendar.UserReservationCalendarEvent" name="UVACanvasAccess.Structures.Calendar.UserReservationCalendarEvent">
-<area shape="rect" id="node1" title="Represents a user appointment within a TimeSlotCalendarEvent of an appointment group." alt="" coords="5,323,292,364"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1BasicCalendarEvent.html" title=" " alt="" coords="73,247,225,273"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1CalendarEvent.html" title="Represents a calendar event." alt="" coords="90,171,207,197"/>
-<area shape="rect" id="node4" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="80,81,175,108"/>
-<area shape="rect" id="node5" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="199,81,423,108"/>
-<area shape="rect" id="node6" title=" " alt="" coords="262,5,361,32"/>
+<area shape="rect" id="Node000001" title="Represents a user appointment within a TimeSlotCalendarEvent of an appointment group." alt="" coords="5,317,292,357"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1BasicCalendarEvent.html" title=" " alt="" coords="73,243,225,268"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,282,151,317,146,317,146,282"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Calendar_1_1CalendarEvent.html" title="Represents a calendar event." alt="" coords="90,168,207,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="151,208,151,242,146,242,146,208"/>
+<area shape="rect" id="Node000004" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="80,80,175,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="136,118,148,167,143,168,131,119"/>
+<area shape="rect" id="Node000005" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="199,80,423,105"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="279,114,172,170,170,165,276,109"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="262,5,361,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="314,45,314,80,309,80,309,45"/>
 </map>

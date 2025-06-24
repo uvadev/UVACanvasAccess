@@ -1,7 +1,11 @@
 <map id="UVACanvasAccess.Structures.Conversations.DetailedConversation" name="UVACanvasAccess.Structures.Conversations.DetailedConversation">
-<area shape="rect" id="node1" title="Fully represents a conversation thread between 2 or more users." alt="" coords="5,247,265,288"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html" title="Summarizes a conversation thread between 2 or more users." alt="" coords="81,171,189,197"/>
-<area shape="rect" id="node3" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="67,81,161,108"/>
-<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="186,81,410,108"/>
-<area shape="rect" id="node5" title=" " alt="" coords="249,5,347,32"/>
+<area shape="rect" id="Node000001" title="Fully represents a conversation thread between 2 or more users." alt="" coords="5,243,265,283"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Conversations_1_1Conversation.html" title="Summarizes a conversation thread between 2 or more users." alt="" coords="81,168,189,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,207,138,243,133,243,133,207"/>
+<area shape="rect" id="Node000003" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="67,80,161,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,118,135,167,130,168,118,119"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="186,80,410,105"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="265,114,159,170,156,165,263,109"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="249,5,347,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="301,45,301,80,295,80,295,45"/>
 </map>

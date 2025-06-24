@@ -1,5 +1,7 @@
 <map id="UVACanvasAccess.Util.IAppointmentGroupParticipant" name="UVACanvasAccess.Util.IAppointmentGroupParticipant">
-<area shape="rect" id="node1" title="Indicates that implementing classes can be participants in an appointment group." alt="" coords="103,5,364,47"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Groups_1_1Group.html" title=" " alt="" coords="5,95,221,136"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html" title="Represents a user." alt="" coords="245,95,461,136"/>
+<area shape="rect" id="Node000001" title="Indicates that implementing classes can be participants in an appointment group." alt="" coords="103,5,364,45"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Groups_1_1Group.html" title=" " alt="" coords="5,93,221,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,56,141,95,138,91,194,51"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html" title="Represents a user." alt="" coords="245,93,461,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,51,328,91,325,95,270,56"/>
 </map>

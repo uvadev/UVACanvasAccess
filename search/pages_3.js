@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['dotnet_20yml_20badge_20svg_20branch_20master_20alt_20build_20status_20a_20href_20https_3a_20opensource_20org_20licenses_20mit_20img_20src_20https_3a_20img_20shields_20io_20badge_20license_20mit_20yellow_20svg_20alt_20license_3a_20mit_20a_0',['UVACanvasAccess &lt;img src=&quot;https://github.com/uvadev/UVACanvasAccess/actions/workflows/dotnet.yml/badge.svg?branch=master&quot; alt=&quot;Build Status&quot;/&gt; &lt;a href=&quot;https://opensource.org/licenses/MIT&quot; &gt;&lt;img src=&quot;https://img.shields.io/badge/License-MIT-yellow.svg&quot; alt=&quot;License: MIT&quot;/&gt;&lt;/a&gt;',['../md_README.html',1,'']]]
+];

@@ -1,4 +1,5 @@
 <map id="UVACanvasAccess.Structures.Users.ActivityStreamObject.Conversation" name="UVACanvasAccess.Structures.Users.ActivityStreamObject.Conversation">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,297,121"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html" title=" " alt="" coords="71,5,232,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,297,119"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject.html" title=" " alt="" coords="71,5,232,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,44,154,79,149,79,149,44"/>
 </map>

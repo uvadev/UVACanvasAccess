@@ -1,6 +1,9 @@
 <map id="UVACanvasAccess.Structures.ExternalTools.ToolConfigurationLocation" name="UVACanvasAccess.Structures.ExternalTools.ToolConfigurationLocation">
-<area shape="rect" id="node1" title=" " alt="" coords="109,80,336,136"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="5,5,163,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="187,5,258,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="282,5,422,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="109,79,336,133"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ExternalToolLocation.html" title=" " alt="" coords="5,5,163,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,36,182,76,179,81,113,40"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="187,5,258,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,44,225,79,220,79,220,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="282,5,422,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="325,41,264,81,261,76,322,36"/>
 </map>

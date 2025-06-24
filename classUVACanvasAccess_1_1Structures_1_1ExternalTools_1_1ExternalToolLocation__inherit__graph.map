@@ -1,13 +1,23 @@
 <map id="UVACanvasAccess.Structures.ExternalTools.ExternalToolLocation" name="UVACanvasAccess.Structures.ExternalTools.ExternalToolLocation">
-<area shape="rect" id="node1" title=" " alt="" coords="5,342,253,383"/>
-<area shape="rect" id="node2" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1AccountNavigationLocation.html" title=" " alt="" coords="329,5,565,61"/>
-<area shape="rect" id="node3" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseHomeSubNavigationLocation.html" title=" " alt="" coords="301,85,593,141"/>
-<area shape="rect" id="node4" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseNavigationLocation.html" title=" " alt="" coords="305,166,589,207"/>
-<area shape="rect" id="node5" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1EditorButtonLocation.html" title=" " alt="" coords="323,231,572,273"/>
-<area shape="rect" id="node6" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1HomeworkSubmissionLocation.html" title=" " alt="" coords="318,297,577,353"/>
-<area shape="rect" id="node7" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1LinkSelectionLocation.html" title=" " alt="" coords="320,378,575,419"/>
-<area shape="rect" id="node8" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1MigrationSelectionLocation.html" title=" " alt="" coords="330,444,565,500"/>
-<area shape="rect" id="node9" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ResourceSelectionLocation.html" title=" " alt="" coords="331,524,564,580"/>
-<area shape="rect" id="node10" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ToolConfigurationLocation.html" title=" " alt="" coords="334,604,561,660"/>
-<area shape="rect" id="node11" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1UserNavigationLocation.html" title=" " alt="" coords="313,685,582,726"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,335,253,375"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1AccountNavigationLocation.html" title=" " alt="" coords="329,5,565,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,321,160,266,194,198,240,128,268,97,300,69,328,53,331,57,303,74,272,101,244,132,198,200,165,268,144,323"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseHomeSubNavigationLocation.html" title=" " alt="" coords="301,84,593,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="147,322,172,282,207,235,250,189,300,149,323,136,326,141,303,154,254,193,211,239,176,285,151,325"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1CourseNavigationLocation.html" title=" " alt="" coords="305,163,589,203"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="157,323,219,267,258,237,300,213,330,201,332,206,302,218,261,242,222,271,160,327"/>
+<area shape="rect" id="Node000005" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1EditorButtonLocation.html" title=" " alt="" coords="323,227,572,267"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="181,327,238,301,300,277,343,265,344,270,302,282,240,306,183,332"/>
+<area shape="rect" id="Node000006" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1HomeworkSubmissionLocation.html" title=" " alt="" coords="318,292,577,347"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="267,337,317,331,318,337,267,342"/>
+<area shape="rect" id="Node000007" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1LinkSelectionLocation.html" title=" " alt="" coords="320,371,575,411"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="267,368,320,374,320,380,267,374"/>
+<area shape="rect" id="Node000008" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1MigrationSelectionLocation.html" title=" " alt="" coords="330,436,565,491"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="190,378,302,421,342,433,341,439,300,426,188,383"/>
+<area shape="rect" id="Node000009" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ResourceSelectionLocation.html" title=" " alt="" coords="331,515,564,569"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="160,384,222,443,261,473,303,500,332,513,329,518,300,504,258,478,218,447,156,388"/>
+<area shape="rect" id="Node000010" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1ToolConfigurationLocation.html" title=" " alt="" coords="334,593,561,648"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="149,386,173,430,208,482,251,534,303,578,335,595,332,600,300,583,247,538,203,485,168,433,144,389"/>
+<area shape="rect" id="Node000011" href="$classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1UserNavigationLocation.html" title=" " alt="" coords="313,673,582,713"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="142,388,162,447,195,520,216,558,241,595,270,628,303,657,325,670,322,675,300,661,266,632,237,598,212,561,190,522,157,448,137,389"/>
 </map>
