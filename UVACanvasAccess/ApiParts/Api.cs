@@ -189,6 +189,10 @@ namespace UVACanvasAccess.ApiParts {
             return content;
         }
 
+        private HttpContent HttpContentFromJson(JToken json) {
+            return new StringContent(json.ToString(), Encoding.Default, "application/json");
+        }
+
         /// <summary>
         /// Accumulates all the elements in a paginated response.
         /// </summary>
