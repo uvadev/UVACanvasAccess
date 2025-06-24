@@ -52,7 +52,7 @@ jobs:
     needs: build-package
     
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with:
         name: uvaca
     - name: Run deploy script
