@@ -25,7 +25,7 @@ jobs:
     - name: Compile Package
       working-directory: UVACanvasAccess
       run: nuget pack UVACanvasAccess.csproj -Build -Properties Configuration=Release -Properties BuildVersion=$(date "+%s")
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: uvaca
         path: UVACanvasAccess/UVACanvasAccess*.nupkg
