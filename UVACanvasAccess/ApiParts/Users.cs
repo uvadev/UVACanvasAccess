@@ -282,7 +282,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <seealso cref="SplitMergedUsers"/>
         public async Task<User> MergeUsers(ulong srcUserId, ulong destUserId) {
             var emptyArgs = BuildHttpArguments(new (string, string)[] { });
-            var response = await client.PutAsync($"users/{srcUserId}/merge_into/{destUserId}", emptyArgs);
+            var response = await client.PutAsync($"users/{srcUserId}/merge_into/{destUserId}", emptyArgs).AssertSuccess();
             var model = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
             return new User(this, model);
         }
@@ -298,7 +298,7 @@ namespace UVACanvasAccess.ApiParts {
         /// <seealso cref="MergeUsers"/>
         public async Task<IEnumerable<User>> SplitMergedUsers(ulong mergedUserId) {
             var emptyArgs = BuildHttpArguments(new (string, string)[] { });
-            var response = await client.PostAsync($"users/{mergedUserId}/split", emptyArgs);
+            var response = await client.PostAsync($"users/{mergedUserId}/split", emptyArgs).AssertSuccess();
             var modelList = JsonConvert.DeserializeObject<List<UserModel>>(await response.Content.ReadAsStringAsync());
             return modelList.Select(model => new User(this, model));
         }
