@@ -173,13 +173,9 @@ namespace UVACanvasAccess.ApiParts {
             var model = JsonConvert.DeserializeObject<FolderModel>(await response.Content.ReadAsStringAsync());
             return new Folder(this, model);
         }
-
-        /// <summary>
-        /// Stream the current user's personal folders.
-        /// </summary>
-        /// <returns>The stream of folders.</returns>
-        public async IAsyncEnumerable<Folder> StreamPersonalFolders() {
-            var response = await client.GetAsync("users/self/folders" + BuildQueryString());
+        
+        internal async IAsyncEnumerable<Folder> StreamFoldersBase(string requestPath) {
+            var response = await client.GetAsync(requestPath + BuildQueryString());
 
             await foreach (var model in StreamDeserializePages<FolderModel>(response)) {
                 yield return new Folder(this, model);
@@ -187,23 +183,30 @@ namespace UVACanvasAccess.ApiParts {
         }
 
         /// <summary>
-        /// Stream the current user's personal files.
+        /// Stream the current user's personal folders.
         /// </summary>
-        /// <param name="includeContentTypes">(Optional) Content types to include.</param>
-        /// <param name="excludeContentTypes">(Optional) Content type to exclude.</param>
-        /// <param name="searchTerm">(Optional) A search term.</param>
-        /// <param name="includes">(Optional) Extra data to include with the results.</param>
-        /// <param name="onlyIncludeFileNames">(Optional) Only include file names with the results.</param>
-        /// <param name="sortBy">(Optional) The category to sort the results by.</param>
-        /// <param name="order">(Optional) The order to sort the results by.</param>
-        /// <returns>The stream of files.</returns>
-        public async IAsyncEnumerable<CanvasFile> StreamPersonalFiles(IEnumerable<ContentType> includeContentTypes = null,
-                                                                      IEnumerable<ContentType> excludeContentTypes = null,
-                                                                      string searchTerm = null,
-                                                                      FileIncludes? includes = null,
-                                                                      bool onlyIncludeFileNames = false,
-                                                                      FileSort? sortBy = null,
-                                                                      Order? order = null) {
+        /// <returns>The stream of folders.</returns>
+        public IAsyncEnumerable<Folder> StreamPersonalFolders() {
+            return StreamFoldersBase("users/self/folders");
+        }
+
+        /// <summary>
+        /// Stream the folders in a specific <see cref="Folder"/>.
+        /// </summary>
+        /// <param name="folderId">The folder id.</param>
+        /// <returns>The stream of folders.</returns>
+        public IAsyncEnumerable<Folder> StreamFoldersInFolder(ulong folderId) {
+            return StreamFoldersBase($"folders/{folderId}/folders");
+        }
+
+        internal async IAsyncEnumerable<CanvasFile> StreamFilesBase(string requestPath,
+                                                                    IEnumerable<ContentType> includeContentTypes = null,
+                                                                    IEnumerable<ContentType> excludeContentTypes = null,
+                                                                    string searchTerm = null,
+                                                                    FileIncludes? includes = null,
+                                                                    bool onlyIncludeFileNames = false,
+                                                                    FileSort? sortBy = null,
+                                                                    Order? order = null) {
             var args = new List<(string, string)>();
 
             if (includeContentTypes != null) {
@@ -212,8 +215,11 @@ namespace UVACanvasAccess.ApiParts {
             }
 
             if (excludeContentTypes != null) {
-                args.AddRange(excludeContentTypes.Select(ct => ct.MediaType)
-                                                 .Select(mt => ("exclude_content_types[]", mt)));
+                args.AddRange(
+                    excludeContentTypes
+                        .Select(ct => ct.MediaType)
+                        .Select(mt => ("exclude_content_types[]", mt))
+                );
             }
 
             if (searchTerm != null) {
@@ -221,8 +227,9 @@ namespace UVACanvasAccess.ApiParts {
             }
 
             if (includes != null) {
-                args.AddRange(includes.GetFlagsApiRepresentations()
-                                      .Select(r => ("include[]", r)));
+                args.AddRange(
+                    includes.GetFlagsApiRepresentations().Select(r => ("include[]", r))
+                );
             }
 
             if (onlyIncludeFileNames) {
@@ -237,11 +244,55 @@ namespace UVACanvasAccess.ApiParts {
                 args.Add(("order", order.GetApiRepresentation()));
             }
             
-            var response = await client.GetAsync("users/self/files" + BuildDuplicateKeyQueryString(args.ToArray()));
+            var response = await client.GetAsync(requestPath + BuildDuplicateKeyQueryString(args.ToArray()));
 
             await foreach (var model in StreamDeserializePages<CanvasFileModel>(response)) {
                 yield return new CanvasFile(this, model);
             }
+        }
+
+        /// <summary>
+        /// Stream the current user's personal files.
+        /// </summary>
+        /// <param name="includeContentTypes">(Optional) Content types to include.</param>
+        /// <param name="excludeContentTypes">(Optional) Content type to exclude.</param>
+        /// <param name="searchTerm">(Optional) A search term.</param>
+        /// <param name="includes">(Optional) Extra data to include with the results.</param>
+        /// <param name="onlyIncludeFileNames">(Optional) Only include file names with the results.</param>
+        /// <param name="sortBy">(Optional) The category to sort the results by.</param>
+        /// <param name="order">(Optional) The order to sort the results by.</param>
+        /// <returns>The stream of files.</returns>
+        public IAsyncEnumerable<CanvasFile> StreamPersonalFiles(IEnumerable<ContentType> includeContentTypes = null, 
+                                                                IEnumerable<ContentType> excludeContentTypes = null, 
+                                                                string searchTerm = null, 
+                                                                FileIncludes? includes = null, 
+                                                                bool onlyIncludeFileNames = false,
+                                                                FileSort? sortBy = null,
+                                                                Order? order = null) {
+            return StreamFilesBase("users/self/files", includeContentTypes, excludeContentTypes, searchTerm, includes, onlyIncludeFileNames, sortBy, order);
+        }
+
+        /// <summary>
+        /// Stream the files in a specific <see cref="Folder"/>.
+        /// </summary>
+        /// <param name="folderId">The folder id.</param>
+        /// <param name="includeContentTypes">(Optional) Content types to include.</param>
+        /// <param name="excludeContentTypes">(Optional) Content type to exclude.</param>
+        /// <param name="searchTerm">(Optional) A search term.</param>
+        /// <param name="includes">(Optional) Extra data to include with the results.</param>
+        /// <param name="onlyIncludeFileNames">(Optional) Only include file names with the results.</param>
+        /// <param name="sortBy">(Optional) The category to sort the results by.</param>
+        /// <param name="order">(Optional) The order to sort the results by.</param>
+        /// <returns>The stream of files.</returns>
+        public IAsyncEnumerable<CanvasFile> StreamFilesInFolder(ulong folderId,
+                                                                IEnumerable<ContentType> includeContentTypes = null,
+                                                                IEnumerable<ContentType> excludeContentTypes = null,
+                                                                string searchTerm = null,
+                                                                FileIncludes? includes = null,
+                                                                bool onlyIncludeFileNames = false,
+                                                                FileSort? sortBy = null,
+                                                                Order? order = null) {
+            return StreamFilesBase($"folders/{folderId}/files", includeContentTypes, excludeContentTypes, searchTerm, includes, onlyIncludeFileNames, sortBy, order);
         }
 
         /// <summary>
