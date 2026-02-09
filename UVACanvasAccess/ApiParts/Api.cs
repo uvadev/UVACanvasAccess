@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -40,10 +41,42 @@ namespace UVACanvasAccess.ApiParts {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("UVACanvasAccess", GetProductVersionString()));
 
             if (timeout != null) {
                 client.Timeout = timeout.Value;
             }
+        }
+
+        private static string GetProductVersionString() {
+            try {
+                var assembly = typeof(Api).Assembly;
+                
+                var informationalVersion = assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false)
+                                                   .OfType<AssemblyInformationalVersionAttribute>()
+                                                   .FirstOrDefault();
+                
+                if (informationalVersion != null && !string.IsNullOrWhiteSpace(informationalVersion.InformationalVersion)) {
+                    return informationalVersion.InformationalVersion;
+                }
+
+                var packageVersion = assembly.GetCustomAttributes(typeof(AssemblyMetadataAttribute), false)
+                                             .OfType<AssemblyMetadataAttribute>()
+                                             .FirstOrDefault(a => string.Equals(a.Key, "NuGetPackageVersion", StringComparison.OrdinalIgnoreCase));
+                
+                if (packageVersion != null && !string.IsNullOrWhiteSpace(packageVersion.Value)) {
+                    return packageVersion.Value;
+                }
+
+                var assemblyVersion = assembly.GetName().Version;
+                if (assemblyVersion != null) {
+                    return assemblyVersion.ToString(4);
+                }
+            } catch {
+                // Default silently to 1.0.0 if the version lookup fails.
+            }
+            
+            return "1.0.0";
         }
 
         static Api() {
