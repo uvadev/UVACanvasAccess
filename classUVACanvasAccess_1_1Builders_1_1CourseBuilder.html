@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Used to create courses using the builder pattern. When all desired fields are set, call Post to execute the operation.  
+<p>Used to create or edit courses using the builder pattern. When all desired fields are set, call Post to execute the operation.  
  <a href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -97,6 +97,12 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:affb588efec9edd1f3bbab2093d1543e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actions that can be taken when editing a course.  <a href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#affb588efec9edd1f3bbab2093d1543e8">More...</a><br /></td></tr>
 <tr class="separator:affb588efec9edd1f3bbab2093d1543e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae401a3e1e2f945e9465b073dbe100ac0" id="r_ae401a3e1e2f945e9465b073dbe100ac0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0">GradePassbackSetting</a> : byte { <a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0ac9f88e098f6fe4e4e112eeb05ccb9671">Unset</a>
+, <a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0ae53ef573d63398232e10d6433dad7c3e">NightlySync</a>
+, <a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0ab9f5c797ebbf55adccdd8539a65a0241">Disabled</a>
+ }</td></tr>
+<tr class="memdesc:ae401a3e1e2f945e9465b073dbe100ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passback settings for grade sync.  <a href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0">More...</a><br /></td></tr>
+<tr class="separator:ae401a3e1e2f945e9465b073dbe100ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -124,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae43d462c5f24bac08bcaaa299a7a1c78" id="r_ae43d462c5f24bac08bcaaa299a7a1c78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae43d462c5f24bac08bcaaa299a7a1c78">WithPublicSyllabus</a> (bool publicSyllabus=true)</td></tr>
 <tr class="memdesc:ae43d462c5f24bac08bcaaa299a7a1c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make the syllabus public.  <br /></td></tr>
 <tr class="separator:ae43d462c5f24bac08bcaaa299a7a1c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe572259905202429f18690a7e5ae416" id="r_afe572259905202429f18690a7e5ae416"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#afe572259905202429f18690a7e5ae416">WithPublicSyllabusToAuthUsers</a> (bool publicSyllabusToAuth=true)</td></tr>
+<tr class="memdesc:afe572259905202429f18690a7e5ae416"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make the syllabus public to authenticated users only.  <br /></td></tr>
+<tr class="separator:afe572259905202429f18690a7e5ae416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a833ab16c69a4f08f87aca85a092fde24" id="r_a833ab16c69a4f08f87aca85a092fde24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a833ab16c69a4f08f87aca85a092fde24">WithPublicDescription</a> (string description)</td></tr>
 <tr class="memdesc:a833ab16c69a4f08f87aca85a092fde24"><td class="mdescLeft">&#160;</td><td class="mdescRight">The course's public description.  <br /></td></tr>
 <tr class="separator:a833ab16c69a4f08f87aca85a092fde24"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,6 +154,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a571539cdc7702cab5e61d20c4f18875e" id="r_a571539cdc7702cab5e61d20c4f18875e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a571539cdc7702cab5e61d20c4f18875e">WithDateRestrictedEnrollments</a> (bool restrict=true)</td></tr>
 <tr class="memdesc:a571539cdc7702cab5e61d20c4f18875e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only allow enrollments between this course's start and end dates.  <br /></td></tr>
 <tr class="separator:a571539cdc7702cab5e61d20c4f18875e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a3390e632aa81c6c9d6ec6a17fa9728" id="r_a1a3390e632aa81c6c9d6ec6a17fa9728"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a1a3390e632aa81c6c9d6ec6a17fa9728">WithAccountId</a> (ulong accountId)</td></tr>
+<tr class="memdesc:a1a3390e632aa81c6c9d6ec6a17fa9728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move this course to another account.  <br /></td></tr>
+<tr class="separator:a1a3390e632aa81c6c9d6ec6a17fa9728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab120eca84fdfbab1cd013cad8ad0df3e" id="r_ab120eca84fdfbab1cd013cad8ad0df3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ab120eca84fdfbab1cd013cad8ad0df3e">WithTermId</a> (ulong termId)</td></tr>
 <tr class="memdesc:ab120eca84fdfbab1cd013cad8ad0df3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The unique term id to create this course in.  <br /></td></tr>
 <tr class="separator:ab120eca84fdfbab1cd013cad8ad0df3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,36 +175,108 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaa32c4b36f7c043e035c131c99d05055" id="r_aaa32c4b36f7c043e035c131c99d05055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#aaa32c4b36f7c043e035c131c99d05055">WithTimeZone</a> (string timeZone)</td></tr>
 <tr class="memdesc:aaa32c4b36f7c043e035c131c99d05055"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time zone of this course.  <br /></td></tr>
 <tr class="separator:aaa32c4b36f7c043e035c131c99d05055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22b29cd25368f9ab28b2158ce7413158" id="r_a22b29cd25368f9ab28b2158ce7413158"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a22b29cd25368f9ab28b2158ce7413158">WithStorageQuotaMb</a> (int quotaMb)</td></tr>
+<tr class="memdesc:a22b29cd25368f9ab28b2158ce7413158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the storage quota for this course, in megabytes.  <br /></td></tr>
+<tr class="separator:a22b29cd25368f9ab28b2158ce7413158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5591dbadda1d76a41bdf288461e8309b" id="r_a5591dbadda1d76a41bdf288461e8309b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a5591dbadda1d76a41bdf288461e8309b">OfferImmediately</a> (bool offerNow=true)</td></tr>
 <tr class="memdesc:a5591dbadda1d76a41bdf288461e8309b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make this course available to students immediately.  <br /></td></tr>
 <tr class="separator:a5591dbadda1d76a41bdf288461e8309b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a2ab527fbc3cde82420cad6eb172e21" id="r_a7a2ab527fbc3cde82420cad6eb172e21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a7a2ab527fbc3cde82420cad6eb172e21">EnrollCurrentUser</a> (bool enrollMe=true)</td></tr>
 <tr class="memdesc:a7a2ab527fbc3cde82420cad6eb172e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enroll the current user immediately as a teacher in this course.  <br /></td></tr>
 <tr class="separator:a7a2ab527fbc3cde82420cad6eb172e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdaeb057d448d2ce5aabe814c5fc5436" id="r_afdaeb057d448d2ce5aabe814c5fc5436"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#afdaeb057d448d2ce5aabe814c5fc5436">SkipCourseTemplate</a> (bool skipTemplate=true)</td></tr>
+<tr class="memdesc:afdaeb057d448d2ce5aabe814c5fc5436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to skip applying the account's course template to this course.  <br /></td></tr>
+<tr class="separator:afdaeb057d448d2ce5aabe814c5fc5436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff6ea7f7c1d4090b78e00eeea166a701" id="r_aff6ea7f7c1d4090b78e00eeea166a701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#aff6ea7f7c1d4090b78e00eeea166a701">WithDefaultView</a> (CourseView defaultView)</td></tr>
 <tr class="memdesc:aff6ea7f7c1d4090b78e00eeea166a701"><td class="mdescLeft">&#160;</td><td class="mdescRight">The course's default view.  <br /></td></tr>
 <tr class="separator:aff6ea7f7c1d4090b78e00eeea166a701"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ee33dcb9a346cecc668e0cfa576a744" id="r_a2ee33dcb9a346cecc668e0cfa576a744"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a2ee33dcb9a346cecc668e0cfa576a744">WithSyllabusBody</a> (string body)</td></tr>
 <tr class="memdesc:a2ee33dcb9a346cecc668e0cfa576a744"><td class="mdescLeft">&#160;</td><td class="mdescRight">The course syllabus.  <br /></td></tr>
 <tr class="separator:a2ee33dcb9a346cecc668e0cfa576a744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1c49540b05ea5e504981a24af0aff4b" id="r_ae1c49540b05ea5e504981a24af0aff4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae1c49540b05ea5e504981a24af0aff4b">WithSyllabusCourseSummary</a> (bool showSummary=true)</td></tr>
+<tr class="memdesc:ae1c49540b05ea5e504981a24af0aff4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to the course summary on the syllabus page.  <br /></td></tr>
+<tr class="separator:ae1c49540b05ea5e504981a24af0aff4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa86b4deb6a489d8a3103d0325ce27720" id="r_aa86b4deb6a489d8a3103d0325ce27720"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#aa86b4deb6a489d8a3103d0325ce27720">WithGradingStandard</a> (ulong standard)</td></tr>
 <tr class="memdesc:aa86b4deb6a489d8a3103d0325ce27720"><td class="mdescLeft">&#160;</td><td class="mdescRight">The grading standard for this course.  <br /></td></tr>
 <tr class="separator:aa86b4deb6a489d8a3103d0325ce27720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d80889ac6f9a2dda7b807d3b3be79eb" id="r_a3d80889ac6f9a2dda7b807d3b3be79eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a3d80889ac6f9a2dda7b807d3b3be79eb">WithGradePassbackSetting</a> (<a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0">GradePassbackSetting</a> setting)</td></tr>
+<tr class="memdesc:a3d80889ac6f9a2dda7b807d3b3be79eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The grade passback setting for this course.  <br /></td></tr>
+<tr class="separator:a3d80889ac6f9a2dda7b807d3b3be79eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4be8ea1292fc37dbbad55c15af53e7d6" id="r_a4be8ea1292fc37dbbad55c15af53e7d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a4be8ea1292fc37dbbad55c15af53e7d6">WithCourseFormat</a> (CourseFormat format)</td></tr>
 <tr class="memdesc:a4be8ea1292fc37dbbad55c15af53e7d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The course format.  <br /></td></tr>
 <tr class="separator:a4be8ea1292fc37dbbad55c15af53e7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8be47d20f0a6deefbb0722e7e02d0239" id="r_a8be47d20f0a6deefbb0722e7e02d0239"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a8be47d20f0a6deefbb0722e7e02d0239">WithManualGradePosting</a> (bool postManually=true)</td></tr>
+<tr class="memdesc:a8be47d20f0a6deefbb0722e7e02d0239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to require grades to be posted manually in this course.  <br /></td></tr>
+<tr class="separator:a8be47d20f0a6deefbb0722e7e02d0239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4504d9782a5ba72442b243881fd68b94" id="r_a4504d9782a5ba72442b243881fd68b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a4504d9782a5ba72442b243881fd68b94">WithImageId</a> (ulong imageId)</td></tr>
+<tr class="memdesc:a4504d9782a5ba72442b243881fd68b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a course image using a file id in the course.  <br /></td></tr>
+<tr class="separator:a4504d9782a5ba72442b243881fd68b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9cfbb8fec9256135ce46b55b944b8db" id="r_af9cfbb8fec9256135ce46b55b944b8db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#af9cfbb8fec9256135ce46b55b944b8db">WithImageUrl</a> (string imageUrl)</td></tr>
+<tr class="memdesc:af9cfbb8fec9256135ce46b55b944b8db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a course image using a URL.  <br /></td></tr>
+<tr class="separator:af9cfbb8fec9256135ce46b55b944b8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5322bf505817d545ca58f92845998ab" id="r_af5322bf505817d545ca58f92845998ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#af5322bf505817d545ca58f92845998ab">WithRemoveImage</a> (bool remove=true)</td></tr>
+<tr class="memdesc:af5322bf505817d545ca58f92845998ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the course image.  <br /></td></tr>
+<tr class="separator:af5322bf505817d545ca58f92845998ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e3c3e30ea77de2760d18ddd1c734058" id="r_a1e3c3e30ea77de2760d18ddd1c734058"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a1e3c3e30ea77de2760d18ddd1c734058">WithRemoveBannerImage</a> (bool remove=true)</td></tr>
+<tr class="memdesc:a1e3c3e30ea77de2760d18ddd1c734058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the course banner image.  <br /></td></tr>
+<tr class="separator:a1e3c3e30ea77de2760d18ddd1c734058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0febe52caa5d249856c675bf8c2f928" id="r_aa0febe52caa5d249856c675bf8c2f928"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#aa0febe52caa5d249856c675bf8c2f928">WithBlueprint</a> (bool blueprint=true)</td></tr>
+<tr class="memdesc:aa0febe52caa5d249856c675bf8c2f928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this course as a blueprint course.  <br /></td></tr>
+<tr class="separator:aa0febe52caa5d249856c675bf8c2f928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02e981f6829548f2c99a25c5489faa77" id="r_a02e981f6829548f2c99a25c5489faa77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a02e981f6829548f2c99a25c5489faa77">WithBlueprintRestriction</a> (BlueprintRestrictionType restriction, bool enabled=true)</td></tr>
+<tr class="memdesc:a02e981f6829548f2c99a25c5489faa77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a blueprint restriction for this course.  <br /></td></tr>
+<tr class="separator:a02e981f6829548f2c99a25c5489faa77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e255d1a7c8ac1dd9deeb116f9c2fa73" id="r_a3e255d1a7c8ac1dd9deeb116f9c2fa73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a3e255d1a7c8ac1dd9deeb116f9c2fa73">WithBlueprintRestrictions</a> (BlueprintRestrictionTypes restrictions)</td></tr>
+<tr class="memdesc:a3e255d1a7c8ac1dd9deeb116f9c2fa73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets blueprint restrictions for this course.  <br /></td></tr>
+<tr class="separator:a3e255d1a7c8ac1dd9deeb116f9c2fa73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ab9b165925efd195709dd2ddf9f2316" id="r_a2ab9b165925efd195709dd2ddf9f2316"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a2ab9b165925efd195709dd2ddf9f2316">WithUseBlueprintRestrictionsByObjectType</a> (bool enabled=true)</td></tr>
+<tr class="memdesc:a2ab9b165925efd195709dd2ddf9f2316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use object-type specific blueprint restrictions.  <br /></td></tr>
+<tr class="separator:a2ab9b165925efd195709dd2ddf9f2316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90e04d4164f937d0fe41d91c29a4cfa1" id="r_a90e04d4164f937d0fe41d91c29a4cfa1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a90e04d4164f937d0fe41d91c29a4cfa1">WithBlueprintRestrictionByObjectType</a> (BlueprintAssetType objectType, BlueprintRestrictionType restriction, bool enabled=true)</td></tr>
+<tr class="memdesc:a90e04d4164f937d0fe41d91c29a4cfa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a blueprint restriction by object type.  <br /></td></tr>
+<tr class="separator:a90e04d4164f937d0fe41d91c29a4cfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3da9ac36b0aade04cb57dc728ceebc73" id="r_a3da9ac36b0aade04cb57dc728ceebc73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a3da9ac36b0aade04cb57dc728ceebc73">WithBlueprintRestrictionsByObjectType</a> (Dictionary&lt; BlueprintAssetType, BlueprintRestrictionTypes &gt; restrictionsByObjectType)</td></tr>
+<tr class="memdesc:a3da9ac36b0aade04cb57dc728ceebc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets blueprint restrictions by object type.  <br /></td></tr>
+<tr class="separator:a3da9ac36b0aade04cb57dc728ceebc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3066da258efacf7f158bcd5ff1d2921b" id="r_a3066da258efacf7f158bcd5ff1d2921b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a3066da258efacf7f158bcd5ff1d2921b">WithHomeroomCourse</a> (bool homeroom=true)</td></tr>
+<tr class="memdesc:a3066da258efacf7f158bcd5ff1d2921b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this course as a homeroom course.  <br /></td></tr>
+<tr class="separator:a3066da258efacf7f158bcd5ff1d2921b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f042b643127e7bb7ad09ec89c9e0cc1" id="r_a5f042b643127e7bb7ad09ec89c9e0cc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a5f042b643127e7bb7ad09ec89c9e0cc1">WithSyncEnrollmentsFromHomeroom</a> (bool setting=true)</td></tr>
+<tr class="memdesc:a5f042b643127e7bb7ad09ec89c9e0cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sync enrollments from the homeroom course.  <br /></td></tr>
+<tr class="separator:a5f042b643127e7bb7ad09ec89c9e0cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28475ad8f1bb123c94d4caf74acc70b5" id="r_a28475ad8f1bb123c94d4caf74acc70b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a28475ad8f1bb123c94d4caf74acc70b5">WithHomeroomCourseId</a> (string homeroomCourseId)</td></tr>
+<tr class="memdesc:a28475ad8f1bb123c94d4caf74acc70b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the homeroom course id for enrollment sync.  <br /></td></tr>
+<tr class="separator:a28475ad8f1bb123c94d4caf74acc70b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15bbe54777743f9c50e0f43fc606a161" id="r_a15bbe54777743f9c50e0f43fc606a161"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a15bbe54777743f9c50e0f43fc606a161">WithTemplate</a> (bool template=true)</td></tr>
+<tr class="memdesc:a15bbe54777743f9c50e0f43fc606a161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable this course as a template.  <br /></td></tr>
+<tr class="separator:a15bbe54777743f9c50e0f43fc606a161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e24352b7abc92ba28d048e3e53a208d" id="r_a3e24352b7abc92ba28d048e3e53a208d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a3e24352b7abc92ba28d048e3e53a208d">WithCourseColor</a> (string hexColor)</td></tr>
+<tr class="memdesc:a3e24352b7abc92ba28d048e3e53a208d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the course color (hex).  <br /></td></tr>
+<tr class="separator:a3e24352b7abc92ba28d048e3e53a208d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91a1d547d53fb48cef649082640039cc" id="r_a91a1d547d53fb48cef649082640039cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a91a1d547d53fb48cef649082640039cc">WithFriendlyName</a> (string friendlyName)</td></tr>
+<tr class="memdesc:a91a1d547d53fb48cef649082640039cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a friendly name for the course.  <br /></td></tr>
+<tr class="separator:a91a1d547d53fb48cef649082640039cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8a2d34de74900110abc174fb4a8cfa" id="r_aae8a2d34de74900110abc174fb4a8cfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#aae8a2d34de74900110abc174fb4a8cfa">WithCoursePacingEnabled</a> (bool enabled=true)</td></tr>
+<tr class="memdesc:aae8a2d34de74900110abc174fb4a8cfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable Course Pacing.  <br /></td></tr>
+<tr class="separator:aae8a2d34de74900110abc174fb4a8cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3634836762186b2e9716cb1feecf0d" id="r_afd3634836762186b2e9716cb1feecf0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#afd3634836762186b2e9716cb1feecf0d">WithConditionalRelease</a> (bool enabled=true)</td></tr>
+<tr class="memdesc:afd3634836762186b2e9716cb1feecf0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable conditional release.  <br /></td></tr>
+<tr class="separator:afd3634836762186b2e9716cb1feecf0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7a5f40b3e16c845de627fe0d84063d5" id="r_ac7a5f40b3e16c845de627fe0d84063d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ac7a5f40b3e16c845de627fe0d84063d5">TryToRecoverFromSis</a> (bool tryToRecover=true)</td></tr>
 <tr class="memdesc:ac7a5f40b3e16c845de627fe0d84063d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to recover a deleted course from SIS with a matching SIS id before creating this course.  <br /></td></tr>
 <tr class="separator:ac7a5f40b3e16c845de627fe0d84063d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49de8b1e850a82fb6a064359a9f62081" id="r_a49de8b1e850a82fb6a064359a9f62081"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a49de8b1e850a82fb6a064359a9f62081">WithOverrideSisStickiness</a> (bool overrideStickiness=true)</td></tr>
+<tr class="memdesc:a49de8b1e850a82fb6a064359a9f62081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override SIS stickiness.  <br /></td></tr>
+<tr class="separator:a49de8b1e850a82fb6a064359a9f62081"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57c1e08b1c774224de1b389e3c52d88f" id="r_a57c1e08b1c774224de1b389e3c52d88f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#a57c1e08b1c774224de1b389e3c52d88f">TakeAction</a> (<a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#affb588efec9edd1f3bbab2093d1543e8">CourseEditAction</a> action)</td></tr>
 <tr class="memdesc:a57c1e08b1c774224de1b389e3c52d88f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the action indicated by <em>action</em>  when editing a course; publish, unpublish, conclude, delete, or undelete the course.  <br /></td></tr>
 <tr class="separator:a57c1e08b1c774224de1b389e3c52d88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab26e92527e25f19e01b8693e0cb82885" id="r_ab26e92527e25f19e01b8693e0cb82885"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Courses_1_1Course.html">Course</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ab26e92527e25f19e01b8693e0cb82885">Post</a> ()</td></tr>
-<tr class="memdesc:ab26e92527e25f19e01b8693e0cb82885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the assignment using the fields in this builder.  <br /></td></tr>
+<tr class="memdesc:ab26e92527e25f19e01b8693e0cb82885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commit the operation using the fields in this builder.  <br /></td></tr>
 <tr class="separator:ab26e92527e25f19e01b8693e0cb82885"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Used to create courses using the builder pattern. When all desired fields are set, call Post to execute the operation. </p>
+<div class="textblock"><p>Used to create or edit courses using the builder pattern. When all desired fields are set, call Post to execute the operation. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="affb588efec9edd1f3bbab2093d1543e8" name="affb588efec9edd1f3bbab2093d1543e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#affb588efec9edd1f3bbab2093d1543e8">&#9670;&#160;</a></span>CourseEditAction</h2>
@@ -219,6 +303,30 @@ Public Member Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="affb588efec9edd1f3bbab2093d1543e8af2a6c498fb90ee345d997f888fce3b18" name="affb588efec9edd1f3bbab2093d1543e8af2a6c498fb90ee345d997f888fce3b18"></a>Delete&#160;</td><td class="fielddoc"><p>Delete the course. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="affb588efec9edd1f3bbab2093d1543e8a7c1e55cfdb9d523c9abd95740023cae4" name="affb588efec9edd1f3bbab2093d1543e8a7c1e55cfdb9d523c9abd95740023cae4"></a>Undelete&#160;</td><td class="fielddoc"><p>Undelete the course. This action may not be possible. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ae401a3e1e2f945e9465b073dbe100ac0" name="ae401a3e1e2f945e9465b073dbe100ac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae401a3e1e2f945e9465b073dbe100ac0">&#9670;&#160;</a></span>GradePassbackSetting</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0">UVACanvasAccess.Builders.CourseBuilder.GradePassbackSetting</a> : byte</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Passback settings for grade sync. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae401a3e1e2f945e9465b073dbe100ac0ac9f88e098f6fe4e4e112eeb05ccb9671" name="ae401a3e1e2f945e9465b073dbe100ac0ac9f88e098f6fe4e4e112eeb05ccb9671"></a>Unset&#160;</td><td class="fielddoc"><p>Unset the grade passback setting. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae401a3e1e2f945e9465b073dbe100ac0ae53ef573d63398232e10d6433dad7c3e" name="ae401a3e1e2f945e9465b073dbe100ac0ae53ef573d63398232e10d6433dad7c3e"></a>NightlySync&#160;</td><td class="fielddoc"><p>Enable nightly sync. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae401a3e1e2f945e9465b073dbe100ac0ab9f5c797ebbf55adccdd8539a65a0241" name="ae401a3e1e2f945e9465b073dbe100ac0ab9f5c797ebbf55adccdd8539a65a0241"></a>Disabled&#160;</td><td class="fielddoc"><p>Disable grade passback. </p>
 </td></tr>
 </table>
 
@@ -388,8 +496,43 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates the assignment using the fields in this builder. </p>
-<dl class="section return"><dt>Returns</dt><dd>The newly created assignment.</dd></dl>
+<p>Commit the operation using the fields in this builder. </p>
+<dl class="section return"><dt>Returns</dt><dd>The newly created or edited course.</dd></dl>
+
+</div>
+</div>
+<a id="afdaeb057d448d2ce5aabe814c5fc5436" name="afdaeb057d448d2ce5aabe814c5fc5436"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdaeb057d448d2ce5aabe814c5fc5436">&#9670;&#160;</a></span>SkipCourseTemplate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.SkipCourseTemplate </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>skipTemplate</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether to skip applying the account's course template to this course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">skipTemplate</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
 
 </div>
 </div>
@@ -464,6 +607,42 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a1a3390e632aa81c6c9d6ec6a17fa9728" name="a1a3390e632aa81c6c9d6ec6a17fa9728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a3390e632aa81c6c9d6ec6a17fa9728">&#9670;&#160;</a></span>WithAccountId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithAccountId </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>accountId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move this course to another account. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accountId</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
 <a id="a5e2c01fb879a22d989eb0dc9a0c75803" name="a5e2c01fb879a22d989eb0dc9a0c75803"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5e2c01fb879a22d989eb0dc9a0c75803">&#9670;&#160;</a></span>WithAssignmentGroupWeight()</h2>
 
@@ -496,6 +675,251 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+
+</div>
+</div>
+<a id="aa0febe52caa5d249856c675bf8c2f928" name="aa0febe52caa5d249856c675bf8c2f928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0febe52caa5d249856c675bf8c2f928">&#9670;&#160;</a></span>WithBlueprint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithBlueprint </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>blueprint</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets this course as a blueprint course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">blueprint</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a02e981f6829548f2c99a25c5489faa77" name="a02e981f6829548f2c99a25c5489faa77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02e981f6829548f2c99a25c5489faa77">&#9670;&#160;</a></span>WithBlueprintRestriction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithBlueprintRestriction </td>
+          <td>(</td>
+          <td class="paramtype">BlueprintRestrictionType&#160;</td>
+          <td class="paramname"><em>restriction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a blueprint restriction for this course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">restriction</td><td></td></tr>
+    <tr><td class="paramname">enabled</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a90e04d4164f937d0fe41d91c29a4cfa1" name="a90e04d4164f937d0fe41d91c29a4cfa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90e04d4164f937d0fe41d91c29a4cfa1">&#9670;&#160;</a></span>WithBlueprintRestrictionByObjectType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithBlueprintRestrictionByObjectType </td>
+          <td>(</td>
+          <td class="paramtype">BlueprintAssetType&#160;</td>
+          <td class="paramname"><em>objectType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BlueprintRestrictionType&#160;</td>
+          <td class="paramname"><em>restriction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a blueprint restriction by object type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">objectType</td><td></td></tr>
+    <tr><td class="paramname">restriction</td><td></td></tr>
+    <tr><td class="paramname">enabled</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a3e255d1a7c8ac1dd9deeb116f9c2fa73" name="a3e255d1a7c8ac1dd9deeb116f9c2fa73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e255d1a7c8ac1dd9deeb116f9c2fa73">&#9670;&#160;</a></span>WithBlueprintRestrictions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithBlueprintRestrictions </td>
+          <td>(</td>
+          <td class="paramtype">BlueprintRestrictionTypes&#160;</td>
+          <td class="paramname"><em>restrictions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets blueprint restrictions for this course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">restrictions</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a3da9ac36b0aade04cb57dc728ceebc73" name="a3da9ac36b0aade04cb57dc728ceebc73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3da9ac36b0aade04cb57dc728ceebc73">&#9670;&#160;</a></span>WithBlueprintRestrictionsByObjectType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithBlueprintRestrictionsByObjectType </td>
+          <td>(</td>
+          <td class="paramtype">Dictionary&lt; BlueprintAssetType, BlueprintRestrictionTypes &gt;&#160;</td>
+          <td class="paramname"><em>restrictionsByObjectType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets blueprint restrictions by object type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">restrictionsByObjectType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="afd3634836762186b2e9716cb1feecf0d" name="afd3634836762186b2e9716cb1feecf0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd3634836762186b2e9716cb1feecf0d">&#9670;&#160;</a></span>WithConditionalRelease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithConditionalRelease </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable or disable conditional release. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enabled</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
 
 </div>
 </div>
@@ -534,6 +958,42 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a3e24352b7abc92ba28d048e3e53a208d" name="a3e24352b7abc92ba28d048e3e53a208d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e24352b7abc92ba28d048e3e53a208d">&#9670;&#160;</a></span>WithCourseColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithCourseColor </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>hexColor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the course color (hex). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hexColor</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
 <a id="a4be8ea1292fc37dbbad55c15af53e7d6" name="a4be8ea1292fc37dbbad55c15af53e7d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4be8ea1292fc37dbbad55c15af53e7d6">&#9670;&#160;</a></span>WithCourseFormat()</h2>
 
@@ -566,6 +1026,42 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+
+</div>
+</div>
+<a id="aae8a2d34de74900110abc174fb4a8cfa" name="aae8a2d34de74900110abc174fb4a8cfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae8a2d34de74900110abc174fb4a8cfa">&#9670;&#160;</a></span>WithCoursePacingEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithCoursePacingEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable or disable Course Pacing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enabled</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
 
 </div>
 </div>
@@ -674,6 +1170,77 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a91a1d547d53fb48cef649082640039cc" name="a91a1d547d53fb48cef649082640039cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91a1d547d53fb48cef649082640039cc">&#9670;&#160;</a></span>WithFriendlyName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithFriendlyName </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>friendlyName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a friendly name for the course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">friendlyName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a3d80889ac6f9a2dda7b807d3b3be79eb" name="a3d80889ac6f9a2dda7b807d3b3be79eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d80889ac6f9a2dda7b807d3b3be79eb">&#9670;&#160;</a></span>WithGradePassbackSetting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithGradePassbackSetting </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html#ae401a3e1e2f945e9465b073dbe100ac0">GradePassbackSetting</a>&#160;</td>
+          <td class="paramname"><em>setting</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The grade passback setting for this course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">setting</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+
+</div>
+</div>
 <a id="aa86b4deb6a489d8a3103d0325ce27720" name="aa86b4deb6a489d8a3103d0325ce27720"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa86b4deb6a489d8a3103d0325ce27720">&#9670;&#160;</a></span>WithGradingStandard()</h2>
 
@@ -744,6 +1311,150 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a3066da258efacf7f158bcd5ff1d2921b" name="a3066da258efacf7f158bcd5ff1d2921b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3066da258efacf7f158bcd5ff1d2921b">&#9670;&#160;</a></span>WithHomeroomCourse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithHomeroomCourse </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>homeroom</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets this course as a homeroom course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">homeroom</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a28475ad8f1bb123c94d4caf74acc70b5" name="a28475ad8f1bb123c94d4caf74acc70b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28475ad8f1bb123c94d4caf74acc70b5">&#9670;&#160;</a></span>WithHomeroomCourseId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithHomeroomCourseId </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>homeroomCourseId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the homeroom course id for enrollment sync. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">homeroomCourseId</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a4504d9782a5ba72442b243881fd68b94" name="a4504d9782a5ba72442b243881fd68b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4504d9782a5ba72442b243881fd68b94">&#9670;&#160;</a></span>WithImageId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithImageId </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>imageId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a course image using a file id in the course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imageId</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="af9cfbb8fec9256135ce46b55b944b8db" name="af9cfbb8fec9256135ce46b55b944b8db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9cfbb8fec9256135ce46b55b944b8db">&#9670;&#160;</a></span>WithImageUrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithImageUrl </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>imageUrl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a course image using a URL. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imageUrl</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
 <a id="a06aeab7d867e003f504edb0c5341335e" name="a06aeab7d867e003f504edb0c5341335e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06aeab7d867e003f504edb0c5341335e">&#9670;&#160;</a></span>WithIntegrationId()</h2>
 
@@ -807,6 +1518,41 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">license</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+
+</div>
+</div>
+<a id="a8be47d20f0a6deefbb0722e7e02d0239" name="a8be47d20f0a6deefbb0722e7e02d0239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8be47d20f0a6deefbb0722e7e02d0239">&#9670;&#160;</a></span>WithManualGradePosting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithManualGradePosting </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>postManually</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether to require grades to be posted manually in this course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">postManually</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -884,6 +1630,42 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a49de8b1e850a82fb6a064359a9f62081" name="a49de8b1e850a82fb6a064359a9f62081"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49de8b1e850a82fb6a064359a9f62081">&#9670;&#160;</a></span>WithOverrideSisStickiness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithOverrideSisStickiness </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>overrideStickiness</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Override SIS stickiness. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">overrideStickiness</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
 <a id="a833ab16c69a4f08f87aca85a092fde24" name="a833ab16c69a4f08f87aca85a092fde24"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a833ab16c69a4f08f87aca85a092fde24">&#9670;&#160;</a></span>WithPublicDescription()</h2>
 
@@ -951,6 +1733,113 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+
+</div>
+</div>
+<a id="afe572259905202429f18690a7e5ae416" name="afe572259905202429f18690a7e5ae416"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe572259905202429f18690a7e5ae416">&#9670;&#160;</a></span>WithPublicSyllabusToAuthUsers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithPublicSyllabusToAuthUsers </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>publicSyllabusToAuth</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Make the syllabus public to authenticated users only. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">publicSyllabusToAuth</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+
+</div>
+</div>
+<a id="a1e3c3e30ea77de2760d18ddd1c734058" name="a1e3c3e30ea77de2760d18ddd1c734058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e3c3e30ea77de2760d18ddd1c734058">&#9670;&#160;</a></span>WithRemoveBannerImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithRemoveBannerImage </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>remove</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove the course banner image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">remove</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="af5322bf505817d545ca58f92845998ab" name="af5322bf505817d545ca58f92845998ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5322bf505817d545ca58f92845998ab">&#9670;&#160;</a></span>WithRemoveImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithRemoveImage </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>remove</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove the course image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">remove</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
 
 </div>
 </div>
@@ -1059,6 +1948,42 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a22b29cd25368f9ab28b2158ce7413158" name="a22b29cd25368f9ab28b2158ce7413158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b29cd25368f9ab28b2158ce7413158">&#9670;&#160;</a></span>WithStorageQuotaMb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithStorageQuotaMb </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>quotaMb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the storage quota for this course, in megabytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quotaMb</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
 <a id="a9005a6ed77df9173117152bb813bcb0b" name="a9005a6ed77df9173117152bb813bcb0b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9005a6ed77df9173117152bb813bcb0b">&#9670;&#160;</a></span>WithStudentForumAttachments()</h2>
 
@@ -1164,6 +2089,114 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ae1c49540b05ea5e504981a24af0aff4b" name="ae1c49540b05ea5e504981a24af0aff4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1c49540b05ea5e504981a24af0aff4b">&#9670;&#160;</a></span>WithSyllabusCourseSummary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithSyllabusCourseSummary </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>showSummary</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether to the course summary on the syllabus page. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">showSummary</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a5f042b643127e7bb7ad09ec89c9e0cc1" name="a5f042b643127e7bb7ad09ec89c9e0cc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f042b643127e7bb7ad09ec89c9e0cc1">&#9670;&#160;</a></span>WithSyncEnrollmentsFromHomeroom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithSyncEnrollmentsFromHomeroom </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>setting</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sync enrollments from the homeroom course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">setting</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
+<a id="a15bbe54777743f9c50e0f43fc606a161" name="a15bbe54777743f9c50e0f43fc606a161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15bbe54777743f9c50e0f43fc606a161">&#9670;&#160;</a></span>WithTemplate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithTemplate </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>template</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable or disable this course as a template. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">template</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
+
+</div>
+</div>
 <a id="ab120eca84fdfbab1cd013cad8ad0df3e" name="ab120eca84fdfbab1cd013cad8ad0df3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab120eca84fdfbab1cd013cad8ad0df3e">&#9670;&#160;</a></span>WithTermId()</h2>
 
@@ -1231,6 +2264,42 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+
+</div>
+</div>
+<a id="a2ab9b165925efd195709dd2ddf9f2316" name="a2ab9b165925efd195709dd2ddf9f2316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ab9b165925efd195709dd2ddf9f2316">&#9670;&#160;</a></span>WithUseBlueprintRestrictionsByObjectType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Builders_1_1CourseBuilder.html">CourseBuilder</a> UVACanvasAccess.Builders.CourseBuilder.WithUseBlueprintRestrictionsByObjectType </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Use object-type specific blueprint restrictions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enabled</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
+<p>Has no effect when creating a course.</p>
 
 </div>
 </div>

@@ -1,0 +1,5 @@
+<map id="UVACanvasAccess.Structures.BlueprintCourses.BlueprintCourse" name="UVACanvasAccess.Structures.BlueprintCourses.BlueprintCourse">
+<area shape="rect" id="Node000001" title="Represents a blueprint course summary." alt="" coords="5,79,247,119"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="79,5,173,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,44,129,79,123,79,123,44"/>
+</map>

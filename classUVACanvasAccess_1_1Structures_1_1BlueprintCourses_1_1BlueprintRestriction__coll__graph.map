@@ -1,0 +1,5 @@
+<map id="UVACanvasAccess.Structures.BlueprintCourses.BlueprintRestriction" name="UVACanvasAccess.Structures.BlueprintCourses.BlueprintRestriction">
+<area shape="rect" id="Node000001" title="Represents a set of restrictions on editing for copied objects in associated courses." alt="" coords="5,79,272,119"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="91,5,186,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,44,141,79,136,79,136,44"/>
+</map>

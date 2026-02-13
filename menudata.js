@@ -80,6 +80,7 @@ var menudata={children:[
 {text:"d",url:"functions_enum.html#index_d"},
 {text:"e",url:"functions_enum.html#index_e"},
 {text:"f",url:"functions_enum.html#index_f"},
+{text:"g",url:"functions_enum.html#index_g"},
 {text:"i",url:"functions_enum.html#index_i"},
 {text:"m",url:"functions_enum.html#index_m"},
 {text:"o",url:"functions_enum.html#index_o"},
