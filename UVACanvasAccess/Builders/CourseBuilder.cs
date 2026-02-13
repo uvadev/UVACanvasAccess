@@ -4,28 +4,29 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
+using UVACanvasAccess.Structures.BlueprintCourses;
 using UVACanvasAccess.Structures.Courses;
 using UVACanvasAccess.Util;
 
 namespace UVACanvasAccess.Builders {
     
     /// <summary>
-    /// Used to create courses using the builder pattern.
+    /// Used to create or edit courses using the builder pattern.
     /// When all desired fields are set, call <see cref="Post"/> to execute the operation.
     /// </summary>
     [PublicAPI]
     public class CourseBuilder {
-        private readonly Api _api;
-        private readonly bool _isEditing;
-        private readonly ulong? _id;
+        private readonly Api api;
+        private readonly bool isEditing;
+        private readonly ulong? id;
         internal ulong? AccountId { get; }
         
         internal Dictionary<string, string> Fields { get; } = new Dictionary<string, string>();
 
         internal CourseBuilder(Api api, bool isEditing, ulong? accountId, ulong? id = null) {
-            _api = api;
-            _isEditing = isEditing;
-            _id = id;
+            this.api = api;
+            this.isEditing = isEditing;
+            this.id = id;
             AccountId = accountId;
         }
 
@@ -102,6 +103,15 @@ namespace UVACanvasAccess.Builders {
         }
 
         /// <summary>
+        /// Make the syllabus public to authenticated users only.
+        /// </summary>
+        /// <param name="publicSyllabusToAuth"></param>
+        /// <returns>This builder.</returns>
+        public CourseBuilder WithPublicSyllabusToAuthUsers(bool publicSyllabusToAuth = true) {
+            return PutArr("public_syllabus_to_auth", publicSyllabusToAuth.ToShortString());
+        }
+
+        /// <summary>
         /// The course's public description.
         /// </summary>
         /// <param name="description"></param>
@@ -165,6 +175,17 @@ namespace UVACanvasAccess.Builders {
         }
 
         /// <summary>
+        /// Move this course to another account.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithAccountId(ulong accountId) {
+            return isEditing ? PutArr("account_id", accountId.ToString())
+                             : this;
+        }
+
+        /// <summary>
         /// The unique term id to create this course in.
         /// </summary>
         /// <param name="termId"></param>
@@ -219,6 +240,17 @@ namespace UVACanvasAccess.Builders {
         }
 
         /// <summary>
+        /// Set the storage quota for this course, in megabytes.
+        /// </summary>
+        /// <param name="quotaMb"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithStorageQuotaMb(int quotaMb) {
+            return isEditing ? PutArr("storage_quota_mb", quotaMb.ToString())
+                             : this;
+        }
+
+        /// <summary>
         /// Make this course available to students immediately.
         /// </summary>
         /// <param name="offerNow"></param>
@@ -234,6 +266,15 @@ namespace UVACanvasAccess.Builders {
         /// <returns>This builder.</returns>
         public CourseBuilder EnrollCurrentUser(bool enrollMe = true) {
             return Put("enroll_me", enrollMe.ToShortString());
+        }
+
+        /// <summary>
+        /// Whether to skip applying the account's course template to this course.
+        /// </summary>
+        /// <param name="skipTemplate"></param>
+        /// <returns>This builder.</returns>
+        public CourseBuilder SkipCourseTemplate(bool skipTemplate = true) {
+            return Put("skip_course_template", skipTemplate.ToShortString());
         }
 
         /// <summary>
@@ -255,12 +296,32 @@ namespace UVACanvasAccess.Builders {
         }
 
         /// <summary>
+        /// Whether to the course summary on the syllabus page.
+        /// </summary>
+        /// <param name="showSummary"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithSyllabusCourseSummary(bool showSummary = true) {
+            return isEditing ? PutArr("syllabus_course_summary", showSummary.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
         /// The grading standard for this course.
         /// </summary>
         /// <param name="standard"></param>
         /// <returns>This builder.</returns>
         public CourseBuilder WithGradingStandard(ulong standard) {
             return PutArr("grading_standard_id", standard.ToString());
+        }
+
+        /// <summary>
+        /// The grade passback setting for this course.
+        /// </summary>
+        /// <param name="setting"></param>
+        /// <returns>This builder.</returns>
+        public CourseBuilder WithGradePassbackSetting(GradePassbackSetting setting) {
+            return PutArr("grade_passback_setting", setting.GetApiRepresentation());
         }
 
         /// <summary>
@@ -273,12 +334,255 @@ namespace UVACanvasAccess.Builders {
         }
 
         /// <summary>
+        /// Whether to require grades to be posted manually in this course.
+        /// </summary>
+        /// <param name="postManually"></param>
+        /// <returns>This builder.</returns>
+        public CourseBuilder WithManualGradePosting(bool postManually = true) {
+            return PutArr("post_manually", postManually.ToShortString());
+        }
+
+        /// <summary>
+        /// Sets a course image using a file id in the course.
+        /// </summary>
+        /// <param name="imageId"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithImageId(ulong imageId) {
+            return isEditing ? PutArr("image_id", imageId.ToString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets a course image using a URL.
+        /// </summary>
+        /// <param name="imageUrl"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithImageUrl(string imageUrl) {
+            return isEditing ? PutArr("image_url", imageUrl)
+                             : this;
+        }
+
+        /// <summary>
+        /// Remove the course image.
+        /// </summary>
+        /// <param name="remove"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithRemoveImage(bool remove = true) {
+            return isEditing ? PutArr("remove_image", remove.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Remove the course banner image.
+        /// </summary>
+        /// <param name="remove"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithRemoveBannerImage(bool remove = true) {
+            return isEditing ? PutArr("remove_banner_image", remove.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets this course as a blueprint course.
+        /// </summary>
+        /// <param name="blueprint"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithBlueprint(bool blueprint = true) {
+            return isEditing ? PutArr("blueprint", blueprint.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets a blueprint restriction for this course.
+        /// </summary>
+        /// <param name="restriction"></param>
+        /// <param name="enabled"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithBlueprintRestriction(BlueprintRestrictionType restriction, bool enabled = true) {
+            return isEditing ? PutArr($"blueprint_restrictions][{restriction.GetApiRepresentation()}",
+                                      enabled.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets blueprint restrictions for this course.
+        /// </summary>
+        /// <param name="restrictions"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithBlueprintRestrictions(BlueprintRestrictionTypes restrictions) {
+            if (!isEditing) {
+                return this;
+            }
+
+            foreach (var restriction in restrictions.GetFlagsApiRepresentations()) {
+                PutArr($"blueprint_restrictions][{restriction}", true.ToShortString());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Use object-type specific blueprint restrictions.
+        /// </summary>
+        /// <param name="enabled"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithUseBlueprintRestrictionsByObjectType(bool enabled = true) {
+            return isEditing ? PutArr("use_blueprint_restrictions_by_object_type", enabled.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets a blueprint restriction by object type.
+        /// </summary>
+        /// <param name="objectType"></param>
+        /// <param name="restriction"></param>
+        /// <param name="enabled"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithBlueprintRestrictionByObjectType(BlueprintAssetType objectType,
+                                                                  BlueprintRestrictionType restriction,
+                                                                  bool enabled = true) {
+            return isEditing ? PutArr($"blueprint_restrictions_by_object_type][{objectType.GetApiRepresentation()}][{restriction.GetApiRepresentation()}",
+                                      enabled.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets blueprint restrictions by object type.
+        /// </summary>
+        /// <param name="restrictionsByObjectType"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithBlueprintRestrictionsByObjectType(
+            Dictionary<BlueprintAssetType, BlueprintRestrictionTypes> restrictionsByObjectType) {
+            if (!isEditing) {
+                return this;
+            }
+
+            foreach (var objectType in restrictionsByObjectType) {
+                foreach (var restriction in objectType.Value.GetFlagsApiRepresentations()) {
+                    PutArr($"blueprint_restrictions_by_object_type][{objectType.Key.GetApiRepresentation()}][{restriction}",
+                           true.ToShortString());
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets this course as a homeroom course.
+        /// </summary>
+        /// <param name="homeroom"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithHomeroomCourse(bool homeroom = true) {
+            return isEditing ? PutArr("homeroom_course", homeroom.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sync enrollments from the homeroom course.
+        /// </summary>
+        /// <param name="setting"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithSyncEnrollmentsFromHomeroom(bool setting = true) {
+            return isEditing ? PutArr("sync_enrollments_from_homeroom", setting.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets the homeroom course id for enrollment sync.
+        /// </summary>
+        /// <param name="homeroomCourseId"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithHomeroomCourseId(string homeroomCourseId) {
+            return isEditing ? PutArr("homeroom_course_id", homeroomCourseId)
+                             : this;
+        }
+
+        /// <summary>
+        /// Enable or disable this course as a template.
+        /// </summary>
+        /// <param name="template"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithTemplate(bool template = true) {
+            return isEditing ? PutArr("template", template.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Sets the course color (hex).
+        /// </summary>
+        /// <param name="hexColor"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithCourseColor(string hexColor) {
+            return isEditing ? PutArr("course_color", hexColor)
+                             : this;
+        }
+
+        /// <summary>
+        /// Set a friendly name for the course.
+        /// </summary>
+        /// <param name="friendlyName"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithFriendlyName(string friendlyName) {
+            return isEditing ? PutArr("friendly_name", friendlyName)
+                             : this;
+        }
+
+        /// <summary>
+        /// Enable or disable Course Pacing.
+        /// </summary>
+        /// <param name="enabled"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithCoursePacingEnabled(bool enabled = true) {
+            return isEditing ? PutArr("enable_course_paces", enabled.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
+        /// Enable or disable conditional release.
+        /// </summary>
+        /// <param name="enabled"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithConditionalRelease(bool enabled = true) {
+            return isEditing ? PutArr("conditional_release", enabled.ToShortString())
+                             : this;
+        }
+
+        /// <summary>
         /// Try to recover a deleted course from SIS with a matching SIS id before creating this course.
         /// </summary>
         /// <param name="tryToRecover"></param>
         /// <returns>This builder.</returns>
         public CourseBuilder TryToRecoverFromSis(bool tryToRecover = true) {
             return Put("enable_sis_reactivation", tryToRecover.ToShortString());
+        }
+
+        /// <summary>
+        /// Override SIS stickiness.
+        /// </summary>
+        /// <param name="overrideStickiness"></param>
+        /// <returns>This builder.</returns>
+        /// <remarks>Has no effect when creating a course.</remarks>
+        public CourseBuilder WithOverrideSisStickiness(bool overrideStickiness = true) {
+            return isEditing ? Put("override_sis_stickiness", overrideStickiness.ToShortString())
+                             : this;
         }
 
         /// <summary>
@@ -289,21 +593,21 @@ namespace UVACanvasAccess.Builders {
         /// <returns></returns>
         /// <remarks>Has no effect when creating a course.</remarks>
         public CourseBuilder TakeAction(CourseEditAction action) {
-            return _isEditing ? PutArr("event", action.GetApiRepresentation()) 
-                              : this;
+            return isEditing ? PutArr("event", action.GetApiRepresentation()) 
+                             : this;
         }
 
         /// <summary>
-        /// Creates the assignment using the fields in this builder.
+        /// Commit the operation using the fields in this builder.
         /// </summary>
-        /// <returns>The newly created assignment.</returns>
+        /// <returns>The newly created or edited course.</returns>
         public Task<Course> Post() {
-            if (!_isEditing) {
-                return _api.PostCreateCourse(this);
+            if (!isEditing) {
+                return api.PostCreateCourse(this);
             }
 
-            Debug.Assert(_id != null, nameof(_id) + " != null");
-            return _api.PutEditCourse((ulong) _id, this);
+            Debug.Assert(id != null, nameof(id) + " != null");
+            return api.PutEditCourse((ulong) id, this);
         }
 
         private CourseBuilder Put(string k, string v) {
@@ -351,5 +655,28 @@ namespace UVACanvasAccess.Builders {
             [ApiRepresentation("undelete")]
             Undelete
         } 
+
+        /// <summary>
+        /// Passback settings for grade sync.
+        /// </summary>
+        [PublicAPI]
+        public enum GradePassbackSetting : byte {
+            /// <summary>
+            /// Unset the grade passback setting.
+            /// </summary>
+            [ApiRepresentation("")]
+            Unset,
+            /// <summary>
+            /// Enable nightly sync.
+            /// </summary>
+            [ApiRepresentation("nightly_sync")]
+            NightlySync,
+            /// <summary>
+            /// Disable grade passback.
+            /// </summary>
+            [ApiRepresentation("disabled")]
+            Disabled
+        }
+
     }
 }
