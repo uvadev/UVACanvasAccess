@@ -282,6 +282,37 @@ namespace UVACanvasAccess.ApiParts {
 
             return accumulated;
         }
+        
+        /// <summary>
+        /// Accumulates all the objects in a paginated response, then deserializes each page as <c>TObject</c>.
+        /// </summary>
+        /// <param name="response">The first response received after initiating the request.</param>
+        /// <typeparam name="TObject">The model type of the page object returned in the response.</typeparam>
+        /// <returns>The list of deserialized page objects.</returns>
+        private async Task<List<TObject>> AccumulateDeserializeObjectPages<TObject>(HttpResponseMessage response) {
+            response.AssertSuccess();
+
+            var pages = new List<HttpContent> { response.Content };
+            
+            while (response.Headers.TryGetValues("Link", out IEnumerable<string> linkValues)) {
+                var links = LinkHeader.LinksFromHeader(linkValues.First());
+                if (links?.NextLink == null)
+                    break;
+                
+                response = await client.GetAsync(links.NextLink);
+                response.AssertSuccess();
+                pages.Add(response.Content);
+            }
+
+            var accumulated = new List<TObject>();
+
+            foreach (var content in pages) {
+                var responseStr = await content.ReadAsStringAsync();
+                accumulated.Add(JsonConvert.DeserializeObject<TObject>(responseStr));
+            }
+
+            return accumulated;
+        }
 
         private async IAsyncEnumerable<JToken> StreamPages(HttpResponseMessage response) {
 

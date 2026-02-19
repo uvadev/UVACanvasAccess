@@ -474,6 +474,17 @@ namespace UVACanvasAccess.ApiParts {
             var models = JsonConvert.DeserializeObject<IEnumerable<QuizIpFilterModel>>(await response.AssertSuccess().Content.ReadAsStringAsync());
             return models.Select(m => new QuizIpFilter(this, m));
         }
+
+        /// <summary>
+        /// Streams quiz IP filters.
+        /// </summary>
+        public async IAsyncEnumerable<QuizIpFilter> StreamQuizIpFilters(ulong courseId, ulong quizId) {
+            var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/ip_filters" + BuildQueryString());
+            
+            await foreach (var model in StreamDeserializePages<QuizIpFilterModel>(response)) {
+                yield return new QuizIpFilter(this, model);
+            }
+        }
         
         /// <summary>
         /// Lists quiz reports.
@@ -494,6 +505,29 @@ namespace UVACanvasAccess.ApiParts {
                                                   BuildDuplicateKeyQueryString(args.ToArray()));
             var models = await AccumulateDeserializePages<QuizReportModel>(response);
             return models.Select(m => new QuizReport(this, m));
+        }
+
+        /// <summary>
+        /// Streams quiz reports.
+        /// </summary>
+        public async IAsyncEnumerable<QuizReport> StreamQuizReports(ulong courseId,
+                                                                    ulong quizId,
+                                                                    bool? includeAllVersions = null,
+                                                                    QuizReportInclude? includes = null) {
+            var args = new List<(string, string)> {
+                ("includes_all_versions", includeAllVersions?.ToShortString())
+            };
+            
+            if (includes != null) {
+                args.AddRange(includes.GetFlagsApiRepresentations().Select(f => ("include[]", f)));
+            }
+            
+            var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/reports" +
+                                                  BuildDuplicateKeyQueryString(args.ToArray()));
+            
+            await foreach (var model in StreamDeserializePages<QuizReportModel>(response)) {
+                yield return new QuizReport(this, model);
+            }
         }
         
         /// <summary>
@@ -563,8 +597,31 @@ namespace UVACanvasAccess.ApiParts {
             var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/submission_events" +
                                                   BuildQueryString(("quiz_submission_id", quizSubmissionId?.ToString()),
                                                                    ("attempt", attempt?.ToString())));
-            var model = JsonConvert.DeserializeObject<QuizSubmissionEventListModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
-            return model.QuizSubmissionEvents.Select(e => new QuizSubmissionEvent(this, e));
+            var models = await AccumulateDeserializeObjectPages<QuizSubmissionEventListModel>(response);
+            return models.SelectMany(m => m.QuizSubmissionEvents ?? Enumerable.Empty<QuizSubmissionEventModel>())
+                         .Select(e => new QuizSubmissionEvent(this, e));
+        }
+
+        /// <summary>
+        /// Streams quiz submission events.
+        /// </summary>
+        public async IAsyncEnumerable<QuizSubmissionEvent> StreamQuizSubmissionEvents(ulong courseId,
+                                                                                      ulong quizId,
+                                                                                      ulong? quizSubmissionId = null,
+                                                                                      uint? attempt = null) {
+            var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/submission_events" +
+                                                  BuildQueryString(("quiz_submission_id", quizSubmissionId?.ToString()),
+                                                                   ("attempt", attempt?.ToString())));
+            
+            await foreach (var page in StreamDeserializeObjectPages<QuizSubmissionEventListModel>(response)) {
+                if (page?.QuizSubmissionEvents == null) {
+                    continue;
+                }
+                
+                foreach (var model in page.QuizSubmissionEvents) {
+                    yield return new QuizSubmissionEvent(this, model);
+                }
+            }
         }
         
         /// <summary>
@@ -641,8 +698,36 @@ namespace UVACanvasAccess.ApiParts {
             
             var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/submissions/{submissionId}/questions" +
                                                   BuildDuplicateKeyQueryString(args.ToArray()));
-            var model = JsonConvert.DeserializeObject<QuizSubmissionQuestionListModel>(await response.AssertSuccess().Content.ReadAsStringAsync());
-            return model.QuizSubmissionQuestions.Select(q => new QuizSubmissionQuestion(this, q));
+            var models = await AccumulateDeserializeObjectPages<QuizSubmissionQuestionListModel>(response);
+            return models.SelectMany(m => m.QuizSubmissionQuestions ?? Enumerable.Empty<QuizSubmissionQuestionModel>())
+                         .Select(q => new QuizSubmissionQuestion(this, q));
+        }
+
+        /// <summary>
+        /// Streams quiz submission questions.
+        /// </summary>
+        public async IAsyncEnumerable<QuizSubmissionQuestion> StreamQuizSubmissionQuestions(ulong courseId,
+                                                                                             ulong quizId,
+                                                                                             ulong submissionId,
+                                                                                             QuizSubmissionQuestionInclude? includes = null) {
+            var args = new List<(string, string)>();
+            
+            if (includes != null) {
+                args.AddRange(includes.GetFlagsApiRepresentations().Select(i => ("include[]", i)));
+            }
+            
+            var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/submissions/{submissionId}/questions" +
+                                                  BuildDuplicateKeyQueryString(args.ToArray()));
+            
+            await foreach (var page in StreamDeserializeObjectPages<QuizSubmissionQuestionListModel>(response)) {
+                if (page?.QuizSubmissionQuestions == null) {
+                    continue;
+                }
+                
+                foreach (var model in page.QuizSubmissionQuestions) {
+                    yield return new QuizSubmissionQuestion(this, model);
+                }
+            }
         }
         
         /// <summary>
@@ -768,8 +853,9 @@ namespace UVACanvasAccess.ApiParts {
             
             var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/submissions" +
                                                   BuildDuplicateKeyQueryString(args.ToArray()));
-            var models = await AccumulateDeserializePages<QuizSubmissionModel>(response);
-            return models.Select(m => new QuizSubmission(this, m));
+            var models = await AccumulateDeserializeObjectPages<QuizSubmissionListModel>(response);
+            return models.SelectMany(m => m.QuizSubmissions ?? Enumerable.Empty<QuizSubmissionModel>())
+                         .Select(m => new QuizSubmission(this, m));
         }
         
         /// <summary>
@@ -787,8 +873,14 @@ namespace UVACanvasAccess.ApiParts {
             var response = await client.GetAsync($"courses/{courseId}/quizzes/{quizId}/submissions" +
                                                   BuildDuplicateKeyQueryString(args.ToArray()));
             
-            await foreach (var model in StreamDeserializePages<QuizSubmissionModel>(response)) {
-                yield return new QuizSubmission(this, model);
+            await foreach (var page in StreamDeserializeObjectPages<QuizSubmissionListModel>(response)) {
+                if (page?.QuizSubmissions == null) {
+                    continue;
+                }
+                
+                foreach (var model in page.QuizSubmissions) {
+                    yield return new QuizSubmission(this, model);
+                }
             }
         }
         
