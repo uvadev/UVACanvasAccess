@@ -10,7 +10,7 @@ namespace UVACanvasAccess.Structures.Gradebook {
     public class SubmissionHistory : IPrettyPrint {
         private readonly Api _api;
         
-        public ulong SubmissionId { get; }
+        public ulong? SubmissionId { get; }
         
         [NotNull]
         public IEnumerable<SubmissionVersion> Versions { get; }

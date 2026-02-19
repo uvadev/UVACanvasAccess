@@ -14,7 +14,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public class QuizSubmissionEvent : IPrettyPrint {
         private readonly Api api;
         
-        public ulong Id { get; }
+        public ulong? Id { get; }
         
         public DateTime? CreatedAt { get; }
         

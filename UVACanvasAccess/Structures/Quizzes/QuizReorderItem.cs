@@ -12,7 +12,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
         /// <summary>
         /// The question or question group id.
         /// </summary>
-        public ulong Id { get; }
+        public ulong? Id { get; }
         
         /// <summary>
         /// The type of the item being reordered.

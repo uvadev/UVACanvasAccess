@@ -14,9 +14,9 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public abstract class QuizQuestion : IPrettyPrint {
         protected readonly Api Api;
         
-        public ulong Id { get; }
+        public ulong? Id { get; }
         
-        public ulong QuizId { get; }
+        public ulong? QuizId { get; }
         
         public ulong? QuizGroupId { get; }
         

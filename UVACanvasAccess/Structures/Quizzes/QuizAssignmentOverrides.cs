@@ -15,7 +15,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public class QuizAssignmentOverrides : IPrettyPrint {
         private readonly Api api;
         
-        public ulong QuizId { get; }
+        public ulong? QuizId { get; }
         
         [CanBeNull]
         public IEnumerable<AssignmentDate> DueDates { get; }

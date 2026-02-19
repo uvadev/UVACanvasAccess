@@ -15,13 +15,13 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public class QuizSubmission : IPrettyPrint {
         private readonly Api api;
         
-        public ulong Id { get; }
+        public ulong? Id { get; }
         
-        public ulong QuizId { get; }
+        public ulong? QuizId { get; }
         
-        public ulong UserId { get; }
+        public ulong? UserId { get; }
         
-        public ulong SubmissionId { get; }
+        public ulong? SubmissionId { get; }
         
         public decimal? Score { get; }
         

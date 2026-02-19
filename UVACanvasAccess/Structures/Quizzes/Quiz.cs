@@ -20,7 +20,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
         /// <summary>
         /// The quiz id.
         /// </summary>
-        public ulong Id { get; }
+        public ulong? Id { get; }
 
         /// <summary>
         /// The quiz title.

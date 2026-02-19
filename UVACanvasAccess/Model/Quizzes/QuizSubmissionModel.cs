@@ -18,7 +18,7 @@ namespace UVACanvasAccess.Model.Quizzes {
         public ulong UserId { get; set; }
         
         [JsonProperty("submission_id")]
-        public ulong SubmissionId { get; set; }
+        public ulong? SubmissionId { get; set; }
         
         [JsonProperty("score")]
         public decimal? Score { get; set; }

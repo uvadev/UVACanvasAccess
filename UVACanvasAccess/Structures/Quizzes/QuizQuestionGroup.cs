@@ -12,9 +12,9 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public class QuizQuestionGroup : IPrettyPrint {
         private readonly Api api;
         
-        public ulong Id { get; }
+        public ulong? Id { get; }
         
-        public ulong QuizId { get; }
+        public ulong? QuizId { get; }
         
         public string Name { get; }
         

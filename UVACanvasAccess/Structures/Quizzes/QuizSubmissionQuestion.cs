@@ -14,7 +14,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public class QuizSubmissionQuestion : IPrettyPrint {
         private readonly Api api;
         
-        public ulong Id { get; }
+        public ulong? Id { get; }
         
         public bool? Flagged { get; }
         
@@ -53,7 +53,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
     [PublicAPI]
     public class QuizSubmissionQuestionAnswer {
         
-        public ulong QuestionId { get; }
+        public ulong? QuestionId { get; }
         
         [NotNull]
         public QuizSubmissionQuestionAnswerValue Answer { get; }

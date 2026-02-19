@@ -8,7 +8,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
     [PublicAPI]
     public class QuizSubmissionScoreUpdate {
         
-        public ulong QuestionId { get; }
+        public ulong? QuestionId { get; }
         
         public decimal? Score { get; }
         

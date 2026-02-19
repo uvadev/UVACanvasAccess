@@ -16,9 +16,9 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public class QuizStatistics : IPrettyPrint {
         private readonly Api api;
         
-        public ulong Id { get; }
+        public ulong? Id { get; }
         
-        public ulong QuizId { get; }
+        public ulong? QuizId { get; }
         
         public bool? MultipleAttemptsExist { get; }
         

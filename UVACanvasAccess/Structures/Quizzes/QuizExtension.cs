@@ -13,9 +13,9 @@ namespace UVACanvasAccess.Structures.Quizzes {
     public class QuizExtension : IPrettyPrint {
         private readonly Api api;
         
-        public ulong QuizId { get; }
+        public ulong? QuizId { get; }
         
-        public ulong UserId { get; }
+        public ulong? UserId { get; }
         
         public int? ExtraAttempts { get; }
         
@@ -53,7 +53,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
     [PublicAPI]
     public class QuizExtensionInput {
         
-        public ulong UserId { get; }
+        public ulong? UserId { get; }
         
         public int? ExtraAttempts { get; }
         

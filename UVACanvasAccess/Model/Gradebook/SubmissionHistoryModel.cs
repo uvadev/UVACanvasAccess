@@ -7,7 +7,7 @@ namespace UVACanvasAccess.Model.Gradebook {
     internal class SubmissionHistoryModel {
         
         [JsonProperty("submission_id")]
-        public ulong SubmissionId { get; set; }
+        public ulong? SubmissionId { get; set; }
         
         [CanBeNull]
         [JsonProperty("versions")]
