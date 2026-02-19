@@ -1,0 +1,7 @@
+<map id="UVACanvasAccess.Structures.Quizzes.QuizSubmissionNumericAnswerValue" name="UVACanvasAccess.Structures.Quizzes.QuizSubmissionNumericAnswerValue">
+<area shape="rect" id="Node000001" title="Represents a numeric answer value." alt="" coords="5,167,325,207"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestionAnswerValue.html" title="Represents a polymorphic answer value for a quiz submission question." alt="" coords="49,79,281,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,133,168,166,163,166,163,133"/>
+<area shape="rect" id="Node000003" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="118,5,213,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="168,44,168,79,163,79,163,44"/>
+</map>

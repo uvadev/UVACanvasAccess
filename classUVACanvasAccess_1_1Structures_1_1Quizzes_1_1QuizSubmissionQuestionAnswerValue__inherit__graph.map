@@ -1,0 +1,21 @@
+<map id="UVACanvasAccess.Structures.Quizzes.QuizSubmissionQuestionAnswerValue" name="UVACanvasAccess.Structures.Quizzes.QuizSubmissionQuestionAnswerValue">
+<area shape="rect" id="Node000001" title="Represents a polymorphic answer value for a quiz submission question." alt="" coords="148,271,471,311"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionFillInMultipleBlanksAnswerValue.html" title="Represents fill&#45;in&#45;multiple&#45;blanks answers." alt="" coords="549,5,815,60"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="330,258,361,215,405,164,458,113,517,70,548,56,550,61,520,75,461,117,409,168,366,218,334,261"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionMatchingAnswerValue.html" title="Represents matching question answers." alt="" coords="519,85,845,125"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="339,260,416,195,465,162,518,134,550,122,552,127,520,139,468,167,419,200,343,264"/>
+<area shape="rect" id="Node000005" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionMultipleAnswersAnswerValue.html" title="Represents multiple answer ids." alt="" coords="537,149,827,204"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="372,264,518,213,558,202,560,207,519,218,374,269"/>
+<area shape="rect" id="Node000006" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionMultipleDropdownsAnswerValue.html" title="Represents multiple dropdown answers." alt="" coords="529,228,835,283"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="484,272,528,267,529,273,485,277"/>
+<area shape="rect" id="Node000007" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionNumericAnswerValue.html" title="Represents a numeric answer value." alt="" coords="522,307,842,347"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="484,306,522,309,521,314,484,311"/>
+<area shape="rect" id="Node000008" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionSingleAnswerIdValue.html" title="Represents a single answer id." alt="" coords="547,372,817,427"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="382,313,519,357,566,369,565,375,518,362,380,318"/>
+<area shape="rect" id="Node000009" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionTextAnswerValue.html" title="Represents a text answer value." alt="" coords="536,451,828,491"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="344,319,421,379,469,411,520,437,553,449,551,454,518,442,466,415,418,384,341,323"/>
+<area shape="rect" id="Node000010" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionUnknownAnswerValue.html" title="Represents an unknown answer value." alt="" coords="519,515,845,555"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="334,321,366,363,409,412,461,461,520,501,547,513,545,518,517,506,458,465,405,416,361,366,330,324"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="5,279,100,304"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,289,147,289,147,294,114,294"/>
+</map>

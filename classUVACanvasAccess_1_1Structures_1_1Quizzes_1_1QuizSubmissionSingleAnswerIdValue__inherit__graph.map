@@ -1,0 +1,7 @@
+<map id="UVACanvasAccess.Structures.Quizzes.QuizSubmissionSingleAnswerIdValue" name="UVACanvasAccess.Structures.Quizzes.QuizSubmissionSingleAnswerIdValue">
+<area shape="rect" id="Node000001" title="Represents a single answer id." alt="" coords="5,167,275,221"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestionAnswerValue.html" title="Represents a polymorphic answer value for a quiz submission question." alt="" coords="24,79,256,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,132,143,167,137,167,137,132"/>
+<area shape="rect" id="Node000003" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="93,5,187,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="143,44,143,79,137,79,137,44"/>
+</map>

@@ -1,9 +1,17 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$interfaceUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1INewSubmissionContent.html" title="Represents some content to be submitted as part of an assignment submission." alt="" coords="5,84,329,139"/>
-<area shape="rect" id="Node000001" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineTextEntrySubmission.html" title="Represents the submission of text, as if it was entered into the online interface." alt="" coords="377,5,636,60"/>
-<area shape="poly" id="edge16_Node000000_Node000001" title=" " alt="" coords="299,78,387,58,389,63,300,83"/>
-<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineUploadSubmission.html" title="Represents the submission of one or more previously uploaded files." alt="" coords="377,84,636,139"/>
-<area shape="poly" id="edge17_Node000000_Node000002" title=" " alt="" coords="343,109,377,109,377,114,343,114"/>
-<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Submissions_1_1NewSubmission_1_1OnlineUrlSubmission.html" title="Represents the submission of a URL." alt="" coords="377,163,636,217"/>
-<area shape="poly" id="edge18_Node000000_Node000003" title=" " alt="" coords="300,139,389,160,387,165,299,144"/>
+<area shape="rect" id="Node000000" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestionAnswerInput.html" title="Base class for quiz question answer inputs." alt="" coords="5,101,251,141"/>
+<area shape="rect" id="Node000001" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1BlankQuizQuestionAnswerInput.html" title="Answer input for fill&#45;in&#45;the&#45;blank and dropdown questions." alt="" coords="313,5,596,45"/>
+<area shape="poly" id="edge16_Node000000_Node000001" title=" " alt="" coords="188,94,298,55,345,43,346,48,299,60,190,99"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1ChoiceQuizQuestionAnswerInput.html" title="Answer input for choice&#45;like questions." alt="" coords="310,69,599,109"/>
+<area shape="poly" id="edge17_Node000000_Node000002" title=" " alt="" coords="264,105,310,101,310,106,265,111"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestionAnswerInput.html" title="Answer input for matching questions." alt="" coords="302,133,607,173"/>
+<area shape="poly" id="edge18_Node000000_Node000003" title=" " alt="" coords="264,132,302,136,301,141,264,137"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1NumericalQuizQuestionAnswerInput.html" title="Base class for numerical question answer inputs." alt="" coords="299,197,611,237"/>
+<area shape="poly" id="edge19_Node000000_Node000004" title=" " alt="" coords="190,144,299,183,346,195,345,200,298,188,188,149"/>
+<area shape="rect" id="Node000005" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1ExactNumericalQuizQuestionAnswerInput.html" title="Numerical answer input for exact answers." alt="" coords="671,111,937,166"/>
+<area shape="poly" id="edge20_Node000004_Node000005" title=" " alt="" coords="568,192,610,183,692,163,693,169,611,188,570,197"/>
+<area shape="rect" id="Node000006" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1PrecisionNumericalQuizQuestionAnswerInput.html" title="Numerical answer input for precision answers." alt="" coords="659,190,949,245"/>
+<area shape="poly" id="edge21_Node000004_Node000006" title=" " alt="" coords="625,215,658,215,658,220,625,220"/>
+<area shape="rect" id="Node000007" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1RangeNumericalQuizQuestionAnswerInput.html" title="Numerical answer input for range answers." alt="" coords="668,269,940,323"/>
+<area shape="poly" id="edge22_Node000004_Node000007" title=" " alt="" coords="558,238,682,266,681,271,557,243"/>
 </map>

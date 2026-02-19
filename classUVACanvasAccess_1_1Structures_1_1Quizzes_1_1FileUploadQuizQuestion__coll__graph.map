@@ -1,0 +1,11 @@
+<map id="UVACanvasAccess.Structures.Quizzes.FileUploadQuizQuestion" name="UVACanvasAccess.Structures.Quizzes.FileUploadQuizQuestion">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,243,239,283"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestion.html" title="Represents a quiz question." alt="" coords="67,168,177,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,207,125,243,119,243,119,207"/>
+<area shape="rect" id="Node000003" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="53,80,148,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,118,122,167,116,168,104,119"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1ApiParts_1_1Api.html" title="This class is the primary interface for interacting with the Canvas API." alt="" coords="173,80,397,105"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="252,114,145,170,143,165,250,109"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="235,5,334,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="287,45,287,80,282,80,282,45"/>
+</map>

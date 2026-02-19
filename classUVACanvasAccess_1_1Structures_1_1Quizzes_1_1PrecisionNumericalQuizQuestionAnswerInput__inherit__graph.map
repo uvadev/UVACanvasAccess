@@ -1,0 +1,7 @@
+<map id="UVACanvasAccess.Structures.Quizzes.PrecisionNumericalQuizQuestionAnswerInput" name="UVACanvasAccess.Structures.Quizzes.PrecisionNumericalQuizQuestionAnswerInput">
+<area shape="rect" id="Node000001" title="Numerical answer input for precision answers." alt="" coords="5,167,296,221"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1NumericalQuizQuestionAnswerInput.html" title="Base class for numerical question answer inputs." alt="" coords="39,79,263,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,132,153,167,148,167,148,132"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestionAnswerInput.html" title="Base class for quiz question answer inputs." alt="" coords="55,5,246,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,44,153,79,148,79,148,44"/>
+</map>

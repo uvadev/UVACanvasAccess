@@ -1,0 +1,5 @@
+<map id="UVACanvasAccess.Structures.Quizzes.QuizSubmissionQuestion" name="UVACanvasAccess.Structures.Quizzes.QuizSubmissionQuestion">
+<area shape="rect" id="Node000001" title="Represents a submission question for a quiz submission." alt="" coords="5,79,244,119"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="77,5,172,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,44,127,79,122,79,122,44"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="UVACanvasAccess.Structures.Quizzes.QuizQuestionAnswerInput" name="UVACanvasAccess.Structures.Quizzes.QuizQuestionAnswerInput">
+<area shape="rect" id="Node000001" title="Base class for quiz question answer inputs." alt="" coords="5,101,251,141"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1BlankQuizQuestionAnswerInput.html" title="Answer input for fill&#45;in&#45;the&#45;blank and dropdown questions." alt="" coords="313,5,596,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,94,298,55,345,43,346,48,299,60,190,99"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1ChoiceQuizQuestionAnswerInput.html" title="Answer input for choice&#45;like questions." alt="" coords="310,69,599,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="264,105,310,101,310,106,265,111"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestionAnswerInput.html" title="Answer input for matching questions." alt="" coords="302,133,607,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="264,132,302,136,301,141,264,137"/>
+<area shape="rect" id="Node000005" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1NumericalQuizQuestionAnswerInput.html" title="Base class for numerical question answer inputs." alt="" coords="299,197,611,237"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="190,144,299,183,346,195,345,200,298,188,188,149"/>
+<area shape="rect" id="Node000006" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1ExactNumericalQuizQuestionAnswerInput.html" title="Numerical answer input for exact answers." alt="" coords="671,111,937,166"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="568,192,610,183,692,163,693,169,611,188,570,197"/>
+<area shape="rect" id="Node000007" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1PrecisionNumericalQuizQuestionAnswerInput.html" title="Numerical answer input for precision answers." alt="" coords="659,190,949,245"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="625,215,658,215,658,220,625,220"/>
+<area shape="rect" id="Node000008" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1RangeNumericalQuizQuestionAnswerInput.html" title="Numerical answer input for range answers." alt="" coords="668,269,940,323"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="558,238,682,266,681,271,557,243"/>
+</map>

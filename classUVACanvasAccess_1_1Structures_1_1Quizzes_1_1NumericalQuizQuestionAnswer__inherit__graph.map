@@ -1,0 +1,7 @@
+<map id="UVACanvasAccess.Structures.Quizzes.NumericalQuizQuestionAnswer" name="UVACanvasAccess.Structures.Quizzes.NumericalQuizQuestionAnswer">
+<area shape="rect" id="Node000001" title="An answer for numerical questions." alt="" coords="5,152,284,192"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestionAnswer.html" title="Represents an answer option for a quiz question." alt="" coords="66,79,223,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,118,147,152,142,152,142,118"/>
+<area shape="rect" id="Node000003" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="97,5,192,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="147,44,147,79,142,79,142,44"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="UVACanvasAccess.Structures.Quizzes.QuizSubmissionMultipleDropdownsAnswerValue" name="UVACanvasAccess.Structures.Quizzes.QuizSubmissionMultipleDropdownsAnswerValue">
+<area shape="rect" id="Node000001" title="Represents multiple dropdown answers." alt="" coords="5,167,312,221"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestionAnswerValue.html" title="Represents a polymorphic answer value for a quiz submission question." alt="" coords="43,79,275,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,132,161,167,156,167,156,132"/>
+<area shape="rect" id="Node000003" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="111,5,206,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="161,44,161,79,156,79,156,44"/>
+</map>

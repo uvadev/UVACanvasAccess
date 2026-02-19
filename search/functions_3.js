@@ -17,6 +17,9 @@ var searchData=
   ['deletegradingperiodset_14',['DeleteGradingPeriodSet',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac740d6bd00655b34de3d6bca2da2122e',1,'UVACanvasAccess::ApiParts::Api']]],
   ['deletepersonalfile_15',['DeletePersonalFile',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a010f877a12574eecfc7abbb7744f5fba',1,'UVACanvasAccess::ApiParts::Api']]],
   ['deletepersonalfolder_16',['DeletePersonalFolder',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae8dfd13988c2d8e587b15cc369d4eab4',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['deleteuser_17',['DeleteUser',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3235d209235ccd26930876a2e65540ab',1,'UVACanvasAccess::ApiParts::Api']]],
-  ['dispose_18',['Dispose',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a595d2d3e004d6fda885368881879e2c9',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['deletequiz_17',['DeleteQuiz',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad267e1148c2b26f151390e8431351f68',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletequizquestion_18',['DeleteQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a9a9424d489e117b496c8b653ee245555',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deletequizquestiongroup_19',['DeleteQuizQuestionGroup',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#acc6daad23c66383c0ddfaf6ad418a20c',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['deleteuser_20',['DeleteUser',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3235d209235ccd26930876a2e65540ab',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['dispose_21',['Dispose',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a595d2d3e004d6fda885368881879e2c9',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

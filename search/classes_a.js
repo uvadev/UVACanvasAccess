@@ -1,10 +1,20 @@
 var searchData=
 [
-  ['mediacomment_0',['MediaComment',['../classUVACanvasAccess_1_1Structures_1_1Submissions_1_1MediaComment.html',1,'UVACanvasAccess::Structures::Submissions']]],
-  ['message_1',['Message',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Message.html',1,'UVACanvasAccess::Structures::Users::ActivityStreamObject']]],
-  ['migrationselectionlocation_2',['MigrationSelectionLocation',['../classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1MigrationSelectionLocation.html',1,'UVACanvasAccess::Structures::ExternalTools']]],
-  ['module_3',['Module',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1Module.html',1,'UVACanvasAccess::Structures::Modules']]],
-  ['moduleitem_4',['ModuleItem',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1ModuleItem.html',1,'UVACanvasAccess::Structures::Modules']]],
-  ['moduleitemsequence_5',['ModuleItemSequence',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1ModuleItemSequence.html',1,'UVACanvasAccess::Structures::Modules']]],
-  ['moduleitemsequencenode_6',['ModuleItemSequenceNode',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1ModuleItemSequenceNode.html',1,'UVACanvasAccess::Structures::Modules']]]
+  ['matchingquizquestion_0',['MatchingQuizQuestion',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestion.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['matchingquizquestionanswer_1',['MatchingQuizQuestionAnswer',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestionAnswer.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['matchingquizquestionanswerinput_2',['MatchingQuizQuestionAnswerInput',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestionAnswerInput.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['matchingquizquestionbuilder_3',['MatchingQuizQuestionBuilder',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestionBuilder.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['mediacomment_4',['MediaComment',['../classUVACanvasAccess_1_1Structures_1_1Submissions_1_1MediaComment.html',1,'UVACanvasAccess::Structures::Submissions']]],
+  ['message_5',['Message',['../classUVACanvasAccess_1_1Structures_1_1Users_1_1ActivityStreamObject_1_1Message.html',1,'UVACanvasAccess::Structures::Users::ActivityStreamObject']]],
+  ['migrationselectionlocation_6',['MigrationSelectionLocation',['../classUVACanvasAccess_1_1Structures_1_1ExternalTools_1_1MigrationSelectionLocation.html',1,'UVACanvasAccess::Structures::ExternalTools']]],
+  ['module_7',['Module',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1Module.html',1,'UVACanvasAccess::Structures::Modules']]],
+  ['moduleitem_8',['ModuleItem',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1ModuleItem.html',1,'UVACanvasAccess::Structures::Modules']]],
+  ['moduleitemsequence_9',['ModuleItemSequence',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1ModuleItemSequence.html',1,'UVACanvasAccess::Structures::Modules']]],
+  ['moduleitemsequencenode_10',['ModuleItemSequenceNode',['../classUVACanvasAccess_1_1Structures_1_1Modules_1_1ModuleItemSequenceNode.html',1,'UVACanvasAccess::Structures::Modules']]],
+  ['multipleanswersquizquestion_11',['MultipleAnswersQuizQuestion',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleAnswersQuizQuestion.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['multipleanswersquizquestionbuilder_12',['MultipleAnswersQuizQuestionBuilder',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleAnswersQuizQuestionBuilder.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['multiplechoicequizquestion_13',['MultipleChoiceQuizQuestion',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleChoiceQuizQuestion.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['multiplechoicequizquestionbuilder_14',['MultipleChoiceQuizQuestionBuilder',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleChoiceQuizQuestionBuilder.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['multipledropdownsquizquestion_15',['MultipleDropdownsQuizQuestion',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleDropdownsQuizQuestion.html',1,'UVACanvasAccess::Structures::Quizzes']]],
+  ['multipledropdownsquizquestionbuilder_16',['MultipleDropdownsQuizQuestionBuilder',['../classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleDropdownsQuizQuestionBuilder.html',1,'UVACanvasAccess::Structures::Quizzes']]]
 ];

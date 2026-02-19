@@ -418,6 +418,12 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a301407e4ae32ef83cc796b075df40d26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keys by which a Page can be sorted.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a301407e4ae32ef83cc796b075df40d26">More...</a><br /></td></tr>
 <tr class="separator:a301407e4ae32ef83cc796b075df40d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196e69b71cbe34c5db8a5a9399d81c25" id="r_a196e69b71cbe34c5db8a5a9399d81c25"><td class="memItemLeft" align="right" valign="top"><a id="a196e69b71cbe34c5db8a5a9399d81c25" name="a196e69b71cbe34c5db8a5a9399d81c25"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a196e69b71cbe34c5db8a5a9399d81c25">QuizSubmissionInclude</a> { <b>Submission</b> = 1 &lt;&lt; 0
+, <b>Quiz</b> = 1 &lt;&lt; 1
+, <b>User</b> = 1 &lt;&lt; 2
+ }</td></tr>
+<tr class="memdesc:a196e69b71cbe34c5db8a5a9399d81c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional data to include when retrieving quiz submissions. <br /></td></tr>
+<tr class="separator:a196e69b71cbe34c5db8a5a9399d81c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab267c69700d39cf9b330de94a9905be6" id="r_ab267c69700d39cf9b330de94a9905be6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ab267c69700d39cf9b330de94a9905be6">SectionIncludes</a> : byte { <br />
 &#160;&#160;<a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ab267c69700d39cf9b330de94a9905be6aaba064f896dc3eb1653c3b68b9548ef1">Students</a> = 1 &lt;&lt; 0
 , <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ab267c69700d39cf9b330de94a9905be6ac510e1bf2d2e48011d5ef951e14b3bca">AvatarUrl</a> = 1 &lt;&lt; 1
@@ -918,6 +924,265 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 <tr class="memitem:ad6a89907b9d04746da004d9cf27e9086" id="r_ad6a89907b9d04746da004d9cf27e9086"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="structUVACanvasAccess_1_1Structures_1_1ProficiencyRatings_1_1Proficiency.html">Proficiency</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad6a89907b9d04746da004d9cf27e9086">GetProficiencyRatings</a> (ulong? accountId=null)</td></tr>
 <tr class="memdesc:ad6a89907b9d04746da004d9cf27e9086"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the proficiency ratings for an account.  <br /></td></tr>
 <tr class="separator:ad6a89907b9d04746da004d9cf27e9086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9471c8b0804a79f9761360d871edaf17" id="r_a9471c8b0804a79f9761360d871edaf17"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a9471c8b0804a79f9761360d871edaf17">ListCourseQuizzes</a> (ulong courseId, [CanBeNull] string searchTerm=null)</td></tr>
+<tr class="memdesc:a9471c8b0804a79f9761360d871edaf17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the quizzes in a course.  <br /></td></tr>
+<tr class="separator:a9471c8b0804a79f9761360d871edaf17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3a303ab86aea2037448bd570ac9ca2" id="r_a8c3a303ab86aea2037448bd570ac9ca2"><td class="memItemLeft" align="right" valign="top">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8c3a303ab86aea2037448bd570ac9ca2">StreamCourseQuizzes</a> (ulong courseId, [CanBeNull] string searchTerm=null)</td></tr>
+<tr class="memdesc:a8c3a303ab86aea2037448bd570ac9ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the quizzes in a course.  <br /></td></tr>
+<tr class="separator:a8c3a303ab86aea2037448bd570ac9ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c7cf5d9b28915a309ba12aaeecb8c1" id="r_a11c7cf5d9b28915a309ba12aaeecb8c1"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a11c7cf5d9b28915a309ba12aaeecb8c1">GetQuiz</a> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:a11c7cf5d9b28915a309ba12aaeecb8c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a single quiz by id.  <br /></td></tr>
+<tr class="separator:a11c7cf5d9b28915a309ba12aaeecb8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba202c5fb70660b7b69f84e095e7a302" id="r_aba202c5fb70660b7b69f84e095e7a302"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizBuilder.html">QuizBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aba202c5fb70660b7b69f84e095e7a302">CreateQuiz</a> (ulong courseId, [NotNull] string title)</td></tr>
+<tr class="memdesc:aba202c5fb70660b7b69f84e095e7a302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a QuizBuilder for creating a quiz in a course.  <br /></td></tr>
+<tr class="separator:aba202c5fb70660b7b69f84e095e7a302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a264ffd43cdc0be898dded5df0863fc92" id="r_a264ffd43cdc0be898dded5df0863fc92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizBuilder.html">QuizBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a264ffd43cdc0be898dded5df0863fc92">UpdateQuiz</a> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:a264ffd43cdc0be898dded5df0863fc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a QuizBuilder for updating a quiz in a course.  <br /></td></tr>
+<tr class="separator:a264ffd43cdc0be898dded5df0863fc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad267e1148c2b26f151390e8431351f68" id="r_ad267e1148c2b26f151390e8431351f68"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad267e1148c2b26f151390e8431351f68">DeleteQuiz</a> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:ad267e1148c2b26f151390e8431351f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a quiz.  <br /></td></tr>
+<tr class="separator:ad267e1148c2b26f151390e8431351f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38df232d1e32973a2908bc05a562ff0f" id="r_a38df232d1e32973a2908bc05a562ff0f"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a38df232d1e32973a2908bc05a562ff0f">ReorderQuizItems</a> (ulong courseId, ulong quizId, [NotNull] IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizReorderItem.html">QuizReorderItem</a> &gt; order)</td></tr>
+<tr class="memdesc:a38df232d1e32973a2908bc05a562ff0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reorders quiz questions and question groups within a quiz.  <br /></td></tr>
+<tr class="separator:a38df232d1e32973a2908bc05a562ff0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a882574ad0a2c97f2b6c2b362fba709d7" id="r_a882574ad0a2c97f2b6c2b362fba709d7"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a882574ad0a2c97f2b6c2b362fba709d7">ValidateQuizAccessCode</a> (ulong courseId, ulong quizId, [NotNull] string accessCode)</td></tr>
+<tr class="memdesc:a882574ad0a2c97f2b6c2b362fba709d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates a quiz access code.  <br /></td></tr>
+<tr class="separator:a882574ad0a2c97f2b6c2b362fba709d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46dac6875d9f6da450b5e963abbae59d" id="r_a46dac6875d9f6da450b5e963abbae59d"><td class="memItemLeft" align="right" valign="top"><a id="a46dac6875d9f6da450b5e963abbae59d" name="a46dac6875d9f6da450b5e963abbae59d"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestion.html">QuizQuestion</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ListQuizQuestions</b> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:a46dac6875d9f6da450b5e963abbae59d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the questions in a quiz. <br /></td></tr>
+<tr class="separator:a46dac6875d9f6da450b5e963abbae59d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a894b11b081132af85860f0e689df15ca" id="r_a894b11b081132af85860f0e689df15ca"><td class="memItemLeft" align="right" valign="top"><a id="a894b11b081132af85860f0e689df15ca" name="a894b11b081132af85860f0e689df15ca"></a>
+async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestion.html">QuizQuestion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StreamQuizQuestions</b> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:a894b11b081132af85860f0e689df15ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams the questions in a quiz. <br /></td></tr>
+<tr class="separator:a894b11b081132af85860f0e689df15ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae315560e9a5c229b74744944f541d7f0" id="r_ae315560e9a5c229b74744944f541d7f0"><td class="memItemLeft" align="right" valign="top"><a id="ae315560e9a5c229b74744944f541d7f0" name="ae315560e9a5c229b74744944f541d7f0"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestion.html">QuizQuestion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId)</td></tr>
+<tr class="memdesc:ae315560e9a5c229b74744944f541d7f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a single quiz question. <br /></td></tr>
+<tr class="separator:ae315560e9a5c229b74744944f541d7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae85a0331fb49cb44ac15c8019879b174" id="r_ae85a0331fb49cb44ac15c8019879b174"><td class="memItemLeft" align="right" valign="top"><a id="ae85a0331fb49cb44ac15c8019879b174" name="ae85a0331fb49cb44ac15c8019879b174"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1CalculatedQuizQuestionBuilder.html">CalculatedQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateCalculatedQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:ae85a0331fb49cb44ac15c8019879b174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a CalculatedQuizQuestionBuilder for creating a calculated quiz question. <br /></td></tr>
+<tr class="separator:ae85a0331fb49cb44ac15c8019879b174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2f4114b4f404517b938f925c5c37a8a" id="r_aa2f4114b4f404517b938f925c5c37a8a"><td class="memItemLeft" align="right" valign="top"><a id="aa2f4114b4f404517b938f925c5c37a8a" name="aa2f4114b4f404517b938f925c5c37a8a"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1EssayQuizQuestionBuilder.html">EssayQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateEssayQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:aa2f4114b4f404517b938f925c5c37a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an EssayQuizQuestionBuilder for creating an essay quiz question. <br /></td></tr>
+<tr class="separator:aa2f4114b4f404517b938f925c5c37a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f873e41b11a5e0f24b3cf50efe040b0" id="r_a7f873e41b11a5e0f24b3cf50efe040b0"><td class="memItemLeft" align="right" valign="top"><a id="a7f873e41b11a5e0f24b3cf50efe040b0" name="a7f873e41b11a5e0f24b3cf50efe040b0"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1FileUploadQuizQuestionBuilder.html">FileUploadQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateFileUploadQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a7f873e41b11a5e0f24b3cf50efe040b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a FileUploadQuizQuestionBuilder for creating a file upload quiz question. <br /></td></tr>
+<tr class="separator:a7f873e41b11a5e0f24b3cf50efe040b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b16221708841f44fbc1750461331497" id="r_a4b16221708841f44fbc1750461331497"><td class="memItemLeft" align="right" valign="top"><a id="a4b16221708841f44fbc1750461331497" name="a4b16221708841f44fbc1750461331497"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1FillInMultipleBlanksQuizQuestionBuilder.html">FillInMultipleBlanksQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateFillInMultipleBlanksQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a4b16221708841f44fbc1750461331497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a FillInMultipleBlanksQuizQuestionBuilder for creating a fill-in-multiple-blanks quiz question. <br /></td></tr>
+<tr class="separator:a4b16221708841f44fbc1750461331497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14ee17e3e5e32bd7108978ec1583d8f2" id="r_a14ee17e3e5e32bd7108978ec1583d8f2"><td class="memItemLeft" align="right" valign="top"><a id="a14ee17e3e5e32bd7108978ec1583d8f2" name="a14ee17e3e5e32bd7108978ec1583d8f2"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestionBuilder.html">MatchingQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateMatchingQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a14ee17e3e5e32bd7108978ec1583d8f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MatchingQuizQuestionBuilder for creating a matching quiz question. <br /></td></tr>
+<tr class="separator:a14ee17e3e5e32bd7108978ec1583d8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65fec82c1f4d0bf60546f8e036548548" id="r_a65fec82c1f4d0bf60546f8e036548548"><td class="memItemLeft" align="right" valign="top"><a id="a65fec82c1f4d0bf60546f8e036548548" name="a65fec82c1f4d0bf60546f8e036548548"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleAnswersQuizQuestionBuilder.html">MultipleAnswersQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateMultipleAnswersQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a65fec82c1f4d0bf60546f8e036548548"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MultipleAnswersQuizQuestionBuilder for creating a multiple-answers quiz question. <br /></td></tr>
+<tr class="separator:a65fec82c1f4d0bf60546f8e036548548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ef38e8540d91334b33294b97b243d4f" id="r_a3ef38e8540d91334b33294b97b243d4f"><td class="memItemLeft" align="right" valign="top"><a id="a3ef38e8540d91334b33294b97b243d4f" name="a3ef38e8540d91334b33294b97b243d4f"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleChoiceQuizQuestionBuilder.html">MultipleChoiceQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateMultipleChoiceQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a3ef38e8540d91334b33294b97b243d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MultipleChoiceQuizQuestionBuilder for creating a multiple-choice quiz question. <br /></td></tr>
+<tr class="separator:a3ef38e8540d91334b33294b97b243d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e665a5647bdb745641970449496b8a" id="r_ad8e665a5647bdb745641970449496b8a"><td class="memItemLeft" align="right" valign="top"><a id="ad8e665a5647bdb745641970449496b8a" name="ad8e665a5647bdb745641970449496b8a"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleDropdownsQuizQuestionBuilder.html">MultipleDropdownsQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateMultipleDropdownsQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:ad8e665a5647bdb745641970449496b8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MultipleDropdownsQuizQuestionBuilder for creating a multiple-dropdowns quiz question. <br /></td></tr>
+<tr class="separator:ad8e665a5647bdb745641970449496b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c8df7981807e8e25d541fa7ef26addb" id="r_a3c8df7981807e8e25d541fa7ef26addb"><td class="memItemLeft" align="right" valign="top"><a id="a3c8df7981807e8e25d541fa7ef26addb" name="a3c8df7981807e8e25d541fa7ef26addb"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1NumericalQuizQuestionBuilder.html">NumericalQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateNumericalQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a3c8df7981807e8e25d541fa7ef26addb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a NumericalQuizQuestionBuilder for creating a numerical quiz question. <br /></td></tr>
+<tr class="separator:a3c8df7981807e8e25d541fa7ef26addb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52b9341f5eb2fc67106863ac2942f158" id="r_a52b9341f5eb2fc67106863ac2942f158"><td class="memItemLeft" align="right" valign="top"><a id="a52b9341f5eb2fc67106863ac2942f158" name="a52b9341f5eb2fc67106863ac2942f158"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1ShortAnswerQuizQuestionBuilder.html">ShortAnswerQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateShortAnswerQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a52b9341f5eb2fc67106863ac2942f158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a ShortAnswerQuizQuestionBuilder for creating a short-answer quiz question. <br /></td></tr>
+<tr class="separator:a52b9341f5eb2fc67106863ac2942f158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13bef89f9d2c068ebc491797902e75fa" id="r_a13bef89f9d2c068ebc491797902e75fa"><td class="memItemLeft" align="right" valign="top"><a id="a13bef89f9d2c068ebc491797902e75fa" name="a13bef89f9d2c068ebc491797902e75fa"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1TextOnlyQuizQuestionBuilder.html">TextOnlyQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateTextOnlyQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a13bef89f9d2c068ebc491797902e75fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a TextOnlyQuizQuestionBuilder for creating a text-only quiz question. <br /></td></tr>
+<tr class="separator:a13bef89f9d2c068ebc491797902e75fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac990c012f2c840d3b5e4e925c9637e21" id="r_ac990c012f2c840d3b5e4e925c9637e21"><td class="memItemLeft" align="right" valign="top"><a id="ac990c012f2c840d3b5e4e925c9637e21" name="ac990c012f2c840d3b5e4e925c9637e21"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1TrueFalseQuizQuestionBuilder.html">TrueFalseQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateTrueFalseQuizQuestion</b> (ulong courseId, ulong quizId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:ac990c012f2c840d3b5e4e925c9637e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a TrueFalseQuizQuestionBuilder for creating a true/false quiz question. <br /></td></tr>
+<tr class="separator:ac990c012f2c840d3b5e4e925c9637e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6800896ab7e1dd5b365d8a942c14a08" id="r_ad6800896ab7e1dd5b365d8a942c14a08"><td class="memItemLeft" align="right" valign="top"><a id="ad6800896ab7e1dd5b365d8a942c14a08" name="ad6800896ab7e1dd5b365d8a942c14a08"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1CalculatedQuizQuestionBuilder.html">CalculatedQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateCalculatedQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:ad6800896ab7e1dd5b365d8a942c14a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a CalculatedQuizQuestionBuilder for updating a calculated quiz question. <br /></td></tr>
+<tr class="separator:ad6800896ab7e1dd5b365d8a942c14a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a390333a2872d5278fb3940d7e97debc6" id="r_a390333a2872d5278fb3940d7e97debc6"><td class="memItemLeft" align="right" valign="top"><a id="a390333a2872d5278fb3940d7e97debc6" name="a390333a2872d5278fb3940d7e97debc6"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1EssayQuizQuestionBuilder.html">EssayQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateEssayQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a390333a2872d5278fb3940d7e97debc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an EssayQuizQuestionBuilder for updating an essay quiz question. <br /></td></tr>
+<tr class="separator:a390333a2872d5278fb3940d7e97debc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0d9822848893b7adf759e32feca77c" id="r_a8d0d9822848893b7adf759e32feca77c"><td class="memItemLeft" align="right" valign="top"><a id="a8d0d9822848893b7adf759e32feca77c" name="a8d0d9822848893b7adf759e32feca77c"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1FileUploadQuizQuestionBuilder.html">FileUploadQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateFileUploadQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a8d0d9822848893b7adf759e32feca77c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a FileUploadQuizQuestionBuilder for updating a file upload quiz question. <br /></td></tr>
+<tr class="separator:a8d0d9822848893b7adf759e32feca77c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f7c9f5c39d6349f809d392f9d8659c2" id="r_a3f7c9f5c39d6349f809d392f9d8659c2"><td class="memItemLeft" align="right" valign="top"><a id="a3f7c9f5c39d6349f809d392f9d8659c2" name="a3f7c9f5c39d6349f809d392f9d8659c2"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1FillInMultipleBlanksQuizQuestionBuilder.html">FillInMultipleBlanksQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateFillInMultipleBlanksQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a3f7c9f5c39d6349f809d392f9d8659c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a FillInMultipleBlanksQuizQuestionBuilder for updating a fill-in-multiple-blanks quiz question. <br /></td></tr>
+<tr class="separator:a3f7c9f5c39d6349f809d392f9d8659c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d1627c19ba6a7aa8a353555ad3835c" id="r_ad7d1627c19ba6a7aa8a353555ad3835c"><td class="memItemLeft" align="right" valign="top"><a id="ad7d1627c19ba6a7aa8a353555ad3835c" name="ad7d1627c19ba6a7aa8a353555ad3835c"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestionBuilder.html">MatchingQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMatchingQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:ad7d1627c19ba6a7aa8a353555ad3835c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MatchingQuizQuestionBuilder for updating a matching quiz question. <br /></td></tr>
+<tr class="separator:ad7d1627c19ba6a7aa8a353555ad3835c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a9f98503058edd4abeb664b2ac1e46d" id="r_a4a9f98503058edd4abeb664b2ac1e46d"><td class="memItemLeft" align="right" valign="top"><a id="a4a9f98503058edd4abeb664b2ac1e46d" name="a4a9f98503058edd4abeb664b2ac1e46d"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleAnswersQuizQuestionBuilder.html">MultipleAnswersQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMultipleAnswersQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a4a9f98503058edd4abeb664b2ac1e46d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MultipleAnswersQuizQuestionBuilder for updating a multiple-answers quiz question. <br /></td></tr>
+<tr class="separator:a4a9f98503058edd4abeb664b2ac1e46d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad653b76bc5cd7957b8c1dedc5d074023" id="r_ad653b76bc5cd7957b8c1dedc5d074023"><td class="memItemLeft" align="right" valign="top"><a id="ad653b76bc5cd7957b8c1dedc5d074023" name="ad653b76bc5cd7957b8c1dedc5d074023"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleChoiceQuizQuestionBuilder.html">MultipleChoiceQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMultipleChoiceQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:ad653b76bc5cd7957b8c1dedc5d074023"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MultipleChoiceQuizQuestionBuilder for updating a multiple-choice quiz question. <br /></td></tr>
+<tr class="separator:ad653b76bc5cd7957b8c1dedc5d074023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a485e28f8b9a1804e4bf5c4be11bbb675" id="r_a485e28f8b9a1804e4bf5c4be11bbb675"><td class="memItemLeft" align="right" valign="top"><a id="a485e28f8b9a1804e4bf5c4be11bbb675" name="a485e28f8b9a1804e4bf5c4be11bbb675"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleDropdownsQuizQuestionBuilder.html">MultipleDropdownsQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMultipleDropdownsQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a485e28f8b9a1804e4bf5c4be11bbb675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a MultipleDropdownsQuizQuestionBuilder for updating a multiple-dropdowns quiz question. <br /></td></tr>
+<tr class="separator:a485e28f8b9a1804e4bf5c4be11bbb675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7456f1317d39789d579feb1bbd1743a2" id="r_a7456f1317d39789d579feb1bbd1743a2"><td class="memItemLeft" align="right" valign="top"><a id="a7456f1317d39789d579feb1bbd1743a2" name="a7456f1317d39789d579feb1bbd1743a2"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1NumericalQuizQuestionBuilder.html">NumericalQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateNumericalQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a7456f1317d39789d579feb1bbd1743a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a NumericalQuizQuestionBuilder for updating a numerical quiz question. <br /></td></tr>
+<tr class="separator:a7456f1317d39789d579feb1bbd1743a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ff2bb211e522a74358d1b8b28f7665" id="r_a76ff2bb211e522a74358d1b8b28f7665"><td class="memItemLeft" align="right" valign="top"><a id="a76ff2bb211e522a74358d1b8b28f7665" name="a76ff2bb211e522a74358d1b8b28f7665"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1ShortAnswerQuizQuestionBuilder.html">ShortAnswerQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateShortAnswerQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a76ff2bb211e522a74358d1b8b28f7665"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a ShortAnswerQuizQuestionBuilder for updating a short-answer quiz question. <br /></td></tr>
+<tr class="separator:a76ff2bb211e522a74358d1b8b28f7665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9edefd1c87af0eb9f5f079f0fb8ee8c0" id="r_a9edefd1c87af0eb9f5f079f0fb8ee8c0"><td class="memItemLeft" align="right" valign="top"><a id="a9edefd1c87af0eb9f5f079f0fb8ee8c0" name="a9edefd1c87af0eb9f5f079f0fb8ee8c0"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1TextOnlyQuizQuestionBuilder.html">TextOnlyQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateTextOnlyQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a9edefd1c87af0eb9f5f079f0fb8ee8c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a TextOnlyQuizQuestionBuilder for updating a text-only quiz question. <br /></td></tr>
+<tr class="separator:a9edefd1c87af0eb9f5f079f0fb8ee8c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1005eb41f190f55d5d4a850dfc24e2d2" id="r_a1005eb41f190f55d5d4a850dfc24e2d2"><td class="memItemLeft" align="right" valign="top"><a id="a1005eb41f190f55d5d4a850dfc24e2d2" name="a1005eb41f190f55d5d4a850dfc24e2d2"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1TrueFalseQuizQuestionBuilder.html">TrueFalseQuizQuestionBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateTrueFalseQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId, [NotNull] string questionName, [NotNull] string questionText)</td></tr>
+<tr class="memdesc:a1005eb41f190f55d5d4a850dfc24e2d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a TrueFalseQuizQuestionBuilder for updating a true/false quiz question. <br /></td></tr>
+<tr class="separator:a1005eb41f190f55d5d4a850dfc24e2d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9424d489e117b496c8b653ee245555" id="r_a9a9424d489e117b496c8b653ee245555"><td class="memItemLeft" align="right" valign="top"><a id="a9a9424d489e117b496c8b653ee245555" name="a9a9424d489e117b496c8b653ee245555"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestion.html">QuizQuestion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteQuizQuestion</b> (ulong courseId, ulong quizId, ulong questionId)</td></tr>
+<tr class="memdesc:a9a9424d489e117b496c8b653ee245555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a quiz question. <br /></td></tr>
+<tr class="separator:a9a9424d489e117b496c8b653ee245555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973fbd8ea4a3906433d3cbc0b0bcea93" id="r_a973fbd8ea4a3906433d3cbc0b0bcea93"><td class="memItemLeft" align="right" valign="top"><a id="a973fbd8ea4a3906433d3cbc0b0bcea93" name="a973fbd8ea4a3906433d3cbc0b0bcea93"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestionGroup.html">QuizQuestionGroup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizQuestionGroup</b> (ulong courseId, ulong quizId, ulong groupId)</td></tr>
+<tr class="memdesc:a973fbd8ea4a3906433d3cbc0b0bcea93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a quiz question group. <br /></td></tr>
+<tr class="separator:a973fbd8ea4a3906433d3cbc0b0bcea93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893685a6e49ead7e918cafed919649d6" id="r_a893685a6e49ead7e918cafed919649d6"><td class="memItemLeft" align="right" valign="top"><a id="a893685a6e49ead7e918cafed919649d6" name="a893685a6e49ead7e918cafed919649d6"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestionGroupBuilder.html">QuizQuestionGroupBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateQuizQuestionGroup</b> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:a893685a6e49ead7e918cafed919649d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a QuizQuestionGroupBuilder for creating a quiz question group. <br /></td></tr>
+<tr class="separator:a893685a6e49ead7e918cafed919649d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa209bd3a47a3776fd652e90fc28f36d" id="r_afa209bd3a47a3776fd652e90fc28f36d"><td class="memItemLeft" align="right" valign="top"><a id="afa209bd3a47a3776fd652e90fc28f36d" name="afa209bd3a47a3776fd652e90fc28f36d"></a>
+<a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestionGroupBuilder.html">QuizQuestionGroupBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateQuizQuestionGroup</b> (ulong courseId, ulong quizId, ulong groupId)</td></tr>
+<tr class="memdesc:afa209bd3a47a3776fd652e90fc28f36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a QuizQuestionGroupBuilder for updating a quiz question group. <br /></td></tr>
+<tr class="separator:afa209bd3a47a3776fd652e90fc28f36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc6daad23c66383c0ddfaf6ad418a20c" id="r_acc6daad23c66383c0ddfaf6ad418a20c"><td class="memItemLeft" align="right" valign="top"><a id="acc6daad23c66383c0ddfaf6ad418a20c" name="acc6daad23c66383c0ddfaf6ad418a20c"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestionGroup.html">QuizQuestionGroup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteQuizQuestionGroup</b> (ulong courseId, ulong quizId, ulong groupId)</td></tr>
+<tr class="memdesc:acc6daad23c66383c0ddfaf6ad418a20c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a quiz question group. <br /></td></tr>
+<tr class="separator:acc6daad23c66383c0ddfaf6ad418a20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77d6655b9adc21de9a7828833bee100d" id="r_a77d6655b9adc21de9a7828833bee100d"><td class="memItemLeft" align="right" valign="top"><a id="a77d6655b9adc21de9a7828833bee100d" name="a77d6655b9adc21de9a7828833bee100d"></a>
+async Task&#160;</td><td class="memItemRight" valign="bottom"><b>ReorderQuizQuestionGroupQuestions</b> (ulong courseId, ulong quizId, ulong groupId, [NotNull] IEnumerable&lt; ulong &gt; questionIds)</td></tr>
+<tr class="memdesc:a77d6655b9adc21de9a7828833bee100d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reorders the questions within a question group. <br /></td></tr>
+<tr class="separator:a77d6655b9adc21de9a7828833bee100d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6ce7313efcd27ebf400d972dace4325" id="r_ac6ce7313efcd27ebf400d972dace4325"><td class="memItemLeft" align="right" valign="top"><a id="ac6ce7313efcd27ebf400d972dace4325" name="ac6ce7313efcd27ebf400d972dace4325"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizAssignmentOverrides.html">QuizAssignmentOverrides</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizAssignmentOverrides</b> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:ac6ce7313efcd27ebf400d972dace4325"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets assignment overrides for a quiz. <br /></td></tr>
+<tr class="separator:ac6ce7313efcd27ebf400d972dace4325"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b52579a351b80cbd03822f6ec60c8d6" id="r_a4b52579a351b80cbd03822f6ec60c8d6"><td class="memItemLeft" align="right" valign="top"><a id="a4b52579a351b80cbd03822f6ec60c8d6" name="a4b52579a351b80cbd03822f6ec60c8d6"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizAssignmentOverrides.html">QuizAssignmentOverrides</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizAssignmentOverrides</b> (ulong courseId, ulong quizId, ulong assignmentOverrideId)</td></tr>
+<tr class="memdesc:a4b52579a351b80cbd03822f6ec60c8d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets assignment overrides for a quiz, scoped to a specific assignment override id. <br /></td></tr>
+<tr class="separator:a4b52579a351b80cbd03822f6ec60c8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a727d00749a84801ed9c74e8c99ef1516" id="r_a727d00749a84801ed9c74e8c99ef1516"><td class="memItemLeft" align="right" valign="top"><a id="a727d00749a84801ed9c74e8c99ef1516" name="a727d00749a84801ed9c74e8c99ef1516"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizExtension.html">QuizExtension</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>SetQuizExtensions</b> (ulong courseId, ulong quizId, [NotNull] IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizExtensionInput.html">QuizExtensionInput</a> &gt; extensions)</td></tr>
+<tr class="memdesc:a727d00749a84801ed9c74e8c99ef1516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets quiz extensions. <br /></td></tr>
+<tr class="separator:a727d00749a84801ed9c74e8c99ef1516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c0aa987d204dfc98f2b120f968c57ef" id="r_a6c0aa987d204dfc98f2b120f968c57ef"><td class="memItemLeft" align="right" valign="top"><a id="a6c0aa987d204dfc98f2b120f968c57ef" name="a6c0aa987d204dfc98f2b120f968c57ef"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizIpFilter.html">QuizIpFilter</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ListQuizIpFilters</b> (ulong courseId, ulong quizId)</td></tr>
+<tr class="memdesc:a6c0aa987d204dfc98f2b120f968c57ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists quiz IP filters. <br /></td></tr>
+<tr class="separator:a6c0aa987d204dfc98f2b120f968c57ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dcf84961dfc31b2d48ce4d7802acacd" id="r_a1dcf84961dfc31b2d48ce4d7802acacd"><td class="memItemLeft" align="right" valign="top"><a id="a1dcf84961dfc31b2d48ce4d7802acacd" name="a1dcf84961dfc31b2d48ce4d7802acacd"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizReport.html">QuizReport</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ListQuizReports</b> (ulong courseId, ulong quizId, bool? includeAllVersions=null, <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#a1c2042c0c1e5208e19f70e657d9fa518">QuizReportInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:a1dcf84961dfc31b2d48ce4d7802acacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists quiz reports. <br /></td></tr>
+<tr class="separator:a1dcf84961dfc31b2d48ce4d7802acacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfba1b856187e3c6c84464d3a0f4c573" id="r_abfba1b856187e3c6c84464d3a0f4c573"><td class="memItemLeft" align="right" valign="top"><a id="abfba1b856187e3c6c84464d3a0f4c573" name="abfba1b856187e3c6c84464d3a0f4c573"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizReport.html">QuizReport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CreateQuizReport</b> (ulong courseId, ulong quizId, <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#ae4f6141817db1643bc7d419755e98c19">QuizReportType</a> reportType, bool? includeAllVersions=null, <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#a1c2042c0c1e5208e19f70e657d9fa518">QuizReportInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:abfba1b856187e3c6c84464d3a0f4c573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a quiz report. <br /></td></tr>
+<tr class="separator:abfba1b856187e3c6c84464d3a0f4c573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5ef158f09fc4865a693244148acc22e" id="r_ab5ef158f09fc4865a693244148acc22e"><td class="memItemLeft" align="right" valign="top"><a id="ab5ef158f09fc4865a693244148acc22e" name="ab5ef158f09fc4865a693244148acc22e"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizReport.html">QuizReport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizReport</b> (ulong courseId, ulong quizId, ulong reportId, <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#a1c2042c0c1e5208e19f70e657d9fa518">QuizReportInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:ab5ef158f09fc4865a693244148acc22e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a quiz report. <br /></td></tr>
+<tr class="separator:ab5ef158f09fc4865a693244148acc22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bc693ea415d4550b18e52789d25ee7b" id="r_a7bc693ea415d4550b18e52789d25ee7b"><td class="memItemLeft" align="right" valign="top"><a id="a7bc693ea415d4550b18e52789d25ee7b" name="a7bc693ea415d4550b18e52789d25ee7b"></a>
+async Task&#160;</td><td class="memItemRight" valign="bottom"><b>AbortQuizReport</b> (ulong courseId, ulong quizId, ulong reportId)</td></tr>
+<tr class="memdesc:a7bc693ea415d4550b18e52789d25ee7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aborts a quiz report. <br /></td></tr>
+<tr class="separator:a7bc693ea415d4550b18e52789d25ee7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16695bd2f90e0c12c03bbc0edb41fb61" id="r_a16695bd2f90e0c12c03bbc0edb41fb61"><td class="memItemLeft" align="right" valign="top"><a id="a16695bd2f90e0c12c03bbc0edb41fb61" name="a16695bd2f90e0c12c03bbc0edb41fb61"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizStatisticsResponse.html">QuizStatisticsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizStatistics</b> (ulong courseId, ulong quizId, bool? allVersions=null)</td></tr>
+<tr class="memdesc:a16695bd2f90e0c12c03bbc0edb41fb61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets quiz statistics. <br /></td></tr>
+<tr class="separator:a16695bd2f90e0c12c03bbc0edb41fb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c11cfef24b8d784af6fdc1d3dfe7cf" id="r_aa8c11cfef24b8d784af6fdc1d3dfe7cf"><td class="memItemLeft" align="right" valign="top"><a id="aa8c11cfef24b8d784af6fdc1d3dfe7cf" name="aa8c11cfef24b8d784af6fdc1d3dfe7cf"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionEvent.html">QuizSubmissionEvent</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ListQuizSubmissionEvents</b> (ulong courseId, ulong quizId, ulong? quizSubmissionId=null, uint? attempt=null)</td></tr>
+<tr class="memdesc:aa8c11cfef24b8d784af6fdc1d3dfe7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists quiz submission events. <br /></td></tr>
+<tr class="separator:aa8c11cfef24b8d784af6fdc1d3dfe7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa563c189b70649ffe73aff835aa9dbd6" id="r_aa563c189b70649ffe73aff835aa9dbd6"><td class="memItemLeft" align="right" valign="top"><a id="aa563c189b70649ffe73aff835aa9dbd6" name="aa563c189b70649ffe73aff835aa9dbd6"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionEvent.html">QuizSubmissionEvent</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CreateQuizSubmissionEvents</b> (ulong courseId, ulong quizId, ulong quizSubmissionId, uint? attempt, [NotNull] IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionEventInput.html">QuizSubmissionEventInput</a> &gt; events)</td></tr>
+<tr class="memdesc:aa563c189b70649ffe73aff835aa9dbd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates quiz submission events. <br /></td></tr>
+<tr class="separator:aa563c189b70649ffe73aff835aa9dbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82bb17b17081960aeef48a723297e850" id="r_a82bb17b17081960aeef48a723297e850"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a82bb17b17081960aeef48a723297e850">UploadQuizSubmissionFile</a> (ulong courseId, ulong quizId, [NotNull] byte[] file, [NotNull] string filePath, string onDuplicate=null, string contentType=null)</td></tr>
+<tr class="memdesc:a82bb17b17081960aeef48a723297e850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads a file for the current user's quiz submission.  <br /></td></tr>
+<tr class="separator:a82bb17b17081960aeef48a723297e850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa69df9b11924f6601dbc9b31756f5bd9" id="r_aa69df9b11924f6601dbc9b31756f5bd9"><td class="memItemLeft" align="right" valign="top"><a id="aa69df9b11924f6601dbc9b31756f5bd9" name="aa69df9b11924f6601dbc9b31756f5bd9"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestion.html">QuizSubmissionQuestion</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ListQuizSubmissionQuestions</b> (ulong courseId, ulong quizId, ulong submissionId, <a class="el" href="namespaceUVACanvasAccess_1_1Structures_1_1Quizzes.html#af598b7478a28f58ad301067da356038b">QuizSubmissionQuestionInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:aa69df9b11924f6601dbc9b31756f5bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists quiz submission questions. <br /></td></tr>
+<tr class="separator:aa69df9b11924f6601dbc9b31756f5bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d6ea8f1c43c6c6fe5f5efc03715db8" id="r_ac8d6ea8f1c43c6c6fe5f5efc03715db8"><td class="memItemLeft" align="right" valign="top"><a id="ac8d6ea8f1c43c6c6fe5f5efc03715db8" name="ac8d6ea8f1c43c6c6fe5f5efc03715db8"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestion.html">QuizSubmissionQuestion</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>AnswerQuizSubmissionQuestions</b> (ulong courseId, ulong quizId, ulong submissionId, uint attempt, [NotNull] string validationToken, [NotNull] IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestionAnswer.html">QuizSubmissionQuestionAnswer</a> &gt; answers, string accessCode=null)</td></tr>
+<tr class="memdesc:ac8d6ea8f1c43c6c6fe5f5efc03715db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers quiz submission questions. <br /></td></tr>
+<tr class="separator:ac8d6ea8f1c43c6c6fe5f5efc03715db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f44c251a6b29e4096a2147cc9673bbf" id="r_a9f44c251a6b29e4096a2147cc9673bbf"><td class="memItemLeft" align="right" valign="top"><a id="a9f44c251a6b29e4096a2147cc9673bbf" name="a9f44c251a6b29e4096a2147cc9673bbf"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionFormattedAnswer.html">QuizSubmissionFormattedAnswer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizSubmissionFormattedAnswer</b> (ulong courseId, ulong quizId, ulong submissionId, ulong questionId, [NotNull] string answer)</td></tr>
+<tr class="memdesc:a9f44c251a6b29e4096a2147cc9673bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats a quiz submission answer for display. <br /></td></tr>
+<tr class="separator:a9f44c251a6b29e4096a2147cc9673bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca0ffbd1b4b99ccb41f50cc5669e907e" id="r_aca0ffbd1b4b99ccb41f50cc5669e907e"><td class="memItemLeft" align="right" valign="top"><a id="aca0ffbd1b4b99ccb41f50cc5669e907e" name="aca0ffbd1b4b99ccb41f50cc5669e907e"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestion.html">QuizSubmissionQuestion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FlagQuizSubmissionQuestion</b> (ulong courseId, ulong quizId, ulong submissionId, ulong questionId, uint attempt, [NotNull] string validationToken, string accessCode=null)</td></tr>
+<tr class="memdesc:aca0ffbd1b4b99ccb41f50cc5669e907e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags a quiz submission question. <br /></td></tr>
+<tr class="separator:aca0ffbd1b4b99ccb41f50cc5669e907e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11671221dcca11709ce45e8e2661843f" id="r_a11671221dcca11709ce45e8e2661843f"><td class="memItemLeft" align="right" valign="top"><a id="a11671221dcca11709ce45e8e2661843f" name="a11671221dcca11709ce45e8e2661843f"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionQuestion.html">QuizSubmissionQuestion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>UnflagQuizSubmissionQuestion</b> (ulong courseId, ulong quizId, ulong submissionId, ulong questionId, uint attempt, [NotNull] string validationToken, string accessCode=null)</td></tr>
+<tr class="memdesc:a11671221dcca11709ce45e8e2661843f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unflags a quiz submission question. <br /></td></tr>
+<tr class="separator:a11671221dcca11709ce45e8e2661843f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09207934a353d2e11d48d4279fe95505" id="r_a09207934a353d2e11d48d4279fe95505"><td class="memItemLeft" align="right" valign="top"><a id="a09207934a353d2e11d48d4279fe95505" name="a09207934a353d2e11d48d4279fe95505"></a>
+async Task&#160;</td><td class="memItemRight" valign="bottom"><b>MessageQuizSubmissionUsers</b> (ulong courseId, ulong quizId, [NotNull] <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionUserListMessage.html">QuizSubmissionUserListMessage</a> message)</td></tr>
+<tr class="memdesc:a09207934a353d2e11d48d4279fe95505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Messages users from the quiz submission user list. <br /></td></tr>
+<tr class="separator:a09207934a353d2e11d48d4279fe95505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38283f310a4344acffe1b1be47744db5" id="r_a38283f310a4344acffe1b1be47744db5"><td class="memItemLeft" align="right" valign="top"><a id="a38283f310a4344acffe1b1be47744db5" name="a38283f310a4344acffe1b1be47744db5"></a>
+async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmission.html">QuizSubmission</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ListQuizSubmissions</b> (ulong courseId, ulong quizId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a196e69b71cbe34c5db8a5a9399d81c25">QuizSubmissionInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:a38283f310a4344acffe1b1be47744db5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists quiz submissions. <br /></td></tr>
+<tr class="separator:a38283f310a4344acffe1b1be47744db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33fff902ec88d5a3bae5e036a7b6d647" id="r_a33fff902ec88d5a3bae5e036a7b6d647"><td class="memItemLeft" align="right" valign="top"><a id="a33fff902ec88d5a3bae5e036a7b6d647" name="a33fff902ec88d5a3bae5e036a7b6d647"></a>
+async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmission.html">QuizSubmission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StreamQuizSubmissions</b> (ulong courseId, ulong quizId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a196e69b71cbe34c5db8a5a9399d81c25">QuizSubmissionInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:a33fff902ec88d5a3bae5e036a7b6d647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams quiz submissions. <br /></td></tr>
+<tr class="separator:a33fff902ec88d5a3bae5e036a7b6d647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37ac3670b9f20bde33b04bc88fd375b4" id="r_a37ac3670b9f20bde33b04bc88fd375b4"><td class="memItemLeft" align="right" valign="top"><a id="a37ac3670b9f20bde33b04bc88fd375b4" name="a37ac3670b9f20bde33b04bc88fd375b4"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmission.html">QuizSubmission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizSubmission</b> (ulong courseId, ulong quizId, ulong submissionId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a196e69b71cbe34c5db8a5a9399d81c25">QuizSubmissionInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:a37ac3670b9f20bde33b04bc88fd375b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a single quiz submission. <br /></td></tr>
+<tr class="separator:a37ac3670b9f20bde33b04bc88fd375b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ffb9b6843dff8e3a576f94e68fb0d40" id="r_a7ffb9b6843dff8e3a576f94e68fb0d40"><td class="memItemLeft" align="right" valign="top"><a id="a7ffb9b6843dff8e3a576f94e68fb0d40" name="a7ffb9b6843dff8e3a576f94e68fb0d40"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmission.html">QuizSubmission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizSubmissionForCurrentUser</b> (ulong courseId, ulong quizId, <a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#a196e69b71cbe34c5db8a5a9399d81c25">QuizSubmissionInclude</a>? includes=null)</td></tr>
+<tr class="memdesc:a7ffb9b6843dff8e3a576f94e68fb0d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current user's quiz submission. <br /></td></tr>
+<tr class="separator:a7ffb9b6843dff8e3a576f94e68fb0d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4beac97666bef47d50122e9542e8d1d0" id="r_a4beac97666bef47d50122e9542e8d1d0"><td class="memItemLeft" align="right" valign="top"><a id="a4beac97666bef47d50122e9542e8d1d0" name="a4beac97666bef47d50122e9542e8d1d0"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmission.html">QuizSubmission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StartQuizSubmission</b> (ulong courseId, ulong quizId, string accessCode=null)</td></tr>
+<tr class="memdesc:a4beac97666bef47d50122e9542e8d1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a quiz submission. <br /></td></tr>
+<tr class="separator:a4beac97666bef47d50122e9542e8d1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf843f7d8cb46194e31e441e2599c33c" id="r_adf843f7d8cb46194e31e441e2599c33c"><td class="memItemLeft" align="right" valign="top"><a id="adf843f7d8cb46194e31e441e2599c33c" name="adf843f7d8cb46194e31e441e2599c33c"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmission.html">QuizSubmission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateQuizSubmissionScores</b> (ulong courseId, ulong quizId, ulong submissionId, uint attempt, [NotNull] string validationToken, [NotNull] IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionScoreUpdate.html">QuizSubmissionScoreUpdate</a> &gt; updates, string accessCode=null)</td></tr>
+<tr class="memdesc:adf843f7d8cb46194e31e441e2599c33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates quiz submission scores and comments. <br /></td></tr>
+<tr class="separator:adf843f7d8cb46194e31e441e2599c33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a063eb678092298b41692d7478a1d1283" id="r_a063eb678092298b41692d7478a1d1283"><td class="memItemLeft" align="right" valign="top"><a id="a063eb678092298b41692d7478a1d1283" name="a063eb678092298b41692d7478a1d1283"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmission.html">QuizSubmission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CompleteQuizSubmission</b> (ulong courseId, ulong quizId, ulong submissionId, uint attempt, [NotNull] string validationToken, string accessCode=null)</td></tr>
+<tr class="memdesc:a063eb678092298b41692d7478a1d1283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completes a quiz submission. <br /></td></tr>
+<tr class="separator:a063eb678092298b41692d7478a1d1283"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5050fdf6ab1ef39c101520be872122fc" id="r_a5050fdf6ab1ef39c101520be872122fc"><td class="memItemLeft" align="right" valign="top"><a id="a5050fdf6ab1ef39c101520be872122fc" name="a5050fdf6ab1ef39c101520be872122fc"></a>
+async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizSubmissionTime.html">QuizSubmissionTime</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetQuizSubmissionTime</b> (ulong courseId, ulong quizId, ulong submissionId, uint attempt, [NotNull] string validationToken, string accessCode=null)</td></tr>
+<tr class="memdesc:a5050fdf6ab1ef39c101520be872122fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a quiz submission's remaining time. <br /></td></tr>
+<tr class="separator:a5050fdf6ab1ef39c101520be872122fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac965c30204e924ec1a5a568d9e4df04d" id="r_ac965c30204e924ec1a5a568d9e4df04d"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Reports_1_1ReportDescription.html">ReportDescription</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac965c30204e924ec1a5a568d9e4df04d">ListAvailableReports</a> (ulong? accountId=null)</td></tr>
 <tr class="memdesc:ac965c30204e924ec1a5a568d9e4df04d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a list of available report types and parameters for a given account.  <br /></td></tr>
 <tr class="separator:ac965c30204e924ec1a5a568d9e4df04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3154,6 +3419,52 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 
 </div>
 </div>
+<a id="aba202c5fb70660b7b69f84e095e7a302" name="aba202c5fb70660b7b69f84e095e7a302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba202c5fb70660b7b69f84e095e7a302">&#9670;&#160;</a></span>CreateQuiz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizBuilder.html">QuizBuilder</a> UVACanvasAccess.ApiParts.Api.CreateQuiz </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[NotNull] string&#160;</td>
+          <td class="paramname"><em>title</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a QuizBuilder for creating a quiz in a course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">title</td><td>The quiz title.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The builder.</dd></dl>
+
+</div>
+</div>
 <a id="a440200cbe0ceb7dd69478c0cd595a90b" name="a440200cbe0ceb7dd69478c0cd595a90b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a440200cbe0ceb7dd69478c0cd595a90b">&#9670;&#160;</a></span>CreateRole()</h2>
 
@@ -3937,6 +4248,52 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ad267e1148c2b26f151390e8431351f68" name="ad267e1148c2b26f151390e8431351f68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad267e1148c2b26f151390e8431351f68">&#9670;&#160;</a></span>DeleteQuiz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt; UVACanvasAccess.ApiParts.Api.DeleteQuiz </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>quizId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes a quiz. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">quizId</td><td>The quiz id.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The deleted quiz.</dd></dl>
 
 </div>
 </div>
@@ -5935,6 +6292,52 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 
 </div>
 </div>
+<a id="a11c7cf5d9b28915a309ba12aaeecb8c1" name="a11c7cf5d9b28915a309ba12aaeecb8c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c7cf5d9b28915a309ba12aaeecb8c1">&#9670;&#160;</a></span>GetQuiz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt; UVACanvasAccess.ApiParts.Api.GetQuiz </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>quizId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a single quiz by id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">quizId</td><td>The quiz id.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The quiz.</dd></dl>
+
+</div>
+</div>
 <a id="a0a12944970ac6164856e843c31148f72" name="a0a12944970ac6164856e843c31148f72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a12944970ac6164856e843c31148f72">&#9670;&#160;</a></span>GetReportIndex()</h2>
 
@@ -6738,6 +7141,52 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 
 </div>
 </div>
+<a id="a9471c8b0804a79f9761360d871edaf17" name="a9471c8b0804a79f9761360d871edaf17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9471c8b0804a79f9761360d871edaf17">&#9670;&#160;</a></span>ListCourseQuizzes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt; &gt; UVACanvasAccess.ApiParts.Api.ListCourseQuizzes </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CanBeNull] string&#160;</td>
+          <td class="paramname"><em>searchTerm</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lists the quizzes in a course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">searchTerm</td><td>(Optional) The partial quiz title to search for.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The list of quizzes.</dd></dl>
+
+</div>
+</div>
 <a id="a1e98390ae7ad72c6152eacefafdcd098" name="a1e98390ae7ad72c6152eacefafdcd098"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1e98390ae7ad72c6152eacefafdcd098">&#9670;&#160;</a></span>ListCourses()</h2>
 
@@ -7511,6 +7960,58 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The former observee.</dd></dl>
+
+</div>
+</div>
+<a id="a38df232d1e32973a2908bc05a562ff0f" name="a38df232d1e32973a2908bc05a562ff0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38df232d1e32973a2908bc05a562ff0f">&#9670;&#160;</a></span>ReorderQuizItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task UVACanvasAccess.ApiParts.Api.ReorderQuizItems </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>quizId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[NotNull] IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizReorderItem.html">QuizReorderItem</a> &gt;&#160;</td>
+          <td class="paramname"><em>order</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reorders quiz questions and question groups within a quiz. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">quizId</td><td>The quiz id.</td></tr>
+    <tr><td class="paramname">order</td><td>The ordered list of quiz items.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -8678,6 +9179,52 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The pages.</dd></dl>
+
+</div>
+</div>
+<a id="a8c3a303ab86aea2037448bd570ac9ca2" name="a8c3a303ab86aea2037448bd570ac9ca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3a303ab86aea2037448bd570ac9ca2">&#9670;&#160;</a></span>StreamCourseQuizzes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1Quiz.html">Quiz</a> &gt; UVACanvasAccess.ApiParts.Api.StreamCourseQuizzes </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CanBeNull] string&#160;</td>
+          <td class="paramname"><em>searchTerm</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Streams the quizzes in a course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">searchTerm</td><td>(Optional) The partial quiz title to search for.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stream of quizzes.</dd></dl>
 
 </div>
 </div>
@@ -11162,6 +11709,52 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 
 </div>
 </div>
+<a id="a264ffd43cdc0be898dded5df0863fc92" name="a264ffd43cdc0be898dded5df0863fc92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a264ffd43cdc0be898dded5df0863fc92">&#9670;&#160;</a></span>UpdateQuiz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizBuilder.html">QuizBuilder</a> UVACanvasAccess.ApiParts.Api.UpdateQuiz </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>quizId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a QuizBuilder for updating a quiz in a course. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">quizId</td><td>The quiz id.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The builder.</dd></dl>
+
+</div>
+</div>
 <a id="a8b5b05be4ace95cd671f9968299b9095" name="a8b5b05be4ace95cd671f9968299b9095"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b5b05be4ace95cd671f9968299b9095">&#9670;&#160;</a></span>UploadPersonalFile()</h2>
 
@@ -11215,6 +11808,133 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 
 </div>
 </div>
+<a id="a82bb17b17081960aeef48a723297e850" name="a82bb17b17081960aeef48a723297e850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82bb17b17081960aeef48a723297e850">&#9670;&#160;</a></span>UploadQuizSubmissionFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Files_1_1CanvasFile.html">CanvasFile</a> &gt; UVACanvasAccess.ApiParts.Api.UploadQuizSubmissionFile </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>quizId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[NotNull] byte[]&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[NotNull] string&#160;</td>
+          <td class="paramname"><em>filePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>onDuplicate</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>contentType</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Uploads a file for the current user's quiz submission. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">quizId</td><td>The quiz id.</td></tr>
+    <tr><td class="paramname">file</td><td>The file bytes.</td></tr>
+    <tr><td class="paramname">filePath</td><td>The file path (used for the file name and content type).</td></tr>
+    <tr><td class="paramname">onDuplicate</td><td>(Optional) How to handle duplicate names.</td></tr>
+    <tr><td class="paramname">contentType</td><td>(Optional) The file MIME type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The uploaded file.</dd></dl>
+
+</div>
+</div>
+<a id="a882574ad0a2c97f2b6c2b362fba709d7" name="a882574ad0a2c97f2b6c2b362fba709d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a882574ad0a2c97f2b6c2b362fba709d7">&#9670;&#160;</a></span>ValidateQuizAccessCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; bool &gt; UVACanvasAccess.ApiParts.Api.ValidateQuizAccessCode </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>courseId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>quizId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[NotNull] string&#160;</td>
+          <td class="paramname"><em>accessCode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Validates a quiz access code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">courseId</td><td>The course id.</td></tr>
+    <tr><td class="paramname">quizId</td><td>The quiz id.</td></tr>
+    <tr><td class="paramname">accessCode</td><td>The access code.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the access code is valid; otherwise false.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>UVACanvasAccess/ApiParts/<b>Accounts.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>Api.cs</b></li>
@@ -11242,6 +11962,7 @@ IAsyncEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1L
 <li>UVACanvasAccess/ApiParts/<b>Observers.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>Pages.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>ProficiencyRatings.cs</b></li>
+<li>UVACanvasAccess/ApiParts/<b>Quizzes.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>Reports.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>Roles.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>Sections.cs</b></li>

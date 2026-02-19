@@ -1,0 +1,7 @@
+<map id="UVACanvasAccess.Structures.Quizzes.MultipleChoiceQuizQuestion" name="UVACanvasAccess.Structures.Quizzes.MultipleChoiceQuizQuestion">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,152,267,192"/>
+<area shape="rect" id="Node000002" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1QuizQuestion.html" title="Represents a quiz question." alt="" coords="81,79,191,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,118,139,152,133,152,133,118"/>
+<area shape="rect" id="Node000003" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="89,5,183,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="139,44,139,79,133,79,133,44"/>
+</map>

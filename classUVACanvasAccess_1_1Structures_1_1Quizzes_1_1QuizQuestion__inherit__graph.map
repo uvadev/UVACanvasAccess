@@ -1,0 +1,31 @@
+<map id="UVACanvasAccess.Structures.Quizzes.QuizQuestion" name="UVACanvasAccess.Structures.Quizzes.QuizQuestion">
+<area shape="rect" id="Node000001" title="Represents a quiz question." alt="" coords="148,405,364,445"/>
+<area shape="rect" id="Node000003" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1CalculatedQuizQuestion.html" title=" " alt="" coords="441,5,674,45"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,391,272,320,298,229,318,182,343,135,374,92,410,55,439,38,442,43,414,59,378,96,348,138,323,184,303,231,277,322,264,392"/>
+<area shape="rect" id="Node000004" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1EssayQuizQuestion.html" title=" " alt="" coords="449,69,665,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="262,391,279,332,308,258,327,220,351,183,378,149,410,119,448,99,451,104,414,124,382,152,355,186,332,222,312,260,284,334,267,393"/>
+<area shape="rect" id="Node000005" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1FileUploadQuizQuestion.html" title=" " alt="" coords="441,133,674,173"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="266,392,287,344,318,288,359,231,383,205,411,183,439,168,442,173,413,188,387,209,363,234,322,290,292,347,271,394"/>
+<area shape="rect" id="Node000006" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1FillInMultipleBlanksQuizQuestion.html" title=" " alt="" coords="440,198,675,253"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="277,393,333,327,370,292,411,263,439,249,441,254,413,268,373,297,336,331,281,396"/>
+<area shape="rect" id="Node000007" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1GenericQuizQuestion.html" title=" " alt="" coords="449,277,665,317"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="293,395,347,359,411,327,448,314,450,319,413,332,350,364,296,399"/>
+<area shape="rect" id="Node000008" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MatchingQuizQuestion.html" title=" " alt="" coords="445,341,669,381"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="364,400,462,379,463,384,365,405"/>
+<area shape="rect" id="Node000009" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleAnswersQuizQuestion.html" title=" " alt="" coords="421,405,693,445"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="378,423,421,423,421,428,378,428"/>
+<area shape="rect" id="Node000010" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleChoiceQuizQuestion.html" title=" " alt="" coords="427,469,688,509"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="365,446,463,467,462,472,364,451"/>
+<area shape="rect" id="Node000011" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1MultipleDropdownsQuizQuestion.html" title=" " alt="" coords="412,533,703,573"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="296,451,350,487,413,519,448,531,446,536,411,524,347,491,293,456"/>
+<area shape="rect" id="Node000012" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1NumericalQuizQuestion.html" title=" " alt="" coords="442,597,673,637"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="281,455,336,521,372,555,413,583,443,596,441,601,411,588,369,559,332,525,277,458"/>
+<area shape="rect" id="Node000013" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1ShortAnswerQuizQuestion.html" title=" " alt="" coords="434,661,681,701"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="273,457,294,501,325,553,365,604,388,627,413,647,435,659,433,664,411,652,385,631,361,608,320,556,289,504,268,459"/>
+<area shape="rect" id="Node000014" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1TextOnlyQuizQuestion.html" title=" " alt="" coords="447,725,668,765"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="268,458,286,514,315,583,357,653,383,684,414,711,448,729,445,734,410,716,380,688,353,656,310,585,281,516,263,460"/>
+<area shape="rect" id="Node000015" href="$classUVACanvasAccess_1_1Structures_1_1Quizzes_1_1TrueFalseQuizQuestion.html" title=" " alt="" coords="445,789,669,829"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="265,458,278,526,306,612,325,657,349,701,379,741,414,775,447,794,444,798,410,779,375,744,345,704,320,660,301,614,273,527,259,460"/>
+<area shape="rect" id="Node000002" href="$interfaceUVACanvasAccess_1_1Util_1_1IPrettyPrint.html" title="Classes implementing this interface provide an implementation for formatted output in the form of:" alt="" coords="5,413,100,438"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,423,148,423,148,428,113,428"/>
+</map>
