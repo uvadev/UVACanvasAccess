@@ -46,11 +46,11 @@ namespace UVACanvasAccess.Structures.Submissions {
                    ($"\n{nameof(Id)}: {Id}," +
                    $"\n{nameof(AuthorId)}: {AuthorId}," +
                    $"\n{nameof(AuthorName)}: {AuthorName}," +
-                   $"\n{nameof(Author)}: {Author}," +
+                   $"\n{nameof(Author)}: {Author?.ToPrettyString()}," +
                    $"\n{nameof(Comment)}: {Comment}," +
                    $"\n{nameof(CreatedAt)}: {CreatedAt}," +
                    $"\n{nameof(EditedAt)}: {EditedAt}," +
-                   $"\n{nameof(MediaComment)}: {MediaComment}").Indent(4) +
+                   $"\n{nameof(MediaComment)}: {MediaComment?.ToPrettyString()}").Indent(4) +
                    "\n}";
         }
     }

@@ -14,7 +14,7 @@ namespace UVACanvasAccess.Structures.Assignments {
         private readonly Api _api;
         
         /// <summary>
-        /// If these dates comes from an assignment override, the override id.
+        /// If these dates come from an assignment override, the override id.
         /// </summary>
         public ulong? Id { get; }
 

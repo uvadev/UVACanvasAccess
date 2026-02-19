@@ -7,24 +7,24 @@ namespace UVACanvasAccess.Structures.Quizzes {
     
     [PublicAPI]
     public class QuizPermissions : IPrettyPrint {
-        private readonly Api _api;
+        private readonly Api api;
         
-        public bool Read { get; }
+        public bool? Read { get; }
         
-        public bool Submit { get; }
+        public bool? Submit { get; }
         
-        public bool Create { get; }
+        public bool? Create { get; }
         
-        public bool Manage { get; }
+        public bool? Manage { get; }
 
-        public bool ReadStatistics { get; }
+        public bool? ReadStatistics { get; }
         
-        public bool ReviewGrades { get; }
+        public bool? ReviewGrades { get; }
         
-        public bool Update { get; }
+        public bool? Update { get; }
 
         internal QuizPermissions(Api api, QuizPermissionsModel model) {
-            _api = api;
+            this.api = api;
             Read = model.Read;
             Submit = model.Submit;
             Create = model.Create;

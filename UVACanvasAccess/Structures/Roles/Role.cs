@@ -36,7 +36,7 @@ namespace UVACanvasAccess.Structures.Roles {
             return "Role {" +
                    ($"\n{nameof(Label)}: {Label}," +
                    $"\n{nameof(BaseRoleType)}: {BaseRoleType}," +
-                   $"\n{nameof(Account)}: {Account}," +
+                   $"\n{nameof(Account)}: {Account?.ToPrettyString()}," +
                    $"\n{nameof(WorkflowState)}: {WorkflowState}," +
                    $"\n{nameof(Permissions)}: {Permissions.ToPrettyString()}").Indent(4) + 
                    "\n}";

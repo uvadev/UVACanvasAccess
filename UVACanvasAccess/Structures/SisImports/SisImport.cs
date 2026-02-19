@@ -173,13 +173,13 @@ namespace UVACanvasAccess.Structures.SisImports {
                    $"\n{nameof(EndedAt)}: {EndedAt}," +
                    $"\n{nameof(UpdatedAt)}: {UpdatedAt}," +
                    $"\n{nameof(WorkflowState)}: {WorkflowState}," +
-                   $"\n{nameof(Data)}: {Data}," +
-                   $"\n{nameof(Statistics)}: {Statistics}," +
+                   $"\n{nameof(Data)}: {Data?.ToPrettyString()}," +
+                   $"\n{nameof(Statistics)}: {Statistics?.ToPrettyString()}," +
                    $"\n{nameof(Progress)}: {Progress}," +
                    $"\n{nameof(ErrorsAttachment)}: {ErrorsAttachment}," +
                    $"\n{nameof(User)}: {User?.ToPrettyString()}," +
-                   $"\n{nameof(ProcessingWarnings)}: {ProcessingWarnings}," +
-                   $"\n{nameof(ProcessingErrors)}: {ProcessingErrors}," +
+                   $"\n{nameof(ProcessingWarnings)}: {ProcessingWarnings?.ToPrettyString()}," +
+                   $"\n{nameof(ProcessingErrors)}: {ProcessingErrors?.ToPrettyString()}," +
                    $"\n{nameof(BatchMode)}: {BatchMode}," +
                    $"\n{nameof(BatchModeTermId)}: {BatchModeTermId}," +
                    $"\n{nameof(MultiTermBatchMode)}: {MultiTermBatchMode}," +

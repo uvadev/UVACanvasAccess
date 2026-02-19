@@ -490,9 +490,9 @@ namespace UVACanvasAccess.Structures.Assignments {
                    $"\n{nameof(MaxNameLength)}: {MaxNameLength}," +
                    $"\n{nameof(TurnitinEnabled)}: {TurnitinEnabled}," +
                    $"\n{nameof(VeriCiteEnabled)}: {VeriCiteEnabled}," +
-                   $"\n{nameof(TurnitinSettings)}: {TurnitinSettings}," +
+                   $"\n{nameof(TurnitinSettings)}: {TurnitinSettings?.ToPrettyString()}," +
                    $"\n{nameof(GradeGroupStudentsIndividually)}: {GradeGroupStudentsIndividually}," +
-                   $"\n{nameof(ExternalToolTagAttributes)}: {ExternalToolTagAttributes}," +
+                   $"\n{nameof(ExternalToolTagAttributes)}: {ExternalToolTagAttributes?.ToPrettyString()}," +
                    $"\n{nameof(PeerReviews)}: {PeerReviews}," +
                    $"\n{nameof(AutomaticPeerReviews)}: {AutomaticPeerReviews}," +
                    $"\n{nameof(PeerReviewCount)}: {PeerReviewCount}," +
@@ -515,15 +515,15 @@ namespace UVACanvasAccess.Structures.Assignments {
                    $"\n{nameof(Unpublishable)}: {Unpublishable}," +
                    $"\n{nameof(OnlyVisibleToOverrides)}: {OnlyVisibleToOverrides}," +
                    $"\n{nameof(LockedForUser)}: {LockedForUser}," +
-                   $"\n{nameof(LockInfo)}: {LockInfo}," +
+                   $"\n{nameof(LockInfo)}: {LockInfo?.ToPrettyString()}," +
                    $"\n{nameof(LockExplanation)}: {LockExplanation}," +
                    $"\n{nameof(QuizId)}: {QuizId}," +
                    $"\n{nameof(AnonymousSubmissions)}: {AnonymousSubmissions}," +
-                   $"\n{nameof(DiscussionTopic)}: {DiscussionTopic}," +
+                   $"\n{nameof(DiscussionTopic)}: {DiscussionTopic?.ToPrettyString()}," +
                    $"\n{nameof(FreezeOnCopy)}: {FreezeOnCopy}," +
                    $"\n{nameof(Frozen)}: {Frozen}," +
                    $"\n{nameof(FrozenAttributes)}: {FrozenAttributes?.ToPrettyString()}," +
-                   $"\n{nameof(Submission)}: {Submission}," +
+                   $"\n{nameof(Submission)}: {Submission?.ToPrettyString()}," +
                    $"\n{nameof(UseRubricForGrading)}: {UseRubricForGrading}," +
                    $"\n{nameof(RubricSettings)}: {RubricSettings}," +
                    $"\n{nameof(Rubric)}: {Rubric?.ToPrettyString()}," +

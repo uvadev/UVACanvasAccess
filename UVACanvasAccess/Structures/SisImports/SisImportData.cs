@@ -10,7 +10,7 @@ namespace UVACanvasAccess.Structures.SisImports {
     /// Represents some metadata of a <see cref="SisImport">SIS import</see>.
     /// </summary>
     [PublicAPI]
-    public class SisImportData {
+    public class SisImportData : IPrettyPrint {
         private readonly Api api;
         
         /// <summary>
@@ -37,8 +37,12 @@ namespace UVACanvasAccess.Structures.SisImports {
         }
 
         /// <inheritdoc />
-        public override string ToString() {
-            return $"{nameof(ImportType)}: {ImportType}, {nameof(SuppliedBatches)}: {SuppliedBatches}, {nameof(Counts)}: {Counts}";
+        public string ToPrettyString() {
+            return "SisImportData {" +
+                   ($"\n{nameof(ImportType)}: {ImportType}," +
+                    $"\n{nameof(SuppliedBatches)}: {SuppliedBatches?.ToPrettyString()}," +
+                    $"\n{nameof(Counts)}: {Counts?.ToPrettyString()}").Indent(4) +
+                   "\n}";
         }
     }
 }

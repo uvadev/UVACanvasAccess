@@ -96,7 +96,7 @@ namespace UVACanvasAccess.Structures.Pages {
                    $"\n{nameof(Published)}: {Published}," +
                    $"\n{nameof(FrontPage)}: {FrontPage}," +
                    $"\n{nameof(LockedForUser)}: {LockedForUser}," +
-                   $"\n{nameof(LockInfo)}: {LockInfo}," +
+                   $"\n{nameof(LockInfo)}: {LockInfo?.ToPrettyString()}," +
                    $"\n{nameof(LockExplanation)}: {LockExplanation}").Indent(4) +
                    "\n}";
         }

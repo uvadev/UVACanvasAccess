@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UVACanvasAccess.ApiParts;
-using UVACanvasAccess.Exceptions;
 using UVACanvasAccess.Model.Quizzes;
 using UVACanvasAccess.Structures.Assignments;
 using UVACanvasAccess.Util;
@@ -49,12 +50,12 @@ namespace UVACanvasAccess.Structures.Quizzes {
         /// <summary>
         /// The quiz type.
         /// </summary>
-        public QuizType QuizType { get; }
+        public QuizType? QuizType { get; }
 
         /// <summary>
         /// The assignment group id.
         /// </summary>
-        public ulong AssignmentGroupId { get; }
+        public ulong? AssignmentGroupId { get; }
         
         /// <summary>
         /// The quiz time limit, in minutes.
@@ -69,7 +70,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
         /// <summary>
         /// Whether to hide students' results after they complete the quiz.
         /// </summary>
-        public HideResults HideResults { get; }
+        public HideResults? HideResults { get; }
         
         /// <summary>
         /// Whether the correct answers should be shown to students in the results view.
@@ -105,7 +106,7 @@ namespace UVACanvasAccess.Structures.Quizzes {
         /// <summary>
         /// How many attempts are allowed. A value of '-1' indicates unlimited attempts.
         /// </summary>
-        public int AllowedAttempts { get; }
+        public int? AllowedAttempts { get; }
 
         /// <summary>
         /// Whether one question should be shown at a time.
@@ -191,6 +192,34 @@ namespace UVACanvasAccess.Structures.Quizzes {
         /// The url to the web interface page for granting extensions.
         /// </summary>
         public string QuizExtensionsUrl { get; }
+        
+        /// <summary>
+        /// The quiz permissions for the current user.
+        /// </summary>
+        [CanBeNull]
+        public QuizPermissions Permissions { get; }
+        
+        /// <summary>
+        /// All override dates for this quiz, if available.
+        /// </summary>
+        [CanBeNull]
+        public IEnumerable<AssignmentDate> AllDates { get; }
+        
+        /// <summary>
+        /// The version number of the quiz.
+        /// </summary>
+        public uint? VersionNumber { get; }
+        
+        /// <summary>
+        /// The list of question types in this quiz.
+        /// </summary>
+        [CanBeNull]
+        public IEnumerable<QuizQuestionType> QuestionTypes { get; }
+        
+        /// <summary>
+        /// Whether submissions are anonymous.
+        /// </summary>
+        public bool? AnonymousSubmissions { get; }
 
         internal Quiz(Api api, QuizModel model) {
             this.api = api;
@@ -200,20 +229,17 @@ namespace UVACanvasAccess.Structures.Quizzes {
             MobileUrl = model.MobileUrl;
             PreviewUrl = model.PreviewUrl;
             Description = model.Description;
-            QuizType = model.QuizType.ToApiRepresentedEnum<QuizType>()
-                                     .Expect(() => new BadApiStateException($"Quiz.QuizType was an unexpected value: {model.QuizType}"));
+            QuizType = model.QuizType?.ToApiRepresentedEnum<QuizType>();
             AssignmentGroupId = model.AssignmentGroupId;
             TimeLimit = model.TimeLimit;
             ShuffleAnswers = model.ShuffleAnswers;
-            HideResults = (model.HideResults ?? "never").ToApiRepresentedEnum<HideResults>()
-                                                        .Expect(() => new BadApiStateException($"Quiz.HideResults was an unexpected value: {model.HideResults}"));
+            HideResults = model.HideResults?.ToApiRepresentedEnum<HideResults>();
             ShowCorrectAnswers = model.ShowCorrectAnswers;
             ShowCorrectAnswersLastAttempt = model.ShowCorrectAnswersLastAttempt;
             ShowCorrectAnswersAt = model.ShowCorrectAnswersAt;
             HideCorrectAnswersAt = model.HideCorrectAnswersAt;
             OneTimeResults = model.OneTimeResults;
-            ScoringPolicy = model.ScoringPolicy?.ToApiRepresentedEnum<ScoringPolicy>()
-                                                .Expect(() => new BadApiStateException($"Quiz.ScoringPolicy was an unexpected value: {model.ScoringPolicy}"));
+            ScoringPolicy = model.ScoringPolicy?.ToApiRepresentedEnum<ScoringPolicy>();
             AllowedAttempts = model.AllowedAttempts;
             OneQuestionAtATime = model.OneQuestionAtATime;
             QuestionCount = model.QuestionCount;
@@ -231,6 +257,11 @@ namespace UVACanvasAccess.Structures.Quizzes {
             LockExplanation = model.LockExplanation;
             SpeedGraderUrl = model.SpeedGraderUrl;
             QuizExtensionsUrl = model.QuizExtensionsUrl;
+            Permissions = model.Permissions.ConvertIfNotNull(m => new QuizPermissions(api, m));
+            AllDates = model.AllDates?.Select(m => new AssignmentDate(api, m));
+            VersionNumber = model.VersionNumber;
+            QuestionTypes = model.QuestionTypes?.SelectNotNullValue(s => s.ToApiRepresentedEnum<QuizQuestionType>());
+            AnonymousSubmissions = model.AnonymousSubmissions;
         }
 
         /// <inheritdoc />
@@ -266,10 +297,15 @@ namespace UVACanvasAccess.Structures.Quizzes {
                     $"\n{nameof(Published)}: {Published}," +
                     $"\n{nameof(Unpublishable)}: {Unpublishable}," +
                     $"\n{nameof(LockedForUser)}: {LockedForUser}," +
-                    $"\n{nameof(LockInfo)}: {LockInfo}," +
+                    $"\n{nameof(LockInfo)}: {LockInfo?.ToPrettyString()}," +
                     $"\n{nameof(LockExplanation)}: {LockExplanation}," +
                     $"\n{nameof(SpeedGraderUrl)}: {SpeedGraderUrl}," +
-                    $"\n{nameof(QuizExtensionsUrl)}: {QuizExtensionsUrl}").Indent(4) + 
+                    $"\n{nameof(QuizExtensionsUrl)}: {QuizExtensionsUrl}," +
+                    $"\n{nameof(Permissions)}: {Permissions?.ToPrettyString()}," +
+                    $"\n{nameof(AllDates)}: {AllDates?.ToPrettyString()}," +
+                    $"\n{nameof(VersionNumber)}: {VersionNumber}," +
+                    $"\n{nameof(QuestionTypes)}: {QuestionTypes?.ToPrettyString()}," +
+                    $"\n{nameof(AnonymousSubmissions)}: {AnonymousSubmissions}").Indent(4) + 
                    "\n}";
         }
     }

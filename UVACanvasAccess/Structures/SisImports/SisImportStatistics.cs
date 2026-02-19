@@ -117,19 +117,19 @@ namespace UVACanvasAccess.Structures.SisImports {
         public string ToPrettyString() {
             return "SisImportStatistics {" + 
                    ($"\n{nameof(TotalStateChanges)}: {TotalStateChanges}," +
-                   $"\n{nameof(Account)}: {Account}," +
-                   $"\n{nameof(EnrollmentTerm)}: {EnrollmentTerm}," +
-                   $"\n{nameof(CommunicationChannel)}: {CommunicationChannel}," +
-                   $"\n{nameof(AbstractCourse)}: {AbstractCourse}," +
-                   $"\n{nameof(Course)}: {Course}," +
-                   $"\n{nameof(CourseSection)}: {CourseSection}," +
-                   $"\n{nameof(Enrollment)}: {Enrollment}," +
-                   $"\n{nameof(GroupCategory)}: {GroupCategory}," +
-                   $"\n{nameof(Group)}: {Group}," +
-                   $"\n{nameof(GroupMembership)}: {GroupMembership}," +
-                   $"\n{nameof(Pseudonym)}: {Pseudonym}," +
-                   $"\n{nameof(UserObserver)}: {UserObserver}," +
-                   $"\n{nameof(AccountUser)}: {AccountUser}").Indent(4) +
+                   $"\n{nameof(Account)}: {Account?.ToPrettyString()}," +
+                   $"\n{nameof(EnrollmentTerm)}: {EnrollmentTerm?.ToPrettyString()}," +
+                   $"\n{nameof(CommunicationChannel)}: {CommunicationChannel?.ToPrettyString()}," +
+                   $"\n{nameof(AbstractCourse)}: {AbstractCourse?.ToPrettyString()}," +
+                   $"\n{nameof(Course)}: {Course?.ToPrettyString()}," +
+                   $"\n{nameof(CourseSection)}: {CourseSection?.ToPrettyString()}," +
+                   $"\n{nameof(Enrollment)}: {Enrollment?.ToPrettyString()}," +
+                   $"\n{nameof(GroupCategory)}: {GroupCategory?.ToPrettyString()}," +
+                   $"\n{nameof(Group)}: {Group?.ToPrettyString()}," +
+                   $"\n{nameof(GroupMembership)}: {GroupMembership?.ToPrettyString()}," +
+                   $"\n{nameof(Pseudonym)}: {Pseudonym?.ToPrettyString()}," +
+                   $"\n{nameof(UserObserver)}: {UserObserver?.ToPrettyString()}," +
+                   $"\n{nameof(AccountUser)}: {AccountUser?.ToPrettyString()}").Indent(4) +
                    "\n}";
         }
     }

@@ -187,7 +187,7 @@ namespace UVACanvasAccess.Structures.Files {
                    $"\n{nameof(MimeClass)}: {MimeClass}," +
                    $"\n{nameof(MediaEntryId)}: {MediaEntryId}," +
                    $"\n{nameof(LockedForUser)}: {LockedForUser}," +
-                   $"\n{nameof(LockInfo)}: {LockInfo}," +
+                   $"\n{nameof(LockInfo)}: {LockInfo?.ToPrettyString()}," +
                    $"\n{nameof(LockExplanation)}: {LockExplanation}," +
                    $"\n{nameof(PreviewUrl)}: {PreviewUrl}").Indent(4) + 
                    "\n}";

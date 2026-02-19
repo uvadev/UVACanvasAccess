@@ -6,7 +6,7 @@ using UVACanvasAccess.Util;
 namespace UVACanvasAccess.Structures.Logins {
     
     /// <summary>
-    /// Represents a user login, i.e. an identity used to authenticate with Canvas.
+    /// Represents a user login, i.e., an identity used to authenticate with Canvas.
     /// </summary>
     [PublicAPI]
     public class UserLogin : IPrettyPrint {
@@ -66,6 +66,7 @@ namespace UVACanvasAccess.Structures.Logins {
         public string DeclaredUserType { get; }
 
         internal UserLogin(Api api, UserLoginModel model) {
+            this.api = api;
             AccountId = model.AccountId;
             Id = model.Id;
             SisUserId = model.SisUserId;

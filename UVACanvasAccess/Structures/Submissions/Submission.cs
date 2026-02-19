@@ -205,8 +205,8 @@ namespace UVACanvasAccess.Structures.Submissions {
         public virtual string ToPrettyString() {
             return "Submission {" + 
                    ($"\n{nameof(AssignmentId)}: {AssignmentId}," +
-                   $"\n{nameof(Assignment)}: {Assignment}," +
-                   $"\n{nameof(Course)}: {Course}," +
+                   $"\n{nameof(Assignment)}: {Assignment?.ToPrettyString()}," +
+                   $"\n{nameof(Course)}: {Course?.ToPrettyString()}," +
                    $"\n{nameof(Attempt)}: {Attempt}," +
                    $"\n{nameof(Body)}: {Body}," +
                    $"\n{nameof(Grade)}: {Grade}," +
@@ -221,7 +221,7 @@ namespace UVACanvasAccess.Structures.Submissions {
                    $"\n{nameof(UserId)}: {UserId}," +
                    $"\n{nameof(GraderId)}: {GraderId}," +
                    $"\n{nameof(GradedAt)}: {GradedAt}," +
-                   $"\n{nameof(User)}: {User}," +
+                   $"\n{nameof(User)}: {User?.ToPrettyString()}," +
                    $"\n{nameof(Late)}: {Late}," +
                    $"\n{nameof(AssignmentVisible)}: {AssignmentVisible}," +
                    $"\n{nameof(Excused)}: {Excused}," +

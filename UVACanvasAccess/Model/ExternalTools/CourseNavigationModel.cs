@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace UVACanvasAccess.Model.ExternalTools {
@@ -17,7 +18,8 @@ namespace UVACanvasAccess.Model.ExternalTools {
         public string WindowTarget { get; set; } 
         
         [JsonProperty("default")]
-        public string? Default { get; set; }
+        [CanBeNull]
+        public string Default { get; set; }
         
         [JsonProperty("display_type")]
         public string DisplayType { get; set; } 

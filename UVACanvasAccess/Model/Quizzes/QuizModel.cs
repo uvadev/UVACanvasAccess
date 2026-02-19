@@ -30,7 +30,7 @@ namespace UVACanvasAccess.Model.Quizzes {
         public string QuizType { get; set; }
         
         [JsonProperty("assignment_group_id")]
-        public ulong AssignmentGroupId { get; set; }
+        public ulong? AssignmentGroupId { get; set; }
         
         [JsonProperty("time_limit")]
         public decimal? TimeLimit { get; set; }
@@ -62,7 +62,7 @@ namespace UVACanvasAccess.Model.Quizzes {
         public string ScoringPolicy { get; set; }
         
         [JsonProperty("allowed_attempts")]
-        public int AllowedAttempts { get; set; }
+        public int? AllowedAttempts { get; set; }
         
         [JsonProperty("one_question_at_a_time")]
         public bool? OneQuestionAtATime { get; set; }
@@ -117,15 +117,18 @@ namespace UVACanvasAccess.Model.Quizzes {
         [JsonProperty("quiz_extensions_url")]
         public string QuizExtensionsUrl { get; set; }
         
+        [CanBeNull]
         [JsonProperty("permissions")]
         public QuizPermissionsModel Permissions { get; set; }
         
+        [CanBeNull]
         [JsonProperty("all_dates")]
-        public object AllDates { get; set; } // exact type unspecified by canvas & no example value given 
+        public IEnumerable<AssignmentDateModel> AllDates { get; set; } 
         
         [JsonProperty("version_number")]
         public uint? VersionNumber { get; set; }
         
+        [CanBeNull]
         [JsonProperty("question_types")]
         public IEnumerable<string> QuestionTypes { get; set; }
         
