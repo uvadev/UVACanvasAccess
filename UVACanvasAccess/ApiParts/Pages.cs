@@ -36,6 +36,7 @@ namespace UVACanvasAccess.ApiParts {
         private Task<HttpResponseMessage> RawListPages(string type, string id, string sort, string order, string search, bool? published) {
             return client.GetAsync($"{type}/{id}/pages" + BuildQueryString(("sort", sort), 
                                                                             ("order", order), 
+                                                                            ("search_term", search),
                                                                             ("published", published?.ToShortString())));
         }
 

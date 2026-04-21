@@ -15,7 +15,7 @@ namespace UVACanvasAccess.ApiParts {
         [PaginatedResponse]
         private Task<HttpResponseMessage> RawGetActivityStream(bool? onlyActiveCourses) {
             return client.GetAsync("users/activity_stream" +
-                                    BuildQueryString(("only_active_courses", onlyActiveCourses?.ToString())));
+                                    BuildQueryString(("only_active_courses", onlyActiveCourses?.ToShortString())));
         }
         
         /// <summary>
