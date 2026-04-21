@@ -337,7 +337,7 @@ namespace UVACanvasAccess.ApiParts {
             var argsList = new List<(string, string)> {
                                                           ("with_enrollments", withEnrollmentsOnly?.ToShortString()),
                                                           ("published", published?.ToShortString()),
-                                                          ("completed", published?.ToShortString()),
+                                                          ("completed", completed?.ToShortString()),
                                                           ("blueprint", blueprint?.ToShortString()),
                                                           ("blueprint_associated", blueprintAssociated?.ToShortString()),
                                                           ("enrollment_term_id", enrollmentTermId?.ToString()),
