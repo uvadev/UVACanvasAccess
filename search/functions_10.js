@@ -1,4 +1,32 @@
 var searchData=
 [
-  ['validatequizaccesscode_0',['ValidateQuizAccessCode',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a882574ad0a2c97f2b6c2b362fba709d7',1,'UVACanvasAccess::ApiParts::Api']]]
+  ['uncrosslistsection_0',['UnCrossListSection',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aff45170f8091ec91111375e950f69922',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['unflagquizsubmissionquestion_1',['UnflagQuizSubmissionQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a11671221dcca11709ce45e8e2661843f',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatecalculatedquizquestion_2',['UpdateCalculatedQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad6800896ab7e1dd5b365d8a942c14a08',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatecolumncustomentry_3',['UpdateColumnCustomEntry',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7bcc5e1a2b71ee24daf1ac106b73d168',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatecoursesettings_4',['UpdateCourseSettings',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5d1310c5707006cb0533743256de6ab6',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatecustomcolumn_5',['UpdateCustomColumn',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#abdc61ef62d79f59981114f48697b8826',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatecustomcolumnentries_6',['UpdateCustomColumnEntries',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#abfa37b3e08e0530c126295afe4326311',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updateenrollmentterm_7',['UpdateEnrollmentTerm',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#aac47d532b860688a581c2df318f2a353',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updateessayquizquestion_8',['UpdateEssayQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a390333a2872d5278fb3940d7e97debc6',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatefileuploadquizquestion_9',['UpdateFileUploadQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8d0d9822848893b7adf759e32feca77c',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatefillinmultipleblanksquizquestion_10',['UpdateFillInMultipleBlanksQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a3f7c9f5c39d6349f809d392f9d8659c2',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updategradingperiod_11',['UpdateGradingPeriod',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a5e059ddb6b64879d12c54ab17ffe842f',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updategradingperiodset_12',['UpdateGradingPeriodSet',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a891247162c57d0f09f644c0ef8c7d793',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatematchingquizquestion_13',['UpdateMatchingQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad7d1627c19ba6a7aa8a353555ad3835c',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatemultipleanswersquizquestion_14',['UpdateMultipleAnswersQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a4a9f98503058edd4abeb664b2ac1e46d',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatemultiplechoicequizquestion_15',['UpdateMultipleChoiceQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ad653b76bc5cd7957b8c1dedc5d074023',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatemultipledropdownsquizquestion_16',['UpdateMultipleDropdownsQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a485e28f8b9a1804e4bf5c4be11bbb675',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatenumericalquizquestion_17',['UpdateNumericalQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a7456f1317d39789d579feb1bbd1743a2',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatepersonalfile_18',['UpdatePersonalFile',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a037ef6fa54be0d781c5bfa17fa78dc05',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatepersonalfolder_19',['UpdatePersonalFolder',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#ae3e660521fd138404889aaa34896a47e',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatequiz_20',['UpdateQuiz',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a264ffd43cdc0be898dded5df0863fc92',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatequizquestiongroup_21',['UpdateQuizQuestionGroup',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#afa209bd3a47a3776fd652e90fc28f36d',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatequizsubmissionscores_22',['UpdateQuizSubmissionScores',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#adf843f7d8cb46194e31e441e2599c33c',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatesettings_23',['UpdateSettings',['../classUVACanvasAccess_1_1Structures_1_1Courses_1_1Course.html#a319ccc0d45d4a1f5decf672f919bb3dc',1,'UVACanvasAccess::Structures::Courses::Course']]],
+  ['updateshortanswerquizquestion_24',['UpdateShortAnswerQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a76ff2bb211e522a74358d1b8b28f7665',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatetextonlyquizquestion_25',['UpdateTextOnlyQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a9edefd1c87af0eb9f5f079f0fb8ee8c0',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['updatetruefalsequizquestion_26',['UpdateTrueFalseQuizQuestion',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a1005eb41f190f55d5d4a850dfc24e2d2',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['uploadpersonalfile_27',['UploadPersonalFile',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a8b5b05be4ace95cd671f9968299b9095',1,'UVACanvasAccess::ApiParts::Api']]],
+  ['uploadquizsubmissionfile_28',['UploadQuizSubmissionFile',['../classUVACanvasAccess_1_1ApiParts_1_1Api.html#a82bb17b17081960aeef48a723297e850',1,'UVACanvasAccess::ApiParts::Api']]]
 ];

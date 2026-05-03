@@ -111,6 +111,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1ColumnEntryUpdate.html">ColumnEntryUpdate</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents one update to a custom column entry.  <a href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1ColumnEntryUpdate.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1PageViewsQueryResults.html">PageViewsQueryResults</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html">QuotaInfo</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the total storage quota and quota usage for a user.  <a href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1QuotaInfo.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -436,6 +438,16 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ab267c69700d39cf9b330de94a9905be6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional data which can be included in Section responses.  <a href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ab267c69700d39cf9b330de94a9905be6">More...</a><br /></td></tr>
 <tr class="separator:ab267c69700d39cf9b330de94a9905be6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa01a0c795cd429e2b56f6f58f659011" id="r_aaa01a0c795cd429e2b56f6f58f659011"><td class="memItemLeft" align="right" valign="top"><a id="aaa01a0c795cd429e2b56f6f58f659011" name="aaa01a0c795cd429e2b56f6f58f659011"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>PageViewsFormat</b> { <b>JsonL</b>
+, <b>Csv</b>
+ }</td></tr>
+<tr class="separator:aaa01a0c795cd429e2b56f6f58f659011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6f87dde689c6c9c8ad8a6b9569ea26e" id="r_ac6f87dde689c6c9c8ad8a6b9569ea26e"><td class="memItemLeft" align="right" valign="top"><a id="ac6f87dde689c6c9c8ad8a6b9569ea26e" name="ac6f87dde689c6c9c8ad8a6b9569ea26e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>PageViewsQueryStatus</b> { <b>Queued</b>
+, <b>Running</b>
+, <b>Finished</b>
+, <b>Failed</b>
+ }</td></tr>
+<tr class="separator:ac6f87dde689c6c9c8ad8a6b9569ea26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -1274,6 +1286,12 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes
 <tr class="memitem:aa623157016d8b5d42ec145667c72d355" id="r_aa623157016d8b5d42ec145667c72d355"><td class="memItemLeft" align="right" valign="top">async Task&lt; IEnumerable&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Users_1_1User.html">User</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#aa623157016d8b5d42ec145667c72d355">SplitMergedUsers</a> (ulong mergedUserId)</td></tr>
 <tr class="memdesc:aa623157016d8b5d42ec145667c72d355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to split a merged user created by MergeUsers back into its constituents.  <br /></td></tr>
 <tr class="separator:aa623157016d8b5d42ec145667c72d355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb827803f808da7748ee2ae10d46bcb" id="r_abfb827803f808da7748ee2ae10d46bcb"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1PageViewsQueryResults.html">PageViewsQueryResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#abfb827803f808da7748ee2ae10d46bcb">QueryPageViews</a> (ulong userId, DateTime startDate, DateTime endDate, PageViewsFormat format, int pollingDelayMs=5000, bool bufferResponseContent=false)</td></tr>
+<tr class="memdesc:abfb827803f808da7748ee2ae10d46bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an asynchronous Page Views query for a user and returns the resulting data stream.  <br /></td></tr>
+<tr class="separator:abfb827803f808da7748ee2ae10d46bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62f9f07cbe8535fd951d7c29b84d7dc" id="r_ac62f9f07cbe8535fd951d7c29b84d7dc"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1PageViewsQueryResults.html">PageViewsQueryResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUVACanvasAccess_1_1ApiParts_1_1Api.html#ac62f9f07cbe8535fd951d7c29b84d7dc">QueryPageViews</a> (IEnumerable&lt; ulong &gt; userIds, DateTime startDate, DateTime endDate, PageViewsFormat format, int pollingDelayMs=5000, bool bufferResponseContent=false)</td></tr>
+<tr class="memdesc:ac62f9f07cbe8535fd951d7c29b84d7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an asynchronous Page Views query for multiple users and returns the resulting data stream.  <br /></td></tr>
+<tr class="separator:ac62f9f07cbe8535fd951d7c29b84d7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is the primary interface for interacting with the Canvas API. <br  />
@@ -7880,6 +7898,168 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes
 
 </div>
 </div>
+<a id="ac62f9f07cbe8535fd951d7c29b84d7dc" name="ac62f9f07cbe8535fd951d7c29b84d7dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac62f9f07cbe8535fd951d7c29b84d7dc">&#9670;&#160;</a></span>QueryPageViews() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; <a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1PageViewsQueryResults.html">PageViewsQueryResults</a> &gt; UVACanvasAccess.ApiParts.Api.QueryPageViews </td>
+          <td>(</td>
+          <td class="paramtype">IEnumerable&lt; ulong &gt;&#160;</td>
+          <td class="paramname"><em>userIds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DateTime&#160;</td>
+          <td class="paramname"><em>startDate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DateTime&#160;</td>
+          <td class="paramname"><em>endDate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PageViewsFormat&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pollingDelayMs</em> = <code>5000</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bufferResponseContent</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs an asynchronous Page Views query for multiple users and returns the resulting data stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userIds</td><td>The Canvas user ids.</td></tr>
+    <tr><td class="paramname">startDate</td><td>The inclusive start month. Must be the first day of a month.</td></tr>
+    <tr><td class="paramname">endDate</td><td>The exclusive end month. Must be the first day of a month and after <em>startDate</em> .</td></tr>
+    <tr><td class="paramname">format</td><td>The output format for the results.</td></tr>
+    <tr><td class="paramname">pollingDelayMs</td><td>Delay in milliseconds between poll requests while the query is running.</td></tr>
+    <tr><td class="paramname">bufferResponseContent</td><td>If set to <code>false</code>, this avoids an intermediate buffer and can improve performance. However, slow consumers can cause Canvas to time out the response stream (for example, printing to stdout). Writing the stream to a file is usually safe. If set to <code>true</code>, the response is fully buffered in memory before returning and is always safe. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A stream containing the query output in the requested format.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentException</td><td>Thrown when either date is not on the first of the month, or when <em>startDate</em>  is not before <em>endDate</em> . </td></tr>
+    <tr><td class="paramname">CommunicationException</td><td>Thrown when the Canvas async query fails or returns an unexpected status.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abfb827803f808da7748ee2ae10d46bcb" name="abfb827803f808da7748ee2ae10d46bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfb827803f808da7748ee2ae10d46bcb">&#9670;&#160;</a></span>QueryPageViews() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; <a class="el" href="structUVACanvasAccess_1_1ApiParts_1_1Api_1_1PageViewsQueryResults.html">PageViewsQueryResults</a> &gt; UVACanvasAccess.ApiParts.Api.QueryPageViews </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>userId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DateTime&#160;</td>
+          <td class="paramname"><em>startDate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DateTime&#160;</td>
+          <td class="paramname"><em>endDate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PageViewsFormat&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pollingDelayMs</em> = <code>5000</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bufferResponseContent</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs an asynchronous Page Views query for a user and returns the resulting data stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>The Canvas user id.</td></tr>
+    <tr><td class="paramname">startDate</td><td>The inclusive start month. Must be the first day of a month.</td></tr>
+    <tr><td class="paramname">endDate</td><td>The exclusive end month. Must be the first day of a month and after <em>startDate</em> .</td></tr>
+    <tr><td class="paramname">format</td><td>The output format for the results.</td></tr>
+    <tr><td class="paramname">pollingDelayMs</td><td>Delay in milliseconds between poll requests while the query is running.</td></tr>
+    <tr><td class="paramname">bufferResponseContent</td><td>If set to <code>false</code>, this avoids an intermediate buffer and can improve performance. However, slow consumers can cause Canvas to time out the response stream (for example, printing to stdout). Writing the stream to a file is usually safe. If set to <code>true</code>, the response is fully buffered in memory before returning and is always safe. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A stream containing the query output in the requested format.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentException</td><td>Thrown when either date is not on the first of the month, or when <em>startDate</em>  is not before <em>endDate</em> . </td></tr>
+    <tr><td class="paramname">CommunicationException</td><td>Thrown when the Canvas async query fails or returns an unexpected status.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a56d72ef2e22bd3d8efc00c6a4276950c" name="a56d72ef2e22bd3d8efc00c6a4276950c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a56d72ef2e22bd3d8efc00c6a4276950c">&#9670;&#160;</a></span>ReactivateEnrollment()</h2>
 
@@ -11984,6 +12164,7 @@ async Task&lt; <a class="el" href="classUVACanvasAccess_1_1Structures_1_1Quizzes
 <li>UVACanvasAccess/ApiParts/<b>Sections.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>SisImports.cs</b></li>
 <li>UVACanvasAccess/ApiParts/<b>Users.cs</b></li>
+<li>UVACanvasAccess/ApiParts/<b>UsersBeta.cs</b></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
