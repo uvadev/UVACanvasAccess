@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -36,7 +37,11 @@ namespace UVACanvasAccess.ApiParts {
         /// <param name="baseUrl">The base API url, e.g. <c>https://YOUR_ORGANIZATION.instructure.com/api/v1/</c></param>
         /// <param name="timeout">(Optional) The maximum amount of time one request may take before it is cancelled.</param>
         public Api(string token, string baseUrl, TimeSpan? timeout = null) {
-            client = new HttpClient();
+            var handler = new HttpClientHandler {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
+            
+            client = new HttpClient(handler);
             
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             client.BaseAddress = new Uri(baseUrl);

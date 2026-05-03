@@ -419,6 +419,16 @@ namespace UVACanvasAccess.Util {
             var s = JsonConvert.SerializeObject(dateTime);
             return s.Substring(1, s.Length - 2);
         }
+        
+        /// <summary>
+        /// Formats this DateTime as a YYYY-MM-DD string, as expected by certain Canvas endpoints.
+        /// </summary>
+        /// <returns>The formatted datetime.</returns>
+        [Pure]
+        public static string ToShortIso8601Date(this DateTime dateTime) {
+            var s = JsonConvert.SerializeObject(dateTime);
+            return s.Substring(1, s.Length - 2).Split('T')[0];
+        }
 
         /// <summary>
         /// Converts this collection of key-value pairs into a <see cref="ILookup{TKey,TElement}"/>.

@@ -181,6 +181,7 @@
     <Compile Include="ApiParts\SisImports.cs" />
     <Compile Include="ApiParts\EnrollmentTerms.cs" />
     <Compile Include="ApiParts\Users.cs" />
+    <Compile Include="ApiParts\UsersBeta.cs" />
     <Compile Include="Builders\AppointmentGroupBuilder.cs" />
     <Compile Include="Builders\AssignmentBuilder.cs" />
     <Compile Include="Builders\AssignmentOverrideBuilder.cs" />
@@ -328,6 +329,11 @@
     <Compile Include="Model\Users\ActivityStreamSummaryEntryModel.cs" />
     <Compile Include="Model\Users\AnonymousUserDisplayModel.cs" />
     <Compile Include="Model\Users\AvatarModel.cs" />
+    <Compile Include="Model\Users\Beta\AsyncApiErrorResponseModel.cs" />
+    <Compile Include="Model\Users\Beta\AsyncQueryResponseModel.cs" />
+    <Compile Include="Model\Users\Beta\AsyncQueryResultsResponseModel.cs" />
+    <Compile Include="Model\Users\Beta\AsyncQueryStatusResponseModel.cs" />
+    <Compile Include="Model\Users\Beta\AsyncQueryWarningModel.cs" />
     <Compile Include="Model\Users\CourseNicknameModel.cs" />
     <Compile Include="Model\Users\PageViewModel.cs" />
     <Compile Include="Model\Users\PageViewLinksModel.cs" />
@@ -517,6 +523,7 @@
     <Compile Include="Util\LinkHeader.cs" />
     <Compile Include="Util\OptIn.cs" />
     <Compile Include="Util\PaginatedResponse.cs" />
+    <Compile Include="Util\PrefixedReadStream.cs" />
     <Compile Include="Util\Undocumented.cs" />
     <Compile Include="Util\UndocumentedRange.cs" />
     <Compile Include="Util\UndocumentedType.cs" />
